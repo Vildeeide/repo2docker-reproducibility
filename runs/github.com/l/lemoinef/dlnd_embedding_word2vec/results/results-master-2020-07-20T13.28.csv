@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lemoinef/dlnd_embedding_word2vec,master,a866c4a,2017-07-27T10:06:35-04:00,build,build,False,github.com/l/lemoinef/dlnd_embedding_word2vec/logs/build-master-2020-07-20T13.28.txt,2020-07-20T13:28:50.025794,2020-07-20T13.28,0.11.0

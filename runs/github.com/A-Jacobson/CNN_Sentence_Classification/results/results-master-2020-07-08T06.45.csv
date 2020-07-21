@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/A-Jacobson/CNN_Sentence_Classification,master,6094274,2017-10-14T06:46:01-07:00,build,build,False,github.com/A-Jacobson/CNN_Sentence_Classification/logs/build-master-2020-07-08T06.45.txt,2020-07-08T06:45:25.541663,2020-07-08T06.45,0.11.0

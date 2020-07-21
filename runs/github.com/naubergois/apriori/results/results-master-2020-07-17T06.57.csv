@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/naubergois/apriori,master,4c411dc,2017-06-04T12:37:51-03:00,build,build,True,github.com/naubergois/apriori/logs/build-master-2020-07-17T06.57.txt,2020-07-17T06:57:55.472673,2020-07-17T06.57,0.11.0
-https://github.com/naubergois/apriori,master,4c411dc,2017-06-04T12:37:51-03:00,notebook,apriori.ipynb,False,github.com/naubergois/apriori/logs/test-notebook-apriori.ipynb-2020-07-17T06.57.txt,2020-07-17T06:57:55.472673,2020-07-17T06.57,0.11.0

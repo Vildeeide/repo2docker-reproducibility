@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Mofal91/weatherpy,master,5597499,2018-03-21T23:59:23-04:00,build,build,True,github.com/Mofal91/weatherpy/logs/build-master-2020-07-17T13.03.txt,2020-07-17T13:03:58.896962,2020-07-17T13.03,0.11.0
-https://github.com/Mofal91/weatherpy,master,5597499,2018-03-21T23:59:23-04:00,notebook,Weatherpy_beta2.ipynb,False,github.com/Mofal91/weatherpy/logs/test-notebook-Weatherpy_beta2.ipynb-2020-07-17T13.03.txt,2020-07-17T13:03:58.896962,2020-07-17T13.03,0.11.0

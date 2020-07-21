@@ -1,5 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/zatulik/python,master,2d6a2a7,2017-06-18T13:14:15+03:00,build,build,True,github.com/zatulik/python/logs/build-master-2020-07-17T12.43.txt,2020-07-17T12:43:46.248978,2020-07-17T12.43,0.11.0
-https://github.com/zatulik/python,master,2d6a2a7,2017-06-18T13:14:15+03:00,notebook,yvzatuliДЗ2.ipynb,False,github.com/zatulik/python/logs/test-notebook-yvzatuliДЗ2.ipynb-2020-07-17T12.43.txt,2020-07-17T12:43:46.248978,2020-07-17T12.43,0.11.0
-https://github.com/zatulik/python,master,2d6a2a7,2017-06-18T13:14:15+03:00,notebook,yvzatuliДЗ1(1).ipynb,False,github.com/zatulik/python/logs/test-notebook-yvzatuliДЗ1(1).ipynb-2020-07-17T12.43.txt,2020-07-17T12:43:46.248978,2020-07-17T12.43,0.11.0
-https://github.com/zatulik/python,master,2d6a2a7,2017-06-18T13:14:15+03:00,notebook,yvzatuliДЗ3.ipynb,False,github.com/zatulik/python/logs/test-notebook-yvzatuliДЗ3.ipynb-2020-07-17T12.43.txt,2020-07-17T12:43:46.248978,2020-07-17T12.43,0.11.0

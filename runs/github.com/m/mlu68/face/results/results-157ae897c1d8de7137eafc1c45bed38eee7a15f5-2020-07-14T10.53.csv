@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/mlu68/Face,157ae897c1d8de7137eafc1c45bed38eee7a15f5,157ae89,2017-08-11T12:50:31+00:00,build,build,True,github.com/m/mlu68/face/logs/build-157ae897c1d8de7137eafc1c45bed38eee7a15f5-2020-07-14T10.53.txt,2020-07-14T10:53:22.708453,2020-07-14T10.53,0.11.0
+https://github.com/mlu68/Face,157ae897c1d8de7137eafc1c45bed38eee7a15f5,157ae89,2017-08-11T12:50:31+00:00,notebook,Main.ipynb,False,github.com/m/mlu68/face/logs/test-notebook-Main.ipynb-2020-07-14T10.53.txt,2020-07-14T10:53:22.708453,2020-07-14T10.53,0.11.0

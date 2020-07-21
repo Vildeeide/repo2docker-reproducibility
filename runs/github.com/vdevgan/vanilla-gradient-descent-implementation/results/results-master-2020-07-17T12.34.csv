@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/vdevgan/vanilla-gradient-descent-implementation,master,51c5d3d,2018-01-27T18:47:49+05:30,build,build,True,github.com/vdevgan/vanilla-gradient-descent-implementation/logs/build-master-2020-07-17T12.34.txt,2020-07-17T12:34:42.998046,2020-07-17T12.34,0.11.0
-https://github.com/vdevgan/vanilla-gradient-descent-implementation,master,51c5d3d,2018-01-27T18:47:49+05:30,notebook,vanilla gradient-all iteration-graph.ipynb,False,github.com/vdevgan/vanilla-gradient-descent-implementation/logs/test-notebook-vanilla gradient-all iteration-graph.ipynb-2020-07-17T12.34.txt,2020-07-17T12:34:42.998046,2020-07-17T12.34,0.11.0

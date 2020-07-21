@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/napsternxg/STAN-Tutorial,master,eb900d7,2016-12-30T15:59:35-06:00,build,build,True,github.com/napsternxg/STAN-Tutorial/logs/build-master-2020-07-16T11.49.txt,2020-07-16T11:49:02.100493,2020-07-16T11.49,0.11.0
-https://github.com/napsternxg/STAN-Tutorial,master,eb900d7,2016-12-30T15:59:35-06:00,notebook,rstanarm tutorial.ipynb,False,github.com/napsternxg/STAN-Tutorial/logs/test-notebook-rstanarm tutorial.ipynb-2020-07-16T11.49.txt,2020-07-16T11:49:02.100493,2020-07-16T11.49,0.11.0
-https://github.com/napsternxg/STAN-Tutorial,master,eb900d7,2016-12-30T15:59:35-06:00,notebook,Stan Tutorials.ipynb,False,github.com/napsternxg/STAN-Tutorial/logs/test-notebook-Stan Tutorials.ipynb-2020-07-16T11.49.txt,2020-07-16T11:49:02.100493,2020-07-16T11.49,0.11.0

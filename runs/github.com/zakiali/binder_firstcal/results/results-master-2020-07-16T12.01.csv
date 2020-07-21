@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/zakiali/binder_firstcal,master,035a412,2016-10-07T15:27:20-07:00,build,build,False,github.com/zakiali/binder_firstcal/logs/build-master-2020-07-16T12.01.txt,2020-07-16T12:01:09.619406,2020-07-16T12.01,0.11.0

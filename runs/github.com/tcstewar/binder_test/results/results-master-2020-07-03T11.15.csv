@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/tcstewar/binder_test,master,f5878d0,2016-07-25T18:42:27+01:00,build,build,True,github.com/tcstewar/binder_test/logs/build-master-2020-07-03T11.15.txt,2020-07-03T11:15:29.919493,2020-07-03T11.15,0.11.0
-https://github.com/tcstewar/binder_test,master,f5878d0,2016-07-25T18:42:27+01:00,notebook,Test Notebook 1.ipynb,False,github.com/tcstewar/binder_test/logs/test-notebook-Test Notebook 1.ipynb-2020-07-03T11.15.txt,2020-07-03T11:15:29.919493,2020-07-03T11.15,0.11.0

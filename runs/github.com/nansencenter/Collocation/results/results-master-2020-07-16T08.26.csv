@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/nansencenter/Collocation,master,62ccb06,2017-05-15T00:51:35+02:00,build,build,True,github.com/nansencenter/Collocation/logs/build-master-2020-07-16T08.26.txt,2020-07-16T08:26:12.898274,2020-07-16T08.26,0.11.0
-https://github.com/nansencenter/Collocation,master,62ccb06,2017-05-15T00:51:35+02:00,notebook,INFR.collocation.ipynb,False,github.com/nansencenter/Collocation/logs/test-notebook-INFR.collocation.ipynb-2020-07-16T08.26.txt,2020-07-16T08:26:12.898274,2020-07-16T08.26,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/malmaud/julia_class,c8f0d7cdea1e7b9609d16a23ccd9a8a461f8f586,c8f0d7c,2017-09-21T14:38:29-04:00,build,build,True,github.com/malmaud/julia_class/logs/build-c8f0d7cdea1e7b9609d16a23ccd9a8a461f8f586-2020-07-14T09.36.txt,2020-07-14T09:36:25.734538,2020-07-14T09.36,0.11.0
-https://github.com/malmaud/julia_class,c8f0d7cdea1e7b9609d16a23ccd9a8a461f8f586,c8f0d7c,2017-09-21T14:38:29-04:00,notebook,tf.ipynb,False,github.com/malmaud/julia_class/logs/test-notebook-tf.ipynb-2020-07-14T09.36.txt,2020-07-14T09:36:25.734538,2020-07-14T09.36,0.11.0

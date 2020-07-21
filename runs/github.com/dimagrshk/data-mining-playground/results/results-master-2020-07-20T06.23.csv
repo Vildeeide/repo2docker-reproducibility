@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/dimagrshk/data-mining-playground,master,338b66a,2018-03-27T22:40:10+03:00,build,build,True,github.com/dimagrshk/data-mining-playground/logs/build-master-2020-07-20T06.23.txt,2020-07-20T06:23:36.816869,2020-07-20T06.23,0.11.0
-https://github.com/dimagrshk/data-mining-playground,master,338b66a,2018-03-27T22:40:10+03:00,notebook,1_lab.ipynb,False,github.com/dimagrshk/data-mining-playground/logs/test-notebook-1_lab.ipynb-2020-07-20T06.23.txt,2020-07-20T06:23:36.816869,2020-07-20T06.23,0.11.0
-https://github.com/dimagrshk/data-mining-playground,master,338b66a,2018-03-27T22:40:10+03:00,notebook,.ipynb_checkpoints/1_lab-checkpoint.ipynb,False,github.com/dimagrshk/data-mining-playground/logs/test-notebook-.ipynb_checkpoints-1_lab-checkpoint.ipynb-2020-07-20T06.23.txt,2020-07-20T06:23:36.816869,2020-07-20T06.23,0.11.0

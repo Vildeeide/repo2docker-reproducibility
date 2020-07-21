@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/noahgift/recommendations,master,6646689,2019-02-17T17:14:48-08:00,build,build,True,github.com/noahgift/recommendations/logs/build-master-2020-07-16T07.20.txt,2020-07-16T07:20:14.421163,2020-07-16T07.20,0.11.0
-https://github.com/noahgift/recommendations,master,6646689,2019-02-17T17:14:48-08:00,notebook,notebooks/Azure_Sentiment_Analysis.ipynb,False,github.com/noahgift/recommendations/logs/test-notebook-notebooks-Azure_Sentiment_Analysis.ipynb-2020-07-16T07.20.txt,2020-07-16T07:20:14.421163,2020-07-16T07.20,0.11.0

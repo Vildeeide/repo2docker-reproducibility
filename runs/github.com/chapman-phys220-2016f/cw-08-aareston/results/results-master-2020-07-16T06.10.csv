@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/chapman-phys220-2016f/cw-08-aareston,master,70ffdbd,2016-10-25T17:28:16+00:00,build,build,True,github.com/chapman-phys220-2016f/cw-08-aareston/logs/build-master-2020-07-16T06.10.txt,2020-07-16T06:10:37.479241,2020-07-16T06.10,0.11.0
-https://github.com/chapman-phys220-2016f/cw-08-aareston,master,70ffdbd,2016-10-25T17:28:16+00:00,notebook,cw-08.ipynb,False,github.com/chapman-phys220-2016f/cw-08-aareston/logs/test-notebook-cw-08.ipynb-2020-07-16T06.10.txt,2020-07-16T06:10:37.479241,2020-07-16T06.10,0.11.0

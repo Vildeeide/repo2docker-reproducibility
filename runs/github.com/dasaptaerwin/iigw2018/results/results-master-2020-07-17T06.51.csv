@@ -1,6 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/dasaptaerwin/iigw2018,master,a03e5f5,2018-03-26T12:50:04+07:00,build,build,True,github.com/dasaptaerwin/iigw2018/logs/build-master-2020-07-17T06.51.txt,2020-07-17T06:51:10.105037,2020-07-17T06.51,0.11.0
-https://github.com/dasaptaerwin/iigw2018,master,a03e5f5,2018-03-26T12:50:04+07:00,notebook,Untitled.ipynb,True,github.com/dasaptaerwin/iigw2018/logs/test-notebook-Untitled.ipynb-2020-07-17T06.51.txt,2020-07-17T06:51:10.105037,2020-07-17T06.51,0.11.0
-https://github.com/dasaptaerwin/iigw2018,master,a03e5f5,2018-03-26T12:50:04+07:00,notebook,PCA_R.ipynb,False,github.com/dasaptaerwin/iigw2018/logs/test-notebook-PCA_R.ipynb-2020-07-17T06.51.txt,2020-07-17T06:51:10.105037,2020-07-17T06.51,0.11.0
-https://github.com/dasaptaerwin/iigw2018,master,a03e5f5,2018-03-26T12:50:04+07:00,notebook,IIGW2018.ipynb,False,github.com/dasaptaerwin/iigw2018/logs/test-notebook-IIGW2018.ipynb-2020-07-17T06.51.txt,2020-07-17T06:51:10.105037,2020-07-17T06.51,0.11.0
-https://github.com/dasaptaerwin/iigw2018,master,a03e5f5,2018-03-26T12:50:04+07:00,notebook,IIGW2018-Copy1.ipynb,False,github.com/dasaptaerwin/iigw2018/logs/test-notebook-IIGW2018-Copy1.ipynb-2020-07-17T06.51.txt,2020-07-17T06:51:10.105037,2020-07-17T06.51,0.11.0

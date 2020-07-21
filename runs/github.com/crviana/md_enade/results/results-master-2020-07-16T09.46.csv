@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/crviana/md_enade,master,88a984b,2017-08-28T22:17:27-03:00,build,build,True,github.com/crviana/md_enade/logs/build-master-2020-07-16T09.46.txt,2020-07-16T09:46:43.391576,2020-07-16T09.46,0.11.0
-https://github.com/crviana/md_enade,master,88a984b,2017-08-28T22:17:27-03:00,notebook,enade_jupyter.ipynb,False,github.com/crviana/md_enade/logs/test-notebook-enade_jupyter.ipynb-2020-07-16T09.46.txt,2020-07-16T09:46:43.391576,2020-07-16T09.46,0.11.0

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ulgoon/jakdang-python,master,3d7302b,2017-12-07T21:08:48+09:00,build,build,False,github.com/u/ulgoon/jakdang-python/logs/build-master-2020-07-17T07.37.txt,2020-07-17T07:37:24.914319,2020-07-17T07.37,0.11.0

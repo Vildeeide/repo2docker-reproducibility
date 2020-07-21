@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/koldunovn/AWI2,master,87de9c7,2019-03-16T19:00:46+01:00,build,build,True,github.com/k/koldunovn/awi2/logs/build-master-2020-07-20T10.06.txt,2020-07-20T10:06:51.305935,2020-07-20T10.06,0.11.0
+https://github.com/koldunovn/AWI2,master,87de9c7,2019-03-16T19:00:46+01:00,notebook,06 - Time series (Pandas).ipynb,False,github.com/k/koldunovn/awi2/logs/test-notebook-06 - Time series (Pandas).ipynb-2020-07-20T10.06.txt,2020-07-20T10:06:51.305935,2020-07-20T10.06,0.11.0

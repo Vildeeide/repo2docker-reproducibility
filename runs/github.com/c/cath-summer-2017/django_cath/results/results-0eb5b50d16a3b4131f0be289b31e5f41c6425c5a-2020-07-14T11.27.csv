@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/CATH-summer-2017/django_CATH,0eb5b50d16a3b4131f0be289b31e5f41c6425c5a,0eb5b50,2017-08-18T18:24:08+01:00,build,build,False,github.com/c/cath-summer-2017/django_cath/logs/build-0eb5b50d16a3b4131f0be289b31e5f41c6425c5a-2020-07-14T11.27.txt,2020-07-14T11:27:29.791069,2020-07-14T11.27,0.11.0

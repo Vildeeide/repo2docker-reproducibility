@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/med-hachoum/heart-disease-prediction,master,29cd2d4,2018-02-14T15:57:57+00:00,build,build,False,github.com/m/med-hachoum/heart-disease-prediction/logs/build-master-2020-07-20T06.56.txt,2020-07-20T06:56:10.568393,2020-07-20T06.56,0.11.0

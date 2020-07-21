@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mskilab/Ppurple,master,cdf70ea,2018-07-03T10:03:33-04:00,build,build,True,github.com/mskilab/Ppurple/logs/build-master-2020-07-16T13.02.txt,2020-07-16T13:02:45.711793,2020-07-16T13.02,0.11.0
-https://github.com/mskilab/Ppurple,master,cdf70ea,2018-07-03T10:03:33-04:00,notebook,notebooks/Ppurple.ipynb,False,github.com/mskilab/Ppurple/logs/test-notebook-notebooks-Ppurple.ipynb-2020-07-16T13.02.txt,2020-07-16T13:02:45.711793,2020-07-16T13.02,0.11.0
-https://github.com/mskilab/Ppurple,master,cdf70ea,2018-07-03T10:03:33-04:00,notebook,notebooks/.ipynb_checkpoints/Ppurple-checkpoint.ipynb,False,github.com/mskilab/Ppurple/logs/test-notebook-notebooks-.ipynb_checkpoints-Ppurple-checkpoint.ipynb-2020-07-16T13.02.txt,2020-07-16T13:02:45.711793,2020-07-16T13.02,0.11.0

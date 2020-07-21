@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Binder-examples/octave,master,1479e02,2020-04-15T17:06:16+02:00,build,build,True,github.com/Binder-examples/octave/logs/build-master-2020-07-06T12.32.txt,2020-07-06T12:32:47.637466,2020-07-06T12.32,0.11.0
-https://github.com/Binder-examples/octave,master,1479e02,2020-04-15T17:06:16+02:00,notebook,index.ipynb,True,github.com/Binder-examples/octave/logs/test-notebook-index.ipynb-2020-07-06T12.32.txt,2020-07-06T12:32:47.637466,2020-07-06T12.32,0.11.0

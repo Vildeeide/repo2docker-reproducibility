@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Yuukika/Logistic_Regression,master,e10c7c2,2018-02-18T13:34:17+08:00,build,build,True,github.com/y/yuukika/logistic_regression/logs/build-master-2020-07-20T06.13.txt,2020-07-20T06:13:05.182540,2020-07-20T06.13,0.11.0
+https://github.com/Yuukika/Logistic_Regression,master,e10c7c2,2018-02-18T13:34:17+08:00,notebook,Logistic_Regression.ipynb,False,github.com/y/yuukika/logistic_regression/logs/test-notebook-Logistic_Regression.ipynb-2020-07-20T06.13.txt,2020-07-20T06:13:05.182540,2020-07-20T06.13,0.11.0
+https://github.com/Yuukika/Logistic_Regression,master,e10c7c2,2018-02-18T13:34:17+08:00,notebook,.ipynb_checkpoints/Logistic_Regression-checkpoint.ipynb,False,github.com/y/yuukika/logistic_regression/logs/test-notebook-.ipynb_checkpoints-Logistic_Regression-checkpoint.ipynb-2020-07-20T06.13.txt,2020-07-20T06:13:05.182540,2020-07-20T06.13,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/matthiaskoenig/tellurium-cas,master,652ce01,2017-10-19T12:46:42+02:00,build,build,True,github.com/matthiaskoenig/tellurium-cas/logs/build-master-2020-07-17T13.50.txt,2020-07-17T13:50:18.763745,2020-07-17T13.50,0.11.0
-https://github.com/matthiaskoenig/tellurium-cas,master,652ce01,2017-10-19T12:46:42+02:00,notebook,tellurium-cas.ipynb,False,github.com/matthiaskoenig/tellurium-cas/logs/test-notebook-tellurium-cas.ipynb-2020-07-17T13.50.txt,2020-07-17T13:50:18.763745,2020-07-17T13.50,0.11.0

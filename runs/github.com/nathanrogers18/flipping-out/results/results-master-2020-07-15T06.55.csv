@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/nathanrogers18/flipping-out,master,9d77bfa,2016-07-25T18:23:33-04:00,build,build,False,github.com/nathanrogers18/flipping-out/logs/build-master-2020-07-15T06.55.txt,2020-07-15T06:55:42.476782,2020-07-15T06.55,0.11.0

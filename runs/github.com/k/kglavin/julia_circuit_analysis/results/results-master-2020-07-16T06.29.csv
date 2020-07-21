@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kglavin/julia_circuit_analysis,master,d7eb71a,2017-04-06T18:31:05-07:00,build,build,True,github.com/k/kglavin/julia_circuit_analysis/logs/build-master-2020-07-16T06.29.txt,2020-07-16T06:29:03.468486,2020-07-16T06.29,0.11.0
+https://github.com/kglavin/julia_circuit_analysis,master,d7eb71a,2017-04-06T18:31:05-07:00,notebook,0.Circuit Analysis Introduction.ipynb,False,github.com/k/kglavin/julia_circuit_analysis/logs/test-notebook-0.Circuit Analysis Introduction.ipynb-2020-07-16T06.29.txt,2020-07-16T06:29:03.468486,2020-07-16T06.29,0.11.0

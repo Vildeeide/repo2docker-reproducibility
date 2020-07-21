@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Datadesk/california-crop-production-wages-analysis,master,9c3d76c,2017-03-18T14:46:57-07:00,build,build,False,github.com/d/datadesk/california-crop-production-wages-analysis/logs/build-master-2020-07-08T06.46.txt,2020-07-08T06:46:16.950620,2020-07-08T06.46,0.11.0

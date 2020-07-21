@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/pytorch/vision,master,75f5b57,2020-07-03T15:22:27+02:00,build,build,False,github.com/p/pytorch/vision/logs/build-master-2020-07-06T07.26.txt,2020-07-06T07:26:40.924351,2020-07-06T07.26,0.11.0

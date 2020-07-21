@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/hlnull/tensorflow_excerise,master,f03b5df,2017-10-02T17:39:30+08:00,build,build,True,github.com/hlnull/tensorflow_excerise/logs/build-master-2020-07-20T06.17.txt,2020-07-20T06:17:47.693177,2020-07-20T06.17,0.11.0
-https://github.com/hlnull/tensorflow_excerise,master,f03b5df,2017-10-02T17:39:30+08:00,notebook,minist_tf_beginner.ipynb,False,github.com/hlnull/tensorflow_excerise/logs/test-notebook-minist_tf_beginner.ipynb-2020-07-20T06.17.txt,2020-07-20T06:17:47.693177,2020-07-20T06.17,0.11.0

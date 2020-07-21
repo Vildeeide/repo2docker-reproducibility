@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/matthiaskoenig/universal-model,master,79233bf,2018-01-20T11:02:25+01:00,build,build,True,github.com/matthiaskoenig/universal-model/logs/build-master-2020-07-17T13.52.txt,2020-07-17T13:52:37.793450,2020-07-17T13.52,0.11.0
-https://github.com/matthiaskoenig/universal-model,master,79233bf,2018-01-20T11:02:25+01:00,notebook,model_building_with_universal.ipynb,False,github.com/matthiaskoenig/universal-model/logs/test-notebook-model_building_with_universal.ipynb-2020-07-17T13.52.txt,2020-07-17T13:52:37.793450,2020-07-17T13.52,0.11.0

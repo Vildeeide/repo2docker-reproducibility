@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ancabilloni/SDC-P5-VehicleDetection,master,981ebad,2017-03-08T23:57:51-05:00,build,build,True,github.com/a/ancabilloni/sdc-p5-vehicledetection/logs/build-master-2020-07-14T18.29.txt,2020-07-14T18:29:03.381240,2020-07-14T18.29,0.11.0
+https://github.com/ancabilloni/SDC-P5-VehicleDetection,master,981ebad,2017-03-08T23:57:51-05:00,notebook,training.ipynb,False,github.com/a/ancabilloni/sdc-p5-vehicledetection/logs/test-notebook-training.ipynb-2020-07-14T18.29.txt,2020-07-14T18:29:03.381240,2020-07-14T18.29,0.11.0

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bdshieh/interaction3,master,b44c390,2020-07-08T15:41:09+01:00,build,build,False,github.com/b/bdshieh/interaction3/logs/build-master-2020-07-14T12.57.txt,2020-07-14T12:57:05.822525,2020-07-14T12.57,0.11.0

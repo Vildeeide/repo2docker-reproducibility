@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/shivnath-tripathy/Session4_Assignments,master,3cc49fd,2018-02-11T03:53:44+05:30,build,build,True,github.com/s/shivnath-tripathy/session4_assignments/logs/build-master-2020-07-17T12.11.txt,2020-07-17T12:11:19.439605,2020-07-17T12.11,0.11.0
+https://github.com/shivnath-tripathy/Session4_Assignments,master,3cc49fd,2018-02-11T03:53:44+05:30,notebook,Session4_Assignments.ipynb,True,github.com/s/shivnath-tripathy/session4_assignments/logs/test-notebook-Session4_Assignments.ipynb-2020-07-17T12.11.txt,2020-07-17T12:11:19.439605,2020-07-17T12.11,0.11.0
+https://github.com/shivnath-tripathy/Session4_Assignments,master,3cc49fd,2018-02-11T03:53:44+05:30,notebook,Session4_Assignments2.ipynb,True,github.com/s/shivnath-tripathy/session4_assignments/logs/test-notebook-Session4_Assignments2.ipynb-2020-07-17T12.11.txt,2020-07-17T12:11:19.439605,2020-07-17T12.11,0.11.0

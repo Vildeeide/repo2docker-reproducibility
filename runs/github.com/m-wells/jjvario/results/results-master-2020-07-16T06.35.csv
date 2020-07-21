@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/m-wells/jjvario,master,20865cb,2018-02-26T00:05:39-05:00,build,build,True,github.com/m-wells/jjvario/logs/build-master-2020-07-16T06.35.txt,2020-07-16T06:35:23.418295,2020-07-16T06.35,0.11.0
-https://github.com/m-wells/jjvario,master,20865cb,2018-02-26T00:05:39-05:00,notebook,jjvario.ipynb,False,github.com/m-wells/jjvario/logs/test-notebook-jjvario.ipynb-2020-07-16T06.35.txt,2020-07-16T06:35:23.418295,2020-07-16T06.35,0.11.0

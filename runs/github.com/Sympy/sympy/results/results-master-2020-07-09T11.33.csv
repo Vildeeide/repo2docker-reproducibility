@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Sympy/sympy,master,c0bfc81,2020-07-08T18:14:46+03:00,build,build,False,github.com/Sympy/sympy/logs/build-master-2020-07-09T11.33.txt,2020-07-09T11:33:47.855965,2020-07-09T11.33,0.11.0

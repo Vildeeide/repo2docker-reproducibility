@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/haskone/software_labs,master,e5fb0fd,2016-12-22T17:14:42+02:00,build,build,True,github.com/haskone/software_labs/logs/build-master-2020-07-17T11.56.txt,2020-07-17T11:56:04.969110,2020-07-17T11.56,0.11.0
-https://github.com/haskone/software_labs,master,e5fb0fd,2016-12-22T17:14:42+02:00,notebook,phys_info/math_neyron.ipynb,False,github.com/haskone/software_labs/logs/test-notebook-phys_info-math_neyron.ipynb-2020-07-17T11.56.txt,2020-07-17T11:56:04.969110,2020-07-17T11.56,0.11.0
-https://github.com/haskone/software_labs,master,e5fb0fd,2016-12-22T17:14:42+02:00,notebook,phys_info/synchronization.ipynb,False,github.com/haskone/software_labs/logs/test-notebook-phys_info-synchronization.ipynb-2020-07-17T11.56.txt,2020-07-17T11:56:04.969110,2020-07-17T11.56,0.11.0

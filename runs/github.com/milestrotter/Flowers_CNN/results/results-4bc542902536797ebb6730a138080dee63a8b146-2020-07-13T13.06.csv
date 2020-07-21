@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/milestrotter/Flowers_CNN,4bc542902536797ebb6730a138080dee63a8b146,4bc5429,2017-05-06T22:25:39+00:00,build,build,False,github.com/milestrotter/Flowers_CNN/logs/build-4bc542902536797ebb6730a138080dee63a8b146-2020-07-13T13.06.txt,2020-07-13T13:06:57.969919,2020-07-13T13.06,0.11.0

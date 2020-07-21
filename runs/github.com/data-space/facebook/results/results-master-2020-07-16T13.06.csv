@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/data-space/facebook,master,1c29e06,2017-05-15T23:43:55-04:00,build,build,True,github.com/data-space/facebook/logs/build-master-2020-07-16T13.06.txt,2020-07-16T13:06:18.796407,2020-07-16T13.06,0.11.0
-https://github.com/data-space/facebook,master,1c29e06,2017-05-15T23:43:55-04:00,notebook,Facebook With R-14th May.ipynb,False,github.com/data-space/facebook/logs/test-notebook-Facebook With R-14th May.ipynb-2020-07-16T13.06.txt,2020-07-16T13:06:18.796407,2020-07-16T13.06,0.11.0

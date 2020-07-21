@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/akankshaty/Multi-View-Image-Generation,f8c34ba84173ba0caf6b900b8c64d312e62921f1,f8c34ba,2017-12-21T00:33:54+05:30,build,build,False,github.com/a/akankshaty/multi-view-image-generation/logs/build-f8c34ba84173ba0caf6b900b8c64d312e62921f1-2020-07-13T07.41.txt,2020-07-13T07:41:54.296593,2020-07-13T07.41,0.11.0

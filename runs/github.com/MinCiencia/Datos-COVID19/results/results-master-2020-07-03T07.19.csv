@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/MinCiencia/Datos-COVID19,master,7bf4e7b,2020-07-02T21:50:34-04:00,build,build,False,github.com/MinCiencia/Datos-COVID19/logs/build-master-2020-07-03T07.19.txt,2020-07-03T07:19:59.711654,2020-07-03T07.19,0.11.0

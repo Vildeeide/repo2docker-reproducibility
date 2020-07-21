@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lovit/KR-WordRank,master,2b735e9,2020-05-28T12:48:30+09:00,build,build,False,github.com/l/lovit/kr-wordrank/logs/build-master-2020-07-20T07.48.txt,2020-07-20T07:48:27.175158,2020-07-20T07.48,0.11.0

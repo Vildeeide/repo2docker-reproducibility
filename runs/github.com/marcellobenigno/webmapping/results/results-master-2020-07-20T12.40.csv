@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/marcellobenigno/webmapping,master,b3457d2,2016-12-16T11:09:41-03:00,build,build,False,github.com/marcellobenigno/webmapping/logs/build-master-2020-07-20T12.40.txt,2020-07-20T12:40:21.215118,2020-07-20T12.40,0.11.0

@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/datanin/gse-ak-bda,master,3e88453,2017-11-12T16:12:21+01:00,build,build,True,github.com/d/datanin/gse-ak-bda/logs/build-master-2020-07-16T13.07.txt,2020-07-16T13:07:02.454927,2020-07-16T13.07,0.11.0
+https://github.com/datanin/gse-ak-bda,master,3e88453,2017-11-12T16:12:21+01:00,notebook,src/SparkR-Example.ipynb,False,github.com/d/datanin/gse-ak-bda/logs/test-notebook-src-SparkR-Example.ipynb-2020-07-16T13.07.txt,2020-07-16T13:07:02.454927,2020-07-16T13.07,0.11.0
+https://github.com/datanin/gse-ak-bda,master,3e88453,2017-11-12T16:12:21+01:00,notebook,src/Keras-Example.ipynb,False,github.com/d/datanin/gse-ak-bda/logs/test-notebook-src-Keras-Example.ipynb-2020-07-16T13.07.txt,2020-07-16T13:07:02.454927,2020-07-16T13.07,0.11.0

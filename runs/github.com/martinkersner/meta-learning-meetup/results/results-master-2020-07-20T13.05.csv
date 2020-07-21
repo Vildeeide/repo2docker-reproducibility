@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/martinkersner/meta-learning-meetup,master,e707495,2017-09-17T14:31:23+09:00,build,build,True,github.com/martinkersner/meta-learning-meetup/logs/build-master-2020-07-20T13.05.txt,2020-07-20T13:05:29.596249,2020-07-20T13.05,0.11.0
-https://github.com/martinkersner/meta-learning-meetup,master,e707495,2017-09-17T14:31:23+09:00,notebook,MetaLearning.ipynb,True,github.com/martinkersner/meta-learning-meetup/logs/test-notebook-MetaLearning.ipynb-2020-07-20T13.05.txt,2020-07-20T13:05:29.596249,2020-07-20T13.05,0.11.0

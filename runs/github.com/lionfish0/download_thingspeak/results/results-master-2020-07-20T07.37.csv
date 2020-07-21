@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lionfish0/download_thingspeak,master,fff5a6e,2018-05-14T14:17:50+00:00,build,build,True,github.com/lionfish0/download_thingspeak/logs/build-master-2020-07-20T07.37.txt,2020-07-20T07:37:49.589019,2020-07-20T07.37,0.11.0
-https://github.com/lionfish0/download_thingspeak,master,fff5a6e,2018-05-14T14:17:50+00:00,notebook,jupyter/Demo.ipynb,True,github.com/lionfish0/download_thingspeak/logs/test-notebook-jupyter-Demo.ipynb-2020-07-20T07.37.txt,2020-07-20T07:37:49.589019,2020-07-20T07.37,0.11.0

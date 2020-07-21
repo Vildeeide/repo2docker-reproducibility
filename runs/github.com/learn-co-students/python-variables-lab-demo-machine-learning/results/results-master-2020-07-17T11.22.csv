@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/learn-co-students/python-variables-lab-demo-machine-learning,master,4c3a4bb,2018-06-20T13:58:23-04:00,build,build,True,github.com/learn-co-students/python-variables-lab-demo-machine-learning/logs/build-master-2020-07-17T11.22.txt,2020-07-17T11:22:21.934918,2020-07-17T11.22,0.11.0
-https://github.com/learn-co-students/python-variables-lab-demo-machine-learning,master,4c3a4bb,2018-06-20T13:58:23-04:00,notebook,index.ipynb,True,github.com/learn-co-students/python-variables-lab-demo-machine-learning/logs/test-notebook-index.ipynb-2020-07-17T11.22.txt,2020-07-17T11:22:21.934918,2020-07-17T11.22,0.11.0

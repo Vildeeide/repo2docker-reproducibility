@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jbhersch/the_tomautometer,master,a697899,2017-03-09T14:43:15-07:00,build,build,True,github.com/jbhersch/the_tomautometer/logs/build-master-2020-07-16T13.38.txt,2020-07-16T13:38:30.782484,2020-07-16T13.38,0.11.0
-https://github.com/jbhersch/the_tomautometer,master,a697899,2017-03-09T14:43:15-07:00,notebook,create_plots.ipynb,False,github.com/jbhersch/the_tomautometer/logs/test-notebook-create_plots.ipynb-2020-07-16T13.38.txt,2020-07-16T13:38:30.782484,2020-07-16T13.38,0.11.0

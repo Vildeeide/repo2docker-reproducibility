@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/makutaga/nntutorial,ef8d7d6860c55b19b89ac3c9b5b42107cef4b5e6,ef8d7d6,2016-02-04T21:36:32+09:00,build,build,True,github.com/makutaga/nntutorial/logs/build-ef8d7d6860c55b19b89ac3c9b5b42107cef4b5e6-2020-07-14T09.37.txt,2020-07-14T09:37:51.656711,2020-07-14T09.37,0.11.0
-https://github.com/makutaga/nntutorial,ef8d7d6860c55b19b89ac3c9b5b42107cef4b5e6,ef8d7d6,2016-02-04T21:36:32+09:00,notebook,nntutorial-jl.ipynb,False,github.com/makutaga/nntutorial/logs/test-notebook-nntutorial-jl.ipynb-2020-07-14T09.37.txt,2020-07-14T09:37:51.656711,2020-07-14T09.37,0.11.0

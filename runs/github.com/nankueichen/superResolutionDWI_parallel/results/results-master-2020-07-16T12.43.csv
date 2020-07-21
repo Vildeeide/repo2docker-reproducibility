@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/nankueichen/superResolutionDWI_parallel,master,26bc76b,2017-12-14T17:44:21-07:00,build,build,True,github.com/nankueichen/superResolutionDWI_parallel/logs/build-master-2020-07-16T12.43.txt,2020-07-16T12:43:26.078019,2020-07-16T12.43,0.11.0
-https://github.com/nankueichen/superResolutionDWI_parallel,master,26bc76b,2017-12-14T17:44:21-07:00,notebook,superResolutionDWI_parallel.ipynb,False,github.com/nankueichen/superResolutionDWI_parallel/logs/test-notebook-superResolutionDWI_parallel.ipynb-2020-07-16T12.43.txt,2020-07-16T12:43:26.078019,2020-07-16T12.43,0.11.0

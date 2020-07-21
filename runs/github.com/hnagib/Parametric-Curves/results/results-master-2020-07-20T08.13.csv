@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/hnagib/Parametric-Curves,master,5f833aa,2017-02-28T19:44:11-08:00,build,build,True,github.com/hnagib/Parametric-Curves/logs/build-master-2020-07-20T08.13.txt,2020-07-20T08:13:52.377007,2020-07-20T08.13,0.11.0
-https://github.com/hnagib/Parametric-Curves,master,5f833aa,2017-02-28T19:44:11-08:00,notebook,Parametric_Curves.ipynb,False,github.com/hnagib/Parametric-Curves/logs/test-notebook-Parametric_Curves.ipynb-2020-07-20T08.13.txt,2020-07-20T08:13:52.377007,2020-07-20T08.13,0.11.0
-https://github.com/hnagib/Parametric-Curves,master,5f833aa,2017-02-28T19:44:11-08:00,notebook,.ipynb_checkpoints/Parametric_Curves-checkpoint.ipynb,False,github.com/hnagib/Parametric-Curves/logs/test-notebook-.ipynb_checkpoints-Parametric_Curves-checkpoint.ipynb-2020-07-20T08.13.txt,2020-07-20T08:13:52.377007,2020-07-20T08.13,0.11.0

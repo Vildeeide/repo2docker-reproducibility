@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/luosz/FinancialData,master,b81d9f9,2016-12-10T17:27:51+00:00,build,build,True,github.com/luosz/FinancialData/logs/build-master-2020-07-16T06.37.txt,2020-07-16T06:37:17.978583,2020-07-16T06.37,0.11.0
-https://github.com/luosz/FinancialData,master,b81d9f9,2016-12-10T17:27:51+00:00,notebook,financialdata.ipynb,False,github.com/luosz/FinancialData/logs/test-notebook-financialdata.ipynb-2020-07-16T06.37.txt,2020-07-16T06:37:17.978583,2020-07-16T06.37,0.11.0

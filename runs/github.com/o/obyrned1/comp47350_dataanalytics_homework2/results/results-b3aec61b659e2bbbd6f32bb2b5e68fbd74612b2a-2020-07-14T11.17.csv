@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/obyrned1/COMP47350_DataAnalytics_Homework2,b3aec61b659e2bbbd6f32bb2b5e68fbd74612b2a,b3aec61,2018-04-08T14:25:50+01:00,build,build,False,github.com/o/obyrned1/comp47350_dataanalytics_homework2/logs/build-b3aec61b659e2bbbd6f32bb2b5e68fbd74612b2a-2020-07-14T11.17.txt,2020-07-14T11:17:24.793097,2020-07-14T11.17,0.11.0

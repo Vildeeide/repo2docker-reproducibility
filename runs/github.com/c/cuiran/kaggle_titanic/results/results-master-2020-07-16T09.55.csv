@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/cuiran/Kaggle_Titanic,master,8a1bba1,2016-06-23T20:17:23-04:00,build,build,True,github.com/c/cuiran/kaggle_titanic/logs/build-master-2020-07-16T09.55.txt,2020-07-16T09:55:15.400347,2020-07-16T09.55,0.11.0
+https://github.com/cuiran/Kaggle_Titanic,master,8a1bba1,2016-06-23T20:17:23-04:00,notebook,Titanic_with_R.ipynb,False,github.com/c/cuiran/kaggle_titanic/logs/test-notebook-Titanic_with_R.ipynb-2020-07-16T09.55.txt,2020-07-16T09:55:15.400347,2020-07-16T09.55,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/konstantinstadler/pymrio_article,master,bb767ec,2019-09-26T18:02:23+02:00,build,build,True,github.com/konstantinstadler/pymrio_article/logs/build-master-2020-07-17T10.31.txt,2020-07-17T10:31:23.360669,2020-07-17T10.31,0.11.0
-https://github.com/konstantinstadler/pymrio_article,master,bb767ec,2019-09-26T18:02:23+02:00,notebook,notebook/pymrio-tutorial-for-wiod.ipynb,True,github.com/konstantinstadler/pymrio_article/logs/test-notebook-notebook-pymrio-tutorial-for-wiod.ipynb-2020-07-17T10.31.txt,2020-07-17T10:31:23.360669,2020-07-17T10.31,0.11.0

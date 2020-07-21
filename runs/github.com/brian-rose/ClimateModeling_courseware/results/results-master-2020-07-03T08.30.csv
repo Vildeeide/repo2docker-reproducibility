@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/brian-rose/ClimateModeling_courseware,master,c76b522,2020-05-18T11:11:42-04:00,build,build,False,github.com/brian-rose/ClimateModeling_courseware/logs/build-master-2020-07-03T08.30.txt,2020-07-03T08:30:12.578622,2020-07-03T08.30,0.11.0

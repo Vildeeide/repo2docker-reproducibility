@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kweis/astr598_exo,master,9b9b2fe,2016-04-06T13:15:44-07:00,build,build,True,github.com/kweis/astr598_exo/logs/build-master-2020-07-15T11.11.txt,2020-07-15T11:11:02.717184,2020-07-15T11.11,0.11.0
-https://github.com/kweis/astr598_exo,master,9b9b2fe,2016-04-06T13:15:44-07:00,notebook,hw1.ipynb,False,github.com/kweis/astr598_exo/logs/test-notebook-hw1.ipynb-2020-07-15T11.11.txt,2020-07-15T11:11:02.717184,2020-07-15T11.11,0.11.0

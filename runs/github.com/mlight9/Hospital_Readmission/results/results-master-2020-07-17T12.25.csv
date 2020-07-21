@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mlight9/Hospital_Readmission,master,6dc87db,2018-02-11T19:30:55-05:00,build,build,True,github.com/mlight9/Hospital_Readmission/logs/build-master-2020-07-17T12.25.txt,2020-07-17T12:25:14.930109,2020-07-17T12.25,0.11.0
-https://github.com/mlight9/Hospital_Readmission,master,6dc87db,2018-02-11T19:30:55-05:00,notebook,sliderule_dsi_inferential_statistics_exercise_3.ipynb,False,github.com/mlight9/Hospital_Readmission/logs/test-notebook-sliderule_dsi_inferential_statistics_exercise_3.ipynb-2020-07-17T12.25.txt,2020-07-17T12:25:14.930109,2020-07-17T12.25,0.11.0

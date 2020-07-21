@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/twiecki/covid19,master,69b0a5e,2020-05-15T10:48:03+02:00,build,build,False,github.com/t/twiecki/covid19/logs/build-master-2020-07-06T07.45.txt,2020-07-06T07:45:02.032619,2020-07-06T07.45,0.11.0

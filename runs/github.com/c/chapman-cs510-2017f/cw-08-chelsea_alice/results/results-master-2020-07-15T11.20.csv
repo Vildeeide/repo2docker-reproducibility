@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/chapman-cs510-2017f/cw-08-chelsea_alice,master,6810978,2017-10-24T17:05:48+00:00,build,build,True,github.com/c/chapman-cs510-2017f/cw-08-chelsea_alice/logs/build-master-2020-07-15T11.20.txt,2020-07-15T11:20:40.865584,2020-07-15T11.20,0.11.0
+https://github.com/chapman-cs510-2017f/cw-08-chelsea_alice,master,6810978,2017-10-24T17:05:48+00:00,notebook,julia-benchmark.ipynb,False,github.com/c/chapman-cs510-2017f/cw-08-chelsea_alice/logs/test-notebook-julia-benchmark.ipynb-2020-07-15T11.20.txt,2020-07-15T11:20:40.865584,2020-07-15T11.20,0.11.0
+https://github.com/chapman-cs510-2017f/cw-08-chelsea_alice,master,6810978,2017-10-24T17:05:48+00:00,notebook,juliainjulia.ipynb,False,github.com/c/chapman-cs510-2017f/cw-08-chelsea_alice/logs/test-notebook-juliainjulia.ipynb-2020-07-15T11.20.txt,2020-07-15T11:20:40.865584,2020-07-15T11.20,0.11.0

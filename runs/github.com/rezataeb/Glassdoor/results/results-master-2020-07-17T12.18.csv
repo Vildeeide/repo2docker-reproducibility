@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/rezataeb/Glassdoor,master,5cb6c41,2017-12-16T14:40:07-08:00,build,build,True,github.com/rezataeb/Glassdoor/logs/build-master-2020-07-17T12.18.txt,2020-07-17T12:18:52.181595,2020-07-17T12.18,0.11.0
-https://github.com/rezataeb/Glassdoor,master,5cb6c41,2017-12-16T14:40:07-08:00,notebook,Extract-Glassdoor-Data.ipynb,True,github.com/rezataeb/Glassdoor/logs/test-notebook-Extract-Glassdoor-Data.ipynb-2020-07-17T12.18.txt,2020-07-17T12:18:52.181595,2020-07-17T12.18,0.11.0

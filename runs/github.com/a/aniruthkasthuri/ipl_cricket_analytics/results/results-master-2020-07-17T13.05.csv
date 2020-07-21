@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/aniruthkasthuri/IPL_Cricket_Analytics,master,a413433,2018-01-25T12:29:38-08:00,build,build,True,github.com/a/aniruthkasthuri/ipl_cricket_analytics/logs/build-master-2020-07-17T13.05.txt,2020-07-17T13:05:41.949190,2020-07-17T13.05,0.11.0
+https://github.com/aniruthkasthuri/IPL_Cricket_Analytics,master,a413433,2018-01-25T12:29:38-08:00,notebook,IPL Cricket Basic Analytics and Graphs.ipynb,False,github.com/a/aniruthkasthuri/ipl_cricket_analytics/logs/test-notebook-IPL Cricket Basic Analytics and Graphs.ipynb-2020-07-17T13.05.txt,2020-07-17T13:05:41.949190,2020-07-17T13.05,0.11.0

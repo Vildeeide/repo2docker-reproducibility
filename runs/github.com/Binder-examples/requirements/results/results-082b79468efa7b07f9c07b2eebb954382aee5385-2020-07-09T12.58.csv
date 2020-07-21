@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Binder-examples/requirements,082b79468efa7b07f9c07b2eebb954382aee5385,082b794,2017-09-29T14:28:35-07:00,build,build,False,github.com/Binder-examples/requirements/logs/build-082b79468efa7b07f9c07b2eebb954382aee5385-2020-07-09T12.58.txt,2020-07-09T12:58:23.181570,2020-07-09T12.58,0.11.0

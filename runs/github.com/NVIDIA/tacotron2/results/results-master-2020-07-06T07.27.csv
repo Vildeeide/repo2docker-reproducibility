@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/NVIDIA/tacotron2,master,185cd24,2020-06-11T14:44:10-07:00,build,build,False,github.com/NVIDIA/tacotron2/logs/build-master-2020-07-06T07.27.txt,2020-07-06T07:27:12.426827,2020-07-06T07.27,0.11.0

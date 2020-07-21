@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/danchurch/taiwan_dada2,master,9730e24,2018-04-16T23:52:02-07:00,build,build,True,github.com/danchurch/taiwan_dada2/logs/build-master-2020-07-16T12.49.txt,2020-07-16T12:49:40.454590,2020-07-16T12.49,0.11.0
-https://github.com/danchurch/taiwan_dada2,master,9730e24,2018-04-16T23:52:02-07:00,notebook,dada2pipeline.ipynb,False,github.com/danchurch/taiwan_dada2/logs/test-notebook-dada2pipeline.ipynb-2020-07-16T12.49.txt,2020-07-16T12:49:40.454590,2020-07-16T12.49,0.11.0

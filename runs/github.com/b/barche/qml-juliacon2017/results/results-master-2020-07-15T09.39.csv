@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/barche/qml-juliacon2017,master,aceaffd,2017-06-22T11:09:27-07:00,build,build,True,github.com/b/barche/qml-juliacon2017/logs/build-master-2020-07-15T09.39.txt,2020-07-15T09:39:48.580323,2020-07-15T09.39,0.11.0
+https://github.com/barche/qml-juliacon2017,master,aceaffd,2017-06-22T11:09:27-07:00,notebook,QML.jl.ipynb,False,github.com/b/barche/qml-juliacon2017/logs/test-notebook-QML.jl.ipynb-2020-07-15T09.39.txt,2020-07-15T09:39:48.580323,2020-07-15T09.39,0.11.0

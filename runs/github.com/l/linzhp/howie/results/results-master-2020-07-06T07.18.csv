@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/linzhp/Howie,master,c7aa0eb,2011-02-04T14:30:15-08:00,build,build,False,github.com/l/linzhp/howie/logs/build-master-2020-07-06T07.18.txt,2020-07-06T07:18:14.218728,2020-07-06T07.18,0.11.0

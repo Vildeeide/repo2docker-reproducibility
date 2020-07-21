@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/mikaellaine/anns,52a376ae982cfef8aff9c7172335249236eacee5,52a376a,2018-04-30T16:51:06-07:00,build,build,False,github.com/m/mikaellaine/anns/logs/build-52a376ae982cfef8aff9c7172335249236eacee5-2020-07-13T07.29.txt,2020-07-13T07:29:35.687483,2020-07-13T07.29,0.11.0

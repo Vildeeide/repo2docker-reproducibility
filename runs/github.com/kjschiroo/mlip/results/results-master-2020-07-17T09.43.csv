@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kjschiroo/mlip,master,0c0bb64,2017-02-10T11:38:18-06:00,build,build,False,github.com/kjschiroo/mlip/logs/build-master-2020-07-17T09.43.txt,2020-07-17T09:43:17.391506,2020-07-17T09.43,0.11.0

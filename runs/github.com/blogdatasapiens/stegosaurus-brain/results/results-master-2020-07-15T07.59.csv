@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/blogdatasapiens/stegosaurus-brain,master,6c026b8,2016-04-17T16:39:51+10:00,build,build,True,github.com/blogdatasapiens/stegosaurus-brain/logs/build-master-2020-07-15T07.59.txt,2020-07-15T07:59:12.798975,2020-07-15T07.59,0.11.0
-https://github.com/blogdatasapiens/stegosaurus-brain,master,6c026b8,2016-04-17T16:39:51+10:00,notebook,example_of_stegosaurus_brain.ipynb,False,github.com/blogdatasapiens/stegosaurus-brain/logs/test-notebook-example_of_stegosaurus_brain.ipynb-2020-07-15T07.59.txt,2020-07-15T07:59:12.798975,2020-07-15T07.59,0.11.0

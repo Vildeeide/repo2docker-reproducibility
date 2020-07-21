@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kristianperkins/nbrequests,master,36648bc,2017-06-10T07:49:09+10:00,build,build,True,github.com/k/kristianperkins/nbrequests/logs/build-master-2020-07-20T10.09.txt,2020-07-20T10:09:32.524431,2020-07-20T10.09,0.11.0
+https://github.com/kristianperkins/nbrequests,master,36648bc,2017-06-10T07:49:09+10:00,notebook,example_nbrequests.ipynb,True,github.com/k/kristianperkins/nbrequests/logs/test-notebook-example_nbrequests.ipynb-2020-07-20T10.09.txt,2020-07-20T10:09:32.524431,2020-07-20T10.09,0.11.0

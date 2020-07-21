@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/ComputoCienciasUniandes/FISI2028-201910,b10b624491691de175edd9dcf0e5568eb0710884,b10b624,2019-02-11T16:18:51-05:00,build,build,False,github.com/ComputoCienciasUniandes/FISI2028-201910/logs/build-b10b624491691de175edd9dcf0e5568eb0710884-2020-07-09T11.16.txt,2020-07-09T11:16:11.936050,2020-07-09T11.16,0.11.0

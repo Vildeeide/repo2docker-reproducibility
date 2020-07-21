@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/nprost/supervised_missing,master,8d2f353,2020-05-13T20:52:14+02:00,build,build,True,github.com/n/nprost/supervised_missing/logs/build-master-2020-07-10T07.31.txt,2020-07-10T07:31:00.864235,2020-07-10T07.31,0.11.0

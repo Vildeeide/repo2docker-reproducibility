@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/learn-co-students/calculating-distance-lab-data-science-alpha,master,22e7ae9,2018-11-07T09:21:26-05:00,build,build,True,github.com/l/learn-co-students/calculating-distance-lab-data-science-alpha/logs/build-master-2020-07-20T10.05.txt,2020-07-20T10:05:42.808446,2020-07-20T10.05,0.11.0
+https://github.com/learn-co-students/calculating-distance-lab-data-science-alpha,master,22e7ae9,2018-11-07T09:21:26-05:00,notebook,index.ipynb,True,github.com/l/learn-co-students/calculating-distance-lab-data-science-alpha/logs/test-notebook-index.ipynb-2020-07-20T10.05.txt,2020-07-20T10:05:42.808446,2020-07-20T10.05,0.11.0

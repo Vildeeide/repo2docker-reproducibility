@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/sdlin/deep-learning-udacity,1f3a3ecd29968798e48ed6f0a2f6f36c12d083ac,1f3a3ec,2016-03-13T22:37:20-07:00,build,build,False,github.com/sdlin/deep-learning-udacity/logs/build-1f3a3ecd29968798e48ed6f0a2f6f36c12d083ac-2020-07-13T13.14.txt,2020-07-13T13:14:56.867032,2020-07-13T13.14,0.11.0

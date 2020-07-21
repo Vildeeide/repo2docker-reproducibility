@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/littlepea/python-admin-business-logic-talk,master,8d020ce,2017-06-18T15:29:17+08:00,build,build,True,github.com/littlepea/python-admin-business-logic-talk/logs/build-master-2020-07-20T13.40.txt,2020-07-20T13:40:35.593943,2020-07-20T13.40,0.11.0
-https://github.com/littlepea/python-admin-business-logic-talk,master,8d020ce,2017-06-18T15:29:17+08:00,notebook,talk.ipynb,False,github.com/littlepea/python-admin-business-logic-talk/logs/test-notebook-talk.ipynb-2020-07-20T13.40.txt,2020-07-20T13:40:35.593943,2020-07-20T13.40,0.11.0

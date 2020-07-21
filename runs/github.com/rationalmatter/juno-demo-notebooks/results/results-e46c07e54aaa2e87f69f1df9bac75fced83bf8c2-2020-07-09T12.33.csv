@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/rationalmatter/juno-demo-notebooks,e46c07e54aaa2e87f69f1df9bac75fced83bf8c2,e46c07e,2017-11-15T19:34:44+00:00,build,build,False,github.com/rationalmatter/juno-demo-notebooks/logs/build-e46c07e54aaa2e87f69f1df9bac75fced83bf8c2-2020-07-09T12.33.txt,2020-07-09T12:33:05.151766,2020-07-09T12.33,0.11.0

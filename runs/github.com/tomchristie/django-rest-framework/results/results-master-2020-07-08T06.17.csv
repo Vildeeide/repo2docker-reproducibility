@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/tomchristie/django-rest-framework,master,7623243,2020-07-07T11:05:36+02:00,build,build,True,github.com/tomchristie/django-rest-framework/logs/build-master-2020-07-08T06.17.txt,2020-07-08T06:17:31.099850,2020-07-08T06.17,0.11.0

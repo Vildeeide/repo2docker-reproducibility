@@ -1,5 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/bendichter/tenseflow,master,070175f,2020-03-27T08:51:12-04:00,build,build,True,github.com/bendichter/tenseflow/logs/build-master-2020-07-17T06.17.txt,2020-07-17T06:17:25.140797,2020-07-17T06.17,0.11.0
-https://github.com/bendichter/tenseflow,master,070175f,2020-03-27T08:51:12-04:00,notebook,demo.ipynb,False,github.com/bendichter/tenseflow/logs/test-notebook-demo.ipynb-2020-07-17T06.17.txt,2020-07-17T06:17:25.140797,2020-07-17T06.17,0.11.0
-https://github.com/bendichter/tenseflow,master,070175f,2020-03-27T08:51:12-04:00,notebook,change_tenses.ipynb,False,github.com/bendichter/tenseflow/logs/test-notebook-change_tenses.ipynb-2020-07-17T06.17.txt,2020-07-17T06:17:25.140797,2020-07-17T06.17,0.11.0
-https://github.com/bendichter/tenseflow,master,070175f,2020-03-27T08:51:12-04:00,notebook,tests.ipynb,False,github.com/bendichter/tenseflow/logs/test-notebook-tests.ipynb-2020-07-17T06.17.txt,2020-07-17T06:17:25.140797,2020-07-17T06.17,0.11.0

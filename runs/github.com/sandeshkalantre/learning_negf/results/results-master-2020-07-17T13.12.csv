@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/sandeshkalantre/learning_negf,master,cf651c5,2017-12-23T17:40:26+05:30,build,build,True,github.com/sandeshkalantre/learning_negf/logs/build-master-2020-07-17T13.12.txt,2020-07-17T13:12:33.561612,2020-07-17T13.12,0.11.0
-https://github.com/sandeshkalantre/learning_negf,master,cf651c5,2017-12-23T17:40:26+05:30,notebook,code/One-dimensional Nanowire.ipynb,False,github.com/sandeshkalantre/learning_negf/logs/test-notebook-code-One-dimensional Nanowire.ipynb-2020-07-17T13.12.txt,2020-07-17T13:12:33.561612,2020-07-17T13.12,0.11.0

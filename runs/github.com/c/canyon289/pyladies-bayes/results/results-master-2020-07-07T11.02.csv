@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/canyon289/pyladies-bayes,master,d5bdea5,2019-10-30T08:25:07-07:00,build,build,True,github.com/c/canyon289/pyladies-bayes/logs/build-master-2020-07-07T11.02.txt,2020-07-07T11:02:19.526316,2020-07-07T11.02,0.11.0
+https://github.com/canyon289/pyladies-bayes,master,d5bdea5,2019-10-30T08:25:07-07:00,notebook,2_BayesPractice.ipynb,False,github.com/c/canyon289/pyladies-bayes/logs/test-notebook-2_BayesPractice.ipynb-2020-07-07T11.02.txt,2020-07-07T11:02:19.526316,2020-07-07T11.02,0.11.0
+https://github.com/canyon289/pyladies-bayes,master,d5bdea5,2019-10-30T08:25:07-07:00,notebook,1_BayesIntuition.ipynb,False,github.com/c/canyon289/pyladies-bayes/logs/test-notebook-1_BayesIntuition.ipynb-2020-07-07T11.02.txt,2020-07-07T11:02:19.526316,2020-07-07T11.02,0.11.0

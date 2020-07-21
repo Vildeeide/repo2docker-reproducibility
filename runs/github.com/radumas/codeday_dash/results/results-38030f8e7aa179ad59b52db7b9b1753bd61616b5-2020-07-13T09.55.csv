@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/radumas/codeday_dash,38030f8e7aa179ad59b52db7b9b1753bd61616b5,38030f8,2017-08-21T15:54:38-04:00,build,build,True,github.com/radumas/codeday_dash/logs/build-38030f8e7aa179ad59b52db7b9b1753bd61616b5-2020-07-13T09.55.txt,2020-07-13T09:55:57.804864,2020-07-13T09.55,0.11.0
-https://github.com/radumas/codeday_dash,38030f8e7aa179ad59b52db7b9b1753bd61616b5,38030f8,2017-08-21T15:54:38-04:00,notebook,map development.ipynb,False,github.com/radumas/codeday_dash/logs/test-notebook-map development.ipynb-2020-07-13T09.55.txt,2020-07-13T09:55:57.804864,2020-07-13T09.55,0.11.0

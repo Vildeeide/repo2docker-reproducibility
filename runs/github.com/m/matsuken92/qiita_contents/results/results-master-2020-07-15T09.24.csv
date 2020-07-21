@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/matsuken92/Qiita_Contents,master,81e236a,2020-03-09T20:54:21+09:00,build,build,True,github.com/m/matsuken92/qiita_contents/logs/build-master-2020-07-15T09.24.txt,2020-07-15T09:24:40.433941,2020-07-15T09.24,0.11.0

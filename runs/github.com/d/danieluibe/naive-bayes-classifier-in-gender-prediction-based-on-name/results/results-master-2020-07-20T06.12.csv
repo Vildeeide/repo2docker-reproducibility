@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/danieluibe/Naive-Bayes-Classifier-in-Gender-Prediction-Based-on-Name,master,c07c6c8,2017-03-13T09:52:49-04:00,build,build,True,github.com/d/danieluibe/naive-bayes-classifier-in-gender-prediction-based-on-name/logs/build-master-2020-07-20T06.12.txt,2020-07-20T06:12:04.491022,2020-07-20T06.12,0.11.0
+https://github.com/danieluibe/Naive-Bayes-Classifier-in-Gender-Prediction-Based-on-Name,master,c07c6c8,2017-03-13T09:52:49-04:00,notebook,python_HW3_NB.ipynb,False,github.com/d/danieluibe/naive-bayes-classifier-in-gender-prediction-based-on-name/logs/test-notebook-python_HW3_NB.ipynb-2020-07-20T06.12.txt,2020-07-20T06:12:04.491022,2020-07-20T06.12,0.11.0

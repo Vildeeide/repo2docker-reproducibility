@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/brbales/brews_and_views,33ca2ad6d58b8a85f70ce53278c01df87721343b,33ca2ad,2018-05-29T17:31:33-04:00,build,build,False,github.com/b/brbales/brews_and_views/logs/build-33ca2ad6d58b8a85f70ce53278c01df87721343b-2020-07-10T14.10.txt,2020-07-10T14:10:09.467170,2020-07-10T14.10,0.11.0

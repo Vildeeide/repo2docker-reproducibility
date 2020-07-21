@@ -1,5 +1,0 @@
-[I 200703 09:19:20 inrepo:35] Testing notebook Assignments/Assignment01 -- Feedback in the zero-dimensional EBM.ipynb
-[I 200703 09:19:21 execute:404] Executing notebook with kernel: python3
-[I 200703 09:19:21 inrepo:41] Saving exported notebook to /io/notebooks/Assignments/Assignment01 -- Feedback in the zero-dimensional EBM.ipynb
-
-Container exited with status: {'Error': None, 'StatusCode': 0}

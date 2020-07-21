@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lalzada/introduction-to-data-science-in-python-coursera,master,49e0861,2018-03-14T10:14:13+05:00,build,build,False,github.com/lalzada/introduction-to-data-science-in-python-coursera/logs/build-master-2020-07-16T07.11.txt,2020-07-16T07:11:29.726500,2020-07-16T07.11,0.11.0

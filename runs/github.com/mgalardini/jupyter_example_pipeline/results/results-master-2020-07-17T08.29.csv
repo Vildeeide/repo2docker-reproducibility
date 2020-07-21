@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mgalardini/jupyter_example_pipeline,master,0136202,2016-03-04T16:23:06+00:00,build,build,False,github.com/mgalardini/jupyter_example_pipeline/logs/build-master-2020-07-17T08.29.txt,2020-07-17T08:29:23.909964,2020-07-17T08.29,0.11.0

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ines/spacy-course,master,af72ded,2020-07-06T12:36:57+02:00,build,build,True,github.com/i/ines/spacy-course/logs/build-master-2020-07-08T08.14.txt,2020-07-08T08:14:03.111356,2020-07-08T08.14,0.11.0

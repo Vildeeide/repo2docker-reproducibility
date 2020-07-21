@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/pydy/pydy-tutorial-human-standing,master,72b1d85,2019-01-14T07:53:01-08:00,build,build,False,github.com/pydy/pydy-tutorial-human-standing/logs/build-master-2020-07-06T07.38.txt,2020-07-06T07:38:18.064997,2020-07-06T07.38,0.11.0

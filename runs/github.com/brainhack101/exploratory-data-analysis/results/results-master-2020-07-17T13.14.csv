@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/brainhack101/exploratory-data-analysis,master,0c43819,2017-09-21T14:23:38-04:00,build,build,True,github.com/brainhack101/exploratory-data-analysis/logs/build-master-2020-07-17T13.14.txt,2020-07-17T13:14:19.316245,2020-07-17T13.14,0.11.0
-https://github.com/brainhack101/exploratory-data-analysis,master,0c43819,2017-09-21T14:23:38-04:00,notebook,code/exploratory_iris.ipynb,False,github.com/brainhack101/exploratory-data-analysis/logs/test-notebook-code-exploratory_iris.ipynb-2020-07-17T13.14.txt,2020-07-17T13:14:19.316245,2020-07-17T13.14,0.11.0

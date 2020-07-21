@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jstagge/reproduc_hyd,master,7816cf6,2019-02-26T15:07:30-05:00,build,build,True,github.com/jstagge/reproduc_hyd/logs/build-master-2020-07-07T07.45.txt,2020-07-07T07:45:32.043643,2020-07-07T07.45,0.11.0

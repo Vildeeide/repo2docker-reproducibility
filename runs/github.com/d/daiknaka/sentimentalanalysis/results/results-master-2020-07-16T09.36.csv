@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/daiknaka/sentimentalanalysis,master,550a566,2017-04-06T21:07:23-04:00,build,build,True,github.com/d/daiknaka/sentimentalanalysis/logs/build-master-2020-07-16T09.36.txt,2020-07-16T09:36:11.773779,2020-07-16T09.36,0.11.0
+https://github.com/daiknaka/sentimentalanalysis,master,550a566,2017-04-06T21:07:23-04:00,notebook,sentiment.ipynb,False,github.com/d/daiknaka/sentimentalanalysis/logs/test-notebook-sentiment.ipynb-2020-07-16T09.36.txt,2020-07-16T09:36:11.773779,2020-07-16T09.36,0.11.0

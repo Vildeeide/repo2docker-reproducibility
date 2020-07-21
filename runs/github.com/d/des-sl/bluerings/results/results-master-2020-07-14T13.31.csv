@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/DES-SL/BlueRings,master,792ac35,2016-05-13T16:14:24-07:00,build,build,True,github.com/d/des-sl/bluerings/logs/build-master-2020-07-14T13.31.txt,2020-07-14T13:31:07.232548,2020-07-14T13.31,0.11.0
+https://github.com/DES-SL/BlueRings,master,792ac35,2016-05-13T16:14:24-07:00,notebook,Demo.ipynb,False,github.com/d/des-sl/bluerings/logs/test-notebook-Demo.ipynb-2020-07-14T13.31.txt,2020-07-14T13:31:07.232548,2020-07-14T13.31,0.11.0

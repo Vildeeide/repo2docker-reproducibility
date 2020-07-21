@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/snow13bbc/HW3_Alignment,master,61f2792,2018-06-29T00:39:33+02:00,build,build,False,github.com/snow13bbc/HW3_Alignment/logs/build-master-2020-07-16T07.07.txt,2020-07-16T07:07:02.979877,2020-07-16T07.07,0.11.0

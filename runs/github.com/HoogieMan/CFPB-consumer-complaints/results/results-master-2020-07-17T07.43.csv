@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/HoogieMan/CFPB-consumer-complaints,master,7eca5b6,2016-05-23T06:55:20-07:00,build,build,True,github.com/HoogieMan/CFPB-consumer-complaints/logs/build-master-2020-07-17T07.43.txt,2020-07-17T07:43:33.765180,2020-07-17T07.43,0.11.0
-https://github.com/HoogieMan/CFPB-consumer-complaints,master,7eca5b6,2016-05-23T06:55:20-07:00,notebook,CFPB_sodapy_algo_complaints.ipynb,False,github.com/HoogieMan/CFPB-consumer-complaints/logs/test-notebook-CFPB_sodapy_algo_complaints.ipynb-2020-07-17T07.43.txt,2020-07-17T07:43:33.765180,2020-07-17T07.43,0.11.0

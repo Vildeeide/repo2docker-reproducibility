@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/learn-co-curriculum/visualizing-in-python,master,7241c12,2019-09-03T15:02:53-04:00,build,build,True,github.com/learn-co-curriculum/visualizing-in-python/logs/build-master-2020-07-17T11.19.txt,2020-07-17T11:19:24.093605,2020-07-17T11.19,0.11.0
-https://github.com/learn-co-curriculum/visualizing-in-python,master,7241c12,2019-09-03T15:02:53-04:00,notebook,index.ipynb,True,github.com/learn-co-curriculum/visualizing-in-python/logs/test-notebook-index.ipynb-2020-07-17T11.19.txt,2020-07-17T11:19:24.093605,2020-07-17T11.19,0.11.0

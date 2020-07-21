@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Rwl/PyCIM,master,4a12ebb,2019-03-28T18:29:40+01:00,build,build,True,github.com/r/rwl/pycim/logs/build-master-2020-07-07T12.17.txt,2020-07-07T12:17:53.537243,2020-07-07T12.17,0.11.0

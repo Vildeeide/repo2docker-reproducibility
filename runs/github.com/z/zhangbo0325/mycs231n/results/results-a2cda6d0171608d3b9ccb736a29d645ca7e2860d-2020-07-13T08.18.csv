@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/zhangbo0325/mycs231n,a2cda6d0171608d3b9ccb736a29d645ca7e2860d,a2cda6d,2018-04-08T13:42:33+00:00,build,build,False,github.com/z/zhangbo0325/mycs231n/logs/build-a2cda6d0171608d3b9ccb736a29d645ca7e2860d-2020-07-13T08.18.txt,2020-07-13T08:18:43.739691,2020-07-13T08.18,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/yupitsme/WebScrapingUsingPythonin4blocksofcode,master,b841055,2017-12-17T16:14:54+02:00,build,build,True,github.com/yupitsme/WebScrapingUsingPythonin4blocksofcode/logs/build-master-2020-07-17T12.12.txt,2020-07-17T12:12:36.195398,2020-07-17T12.12,0.11.0
-https://github.com/yupitsme/WebScrapingUsingPythonin4blocksofcode,master,b841055,2017-12-17T16:14:54+02:00,notebook,web_scraping_using_python_in_4_blocks_of_code.ipynb,False,github.com/yupitsme/WebScrapingUsingPythonin4blocksofcode/logs/test-notebook-web_scraping_using_python_in_4_blocks_of_code.ipynb-2020-07-17T12.12.txt,2020-07-17T12:12:36.195398,2020-07-17T12.12,0.11.0

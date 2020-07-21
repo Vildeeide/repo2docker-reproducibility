@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/tiagospies/tv-scripts-generator,961d204d976e74c2c15127f18d39626332ae2eb8,961d204,2018-01-24T12:16:58-02:00,build,build,False,github.com/tiagospies/tv-scripts-generator/logs/build-961d204d976e74c2c15127f18d39626332ae2eb8-2020-07-14T08.32.txt,2020-07-14T08:32:37.045549,2020-07-14T08.32,0.11.0

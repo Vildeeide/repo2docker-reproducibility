@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bencardoen/srm_model,3da1ab31417f7259afe8a2d0dadbd3b68f45d00b,3da1ab3,2018-02-01T19:19:29-08:00,build,build,True,github.com/b/bencardoen/srm_model/logs/build-3da1ab31417f7259afe8a2d0dadbd3b68f45d00b-2020-07-14T09.29.txt,2020-07-14T09:29:25.809566,2020-07-14T09.29,0.11.0
+https://github.com/bencardoen/srm_model,3da1ab31417f7259afe8a2d0dadbd3b68f45d00b,3da1ab3,2018-02-01T19:19:29-08:00,notebook,SRM Model.ipynb,False,github.com/b/bencardoen/srm_model/logs/test-notebook-SRM Model.ipynb-2020-07-14T09.29.txt,2020-07-14T09:29:25.809566,2020-07-14T09.29,0.11.0

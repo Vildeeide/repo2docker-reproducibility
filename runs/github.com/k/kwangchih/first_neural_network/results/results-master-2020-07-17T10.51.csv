@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kwangchih/first_neural_network,master,71436a2,2017-11-29T01:17:20+08:00,build,build,False,github.com/k/kwangchih/first_neural_network/logs/build-master-2020-07-17T10.51.txt,2020-07-17T10:51:50.273502,2020-07-17T10.51,0.11.0

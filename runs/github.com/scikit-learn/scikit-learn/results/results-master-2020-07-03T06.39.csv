@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/scikit-learn/scikit-learn,master,ffbb1b4,2020-07-02T15:16:56+03:00,build,build,True,github.com/scikit-learn/scikit-learn/logs/build-master-2020-07-03T06.39.txt,2020-07-03T06:39:11.810448,2020-07-03T06.39,0.11.0

@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/landre5/first-neural-network,master,2f0ea5c,2017-09-07T23:10:55-07:00,build,build,False,github.com/landre5/first-neural-network/logs/build-master-2020-07-17T11.06.txt,2020-07-17T11:06:22.023308,2020-07-17T11.06,0.11.0

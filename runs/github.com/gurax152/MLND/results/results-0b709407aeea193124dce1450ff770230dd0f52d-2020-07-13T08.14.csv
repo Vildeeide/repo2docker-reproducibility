@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/gurax152/MLND,0b709407aeea193124dce1450ff770230dd0f52d,0b70940,2018-04-08T15:43:47-07:00,build,build,False,github.com/gurax152/MLND/logs/build-0b709407aeea193124dce1450ff770230dd0f52d-2020-07-13T08.14.txt,2020-07-13T08:14:32.234271,2020-07-13T08.14,0.11.0

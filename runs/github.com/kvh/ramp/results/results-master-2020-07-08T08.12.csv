@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kvh/ramp,master,8618ce6,2015-11-10T16:10:47-08:00,build,build,True,github.com/kvh/ramp/logs/build-master-2020-07-08T08.12.txt,2020-07-08T08:12:46.590696,2020-07-08T08.12,0.11.0

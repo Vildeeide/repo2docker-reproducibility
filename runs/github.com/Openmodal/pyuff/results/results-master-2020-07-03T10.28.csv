@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Openmodal/pyuff,master,e37a6b2,2020-05-12T20:01:02+02:00,build,build,True,github.com/Openmodal/pyuff/logs/build-master-2020-07-03T10.28.txt,2020-07-03T10:28:23.812310,2020-07-03T10.28,0.11.0
-https://github.com/Openmodal/pyuff,master,e37a6b2,2020-05-12T20:01:02+02:00,notebook,pyuff Showcase.ipynb,False,github.com/Openmodal/pyuff/logs/test-notebook-pyuff Showcase.ipynb-2020-07-03T10.28.txt,2020-07-03T10:28:23.812310,2020-07-03T10.28,0.11.0

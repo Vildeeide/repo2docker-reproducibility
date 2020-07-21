@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jakeret/tf_unet,master,0dcdf2f,2020-05-05T11:29:48+02:00,build,build,True,github.com/jakeret/tf_unet/logs/build-master-2020-07-06T09.37.txt,2020-07-06T09:37:48.558571,2020-07-06T09.37,0.11.0
-https://github.com/jakeret/tf_unet,master,0dcdf2f,2020-05-05T11:29:48+02:00,notebook,demo/demo_radio_data.ipynb,False,github.com/jakeret/tf_unet/logs/test-notebook-demo-demo_radio_data.ipynb-2020-07-06T09.37.txt,2020-07-06T09:37:48.558571,2020-07-06T09.37,0.11.0
-https://github.com/jakeret/tf_unet,master,0dcdf2f,2020-05-05T11:29:48+02:00,notebook,demo/demo_toy_problem.ipynb,False,github.com/jakeret/tf_unet/logs/test-notebook-demo-demo_toy_problem.ipynb-2020-07-06T09.37.txt,2020-07-06T09:37:48.558571,2020-07-06T09.37,0.11.0

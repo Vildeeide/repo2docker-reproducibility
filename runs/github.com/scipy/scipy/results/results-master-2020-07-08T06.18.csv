@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/scipy/scipy,master,289ae46,2020-06-18T19:53:22+01:00,build,build,False,github.com/scipy/scipy/logs/build-master-2020-07-08T06.18.txt,2020-07-08T06:18:53.367304,2020-07-08T06.18,0.11.0

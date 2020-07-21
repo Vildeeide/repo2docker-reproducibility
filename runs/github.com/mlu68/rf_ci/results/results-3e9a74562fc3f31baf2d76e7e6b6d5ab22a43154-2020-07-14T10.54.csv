@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mlu68/rf_ci,3e9a74562fc3f31baf2d76e7e6b6d5ab22a43154,3e9a745,2017-08-17T14:05:32+00:00,build,build,True,github.com/mlu68/rf_ci/logs/build-3e9a74562fc3f31baf2d76e7e6b6d5ab22a43154-2020-07-14T10.54.txt,2020-07-14T10:54:05.202514,2020-07-14T10.54,0.11.0
-https://github.com/mlu68/rf_ci,3e9a74562fc3f31baf2d76e7e6b6d5ab22a43154,3e9a745,2017-08-17T14:05:32+00:00,notebook,rf_ci.ipynb,False,github.com/mlu68/rf_ci/logs/test-notebook-rf_ci.ipynb-2020-07-14T10.54.txt,2020-07-14T10:54:05.202514,2020-07-14T10.54,0.11.0

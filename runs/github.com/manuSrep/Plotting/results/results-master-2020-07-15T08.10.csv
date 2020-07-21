@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/manuSrep/Plotting,master,91e1c10,2017-01-27T15:58:19+01:00,build,build,True,github.com/manuSrep/Plotting/logs/build-master-2020-07-15T08.10.txt,2020-07-15T08:10:45.957143,2020-07-15T08.10,0.11.0
-https://github.com/manuSrep/Plotting,master,91e1c10,2017-01-27T15:58:19+01:00,notebook,Python/Line_and_dot_plots_py.ipynb,False,github.com/manuSrep/Plotting/logs/test-notebook-Python-Line_and_dot_plots_py.ipynb-2020-07-15T08.10.txt,2020-07-15T08:10:45.957143,2020-07-15T08.10,0.11.0
-https://github.com/manuSrep/Plotting,master,91e1c10,2017-01-27T15:58:19+01:00,notebook,Julia/Line_and_dot_plots_jl.ipynb,False,github.com/manuSrep/Plotting/logs/test-notebook-Julia-Line_and_dot_plots_jl.ipynb-2020-07-15T08.10.txt,2020-07-15T08:10:45.957143,2020-07-15T08.10,0.11.0
