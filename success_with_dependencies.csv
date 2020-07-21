@@ -1,0 +1,141 @@
+SUCCESS WITH DEPENDENCIES;;;
+;;;
+;No;Repo ;Repo2docker-checker 
+;1;18F/identity-analysis-sandbox;Build failed. Exit status 1 
+;2;learn-co-students/calculating-distance-lab-ds-test-nikhil-steven;Username
+;3;learn-co-students/calculating-distance-lab-nikhil-data-science-test;Username
+;4;learn-co-students/calculating-distance-lab-nikhil-test-ds;Username
+;5;learn-co-students/conditionals-python-lab-data-science-alpha;1 failure. TypeError 
+;6;learn-co-students/conditionals-python-lab-data-science-intro-000;1 failure. TypeError
+;7;learn-co-students/conditionals-python-lab-demo-machine-learning;TypeError
+;8;learn-co-students/conditionals-python-readme-data-science-alpha;1 ok 
+;9;learn-co-students/conditionals-python-readme-data-science-intro-000;1 ok 
+;10;learn-co-students/conditionals-python-readme-demo-machine-learning;1 ok 
+;11;learn-co-students/for-loops-readme-data-science-pilot;1 ok 
+;12;learn-co-students/map-filter-readme-data-science-alpha;1 ok 
+;13;learn-co-students/map-readme-python-data-science-alpha;1 ok 
+;14;learn-co-students/calculating-distance-lab-ds-test-lights;Username
+;15;learn-co-students/map-readme-python-data-science-intro-000;1 ok 
+;16;learn-co-students/plotting-data-lab-data-science;1 ok 
+;17;learn-co-students/plotting-data-lab-data-science-alpha;1 ok 
+;18;learn-co-students/plotting-data-lab-data-science-intro-000;1 ok 
+;19;learn-co-students/plotting-data-lab-data-science-pilot;1 ok 
+;20;learn-co-students/plotting-data-lab-demo-machine-learning;1 ok 
+;21;learn-co-students/plotting-data-readme-data-science;1 ok 
+;22;learn-co-students/plotting-data-readme-data-science-alpha;1 ok 
+;23;learn-co-students/plotting-data-readme-data-science-intro-000;1 ok 
+;24;learn-co-students/plotting-data-readme-data-science-pilot1 ok ;1 ok 
+;25;learn-co-students/plotting-data-readme-demo-machine-learning;1 ok 
+;26;learn-co-students/python-variables-lab-data-science;1 ok 
+;27;learn-co-students/python-variables-lab-data-science-alpha;1 ok 
+;28;learn-co-students/map-readme-python-demo-machine-learning;1 ok 
+;29;learn-co-students/calculating-distance-lab-data-science-pilot-test;Username 
+;30;learn-co-students/calculating-distance-lab-data-science-pilot;1 ok 
+;31;learn-co-students/calculating-distance-lab-data-science-alpha;1 ok 
+;32;kjschiroo/mlip;Build failed. Exit status 1 
+;33;kmpopova/udacity-dlnd-june-2017;Build failed. Exit status 1. Error when installing pyzmq from setup.py
+;34;knf-us/pidays-2017-plotting-workshop;Username
+;35;kojoidrissa/owwc;No tests found
+;36;kojoidrissa/pycaribbean_2018;3 failures: Modules
+;37;koldunovn/AWI2;1 failure. Syntax
+;38;konstantinstadler/pymrio_article;1 ok
+;39;krisrogers/scraping;Build failed. Exit status 1. Failed when building wheel for, and installing, lxml
+;40;kristianperkins/nbrequests;1 ok 
+;41;krzdur/cdr;1 ok 
+;42;kulla/mfnf-statistic-20171007;1 failure. Zero division error
+;43;kure-kosen/deep-learning-practice;Build failed. Exit status 1. Error when installing pyzmq from setup.py
+;44;kwangchih/first_neural_network;Build failed. Failed building wheel for pandas. 
+;45;kylehounslow/jupyter-notebooks;Build failed. Exit status 1. Error when installing pyzmq from setup.py
+;46;l1th1um/workshop-ml-lipi-2017;Build failed. No module named numpy (during building)
+;47;ladisk/pyTrigger;1 ok 
+;48;lalwanigunjan/AdsTeam6Presentation;Build failed. Failed building wheels for pandas. 
+;49;landre5/first-neural-network;Build failed. Exit status 1. Error when installing pyzmq from setup.py
+;50;lbzqwe/binder;1 failure. AttributeError 
+;51;learn-co-curriculum/calculating-distance-lab;1 ok 
+;52;learn-co-curriculum/conditionals-python-readme;1 ok 
+;53;learn-co-curriculum/map-readme-python;1 ok 
+;54;learn-co-curriculum/plotting-data-readme;1 ok 
+;55;learn-co-curriculum/python-variables-lab;1 ok 
+;56;learn-co-curriculum/python-visualizing-with-collections;1 ok 
+;57;learn-co-curriculum/visualizing-in-python;1 ok 
+;58;learn-co-students/calculating-distance-lab-data-science;1 ok 
+;59;learn-co-students/python-variables-lab-data-science-intro-000;1 ok 
+;60;learn-co-students/python-variables-lab-data-science-pilot;1 ok 
+;61;learn-co-students/python-variables-lab-demo-machine-learning;1 ok 
+;62;learn-co-students/visualizing-in-python-data-science;1 ok
+;63;madhur-taneja/First-Neural-Network ;Username
+;64;maeehart/AutotalliSpyder;Username
+;65;marcatmendez/first-neural-network;3 failures. Modules
+;66;marceljm/first-neural-network;Build failed. Can't build wheels
+;67;marcellobenigno/webmapping;Build failed. Can't build wheels 
+;68;marcinbielecki/Advanced-Macroeconomics-in-Python;Username 
+;69;marcosflp/crypto;Aborted (core dumped). Could not install build dependencies
+;70;markusbuchholz/DLND-P1-Bike-Sharing-First-Neural-Network;Build failed. Could not build wheels for pandas. 
+;71;marmaladebacon/aind-nlp;2 failures. Attribute and syntax
+;72;martako/AI-SVM-classifier;Build failed. Could not download Rtree 
+;73;martinkersner/ann-meetup;Build failed. Read timed out 
+;74;martinkersner/meta-learning-meetup;Build failed. Read timed out 
+;75;martinwxi/First-Neural-Network;Build failed. Read timed out 
+;76;mashabow/font-pen-samples;Build failed. Read timed out 
+;77;mathewmorales/First-Neural-Network-Project;2 failures. Modules
+;78;matthiaskoenig/libsbgn-python;1 ok
+;79;matthiaskoenig/sbml-merge;1 ok
+;80;matthiaskoenig/tellurium-cas;1 failure. RuntimeError
+;81;matthiaskoenig/universal-model;1 failure. TypeError
+;82;matthiasludwig/first-neural-network;Build failed. Could not install pyzmq
+;83;maxwang88/NLP-Toy-Project;2 failures. Name and AttributeError 
+;84;mbabd2016/russianhousingmarket;Build failed.  PackeageResolveNotfound
+;85;mcmcclur/jupyter_notebooks;Build failed. Failed building wheels
+;86;med-hachoum/heart-disease-prediction;Build failed. Failed building wheel 
+;87;meilinger/introduction-to-django;1 failure. Module
+;88;metasyn/creditcardfrauddata;Build failed. Failed building wheels 
+;89;mgacek8/Python-In-The-Enterprise-Lab01-02;1 ok
+;90;madhujahagirdar/your-first-neural-network;Build failed. Failed building wheels.
+;91;kirillmakhonin/ifmo-lab-python-2016;1 failure. Module
+;92;madhug/bike-sharing;No URL found for submodule path 
+;93;luqmanhakim/first-neural-network;Build failed. Failed building wheels
+;94;learn-co-students/visualizing-in-python-data-science-pilot;1 ok
+;95;;
+;96;learn-co-students/visualizing-in-python-data-science-pilot-test;Username
+;97;learn-co-students/visualizing-in-python-ds-test-lights;Username
+;98;learn-co-students/visualizing-in-python-ds-test-nikhil-steven;Username
+;99;learn-co-students/visualizing-in-python-nikhil-data-science-test;Username
+;100;learn-co-students/visualizing-in-python-nikhil-test-ds;Username
+;101;leejonggun/first-neural-network;1 failure. Module
+;102;leephillips/JupyterExperiments ;1 ok
+;103;lemoinef/dlnd_embedding_word2vec;Build failed. Could not find version satisfying requirement. No matching distribution (has requirements.txt)
+;104;leo-gan/PyTorch-SungKim;1 ok
+;105;lfedeli/Training-RNN-by-diffusion;1 failure. AttributeError
+;106;lgaetecl/DataScienceTraine;Username
+;107;liammcinroy/revl-ml-cpp-challenge;2 failures. Modules
+;108;lincolnfrias/binder;Aborted (core dumped)
+;109;ling592b/class_1-2;Build failed. Exit status 1 
+;110;lionfish0/download_thingspeak;1 ok
+;111;litopia/dlnd-first-neural-network;Build failed. Failed building wheels.
+;112;littlepea/python-admin-business-logic-talk;1 failure. Syntax
+;113;liuzqt/ubuntu_dialog_corpus;Build failed, build failure
+;114;lmarkely/bike_sharing;Build failed. Exit status 1
+;115;losc-tutorial/quickview;1 ok
+;116;lovit/KR-WordRank;Build failed. Exit status 1: No module named numpy
+;117;lperozzi/SGeMS_utils;1 ok
+;118;ltiao/recomposed;1 ok
+;119;ltpitt/python-jupyter-deep-learning-neural-network;Build failed. Exit status 1
+;120;luhego/udacity-aind-sudoku-solver;1 ok 
+;121;lukhar/machine-learning-a-probabilistic-perspective;Username
+;122;lyzs90/booking-validation;1 ok
+;123;mgurdal/tensorflow_101;Build failed. Version requirement not satisfied, no matching distribution
+;124;kintzhao/bike-sharing;Build failed. Failed building wheel for pandas
+;125;keldLundgaard/Polarizing_movies;1 ok
+;126;hnagib/Parametric-Curves;2 failures. Module, name
+;127;hongyang01613/First_neural_network;Build failed. Exit status 1 
+;128;hoppm/data-visualization;1 failure. FileNotFound
+;129;howl-anderson/binder_tester;1 failure. Attribute
+;130;hoyasam/DLnano_introTF;Username
+;131;hoyasam/bike_sharing_nn;Username
+;132;hughperkins/selfstudy-LIME;1 failure. AttributeError
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
