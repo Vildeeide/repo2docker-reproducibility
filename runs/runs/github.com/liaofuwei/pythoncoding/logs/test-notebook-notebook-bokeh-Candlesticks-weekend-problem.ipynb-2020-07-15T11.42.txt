@@ -1,0 +1,70 @@
+[I 200715 11:43:32 inrepo:36] Testing notebook notebook/bokeh-Candlesticks-weekend-problem.ipynb
+[W 200715 11:43:33 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 11:43:33 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 11:43:34 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from math import pi
+
+import pandas as pd
+
+from bokeh.sampledata.stocks import MSFT
+from bokeh.plotting import figure, show, output_file
+
+df = pd.DataFrame(MSFT)[:50]
+df["date"] = pd.to_datetime(df["date"])
+
+mids = (df.open + df.close)/2
+spans = abs(df.close-df.open)
+
+inc = df.close > df.open
+dec = df.open > df.close
+w = 12*60*60*1000 # half day in ms
+
+output_file("candlestick.html", title="candlestick.py example")
+
+TOOLS = "pan,wheel_zoom,box_zoom,reset,save"
+
+p = figure(x_axis_type="datetime", tools=TOOLS, plot_width=1000, toolbar_location="left")
+
+p.segment(df.date, df.high, df.date, df.low, color="black")
+p.rect(df.date[inc], mids[inc], w, spans[inc], fill_color="#D5E1DD", line_color="black")
+p.rect(df.date[dec], mids[dec], w, spans[dec], fill_color="#F2583E", line_color="black")
+
+p.title = "MSFT Candlestick"
+p.xaxis.major_label_orientation = pi/4
+p.grid.grid_line_alpha=0.3
+
+show(p)  # open a browser
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-948ae5bd68a5>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mmath[0m [0;32mimport[0m [0mpi[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0mbokeh[0m[0;34m.[0m[0msampledata[0m[0;34m.[0m[0mstocks[0m [0;32mimport[0m [0mMSFT[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

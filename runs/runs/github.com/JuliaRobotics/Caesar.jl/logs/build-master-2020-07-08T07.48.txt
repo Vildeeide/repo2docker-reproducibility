@@ -1,0 +1,607 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T07.48k9o34slz/github.com/JuliaRobotics/Caesar.jl.
+Using JuliaProjectTomlBuildPack builder
+Step 1/56 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/56 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/56 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/56 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/56 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/56 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/56 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/56 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/56 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/56 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/56 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/56 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/56 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/56 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/56 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/56 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/56 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/56 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/56 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/56 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/56 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/56 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/56 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/56 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/56 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/56 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/56 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/56 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/56 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/56 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/56 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/56 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/56 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/56 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/56 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/56 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/56 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/56 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/56 : USER root
+ ---> Using cache
+ ---> b5bb45c841fe
+Step 46/56 : COPY src/ ${REPO_DIR}
+ ---> 1634def70c7b
+Step 47/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 7890249953fa
+Removing intermediate container 7890249953fa
+ ---> 03d56dd2515d
+Step 48/56 : USER ${NB_USER}
+ ---> Running in 58d68c67b5d8
+Removing intermediate container 58d68c67b5d8
+ ---> e8f21f02b336
+Step 49/56 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in 63e7f168ff84
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [===========>                             ]  26.9 %
+    Fetching: [=========================>               ]  62.2 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed VersionParsing ── v1.2.0
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed Conda ─────────── v1.4.1
+ Installed ZMQ ───────────── v1.2.1
+ Installed Parsers ───────── v1.0.7
+ Installed IJulia ────────── v1.21.2
+ Installed MbedTLS ───────── v1.0.2
+ Installed ZeroMQ_jll ────── v4.3.2+4
+ Installed JSON ──────────── v0.21.0
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.7
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h Resolving package versions...
+ Installed Unmarshal ──────────────────── v0.3.1
+ Installed JSON2 ──────────────────────── v0.3.2
+ Installed TransformUtils ─────────────── v0.2.6
+ Installed Mongoc ─────────────────────── v0.2.1
+ Installed KernelDensityEstimate ──────── v0.5.2
+ Installed Graphs ─────────────────────── v0.10.3
+ Installed Distributions ──────────────── v0.23.4
+ Installed IncrementalInference ───────── v0.11.2
+ Installed Neo4j ──────────────────────── v2.0.0
+ Installed Combinatorics ──────────────── v1.0.2
+ Installed YAML ───────────────────────── v0.3.2
+ Installed DataStructures ─────────────── v0.17.19
+ Installed CoordinateTransformations ──── v0.6.0
+ Installed ImageMagick ────────────────── v1.1.5
+ Installed ProgressMeter ──────────────── v1.3.1
+ Installed DocStringExtensions ────────── v0.8.2
+ Installed JLD2 ───────────────────────── v0.1.13
+ Installed NLsolve ────────────────────── v4.4.0
+ Installed ApproxManifoldProducts ─────── v0.1.3
+ Installed FileIO ─────────────────────── v1.3.0
+ Installed Rotations ──────────────────── v0.13.0
+ Installed DistributedFactorGraphs ────── v0.7.7
+ Installed ImageCore ──────────────────── v0.8.14
+ Installed Reexport ───────────────────── v0.2.0
+ Installed Requires ───────────────────── v1.0.1
+ Installed RoME ───────────────────────── v0.7.1
+ Installed FFTW ───────────────────────── v1.2.2
+ Installed Codecs ─────────────────────── v0.5.0
+ Installed CloudGraphs ────────────────── v0.1.2
+ Installed Rmath_jll ──────────────────── v0.2.2+1
+ Installed Zstd_jll ───────────────────── v1.4.5+0
+ Installed NaNMath ────────────────────── v0.3.3
+ Installed UnPack ─────────────────────── v1.0.1
+ Installed DiffResults ────────────────── v1.0.2
+ Installed DiffRules ──────────────────── v1.0.1
+ Installed StatsFuns ──────────────────── v0.9.5
+ Installed QuadGK ─────────────────────── v2.4.0
+ Installed PaddedViews ────────────────── v0.5.5
+ Installed VectorizationBase ──────────── v0.12.19
+ Installed StatsBase ──────────────────── v0.33.0
+ Installed SLEEFPirates ───────────────── v0.5.4
+ Installed libpng_jll ─────────────────── v1.6.37+3
+ Installed OpenBLAS_jll ───────────────── v0.3.9+5
+ Installed LightGraphs ────────────────── v1.3.3
+ Installed IntelOpenMP_jll ────────────── v2018.0.3+0
+ Installed CpuId ──────────────────────── v0.2.2
+ Installed MacroTools ─────────────────── v0.5.5
+ Installed NLSolversBase ──────────────── v7.6.1
+ Installed CategoricalArrays ──────────── v0.8.1
+ Installed DataFrames ─────────────────── v0.21.4
+ Installed NamedDims ──────────────────── v0.2.21
+ Installed LazyStack ──────────────────── v0.0.7
+ Installed ImageMagick_jll ────────────── v6.9.10-12+3
+ Installed ArrayInterface ─────────────── v2.9.0
+ Installed HTTP ───────────────────────── v0.8.16
+ Installed Nullables ──────────────────── v1.0.0
+ Installed DataAPI ────────────────────── v1.3.0
+ Installed CodecZlib ──────────────────── v0.7.0
+ Installed FillArrays ─────────────────── v0.8.12
+ Installed CompilerSupportLibraries_jll ─ v0.3.3+0
+ Installed Arpack_jll ─────────────────── v3.5.0+3
+ Installed TensorCast ─────────────────── v0.3.0
+ Installed DataValueInterfaces ────────── v1.0.0
+ Installed Arpack ─────────────────────── v0.4.0
+ Installed SimpleTraits ───────────────── v0.9.2
+ Installed MappedArrays ───────────────── v0.2.2
+ Installed FiniteDiff ─────────────────── v2.4.0
+ Installed StaticArrays ───────────────── v0.12.4
+ Installed FunctionalStateMachine ─────── v0.2.0
+ Installed Distances ──────────────────── v0.9.0
+ Installed Zlib_jll ───────────────────── v1.2.11+14
+ Installed SpecialFunctions ───────────── v0.10.3
+ Installed MosaicViews ────────────────── v0.2.2
+ Installed Graphics ───────────────────── v1.0.2
+ Installed IteratorInterfaceExtensions ── v1.0.0
+ Installed ArnoldiMethod ──────────────── v0.0.4
+ Installed Optim ──────────────────────── v0.21.0
+ Installed CEnum ──────────────────────── v0.4.1
+ Installed ColorTypes ─────────────────── v0.10.6
+ Installed Compat ─────────────────────── v3.13.0
+ Installed OffsetArrays ───────────────── v1.1.1
+ Installed ForwardDiff ────────────────── v0.10.12
+ Installed FixedPointNumbers ──────────── v0.8.1
+ Installed SIMDPirates ────────────────── v0.8.13
+ Installed ZygoteRules ────────────────── v0.2.0
+ Installed InvertedIndices ────────────── v1.0.0
+ Installed Colors ─────────────────────── v0.12.3
+ Installed AbstractFFTs ───────────────── v0.5.0
+ Installed Inflate ────────────────────── v0.1.2
+ Installed MetaGraphs ─────────────────── v0.6.5
+ Installed SortingAlgorithms ──────────── v0.3.1
+ Installed Rmath ──────────────────────── v0.6.1
+ Installed PDMats ─────────────────────── v0.9.12
+ Installed LLVM ───────────────────────── v2.0.0
+ Installed Tables ─────────────────────── v1.0.4
+ Installed TranscodingStreams ─────────── v0.9.5
+ Installed TableTraits ────────────────── v1.0.0
+ Installed PooledArrays ───────────────── v0.5.3
+ Installed OrderedCollections ─────────── v1.3.0
+ Installed LineSearches ───────────────── v7.0.1
+ Installed PositiveFactorizations ─────── v0.2.3
+ Installed BinaryProvider ─────────────── v0.5.10
+ Installed IniFile ────────────────────── v0.5.0
+ Installed Parameters ─────────────────── v0.12.1
+ Installed ProtoBuf ───────────────────── v0.8.0
+ Installed MKL_jll ────────────────────── v2020.1.216+0
+ Installed OpenSpecFun_jll ────────────── v0.5.3+3
+ Installed Missings ───────────────────── v0.4.3
+ Installed CommonSubexpressions ───────── v0.3.0
+ Installed Libtiff_jll ────────────────── v4.1.0+0
+ Installed JpegTurbo_jll ──────────────── v2.0.1+1
+ Installed FFTW_jll ───────────────────── v3.3.9+5
+  Updating `~/Project.toml`
+  [9bbbb610] + ApproxManifoldProducts v0.1.3
+  [39d38320] + CloudGraphs v0.1.2
+  [861a8166] + Combinatorics v1.0.2
+  [150eb455] + CoordinateTransformations v0.6.0
+  [864edb3b] + DataStructures v0.17.19
+  [b5cc3c7e] + DistributedFactorGraphs v0.7.7
+  [31c24e10] + Distributions v0.23.4
+  [ffbed154] + DocStringExtensions v0.8.2
+  [7a1cc6ca] + FFTW v1.2.2
+  [5789e2e9] + FileIO v1.3.0
+  [86223c79] + Graphs v0.10.3
+  [a09fc81d] + ImageCore v0.8.14
+  [6218d12a] + ImageMagick v1.1.5
+  [904591bb] + IncrementalInference v0.11.2
+  [033835bb] + JLD2 v0.1.13
+  [682c06a0] + JSON v0.21.0
+  [2535ab7d] + JSON2 v0.3.2
+  [2472808a] + KernelDensityEstimate v0.5.2
+  [4fe8b98c] + Mongoc v0.2.1
+  [2774e3e8] + NLsolve v4.4.0
+  [d2adbeaf] + Neo4j v2.0.0
+  [92933f4c] + ProgressMeter v1.3.1
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v1.0.1
+  [91fb55c2] + RoME v0.7.1
+  [6038ab10] + Rotations v0.13.0
+  [9b8138ad] + TransformUtils v0.2.6
+  [cbff2730] + Unmarshal v0.3.1
+  [ddb6d928] + YAML v0.3.2
+  [c2297ded] + ZMQ v1.2.1
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [37e2e46d] + LinearAlgebra 
+  [44cfe95a] + Pkg 
+  [10745b16] + Statistics 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  Updating `~/Manifest.toml`
+  [621f4979] + AbstractFFTs v0.5.0
+  [9bbbb610] + ApproxManifoldProducts v0.1.3
+  [ec485272] + ArnoldiMethod v0.0.4
+  [7d9fca2a] + Arpack v0.4.0
+  [68821587] + Arpack_jll v3.5.0+3
+  [4fba245c] + ArrayInterface v2.9.0
+  [b99e7846] + BinaryProvider v0.5.10
+  [fa961155] + CEnum v0.4.1
+  [324d7699] + CategoricalArrays v0.8.1
+  [39d38320] + CloudGraphs v0.1.2
+  [944b1d66] + CodecZlib v0.7.0
+  [19ecbf4d] + Codecs v0.5.0
+  [3da002f7] + ColorTypes v0.10.6
+  [5ae59095] + Colors v0.12.3
+  [861a8166] + Combinatorics v1.0.2
+  [bbf7d656] + CommonSubexpressions v0.3.0
+  [34da2185] + Compat v3.13.0
+  [e66e0078] + CompilerSupportLibraries_jll v0.3.3+0
+  [150eb455] + CoordinateTransformations v0.6.0
+  [adafc99b] + CpuId v0.2.2
+  [9a962f9c] + DataAPI v1.3.0
+  [a93c6f00] + DataFrames v0.21.4
+  [864edb3b] + DataStructures v0.17.19
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [163ba53b] + DiffResults v1.0.2
+  [b552c78f] + DiffRules v1.0.1
+  [b4f34e82] + Distances v0.9.0
+  [b5cc3c7e] + DistributedFactorGraphs v0.7.7
+  [31c24e10] + Distributions v0.23.4
+  [ffbed154] + DocStringExtensions v0.8.2
+  [7a1cc6ca] + FFTW v1.2.2
+  [f5851436] + FFTW_jll v3.3.9+5
+  [5789e2e9] + FileIO v1.3.0
+  [1a297f60] + FillArrays v0.8.12
+  [6a86dc24] + FiniteDiff v2.4.0
+  [53c48c17] + FixedPointNumbers v0.8.1
+  [f6369f11] + ForwardDiff v0.10.12
+  [3e9e306e] + FunctionalStateMachine v0.2.0
+  [a2bd30eb] + Graphics v1.0.2
+  [86223c79] + Graphs v0.10.3
+  [cd3eb016] + HTTP v0.8.16
+  [a09fc81d] + ImageCore v0.8.14
+  [6218d12a] + ImageMagick v1.1.5
+  [c73af94c] + ImageMagick_jll v6.9.10-12+3
+  [904591bb] + IncrementalInference v0.11.2
+  [d25df0c9] + Inflate v0.1.2
+  [83e8ac13] + IniFile v0.5.0
+  [1d5cc7b8] + IntelOpenMP_jll v2018.0.3+0
+  [41ab1584] + InvertedIndices v1.0.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [033835bb] + JLD2 v0.1.13
+  [682c06a0] + JSON v0.21.0
+  [2535ab7d] + JSON2 v0.3.2
+  [aacddb02] + JpegTurbo_jll v2.0.1+1
+  [2472808a] + KernelDensityEstimate v0.5.2
+  [929cbde3] + LLVM v2.0.0
+  [1fad7336] + LazyStack v0.0.7
+  [89763e89] + Libtiff_jll v4.1.0+0
+  [093fc24a] + LightGraphs v1.3.3
+  [d3d80556] + LineSearches v7.0.1
+  [856f044c] + MKL_jll v2020.1.216+0
+  [1914dd2f] + MacroTools v0.5.5
+  [dbb5928d] + MappedArrays v0.2.2
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [626554b9] + MetaGraphs v0.6.5
+  [e1d29d7a] + Missings v0.4.3
+  [4fe8b98c] + Mongoc v0.2.1
+  [e94cdb99] + MosaicViews v0.2.2
+  [d41bc354] + NLSolversBase v7.6.1
+  [2774e3e8] + NLsolve v4.4.0
+  [77ba4419] + NaNMath v0.3.3
+  [356022a1] + NamedDims v0.2.21
+  [d2adbeaf] + Neo4j v2.0.0
+  [4d1e1d77] + Nullables v1.0.0
+  [6fe1bfb0] + OffsetArrays v1.1.1
+  [4536629a] + OpenBLAS_jll v0.3.9+5
+  [efe28fd5] + OpenSpecFun_jll v0.5.3+3
+  [429524aa] + Optim v0.21.0
+  [bac558e1] + OrderedCollections v1.3.0
+  [90014a1f] + PDMats v0.9.12
+  [5432bcbf] + PaddedViews v0.5.5
+  [d96e819e] + Parameters v0.12.1
+  [69de0a69] + Parsers v1.0.7
+  [2dfb63ee] + PooledArrays v0.5.3
+  [85a6dd25] + PositiveFactorizations v0.2.3
+  [92933f4c] + ProgressMeter v1.3.1
+  [3349acd9] + ProtoBuf v0.8.0
+  [1fd47b50] + QuadGK v2.4.0
+  [189a3867] + Reexport v0.2.0
+  [ae029012] + Requires v1.0.1
+  [79098fc4] + Rmath v0.6.1
+  [f50d1b31] + Rmath_jll v0.2.2+1
+  [91fb55c2] + RoME v0.7.1
+  [6038ab10] + Rotations v0.13.0
+  [21efa798] + SIMDPirates v0.8.13
+  [476501e8] + SLEEFPirates v0.5.4
+  [699a6c99] + SimpleTraits v0.9.2
+  [a2af1166] + SortingAlgorithms v0.3.1
+  [276daf66] + SpecialFunctions v0.10.3
+  [90137ffa] + StaticArrays v0.12.4
+  [2913bbd2] + StatsBase v0.33.0
+  [4c63d2b9] + StatsFuns v0.9.5
+  [3783bdb8] + TableTraits v1.0.0
+  [bd369af6] + Tables v1.0.4
+  [02d47bb6] + TensorCast v0.3.0
+  [3bb67fe8] + TranscodingStreams v0.9.5
+  [9b8138ad] + TransformUtils v0.2.6
+  [3a884ed6] + UnPack v1.0.1
+  [cbff2730] + Unmarshal v0.3.1
+  [3d5dd08c] + VectorizationBase v0.12.19
+  [ddb6d928] + YAML v0.3.2
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [83775a58] + Zlib_jll v1.2.11+14
+  [3161d3a3] + Zstd_jll v1.4.5+0
+  [700de1a5] + ZygoteRules v0.2.0
+  [b53b4c65] + libpng_jll v1.6.37+3
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8bb1440f] + DelimitedFiles 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [9fa8497b] + Future 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [37e2e46d] + LinearAlgebra 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [1a1011a3] + SharedArrays 
+  [6462fe0b] + Sockets 
+  [2f01184e] + SparseArrays 
+  [10745b16] + Statistics 
+  [4607b0f0] + SuiteSparse 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Mongoc ──────→ `/srv/julia/pkg/packages/Mongoc/N4NkA/deps/build.log`
+  Building FFTW ────────→ `/srv/julia/pkg/packages/FFTW/kcXL6/deps/build.log`
+  Building SLEEFPirates → `/srv/julia/pkg/packages/SLEEFPirates/QzifL/deps/build.log`
+Precompiling project...
+Precompiling Mongoc
+Precompiling Unmarshal
+Precompiling Distributions
+Precompiling JSON2
+Precompiling Graphs
+Precompiling TransformUtils
+Precompiling IncrementalInference
+[91m[ Info: Multithreaded  convolutions possible, Threads.nthreads()=1.  See `addFactor!(.;threadmodel=MultiThreaded)`.
+[0m[91m[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+[0m[91m[ Info: KernelDensityEstimate.FORCE_EVAL_DIRECT = true
+[0mPrecompiling YAML
+[91mWARNING: Compat.Dates is deprecated, use Dates instead.
+  likely near /srv/julia/pkg/packages/YAML/nKMpg/src/YAML.jl:15
+[0m[91mWARNING: Compat.Printf is deprecated, use Printf instead.
+  likely near /srv/julia/pkg/packages/YAML/nKMpg/src/YAML.jl:16
+[0mPrecompiling ImageMagick
+Precompiling RoME
+[91mWARNING: ignoring conflicting import of DistributedFactorGraphs.compare into RoME
+[0m[91mERROR: [0m[91mLoadError: LoadError: [0m[91msyntax: "$" expression outside quote[0m[91m
+Stacktrace:[0m[91m
+ [1] top-level scope at [0m[91m/srv/julia/pkg/packages/RoME/Oh4OR/src/OdometryUtils.jl:143[0m[91m
+ [2] [0m[91minclude at ./boot.jl:328[0m[91m [inlined]
+[0m[91m [3] [0m[91minclude_relative([0m[91m::[0m[91mModule, [0m[91m::String) at ./loading.jl:1105
+ [4] include at ./Base.jl:31 [inlined]
+ [5] include(::String) at /srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:1
+ [6] top-level scope at /srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:333
+ [7] include at ./boot.jl:328 [inlined]
+ [8] include_relative(::Module, ::String) at ./loading.jl:1105
+ [9] include(::Module, ::String) at ./Base.jl:31
+ [10] top-level scope at none:2
+ [11] eval at ./boot.jl:330 [inlined]
+ [12] eval(::Expr) at ./client.jl:425
+ [13] top-level scope at ./none:3
+in expression starting at /srv/julia/pkg/packages/RoME/Oh4OR/src/OdometryUtils.jl:143
+in expression starting at /srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:333
+[0mPrecompiling CloudGraphs
+Precompiling FFTW
+Precompiling Caesar
+[91mWARNING: ignoring conflicting import of DistributedFactorGraphs.compare into RoME
+[0m[91mERROR: [0m[91mLoadError: [0m[91mLoadError: [0m[91msyntax: "$" expression outside quote[0m[91m
+Stacktrace:[0m[91m
+ [1] [0m[91mtop-level scope at /srv/julia/pkg/packages/RoME/Oh4OR/src/OdometryUtils.jl:143
+ [2] [0m[91minclude[0m[91m at ./boot.jl:328 [inlined]
+ [3] [0m[91minclude_relative[0m[91m([0m[91m::[0m[91mModule, [0m[91m::String[0m[91m)[0m[91m at [0m[91m./loading.jl:1105[0m[91m
+[0m[91m [4] [0m[91minclude at [0m[91m./Base.jl:31[0m[91m [inlined][0m[91m
+ [5] [0m[91minclude([0m[91m::[0m[91mString[0m[91m)[0m[91m at /srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:1[0m[91m
+[0m[91m [6] [0m[91mtop-level scope[0m[91m at [0m[91m/srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:333[0m[91m
+ [7] [0m[91minclude[0m[91m at [0m[91m./boot.jl:328[0m[91m [inlined]
+[0m[91m [8] [0m[91minclude_relative([0m[91m::[0m[91mModule[0m[91m, [0m[91m::[0m[91mString[0m[91m) at [0m[91m./loading.jl:1105[0m[91m
+[0m[91m [9] [0m[91minclude([0m[91m::Module[0m[91m, [0m[91m::[0m[91mString)[0m[91m at [0m[91m./Base.jl:31[0m[91m
+ [10] [0m[91mtop-level scope[0m[91m at [0m[91mnone:2
+[0m[91m [11] [0m[91meval[0m[91m at [0m[91m./boot.jl:330 [inlined][0m[91m
+ [12] [0m[91meval[0m[91m([0m[91m::[0m[91mExpr[0m[91m) at [0m[91m./client.jl:425[0m[91m
+[0m[91m [13] top-level scope[0m[91m at ./none:3[0m[91m
+in expression starting at /srv/julia/pkg/packages/RoME/Oh4OR/src/OdometryUtils.jl:143
+in expression starting at /srv/julia/pkg/packages/RoME/Oh4OR/src/RoME.jl:333[0m[91m
+[0m[91mERROR: [0m[91mLoadError: [0m[91mFailed to precompile RoME [91fb55c2-4c03-5a59-ba21-f4ea956187b8] to /srv/julia/pkg/compiled/v1.3/RoME/VVxXB_mSBGU.ji.[0m[91m
+Stacktrace:[0m[91m
+[0m[91m [1] [0m[91merror[0m[91m([0m[91m::[0m[91mString[0m[91m)[0m[91m at [0m[91m./error.jl:33[0m[91m
+[0m[91m [2] [0m[91mcompilecache[0m[91m([0m[91m::[0m[91mBase[0m[91m.[0m[91mPkgId[0m[91m, [0m[91m::[0m[91mString[0m[91m)[0m[91m at [0m[91m./loading.jl:1283[0m[91m
+[0m[91m [3] [0m[91m_require[0m[91m([0m[91m::[0m[91mBase[0m[91m.[0m[91mPkgId[0m[91m)[0m[91m at [0m[91m./loading.jl:1024[0m[91m
+[0m[91m [4] [0m[91mrequire[0m[91m([0m[91m::[0m[91mBase[0m[91m.[0m[91mPkgId[0m[91m)[0m[91m at [0m[91m./loading.jl:922[0m[91m
+[0m[91m [5] [0m[91mrequire[0m[91m([0m[91m::[0m[91mModule[0m[91m, [0m[91m::[0m[91mSymbol[0m[91m)[0m[91m at [0m[91m./loading.jl:917[0m[91m
+[0m[91m [6] [0m[91minclude at ./boot.jl:328 [inlined]
+ [7] include_relative(::Module, ::String) at ./loading.jl:1105
+ [8] include(::Module, ::String) at ./Base.jl:31
+ [9] top-level scope at none:2
+ [10] eval at ./boot.jl:330 [inlined]
+ [11] eval(::Expr) at ./client.jl:425
+ [12] top-level scope at ./none:3
+in expression starting at /home/vildeeide/src/Caesar.jl:5
+[0mRemoving intermediate container 63e7f168ff84
+ ---> eb95c5ab6b78
+Step 50/56 : LABEL repo2docker.ref="None"
+ ---> Running in c52ebbe5c911
+Removing intermediate container c52ebbe5c911
+ ---> cc5e9ecf5006
+Step 51/56 : LABEL repo2docker.repo="local"
+ ---> Running in 2f029b0428c1
+Removing intermediate container 2f029b0428c1
+ ---> b7539b33e552
+Step 52/56 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 9fd8db014b0f
+Removing intermediate container 9fd8db014b0f
+ ---> cf8a43eef5f0
+Step 53/56 : USER ${NB_USER}
+ ---> Running in f21079a6512d
+Removing intermediate container f21079a6512d
+ ---> 40dc1e85bd1d
+Step 54/56 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 5a29cccb45e9
+Step 55/56 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 7ff98c56c2d2
+Removing intermediate container 7ff98c56c2d2
+ ---> ca46929997ad
+Step 56/56 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 712f8970838a
+Removing intermediate container 712f8970838a
+ ---> ff74c61f1ee4
+{"aux": {"ID": "sha256:ff74c61f1ee454e03d3e52d87cf338ebdf356bb8a8715ae21ed89ef01ca65391"}}Successfully built ff74c61f1ee4
+Successfully tagged r2d-test-github.com-juliarobotics-caesar.jl:bf144ba

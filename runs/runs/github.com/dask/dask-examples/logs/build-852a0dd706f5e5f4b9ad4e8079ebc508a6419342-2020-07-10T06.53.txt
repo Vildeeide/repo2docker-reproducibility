@@ -1,0 +1,524 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T06.53ao7vyqqd/github.com/dask/dask-examples.
+Using CondaBuildPack builder
+Step 1/56 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/56 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/56 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/56 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/56 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/56 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/56 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/56 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/56 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/56 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/56 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/56 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/56 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/56 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/56 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/56 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/56 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/56 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/56 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/56 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/56 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/56 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/56 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/56 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/56 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/56 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/56 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/56 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/56 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/56 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/56 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> f3f9ee762c1f
+Step 38/56 : USER root
+ ---> Running in d218862d8950
+Removing intermediate container d218862d8950
+ ---> 1cf98eb7a8f8
+Step 39/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 90010ec9e0b0
+Removing intermediate container 90010ec9e0b0
+ ---> 6e633aea3c8c
+Step 40/56 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends graphviz && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Running in 8a338c9f437b
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libann0 libcdt5 libcgraph6 libgd3 libgts-0.7-5 libgvc6 libgvpr2
+  liblab-gamut1 libpathplan4 libxaw7 libxmu6 libxpm4
+Suggested packages:
+  gsfonts graphviz-doc libgd-tools
+Recommended packages:
+  fonts-liberation libgts-bin
+The following NEW packages will be installed:
+  graphviz libann0 libcdt5 libcgraph6 libgd3 libgts-0.7-5 libgvc6 libgvpr2
+  liblab-gamut1 libpathplan4 libxaw7 libxmu6 libxpm4
+0 upgraded, 13 newly installed, 0 to remove and 41 not upgraded.
+Need to get 2,178 kB of archives.
+After this operation, 9,850 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libann0 amd64 1.1.2+doc-6 [24.8 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libcdt5 amd64 2.40.1-2 [19.6 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libcgraph6 amd64 2.40.1-2 [40.8 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgd3 amd64 2.2.5-4ubuntu0.4 [119 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libgts-0.7-5 amd64 0.7.6+darcs121130-4 [150 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libpathplan4 amd64 2.40.1-2 [22.6 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libgvc6 amd64 2.40.1-2 [601 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic/universe amd64 libgvpr2 amd64 2.40.1-2 [169 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic/universe amd64 liblab-gamut1 amd64 2.40.1-2 [178 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxmu6 amd64 2:1.1.2-2 [46.0 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxaw7 amd64 2:1.0.13-1 [173 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic/universe amd64 graphviz amd64 2.40.1-2 [601 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 2,178 kB in 0s (4,742 kB/s)
+Selecting previously unselected package libann0.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 25659 files and directories currently installed.)
+Preparing to unpack .../00-libann0_1.1.2+doc-6_amd64.deb ...
+Unpacking libann0 (1.1.2+doc-6) ...
+Selecting previously unselected package libcdt5.
+Preparing to unpack .../01-libcdt5_2.40.1-2_amd64.deb ...
+Unpacking libcdt5 (2.40.1-2) ...
+Selecting previously unselected package libcgraph6.
+Preparing to unpack .../02-libcgraph6_2.40.1-2_amd64.deb ...
+Unpacking libcgraph6 (2.40.1-2) ...
+Selecting previously unselected package libxpm4:amd64.
+Preparing to unpack .../03-libxpm4_1%3a3.5.12-1_amd64.deb ...
+Unpacking libxpm4:amd64 (1:3.5.12-1) ...
+Selecting previously unselected package libgd3:amd64.
+Preparing to unpack .../04-libgd3_2.2.5-4ubuntu0.4_amd64.deb ...
+Unpacking libgd3:amd64 (2.2.5-4ubuntu0.4) ...
+Selecting previously unselected package libgts-0.7-5:amd64.
+Preparing to unpack .../05-libgts-0.7-5_0.7.6+darcs121130-4_amd64.deb ...
+Unpacking libgts-0.7-5:amd64 (0.7.6+darcs121130-4) ...
+Selecting previously unselected package libpathplan4.
+Preparing to unpack .../06-libpathplan4_2.40.1-2_amd64.deb ...
+Unpacking libpathplan4 (2.40.1-2) ...
+Selecting previously unselected package libgvc6.
+Preparing to unpack .../07-libgvc6_2.40.1-2_amd64.deb ...
+Unpacking libgvc6 (2.40.1-2) ...
+Selecting previously unselected package libgvpr2.
+Preparing to unpack .../08-libgvpr2_2.40.1-2_amd64.deb ...
+Unpacking libgvpr2 (2.40.1-2) ...
+Selecting previously unselected package liblab-gamut1.
+Preparing to unpack .../09-liblab-gamut1_2.40.1-2_amd64.deb ...
+Unpacking liblab-gamut1 (2.40.1-2) ...
+Selecting previously unselected package libxmu6:amd64.
+Preparing to unpack .../10-libxmu6_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmu6:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package libxaw7:amd64.
+Preparing to unpack .../11-libxaw7_2%3a1.0.13-1_amd64.deb ...
+Unpacking libxaw7:amd64 (2:1.0.13-1) ...
+Selecting previously unselected package graphviz.
+Preparing to unpack .../12-graphviz_2.40.1-2_amd64.deb ...
+Unpacking graphviz (2.40.1-2) ...
+Setting up libgts-0.7-5:amd64 (0.7.6+darcs121130-4) ...
+Setting up libpathplan4 (2.40.1-2) ...
+Setting up liblab-gamut1 (2.40.1-2) ...
+Setting up libxmu6:amd64 (2:1.1.2-2) ...
+Setting up libann0 (1.1.2+doc-6) ...
+Setting up libxpm4:amd64 (1:3.5.12-1) ...
+Setting up libcdt5 (2.40.1-2) ...
+Setting up libcgraph6 (2.40.1-2) ...
+Setting up libxaw7:amd64 (2:1.0.13-1) ...
+Setting up libgvpr2 (2.40.1-2) ...
+Setting up libgd3:amd64 (2.2.5-4ubuntu0.4) ...
+Setting up libgvc6 (2.40.1-2) ...
+Setting up graphviz (2.40.1-2) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Removing intermediate container 8a338c9f437b
+ ---> 30488dd51470
+Step 41/56 : USER ${NB_USER}
+ ---> Running in 63a784a538e9
+Removing intermediate container 63a784a538e9
+ ---> 33b00e199df3
+Step 42/56 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in add79e530d6e
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... [91m
+Finding conflicts:   0%|          | 0/297 [00:00<?, ?it/s][0m[91m
+Examining setuptools:   0%|          | 0/297 [00:00<?, ?it/s][0m[91m
+
+Comparing specs that have this dependency:   0%|          | 0/15 [00:00<?, ?it/s][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A
+[0m[91m
+Comparing specs that have this dependency:  13%|█▎        | 2/15 [00:00<00:01, 10.46it/s][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+
+Comparing specs that have this dependency:  20%|██        | 3/15 [00:26<01:46,  8.88s/it][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+
+Comparing specs that have this dependency:  27%|██▋       | 4/15 [02:36<07:10, 39.14s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+
+Comparing specs that have this dependency:  33%|███▎      | 5/15 [02:36<05:13, 31.33s/it][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  47%|████▋     | 7/15 [04:50<05:32, 41.56s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+                                                                                    [A[A
+[0m[91m
+Comparing specs that have this dependency:  53%|█████▎    | 8/15 [08:31<07:27, 63.98s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+                                                                                    [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  60%|██████    | 9/15 [09:14<06:09, 61.61s/it][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+
+Finding shortest conflict path for setuptools[version='>=18.5']:  50%|█████     | 1/2 [00:10<00:10, 10.12s/it][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools[version='>=18.5']: 100%|██████████| 2/2 [00:10<00:00,  5.06s/it][A[A[0m[91m
+
+[0m[91m
+                                                                                                              [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  67%|██████▋   | 10/15 [09:49<04:54, 58.97s/it][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+
+                                                                                    [A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  73%|███████▎  | 11/15 [09:50<03:34, 53.65s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+                                                                                    [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  80%|████████  | 12/15 [10:07<02:31, 50.66s/it][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+                                                                                    [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  87%|████████▋ | 13/15 [10:08<01:33, 46.78s/it][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools[version='>=18.5']:  50%|█████     | 1/2 [00:06<00:06,  6.23s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools[version='>=18.5']: 100%|██████████| 2/2 [00:06<00:00,  3.12s/it][A[A[0m[91m
+
+
+                                                                                                              [A[A
+[0m[91m
+Comparing specs that have this dependency:  93%|█████████▎| 14/15 [10:31<00:45, 45.09s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+                                                                                    [A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency: 100%|██████████| 15/15 [14:19<00:00, 57.32s/it][0m[91m[A[0m[91m
+[0m[91m
+                                                                                          [0m[91m[A[0m[91m
+Examining gobject-introspection:   0%|          | 1/297 [14:19<70:41:32, 859.77s/it][0m[91m
+Examining gobject-introspection:   1%|          | 2/297 [14:19<35:13:36, 429.89s/it][0m[91m
+Examining xorg-libxext:   1%|          | 2/297 [14:19<35:13:36, 429.89s/it]         [0m[91m
+Examining expat:   1%|          | 3/297 [14:19<35:06:26, 429.89s/it]       [0m[91m
+Examining atk:   1%|▏         | 4/297 [14:19<34:59:16, 429.89s/it]  [0m[91m
+Examining openblas:   2%|▏         | 5/297 [14:19<34:52:06, 429.89s/it][0m[91m
+Examining twisted:   2%|▏         | 6/297 [14:19<34:44:56, 429.89s/it] [0m[91m
+Examining pthread-stubs:   2%|▏         | 7/297 [14:19<34:37:46, 429.89s/it][0m[91m
+Examining pkg-config:   3%|▎         | 8/297 [14:19<34:30:36, 429.89s/it]   [0m[91m
+Examining libgfortran-ng:   3%|▎         | 9/297 [14:19<34:23:27, 429.89s/it][0m[91m
+Examining docutils:   3%|▎         | 10/297 [14:19<34:16:17, 429.89s/it]     [0m[91m
+Examining tbb:   4%|▎         | 11/297 [14:19<34:09:07, 429.89s/it]     [0m[91m
+Examining gdk-pixbuf:   4%|▍         | 12/297 [14:19<34:01:57, 429.89s/it][0m[91m
+Examining mpc:   4%|▍         | 13/297 [14:19<33:54:47, 429.89s/it]       [0m[91m
+Examining pyasn1:   5%|▍         | 14/297 [14:19<33:47:37, 429.89s/it][0m[91m
+Examining enum34:   5%|▌         | 15/297 [14:19<33:40:27, 429.89s/it][0m[91m
+Examining backports.functools_lru_cache:   5%|▌         | 16/297 [14:19<33:33:17, 429.89s/it][0m[91m
+Examining libsodium:   6%|▌         | 17/297 [14:19<33:26:07, 429.89s/it]                    [0m[91m
+Examining scipy:   6%|▌         | 18/297 [14:19<33:18:58, 429.89s/it]    [0m[91m
+Examining libllvm8:   6%|▋         | 19/297 [14:19<33:11:48, 429.89s/it][0m[91m
+Examining cycler:   7%|▋         | 20/297 [14:19<33:04:38, 429.89s/it]  [0m[91m
+Examining numba:   7%|▋         | 21/297 [14:19<32:57:28, 429.89s/it] [0m[91m
+Examining fontconfig:   7%|▋         | 22/297 [14:19<32:50:18, 429.89s/it][0m[91m
+Examining xorg-libxdmcp:   8%|▊         | 23/297 [14:19<32:43:08, 429.89s/it][0m[91m
+Examining py-xgboost:   8%|▊         | 24/297 [14:19<32:35:58, 429.89s/it]   [0m[91m
+Examining sphinxcontrib-htmlhelp:   8%|▊         | 25/297 [14:19<32:28:48, 429.89s/it][0m[91m
+Examining tbb4py:   9%|▉         | 26/297 [14:19<32:21:38, 429.89s/it]                [0m[91m
+Examining mistune:   9%|▉         | 27/297 [14:19<32:14:29, 429.89s/it][0m[91m
+Examining _libgcc_mutex:   9%|▉         | 28/297 [14:19<32:07:19, 429.89s/it][0m[91m
+Examining nodejs:  10%|▉         | 29/297 [14:19<32:00:09, 429.89s/it]       [0m[91m
+Examining dask-core:  10%|█         | 30/297 [14:19<31:52:59, 429.89s/it][0m[91m
+Examining libwebp-base:  10%|█         | 31/297 [14:19<31:45:49, 429.89s/it][0m[91m
+Examining xorg-xproto:  11%|█         | 32/297 [14:19<31:38:39, 429.89s/it] [0m[91m
+Examining tornado:  11%|█         | 33/297 [14:19<31:31:29, 429.89s/it]    [0m[91m
+Examining python:  11%|█▏        | 34/297 [14:19<31:24:19, 429.89s/it] [0m[91m
+[0m[91m
+Comparing specs that have this dependency:   0%|          | 0/15 [00:00<?, ?it/s][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/18 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python_abi==3.6[build=*_pypy36_pp73]:   0%|          | 0/18 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.6:   6%|▌         | 1/18 [00:00<00:07,  2.16it/s]                  [A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.6:  11%|█         | 2/18 [00:00<00:03,  4.31it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.4:  11%|█         | 2/18 [00:00<00:03,  4.31it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python:  17%|█▋        | 3/18 [00:00<00:03,  4.31it/s]    [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=2.7:  22%|██▏       | 4/18 [00:00<00:03,  4.31it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3']:  28%|██▊       | 5/18 [00:00<00:03,  4.31it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3']:  33%|███▎      | 6/18 [00:00<00:02,  5.82it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.8:  33%|███▎      | 6/18 [00:00<00:02,  5.82it/s]           [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  39%|███▉      | 7/18 [00:00<00:01,  5.82it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  44%|████▍     | 8/18 [00:00<00:01,  7.21it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3.5,<3.6.0a0']:  44%|████▍     | 8/18 [00:02<00:01,  7.21it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python_abi=3.8[build=*_cp38]:  50%|█████     | 9/18 [00:02<00:01,  7.21it/s]    [A[A
+
+
+Finding shortest conflict path for python_abi=3.8[build=*_cp38]:  56%|█████▌    | 10/18 [00:02<00:03,  2.67it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  56%|█████▌    | 10/18 [00:03<00:03,  2.67it/s]                  [0m[91m[A[A[0m[91m
+
+
+Finding shortest conflict path for python=3.7:  61%|██████    | 11/18 [00:03<00:04,  1.57it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python_abi=3.6[build=*_cp36m]:  61%|██████    | 11/18 [00:03<00:04,  1.57it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.5:  67%|██████▋   | 12/18 [00:06<00:03,  1.57it/s]                   [A[A
+
+
+Finding shortest conflict path for python=3.5:  72%|███████▏  | 13/18 [00:06<00:03,  1.27it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=2.7,<2.8.0a0']:  72%|███████▏  | 13/18 [00:06<00:03,  1.27it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3.6,<3.7.0a0']:  78%|███████▊  | 14/18 [00:06<00:03,  1.27it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python_abi=3.7[build=*_cp37m]:  83%|████████▎

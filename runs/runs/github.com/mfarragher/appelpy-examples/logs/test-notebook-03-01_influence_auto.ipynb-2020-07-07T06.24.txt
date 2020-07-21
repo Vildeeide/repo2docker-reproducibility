@@ -1,0 +1,5 @@
+[I 200707 06:25:04 inrepo:35] Testing notebook 03-01_influence_auto.ipynb
+[I 200707 06:25:05 execute:404] Executing notebook with kernel: python3
+[I 200707 06:25:11 inrepo:41] Saving exported notebook to /io/notebooks/03-01_influence_auto.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

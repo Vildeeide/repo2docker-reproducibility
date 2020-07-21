@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ivanfoong/pdfeaturegen-example,93cfdad0ed9a95cdff9c75dbd38c372e658d4633,93cfdad,2018-03-27T11:02:50+08:00,build,build,True,github.com/ivanfoong/pdfeaturegen-example/logs/build-93cfdad0ed9a95cdff9c75dbd38c372e658d4633-2020-07-13T13.43.txt,2020-07-13T13:43:47.246015,2020-07-13T13.43,0.11.0
+https://github.com/ivanfoong/pdfeaturegen-example,93cfdad0ed9a95cdff9c75dbd38c372e658d4633,93cfdad,2018-03-27T11:02:50+08:00,notebook,generate_timestamp_features.ipynb,False,github.com/ivanfoong/pdfeaturegen-example/logs/test-notebook-generate_timestamp_features.ipynb-2020-07-13T13.43.txt,2020-07-13T13:43:47.246015,2020-07-13T13.43,0.11.0

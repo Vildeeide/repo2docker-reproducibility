@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/MDAnalysis/mdanalysis,master,bf16435,2020-06-20T16:12:16+01:00,build,build,True,github.com/MDAnalysis/mdanalysis/logs/build-master-2020-07-07T13.21.txt,2020-07-07T13:21:10.782499,2020-07-07T13.21,0.11.0

@@ -1,0 +1,7 @@
+[I 200708 08:02:52 inrepo:36] Testing notebook research/peq.ipynb
+[W 200708 08:02:52 inrepo:48] No such kernel autoeq, falling back on kernel language=python
+[W 200708 08:02:52 inrepo:60] Using kernel python3 to provide language: python
+[I 200708 08:02:53 execute:404] Executing notebook with kernel: python3
+[I 200708 08:02:56 inrepo:77] Saving exported notebook to /io/notebooks/research/peq.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

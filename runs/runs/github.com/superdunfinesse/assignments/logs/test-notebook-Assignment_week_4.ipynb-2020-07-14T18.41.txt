@@ -1,0 +1,83 @@
+[I 200714 18:41:31 inrepo:36] Testing notebook Assignment_week_4.ipynb
+[E 200714 18:41:31 __init__:79] Notebook JSON is invalid: {'data': [{'x': [0, 0.05, 0.1, 0.15000000000000002, 0.2, 0.25, 0.30000000000000004, 0.35000000000000003, 0.4, 0.45, 0.5, 0.55, 0.6000000000000001, 0.65, 0.7000000000000001, 0.75, 0.8, 0.8500000000000001, 0.9, 0.9500000000000001, 1, 1.05, 1.1, 1.1500000000000001, 1.2000000000000002, 1.25, 1.3, 1.35, 1.4000000000000001, 1.4500000000000002, 1.5, 1.55, 1.6, 1.6500000000000001, 1.7000000000000002, 1.75, 1.8, 1.85, 1.9000000000000001, 1.9500000000000002, 2, 2.0500000000000003], 'y': [None, 20, 10, 6.666666666666666, 5, 4, 3.333333333333333, 2.8571428571428568, 2.5, 2.2222222222222223, 2, 1.8181818181818181, 1.6666666666666665, 1.5384615384615383, 1.4285714285714284, 1.3333333333333333, 1.25, 1.176470588235294, 1.1111111111111112, 1.0526315789473684, 1, 0.9523809523809523, 0.9090909090909091, 0.8695652173913042, 0.8333333333333333, 0.8, 0.7692307692307692, 0.7407407407407407, 0.7142857142857142, 0.689655172413793, 0.6666666666666666, 0.6451612903225806, 0.625, 0.606060606060606, 0.588235294117647, 0.5714285714285714, 0.5555555555555556, 0.5405405405405405, 0.5263157894736842, 0.5128205128205128, 0.5, 0.4878048780487804]}], 'layout': {}} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][18]['outputs'][1]['data']['application/vnd.plotly.v1+json']:
+    {'data': [{'x': [0,
+                     0.05,
+                     0.1,
+                     0.15000000000000002,
+                     0.2,
+                     0.25,
+                     0.30000000000000004,
+                     0.35000000000000003,
+                     0.4,
+                     0.45,
+                     0.5,
+                     0.55,
+                     0.6000000000000001,
+                     0.65,
+                     0.7000000000000001,
+                     0.75,
+                     '...26 items truncated...'],
+               'y': [None,
+                     20,
+                     10,
+                     6.666666666666666,
+                     5,
+                     4,
+                     3.333333333333333,
+                     2.8571428571428568,
+                     2.5,
+                     2.2222222222222223,
+                     2,
+                     1.8181818181818181,
+                     1.6666666666666665,
+                     1.5384615384615383,
+                     1.4285714285714284,
+                     1.3333333333333333,
+                     '...26 items truncated...']}],
+     'layout': {}}
+[I 200714 18:41:31 inrepo:45] Found kernel python3
+[I 200714 18:41:32 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from scipy import optimize
+
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from plotly.graph_objs import Bar, Scatter, Figure, Layout
+init_notebook_mode(connected=True)
+from numpy import arange
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-19c24d93c386>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mscipy[0m [0;32mimport[0m [0moptimize[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0mplotly[0m[0;34m.[0m[0moffline[0m [0;32mimport[0m [0mdownload_plotlyjs[0m[0;34m,[0m [0minit_notebook_mode[0m[0;34m,[0m [0mplot[0m[0;34m,[0m [0miplot[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mplotly[0m[0;34m.[0m[0mgraph_objs[0m [0;32mimport[0m [0mBar[0m[0;34m,[0m [0mScatter[0m[0;34m,[0m [0mFigure[0m[0;34m,[0m [0mLayout[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0minit_notebook_mode[0m[0;34m([0m[0mconnected[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'scipy'
+ModuleNotFoundError: No module named 'scipy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

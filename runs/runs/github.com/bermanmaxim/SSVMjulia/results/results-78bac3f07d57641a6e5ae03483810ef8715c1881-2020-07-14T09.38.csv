@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bermanmaxim/SSVMjulia,78bac3f07d57641a6e5ae03483810ef8715c1881,78bac3f,2016-01-11T15:57:06+01:00,build,build,False,github.com/bermanmaxim/SSVMjulia/logs/build-78bac3f07d57641a6e5ae03483810ef8715c1881-2020-07-14T09.38.txt,2020-07-14T09:38:41.294204,2020-07-14T09.38,0.11.0

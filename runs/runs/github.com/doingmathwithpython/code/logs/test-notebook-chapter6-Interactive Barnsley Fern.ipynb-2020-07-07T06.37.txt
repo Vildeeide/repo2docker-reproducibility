@@ -1,0 +1,5 @@
+[I 200707 06:38:00 inrepo:35] Testing notebook chapter6/Interactive Barnsley Fern.ipynb
+[I 200707 06:38:01 execute:404] Executing notebook with kernel: python3
+[I 200707 06:38:02 inrepo:41] Saving exported notebook to /io/notebooks/chapter6/Interactive Barnsley Fern.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

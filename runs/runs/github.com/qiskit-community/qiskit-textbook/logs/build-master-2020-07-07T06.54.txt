@@ -1,0 +1,351 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T06.542g58oi27/github.com/qiskit-community/qiskit-textbook.
+Using PythonBuildPack builder
+Step 1/49 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/49 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/49 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/49 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/49 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/49 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/49 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/49 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/49 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/49 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/49 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/49 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/49 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/49 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/49 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/49 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/49 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/49 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/49 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/49 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/49 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/49 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/49 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/49 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/49 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/49 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/49 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/49 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/49 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/49 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/49 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/49 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> ae4744f4f464
+Step 38/49 : USER root
+ ---> Using cache
+ ---> f9ca319fbfeb
+Step 39/49 : COPY src/ ${REPO_DIR}
+ ---> 472062a4bb0e
+Step 40/49 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 20be588312e9
+Removing intermediate container 20be588312e9
+ ---> e75ae9aad6e0
+Step 41/49 : USER ${NB_USER}
+ ---> Running in e21fba648bb3
+Removing intermediate container e21fba648bb3
+ ---> 9b258fc52906
+Step 42/49 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in aa17a11d04db
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mObtaining file:///home/vildeeide/qiskit-textbook-src (from -r requirements.txt (line 6))
+Collecting qiskit
+  Downloading qiskit-0.19.6.tar.gz (4.0 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting torch
+  Downloading torch-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (753.2 MB)
+Collecting torchvision
+  Downloading torchvision-0.6.1-cp37-cp37m-manylinux1_x86_64.whl (6.6 MB)
+Collecting tabulate
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Requirement already satisfied: ipython in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (7.11.1)
+Requirement already satisfied: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (7.5.1)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting qiskit-terra==0.14.2
+  Downloading qiskit_terra-0.14.2-cp37-cp37m-manylinux2010_x86_64.whl (6.7 MB)
+Collecting qiskit-aer==0.5.2
+  Downloading qiskit_aer-0.5.2-cp37-cp37m-manylinux2010_x86_64.whl (23.2 MB)
+Collecting qiskit-ibmq-provider==0.7.2
+  Downloading qiskit_ibmq_provider-0.7.2-py3-none-any.whl (155 kB)
+Collecting qiskit-ignis==0.3.3
+  Downloading qiskit_ignis-0.3.3-py3-none-any.whl (179 kB)
+Collecting qiskit-aqua==0.7.3
+  Downloading qiskit_aqua-0.7.3-py3-none-any.whl (1.9 MB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 2)) (2.8.1)
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting pillow>=4.1.1
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (4.3.3)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (45.1.0.post20200119)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (4.8.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (2.5.2)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.1.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.7.5)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (4.4.1)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.16.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (3.0.3)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (5.0.4)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (5.1.4)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (3.5.1)
+Collecting sympy>=1.3
+  Downloading sympy-1.6.1-py3-none-any.whl (5.8 MB)
+Requirement already satisfied: jsonschema>=2.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-terra==0.14.2->qiskit->-r requirements.txt (line 1)) (3.2.0)
+Collecting dill>=0.3
+  Downloading dill-0.3.2.zip (177 kB)
+Collecting ply>=3.10
+  Downloading ply-3.11-py2.py3-none-any.whl (49 kB)
+Collecting fastjsonschema>=2.10
+  Downloading fastjsonschema-2.14.4-py3-none-any.whl (21 kB)
+Collecting marshmallow-polyfield<6,>=5.7
+  Downloading marshmallow-polyfield-5.9.tar.gz (8.5 kB)
+Collecting python-constraint>=1.4
+  Downloading python-constraint-1.4.0.tar.bz2 (18 kB)
+Collecting scipy>=1.4
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting psutil>=5
+  Downloading psutil-5.7.0.tar.gz (449 kB)
+Collecting networkx>=2.2; python_version > "3.5"
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Collecting retworkx>=0.3.2
+  Downloading retworkx-0.3.4-cp37-cp37m-manylinux2010_x86_64.whl (762 kB)
+Collecting marshmallow<4,>=3
+  Downloading marshmallow-3.6.1-py2.py3-none-any.whl (45 kB)
+Collecting cython>=0.27.1
+  Downloading Cython-0.29.20-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting pybind11>=2.4
+  Downloading pybind11-2.5.0-py2.py3-none-any.whl (296 kB)
+Collecting requests-ntlm>=1.1.0
+  Downloading requests_ntlm-1.1.0-py2.py3-none-any.whl (5.7 kB)
+Collecting nest-asyncio!=1.1.0,>=1.0.0
+  Downloading nest_asyncio-1.3.3-py3-none-any.whl (4.7 kB)
+Requirement already satisfied: requests>=2.19 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (2.22.0)
+Requirement already satisfied: urllib3>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (1.25.7)
+Collecting websockets<8,>=7
+  Downloading websockets-7.0-cp37-cp37m-manylinux1_x86_64.whl (63 kB)
+Collecting scikit-learn>=0.17
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting fastdtw
+  Downloading fastdtw-0.3.4.tar.gz (133 kB)
+Collecting h5py
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting dlx
+  Downloading dlx-1.0.4.tar.gz (5.5 kB)
+Collecting pyscf; sys_platform != "win32"
+  Downloading pyscf-1.7.3-cp37-cp37m-manylinux1_x86_64.whl (26.0 MB)
+Collecting docplex
+  Downloading docplex-2.14.186.tar.gz (572 kB)
+Collecting quandl
+  Downloading Quandl-3.5.0-py2.py3-none-any.whl (25 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->-r requirements.txt (line 2)) (1.14.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.2.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.6.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.1.8)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (4.6.1)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (6.0.3)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (5.3.4)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (6.0.3)
+Collecting mpmath>=0.19
+  Downloading mpmath-1.1.0.tar.gz (512 kB)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r requirements.txt (line 1)) (0.15.7)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: cryptography>=1.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (2.8)
+Collecting ntlm-auth>=1.0.2
+  Downloading ntlm_auth-1.5.0-py2.py3-none-any.whl (29 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (2019.11.28)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (2.8)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting inflection>=0.3.1
+  Downloading inflection-0.5.0-py2.py3-none-any.whl (5.8 kB)
+Collecting pandas>=0.14
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Requirement already satisfied: more-itertools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from quandl->qiskit-aqua==0.7.3->qiskit->-r requirements.txt (line 1)) (8.2.0)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (18.1.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (1.5.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.7.1)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (2.11.0)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (5.6.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (1.13.2)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (1.1.1)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.8.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (1.4.2)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.3)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (3.1.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.4.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.6.0)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r requirements.txt (line 1)) (2.19)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->qiskit-textbook==0.1.0->-r requirements.txt (line 6)) (0.5.1)
+Building wheels for collected packages: qiskit, future, dill, marshmallow-polyfield, python-constraint, psutil, fastdtw, dlx, docplex, mpmath
+  Building wheel for qiskit (setup.py): started
+  Building wheel for qiskit (setup.py): finished with status 'done'
+  Created wheel for qiskit: filename=qiskit-0.19.6-py3-none-any.whl size=3018 sha256=4cd19c978f3470cb5463a4c1a4bf86f01d4171fc15ebe58910f8610cd9f686ef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/c7/ef/9a/823e2cb7ad164dd322a6233b1a8b9b1a0f2a9782708dc4054a
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=6f775b5cdd63fb57db6d934480c10506ac59580d436bee4b810a747570d831a6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+  Building wheel for dill (setup.py): started
+  Building wheel for dill (setup.py): finished with status 'done'
+  Created wheel for dill: filename=dill-0.3.2-py3-none-any.whl size=78911 sha256=c38af7e58536e12b3d612bcdf69d2ab52f9a2e5583ad33af96fd2401a336cf0c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/72/6b/d5/5548aa1b73b8c3d176ea13f9f92066b02e82141549d90e2100
+  Building wheel for marshmallow-polyfield (setup.py): started
+  Building wheel for marshmallow-polyfield (setup.py): finished with status 'done'
+  Created wheel for marshmallow-polyfield: filename=marshmallow_polyfield-5.9-py3-none-any.whl size=8535 sha256=463576871d66737d83d6de56d4162b78bd414984737c1ed124b74a20008a06f3
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/6c/8b/16/ef4ebfaa9efaf04fbbb9e9cfc997811b74ba691081630deb0f
+  Building wheel for python-constraint (setup.py): started
+  Building wheel for python-constraint (setup.py): finished with status 'done'
+  Created wheel for python-constraint: filename=python_constraint-1.4.0-py2.py3-none-any.whl size=24080 sha256=4ae78170a4f0dabc3bbe4f3cde8ba100e35f0bdaddd71f20ecc448b7aeef4caa
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/07/27/db/1222c80eb1e431f3d2199c12569cb1cac60f562a451fe30479
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.7.0-cp37-cp37m-linux_x86_64.whl size=276498 sha256=7528fab6a5a17d4899c4fe44d404770b2083fc8297fda9b40beb2364acaeaeb7
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/b6/e7/50/aee9cc966163d74430f13f208171dee22f11efa4a4a826661c
+  Building wheel for fastdtw (setup.py): started
+  Building wheel for fastdtw (setup.py): finished with status 'done'
+  Created wheel for fastdtw: filename=fastdtw-0.3.4-py3-none-any.whl size=3588 sha256=18913ec9c76c46c2ddbfef5911317e515760e3f4635a19392fdb1ca2e2b6b0f6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/a2/da/8c/2d1b9b233595056f05e59156bb555f7277b88beb385605de16
+  Building wheel for dlx (setup.py): started
+  Building wheel for dlx (setup.py): finished with status 'done'
+  Created wheel for dlx: filename=dlx-1.0.4-py3-none-any.whl size=5709 sha256=eb5f87774170fe6354830a321b81c9423f2dce69b5cd013cb8b71468f3335c10
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/78/55/c8/dc61e772445a566b7608a476d151e9dcaf4e092b01b0c4bc3c
+  Building wheel for docplex (setup.py): started
+  Building wheel for docplex (setup.py): finished with status 'done'
+  Created wheel for docplex: filename=docplex-2.14.186-py3-none-any.whl size=634442 sha256=242d44974f71def944bbef466a6d9590875c37381f37d000c03e80c49ec6c3bf
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/ea/9b/58/c97407d580f78207e949b179bf59a04f7d6ec70a1ad7b82962
+  Building wheel for mpmath (setup.py): started
+  Building wheel for mpmath (setup.py): finished with status 'done'
+  Created wheel for mpmath: filename=mpmath-1.1.0-py3-none-any.whl size=532238 sha256=7d03f43c6010800899392e102851f0fa51a8487ea452b8ed38dfa3e21e7d3d1f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-pc8k0a0f/wheels/e2/46/78/e78f76c356bca9277368f1f97a31b37a8cb937176d9511af31
+Successfully built qiskit future dill marshmallow-polyfield python-constraint psutil fastdtw dlx docplex mpmath
+Installing collected packages: mpmath, sympy, dill, ply, fastjsonschema, marshmallow, marshmallow-polyfield, python-constraint, numpy, scipy, psutil, networkx, retworkx, qiskit-terra, cython, pybind11, qiskit-aer, ntlm-auth, requests-ntlm, nest-asyncio, websockets, qiskit-ibmq-provider, threadpoolctl, joblib, scikit-learn, qiskit-ignis, fastdtw, h5py, dlx, pyscf, docplex, inflection, pytz, pandas, quandl, qiskit-aqua, qiskit, cycler, pyparsing, kiwisolver, matplotlib, future, torch, pillow, torchvision, tabulate, qiskit-textbook
+  Running setup.py develop for qiskit-textbook
+Successfully installed cycler-0.10.0 cython-0.29.20 dill-0.3.2 dlx-1.0.4 docplex-2.14.186 fastdtw-0.3.4 fastjsonschema-2.14.4 future-0.18.2 h5py-2.10.0 inflection-0.5.0 joblib-0.16.0 kiwisolver-1.2.0 marshmallow-3.6.1 marshmallow-polyfield-5.9 matplotlib-3.2.2 mpmath-1.1.0 nest-asyncio-1.3.3 networkx-2.4 ntlm-auth-1.5.0 numpy-1.19.0 pandas-1.0.5 pillow-7.2.0 ply-3.11 psutil-5.7.0 pybind11-2.5.0 pyparsing-2.4.7 pyscf-1.7.3 python-constraint-1.4.0 pytz-2020.1 qiskit-0.19.6 qiskit-aer-0.5.2 qiskit-aqua-0.7.3 qiskit-ibmq-provider-0.7.2 qiskit-ignis-0.3.3 qiskit-terra-0.14.2 qiskit-textbook quandl-3.5.0 requests-ntlm-1.1.0 retworkx-0.3.4 scikit-learn-0.23.1 scipy-1.5.1 sympy-1.6.1 tabulate-0.8.7 threadpoolctl-2.1.0 torch-1.5.1 torchvision-0.6.1 websockets-7.0
+Removing intermediate container aa17a11d04db
+ ---> becfc7a77696
+Step 43/49 : LABEL repo2docker.ref="None"
+ ---> Running in f55486cef3ad
+Removing intermediate container f55486cef3ad
+ ---> 627fc52c8575
+Step 44/49 : LABEL repo2docker.repo="local"
+ ---> Running in a1f2d15b6840
+Removing intermediate container a1f2d15b6840
+ ---> 36c5f059ca08
+Step 45/49 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f45d9557e873
+Removing intermediate container f45d9557e873
+ ---> 8ef3ccd7db60
+Step 46/49 : USER ${NB_USER}
+ ---> Running in 555ed815762e
+Removing intermediate container 555ed815762e
+ ---> 28a77f0d166b
+Step 47/49 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 04928c441be9
+Step 48/49 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in a63d0e4ce074
+Removing intermediate container a63d0e4ce074
+ ---> fb09ad7187a0
+Step 49/49 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 0feaea30bb0b
+Removing intermediate container 0feaea30bb0b
+ ---> 59ead84a0686
+{"aux": {"ID": "sha256:59ead84a0686c72bfe10594fc81a45d9891ddae1037fd1e1f8fd8ad68396da8c"}}Successfully built 59ead84a0686
+Successfully tagged r2d-test-github.com-qiskit-community-qiskit-textbook:2d18c2c

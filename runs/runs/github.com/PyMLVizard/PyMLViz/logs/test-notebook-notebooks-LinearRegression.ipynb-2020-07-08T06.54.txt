@@ -1,0 +1,6 @@
+[I 200708 06:55:38 inrepo:36] Testing notebook notebooks/LinearRegression.ipynb
+[I 200708 06:55:38 inrepo:45] Found kernel python3
+[I 200708 06:55:39 execute:404] Executing notebook with kernel: python3
+[I 200708 06:55:43 inrepo:77] Saving exported notebook to /io/notebooks/notebooks/LinearRegression.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

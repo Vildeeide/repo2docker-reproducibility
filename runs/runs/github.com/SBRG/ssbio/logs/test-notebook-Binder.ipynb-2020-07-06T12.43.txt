@@ -1,0 +1,5 @@
+[I 200706 12:43:31 inrepo:35] Testing notebook Binder.ipynb
+[I 200706 12:43:32 execute:404] Executing notebook with kernel: python3
+[I 200706 12:43:32 inrepo:41] Saving exported notebook to /io/notebooks/Binder.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,71 @@
+[I 200702 12:52:26 inrepo:35] Testing notebook chapter5/Chapter5.ipynb
+[I 200702 12:52:27 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#P136: Is the target score possible?
+from sympy import FiniteSet
+import random
+def find_prob(target_score, max_rolls):
+    die_sides = FiniteSet(1, 2, 3, 4, 5, 6)
+    # sample space
+    s = die_sides**max_rolls
+    # Find the event set
+    if max_rolls > 1:
+        success_rolls = []
+        for elem in s:
+            if sum(elem) >= target_score:
+                success_rolls.append(elem)
+    else:
+        if target_score > 6:
+            success_rolls = []
+        else:
+            success_rolls = []
+            for roll in die_sides:
+                if roll >= target_score:
+                    success_rolls.append(roll)
+    e = FiniteSet(*success_rolls)
+    # calculate the probability of reaching target score
+    return len(e)/len(s)
+if __name__ == '__main__':
+    target_score = int(input('Enter the target score: '))
+    max_rolls  = int(input('Enter the maximum number of rolls allowed: '))
+    p = find_prob(target_score, max_rolls)
+    print('Probability:  {0:.5f}'.format(p))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-11-0f318bd106fe>[0m in [0;36m<module>[0;34m[0m
+[1;32m     24[0m     [0;32mreturn[0m [0mlen[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m/[0m[0mlen[0m[0;34m([0m[0ms[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     25[0m [0;32mif[0m [0m__name__[0m [0;34m==[0m [0;34m'__main__'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 26[0;31m     [0mtarget_score[0m [0;34m=[0m [0mint[0m[0;34m([0m[0minput[0m[0;34m([0m[0;34m'Enter the target score: '[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     27[0m     [0mmax_rolls[0m  [0;34m=[0m [0mint[0m[0;34m([0m[0minput[0m[0;34m([0m[0;34m'Enter the maximum number of rolls allowed: '[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     28[0m     [0mp[0m [0;34m=[0m [0mfind_prob[0m[0;34m([0m[0mtarget_score[0m[0;34m,[0m [0mmax_rolls[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    852[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    853[0m             raise StdinNotImplementedError(
+[0;32m--> 854[0;31m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    855[0m             )
+[1;32m    856[0m         return self._input_request(str(prompt),
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

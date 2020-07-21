@@ -1,0 +1,74 @@
+[I 200703 06:12:42 inrepo:35] Testing notebook tutorial/10 - Exporting and Embedding.ipynb
+[I 200703 06:12:43 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from bokeh.io import export_png
+
+p = figure(plot_width=800, plot_height=250, x_axis_type="datetime")
+p.line(df['date'], df['close'], color='navy', alpha=0.5)
+
+export_png(p, filename="plot.png")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+[0;32m<ipython-input-14-e53f6cb5a34c>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0mp[0m[0;34m.[0m[0mline[0m[0;34m([0m[0mdf[0m[0;34m[[0m[0;34m'date'[0m[0;34m][0m[0;34m,[0m [0mdf[0m[0;34m[[0m[0;34m'close'[0m[0;34m][0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m'navy'[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m0.5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+[0;32m----> 6[0;31m [0mexport_png[0m[0;34m([0m[0mp[0m[0;34m,[0m [0mfilename[0m[0;34m=[0m[0;34m"plot.png"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/bokeh/io/export.py[0m in [0;36mexport_png[0;34m(obj, filename, width, height, webdriver, timeout)[0m
+[1;32m     95[0m     '''
+[1;32m     96[0m [0;34m[0m[0m
+[0;32m---> 97[0;31m     [0mimage[0m [0;34m=[0m [0mget_screenshot_as_png[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mwidth[0m[0;34m=[0m[0mwidth[0m[0;34m,[0m [0mheight[0m[0;34m=[0m[0mheight[0m[0;34m,[0m [0mdriver[0m[0;34m=[0m[0mwebdriver[0m[0;34m,[0m [0mtimeout[0m[0;34m=[0m[0mtimeout[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     98[0m [0;34m[0m[0m
+[1;32m     99[0m     [0;32mif[0m [0mfilename[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/bokeh/io/export.py[0m in [0;36mget_screenshot_as_png[0;34m(obj, driver, timeout, resources, width, height)[0m
+[1;32m    199[0m             [0mfile[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0mhtml[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    200[0m [0;34m[0m[0m
+[0;32m--> 201[0;31m         [0mweb_driver[0m [0;34m=[0m [0mdriver[0m [0;32mif[0m [0mdriver[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m [0;32melse[0m [0mwebdriver_control[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    202[0m         [0mweb_driver[0m[0;34m.[0m[0mmaximize_window[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    203[0m         [0mweb_driver[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m"file:///"[0m [0;34m+[0m [0mtmp[0m[0;34m.[0m[0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/bokeh/io/webdriver.py[0m in [0;36mget[0;34m(self)[0m
+[1;32m    116[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mreuse[0m [0;32mor[0m [0mself[0m[0;34m.[0m[0mcurrent[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    117[0m             [0mself[0m[0;34m.[0m[0mreset[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 118[0;31m             [0mself[0m[0;34m.[0m[0mcurrent[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mcreate[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    119[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mcurrent[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    120[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/bokeh/io/webdriver.py[0m in [0;36mcreate[0;34m(self, kind)[0m
+[1;32m    120[0m [0;34m[0m[0m
+[1;32m    121[0m     [0;32mdef[0m [0mcreate[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mkind[0m[0;34m:[0m [0mOptional[0m[0;34m[[0m[0mDriverKind[0m[0;34m][0m [0;34m=[0m [0;32mNone[0m[0;34m)[0m [0;34m->[0m [0mWebDriver[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 122[0;31m         [0mdriver[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_create[0m[0;34m([0m[0mkind[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    123[0m         [0mself[0m[0;34m.[0m[0m_drivers[0m[0;34m.[0m[0madd[0m[0;34m([0m[0mdriver[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    124[0m         [0;32mreturn[0m [0mdriver[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/bokeh/io/webdriver.py[0m in [0;36m_create[0;34m(self, kind)[0m
+[1;32m    138[0m                 [0;32mreturn[0m [0mdriver[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    139[0m [0;34m[0m[0m
+[0;32m--> 140[0;31m             raise RuntimeError("Neither firefox and geckodriver nor a variant of chromium browser and " \
+[0m[1;32m    141[0m                                [0;34m"chromedriver are available on system PATH. You can install the former "[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    142[0m                                "with 'conda install -c conda-forge firefox geckodriver'.")
+
+[0;31mRuntimeError[0m: Neither firefox and geckodriver nor a variant of chromium browser and chromedriver are available on system PATH. You can install the former with 'conda install -c conda-forge firefox geckodriver'.
+RuntimeError: Neither firefox and geckodriver nor a variant of chromium browser and chromedriver are available on system PATH. You can install the former with 'conda install -c conda-forge firefox geckodriver'.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,23 @@
+[I 200715 09:16:23 inrepo:36] Testing notebook code_examples/spring17_survey/survey.ipynb
+[W 200715 09:16:23 inrepo:48] No such kernel Python [Root], falling back on kernel language=python
+[W 200715 09:16:23 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 09:16:25 execute:404] Executing notebook with kernel: python3
+/opt/conda/lib/python3.6/site-packages/jupyter_client/manager.py:358: FutureWarning: Method cleanup(connection_file=True) is deprecated, use cleanup_resources(restart=False).
+  FutureWarning)
+[I 200715 09:16:28 inrepo:79] Saving exported notebook to /io/notebooks/code_examples/spring17_survey/survey.ipynb
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 81, in run_notebook
+    os.makedirs(os.path.dirname(dest_path))
+  File "/opt/conda/lib/python3.6/os.py", line 210, in makedirs
+    makedirs(head, mode, exist_ok)
+  File "/opt/conda/lib/python3.6/os.py", line 210, in makedirs
+    makedirs(head, mode, exist_ok)
+  File "/opt/conda/lib/python3.6/os.py", line 220, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/io/notebooks'
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200703 11:38:48 inrepo:35] Testing notebook MarkDown-Le_BN_pour_rapporter.ipynb
+[I 200703 11:38:50 execute:404] Executing notebook with kernel: python3
+[I 200703 11:38:50 inrepo:41] Saving exported notebook to /io/notebooks/MarkDown-Le_BN_pour_rapporter.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

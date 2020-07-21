@@ -1,0 +1,7 @@
+[I 200720 13:16:41 inrepo:36] Testing notebook SGEMS_grid_widgets.ipynb
+[W 200720 13:16:42 inrepo:48] No such kernel Python [Root], falling back on kernel language=python
+[W 200720 13:16:42 inrepo:60] Using kernel python3 to provide language: python
+[I 200720 13:16:42 execute:404] Executing notebook with kernel: python3
+[I 200720 13:16:44 inrepo:79] Saving exported notebook to /io/notebooks/SGEMS_grid_widgets.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,330 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T08.467r6s5idr/github.com/DS-100/textbook.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 8f9f23f4cb20
+Step 38/51 : USER root
+ ---> Running in 139affaa1178
+Removing intermediate container 139affaa1178
+ ---> effabff25da3
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 7178273181e6
+Removing intermediate container 7178273181e6
+ ---> d53234161a3f
+Step 40/51 : USER ${NB_USER}
+ ---> Running in c93c6ba1ac03
+Removing intermediate container c93c6ba1ac03
+ ---> e582d577cbd2
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 2bf4169fdd63
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting scipy
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting seaborn
+  Downloading seaborn-0.10.1-py3-none-any.whl (215 kB)
+Collecting folium
+  Downloading folium-0.11.0-py2.py3-none-any.whl (93 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting datascience
+  Downloading datascience-0.15.6.tar.gz (42 kB)
+Collecting bqplot
+  Downloading bqplot-0.12.13-py2.py3-none-any.whl (4.7 MB)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting docopt
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+Collecting markdown2
+  Downloading markdown2-2.3.9-py2.py3-none-any.whl (34 kB)
+Collecting toolz
+  Downloading toolz-0.10.0.tar.gz (49 kB)
+Collecting pyyaml
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Requirement already satisfied: ipywidgets>=7.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 14)) (7.5.1)
+Collecting nbinteract>=0.0.19
+  Downloading nbinteract-0.2.5-py3-none-any.whl (29 kB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 2)) (2.8.1)
+Collecting branca>=0.3.0
+  Downloading branca-0.4.1-py3-none-any.whl (24 kB)
+Requirement already satisfied: jinja2>=2.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium->-r requirements.txt (line 5)) (2.11.0)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium->-r requirements.txt (line 5)) (2.22.0)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting sphinx
+  Downloading Sphinx-3.1.2-py3-none-any.whl (2.9 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from datascience->-r requirements.txt (line 7)) (45.1.0.post20200119)
+Requirement already satisfied: ipython in /srv/conda/envs/notebook/lib/python3.7/site-packages (from datascience->-r requirements.txt (line 7)) (7.11.1)
+Collecting pytest
+  Downloading pytest-5.4.3-py3-none-any.whl (248 kB)
+Collecting coverage
+  Downloading coverage-5.1-cp37-cp37m-manylinux1_x86_64.whl (227 kB)
+Collecting coveralls
+  Downloading coveralls-2.0.0-py2.py3-none-any.whl (12 kB)
+Collecting bokeh
+  Downloading bokeh-2.1.1.tar.gz (19.3 MB)
+Collecting traittypes>=0.0.6
+  Downloading traittypes-0.2.1-py2.py3-none-any.whl (8.6 kB)
+Requirement already satisfied: traitlets>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->-r requirements.txt (line 8)) (4.3.3)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->-r requirements.txt (line 14)) (5.0.4)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->-r requirements.txt (line 14)) (3.5.1)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->-r requirements.txt (line 14)) (5.1.4)
+Requirement already satisfied: nbconvert<6,>=5.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbinteract>=0.0.19->-r requirements.txt (line 15)) (5.6.1)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas->-r requirements.txt (line 2)) (1.14.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.9->folium->-r requirements.txt (line 5)) (1.1.1)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium->-r requirements.txt (line 5)) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium->-r requirements.txt (line 5)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium->-r requirements.txt (line 5)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium->-r requirements.txt (line 5)) (2.8)
+Collecting babel>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting docutils>=0.12
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Collecting sphinxcontrib-serializinghtml
+  Downloading sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl (89 kB)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting sphinxcontrib-htmlhelp
+  Downloading sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl (96 kB)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl (121 kB)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl (84 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl (90 kB)
+Requirement already satisfied: Pygments>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx->datascience->-r requirements.txt (line 7)) (2.5.2)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (0.16.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (4.8.0)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (4.4.1)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (0.7.5)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (3.0.3)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->datascience->-r requirements.txt (line 7)) (0.1.0)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->datascience->-r requirements.txt (line 7)) (1.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->datascience->-r requirements.txt (line 7)) (19.3.0)
+Collecting pluggy<1.0,>=0.12
+  Downloading pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: more-itertools>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->datascience->-r requirements.txt (line 7)) (8.2.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->datascience->-r requirements.txt (line 7)) (0.1.8)
+Collecting py>=1.5.0
+  Downloading py-1.9.0-py2.py3-none-any.whl (99 kB)
+Collecting pillow>=4.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Requirement already satisfied: tornado>=5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bokeh->datascience->-r requirements.txt (line 7)) (6.0.3)
+Collecting typing_extensions>=3.7.4
+  Downloading typing_extensions-3.7.4.2-py3-none-any.whl (22 kB)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.0->bqplot->-r requirements.txt (line 8)) (0.2.0)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (4.6.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (3.2.0)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (6.0.3)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (5.3.4)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (0.3)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (3.1.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (1.4.2)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (0.8.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (0.6.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (0.4.4)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython->datascience->-r requirements.txt (line 7)) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython->datascience->-r requirements.txt (line 7)) (0.6.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest->datascience->-r requirements.txt (line 7)) (2.1.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (0.15.7)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (0.8.3)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (18.1.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (1.5.0)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->-r requirements.txt (line 14)) (0.7.1)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert<6,>=5.3->nbinteract>=0.0.19->-r requirements.txt (line 15)) (0.5.1)
+Building wheels for collected packages: datascience, docopt, toolz, pyyaml, bokeh
+  Building wheel for datascience (setup.py): started
+  Building wheel for datascience (setup.py): finished with status 'done'
+  Created wheel for datascience: filename=datascience-0.15.6-py3-none-any.whl size=43846 sha256=6caba7fd750c2781e0fc234a855ccee02cda3ba3196f6adbcc7e510155fc27a1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f00w2j63/wheels/9d/bc/47/70c57d23e7154a3040995ed04a9c6fa81e6b3eed95c2cb43b2
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13703 sha256=13e7e8db2d48aa874fdfdfc1ac765e5e25637c9b3a58b297999b4065049037ff
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f00w2j63/wheels/72/b0/3f/1d95f96ff986c7dfffe46ce2be4062f38ebd04b506c77c81b9
+  Building wheel for toolz (setup.py): started
+  Building wheel for toolz (setup.py): finished with status 'done'
+  Created wheel for toolz: filename=toolz-0.10.0-py3-none-any.whl size=55574 sha256=f1a7b437e65e6549b37a921a2c855f0b0808e720c8eb2b77a35b113e52c97be6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f00w2j63/wheels/e2/83/7c/248063997a4f9ff6bf145822e620e8c37117a6b4c765584077
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393721 sha256=71f05e754df573977734054e786d89811879a500533251034a924947edf7c3c4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f00w2j63/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for bokeh (setup.py): started
+  Building wheel for bokeh (setup.py): finished with status 'done'
+  Created wheel for bokeh: filename=bokeh-2.1.1-py3-none-any.whl size=9257186 sha256=273db725d8639b9a574e25cb236805c3a1b4f7e02044ed698ecb5dec131cfb00
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f00w2j63/wheels/f7/55/ff/f3d7554e69382d31cf7ad857cf518af9b923134fca7d925187
+Successfully built datascience docopt toolz pyyaml bokeh
+[91mERROR: nbinteract 0.2.5 has requirement bqplot==0.11.0, but you'll have bqplot 0.12.13 which is incompatible.
+[0m[91mERROR: nbinteract 0.2.5 has requirement nbformat<5,>=4.4.0, but you'll have nbformat 5.0.4 which is incompatible.
+[0mInstalling collected packages: numpy, pytz, pandas, scipy, kiwisolver, cycler, pyparsing, matplotlib, seaborn, branca, folium, babel, docutils, sphinxcontrib-jsmath, sphinxcontrib-serializinghtml, snowballstemmer, sphinxcontrib-htmlhelp, imagesize, alabaster, sphinxcontrib-applehelp, sphinxcontrib-devhelp, sphinxcontrib-qthelp, packaging, sphinx, pluggy, py, pytest, coverage, docopt, coveralls, pyyaml, pillow, typing-extensions, bokeh, datascience, traittypes, bqplot, joblib, threadpoolctl, scikit-learn, markdown2, toolz, nbinteract
+Successfully installed alabaster-0.7.12 babel-2.8.0 bokeh-2.1.1 bqplot-0.12.13 branca-0.4.1 coverage-5.1 coveralls-2.0.0 cycler-0.10.0 datascience-0.15.6 docopt-0.6.2 docutils-0.16 folium-0.11.0 imagesize-1.2.0 joblib-0.16.0 kiwisolver-1.2.0 markdown2-2.3.9 matplotlib-3.2.2 nbinteract-0.2.5 numpy-1.19.0 packaging-20.4 pandas-1.0.5 pillow-7.2.0 pluggy-0.13.1 py-1.9.0 pyparsing-2.4.7 pytest-5.4.3 pytz-2020.1 pyyaml-5.3.1 scikit-learn-0.23.1 scipy-1.5.1 seaborn-0.10.1 snowballstemmer-2.0.0 sphinx-3.1.2 sphinxcontrib-applehelp-1.0.2 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-1.0.3 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.4 threadpoolctl-2.1.0 toolz-0.10.0 traittypes-0.2.1 typing-extensions-3.7.4.2
+Removing intermediate container 2bf4169fdd63
+ ---> 724eff89a71e
+Step 42/51 : USER root
+ ---> Running in 09cfa034074b
+Removing intermediate container 09cfa034074b
+ ---> d6d202cdbd45
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 24e43b447459
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 9e438b8e7ac2
+Removing intermediate container 9e438b8e7ac2
+ ---> 0d75be5b5535
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in 8fc996c8e790
+Removing intermediate container 8fc996c8e790
+ ---> a619070b4cff
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in a6e8e4b5ef60
+Removing intermediate container a6e8e4b5ef60
+ ---> 8519e1128354
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in c97323cc4842
+Removing intermediate container c97323cc4842
+ ---> 0e69e5a064f1
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 88b0365d60d1
+Removing intermediate container 88b0365d60d1
+ ---> c82c36b7675c
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 602b17f75213
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 8b4a28d31ea4
+Removing intermediate container 8b4a28d31ea4
+ ---> 70c9c7e1141f
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 7492fbc841ee
+Removing intermediate container 7492fbc841ee
+ ---> 76cd4f8a700c
+{"aux": {"ID": "sha256:76cd4f8a700c94ba77cea0b28c1e4a4bca5bb5a91104fd654ff4e3a6c8214478"}}Successfully built 76cd4f8a700c
+Successfully tagged r2d-test-github.com-ds-100-textbook:1646533

@@ -1,0 +1,60 @@
+[I 200713 07:24:07 inrepo:36] Testing notebook mnist.ipynb
+[I 200713 07:24:08 inrepo:45] Found kernel python3
+[I 200713 07:24:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from six.moves import urllib
+from sklearn.datasets import fetch_mldata
+try:
+    mnist = fetch_mldata('MNIST original')
+except urllib.error.HTTPError as ex:
+    print("Could not download MNIST data from mldata.org, trying alternative...")
+
+    # Alternative method to load MNIST, if mldata.org is down
+    from scipy.io import loadmat
+    mnist_alternative_url = "https://github.com/amplab/datascience-sp14/raw/master/lab7/mldata/mnist-original.mat"
+    mnist_path = "./mnist-original.mat"
+    response = urllib.request.urlopen(mnist_alternative_url)
+    with open(mnist_path, "wb") as f:
+        content = response.read()
+        f.write(content)
+    mnist_raw = loadmat(mnist_path)
+    mnist = {
+        "data": mnist_raw["data"].T,
+        "target": mnist_raw["label"][0],
+        "COL_NAMES": ["label", "data"],
+        "DESCR": "mldata.org dataset: mnist-original",
+    }
+    print("Success!")
+    
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-e571a5df82d3>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0msix[0m[0;34m.[0m[0mmoves[0m [0;32mimport[0m [0murllib[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdatasets[0m [0;32mimport[0m [0mfetch_mldata[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m     [0mmnist[0m [0;34m=[0m [0mfetch_mldata[0m[0;34m([0m[0;34m'MNIST original'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mexcept[0m [0murllib[0m[0;34m.[0m[0merror[0m[0;34m.[0m[0mHTTPError[0m [0;32mas[0m [0mex[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

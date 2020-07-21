@@ -1,0 +1,23 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T09.56duzxzzxw/github.com/LCAV/pyroomacoustics.
+Using DockerBuildPack builder
+Step 1/6 : FROM ubuntu:18.04
+ ---> 8e4ce0a6ce69
+Step 2/6 : RUN dpkg --add-architecture i386
+ ---> Using cache
+ ---> 4a4c6ac5f158
+Step 3/6 : RUN apt-get update
+ ---> Using cache
+ ---> 329128e3a70d
+Step 4/6 : RUN apt-get install -y python3-dev python3-pip
+ ---> Using cache
+ ---> 2bad8f7c1792
+Step 5/6 : RUN python3 -m pip install --user --ignore-installed pip
+ ---> Using cache
+ ---> 58eb07870a7a
+Step 6/6 : RUN pip3 install pyroomacoustics
+ ---> Using cache
+ ---> 5fafe8e215a6
+{"aux": {"ID": "sha256:5fafe8e215a6a1888b39bbf0e2ba7f7fbdf4eb3b5a4aa0a9bdde70761b036a64"}}[Warning] One or more build-args [NB_USER NB_UID] were not consumed
+Successfully built 5fafe8e215a6
+Successfully tagged r2d-test-github.com-lcav-pyroomacoustics:67c7f34

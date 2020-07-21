@@ -1,0 +1,6 @@
+[I 200713 07:57:53 inrepo:36] Testing notebook _doc/notebooks/progf/recursive_reducers.ipynb
+[I 200713 07:57:53 inrepo:45] Found kernel python3
+[I 200713 07:57:54 execute:404] Executing notebook with kernel: python3
+[I 200713 07:58:08 inrepo:79] Saving exported notebook to /io/notebooks/_doc/notebooks/progf/recursive_reducers.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

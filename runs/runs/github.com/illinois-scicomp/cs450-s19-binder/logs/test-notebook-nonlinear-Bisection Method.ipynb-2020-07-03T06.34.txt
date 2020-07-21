@@ -1,0 +1,5 @@
+[I 200703 06:39:53 inrepo:35] Testing notebook nonlinear/Bisection Method.ipynb
+[I 200703 06:39:55 execute:404] Executing notebook with kernel: python
+[I 200703 06:39:57 inrepo:41] Saving exported notebook to /io/notebooks/nonlinear/Bisection Method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

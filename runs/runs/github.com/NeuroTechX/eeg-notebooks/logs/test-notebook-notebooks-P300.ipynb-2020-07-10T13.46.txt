@@ -1,0 +1,124 @@
+[I 200710 13:46:52 inrepo:36] Testing notebook notebooks/P300.ipynb
+[W 200710 13:46:53 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200710 13:46:53 inrepo:60] Using kernel python3 to provide language: python
+[I 200710 13:46:53 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from muselsl import stream, list_muses, view, record
+from multiprocessing import Process
+from mne import Epochs, find_events
+from time import time, strftime, gmtime
+import os
+from stimulus_presentation import visual_p300_stripes
+from utils import utils
+from collections import OrderedDict
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/__init__.py[0m in [0;36m__getattr__[0;34m(self, name)[0m
+[1;32m    350[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 351[0;31m             [0;32mreturn[0m [0mgetattr[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_module[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    352[0m         [0;32mexcept[0m [0mAttributeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'NoneType' object has no attribute 'get_platform'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-1-d520c044d989>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mtime[0m [0;32mimport[0m [0mtime[0m[0;34m,[0m [0mstrftime[0m[0;34m,[0m [0mgmtime[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mfrom[0m [0mstimulus_presentation[0m [0;32mimport[0m [0mvisual_p300_stripes[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;32mfrom[0m [0mutils[0m [0;32mimport[0m [0mutils[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m [0;32mfrom[0m [0mcollections[0m [0;32mimport[0m [0mOrderedDict[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/notebooks/stimulus_presentation/visual_p300_stripes.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mfrom[0m [0mpandas[0m [0;32mimport[0m [0mDataFrame[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mfrom[0m [0mpsychopy[0m [0;32mimport[0m [0mvisual[0m[0;34m,[0m [0mcore[0m[0;34m,[0m [0mevent[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;32mfrom[0m [0mtime[0m [0;32mimport[0m [0mtime[0m[0;34m,[0m [0mstrftime[0m[0;34m,[0m [0mgmtime[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0moptparse[0m [0;32mimport[0m [0mOptionParser[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/psychopy/visual/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     26[0m [0;32mfrom[0m [0;34m.[0m[0mtext[0m [0;32mimport[0m [0mTextStim[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     27[0m [0;32mfrom[0m [0;34m.[0m[0mform[0m [0;32mimport[0m [0mForm[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 28[0;31m [0;32mfrom[0m [0;34m.[0m[0mbutton[0m [0;32mimport[0m [0mButtonStim[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     29[0m [0;32mfrom[0m [0;34m.[0m[0mbrush[0m [0;32mimport[0m [0mBrush[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     30[0m [0;31m# window, should always be loaded first[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/psychopy/visual/button.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     10[0m [0;32mfrom[0m [0m__future__[0m [0;32mimport[0m [0mabsolute_import[0m[0;34m,[0m [0mprint_function[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m [0;34m[0m[0m
+[0;32m---> 12[0;31m [0;32mfrom[0m [0mpsychopy[0m [0;32mimport[0m [0mevent[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     13[0m [0;32mfrom[0m [0mpsychopy[0m[0;34m.[0m[0mvisual[0m[0;34m.[0m[0mshape[0m [0;32mimport[0m [0mBaseShapeStim[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m [0;32mfrom[0m [0mpsychopy[0m[0;34m.[0m[0mvisual[0m[0;34m.[0m[0mtext[0m [0;32mimport[0m [0mTextStim[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/psychopy/event.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     57[0m     [0;31m# get the default display[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     58[0m     [0;32mif[0m [0mpyglet[0m[0;34m.[0m[0mversion[0m [0;34m<[0m [0;34m'1.4'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 59[0;31m         [0m_default_display_[0m [0;34m=[0m [0mpyglet[0m[0;34m.[0m[0mwindow[0m[0;34m.[0m[0mget_platform[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mget_default_display[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     60[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     61[0m         [0m_default_display_[0m [0;34m=[0m [0mpyglet[0m[0;34m.[0m[0mcanvas[0m[0;34m.[0m[0mget_display[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/__init__.py[0m in [0;36m__getattr__[0;34m(self, name)[0m
+[1;32m    355[0m [0;34m[0m[0m
+[1;32m    356[0m             [0mimport_name[0m [0;34m=[0m [0;34m'pyglet.%s'[0m [0;34m%[0m [0mself[0m[0;34m.[0m[0m_module_name[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 357[0;31m             [0m__import__[0m[0;34m([0m[0mimport_name[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    358[0m             [0mmodule[0m [0;34m=[0m [0msys[0m[0;34m.[0m[0mmodules[0m[0;34m[[0m[0mimport_name[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m    359[0m             [0mobject[0m[0;34m.[0m[0m__setattr__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m'_module'[0m[0;34m,[0m [0mmodule[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/window/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    131[0m [0;32mimport[0m [0mpyglet[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    132[0m [0;32mfrom[0m [0mpyglet[0m [0;32mimport[0m [0mgl[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 133[0;31m [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m [0;32mimport[0m [0mgl_info[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    134[0m [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mevent[0m [0;32mimport[0m [0mEventDispatcher[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    135[0m [0;32mimport[0m [0mpyglet[0m[0;34m.[0m[0mwindow[0m[0;34m.[0m[0mkey[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/gl/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     95[0m [0m__version__[0m [0;34m=[0m [0;34m'$Id$'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     96[0m [0;34m[0m[0m
+[0;32m---> 97[0;31m [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m[0;34m.[0m[0mlib[0m [0;32mimport[0m [0mGLException[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     98[0m [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m[0;34m.[0m[0mgl[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     99[0m [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m[0;34m.[0m[0mglu[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/gl/lib.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    140[0m     [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m[0;34m.[0m[0mlib_agl[0m [0;32mimport[0m [0mlink_GL[0m[0;34m,[0m [0mlink_GLU[0m[0;34m,[0m [0mlink_AGL[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 142[0;31m     [0;32mfrom[0m [0mpyglet[0m[0;34m.[0m[0mgl[0m[0;34m.[0m[0mlib_glx[0m [0;32mimport[0m [0mlink_GL[0m[0;34m,[0m [0mlink_GLU[0m[0;34m,[0m [0mlink_GLX[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    143[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/gl/lib_glx.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     48[0m [0m__all__[0m [0;34m=[0m [0;34m[[0m[0;34m'link_GL'[0m[0;34m,[0m [0;34m'link_GLU'[0m[0;34m,[0m [0;34m'link_GLX'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     49[0m [0;34m[0m[0m
+[0;32m---> 50[0;31m [0mgl_lib[0m [0;34m=[0m [0mpyglet[0m[0;34m.[0m[0mlib[0m[0;34m.[0m[0mload_library[0m[0;34m([0m[0;34m'GL'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     51[0m [0mglu_lib[0m [0;34m=[0m [0mpyglet[0m[0;34m.[0m[0mlib[0m[0;34m.[0m[0mload_library[0m[0;34m([0m[0;34m'GLU'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     52[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyglet/lib.py[0m in [0;36mload_library[0;34m(self, *names, **kwargs)[0m
+[1;32m    140[0m                     [0;32mexcept[0m [0mOSError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m                         [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 142[0;31m         [0;32mraise[0m [0mImportError[0m[0;34m([0m[0;34m'Library "%s" not found.'[0m [0;34m%[0m [0mnames[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    143[0m [0;34m[0m[0m
+[1;32m    144[0m     [0mfind_library[0m [0;34m=[0m [0;32mlambda[0m [0mself[0m[0;34m,[0m [0mname[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mutil[0m[0;34m.[0m[0mfind_library[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: Library "GL" not found.
+ImportError: Library "GL" not found.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

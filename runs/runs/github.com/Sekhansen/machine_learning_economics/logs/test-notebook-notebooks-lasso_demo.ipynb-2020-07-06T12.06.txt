@@ -1,0 +1,5 @@
+[I 200706 12:06:22 inrepo:35] Testing notebook notebooks/lasso_demo.ipynb
+[I 200706 12:06:28 execute:404] Executing notebook with kernel: ir
+[I 200706 12:06:42 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/lasso_demo.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

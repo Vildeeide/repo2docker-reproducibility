@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/yinshtony/learngit,master,4b36555,2017-07-06T13:07:52+08:00,build,build,True,github.com/yinshtony/learngit/logs/build-master-2020-07-20T06.28.txt,2020-07-20T06:28:48.908348,2020-07-20T06.28,0.11.0
+https://github.com/yinshtony/learngit,master,4b36555,2017-07-06T13:07:52+08:00,notebook,PythonTry/HelloPython.ipynb,True,github.com/yinshtony/learngit/logs/test-notebook-PythonTry-HelloPython.ipynb-2020-07-20T06.28.txt,2020-07-20T06:28:48.908348,2020-07-20T06.28,0.11.0
+https://github.com/yinshtony/learngit,master,4b36555,2017-07-06T13:07:52+08:00,notebook,PythonTry/.ipynb_checkpoints/HelloPython-checkpoint.ipynb,True,github.com/yinshtony/learngit/logs/test-notebook-PythonTry-.ipynb_checkpoints-HelloPython-checkpoint.ipynb-2020-07-20T06.28.txt,2020-07-20T06:28:48.908348,2020-07-20T06.28,0.11.0

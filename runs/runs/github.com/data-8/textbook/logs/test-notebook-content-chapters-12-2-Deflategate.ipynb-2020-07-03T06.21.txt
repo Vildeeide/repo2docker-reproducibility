@@ -1,0 +1,5 @@
+[I 200703 06:31:56 inrepo:35] Testing notebook content/chapters/12/2/Deflategate.ipynb
+[I 200703 06:32:02 execute:404] Executing notebook with kernel: python3
+[I 200703 06:32:30 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/12/2/Deflategate.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200706 09:59:53 inrepo:35] Testing notebook doc/notebooks/Reuse_regridder.ipynb
+[I 200706 09:59:55 execute:404] Executing notebook with kernel: python3
+[I 200706 10:00:24 inrepo:41] Saving exported notebook to /io/notebooks/doc/notebooks/Reuse_regridder.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

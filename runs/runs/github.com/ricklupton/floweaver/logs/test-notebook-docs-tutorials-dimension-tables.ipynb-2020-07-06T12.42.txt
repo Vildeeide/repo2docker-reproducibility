@@ -1,0 +1,5 @@
+[I 200706 12:42:32 inrepo:35] Testing notebook docs/tutorials/dimension-tables.ipynb
+[I 200706 12:42:33 execute:404] Executing notebook with kernel: python3
+[I 200706 12:42:35 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorials/dimension-tables.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

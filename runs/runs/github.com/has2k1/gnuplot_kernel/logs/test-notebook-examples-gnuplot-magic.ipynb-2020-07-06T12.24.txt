@@ -1,0 +1,5 @@
+[I 200706 12:25:13 inrepo:35] Testing notebook examples/gnuplot-magic.ipynb
+[I 200706 12:25:14 execute:404] Executing notebook with kernel: python3
+[I 200706 12:25:19 inrepo:41] Saving exported notebook to /io/notebooks/examples/gnuplot-magic.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

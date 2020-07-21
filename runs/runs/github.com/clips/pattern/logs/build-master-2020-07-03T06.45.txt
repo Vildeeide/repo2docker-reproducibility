@@ -1,0 +1,251 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T06.45mcv2owsb/github.com/clips/pattern.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> d461e4caf4e4
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in eeac2646360e
+Removing intermediate container eeac2646360e
+ ---> 9f2e1bd85919
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 387fac9bb565
+Removing intermediate container 387fac9bb565
+ ---> 338d538bb2d0
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 7e7baec1f62b
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting backports.csv
+  Downloading backports.csv-1.0.7-py2.py3-none-any.whl (12 kB)
+Collecting mysqlclient
+  Downloading mysqlclient-2.0.1.tar.gz (87 kB)
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.9.1-py3-none-any.whl (115 kB)
+Collecting lxml
+  Downloading lxml-4.5.1-cp37-cp37m-manylinux1_x86_64.whl (5.5 MB)
+Collecting feedparser
+  Downloading feedparser-5.2.1.tar.bz2 (192 kB)
+Collecting pdfminer.six
+  Downloading pdfminer.six-20200517-py3-none-any.whl (5.6 MB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting nltk
+  Downloading nltk-3.5.zip (1.4 MB)
+Collecting python-docx
+  Downloading python-docx-0.8.10.tar.gz (5.5 MB)
+Collecting cherrypy
+  Downloading CherryPy-18.6.0-py2.py3-none-any.whl (419 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Pattern==3.6) (2.22.0)
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.0.1-py3-none-any.whl (32 kB)
+Collecting pycryptodome
+  Downloading pycryptodome-3.9.8-cp37-cp37m-manylinux1_x86_64.whl (13.7 MB)
+Requirement already satisfied: chardet; python_version > "3.0" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pdfminer.six->Pattern==3.6) (3.0.4)
+Collecting sortedcontainers
+  Downloading sortedcontainers-2.2.2-py2.py3-none-any.whl (29 kB)
+Collecting click
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting regex
+  Downloading regex-2020.6.8-cp37-cp37m-manylinux2010_x86_64.whl (661 kB)
+Collecting tqdm
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Collecting portend>=2.1.1
+  Downloading portend-2.6-py2.py3-none-any.whl (5.1 kB)
+Collecting jaraco.collections
+  Downloading jaraco.collections-3.0.0-py2.py3-none-any.whl (9.4 kB)
+Requirement already satisfied: more-itertools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cherrypy->Pattern==3.6) (8.2.0)
+Collecting cheroot>=8.2.1
+  Downloading cheroot-8.3.0-py2.py3-none-any.whl (86 kB)
+Collecting zc.lockfile
+  Downloading zc.lockfile-2.0-py2.py3-none-any.whl (9.7 kB)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->Pattern==3.6) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->Pattern==3.6) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->Pattern==3.6) (2019.11.28)
+Collecting tempora>=1.8
+  Downloading tempora-3.0.0-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: six>=1.7.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jaraco.collections->cherrypy->Pattern==3.6) (1.14.0)
+Collecting jaraco.classes
+  Downloading jaraco.classes-3.1.0-py2.py3-none-any.whl (5.7 kB)
+Collecting jaraco.text
+  Downloading jaraco.text-3.2.0-py2.py3-none-any.whl (8.1 kB)
+Collecting jaraco.functools
+  Downloading jaraco.functools-3.0.1-py3-none-any.whl (6.7 kB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from zc.lockfile->cherrypy->Pattern==3.6) (45.1.0.post20200119)
+Collecting pytz
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Building wheels for collected packages: Pattern, future, mysqlclient, feedparser, nltk, python-docx
+  Building wheel for Pattern (setup.py): started
+  Building wheel for Pattern (setup.py): finished with status 'done'
+  Created wheel for Pattern: filename=Pattern-3.6-py3-none-any.whl size=22333711 sha256=c68de5d3f1ce2c9c8995f5c73b24b6cdbdbffa300c057362147a2c7132dacd5f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=b6c26dddc8419be54f6daf6446a1dcc427c9724d0c871f25ea24d75c4491654a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+  Building wheel for mysqlclient (setup.py): started
+  Building wheel for mysqlclient (setup.py): finished with status 'done'
+  Created wheel for mysqlclient: filename=mysqlclient-2.0.1-cp37-cp37m-linux_x86_64.whl size=100751 sha256=7162f67d8729b3b3e782e77a795a2a40423a82e48c33bf2e98a7beefc189186c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/f0/33/cd/bfa1399be3b3b6fc77eb6a53e446eed887b1a35c90d0e3cbf2
+  Building wheel for feedparser (setup.py): started
+  Building wheel for feedparser (setup.py): finished with status 'done'
+  Created wheel for feedparser: filename=feedparser-5.2.1-py3-none-any.whl size=44939 sha256=b4fa608432d01918f728c2983162b98ab825b2bb7e0253cd988edcda58ac9bce
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/4a/87/a9/ef99b7b68f9816d5ef1262dc11ce31a93a844eb69e68c1a031
+  Building wheel for nltk (setup.py): started
+  Building wheel for nltk (setup.py): finished with status 'done'
+  Created wheel for nltk: filename=nltk-3.5-py3-none-any.whl size=1434676 sha256=5dfe07c106e2958d89573e775f8cd0120686761b6461c40518e4a2cd1790945e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/45/6c/46/a1865e7ba706b3817f5d1b2ff7ce8996aabdd0d03d47ba0266
+  Building wheel for python-docx (setup.py): started
+  Building wheel for python-docx (setup.py): finished with status 'done'
+  Created wheel for python-docx: filename=python_docx-0.8.10-py3-none-any.whl size=184489 sha256=4be417177d74a845c15cadda34b3e5388aeff90494a9f10b176ec00eb3dfd7ed
+  Stored in directory: /tmp/pip-ephem-wheel-cache-i7eyivml/wheels/75/c6/69/05491f32dc052cd70476b65f5bf7082a9b274045f6b001b821
+Successfully built Pattern future mysqlclient feedparser nltk python-docx
+Installing collected packages: future, backports.csv, mysqlclient, soupsieve, beautifulsoup4, lxml, feedparser, pycryptodome, sortedcontainers, pdfminer.six, numpy, scipy, click, joblib, regex, tqdm, nltk, python-docx, pytz, jaraco.functools, tempora, portend, jaraco.classes, jaraco.text, jaraco.collections, cheroot, zc.lockfile, cherrypy, Pattern
+Successfully installed Pattern-3.6 backports.csv-1.0.7 beautifulsoup4-4.9.1 cheroot-8.3.0 cherrypy-18.6.0 click-7.1.2 feedparser-5.2.1 future-0.18.2 jaraco.classes-3.1.0 jaraco.collections-3.0.0 jaraco.functools-3.0.1 jaraco.text-3.2.0 joblib-0.16.0 lxml-4.5.1 mysqlclient-2.0.1 nltk-3.5 numpy-1.19.0 pdfminer.six-20200517 portend-2.6 pycryptodome-3.9.8 python-docx-0.8.10 pytz-2020.1 regex-2020.6.8 scipy-1.5.0 sortedcontainers-2.2.2 soupsieve-2.0.1 tempora-3.0.0 tqdm-4.47.0 zc.lockfile-2.0
+Removing intermediate container 7e7baec1f62b
+ ---> a8d68dec83c5
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 37e1e789ee2f
+Removing intermediate container 37e1e789ee2f
+ ---> 4256ec1a7693
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in a6c6d0c77608
+Removing intermediate container a6c6d0c77608
+ ---> 5068cf75cfa8
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 2e987c8ff91d
+Removing intermediate container 2e987c8ff91d
+ ---> 975bc9b9771d
+Step 45/48 : USER ${NB_USER}
+ ---> Running in 8ce05735df43
+Removing intermediate container 8ce05735df43
+ ---> 7715a844b467
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> e6b2ec641eac
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in bddb65031a9c
+Removing intermediate container bddb65031a9c
+ ---> 0aa72030daa8
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 2b845821d910
+Removing intermediate container 2b845821d910
+ ---> ddba2eea5c01
+{"aux": {"ID": "sha256:ddba2eea5c01fa9c9f95c3414e4983dc840bdf0b9e5a98cf47ea3ebda5f7e467"}}Successfully built ddba2eea5c01
+Successfully tagged r2d-test-github.com-clips-pattern:d25511f

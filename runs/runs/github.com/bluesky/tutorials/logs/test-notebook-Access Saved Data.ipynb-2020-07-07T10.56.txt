@@ -1,0 +1,7 @@
+Saved workspace: /home/vildeeide/.jupyter/lab/workspaces/lab-a511.jupyterlab-workspace
+[I 200707 10:57:01 inrepo:36] Testing notebook Access Saved Data.ipynb
+[I 200707 10:57:01 inrepo:45] Found kernel python3
+[I 200707 10:57:02 execute:404] Executing notebook with kernel: python3
+[I 200707 10:57:16 inrepo:77] Saving exported notebook to /io/notebooks/Access Saved Data.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

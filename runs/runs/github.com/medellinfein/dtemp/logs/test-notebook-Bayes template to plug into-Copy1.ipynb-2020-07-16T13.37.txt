@@ -1,0 +1,37 @@
+[I 200716 13:37:21 inrepo:36] Testing notebook Bayes template to plug into-Copy1.ipynb
+[I 200716 13:37:21 inrepo:45] Found kernel python3
+[I 200716 13:37:22 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#v3.1
+import book_format
+book_format.load_style(name='/styles/cust23.css')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-ee5d8f9e0a52>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m#v3.1[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mbook_format[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mbook_format[0m[0;34m.[0m[0mload_style[0m[0;34m([0m[0mname[0m[0;34m=[0m[0;34m'/styles/cust23.css'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'book_format'
+ModuleNotFoundError: No module named 'book_format'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

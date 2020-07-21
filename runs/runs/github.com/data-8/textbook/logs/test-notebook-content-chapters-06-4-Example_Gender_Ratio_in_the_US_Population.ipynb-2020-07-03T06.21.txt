@@ -1,0 +1,5 @@
+[I 200703 06:30:23 inrepo:35] Testing notebook content/chapters/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
+[I 200703 06:30:25 execute:404] Executing notebook with kernel: python3
+[I 200703 06:30:30 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/06/4/Example_Gender_Ratio_in_the_US_Population.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

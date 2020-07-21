@@ -1,0 +1,46 @@
+[I 200715 07:50:42 inrepo:36] Testing notebook linear_and_svm_model.ipynb
+[I 200715 07:50:42 inrepo:45] Found kernel python3
+[I 200715 07:50:44 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+train = pd.read_excel('train.xlsx',sheetname=0)
+test = pd.read_excel('test.xlsx',sheetname=0)
+(n,p) =train.shape
+(m,p)=test.shape
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-2-b429dcf6d29b>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mtrain[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_excel[0m[0;34m([0m[0;34m'train.xlsx'[0m[0;34m,[0m[0msheetname[0m[0;34m=[0m[0;36m0[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mtest[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_excel[0m[0;34m([0m[0;34m'test.xlsx'[0m[0;34m,[0m[0msheetname[0m[0;34m=[0m[0;36m0[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m([0m[0mn[0m[0;34m,[0m[0mp[0m[0;34m)[0m [0;34m=[0m[0mtrain[0m[0;34m.[0m[0mshape[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m([0m[0mm[0m[0;34m,[0m[0mp[0m[0;34m)[0m[0;34m=[0m[0mtest[0m[0;34m.[0m[0mshape[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/excel/_base.py[0m in [0;36mread_excel[0;34m(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, **kwds)[0m
+[1;32m    299[0m     [0;32mfor[0m [0marg[0m [0;32min[0m [0;34m([0m[0;34m"sheet"[0m[0;34m,[0m [0;34m"sheetname"[0m[0;34m,[0m [0;34m"parse_cols"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    300[0m         [0;32mif[0m [0marg[0m [0;32min[0m [0mkwds[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 301[0;31m             [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0;34mf"read_excel() got an unexpected keyword argument `{arg}`"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    302[0m [0;34m[0m[0m
+[1;32m    303[0m     [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mio[0m[0;34m,[0m [0mExcelFile[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: read_excel() got an unexpected keyword argument `sheetname`
+TypeError: read_excel() got an unexpected keyword argument `sheetname`
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

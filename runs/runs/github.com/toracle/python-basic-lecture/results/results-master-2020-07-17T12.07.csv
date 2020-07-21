@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/toracle/python-basic-lecture,master,bd2404b,2018-07-06T15:39:52+09:00,build,build,True,github.com/toracle/python-basic-lecture/logs/build-master-2020-07-17T12.07.txt,2020-07-17T12:07:26.524366,2020-07-17T12.07,0.11.0
+https://github.com/toracle/python-basic-lecture,master,bd2404b,2018-07-06T15:39:52+09:00,notebook,networkx-report.ipynb,False,github.com/toracle/python-basic-lecture/logs/test-notebook-networkx-report.ipynb-2020-07-17T12.07.txt,2020-07-17T12:07:26.524366,2020-07-17T12.07,0.11.0

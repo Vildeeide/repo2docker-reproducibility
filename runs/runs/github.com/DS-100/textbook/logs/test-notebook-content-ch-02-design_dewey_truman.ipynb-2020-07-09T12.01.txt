@@ -1,0 +1,6 @@
+[I 200709 12:03:01 inrepo:36] Testing notebook content/ch/02/design_dewey_truman.ipynb
+[I 200709 12:03:02 inrepo:45] Found kernel python3
+[I 200709 12:03:02 execute:404] Executing notebook with kernel: python3
+[I 200709 12:03:03 inrepo:79] Saving exported notebook to /io/notebooks/content/ch/02/design_dewey_truman.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

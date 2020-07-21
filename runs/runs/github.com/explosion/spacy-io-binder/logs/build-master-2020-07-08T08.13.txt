@@ -1,0 +1,308 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T08.133sc1i7zl/github.com/explosion/spacy-io-binder.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> e5dae3a1eb06
+Step 38/51 : USER root
+ ---> Running in 763e8196f6df
+Removing intermediate container 763e8196f6df
+ ---> 12243e91632f
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 7cbbc176f14f
+Removing intermediate container 7cbbc176f14f
+ ---> aedc0147419f
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 7bf5063bfc2e
+Removing intermediate container 7bf5063bfc2e
+ ---> ab75d97fac60
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 841a2b3ecca1
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting spacy==2.3.0
+  Downloading spacy-2.3.0-cp37-cp37m-manylinux1_x86_64.whl (10.0 MB)
+Collecting en_core_web_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.0/en_core_web_sm-2.3.0.tar.gz (12.0 MB)
+Collecting en_core_web_md==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_md-2.3.0/en_core_web_md-2.3.0.tar.gz (50.8 MB)
+Collecting de_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-2.3.0/de_core_news_sm-2.3.0.tar.gz (14.9 MB)
+Collecting es_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-2.3.0/es_core_news_sm-2.3.0.tar.gz (16.2 MB)
+Collecting pt_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-2.3.0/pt_core_news_sm-2.3.0.tar.gz (19.6 MB)
+Collecting fr_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-2.3.0/fr_core_news_sm-2.3.0.tar.gz (14.7 MB)
+Collecting it_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/it_core_news_sm-2.3.0/it_core_news_sm-2.3.0.tar.gz (14.5 MB)
+Collecting nl_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/nl_core_news_sm-2.3.0/nl_core_news_sm-2.3.0.tar.gz (15.1 MB)
+Collecting el_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/el_core_news_sm-2.3.0/el_core_news_sm-2.3.0.tar.gz (11.6 MB)
+Collecting nb_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/nb_core_news_sm-2.3.0/nb_core_news_sm-2.3.0.tar.gz (14.2 MB)
+Collecting lt_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/lt_core_news_sm-2.3.0/lt_core_news_sm-2.3.0.tar.gz (13.7 MB)
+Collecting da_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/da_core_news_sm-2.3.0/da_core_news_sm-2.3.0.tar.gz (16.9 MB)
+Collecting pl_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/pl_core_news_sm-2.3.0/pl_core_news_sm-2.3.0.tar.gz (48.7 MB)
+Collecting ro_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/ro_core_news_sm-2.3.0/ro_core_news_sm-2.3.0.tar.gz (14.3 MB)
+Collecting ja_core_news_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/ja_core_news_sm-2.3.0/ja_core_news_sm-2.3.0.tar.gz (7.6 MB)
+Collecting zh_core_web_sm==2.3.0
+  Downloading https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-2.3.0/zh_core_web_sm-2.3.0.tar.gz (47.9 MB)
+Collecting pkuseg==0.0.22
+[91m  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProtocolError('Connection aborted.', OSError("(104, 'ECONNRESET')"))': /packages/da/17/39de2f3719434f0cb711f613f24fd9c397221a292ed2937ec3b1c98b74f0/pkuseg-0.0.22-cp37-cp37m-manylinux1_x86_64.whl
+[0m  Downloading pkuseg-0.0.22-cp37-cp37m-manylinux1_x86_64.whl (50.2 MB)
+Collecting preshed<3.1.0,>=3.0.2
+  Downloading preshed-3.0.2-cp37-cp37m-manylinux1_x86_64.whl (118 kB)
+Collecting catalogue<1.1.0,>=0.0.7
+  Downloading catalogue-1.0.0-py2.py3-none-any.whl (7.7 kB)
+Collecting tqdm<5.0.0,>=4.38.0
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Collecting plac<1.2.0,>=0.9.6
+  Downloading plac-1.1.3-py2.py3-none-any.whl (20 kB)
+Collecting wasabi<1.1.0,>=0.4.0
+  Downloading wasabi-0.7.0.tar.gz (22 kB)
+Collecting srsly<1.1.0,>=1.0.2
+  Downloading srsly-1.0.2-cp37-cp37m-manylinux1_x86_64.whl (185 kB)
+Collecting cymem<2.1.0,>=2.0.2
+  Downloading cymem-2.0.3-cp37-cp37m-manylinux1_x86_64.whl (32 kB)
+Collecting murmurhash<1.1.0,>=0.28.0
+  Downloading murmurhash-1.0.2-cp37-cp37m-manylinux1_x86_64.whl (19 kB)
+Requirement already satisfied: requests<3.0.0,>=2.13.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from spacy==2.3.0->-r requirements.txt (line 1)) (2.22.0)
+Collecting blis<0.5.0,>=0.4.0
+  Downloading blis-0.4.1-cp37-cp37m-manylinux1_x86_64.whl (3.7 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from spacy==2.3.0->-r requirements.txt (line 1)) (45.1.0.post20200119)
+Collecting numpy>=1.15.0
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting thinc==7.4.1
+  Downloading thinc-7.4.1-cp37-cp37m-manylinux1_x86_64.whl (2.1 MB)
+Requirement already satisfied: importlib-metadata>=0.20; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from catalogue<1.1.0,>=0.0.7->spacy==2.3.0->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3.0.0,>=2.13.0->spacy==2.3.0->-r requirements.txt (line 1)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3.0.0,>=2.13.0->spacy==2.3.0->-r requirements.txt (line 1)) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3.0.0,>=2.13.0->spacy==2.3.0->-r requirements.txt (line 1)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3.0.0,>=2.13.0->spacy==2.3.0->-r requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=0.20; python_version < "3.8"->catalogue<1.1.0,>=0.0.7->spacy==2.3.0->-r requirements.txt (line 1)) (2.1.0)
+Building wheels for collected packages: en-core-web-sm, en-core-web-md, de-core-news-sm, es-core-news-sm, pt-core-news-sm, fr-core-news-sm, it-core-news-sm, nl-core-news-sm, el-core-news-sm, nb-core-news-sm, lt-core-news-sm, da-core-news-sm, pl-core-news-sm, ro-core-news-sm, ja-core-news-sm, zh-core-web-sm, wasabi
+  Building wheel for en-core-web-sm (setup.py): started
+  Building wheel for en-core-web-sm (setup.py): finished with status 'done'
+  Created wheel for en-core-web-sm: filename=en_core_web_sm-2.3.0-py3-none-any.whl size=12048607 sha256=5ed248d5908cdef3f6de2444e198ba055f0329c73e04493928eff28e9d6807cb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/71/4a/56/e48f8ad9359a6780edd8cdd42955519b1a21d6365ad15628a2
+  Building wheel for en-core-web-md (setup.py): started
+  Building wheel for en-core-web-md (setup.py): finished with status 'done'
+  Created wheel for en-core-web-md: filename=en_core_web_md-2.3.0-py3-none-any.whl size=50921516 sha256=fb3d37e0b607536c895feb1b9c5217c8f9c9253e7d12f4fb0a293f322568202b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/a9/30/7d/40a0d13f1ddae5b6398c9f407391942152348eb9eae62fa21e
+  Building wheel for de-core-news-sm (setup.py): started
+  Building wheel for de-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for de-core-news-sm: filename=de_core_news_sm-2.3.0-py3-none-any.whl size=14907581 sha256=65987a49572d8c500aea8776651d40bb98855f26e01d4b26754915da3d384957
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/75/30/c3/ea1c6002eede7f49c8ab017ce62a2981a87b1cd39fab6e6a65
+  Building wheel for es-core-news-sm (setup.py): started
+  Building wheel for es-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for es-core-news-sm: filename=es_core_news_sm-2.3.0-py3-none-any.whl size=16216819 sha256=7c873e9f5336c2d4dce6688d3ebc363bcc3805c8d6d790bde0ea0283afbdd40e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/c1/8a/b9/7183b818c4dd143041d206fdd8dcea0bcc308db8ea0aede719
+  Building wheel for pt-core-news-sm (setup.py): started
+  Building wheel for pt-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for pt-core-news-sm: filename=pt_core_news_sm-2.3.0-py3-none-any.whl size=19557497 sha256=8e573099da385b21823b9152bb6b420ae823fa4800839ccbe744f36d1ce80938
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/fd/c0/65/6bde7884ea0592f34e23963572eb6b6edfdf623717c0b105be
+  Building wheel for fr-core-news-sm (setup.py): started
+  Building wheel for fr-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for fr-core-news-sm: filename=fr_core_news_sm-2.3.0-py3-none-any.whl size=14718368 sha256=c48c7bc1a18155c2276860a72dca295bea92d8d916b16bb831aa54854eb2cc51
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/cf/1e/f7/79485fa3afb8e3cb7490dedc3eb88b9fea2b4231a8209b77d1
+  Building wheel for it-core-news-sm (setup.py): started
+  Building wheel for it-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for it-core-news-sm: filename=it_core_news_sm-2.3.0-py3-none-any.whl size=14502463 sha256=246d1cef17ebf6f5d8e928820b92758bd833750678de2ebc2eabc12f9cf9ee03
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/2c/0a/e3/ef12417e6661c4c518660b3f2d1d6713970635431c130bbc86
+  Building wheel for nl-core-news-sm (setup.py): started
+  Building wheel for nl-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for nl-core-news-sm: filename=nl_core_news_sm-2.3.0-py3-none-any.whl size=15073759 sha256=68e82f044a2f83c0bf50af190a742559d90d602a38b1cfe308c70e23b0655cd9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/12/3b/3c/9da5b39ba88c3a107db655ea6c60237b547f3138917c918321
+  Building wheel for el-core-news-sm (setup.py): started
+  Building wheel for el-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for el-core-news-sm: filename=el_core_news_sm-2.3.0-py3-none-any.whl size=11576201 sha256=052d183b30a7af189f17c506da0eebdfcaf37ba8e4146552fb4d17f40d8f1013
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/21/fb/fa/48678759dc480a1666e0006562ab734410767805ade0e557d6
+  Building wheel for nb-core-news-sm (setup.py): started
+  Building wheel for nb-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for nb-core-news-sm: filename=nb_core_news_sm-2.3.0-py3-none-any.whl size=14213502 sha256=ad5bdbaca34413328055178edb573ff3e9ca9acf66a345444a91804736ee4e29
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/fa/dc/f1/a81787ea4ec64fdd411e2d67a49c89948cd5a687f2f564d18a
+  Building wheel for lt-core-news-sm (setup.py): started
+  Building wheel for lt-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for lt-core-news-sm: filename=lt_core_news_sm-2.3.0-py3-none-any.whl size=13663529 sha256=69c84bb6ecfcbd38f8f15285fdb5af89e63a000a08507d2d377aec5c889ab841
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/94/97/48/1cc86bc117d2010cd713741db9afd03d2a6d5eb72a195b923f
+  Building wheel for da-core-news-sm (setup.py): started
+  Building wheel for da-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for da-core-news-sm: filename=da_core_news_sm-2.3.0-py3-none-any.whl size=16920100 sha256=0040f8b7f5e0d9298b394549b88daab849faa6a88af70ccfc05dffc7de840607
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/40/5a/3a/096d7ff328000029e21f60aec989a0b04bab4f990bc24eb65e
+  Building wheel for pl-core-news-sm (setup.py): started
+  Building wheel for pl-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for pl-core-news-sm: filename=pl_core_news_sm-2.3.0-py3-none-any.whl size=48719489 sha256=3ba9de92a3cc290bd78218e3012a76982d63412d9d084b1cbdeb88f649744cd3
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/a0/65/6a/1f6a4c6327a8da11a1b9c6c8fd27b181610a060fc2655f9b0c
+  Building wheel for ro-core-news-sm (setup.py): started
+  Building wheel for ro-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for ro-core-news-sm: filename=ro_core_news_sm-2.3.0-py3-none-any.whl size=14334769 sha256=b06bfa8e3bea4987bde9a4052e4f33157e2a128f02be654fec31078703e5cc29
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/60/54/71/797b06eaa237f1bb33b208581344df7aba86a1a9212562af92
+  Building wheel for ja-core-news-sm (setup.py): started
+  Building wheel for ja-core-news-sm (setup.py): finished with status 'done'
+  Created wheel for ja-core-news-sm: filename=ja_core_news_sm-2.3.0-py3-none-any.whl size=7572148 sha256=ca8f2df5f9ff3ed32e00d6923dcc134e5831d81672230cd55b3d9b574f1d2963
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/62/90/e2/cd855ed94bd85af97041002bf92117b184c6587c4d90018236
+  Building wheel for zh-core-web-sm (setup.py): started
+  Building wheel for zh-core-web-sm (setup.py): finished with status 'done'
+  Created wheel for zh-core-web-sm: filename=zh_core_web_sm-2.3.0-py3-none-any.whl size=47614787 sha256=58c67ed7e1599cfd528caaaaa3c0d1240f39ec2480495ea0698206a5de7e6041
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/04/b9/54/ee0f304374d457e90e5eaf390f218a6b6e530c3ecd71439f60
+  Building wheel for wasabi (setup.py): started
+  Building wheel for wasabi (setup.py): finished with status 'done'
+  Created wheel for wasabi: filename=wasabi-0.7.0-py3-none-any.whl size=20833 sha256=680893d3683a414399f00bd74c51e63a7c0d2096b5da80e750089fd04aea05f9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-mt4mxdhj/wheels/68/38/40/b82a00fbe88220b7fd467c29a0018357066e14466151189e5a
+Successfully built en-core-web-sm en-core-web-md de-core-news-sm es-core-news-sm pt-core-news-sm fr-core-news-sm it-core-news-sm nl-core-news-sm el-core-news-sm nb-core-news-sm lt-core-news-sm da-core-news-sm pl-core-news-sm ro-core-news-sm ja-core-news-sm zh-core-web-sm wasabi
+Installing collected packages: murmurhash, cymem, preshed, catalogue, tqdm, plac, wasabi, srsly, numpy, blis, thinc, spacy, en-core-web-sm, en-core-web-md, de-core-news-sm, es-core-news-sm, pt-core-news-sm, fr-core-news-sm, it-core-news-sm, nl-core-news-sm, el-core-news-sm, nb-core-news-sm, lt-core-news-sm, da-core-news-sm, pl-core-news-sm, ro-core-news-sm, ja-core-news-sm, zh-core-web-sm, pkuseg
+Successfully installed blis-0.4.1 catalogue-1.0.0 cymem-2.0.3 da-core-news-sm-2.3.0 de-core-news-sm-2.3.0 el-core-news-sm-2.3.0 en-core-web-md-2.3.0 en-core-web-sm-2.3.0 es-core-news-sm-2.3.0 fr-core-news-sm-2.3.0 it-core-news-sm-2.3.0 ja-core-news-sm-2.3.0 lt-core-news-sm-2.3.0 murmurhash-1.0.2 nb-core-news-sm-2.3.0 nl-core-news-sm-2.3.0 numpy-1.19.0 pkuseg-0.0.22 pl-core-news-sm-2.3.0 plac-1.1.3 preshed-3.0.2 pt-core-news-sm-2.3.0 ro-core-news-sm-2.3.0 spacy-2.3.0 srsly-1.0.2 thinc-7.4.1 tqdm-4.47.0 wasabi-0.7.0 zh-core-web-sm-2.3.0
+Removing intermediate container 841a2b3ecca1
+ ---> 17fd822bb4d9
+Step 42/51 : USER root
+ ---> Running in 944d1b749c26
+Removing intermediate container 944d1b749c26
+ ---> 0007f8a7e494
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 037019d7b1c5
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 2c4dbf0da643
+Removing intermediate container 2c4dbf0da643
+ ---> 43936b0082bb
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in e8bacf712a13
+Removing intermediate container e8bacf712a13
+ ---> 7819980d05f0
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in d8e0a2ae90b6
+Removing intermediate container d8e0a2ae90b6
+ ---> 96815dbe137c
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in dcd8abe52c32
+Removing intermediate container dcd8abe52c32
+ ---> 31f2a4e07b52
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 04e47be3bfbf
+Removing intermediate container 04e47be3bfbf
+ ---> bcc2130819ed
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 11df87de13bb
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in cbc9e269d128
+Removing intermediate container cbc9e269d128
+ ---> a44328a08a06
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in e53a9354f31c
+Removing intermediate container e53a9354f31c
+ ---> 208638b45139
+{"aux": {"ID": "sha256:208638b45139bbe6587731fdb41d379c7938fc11330e754c85192cc521c18e52"}}Successfully built 208638b45139
+Successfully tagged r2d-test-github.com-explosion-spacy-io-binder:5a49bf9

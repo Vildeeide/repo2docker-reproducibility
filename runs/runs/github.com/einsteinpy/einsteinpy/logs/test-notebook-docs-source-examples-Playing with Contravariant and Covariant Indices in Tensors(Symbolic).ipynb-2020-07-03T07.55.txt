@@ -1,0 +1,5 @@
+[I 200703 07:57:37 inrepo:35] Testing notebook docs/source/examples/Playing with Contravariant and Covariant Indices in Tensors(Symbolic).ipynb
+[I 200703 07:57:38 execute:404] Executing notebook with kernel: python3
+[I 200703 07:57:51 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Playing with Contravariant and Covariant Indices in Tensors(Symbolic).ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,80 @@
+[I 200703 06:25:56 inrepo:35] Testing notebook notebooks/Numba_043_release_demo.ipynb
+[I 200703 06:25:57 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cffi import FFI
+from numba import cffi_support
+from numba import cfunc, carray
+
+src = """
+/* Define the C struct */
+typedef struct my_struct {
+    int    i1;
+    double d[4];
+} my_struct;
+
+/* Define a callback function */
+typedef double (*my_func)(my_struct*, size_t);
+"""
+ffi = FFI()
+ffi.cdef(src)
+
+d_len = 4 # there are 4 values in the my_struct.d
+
+# Make an array of 2 my_struct
+mydata = ffi.new('my_struct[2]')
+ptr = ffi.cast('my_struct*', mydata)
+for i in range(2):
+    ptr[i].i1 = 123 + i
+    for j in range(d_len):
+        ptr[i].d[j] = i + 100 * (1 + j)
+
+# map the type to a Numba record type and use it in a `@cfunc`
+sig = cffi_support.map_type(ffi.typeof('my_func'), use_record_dtype=True)
+
+@cfunc(sig)
+def foo(ptr, n):
+    base = carray(ptr, n)  # view pointer as an array of my_struct
+    tmp = 0
+    for i in range(n):
+        acc = 0
+        for j in range(d_len):
+            acc += base[i].d[j]
+        tmp += acc / (base[i].i1 + 1)
+    return tmp
+
+# Test using the .ctypes callable
+addr = int(ffi.cast('size_t', ptr)) # get the address of the `mydata` array of structs
+result = foo.ctypes(addr, 2) # array of structs is 2 long
+print(result)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-11-b93e5cbd0ff5>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mcffi[0m [0;32mimport[0m [0mFFI[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mfrom[0m [0mnumba[0m [0;32mimport[0m [0mcffi_support[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mfrom[0m [0mnumba[0m [0;32mimport[0m [0mcfunc[0m[0;34m,[0m [0mcarray[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m src = """
+
+[0;31mImportError[0m: cannot import name 'cffi_support' from 'numba' (/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/__init__.py)
+ImportError: cannot import name 'cffi_support' from 'numba' (/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/__init__.py)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

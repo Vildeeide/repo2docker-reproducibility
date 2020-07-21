@@ -1,0 +1,5 @@
+[I 200706 13:24:48 inrepo:35] Testing notebook csvconfv2 MHarris-slides.ipynb
+[I 200706 13:24:50 execute:404] Executing notebook with kernel: python3
+[I 200706 13:24:50 inrepo:41] Saving exported notebook to /io/notebooks/csvconfv2 MHarris-slides.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

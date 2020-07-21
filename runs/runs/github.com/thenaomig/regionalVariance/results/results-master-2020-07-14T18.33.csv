@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/thenaomig/regionalVariance,master,345ec24,2018-07-10T10:09:32-07:00,build,build,True,github.com/thenaomig/regionalVariance/logs/build-master-2020-07-14T18.33.txt,2020-07-14T18:33:18.055110,2020-07-14T18.33,0.11.0
+https://github.com/thenaomig/regionalVariance,master,345ec24,2018-07-10T10:09:32-07:00,notebook,graphVariances.ipynb,False,github.com/thenaomig/regionalVariance/logs/test-notebook-graphVariances.ipynb-2020-07-14T18.33.txt,2020-07-14T18:33:18.055110,2020-07-14T18.33,0.11.0
+https://github.com/thenaomig/regionalVariance,master,345ec24,2018-07-10T10:09:32-07:00,notebook,makeTimeSeriesCESM_LE.ipynb,False,github.com/thenaomig/regionalVariance/logs/test-notebook-makeTimeSeriesCESM_LE.ipynb-2020-07-14T18.33.txt,2020-07-14T18:33:18.055110,2020-07-14T18.33,0.11.0
+https://github.com/thenaomig/regionalVariance,master,345ec24,2018-07-10T10:09:32-07:00,notebook,makeTimeSeriesCMIP5.ipynb,False,github.com/thenaomig/regionalVariance/logs/test-notebook-makeTimeSeriesCMIP5.ipynb-2020-07-14T18.33.txt,2020-07-14T18:33:18.055110,2020-07-14T18.33,0.11.0

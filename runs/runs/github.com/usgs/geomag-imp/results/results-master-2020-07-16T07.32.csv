@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/usgs/geomag-imp,master,8b9ff43,2017-03-06T16:35:14-07:00,build,build,False,github.com/usgs/geomag-imp/logs/build-master-2020-07-16T07.32.txt,2020-07-16T07:32:05.112839,2020-07-16T07.32,0.11.0

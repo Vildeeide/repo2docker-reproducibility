@@ -1,0 +1,5 @@
+[I 200706 08:33:41 inrepo:35] Testing notebook index.ipynb
+[I 200706 08:33:49 execute:404] Executing notebook with kernel: ir
+[I 200706 08:34:06 inrepo:41] Saving exported notebook to /io/notebooks/index.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

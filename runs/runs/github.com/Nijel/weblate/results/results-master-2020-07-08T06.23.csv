@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Nijel/weblate,master,ebcafd2,2020-07-06T20:25:44+02:00,build,build,False,github.com/Nijel/weblate/logs/build-master-2020-07-08T06.23.txt,2020-07-08T06:23:01.650082,2020-07-08T06.23,0.11.0

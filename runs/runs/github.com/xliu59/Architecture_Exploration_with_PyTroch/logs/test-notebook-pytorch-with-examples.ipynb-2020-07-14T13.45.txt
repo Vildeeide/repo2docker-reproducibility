@@ -1,0 +1,89 @@
+[I 200714 13:48:31 inrepo:36] Testing notebook pytorch-with-examples.ipynb
+[I 200714 13:48:32 inrepo:45] Found kernel python3
+[I 200714 13:48:33 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# -*- coding: utf-8 -*-
+
+import torch
+from torch.autograd import Variable
+
+dtype = torch.FloatTensor
+# dtype = torch.cuda.FloatTensor # Uncomment this to run on GPU
+
+# N is batch size; D_in is input dimension;
+# H is hidden dimension; D_out is output dimension.
+N, D_in, H, D_out = 64, 1000, 100, 10
+
+# Create random Tensors to hold input and outputs, and wrap them in Variables.
+# Setting requires_grad=False indicates that we do not need to compute gradients
+# with respect to these Variables during the backward pass.
+x = Variable(torch.randn(N, D_in).type(dtype), requires_grad=False)
+y = Variable(torch.randn(N, D_out).type(dtype), requires_grad=False)
+
+# Create random Tensors for weights, and wrap them in Variables.
+# Setting requires_grad=True indicates that we want to compute gradients with
+# respect to these Variables during the backward pass.
+w1 = Variable(torch.randn(D_in, H).type(dtype), requires_grad=True)
+w2 = Variable(torch.randn(H, D_out).type(dtype), requires_grad=True)
+
+learning_rate = 1e-6
+for t in range(500):
+    # Forward pass: compute predicted y using operations on Variables; these
+    # are exactly the same operations we used to compute the forward pass using
+    # Tensors, but we do not need to keep references to intermediate values since
+    # we are not implementing the backward pass by hand.
+    y_pred = x.mm(w1).clamp(min=0).mm(w2)
+
+    # Compute and print loss using operations on Variables.
+    # Now loss is a Variable of shape (1,) and loss.data is a Tensor of shape
+    # (1,); loss.data[0] is a scalar value holding the loss.
+    loss = (y_pred - y).pow(2).sum()
+    print(t, loss.data[0])
+    
+    # Use autograd to compute the backward pass. This call will compute the
+    # gradient of loss with respect to all Variables with requires_grad=True.
+    # After this call w1.grad and w2.grad will be Variables holding the gradient
+    # of the loss with respect to w1 and w2 respectively.
+    loss.backward()
+    
+    # Update weights using gradient descent; w1.data and w2.data are Tensors,
+    # w1.grad and w2.grad are Variables and w1.grad.data and w2.grad.data are
+    # Tensors.
+    w1.data -= learning_rate * w1.grad.data
+    w2.data -= learning_rate * w2.grad.data
+    
+    # Manually zero the gradients after updating weights
+    w1.grad.data.zero_()
+    w2.grad.data.zero_()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mIndexError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-3-6845dc3684bf>[0m in [0;36m<module>[0;34m[0m
+[1;32m     35[0m     [0;31m# (1,); loss.data[0] is a scalar value holding the loss.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     36[0m     [0mloss[0m [0;34m=[0m [0;34m([0m[0my_pred[0m [0;34m-[0m [0my[0m[0;34m)[0m[0;34m.[0m[0mpow[0m[0;34m([0m[0;36m2[0m[0;34m)[0m[0;34m.[0m[0msum[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 37[0;31m     [0mprint[0m[0;34m([0m[0mt[0m[0;34m,[0m [0mloss[0m[0;34m.[0m[0mdata[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     38[0m [0;34m[0m[0m
+[1;32m     39[0m     [0;31m# Use autograd to compute the backward pass. This call will compute the[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mIndexError[0m: invalid index of a 0-dim tensor. Use `tensor.item()` in Python or `tensor.item<T>()` in C++ to convert a 0-dim tensor to a number
+IndexError: invalid index of a 0-dim tensor. Use `tensor.item()` in Python or `tensor.item<T>()` in C++ to convert a 0-dim tensor to a number
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

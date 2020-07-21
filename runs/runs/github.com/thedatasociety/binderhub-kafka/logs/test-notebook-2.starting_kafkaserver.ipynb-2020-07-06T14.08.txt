@@ -1,0 +1,5 @@
+[I 200706 14:08:21 inrepo:35] Testing notebook 2.starting_kafkaserver.ipynb
+[I 200706 14:08:22 execute:404] Executing notebook with kernel: python3
+[I 200706 14:08:23 inrepo:41] Saving exported notebook to /io/notebooks/2.starting_kafkaserver.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

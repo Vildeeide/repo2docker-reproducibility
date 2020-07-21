@@ -1,0 +1,460 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T07.08_p_ye12t/github.com/thedatasociety/lab-cassandra.
+Using RBuildPack builder
+Step 1/80 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/80 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/80 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/80 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/80 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/80 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/80 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/80 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/80 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/80 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/80 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/80 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/80 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/80 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/80 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/80 : RUN apt-get -qq update &&     apt-get -qq install --yes        libapparmor1        lsb-release        psmisc        sudo        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 6fb5de221d0d
+Step 17/80 : EXPOSE 8888
+ ---> Using cache
+ ---> 1b2fbe23d620
+Step 18/80 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> 97852dd972ff
+Step 19/80 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> e13c0a4ae05a
+Step 20/80 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 1b0dede8716f
+Step 21/80 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 735f593faabf
+Step 22/80 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 860594a269d3
+Step 23/80 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> e405e7a02e17
+Step 24/80 : ENV R_LIBS_USER ${APP_BASE}/rlibs
+ ---> Using cache
+ ---> 718ca88aea31
+Step 25/80 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:/usr/lib/rstudio-server/bin/:${PATH}
+ ---> Using cache
+ ---> 61eaf8d6820b
+Step 26/80 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> a2967a382753
+Step 27/80 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> e6b0c47e9224
+Step 28/80 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 40a7428275b1
+Step 29/80 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> ce8b96bbfa07
+Step 30/80 : USER ${NB_USER}
+ ---> Using cache
+ ---> 69669e77f50b
+Step 31/80 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 85b7cd962f40
+Step 32/80 : USER root
+ ---> Using cache
+ ---> 8705d498fe18
+Step 33/80 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> a41bba42da58
+Step 34/80 : RUN echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/" > /etc/apt/sources.list.d/r3.6-ubuntu.list
+ ---> Using cache
+ ---> 1e4b8b99a7c9
+Step 35/80 : RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+ ---> Using cache
+ ---> 2deb9f62652a
+Step 36/80 : RUN apt-get update && apt-get install --yes r-base=3.6.1-3bionic      r-base-dev=3.6.1-3bionic      r-recommended=3.6.1-3bionic      libclang-dev && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 4dee3e65f622
+Step 37/80 : RUN mkdir -p ${R_LIBS_USER} && chown -R ${NB_USER}:${NB_USER} ${R_LIBS_USER}
+ ---> Using cache
+ ---> 8fe0cbb9e980
+Step 38/80 : RUN curl --silent --location --fail https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5001-amd64.deb > /tmp/rstudio.deb && echo 'd33881b9ab786c09556c410e7dc477de /tmp/rstudio.deb' | md5sum -c - && apt-get update && apt install -y /tmp/rstudio.deb && rm /tmp/rstudio.deb && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a34f109d2828
+Step 39/80 : RUN curl --silent --location --fail https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb > /tmp/shiny.deb && echo '9aeef6613e7f58f21c97a4600921340e /tmp/shiny.deb' | md5sum -c - && dpkg -i /tmp/shiny.deb && rm /tmp/shiny.deb
+ ---> Using cache
+ ---> 25d65e1888c1
+Step 40/80 : USER ${NB_USER}
+ ---> Using cache
+ ---> 33fb38825ff6
+Step 41/80 : RUN pip install --no-cache-dir https://github.com/jupyterhub/jupyter-server-proxy/archive/7ac0125.zip && pip install --no-cache-dir jupyter-rsession-proxy==1.0b6 && jupyter serverextension enable jupyter_server_proxy --sys-prefix && jupyter nbextension install --py jupyter_server_proxy --sys-prefix && jupyter nbextension enable --py jupyter_server_proxy --sys-prefix
+ ---> Using cache
+ ---> 984aa7af5711
+Step 42/80 : USER root
+ ---> Using cache
+ ---> 9c1f3fe1e7db
+Step 43/80 : RUN install -o ${NB_USER} -g ${NB_USER} -d /var/log/shiny-server && install -o ${NB_USER} -g ${NB_USER} -d /var/lib/shiny-server && install -o ${NB_USER} -g ${NB_USER} /dev/null /var/log/shiny-server.log && install -o ${NB_USER} -g ${NB_USER} /dev/null /var/run/shiny-server.pid
+ ---> Using cache
+ ---> ef676e9adb96
+Step 44/80 : RUN sed -i -e '/^R_LIBS_USER=/s/^/#/' /etc/R/Renviron && echo "R_LIBS_USER=${R_LIBS_USER}" >> /etc/R/Renviron
+ ---> Using cache
+ ---> 33986d0e8f69
+Step 45/80 : USER ${NB_USER}
+ ---> Using cache
+ ---> 3048c2b83056
+Step 46/80 : RUN R --quiet -e "install.packages('devtools', repos='https://mran.microsoft.com/snapshot/2018-02-01', method='libcurl')" && R --quiet -e "devtools::install_github('IRkernel/IRkernel', ref='1.0.2')" && R --quiet -e "IRkernel::installspec(prefix='$NB_PYTHON_PREFIX')"
+ ---> Using cache
+ ---> fa2813ebf3fd
+Step 47/80 : RUN R --quiet -e "install.packages('shiny', repos='https://mran.microsoft.com/snapshot/2019-04-10', method='libcurl')"
+ ---> Using cache
+ ---> a333c1d57b20
+Step 48/80 : USER root
+ ---> Using cache
+ ---> 88278d323595
+Step 49/80 : RUN echo "options(repos = c(CRAN='https://mran.microsoft.com/snapshot/2019-04-10'), download.file.method = 'libcurl')" > /etc/R/Rprofile.site
+ ---> Using cache
+ ---> 28cf2f70d22d
+Step 50/80 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 578007614ce9
+Step 51/80 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 07b96f9ac94f
+Step 52/80 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> c2ad0441e50b
+Step 53/80 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 28be8648e79a
+Step 54/80 : ENV STENCILA_ARCHIVE_DIR ${REPO_DIR}/labs
+ ---> Using cache
+ ---> 1041d7e8be42
+Step 55/80 : ENV STENCILA_ARCHIVE lab2.stencila
+ ---> Using cache
+ ---> 620148b68ab8
+Step 56/80 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> de64d4218b0d
+Step 57/80 : COPY src/binder/install.R ${REPO_DIR}/binder/install.R
+ ---> Using cache
+ ---> 990d8864acfc
+Step 58/80 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> Using cache
+ ---> beca27b425f4
+Step 59/80 : USER root
+ ---> Using cache
+ ---> bb8eb7e3462d
+Step 60/80 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 2e8ddea68c52
+Step 61/80 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends curl htop vim wget && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 22b5cd392519
+Step 62/80 : USER ${NB_USER}
+ ---> Using cache
+ ---> 94ae9208e528
+Step 63/80 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache https://github.com/stencila/py/archive/f1260796.tar.gz && ${KERNEL_PYTHON_PREFIX}/bin/python -m stencila register
+ ---> Using cache
+ ---> 74db84949dad
+Step 64/80 : RUN ${NB_PYTHON_PREFIX}/bin/pip install --no-cache nbstencilaproxy==0.1.1 && jupyter serverextension enable --sys-prefix --py nbstencilaproxy && jupyter nbextension install    --sys-prefix --py nbstencilaproxy && jupyter nbextension enable     --sys-prefix --py nbstencilaproxy
+ ---> Using cache
+ ---> aa76baa35b61
+Step 65/80 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Using cache
+ ---> 442c3c989e4f
+Step 66/80 : RUN Rscript binder/install.R && touch /tmp/.preassembled || true
+ ---> Using cache
+ ---> e1f082774c2b
+Step 67/80 : USER root
+ ---> Using cache
+ ---> c6e1ed1da251
+Step 68/80 : COPY src/ ${REPO_DIR}
+ ---> 97a7a60b8cf3
+Step 69/80 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 09442a5869e5
+Removing intermediate container 09442a5869e5
+ ---> bd67b4e0eb07
+Step 70/80 : USER ${NB_USER}
+ ---> Running in eed96c424bbf
+Removing intermediate container eed96c424bbf
+ ---> f0f9f00643de
+Step 71/80 : RUN if [ ! -f /tmp/.preassembled ]; then Rscript binder/install.R; fi
+ ---> Running in ef10235494e7
+Removing intermediate container ef10235494e7
+ ---> 63847ba379c0
+Step 72/80 : LABEL repo2docker.ref="None"
+ ---> Running in b2afbad5c93d
+Removing intermediate container b2afbad5c93d
+ ---> 0873ff272860
+Step 73/80 : LABEL repo2docker.repo="local"
+ ---> Running in 6f74d9c52a77
+Removing intermediate container 6f74d9c52a77
+ ---> e8ffdc75a237
+Step 74/80 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 66ea89053763
+Removing intermediate container 66ea89053763
+ ---> 5a43d45c430e
+Step 75/80 : USER ${NB_USER}
+ ---> Running in 471f9ed92a6b
+Removing intermediate container 471f9ed92a6b
+ ---> 9e9904e96eba
+Step 76/80 : RUN chmod +x binder/postBuild
+ ---> Running in 00f03e473c3a
+Removing intermediate container 00f03e473c3a
+ ---> 810cd252de66
+Step 77/80 : RUN ./binder/postBuild
+ ---> Running in 88c363e9e499
+sos jupyter kernel spec is installed
+-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\-\|/-\|/-\|/-\|/-\-\|/-\|[91mInstalling /srv/conda/envs/notebook/lib/python3.7/site-packages/beakerx/static -> beakerx
+[0m[91mSymlinking: /srv/conda/envs/notebook/share/jupyter/nbextensions/beakerx -> /srv/conda/envs/notebook/lib/python3.7/site-packages/beakerx/static
+[0m[91m- Validating: [32mOK[0m
+[0m[91mInstalling /srv/conda/envs/notebook/lib/python3.7/site-packages/beakerx/static -> beakerx
+[0m[91m- Validating: [32mOK[0m
+[0m[91m
+    To initialize this nbextension in the browser every time the notebook (or other app) loads:
+    
+          jupyter nbextension enable beakerx --py --sys-prefix
+    
+[0m[91mEnabling tree extension beakerx/tree...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension beakerx/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling: beakerx
+- Writing config: /srv/conda/envs/notebook/etc/jupyter
+[0m[91m    - Validating...
+[0m[91m      beakerx 1.4.1 [32mOK[0m
+[0m[91m[InstallKernelSpec] Installed kernelspec clojure in /srv/conda/envs/notebook/share/jupyter/kernels/clojure
+[0m[91m[InstallKernelSpec] Installed kernelspec java in /srv/conda/envs/notebook/share/jupyter/kernels/java
+[0m[91m[InstallKernelSpec] Installed kernelspec sql in /srv/conda/envs/notebook/share/jupyter/kernels/sql
+[0m[91m[InstallKernelSpec] Installed kernelspec groovy in /srv/conda/envs/notebook/share/jupyter/kernels/groovy
+[0m[91m[InstallKernelSpec] Installed kernelspec scala in /srv/conda/envs/notebook/share/jupyter/kernels/scala
+[0m[91m[InstallKernelSpec] Installed kernelspec kotlin in /srv/conda/envs/notebook/share/jupyter/kernels/kotlin
+[0m-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\-\|/-\|/-\|/-\|/-\|/-\|/-\-\|/-\|/-\-\|/-\|/-[91mEnabling: jupyterlab_git
+- Writing config: /home/vildeeide/.jupyter
+[0m[91m    - Validating...
+[0m[91m      jupyterlab_git 0.20.0 [32mOK[0m
+[0m-\|/-\|/-\|/-\|/-\|/-\|/-\-\|/-\|/-\|/-\|/--\|/-\|[91mEnabling: jupyterlab_iframe.extension
+[0m[91m- Writing config: /home/vildeeide/.jupyter
+[0m[91m    - Validating...
+      jupyterlab_iframe.extension  [32mOK[0m
+[0m-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|-\|/-\|-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|[91mInstalling /srv/conda/envs/notebook/lib/python3.7/site-packages/rise/static -> rise
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/rise.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/README.md
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/rise.yaml
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/main.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/main.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/notes_rise/package.json
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/notes_rise/index.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/notes_rise/notes.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/notes_rise/notes.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/chalkboard.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/package.json
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/README.md
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/img/sponge.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/img/boardmarker.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/img/blackboard.png
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/img/whiteboard.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js-chalkboard/img/chalk.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/package.json
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/README.md
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/.travis.yml
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/demo.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/LICENSE
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/index.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/CONTRIBUTING.md
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/bower.json
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/gruntfile.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/js/reveal.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/qunit-2.5.0.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-iframes.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-grid-navigation.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-pdf.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/qunit-2.5.0.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-element-attributes.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-options.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-pdf.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-slide-attributes.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-options.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-dependencies.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-dependencies-async.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-element-attributes.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-external.js
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-slide-attributes.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-plugins.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/simple.md
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-state.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/test-markdown-external.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/assets/external-script-a.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/assets/external-script-b.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/assets/external-script-c.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/assets/external-script-d.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/math.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/slide-backgrounds.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/embedded-media.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/slide-transitions.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/barebones.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/assets/beeping.txt
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/assets/image1.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/assets/beeping.wav
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/test/examples/assets/image2.png
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/math/math.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/zoom-js/zoom.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/highlight/highlight.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/multiplex/client.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/multiplex/package.json
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/multiplex/index.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/multiplex/master.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/notes-server/client.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/notes-server/index.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/notes-server/notes.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/print-pdf/print-pdf.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/markdown/markdown.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/markdown/example.md
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/markdown/example.html
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/markdown/marked.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/notes/notes.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/notes/notes.html
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/plugin/search/search.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/js/promise.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/js/html5shiv.js
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/css/zenburn.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/css/monokai.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibold.ttf
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibold.eot
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibolditalic.eot
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-italic.ttf
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibolditalic.ttf
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-italic.eot
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro.css
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-italic.woff
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/LICENSE
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-regular.woff
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibold.woff
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-regular.eot
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-regular.ttf
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/source-sans-pro/source-sans-pro-semibolditalic.woff
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/league-gothic/league-gothic.css
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/league-gothic/league-gothic.ttf
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/league-gothic/LICENSE
+Up to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/league-gothic/league-gothic.woff
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/lib/font/league-gothic/league-gothic.eot
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/reset.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/reveal.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/reveal.css.upstream
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/reveal.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/blood.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/blood.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/black.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/moon.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/README.md
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/white.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/night.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/beige.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/sky.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/simple.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/white.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/league.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/serif.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/beige.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/black.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/night.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/moon.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/league.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/solarized.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/simple.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/solarized.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/sky.css.patched
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/serif.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/black.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/solarized.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/beige.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/sky.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/moon.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/simple.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/league.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/serif.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/blood.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/night.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/source/white.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/template/mixins.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/template/theme.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/theme/template/settings.scss
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/print/pdf.css
+[0m[91mUp to date: /srv/conda/envs/notebook/share/jupyter/nbextensions/rise/reveal.js/css/print/paper.css
+[0m[91m- Validating: [32mOK[0m
+[0m[91m
+    To initialize this nbextension in the browser every time the notebook (or other app) loads:
+    
+          jupyter nbextension enable rise --py --sys-prefix
+    
+[0m[91mEnabling notebook extension rise/main...
+[0m[91m      - Validating: [32mOK[0m
+[0m-\|/-\|/-\|/-\|/--\|/-\|/-\-\|/-\|/-\-\|/-\|/-[91mEnabling: jupyter_server_proxy
+[0m[91m- Writing config: /srv/conda/envs/notebook/etc/jupyter
+[0m[91m    - Validating...
+[0m[91m      jupyter_server_proxy  [32mOK[0m
+[0m-\|/-\|/-\|/-\|/-\|/-\|/An error occured.
+ValueError: This extension does not yet support the current version of JupyterLab.
+
+
+Conflicting Dependencies:
+JupyterLab              Extension      Package
+>=1.2.1 <1.3.0          >=0.19.1 <0.20.0@jupyterlab/application
+>=1.2.1 <1.3.0          >=0.19.1 <0.20.0@jupyterlab/launcher
+See the log file for details:  /tmp/jupyterlab-debug-sp6xjjxi.log
+-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/[91musage: jupyter-lab [-h] [--log-level LABBUILDAPP.LOG_LEVEL]
+                   [--config LABBUILDAPP.CONFIG_FILE]
+                   [--app-dir LABBUILDAPP.APP_DIR] [--name LABBUILDAPP.NAME]
+                   [--version LABBUILDAPP.VERSION]
+                   [--dev-build LABBUILDAPP.DEV_BUILD]
+                   [--minimize LABBUILDAPP.MINIMIZE]
+                   [--debug-log-path LABBUILDAPP.DEBUG_LOG_PATH] [--debug]
+                   [--generate-config] [-y] [--no-browser] [--pylab]
+                   [--no-mathjax] [--allow-root] [--script] [--no-script]
+jupyter-lab: error: argument --dev-build: expected one argument
+[0mRemoving intermediate container 88c363e9e499
+The command '/bin/sh -c ./binder/postBuild' returned a non-zero code: 2Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-thedatasociety-lab-cassandra:35286b1', '/tmp/r2d-test-2020-07-08T07.08_p_ye12t/github.com/thedatasociety/lab-cassandra']' returned non-zero exit status 1.

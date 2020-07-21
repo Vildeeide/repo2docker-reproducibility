@@ -1,0 +1,53 @@
+[I 200710 14:22:43 inrepo:36] Testing notebook deeplearning2/neural-sr.ipynb
+[I 200710 14:22:44 inrepo:45] Found kernel python3
+[I 200710 14:22:44 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%matplotlib inline
+import importlib
+import utils2; importlib.reload(utils2)
+from utils2 import *
+
+from scipy.optimize import fmin_l_bfgs_b
+from scipy.misc import imsave
+from keras import metrics
+
+from vgg16_avg import VGG16_Avg
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-0faa6c861035>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'matplotlib'[0m[0;34m,[0m [0;34m'inline'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mimport[0m [0mimportlib[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mimport[0m [0mutils2[0m[0;34m;[0m [0mimportlib[0m[0;34m.[0m[0mreload[0m[0;34m([0m[0mutils2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;32mfrom[0m [0mutils2[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;32m~/deeplearning2/utils2.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mmath[0m[0;34m,[0m [0mkeras[0m[0;34m,[0m [0mdatetime[0m[0;34m,[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m,[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m,[0m [0mkeras[0m[0;34m.[0m[0mbackend[0m [0;32mas[0m [0mK[0m[0;34m,[0m [0mthreading[0m[0;34m,[0m [0mjson[0m[0;34m,[0m [0mre[0m[0;34m,[0m [0mcollections[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mtarfile[0m[0;34m,[0m [0mtensorflow[0m [0;32mas[0m [0mtf[0m[0;34m,[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m,[0m [0mxgboost[0m[0;34m,[0m [0moperator[0m[0;34m,[0m [0mrandom[0m[0;34m,[0m [0mpickle[0m[0;34m,[0m [0mglob[0m[0;34m,[0m [0mos[0m[0;34m,[0m [0mbcolz[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mshutil[0m[0;34m,[0m [0msklearn[0m[0;34m,[0m [0mfunctools[0m[0;34m,[0m [0mitertools[0m[0;34m,[0m [0mscipy[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mPIL[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0mconcurrent[0m[0;34m.[0m[0mfutures[0m [0;32mimport[0m [0mProcessPoolExecutor[0m[0;34m,[0m [0mas_completed[0m[0;34m,[0m [0mThreadPoolExecutor[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'xgboost'
+ModuleNotFoundError: No module named 'xgboost'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

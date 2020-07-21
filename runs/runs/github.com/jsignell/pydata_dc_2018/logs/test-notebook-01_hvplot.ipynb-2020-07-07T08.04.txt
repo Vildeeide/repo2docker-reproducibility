@@ -1,0 +1,62 @@
+[I 200707 08:04:37 inrepo:35] Testing notebook 01_hvplot.ipynb
+[I 200707 08:04:40 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+import hvplot.pandas
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-2-801353b4eb57>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mhvplot[0m[0;34m.[0m[0mpandas[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/hvplot/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     12[0m [0;32mfrom[0m [0mholoviews[0m [0;32mimport[0m [0mStore[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;34m[0m[0m
+[0;32m---> 14[0;31m [0;32mfrom[0m [0;34m.[0m[0mconverter[0m [0;32mimport[0m [0mHoloViewsConverter[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     15[0m [0;32mfrom[0m [0;34m.[0m[0mutil[0m [0;32mimport[0m [0mget_ipy[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m [0;32mfrom[0m [0;34m.[0m[0mutilities[0m [0;32mimport[0m [0msave[0m[0;34m,[0m [0mshow[0m [0;31m# noqa[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/hvplot/converter.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     21[0m     [0mViolin[0m[0;34m,[0m [0mContours[0m[0;34m,[0m [0mPolygons[0m[0;34m,[0m [0mPoints[0m[0;34m,[0m [0mPath[0m[0;34m,[0m [0mLabels[0m[0;34m,[0m [0mRGB[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m )
+[0;32m---> 23[0;31m [0;32mfrom[0m [0mholoviews[0m[0;34m.[0m[0mplotting[0m[0;34m.[0m[0mbokeh[0m [0;32mimport[0m [0mOverlayPlot[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     24[0m [0;32mfrom[0m [0mholoviews[0m[0;34m.[0m[0mplotting[0m[0;34m.[0m[0mutil[0m [0;32mimport[0m [0mprocess_cmap[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     25[0m [0;32mfrom[0m [0mholoviews[0m[0;34m.[0m[0moperation[0m [0;32mimport[0m [0mhistogram[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/holoviews/plotting/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     12[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0melement[0m[0;34m.[0m[0msankey[0m [0;32mimport[0m [0m_layout_sankey[0m[0;34m,[0m [0mSankey[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;32mfrom[0m [0;34m.[0m[0mplot[0m [0;32mimport[0m [0mPlot[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m [0;32mfrom[0m [0;34m.[0m[0mrenderer[0m [0;32mimport[0m [0mRenderer[0m[0;34m,[0m [0mHTML_TAGS[0m [0;31m# noqa (API import)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     15[0m [0;32mfrom[0m [0;34m.[0m[0mutil[0m [0;32mimport[0m [0mlist_cmaps[0m [0;31m# noqa (API import)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m [0;32mfrom[0m [0;34m.[0m[0;34m.[0m[0moperation[0m[0;34m.[0m[0mstats[0m [0;32mimport[0m [0munivariate_kde[0m[0;34m,[0m [0mbivariate_kde[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/holoviews/plotting/renderer.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     21[0m [0;34m[0m[0m
+[1;32m     22[0m [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0mPlot[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 23[0;31m [0;32mfrom[0m [0mpyviz_comms[0m [0;32mimport[0m [0mCommManager[0m[0;34m,[0m [0mJupyterCommManager[0m[0;34m,[0m [0membed_js[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     24[0m [0;32mfrom[0m [0;34m.[0m[0mutil[0m [0;32mimport[0m [0mdisplayable[0m[0;34m,[0m [0mcollate[0m[0;34m,[0m [0minitialize_dynamic[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     25[0m [0;34m[0m[0m
+
+[0;31mImportError[0m: cannot import name 'embed_js' from 'pyviz_comms' (/srv/conda/envs/notebook/lib/python3.7/site-packages/pyviz_comms/__init__.py)
+ImportError: cannot import name 'embed_js' from 'pyviz_comms' (/srv/conda/envs/notebook/lib/python3.7/site-packages/pyviz_comms/__init__.py)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,70 @@
+[I 200708 06:11:09 inrepo:36] Testing notebook notebooks/Preprocessing.ipynb
+[W 200708 06:11:09 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200708 06:11:09 inrepo:60] Using kernel python3 to provide language: python
+[I 200708 06:11:10 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+secs_elapsed = sessions.groupby('id')['secs_elapsed']
+
+secs_elapsed = secs_elapsed.agg(
+    {
+        'secs_elapsed_sum': np.sum,
+        'secs_elapsed_mean': np.mean,
+        'secs_elapsed_min': np.min,
+        'secs_elapsed_max': np.max,
+        'secs_elapsed_median': np.median,
+        'secs_elapsed_std': np.std,
+        'secs_elapsed_var': np.var,
+        'day_pauses': lambda x: (x > 86400).sum(),
+        'long_pauses': lambda x: (x > 300000).sum(),
+        'short_pauses': lambda x: (x < 3600).sum(),
+        'session_length' : np.count_nonzero
+    }
+)
+
+users = users.join(secs_elapsed, on='id')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mSpecificationError[0m                        Traceback (most recent call last)
+[0;32m<ipython-input-17-8b04fe8a4adc>[0m in [0;36m<module>[0;34m[0m
+[1;32m     13[0m         [0;34m'long_pauses'[0m[0;34m:[0m [0;32mlambda[0m [0mx[0m[0;34m:[0m [0;34m([0m[0mx[0m [0;34m>[0m [0;36m300000[0m[0;34m)[0m[0;34m.[0m[0msum[0m[0;34m([0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m         [0;34m'short_pauses'[0m[0;34m:[0m [0;32mlambda[0m [0mx[0m[0;34m:[0m [0;34m([0m[0mx[0m [0;34m<[0m [0;36m3600[0m[0;34m)[0m[0;34m.[0m[0msum[0m[0;34m([0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 15[0;31m         [0;34m'session_length'[0m [0;34m:[0m [0mnp[0m[0;34m.[0m[0mcount_nonzero[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     16[0m     }
+[1;32m     17[0m )
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/groupby/generic.py[0m in [0;36maggregate[0;34m(self, func, *args, **kwargs)[0m
+[1;32m    251[0m             [0;31m# but not the class list / tuple itself.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    252[0m             [0mfunc[0m [0;34m=[0m [0m_maybe_mangle_lambdas[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 253[0;31m             [0mret[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_aggregate_multiple_funcs[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    254[0m             [0;32mif[0m [0mrelabeling[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    255[0m                 [0mret[0m[0;34m.[0m[0mcolumns[0m [0;34m=[0m [0mcolumns[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/groupby/generic.py[0m in [0;36m_aggregate_multiple_funcs[0;34m(self, arg)[0m
+[1;32m    292[0m             [0;31m# GH 15931[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    293[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_selected_obj[0m[0;34m,[0m [0mSeries[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 294[0;31m                 [0;32mraise[0m [0mSpecificationError[0m[0;34m([0m[0;34m"nested renamer is not supported"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    295[0m [0;34m[0m[0m
+[1;32m    296[0m             [0mcolumns[0m [0;34m=[0m [0mlist[0m[0;34m([0m[0marg[0m[0;34m.[0m[0mkeys[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mSpecificationError[0m: nested renamer is not supported
+SpecificationError: nested renamer is not supported
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

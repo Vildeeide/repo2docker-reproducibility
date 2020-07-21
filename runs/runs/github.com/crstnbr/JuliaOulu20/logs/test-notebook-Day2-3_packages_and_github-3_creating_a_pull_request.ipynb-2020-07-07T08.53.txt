@@ -1,0 +1,6 @@
+[I 200707 08:55:37 inrepo:35] Testing notebook Day2/3_packages_and_github/3_creating_a_pull_request.ipynb
+Starting kernel event loops.
+[I 200707 08:55:45 execute:404] Executing notebook with kernel: julia-1.3
+[I 200707 08:55:50 inrepo:41] Saving exported notebook to /io/notebooks/Day2/3_packages_and_github/3_creating_a_pull_request.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

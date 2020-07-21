@@ -1,0 +1,228 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T08.12r2lydcqe/github.com/kvh/ramp.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 83a471cc4095
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 29321491e1be
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 71f3c94fb638
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a1fd14f9f626
+Removing intermediate container a1fd14f9f626
+ ---> 6f249bb3dfc7
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 922f00417427
+Removing intermediate container 922f00417427
+ ---> 5020f8163b48
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 92e58f34c2c3
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting gensim
+  Downloading gensim-3.8.3-cp37-cp37m-manylinux1_x86_64.whl (24.2 MB)
+Collecting prettytable
+  Downloading prettytable-0.7.2.tar.bz2 (21 kB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 3)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting smart-open>=1.8.1
+  Downloading smart_open-2.1.0.tar.gz (116 kB)
+Requirement already satisfied: six>=1.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from gensim->-r requirements.txt (line 5)) (1.14.0)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from smart-open>=1.8.1->gensim->-r requirements.txt (line 5)) (2.22.0)
+Collecting boto
+  Downloading boto-2.49.0-py2.py3-none-any.whl (1.4 MB)
+Collecting boto3
+  Downloading boto3-1.14.18-py2.py3-none-any.whl (128 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->smart-open>=1.8.1->gensim->-r requirements.txt (line 5)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->smart-open>=1.8.1->gensim->-r requirements.txt (line 5)) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->smart-open>=1.8.1->gensim->-r requirements.txt (line 5)) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->smart-open>=1.8.1->gensim->-r requirements.txt (line 5)) (2019.11.28)
+Collecting jmespath<1.0.0,>=0.7.1
+  Downloading jmespath-0.10.0-py2.py3-none-any.whl (24 kB)
+Collecting s3transfer<0.4.0,>=0.3.0
+  Downloading s3transfer-0.3.3-py2.py3-none-any.whl (69 kB)
+Collecting botocore<1.18.0,>=1.17.18
+  Downloading botocore-1.17.18-py2.py3-none-any.whl (6.3 MB)
+Collecting docutils<0.16,>=0.10
+  Downloading docutils-0.15.2-py3-none-any.whl (547 kB)
+Building wheels for collected packages: prettytable, smart-open
+  Building wheel for prettytable (setup.py): started
+  Building wheel for prettytable (setup.py): finished with status 'done'
+  Created wheel for prettytable: filename=prettytable-0.7.2-py3-none-any.whl size=13699 sha256=35b9568e23f5ae15a3f1e4892e6b4860877b19794e9289fd090b50444d2487ee
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p64tq9ay/wheels/8c/76/0b/eb9eb3da7e2335e3577e3f96a0ae9f74f206e26457bd1a2bc8
+  Building wheel for smart-open (setup.py): started
+  Building wheel for smart-open (setup.py): finished with status 'done'
+  Created wheel for smart-open: filename=smart_open-2.1.0-py3-none-any.whl size=110317 sha256=e4b5ba093b20f1aaf1da718fce90bfebea374d2bcd0c2f74fd755297b94b0f9f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p64tq9ay/wheels/56/b5/6d/86dbe4f29d4688e5163a8b8c6b740494310040286fca4dc648
+Successfully built prettytable smart-open
+Installing collected packages: numpy, scipy, pytz, pandas, joblib, threadpoolctl, scikit-learn, boto, jmespath, docutils, botocore, s3transfer, boto3, smart-open, gensim, prettytable
+Successfully installed boto-2.49.0 boto3-1.14.18 botocore-1.17.18 docutils-0.15.2 gensim-3.8.3 jmespath-0.10.0 joblib-0.16.0 numpy-1.19.0 pandas-1.0.5 prettytable-0.7.2 pytz-2020.1 s3transfer-0.3.3 scikit-learn-0.23.1 scipy-1.5.1 smart-open-2.1.0 threadpoolctl-2.1.0
+Removing intermediate container 92e58f34c2c3
+ ---> b995965b478d
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in d3f882638b74
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Building wheels for collected packages: ramp
+  Building wheel for ramp (setup.py): started
+  Building wheel for ramp (setup.py): finished with status 'done'
+  Created wheel for ramp: filename=ramp-1.0a0-py3-none-any.whl size=47774 sha256=1c67493b0bce0c2fe2877c9788ff75ac9d393afc97174bc2fdc71a80c97ebf65
+  Stored in directory: /tmp/pip-ephem-wheel-cache-3drh78de/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built ramp
+Installing collected packages: ramp
+Successfully installed ramp-1.0a0
+Removing intermediate container d3f882638b74
+ ---> d3dd1759f2b4
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in c89d43c557a4
+Removing intermediate container c89d43c557a4
+ ---> 1852881ab98d
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 64733ecfe7cc
+Removing intermediate container 64733ecfe7cc
+ ---> e891f2ba4693
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 46946637aa68
+Removing intermediate container 46946637aa68
+ ---> 7467d33b35c1
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 36365c6aa7fd
+Removing intermediate container 36365c6aa7fd
+ ---> 84e18c2cb122
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 7cc389d67233
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in da846c3e8076
+Removing intermediate container da846c3e8076
+ ---> a38478f1f9fe
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 142b98c218d5
+Removing intermediate container 142b98c218d5
+ ---> e5cec52882d1
+{"aux": {"ID": "sha256:e5cec52882d1ba124cda252dd559fb0072295543a809fdfaab551f2bcf8a622c"}}Successfully built e5cec52882d1
+Successfully tagged r2d-test-github.com-kvh-ramp:8618ce6

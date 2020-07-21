@@ -1,0 +1,5 @@
+[I 200721 08:11:01 inrepo:36] Testing notebook example notebook/.ipynb_checkpoints/exampleNotebook-checkpoint.ipynb
+[I 200721 08:11:02 execute:404] Executing notebook with kernel: python
+[I 200721 08:11:02 inrepo:79] Saving exported notebook to /io/notebooks/example notebook/.ipynb_checkpoints/exampleNotebook-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

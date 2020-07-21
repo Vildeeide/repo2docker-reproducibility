@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/datastory/avif-stats,master,03a2920,2017-07-31T22:43:12+02:00,build,build,True,github.com/datastory/avif-stats/logs/build-master-2020-07-21T07.32.txt,2020-07-21T07:32:08.900013,2020-07-21T07.32,0.11.0
+https://github.com/datastory/avif-stats,master,03a2920,2017-07-31T22:43:12+02:00,notebook,pozorovani-mapky.ipynb,False,github.com/datastory/avif-stats/logs/test-notebook-pozorovani-mapky.ipynb-2020-07-21T07.32.txt,2020-07-21T07:32:08.900013,2020-07-21T07.32,0.11.0
+https://github.com/datastory/avif-stats,master,03a2920,2017-07-31T22:43:12+02:00,notebook,pozorovani-mapky-anim.ipynb,False,github.com/datastory/avif-stats/logs/test-notebook-pozorovani-mapky-anim.ipynb-2020-07-21T07.32.txt,2020-07-21T07:32:08.900013,2020-07-21T07.32,0.11.0
+https://github.com/datastory/avif-stats,master,03a2920,2017-07-31T22:43:12+02:00,notebook,pozorovani-tydny.ipynb,False,github.com/datastory/avif-stats/logs/test-notebook-pozorovani-tydny.ipynb-2020-07-21T07.32.txt,2020-07-21T07:32:08.900013,2020-07-21T07.32,0.11.0

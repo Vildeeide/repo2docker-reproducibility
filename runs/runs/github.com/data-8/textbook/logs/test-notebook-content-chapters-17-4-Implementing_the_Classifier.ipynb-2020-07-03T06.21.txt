@@ -1,0 +1,5 @@
+[I 200703 06:41:06 inrepo:35] Testing notebook content/chapters/17/4/Implementing_the_Classifier.ipynb
+[I 200703 06:41:08 execute:404] Executing notebook with kernel: python3
+[I 200703 06:41:13 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/17/4/Implementing_the_Classifier.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

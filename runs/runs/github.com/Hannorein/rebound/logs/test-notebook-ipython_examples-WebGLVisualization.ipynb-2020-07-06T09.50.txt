@@ -1,0 +1,13 @@
+[I 200706 09:51:09 inrepo:35] Testing notebook ipython_examples/WebGLVisualization.ipynb
+[I 200706 09:51:10 execute:404] Executing notebook with kernel: python3
+[I 200706 09:51:15 inrepo:41] Saving exported notebook to /io/notebooks/ipython_examples/WebGLVisualization.ipynb
+[E 200706 09:51:15 __init__:109] Notebook JSON is invalid: {'version_major': 2, 'version_minor': 0, 'model_id': 'd732ce5d7f7c40f5a22a428289915e7c'} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][1]['outputs'][1]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': 'd732ce5d7f7c40f5a22a428289915e7c',
+     'version_major': 2,
+     'version_minor': 0}
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

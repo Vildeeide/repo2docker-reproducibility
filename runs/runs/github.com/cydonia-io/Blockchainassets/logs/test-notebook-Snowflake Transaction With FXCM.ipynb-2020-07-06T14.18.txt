@@ -1,0 +1,120 @@
+[I 200706 14:19:18 inrepo:35] Testing notebook Snowflake Transaction With FXCM.ipynb
+[I 200706 14:19:19 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#Cadena de conexión Snowflake
+username   = 'Blockchainassets'
+mypassword = 'BonneNouvelle2020'
+myaccount  = 'iw74759.eu-central-1'
+warehouse  = 'COMPUTE_WH'
+database   = 'DEMO_DB'
+
+conn = sf.connect(user=username, password = mypassword, account = myaccount)
+#Función que permite realizar la conexion a la nube de Snowflake y realizar procedimientos sql
+def execute_query(connection, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    cursor.close()
+    
+#Conexión al WareHouse y el nombre de la Base de Datos a usar
+try:
+    sql = 'use {}'.format(database)
+    execute_query(conn,sql)
+    
+    sql = 'use warehouse {}'.format(warehouse)
+    execute_query(conn,sql)
+    
+    try:   
+        sql = 'alter warehouse {} resume'.format(warehouse)
+        execute_query(conn,sql)
+    except: 
+        pass
+except Exception as e:
+    print(e)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mDatabaseError[0m                             Traceback (most recent call last)
+[0;32m<ipython-input-2-cf91106c11b2>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0mdatabase[0m   [0;34m=[0m [0;34m'DEMO_DB'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;34m[0m[0m
+[0;32m----> 8[0;31m [0mconn[0m [0;34m=[0m [0msf[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0muser[0m[0;34m=[0m[0musername[0m[0;34m,[0m [0mpassword[0m [0;34m=[0m [0mmypassword[0m[0;34m,[0m [0maccount[0m [0;34m=[0m [0mmyaccount[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;31m#Función que permite realizar la conexion a la nube de Snowflake y realizar procedimientos sql[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mdef[0m [0mexecute_query[0m[0;34m([0m[0mconnection[0m[0;34m,[0m [0mquery[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/__init__.py[0m in [0;36mConnect[0;34m(**kwargs)[0m
+[1;32m     31[0m [0;34m[0m[0m
+[1;32m     32[0m [0;32mdef[0m [0mConnect[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 33[0;31m     [0;32mreturn[0m [0mSnowflakeConnection[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     34[0m [0;34m[0m[0m
+[1;32m     35[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/connection.py[0m in [0;36m__init__[0;34m(self, **kwargs)[0m
+[1;32m    186[0m [0;34m[0m[0m
+[1;32m    187[0m         [0mself[0m[0;34m.[0m[0mconverter[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 188[0;31m         [0mself[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    189[0m         [0mself[0m[0;34m.[0m[0m_telemetry[0m [0;34m=[0m [0mTelemetryClient[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_rest[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    190[0m         [0mself[0m[0;34m.[0m[0mtelemetry_enabled[0m [0;34m=[0m [0;32mFalse[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/connection.py[0m in [0;36mconnect[0;34m(self, **kwargs)[0m
+[1;32m    483[0m [0;34m[0m[0m
+[1;32m    484[0m         [0mself[0m[0;34m.[0m[0m__set_error_attributes[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 485[0;31m         [0mself[0m[0;34m.[0m[0m__open_connection[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    486[0m [0;34m[0m[0m
+[1;32m    487[0m     [0;32mdef[0m [0mclose[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mretry[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/connection.py[0m in [0;36m__open_connection[0;34m(self)[0m
+[1;32m    701[0m         if not auth.read_temporary_credential(
+[1;32m    702[0m                 self.account, self.user, self._session_parameters):
+[0;32m--> 703[0;31m             [0mself[0m[0;34m.[0m[0m__authenticate[0m[0;34m([0m[0mauth_instance[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    704[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    705[0m             [0;31m# set the current objects as the session is derived from the id[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/connection.py[0m in [0;36m__authenticate[0;34m(self, auth_instance)[0m
+[1;32m    943[0m             [0mmfa_callback[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0m_mfa_callback[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    944[0m             [0mpassword_callback[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0m_password_callback[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 945[0;31m             [0msession_parameters[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0m_session_parameters[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    946[0m         )
+[1;32m    947[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/auth.py[0m in [0;36mauthenticate[0;34m(self, auth_instance, account, user, database, schema, warehouse, role, passcode, passcode_in_password, mfa_callback, password_callback, session_parameters, timeout)[0m
+[1;32m    306[0m                     ),
+[1;32m    307[0m                     [0;34mu'errno'[0m[0;34m:[0m [0mER_FAILED_TO_CONNECT_TO_DB[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 308[0;31m                     [0;34mu'sqlstate'[0m[0;34m:[0m [0mSQLSTATE_CONNECTION_WAS_NOT_ESTABLISHED[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    309[0m                 })
+[1;32m    310[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/errors.py[0m in [0;36merrorhandler_wrapper[0;34m(connection, cursor, errorclass, errorvalue)[0m
+[1;32m     98[0m             [0;32mreturn[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     99[0m         [0;32melif[0m [0mconnection[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 100[0;31m             [0mconnection[0m[0;34m.[0m[0merrorhandler[0m[0;34m([0m[0mconnection[0m[0;34m,[0m [0mcursor[0m[0;34m,[0m [0merrorclass[0m[0;34m,[0m [0merrorvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    101[0m             [0;32mreturn[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    102[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/snowflake/connector/errors.py[0m in [0;36mdefault_errorhandler[0;34m(connection, cursor, errorclass, errorvalue)[0m
+[1;32m     71[0m             [0msqlstate[0m[0;34m=[0m[0merrorvalue[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34mu'sqlstate'[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     72[0m             [0msfqid[0m[0;34m=[0m[0merrorvalue[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34mu'sfqid'[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 73[0;31m             done_format_msg=errorvalue.get(u'done_format_msg'))
+[0m[1;32m     74[0m [0;34m[0m[0m
+[1;32m     75[0m     [0;34m@[0m[0mstaticmethod[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mDatabaseError[0m: 250001 (08001): Failed to connect to DB: iw74759.eu-central-1.snowflakecomputing.com:443. Your free trial has ended and all of your virtual warehouses have been suspended. Add billing information in the Snowflake web UI to continue using the full set of Snowflake features.
+DatabaseError: 250001 (08001): Failed to connect to DB: iw74759.eu-central-1.snowflakecomputing.com:443. Your free trial has ended and all of your virtual warehouses have been suspended. Add billing information in the Snowflake web UI to continue using the full set of Snowflake features.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

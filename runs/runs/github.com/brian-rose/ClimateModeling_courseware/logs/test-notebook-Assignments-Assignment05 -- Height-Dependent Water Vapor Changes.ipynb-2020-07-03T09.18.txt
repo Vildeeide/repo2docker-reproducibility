@@ -1,0 +1,5 @@
+[I 200703 09:19:41 inrepo:35] Testing notebook Assignments/Assignment05 -- Height-Dependent Water Vapor Changes.ipynb
+[I 200703 09:19:42 execute:404] Executing notebook with kernel: python3
+[I 200703 09:19:42 inrepo:41] Saving exported notebook to /io/notebooks/Assignments/Assignment05 -- Height-Dependent Water Vapor Changes.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

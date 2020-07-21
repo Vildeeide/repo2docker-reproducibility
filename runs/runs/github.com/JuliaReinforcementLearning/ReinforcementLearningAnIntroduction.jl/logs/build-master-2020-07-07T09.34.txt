@@ -1,0 +1,385 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T09.34g710icn_/github.com/JuliaReinforcementLearning/ReinforcementLearningAnIntroduction.jl.
+Using JuliaProjectTomlBuildPack builder
+Step 1/56 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/56 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/56 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/56 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/56 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/56 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/56 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/56 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/56 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/56 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/56 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/56 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/56 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/56 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/56 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/56 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/56 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/56 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/56 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/56 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/56 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/56 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/56 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/56 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/56 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/56 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/56 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/56 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/56 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/56 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/56 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/56 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/56 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/56 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/56 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/56 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/56 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/56 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/56 : USER root
+ ---> Using cache
+ ---> b5bb45c841fe
+Step 46/56 : COPY src/ ${REPO_DIR}
+ ---> d890c6f1175f
+Step 47/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 1950538e5362
+Removing intermediate container 1950538e5362
+ ---> ecbb5104fda0
+Step 48/56 : USER ${NB_USER}
+ ---> Running in 80ae3eb7489c
+Removing intermediate container 80ae3eb7489c
+ ---> be4bf0d7e31d
+Step 49/56 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in e0aa1d56ebe0
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [========>                                ]  18.9 %
+    Fetching: [===================>                     ]  46.1 %
+    Resolving Deltas: [===================================>     ]  86.3 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed VersionParsing ── v1.2.0
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed Conda ─────────── v1.4.1
+ Installed Parsers ───────── v1.0.6
+ Installed ZMQ ───────────── v1.2.1
+ Installed MbedTLS ───────── v1.0.2
+ Installed IJulia ────────── v1.21.2
+ Installed JSON ──────────── v0.21.0
+ Installed ZeroMQ_jll ────── v4.3.2+4
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.6
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h Installed NaNMath ────────────────────── v0.3.3
+ Installed libvorbis_jll ──────────────── v1.3.6+4
+ Installed IntelOpenMP_jll ────────────── v2018.0.3+0
+ Installed TimerOutputs ───────────────── v0.5.5
+ Installed QuadGK ─────────────────────── v2.3.1
+ Installed ReinforcementLearningBase ──── v0.7.1
+ Installed GeometryTypes ──────────────── v0.8.3
+ Installed CompilerSupportLibraries_jll ─ v0.3.3+0
+ Installed HDF5_jll ───────────────────── v1.10.5+5
+ Installed NLSolversBase ──────────────── v7.6.1
+ Installed CodecZlib ──────────────────── v0.7.0
+ Installed Interpolations ─────────────── v0.12.9
+ Installed DataAPI ────────────────────── v1.3.0
+ Installed NNlib ──────────────────────── v0.6.6
+ Installed JLD ────────────────────────── v0.10.0
+ Installed Arpack ─────────────────────── v0.4.0
+ Installed Media ──────────────────────── v0.5.0
+ Installed Graphics ───────────────────── v1.0.2
+ Installed CoordinateTransformations ──── v0.5.1
+ Installed StatsPlots ─────────────────── v0.12.0
+ Installed FiniteDiff ─────────────────── v2.3.1
+ Installed DataStructures ─────────────── v0.17.15
+ Installed IteratorInterfaceExtensions ── v1.0.0
+ Installed CEnum ──────────────────────── v0.3.0
+ Installed ColorVectorSpace ───────────── v0.8.5
+ Installed WoodburyMatrices ───────────── v0.5.2
+ Installed Setfield ───────────────────── v0.6.0
+ Installed Rmath ──────────────────────── v0.6.1
+ Installed GR ─────────────────────────── v0.48.0
+ Installed AxisAlgorithms ─────────────── v1.0.0
+ Installed LLVM ───────────────────────── v1.4.1
+ Installed Adapt ──────────────────────── v1.0.1
+ Installed TranscodingStreams ─────────── v0.9.5
+ Installed Flux ───────────────────────── v0.10.4
+ Installed LineSearches ───────────────── v7.0.1
+ Installed PositiveFactorizations ─────── v0.2.3
+ Installed FFMPEG_jll ─────────────────── v4.1.0+3
+ Installed CUDAdrv ────────────────────── v6.3.0
+ Installed CommonSubexpressions ───────── v0.2.0
+ Installed Observables ────────────────── v0.3.1
+ Installed MKL_jll ────────────────────── v2019.0.117+2
+ Installed DiffResults ────────────────── v1.0.2
+ Installed LibVPX_jll ─────────────────── v1.8.1+1
+ Installed Contour ────────────────────── v0.5.3
+ Installed FFMPEG ─────────────────────── v0.3.0
+ Installed BSON ───────────────────────── v0.2.6
+ Installed Ratios ─────────────────────── v0.4.0
+ Installed HDF5 ───────────────────────── v0.13.2
+ Installed StatsBase ──────────────────── v0.32.2
+ Installed ProgressMeter ──────────────── v1.2.0
+ Installed OpenSSL_jll ────────────────── v1.1.1+2
+ Installed ImageCore ──────────────────── v0.8.14
+ Installed FreeType2_jll ──────────────── v2.10.1+2
+ Installed ArrayLayouts ───────────────── v0.2.6
+ Installed Requires ───────────────────── v1.0.1
+ Installed StaticArrays ───────────────── v0.12.3
+ Installed Distances ──────────────────── v0.8.2
+ Installed Zlib_jll ───────────────────── v1.2.11+9
+ Installed ExprTools ──────────────────── v0.1.1
+ Installed Compat ─────────────────────── v3.10.0
+ Installed Lz4_jll ────────────────────── v1.9.2+0
+ Installed OffsetArrays ───────────────── v1.0.4
+ Installed Optim ──────────────────────── v0.21.0
+ Installed ForwardDiff ────────────────── v0.10.10
+ Installed CodeTracking ───────────────── v0.5.11
+ Installed AbstractTrees ──────────────── v0.3.3
+ Installed KernelDensity ──────────────── v0.5.1
+ Installed SortingAlgorithms ──────────── v0.3.1
+ Installed Ogg_jll ────────────────────── v1.3.4+0
+ Installed FFTW_jll ───────────────────── v3.3.9+5
+ Installed TableTraits ────────────────── v1.0.0
+ Installed Opus_jll ───────────────────── v1.3.1+1
+ Installed Bzip2_jll ──────────────────── v1.0.6+2
+ Installed Tables ─────────────────────── v1.0.4
+ Installed LAME_jll ───────────────────── v3.100.0+1
+ Installed x265_jll ───────────────────── v3.0.0+1
+ Installed Widgets ────────────────────── v0.6.2
+ Installed Measures ───────────────────── v0.3.1
+ Installed GPUArrays ──────────────────── v3.3.0
+ Installed ConstructionBase ───────────── v1.0.0
+ Installed OpenBLAS_jll ───────────────── v0.3.9+4
+ Installed Plots ──────────────────────── v0.29.9
+ Installed StatsFuns ──────────────────── v0.9.4
+ Installed Showoff ────────────────────── v0.3.1
+ Installed MappedArrays ───────────────── v0.2.2
+ Installed PlotThemes ─────────────────── v1.0.3
+ Installed RecipesBase ────────────────── v0.8.0
+ Installed FillArrays ─────────────────── v0.8.9
+ Installed Blosc ──────────────────────── v0.7.0
+ Installed IdentityRanges ─────────────── v0.3.1
+ Installed x264_jll ───────────────────── v2019.5.25+2
+ Installed NearestNeighbors ───────────── v0.4.4
+ Installed CUDAapi ────────────────────── v4.0.0
+ Installed SpecialFunctions ───────────── v0.10.2
+ Installed GPUCompiler ────────────────── v0.2.0
+ Installed IRTools ────────────────────── v0.3.2
+ Installed Distributions ──────────────── v0.22.6
+ Installed ColorTypes ─────────────────── v0.10.3
+ Installed AbstractFFTs ───────────────── v0.5.0
+ Installed PDMats ─────────────────────── v0.9.12
+ Installed OrderedCollections ─────────── v1.2.0
+ Installed Parameters ─────────────────── v0.12.1
+ Installed Rotations ──────────────────── v0.13.0
+ Installed libfdk_aac_jll ─────────────── v0.1.6+2
+ Installed OpenSpecFun_jll ────────────── v0.5.3+3
+ Installed Missings ───────────────────── v0.4.3
+ Installed Rmath_jll ──────────────────── v0.2.2+0
+ Installed Zstd_jll ───────────────────── v1.4.4+1
+ Installed DiffRules ──────────────────── v1.0.1
+ Installed UnPack ─────────────────────── v1.0.1
+ Installed ImageTransformations ───────── v0.8.4
+ Installed FileIO ─────────────────────── v1.3.0
+ Installed PlotUtils ──────────────────── v0.6.5
+ Installed Cthulhu ────────────────────── v1.1.0
+ Installed PaddedViews ────────────────── v0.5.5
+ Installed FriBidi_jll ────────────────── v1.0.5+3
+ Installed DataValues ─────────────────── v0.4.13
+ Installed MacroTools ─────────────────── v0.5.5
+ Installed DataValueInterfaces ────────── v1.0.0
+ Installed CuArrays ───────────────────── v2.2.0
+ Installed ArrayInterface ─────────────── v2.8.7
+ Installed Arpack_jll ─────────────────── v3.5.0+3
+ Installed FFTW ───────────────────────── v1.2.1
+ Installed Clustering ─────────────────── v0.14.0
+ Installed Zygote ─────────────────────── v0.4.20
+ Installed MosaicViews ────────────────── v0.2.2
+ Installed Blosc_jll ──────────────────── v1.14.3+1
+ Installed Juno ───────────────────────── v0.8.1
+ Installed ZygoteRules ────────────────── v0.2.0
+ Installed FixedPointNumbers ──────────── v0.8.0
+ Installed Parsers ────────────────────── v1.0.4
+ Installed Reexport ───────────────────── v0.2.0
+ Installed Colors ─────────────────────── v0.12.0
+ Installed libass_jll ─────────────────── v0.14.0+2
+ Installed BinaryProvider ─────────────── v0.5.9
+ Installed CUDAnative ─────────────────── v3.1.0
+ Installed ZipFile ────────────────────── v0.9.1
+ Installed ReinforcementLearningCore ──── v0.3.0
+  Building NNlib → `/srv/julia/pkg/packages/NNlib/FAI3o/deps/build.log`
+  Building GR ───→ `/srv/julia/pkg/packages/GR/yMV3y/deps/build.log`
+  Building HDF5 ─→ `/srv/julia/pkg/packages/HDF5/pAi1D/deps/build.log`
+  Building Plots → `/srv/julia/pkg/packages/Plots/cc8wh/deps/build.log`
+  Building FFTW ─→ `/srv/julia/pkg/packages/FFTW/5DZuu/deps/build.log`
+Precompiling project...
+Precompiling Distributions
+Precompiling StatsPlots
+[91mWARNING: could not import Tables.select into StatsPlots
+[0mPrecompiling ReinforcementLearningBase
+Precompiling ReinforcementLearningCore
+Precompiling ReinforcementLearningAnIntroduction
+Removing intermediate container e0aa1d56ebe0
+ ---> 0199fb70daa1
+Step 50/56 : LABEL repo2docker.ref="None"
+ ---> Running in 8ed3b1079422
+Removing intermediate container 8ed3b1079422
+ ---> f23e5fb6bd11
+Step 51/56 : LABEL repo2docker.repo="local"
+ ---> Running in eba7317c944d
+Removing intermediate container eba7317c944d
+ ---> c64e2d5b7b0c
+Step 52/56 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 3f37987e7d2d
+Removing intermediate container 3f37987e7d2d
+ ---> 08fa147726f2
+Step 53/56 : USER ${NB_USER}
+ ---> Running in 94ab15594da5
+Removing intermediate container 94ab15594da5
+ ---> 5f3b4e8da7ab
+Step 54/56 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> c4c72c5a95c3
+Step 55/56 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in b96441fe110e
+Removing intermediate container b96441fe110e
+ ---> 909e16d5520b
+Step 56/56 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in e8e8e5714225
+Removing intermediate container e8e8e5714225
+ ---> 77f5ac2d4a90
+{"aux": {"ID": "sha256:77f5ac2d4a90d9a6419837d299b8a31b8959f998bb9bc27fad30ba0b468e1a5a"}}Successfully built 77f5ac2d4a90
+Successfully tagged r2d-test-github.com-juliareinforcementlearning-reinforcementlearninganintroduction.jl:fbbf149

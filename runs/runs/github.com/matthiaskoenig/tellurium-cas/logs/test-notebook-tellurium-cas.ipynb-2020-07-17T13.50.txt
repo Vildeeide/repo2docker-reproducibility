@@ -1,0 +1,81 @@
+[I 200717 13:52:11 inrepo:36] Testing notebook tellurium-cas.ipynb
+[W 200717 13:52:11 inrepo:48] No such kernel tellurium-cas, falling back on kernel language=python
+[W 200717 13:52:11 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 13:52:12 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import tellurium
+from tellurium.sedml import tesedml
+
+# interactive plotly results
+# tellurium.setDefaultPlottingEngine("plotly")
+# tesedml.executeCombineArchive(cas_path)
+
+# store the matplotlib figures
+tellurium.setDefaultPlottingEngine("matplotlib")
+tesedml.executeCombineArchive(cas_path, saveOutputs=True, outputDir="./results/output");
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+[0;32m<ipython-input-2-aaa977ce2b9f>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mtellurium[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0mtellurium[0m[0;34m.[0m[0msedml[0m [0;32mimport[0m [0mtesedml[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;31m# interactive plotly results[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;31m# tellurium.setDefaultPlottingEngine("plotly")[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/src/tellurium/tellurium/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    109[0m [0;34m[0m[0m
+[1;32m    110[0m [0;31m# Bifurcations[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 111[0;31m from .analysis.bifurcation import (
+[0m[1;32m    112[0m     [0mplotBifurcation[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    113[0m )
+
+[0;32m~/src/tellurium/tellurium/analysis/bifurcation.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;34m[0m[0m
+[1;32m      6[0m [0;32mimport[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m [0;32mfrom[0m [0mrrplugins[0m [0;32mimport[0m [0mPlugin[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0;32mfrom[0m [0mroadrunner[0m [0;32mimport[0m [0mRoadRunner[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/rrplugins/__init__.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mrrplugins[0m[0;34m.[0m[0mtelplugins[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0mrrplugins[0m[0;34m.[0m[0mtelplugins_c_api[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0m__version__[0m [0;34m=[0m [0;34m'1.2.2'[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/rrplugins/telplugins.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;31m# An example is given at the end of the code.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mimport[0m [0mrrplugins[0m[0;34m.[0m[0mtelplugins_c_api[0m [0;32mas[0m [0mtpc[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/rrplugins/telplugins_c_api.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     68[0m [0;34m[0m[0m
+[1;32m     69[0m [0;32mif[0m [0mrrpLib[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 70[0;31m     [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0;34m'Cannot find telplugins_c_api library in {}'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mrrplugins_path[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     71[0m [0;34m[0m[0m
+[1;32m     72[0m [0;31m# restore working dir[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mRuntimeError[0m: Cannot find telplugins_c_api library in /srv/conda/envs/notebook/lib/python3.7/site-packages/roadrunner
+RuntimeError: Cannot find telplugins_c_api library in /srv/conda/envs/notebook/lib/python3.7/site-packages/roadrunner
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

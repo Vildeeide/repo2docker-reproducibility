@@ -1,0 +1,203 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T06.04hrzx_ahy/github.com/bluesky/tutorials.
+Using PythonBuildPack builder
+Step 1/56 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/56 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/56 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/56 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/56 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/56 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/56 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/56 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/56 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/56 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/56 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/56 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/56 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/56 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/56 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/56 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/56 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/56 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/56 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/56 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/56 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/56 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/56 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/56 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/56 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/56 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/56 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/56 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/56 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/56 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/56 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> Using cache
+ ---> f62814568997
+Step 38/56 : USER root
+ ---> Using cache
+ ---> 671affd48c7f
+Step 39/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 6462dc8c4a10
+Step 40/56 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends graphviz && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a961873df916
+Step 41/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> d608bef5f6bf
+Step 42/56 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Using cache
+ ---> 441f3d0be8e9
+Step 43/56 : USER root
+ ---> Using cache
+ ---> e47abf508c24
+Step 44/56 : COPY src/ ${REPO_DIR}
+ ---> cd0178c0a4e6
+Step 45/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 89185adc694a
+Removing intermediate container 89185adc694a
+ ---> 20f023749c93
+Step 46/56 : LABEL repo2docker.ref="None"
+ ---> Running in 0ba2b63b41a9
+Removing intermediate container 0ba2b63b41a9
+ ---> cb5007e887b9
+Step 47/56 : LABEL repo2docker.repo="local"
+ ---> Running in 73b53a6d09e9
+Removing intermediate container 73b53a6d09e9
+ ---> 84d21c39d821
+Step 48/56 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 6048f4f6bfbc
+Removing intermediate container 6048f4f6bfbc
+ ---> 075fc6353c3a
+Step 49/56 : USER ${NB_USER}
+ ---> Running in f2bc79ef7ea3
+Removing intermediate container f2bc79ef7ea3
+ ---> f53b13d299d7
+Step 50/56 : RUN chmod +x binder/postBuild
+ ---> Running in fe1e7a99699d
+Removing intermediate container fe1e7a99699d
+ ---> 0fcec0e6040d
+Step 51/56 : RUN ./binder/postBuild
+ ---> Running in 1832e122f532
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mObtaining file:///home/vildeeide/bluesky-tutorial-utils
+Requirement already satisfied: appdirs in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bluesky-tutorial-utils==0.0.0) (1.4.4)
+Requirement already satisfied: ophyd in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bluesky-tutorial-utils==0.0.0) (1.5.1)
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bluesky-tutorial-utils==0.0.0) (1.19.0)
+Requirement already satisfied: event-model in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bluesky-tutorial-utils==0.0.0) (1.15.2)
+Requirement already satisfied: networkx>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ophyd->bluesky-tutorial-utils==0.0.0) (2.4)
+Requirement already satisfied: jsonschema>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from event-model->bluesky-tutorial-utils==0.0.0) (3.2.0)
+Requirement already satisfied: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx>=2.0->ophyd->bluesky-tutorial-utils==0.0.0) (4.4.1)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (1.5.0)
+Requirement already satisfied: six>=1.11.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (1.14.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (0.15.7)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (45.1.0.post20200119)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema>=3.0.0->event-model->bluesky-tutorial-utils==0.0.0) (2.1.0)
+Installing collected packages: bluesky-tutorial-utils
+  Running setup.py develop for bluesky-tutorial-utils
+Successfully installed bluesky-tutorial-utils
+-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\-\|/-\|/--\|/-\|/-[91mBuilding jupyterlab assets (build:prod:minimize)
+[0m-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/--\|/-\|/-\|/--\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-[91mBuilding jupyterlab assets (build:prod:minimize)
+[0m-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/--\|/-\|/-\|/--\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/Removing intermediate container 1832e122f532
+ ---> dbca7c63b8c7
+Step 52/56 : RUN chmod +x "${REPO_DIR}/binder/start"
+ ---> Running in 61e1eca03d2c
+Removing intermediate container 61e1eca03d2c
+ ---> 4faef6ad644f
+Step 53/56 : ENV R2D_ENTRYPOINT "${REPO_DIR}/binder/start"
+ ---> Running in 47a4dc8a13cd
+Removing intermediate container 47a4dc8a13cd
+ ---> 04692584894a
+Step 54/56 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 883a4b96fdd1
+Step 55/56 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 6e73be0a2118
+Removing intermediate container 6e73be0a2118
+ ---> 7410aec5cbd9
+Step 56/56 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in c8974cde7fd8
+Removing intermediate container c8974cde7fd8
+ ---> 46cdaf6a0441
+{"aux": {"ID": "sha256:46cdaf6a044120cc9e9003765e01e50b4fd551a38df79366f3ea4f7b3fc496c0"}}Successfully built 46cdaf6a0441
+Successfully tagged r2d-test-github.com-bluesky-tutorials:658a50b

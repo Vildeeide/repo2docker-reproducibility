@@ -1,0 +1,5 @@
+[I 200703 06:44:01 inrepo:35] Testing notebook linear_systems/Coding back-substitution.ipynb
+[I 200703 06:44:02 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:02 inrepo:41] Saving exported notebook to /io/notebooks/linear_systems/Coding back-substitution.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

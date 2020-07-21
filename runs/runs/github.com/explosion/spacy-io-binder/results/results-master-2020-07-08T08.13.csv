@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/explosion/spacy-io-binder,master,5a49bf9,2020-07-01T14:32:17+02:00,build,build,True,github.com/explosion/spacy-io-binder/logs/build-master-2020-07-08T08.13.txt,2020-07-08T08:13:49.485761,2020-07-08T08.13,0.11.0

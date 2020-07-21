@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/asschwenk/workinghours,master,a1fe567,2018-02-15T14:05:27+01:00,build,build,True,github.com/asschwenk/workinghours/logs/build-master-2020-07-16T08.22.txt,2020-07-16T08:22:18.598457,2020-07-16T08.22,0.11.0
+https://github.com/asschwenk/workinghours,master,a1fe567,2018-02-15T14:05:27+01:00,notebook,workinghours.ipynb,False,github.com/asschwenk/workinghours/logs/test-notebook-workinghours.ipynb-2020-07-16T08.22.txt,2020-07-16T08:22:18.598457,2020-07-16T08.22,0.11.0
+https://github.com/asschwenk/workinghours,master,a1fe567,2018-02-15T14:05:27+01:00,notebook,anothertestingfile.ipynb,False,github.com/asschwenk/workinghours/logs/test-notebook-anothertestingfile.ipynb-2020-07-16T08.22.txt,2020-07-16T08:22:18.598457,2020-07-16T08.22,0.11.0
+https://github.com/asschwenk/workinghours,master,a1fe567,2018-02-15T14:05:27+01:00,notebook,testcode.ipynb,True,github.com/asschwenk/workinghours/logs/test-notebook-testcode.ipynb-2020-07-16T08.22.txt,2020-07-16T08:22:18.598457,2020-07-16T08.22,0.11.0

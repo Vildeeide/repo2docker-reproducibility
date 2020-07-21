@@ -1,0 +1,6 @@
+[I 200707 11:03:21 inrepo:36] Testing notebook chapter6/Interactive Mandelbrot Set.ipynb
+[I 200707 11:03:21 inrepo:45] Found kernel python3
+[I 200707 11:03:22 execute:404] Executing notebook with kernel: python3
+[I 200707 11:03:24 inrepo:77] Saving exported notebook to /io/notebooks/chapter6/Interactive Mandelbrot Set.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

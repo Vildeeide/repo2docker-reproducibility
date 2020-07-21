@@ -1,0 +1,199 @@
+[I 200717 08:03:49 inrepo:36] Testing notebook Untitled.ipynb
+[I 200717 08:03:50 inrepo:45] Found kernel python3
+[I 200717 08:03:51 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from __future__ import print_function
+
+import sys
+import os, sys, tarfile, errno
+import numpy as np
+import matplotlib.pyplot as plt
+    
+if sys.version_info >= (3, 0, 0):
+    import urllib.request as urllib # ugly but works
+else:
+    import urllib
+
+print(sys.version_info) 
+
+# image shape
+HEIGHT = 96
+WIDTH = 96
+DEPTH = 3
+
+# size of a single image in bytes
+SIZE = HEIGHT * WIDTH * DEPTH
+
+# path to the directory with the data
+DATA_DIR = './data'
+
+# url of the binary data
+DATA_URL = 'http://ai.stanford.edu/~acoates/stl10/stl10_binary.tar.gz'
+
+# path to the binary train file with image data
+DATA_PATH = './data/stl10_binary/train_X.bin'
+
+# path to the binary train file with labels
+LABEL_PATH = './data/stl10_binary/train_y.bin'
+
+def read_labels(path_to_labels):
+    """
+    :param path_to_labels: path to the binary file containing labels from the STL-10 dataset
+    :return: an array containing the labels
+    """
+    with open(path_to_labels, 'rb') as f:
+        labels = np.fromfile(f, dtype=np.uint8)
+        return labels
+
+
+def read_all_images(path_to_data):
+    """
+    :param path_to_data: the file containing the binary images from the STL-10 dataset
+    :return: an array containing all the images
+    """
+
+    with open(path_to_data, 'rb') as f:
+        # read whole file in uint8 chunks
+        everything = np.fromfile(f, dtype=np.uint8)
+
+        # We force the data into 3x96x96 chunks, since the
+        # images are stored in "column-major order", meaning
+        # that "the first 96*96 values are the red channel,
+        # the next 96*96 are green, and the last are blue."
+        # The -1 is since the size of the pictures depends
+        # on the input file, and this way numpy determines
+        # the size on its own.
+
+        images = np.reshape(everything, (-1, 3, 96, 96))
+
+        # Now transpose the images into a standard image format
+        # readable by, for example, matplotlib.imshow
+        # You might want to comment this line or reverse the shuffle
+        # if you will use a learning algorithm like CNN, since they like
+        # their channels separated.
+        images = np.transpose(images, (0, 3, 2, 1))
+        return images
+
+
+def read_single_image(image_file):
+    """
+    CAREFUL! - this method uses a file as input instead of the path - so the
+    position of the reader will be remembered outside of context of this method.
+    :param image_file: the open file containing the images
+    :return: a single image
+    """
+    # read a single image, count determines the number of uint8's to read
+    image = np.fromfile(image_file, dtype=np.uint8, count=SIZE)
+    # force into image matrix
+    image = np.reshape(image, (3, 96, 96))
+    # transpose to standard format
+    # You might want to comment this line or reverse the shuffle
+    # if you will use a learning algorithm like CNN, since they like
+    # their channels separated.
+    image = np.transpose(image, (2, 1, 0))
+    return image
+
+
+def plot_image(image):
+    """
+    :param image: the image to be plotted in a 3-D matrix format
+    :return: None
+    """
+    plt.imshow(image)
+    plt.show()
+
+def save_image(image, name):
+    for spine in plt.gca().spines.values():
+        spine.set_visible(False)
+
+    plt.tick_params(top=False, bottom=False, left=False, right=False, labelleft=False, labelbottom=True)
+    plt.axis('off')
+    
+    plt.imshow(image)
+    plt.savefig(name, bbox_inches='tight', dpi=96)
+
+def download_and_extract():
+    """
+    Download and extract the STL-10 dataset
+    :return: None
+    """
+    dest_directory = DATA_DIR
+    if not os.path.exists(dest_directory):
+        os.makedirs(dest_directory)
+    filename = DATA_URL.split('/')[-1]
+    filepath = os.path.join(dest_directory, filename)
+    if not os.path.exists(filepath):
+        def _progress(count, block_size, total_size):
+            sys.stdout.write('\rDownloading %s %.2f%%' % (filename,
+                float(count * block_size) / float(total_size) * 100.0))
+            sys.stdout.flush()
+        filepath, _ = urllib.urlretrieve(DATA_URL, filepath, reporthook=_progress)
+        print('Downloaded', filename)
+        tarfile.open(filepath, 'r:gz').extractall(dest_directory)
+
+def save_images(images, labels):
+    print("Saving images to disk")
+    i = 0
+    for image in images:
+        label = labels[i]
+        directory = './img/' + str(label) + '/'
+        try:
+            os.mkdir(directory)
+        except OSError as exc:
+            if exc.errno == errno.EEXIST:
+                pass
+        filename = directory + str(i)
+        print(filename)
+        save_image(image, filename)
+        i = i+1
+    
+if __name__ == "__main__":
+    # download data if needed
+    download_and_extract()
+
+    # test to check if the image is read correctly
+    with open(DATA_PATH) as f:
+        image = read_single_image(f)
+        plot_image(image)
+
+    # test to check if the whole dataset is read correctly
+    images = read_all_images(DATA_PATH)
+    print(images.shape)
+
+    labels = read_labels(LABEL_PATH)
+    print(labels.shape)
+
+    # save images to disk
+    save_images(images, labels)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-e4a476d21086>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;32mimport[0m [0mos[0m[0;34m,[0m [0msys[0m[0;34m,[0m [0mtarfile[0m[0;34m,[0m [0merrno[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;34m[0m[0m
+[1;32m      8[0m [0;32mif[0m [0msys[0m[0;34m.[0m[0mversion_info[0m [0;34m>=[0m [0;34m([0m[0;36m3[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0;36m0[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

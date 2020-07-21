@@ -1,0 +1,53 @@
+[I 200707 06:24:55 inrepo:35] Testing notebook 01-02_interaction-effects_trade-effect-growth-paper.ipynb
+[I 200707 06:24:56 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+source_zip = load_source_zip()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mBadZipFile[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-3-04d09c1da4ba>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0msource_zip[0m [0;34m=[0m [0mload_source_zip[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-2-55ce79b97a00>[0m in [0;36mload_source_zip[0;34m()[0m
+[1;32m      2[0m     [0mreq[0m [0;34m=[0m [0mrequests[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m'https://www.aeaweb.org/aer/data/89-3-379_Data.zip'[0m[0;34m,[0m [0mstream[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m     [0;32mwith[0m [0mzipfile[0m[0;34m.[0m[0mZipFile[0m[0;34m([0m[0mio[0m[0;34m.[0m[0mBytesIO[0m[0;34m([0m[0mreq[0m[0;34m.[0m[0mcontent[0m[0;34m)[0m[0;34m)[0m [0;32mas[0m [0mz1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m         [0mmain_zip[0m [0;34m=[0m [0mz1[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0;34m'tablelist.zip'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m     [0;32mreturn[0m [0mmain_zip[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/zipfile.py[0m in [0;36m__init__[0;34m(self, file, mode, compression, allowZip64, compresslevel)[0m
+[1;32m   1256[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1257[0m             [0;32mif[0m [0mmode[0m [0;34m==[0m [0;34m'r'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1258[0;31m                 [0mself[0m[0;34m.[0m[0m_RealGetContents[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1259[0m             [0;32melif[0m [0mmode[0m [0;32min[0m [0;34m([0m[0;34m'w'[0m[0;34m,[0m [0;34m'x'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1260[0m                 [0;31m# set the modified flag so central directory gets written[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/zipfile.py[0m in [0;36m_RealGetContents[0;34m(self)[0m
+[1;32m   1323[0m             [0;32mraise[0m [0mBadZipFile[0m[0;34m([0m[0;34m"File is not a zip file"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1324[0m         [0;32mif[0m [0;32mnot[0m [0mendrec[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1325[0;31m             [0;32mraise[0m [0mBadZipFile[0m[0;34m([0m[0;34m"File is not a zip file"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1326[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mdebug[0m [0;34m>[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1327[0m             [0mprint[0m[0;34m([0m[0mendrec[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mBadZipFile[0m: File is not a zip file
+BadZipFile: File is not a zip file
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

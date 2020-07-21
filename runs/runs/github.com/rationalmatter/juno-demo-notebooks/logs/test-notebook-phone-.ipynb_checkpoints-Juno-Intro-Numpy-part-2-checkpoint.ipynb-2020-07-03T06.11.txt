@@ -1,0 +1,53 @@
+[I 200703 06:18:11 inrepo:35] Testing notebook phone/.ipynb_checkpoints/Juno-Intro-Numpy-part-2-checkpoint.ipynb
+[I 200703 06:18:12 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+data = genfromtxt('../data/stockholm_td_adj.dat')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m<ipython-input-3-a1a7c28bdadb>[0m in [0;36m<module>[0;34m()[0m
+[0;32m----> 1[0;31m [0mdata[0m [0;34m=[0m [0mgenfromtxt[0m[0;34m([0m[0;34m'../data/stockholm_td_adj.dat'[0m[0;34m)[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.6/site-packages/numpy/lib/npyio.py[0m in [0;36mgenfromtxt[0;34m(fname, dtype, comments, delimiter, skip_header, skip_footer, converters, missing_values, filling_values, usecols, names, excludelist, deletechars, replace_space, autostrip, case_sensitive, defaultfmt, unpack, usemask, loose, invalid_raise, max_rows)[0m
+[1;32m   1510[0m                 [0mfhd[0m [0;34m=[0m [0miter[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mlib[0m[0;34m.[0m[0m_datasource[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0;34m'rbU'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m   1511[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m-> 1512[0;31m                 [0mfhd[0m [0;34m=[0m [0miter[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mlib[0m[0;34m.[0m[0m_datasource[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m   1513[0m             [0mown_fhd[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0m
+[1;32m   1514[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.6/site-packages/numpy/lib/_datasource.py[0m in [0;36mopen[0;34m(path, mode, destpath)[0m
+[1;32m    149[0m [0;34m[0m[0m
+[1;32m    150[0m     [0mds[0m [0;34m=[0m [0mDataSource[0m[0;34m([0m[0mdestpath[0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 151[0;31m     [0;32mreturn[0m [0mds[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0mmode[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    152[0m [0;34m[0m[0m
+[1;32m    153[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.6/site-packages/numpy/lib/_datasource.py[0m in [0;36mopen[0;34m(self, path, mode)[0m
+[1;32m    499[0m             [0;32mreturn[0m [0m_file_openers[0m[0;34m[[0m[0mext[0m[0;34m][0m[0;34m([0m[0mfound[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0mmode[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    500[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 501[0;31m             [0;32mraise[0m [0mIOError[0m[0;34m([0m[0;34m"%s not found."[0m [0;34m%[0m [0mpath[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    502[0m [0;34m[0m[0m
+[1;32m    503[0m [0;34m[0m[0m
+
+[0;31mOSError[0m: ../data/stockholm_td_adj.dat not found.
+OSError: ../data/stockholm_td_adj.dat not found.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

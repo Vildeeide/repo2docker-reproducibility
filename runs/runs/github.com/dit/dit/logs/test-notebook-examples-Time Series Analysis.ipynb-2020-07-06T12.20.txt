@@ -1,0 +1,5 @@
+[I 200706 12:20:46 inrepo:35] Testing notebook examples/Time Series Analysis.ipynb
+[I 200706 12:20:48 execute:404] Executing notebook with kernel: python3
+[I 200706 12:21:37 inrepo:41] Saving exported notebook to /io/notebooks/examples/Time Series Analysis.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

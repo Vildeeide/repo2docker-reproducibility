@@ -1,0 +1,5 @@
+[I 200703 06:42:09 inrepo:35] Testing notebook content/chapters/17/1/Nearest_Neighbors.ipynb
+[I 200703 06:42:11 execute:404] Executing notebook with kernel: python3
+[I 200703 06:42:36 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/17/1/Nearest_Neighbors.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

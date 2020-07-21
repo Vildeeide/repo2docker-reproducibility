@@ -1,0 +1,277 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T13.52ep9sqcvd/github.com/bio-phys/PyDHAMed.
+Using CondaBuildPack builder
+Step 1/53 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/53 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/53 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/53 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/53 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/53 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/53 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/53 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/53 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/53 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/53 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/53 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/53 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/53 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/53 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/53 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/53 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/53 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/53 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/53 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/53 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/53 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/53 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/53 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/53 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/53 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/53 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/53 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/53 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/53 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/53 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> Using cache
+ ---> 52857f6981a4
+Step 38/53 : USER root
+ ---> Using cache
+ ---> 4f5fa143dfd1
+Step 39/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 98814da9e63c
+Step 40/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 76688c9dae06
+Step 41/53 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7efabb89fd69
+Step 42/53 : USER root
+ ---> Using cache
+ ---> 44f14045d377
+Step 43/53 : COPY src/ ${REPO_DIR}
+ ---> 43d98fa4568c
+Step 44/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in c51d1da172d5
+Removing intermediate container c51d1da172d5
+ ---> 7d340558f476
+Step 45/53 : LABEL repo2docker.ref="None"
+ ---> Running in c16e374f5f59
+Removing intermediate container c16e374f5f59
+ ---> fd9960f6c17b
+Step 46/53 : LABEL repo2docker.repo="local"
+ ---> Running in e4f00905f0c6
+Removing intermediate container e4f00905f0c6
+ ---> 14dd5ef0aa59
+Step 47/53 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 9cd93d90f0ca
+Removing intermediate container 9cd93d90f0ca
+ ---> c0a9da035d10
+Step 48/53 : USER ${NB_USER}
+ ---> Running in 2a0c423bc6a9
+Removing intermediate container 2a0c423bc6a9
+ ---> 5b2bc877d26a
+Step 49/53 : RUN chmod +x binder/postBuild
+ ---> Running in 76903cdd8e01
+Removing intermediate container 76903cdd8e01
+ ---> 489316c90720
+Step 50/53 : RUN ./binder/postBuild
+ ---> Running in 9adcdd46fbcd
+running install
+running bdist_egg
+running egg_info
+creating PyDHAMed.egg-info
+writing PyDHAMed.egg-info/PKG-INFO
+writing dependency_links to PyDHAMed.egg-info/dependency_links.txt
+writing requirements to PyDHAMed.egg-info/requires.txt
+writing top-level names to PyDHAMed.egg-info/top_level.txt
+writing manifest file 'PyDHAMed.egg-info/SOURCES.txt'
+reading manifest file 'PyDHAMed.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+[91mwarning: no previously-included files matching '*.pyc' found anywhere in distribution
+[0m[91mwarning: no previously-included files matching '*.pyo' found anywhere in distribution
+[0m[91mwarning: no previously-included files matching '*.pyd' found anywhere in distribution
+[0m[91mwarning: no previously-included files matching '*~' found anywhere in distribution
+[0mwriting manifest file 'PyDHAMed.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib
+creating build/lib/pydhamed
+copying pydhamed/__init__.py -> build/lib/pydhamed
+copying pydhamed/optimize_dhamed.py -> build/lib/pydhamed
+copying pydhamed/prepare_dhamed.py -> build/lib/pydhamed
+copying pydhamed/determine_transition_counts.py -> build/lib/pydhamed
+copying pydhamed/analyze_eq_md.py -> build/lib/pydhamed
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/pydhamed
+copying build/lib/pydhamed/__init__.py -> build/bdist.linux-x86_64/egg/pydhamed
+copying build/lib/pydhamed/optimize_dhamed.py -> build/bdist.linux-x86_64/egg/pydhamed
+copying build/lib/pydhamed/prepare_dhamed.py -> build/bdist.linux-x86_64/egg/pydhamed
+copying build/lib/pydhamed/determine_transition_counts.py -> build/bdist.linux-x86_64/egg/pydhamed
+copying build/lib/pydhamed/analyze_eq_md.py -> build/bdist.linux-x86_64/egg/pydhamed
+byte-compiling build/bdist.linux-x86_64/egg/pydhamed/__init__.py to __init__.cpython-37.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pydhamed/optimize_dhamed.py to optimize_dhamed.cpython-37.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pydhamed/prepare_dhamed.py to prepare_dhamed.cpython-37.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pydhamed/determine_transition_counts.py to determine_transition_counts.cpython-37.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pydhamed/analyze_eq_md.py to analyze_eq_md.cpython-37.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/not-zip-safe -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying PyDHAMed.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+creating dist
+creating 'dist/PyDHAMed-0.1-py3.7.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing PyDHAMed-0.1-py3.7.egg
+creating /srv/conda/envs/notebook/lib/python3.7/site-packages/PyDHAMed-0.1-py3.7.egg
+Extracting PyDHAMed-0.1-py3.7.egg to /srv/conda/envs/notebook/lib/python3.7/site-packages
+Adding PyDHAMed 0.1 to easy-install.pth file
+
+Installed /srv/conda/envs/notebook/lib/python3.7/site-packages/PyDHAMed-0.1-py3.7.egg
+Processing dependencies for PyDHAMed==0.1
+Searching for six==1.15.0
+Best match: six 1.15.0
+Adding six 1.15.0 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for numba==0.48.0
+Best match: numba 0.48.0
+Adding numba 0.48.0 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for pandas==1.0.5
+Best match: pandas 1.0.5
+Adding pandas 1.0.5 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for scipy==1.4.1
+Best match: scipy 1.4.1
+Adding scipy 1.4.1 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for numpy==1.18.5
+Best match: numpy 1.18.5
+Adding numpy 1.18.5 to easy-install.pth file
+Installing f2py script to /srv/conda/envs/notebook/bin
+Installing f2py3 script to /srv/conda/envs/notebook/bin
+Installing f2py3.7 script to /srv/conda/envs/notebook/bin
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for llvmlite==0.31.0
+Best match: llvmlite 0.31.0
+Adding llvmlite 0.31.0 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for setuptools==45.1.0.post20200119
+Best match: setuptools 45.1.0.post20200119
+Adding setuptools 45.1.0.post20200119 to easy-install.pth file
+Installing easy_install script to /srv/conda/envs/notebook/bin
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for pytz==2020.1
+Best match: pytz 2020.1
+Adding pytz 2020.1 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Searching for python-dateutil==2.8.1
+Best match: python-dateutil 2.8.1
+Adding python-dateutil 2.8.1 to easy-install.pth file
+
+Using /srv/conda/envs/notebook/lib/python3.7/site-packages
+Finished processing dependencies for PyDHAMed==0.1
+Removing intermediate container 9adcdd46fbcd
+ ---> be1db920d2ef
+Step 51/53 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 3ed846b8b9aa
+Step 52/53 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 45fbbef70b25
+Removing intermediate container 45fbbef70b25
+ ---> ce77a1838eb7
+Step 53/53 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in c38eaa243d48
+Removing intermediate container c38eaa243d48
+ ---> 2eb99338859c
+{"aux": {"ID": "sha256:2eb99338859ca557b5ba0896cf084985a6917233bbbe39afb2ca3643676d4b40"}}Successfully built 2eb99338859c
+Successfully tagged r2d-test-github.com-bio-phys-pydhamed:d42f2a6

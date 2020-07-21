@@ -1,0 +1,43 @@
+[I 200703 06:34:09 inrepo:35] Testing notebook content/chapters/15/5/Visual_Diagnostics.ipynb
+[I 200703 06:34:11 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+dugong = Table.read_table('http://www.statsci.org/data/oz/dugongs.txt')
+dugong = dugong.move_to_start('Length')
+dugong
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m<ipython-input-12-b710fda330c4>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mdugong[0m [0;34m=[0m [0mTable[0m[0;34m.[0m[0mread_table[0m[0;34m([0m[0;34m'http://www.statsci.org/data/oz/dugongs.txt'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mdugong[0m [0;34m=[0m [0mdugong[0m[0;34m.[0m[0mmove_to_start[0m[0;34m([0m[0;34m'Length'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mdugong[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/datascience/tables.py[0m in [0;36mmove_to_start[0;34m(self, column_label)[0m
+[1;32m    395[0m     [0;32mdef[0m [0mmove_to_start[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mcolumn_label[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    396[0m         [0;34m"""Move a column to the first in order."""[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 397[0;31m         [0mself[0m[0;34m.[0m[0m_columns[0m[0;34m.[0m[0mmove_to_end[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_as_label[0m[0;34m([0m[0mcolumn_label[0m[0;34m)[0m[0;34m,[0m [0mlast[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    398[0m         [0;32mreturn[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    399[0m [0;34m[0m[0m
+
+[0;31mKeyError[0m: 'Length'
+KeyError: 'Length'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

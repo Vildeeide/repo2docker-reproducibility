@@ -1,0 +1,5 @@
+[I 200703 11:32:52 inrepo:35] Testing notebook notebooks/explanation_of_the_data_format.ipynb
+[I 200703 11:32:53 execute:404] Executing notebook with kernel: python3
+[I 200703 11:32:55 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/explanation_of_the_data_format.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

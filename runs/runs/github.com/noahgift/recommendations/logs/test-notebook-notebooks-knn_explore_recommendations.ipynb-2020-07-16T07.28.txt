@@ -1,0 +1,58 @@
+[I 200716 07:39:17 inrepo:36] Testing notebook notebooks/knn_explore_recommendations.ipynb
+[I 200716 07:39:17 inrepo:45] Found kernel python3
+[I 200716 07:39:18 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# First, train the algorithm to compute the similarities between items
+data = Dataset.load_builtin('ml-100k')
+trainset = data.build_full_trainset()
+sim_options = {'name': 'pearson_baseline', 'user_based': False}
+algo = KNNBaseline(sim_options=sim_options)
+algo.fit(trainset)
+
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-3-c5edcfd838d9>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# First, train the algorithm to compute the similarities between items[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mdata[0m [0;34m=[0m [0mDataset[0m[0;34m.[0m[0mload_builtin[0m[0;34m([0m[0;34m'ml-100k'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mtrainset[0m [0;34m=[0m [0mdata[0m[0;34m.[0m[0mbuild_full_trainset[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0msim_options[0m [0;34m=[0m [0;34m{[0m[0;34m'name'[0m[0;34m:[0m [0;34m'pearson_baseline'[0m[0;34m,[0m [0;34m'user_based'[0m[0;34m:[0m [0;32mFalse[0m[0;34m}[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0malgo[0m [0;34m=[0m [0mKNNBaseline[0m[0;34m([0m[0msim_options[0m[0;34m=[0m[0msim_options[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/surprise/dataset.py[0m in [0;36mload_builtin[0;34m(cls, name, prompt)[0m
+[1;32m     87[0m                 print('Dataset ' + name + ' could not be found. Do you want '
+[1;32m     88[0m                       'to download it? [Y/n] ', end='')
+[0;32m---> 89[0;31m                 [0mchoice[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     90[0m [0;34m[0m[0m
+[1;32m     91[0m                 [0;32mif[0m [0mchoice[0m [0;32min[0m [0;34m[[0m[0;34m'yes'[0m[0;34m,[0m [0;34m'y'[0m[0;34m,[0m [0;34m''[0m[0;34m,[0m [0;34m'omg this is so nice of you!!'[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    852[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    853[0m             raise StdinNotImplementedError(
+[0;32m--> 854[0;31m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    855[0m             )
+[1;32m    856[0m         return self._input_request(str(prompt),
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

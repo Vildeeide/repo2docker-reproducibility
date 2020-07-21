@@ -1,0 +1,5 @@
+[I 200703 06:35:27 inrepo:35] Testing notebook ivp_odes/Forward Euler stability.ipynb
+[I 200703 06:35:29 execute:404] Executing notebook with kernel: python3
+[I 200703 06:35:31 inrepo:41] Saving exported notebook to /io/notebooks/ivp_odes/Forward Euler stability.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

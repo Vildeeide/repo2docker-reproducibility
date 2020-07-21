@@ -1,0 +1,89 @@
+[I 200715 12:29:57 inrepo:36] Testing notebook .ipynb_checkpoints/h5py Tests-checkpoint.ipynb
+[I 200715 12:29:57 inrepo:45] Found kernel python3
+[I 200715 12:29:58 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+datafile = "tests/example_data"
+
+data = h5py.File(datafile)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/h5py/_hl/files.py[0m in [0;36mmake_fid[0;34m(name, mode, userblock_size, fapl, fcpl, swmr)[0m
+[1;32m    198[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 199[0;31m             [0mfid[0m [0;34m=[0m [0mh5f[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mname[0m[0;34m,[0m [0mh5f[0m[0;34m.[0m[0mACC_RDWR[0m[0;34m,[0m [0mfapl[0m[0;34m=[0m[0mfapl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    200[0m         [0;32mexcept[0m [0mIOError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/h5f.pyx[0m in [0;36mh5py.h5f.open[0;34m()[0m
+
+[0;31mOSError[0m: Unable to open file (unable to open file: name = 'tests/example_data', errno = 2, error message = 'No such file or directory', flags = 1, o_flags = 2)
+
+During handling of the above exception, another exception occurred:
+
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/h5py/_hl/files.py[0m in [0;36mmake_fid[0;34m(name, mode, userblock_size, fapl, fcpl, swmr)[0m
+[1;32m    201[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 202[0;31m                 [0mfid[0m [0;34m=[0m [0mh5f[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mname[0m[0;34m,[0m [0mh5f[0m[0;34m.[0m[0mACC_RDONLY[0m[0;34m,[0m [0mfapl[0m[0;34m=[0m[0mfapl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    203[0m             [0;32mexcept[0m [0mIOError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/h5f.pyx[0m in [0;36mh5py.h5f.open[0;34m()[0m
+
+[0;31mOSError[0m: Unable to open file (unable to open file: name = 'tests/example_data', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+
+During handling of the above exception, another exception occurred:
+
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m<ipython-input-2-f693067e5a42>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mdatafile[0m [0;34m=[0m [0;34m"tests/example_data"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;34m[0m[0m
+[0;32m----> 3[0;31m [0mdata[0m [0;34m=[0m [0mh5py[0m[0;34m.[0m[0mFile[0m[0;34m([0m[0mdatafile[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/h5py/_hl/files.py[0m in [0;36m__init__[0;34m(self, name, mode, driver, libver, userblock_size, swmr, rdcc_nslots, rdcc_nbytes, rdcc_w0, track_order, **kwds)[0m
+[1;32m    406[0m                 fid = make_fid(name, mode, userblock_size,
+[1;32m    407[0m                                [0mfapl[0m[0;34m,[0m [0mfcpl[0m[0;34m=[0m[0mmake_fcpl[0m[0;34m([0m[0mtrack_order[0m[0;34m=[0m[0mtrack_order[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 408[0;31m                                swmr=swmr)
+[0m[1;32m    409[0m [0;34m[0m[0m
+[1;32m    410[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0mlibver[0m[0;34m,[0m [0mtuple[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/h5py/_hl/files.py[0m in [0;36mmake_fid[0;34m(name, mode, userblock_size, fapl, fcpl, swmr)[0m
+[1;32m    202[0m                 [0mfid[0m [0;34m=[0m [0mh5f[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mname[0m[0;34m,[0m [0mh5f[0m[0;34m.[0m[0mACC_RDONLY[0m[0;34m,[0m [0mfapl[0m[0;34m=[0m[0mfapl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    203[0m             [0;32mexcept[0m [0mIOError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 204[0;31m                 [0mfid[0m [0;34m=[0m [0mh5f[0m[0;34m.[0m[0mcreate[0m[0;34m([0m[0mname[0m[0;34m,[0m [0mh5f[0m[0;34m.[0m[0mACC_EXCL[0m[0;34m,[0m [0mfapl[0m[0;34m=[0m[0mfapl[0m[0;34m,[0m [0mfcpl[0m[0;34m=[0m[0mfcpl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    205[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    206[0m         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"Invalid mode; must be one of r, r+, w, w-, x, a"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/_objects.pyx[0m in [0;36mh5py._objects.with_phil.wrapper[0;34m()[0m
+
+[0;32mh5py/h5f.pyx[0m in [0;36mh5py.h5f.create[0;34m()[0m
+
+[0;31mOSError[0m: Unable to create file (unable to open file: name = 'tests/example_data', errno = 2, error message = 'No such file or directory', flags = 15, o_flags = c2)
+OSError: Unable to create file (unable to open file: name = 'tests/example_data', errno = 2, error message = 'No such file or directory', flags = 15, o_flags = c2)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

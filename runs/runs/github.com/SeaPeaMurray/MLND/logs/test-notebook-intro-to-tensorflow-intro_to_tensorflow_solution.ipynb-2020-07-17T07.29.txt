@@ -1,0 +1,46 @@
+[I 200717 07:30:25 inrepo:36] Testing notebook intro-to-tensorflow/intro_to_tensorflow_solution.ipynb
+[I 200717 07:30:25 inrepo:45] Found kernel python3
+[I 200717 07:30:26 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+features_count = 784
+labels_count = 10
+
+# Problem 2 - Set the features and labels tensors
+features = tf.placeholder(tf.float32)
+labels = tf.placeholder(tf.float32)
+
+# Problem 2 - Set the weights and biases tensors
+weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))
+biases = tf.Variable(tf.zeros(labels_count))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-2-44728dee0ce4>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;31m# Problem 2 - Set the features and labels tensors[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0mfeatures[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0mlabels[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;34m[0m[0m
+
+[0;31mNameError[0m: name 'tf' is not defined
+NameError: name 'tf' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

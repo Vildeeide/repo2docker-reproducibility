@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/qinduanyinghua/cs231n_sol,35754f3e77f812b376f143e29009fe2fcd81d853,35754f3,2018-04-14T00:40:25+08:00,build,build,False,github.com/qinduanyinghua/cs231n_sol/logs/build-35754f3e77f812b376f143e29009fe2fcd81d853-2020-07-10T14.48.txt,2020-07-10T14:48:26.301413,2020-07-10T14.48,0.11.0

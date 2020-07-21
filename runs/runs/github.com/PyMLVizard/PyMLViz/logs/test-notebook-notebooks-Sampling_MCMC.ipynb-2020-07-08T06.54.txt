@@ -1,0 +1,89 @@
+[I 200708 06:55:25 inrepo:36] Testing notebook notebooks/Sampling_MCMC.ipynb
+[I 200708 06:55:25 inrepo:45] Found kernel python3
+[I 200708 06:55:26 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+sampling = MetropolisHastings(log_p=lambda x: np.log(smpl_rej.p(x)), 
+                              q=Proposer(lambda x: norm(loc=x, scale=0.5).rvs(),
+                                         lambda x, y: norm(loc=x, scale=0.5).logpdf(y)),
+                              x=-3.0)
+
+smpl_intro.show_sampling(sampling, plotter=smpl_intro.gauss_hist, N=2500)
+print(sampling)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipywidgets/widgets/interaction.py[0m in [0;36mobserver[0;34m(change)[0m
+[1;32m     77[0m         [0;32mwith[0m [0mout[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     78[0m             [0mclear_output[0m[0;34m([0m[0mwait[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 79[0;31m             [0mf[0m[0;34m([0m[0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     80[0m             [0mshow_inline_matplotlib_plots[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     81[0m     [0;32mfor[0m [0mk[0m[0;34m,[0m[0mw[0m [0;32min[0m [0mcontrols[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/notebooks/Sampling_Intro.ipynb[0m in [0;36mshow[0;34m(redraw_check, num, bins)[0m
+
+[0;32m~/notebooks/Sampling_Intro.ipynb[0m in [0;36mgauss_hist[0;34m(ax, data, bins)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/pyplot.py[0m in [0;36mhist[0;34m(x, bins, range, density, weights, cumulative, bottom, histtype, align, orientation, rwidth, log, color, label, stacked, data, **kwargs)[0m
+[1;32m   2608[0m         [0malign[0m[0;34m=[0m[0malign[0m[0;34m,[0m [0morientation[0m[0;34m=[0m[0morientation[0m[0;34m,[0m [0mrwidth[0m[0;34m=[0m[0mrwidth[0m[0;34m,[0m [0mlog[0m[0;34m=[0m[0mlog[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2609[0m         color=color, label=label, stacked=stacked, **({"data": data}
+[0;32m-> 2610[0;31m         if data is not None else {}), **kwargs)
+[0m[1;32m   2611[0m [0;34m[0m[0m
+[1;32m   2612[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/__init__.py[0m in [0;36minner[0;34m(ax, data, *args, **kwargs)[0m
+[1;32m   1563[0m     [0;32mdef[0m [0minner[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1564[0m         [0;32mif[0m [0mdata[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1565[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0mmap[0m[0;34m([0m[0msanitize_sequence[0m[0;34m,[0m [0margs[0m[0;34m)[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1566[0m [0;34m[0m[0m
+[1;32m   1567[0m         [0mbound[0m [0;34m=[0m [0mnew_sig[0m[0;34m.[0m[0mbind[0m[0;34m([0m[0max[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/axes/_axes.py[0m in [0;36mhist[0;34m(self, x, bins, range, density, weights, cumulative, bottom, histtype, align, orientation, rwidth, log, color, label, stacked, **kwargs)[0m
+[1;32m   6817[0m             [0;32mif[0m [0mpatch[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6818[0m                 [0mp[0m [0;34m=[0m [0mpatch[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 6819[0;31m                 [0mp[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   6820[0m                 [0;32mif[0m [0mlbl[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6821[0m                     [0mp[0m[0;34m.[0m[0mset_label[0m[0;34m([0m[0mlbl[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36mupdate[0;34m(self, props)[0m
+[1;32m   1004[0m [0;34m[0m[0m
+[1;32m   1005[0m         [0;32mwith[0m [0mcbook[0m[0;34m.[0m[0m_setattr_cm[0m[0;34m([0m[0mself[0m[0;34m,[0m [0meventson[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1006[0;31m             [0mret[0m [0;34m=[0m [0;34m[[0m[0m_update_property[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mprops[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1007[0m [0;34m[0m[0m
+[1;32m   1008[0m         [0;32mif[0m [0mlen[0m[0;34m([0m[0mret[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m   1004[0m [0;34m[0m[0m
+[1;32m   1005[0m         [0;32mwith[0m [0mcbook[0m[0;34m.[0m[0m_setattr_cm[0m[0;34m([0m[0mself[0m[0;34m,[0m [0meventson[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1006[0;31m             [0mret[0m [0;34m=[0m [0;34m[[0m[0m_update_property[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mprops[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1007[0m [0;34m[0m[0m
+[1;32m   1008[0m         [0;32mif[0m [0mlen[0m[0;34m([0m[0mret[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36m_update_property[0;34m(self, k, v)[0m
+[1;32m   1000[0m                 [0;32mif[0m [0;32mnot[0m [0mcallable[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1001[0m                     raise AttributeError('{!r} object has no property {!r}'
+[0;32m-> 1002[0;31m                                          .format(type(self).__name__, k))
+[0m[1;32m   1003[0m                 [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0mv[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1004[0m [0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'Rectangle' object has no property 'normed'
+AttributeError: 'Rectangle' object has no property 'normed'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

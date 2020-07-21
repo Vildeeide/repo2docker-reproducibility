@@ -1,0 +1,5 @@
+[I 200707 06:50:39 inrepo:35] Testing notebook tutorials/tutorial_linear_regression.solution.ipynb
+[I 200707 06:50:41 execute:404] Executing notebook with kernel: python3
+[I 200707 06:50:49 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/tutorial_linear_regression.solution.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

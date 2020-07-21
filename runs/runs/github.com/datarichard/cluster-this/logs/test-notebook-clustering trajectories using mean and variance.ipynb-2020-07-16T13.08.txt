@@ -1,0 +1,54 @@
+[I 200716 13:08:47 inrepo:36] Testing notebook clustering trajectories using mean and variance.ipynb
+[I 200716 13:08:47 inrepo:45] Found kernel python3
+[I 200716 13:08:48 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 450, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, reply['content'])
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%% Generate data
+clear variables
+n = 1000; % number of timeseries (samples)
+ntime = 14; % number of time points in the time series
+y = zeros(n,ntime); % y will hold our data (n timeseries)
+prob_true = 0.9; % proportion of timeseries in group2 (mu2, sigma2)
+u = rand(n,1);
+
+% draw the samples for group1 from a normal distribution 
+kk1 = find(u > prob_true);
+mu1_true = 0.65;
+sigma1_true = 0.10;
+y(kk1,:)=normrnd(mu1_true,sigma1_true,length(kk1),ntime);
+
+% draw the samples for group2 from a normal distribution 
+kk2 = find(u < prob_true);
+mu2_true = 0.5;
+sigma2_true = 0.15;
+y(kk2,:) = normrnd(mu2_true, sigma2_true, length(kk2), ntime);
+
+% plot the generated timeseries
+time=linspace(1, ntime, ntime)';
+figure
+plot(time,y(kk2,:),'r');
+hold on
+plot(time,y(kk1,:),'b');
+hold off
+------------------
+
+
+UsageError: Cell magic `%%` not found.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

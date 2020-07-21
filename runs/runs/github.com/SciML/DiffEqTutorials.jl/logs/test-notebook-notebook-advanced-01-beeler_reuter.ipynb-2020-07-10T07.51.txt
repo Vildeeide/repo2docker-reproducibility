@@ -1,0 +1,39 @@
+[I 200710 07:56:25 inrepo:36] Testing notebook notebook/advanced/01-beeler_reuter.ipynb
+[W 200710 07:56:26 inrepo:48] No such kernel julia-1.4, falling back on kernel language=julia
+[W 200710 07:56:26 inrepo:60] Using kernel julia-1.3 to provide language: julia
+Starting kernel event loops.
+[I 200710 07:57:13 execute:404] Executing notebook with kernel: julia-1.3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+using Plots
+heatmap(u0)
+------------------
+
+ArgumentError: Package Plots not found in current path:
+- Run `import Pkg; Pkg.add("Plots")` to install the Plots package.
+
+
+Stacktrace:
+ [1] require(::Module, ::Symbol) at ./loading.jl:887
+ [2] top-level scope at In[11]:1
+ArgumentError: ArgumentError: Package Plots not found in current path:
+- Run `import Pkg; Pkg.add("Plots")` to install the Plots package.
+
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

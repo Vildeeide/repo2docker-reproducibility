@@ -1,0 +1,5 @@
+[I 200703 06:44:52 inrepo:35] Testing notebook interpolation/Jump with Chebyshev Nodes.ipynb
+[I 200703 06:44:53 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:55 inrepo:41] Saving exported notebook to /io/notebooks/interpolation/Jump with Chebyshev Nodes.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

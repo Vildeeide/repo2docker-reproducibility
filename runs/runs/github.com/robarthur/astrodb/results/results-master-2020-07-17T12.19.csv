@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/robarthur/astrodb,master,f2f2062,2017-11-22T19:35:14+00:00,build,build,True,github.com/robarthur/astrodb/logs/build-master-2020-07-17T12.19.txt,2020-07-17T12:19:26.081916,2020-07-17T12.19,0.11.0
+https://github.com/robarthur/astrodb,master,f2f2062,2017-11-22T19:35:14+00:00,notebook,scrape.ipynb,False,github.com/robarthur/astrodb/logs/test-notebook-scrape.ipynb-2020-07-17T12.19.txt,2020-07-17T12:19:26.081916,2020-07-17T12.19,0.11.0

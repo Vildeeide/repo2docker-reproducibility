@@ -1,0 +1,6 @@
+[I 200708 08:10:59 inrepo:36] Testing notebook Data_Fitting_Exercise_S2_2.ipynb
+[I 200708 08:10:59 inrepo:45] Found kernel python3
+[I 200708 08:11:00 execute:404] Executing notebook with kernel: python3
+[I 200708 08:11:00 inrepo:77] Saving exported notebook to /io/notebooks/Data_Fitting_Exercise_S2_2.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

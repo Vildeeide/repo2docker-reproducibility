@@ -1,0 +1,5 @@
+[I 200706 09:28:12 inrepo:35] Testing notebook tutorials/W1D4_MachineLearning/W1D4_Tutorial1.ipynb
+[I 200706 09:28:14 execute:404] Executing notebook with kernel: python3
+[I 200706 09:28:31 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/W1D4_MachineLearning/W1D4_Tutorial1.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

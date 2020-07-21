@@ -1,0 +1,449 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-16T07.17apu2duvr/github.com/jjromano/TDI_stock_project.
+Using PythonBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${CONDA_DIR}/envs/kernel
+ ---> Using cache
+ ---> d02eeac85c53
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${KERNEL_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> 6f0f9264e9b8
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 94b11c12a020
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> 837c948b4854
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d2-2e7-2efrozen-2eyml-379f74 /tmp/kernel-environment.yml
+ ---> Using cache
+ ---> 34bb82896423
+Step 27/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 77ce9857cea0
+Step 28/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 4569f9280b08
+Step 29/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 4955cce20e9a
+Step 30/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 45c6e4d929f4
+Step 31/52 : USER root
+ ---> Using cache
+ ---> 9523e61984af
+Step 32/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> f8fcfe6c372e
+Step 33/52 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> b572ecda404b
+Step 34/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> d9f4a864c0ad
+Step 35/52 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 9dd615a29832
+Step 36/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 91b8186d472b
+Step 37/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 685a83c45c09
+Step 38/52 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> f430f6d8d8f6
+Step 39/52 : USER root
+ ---> Running in 5009afd3a5fa
+Removing intermediate container 5009afd3a5fa
+ ---> 8006efeab60b
+Step 40/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f95e94d434f5
+Removing intermediate container f95e94d434f5
+ ---> ef27d213a65a
+Step 41/52 : USER ${NB_USER}
+ ---> Running in cdaf6819dd2f
+Removing intermediate container cdaf6819dd2f
+ ---> 7a987c9c0a58
+Step 42/52 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 2dec6d6e9f03
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0m[91mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+[0mCollecting amqp==1.4.9
+  Downloading amqp-1.4.9-py2.py3-none-any.whl (51 kB)
+Collecting anyjson==0.3.3
+  Downloading anyjson-0.3.3.tar.gz (8.3 kB)
+Collecting asn1crypto==0.22.0
+  Downloading asn1crypto-0.22.0-py2.py3-none-any.whl (97 kB)
+Collecting attrs==15.2.0
+  Downloading attrs-15.2.0-py2.py3-none-any.whl (14 kB)
+Collecting audioread==2.1.2
+  Downloading audioread-2.1.2.tar.gz (14 kB)
+Collecting awscli==1.10.19
+  Downloading awscli-1.10.19-py2.py3-none-any.whl (919 kB)
+Collecting backports-abc==0.4
+  Downloading backports_abc-0.4-py2.py3-none-any.whl (5.1 kB)
+Requirement already satisfied: backports.shutil-get-terminal-size==1.0.0 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from -r requirements.txt (line 8)) (1.0.0)
+Collecting backports.ssl-match-hostname==3.4.0.2
+  Downloading backports.ssl_match_hostname-3.4.0.2.tar.gz (5.2 kB)
+Collecting beautifulsoup4==4.4.1
+  Downloading beautifulsoup4-4.4.1-py2-none-any.whl (81 kB)
+Collecting billiard==3.3.0.23
+  Downloading billiard-3.3.0.23.tar.gz (151 kB)
+Collecting bleach==1.5.0
+  Downloading bleach-1.5.0-py2.py3-none-any.whl (17 kB)
+Collecting bokeh==0.12.4
+  Downloading bokeh-0.12.4.tar.gz (5.6 MB)
+Collecting boto==2.46.1
+  Downloading boto-2.46.1-py2.py3-none-any.whl (1.4 MB)
+Collecting boto3==1.4.3
+  Downloading boto3-1.4.3-py2.py3-none-any.whl (127 kB)
+Collecting botocore==1.4.10
+  Downloading botocore-1.4.10-py2.py3-none-any.whl (2.3 MB)
+Collecting brewer2mpl==1.4.1
+  Downloading brewer2mpl-1.4.1-py2.py3-none-any.whl (24 kB)
+Collecting bz2file==0.98
+  Downloading bz2file-0.98.tar.gz (11 kB)
+Collecting celery==3.1.23
+  Downloading celery-3.1.23-py2.py3-none-any.whl (520 kB)
+Collecting certifi==2015.9.6.2
+  Downloading certifi-2015.9.6.2-py2.py3-none-any.whl (371 kB)
+Collecting cffi==1.10.0
+  Downloading cffi-1.10.0-cp27-cp27mu-manylinux1_x86_64.whl (392 kB)
+Collecting chest==0.2.3
+  Downloading chest-0.2.3.tar.gz (9.6 kB)
+Collecting click==6.7
+  Downloading click-6.7-py2.py3-none-any.whl (71 kB)
+Collecting cloudpickle==0.2.2
+  Downloading cloudpickle-0.2.2-py2.py3-none-any.whl (13 kB)
+Collecting colorama==0.3.3
+  Downloading colorama-0.3.3.tar.gz (22 kB)
+Collecting configparser==3.5.0
+  Downloading configparser-3.5.0.tar.gz (39 kB)
+Collecting constantly==15.1.0
+  Downloading constantly-15.1.0-py2.py3-none-any.whl (7.9 kB)
+Collecting cookies==2.2.1
+  Downloading cookies-2.2.1-py2.py3-none-any.whl (44 kB)
+Collecting cryptography==1.8.1
+  Downloading cryptography-1.8.1.tar.gz (423 kB)
+Collecting cssselect==0.9.1
+  Downloading cssselect-0.9.1.tar.gz (32 kB)
+Collecting cycler==0.10.0
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting cymem==1.31.2
+  Downloading cymem-1.31.2-cp27-cp27mu-manylinux1_x86_64.whl (66 kB)
+Collecting Cython==0.23.1
+  Downloading Cython-0.23.1-cp27-cp27mu-manylinux1_x86_64.whl (5.6 MB)
+Collecting decorator==4.0.11
+  Downloading decorator-4.0.11-py2.py3-none-any.whl (8.9 kB)
+Collecting dill==0.2.5
+  Downloading dill-0.2.5.tgz (60 kB)
+Collecting docker-py==1.8.0
+  Downloading docker_py-1.8.0-py2.py3-none-any.whl (41 kB)
+Collecting docutils==0.12
+  Downloading docutils-0.12.tar.gz (1.6 MB)
+Collecting ecdsa==0.11
+  Downloading ecdsa-0.11.tar.gz (45 kB)
+Collecting ediblepickle==1.1.3
+  Downloading ediblepickle-1.1.3.tar.gz (8.0 kB)
+Collecting entrypoints==0.2.2
+  Downloading entrypoints-0.2.2-py2.py3-none-any.whl (3.2 kB)
+Requirement already satisfied: enum34==1.1.6 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from -r requirements.txt (line 41)) (1.1.6)
+Collecting Fabric==1.10.2
+  Downloading Fabric-1.10.2-py2-none-any.whl (90 kB)
+Collecting fastcache==1.0.2
+  Downloading fastcache-1.0.2.tar.gz (19 kB)
+Collecting filechunkio==1.8
+  Downloading filechunkio-1.8.tar.gz (2.3 kB)
+Collecting flake8==2.5.1
+  Downloading flake8-2.5.1-py2.py3-none-any.whl (37 kB)
+Collecting Flask==0.10.1
+  Downloading Flask-0.10.1.tar.gz (544 kB)
+Collecting folium==0.2.1
+  Downloading folium-0.2.1.tar.gz (69 kB)
+Collecting funcsigs==0.4
+  Downloading funcsigs-0.4-py2.py3-none-any.whl (14 kB)
+Collecting functools32==3.2.3.post2
+  Downloading functools32-3.2.3-2.tar.gz (31 kB)
+Collecting futures==3.1.1
+  Downloading futures-3.1.1-py2-none-any.whl (14 kB)
+Collecting gensim==0.12.4
+  Downloading gensim-0.12.4.tar.gz (2.4 MB)
+Collecting geocoder==1.20.0
+  Downloading geocoder-1.20.0-py2.py3-none-any.whl (69 kB)
+Collecting ggplot==0.11.5
+  Downloading ggplot-0.11.5-py2.py3-none-any.whl (2.2 MB)
+Collecting gitdb==0.6.4
+  Downloading gitdb-0.6.4.tar.gz (400 kB)
+Collecting GitPython==2.0.8
+  Downloading GitPython-2.0.8.tar.gz (407 kB)
+Collecting google-api-python-client==1.6.2
+  Downloading google_api_python_client-1.6.2-py2.py3-none-any.whl (52 kB)
+Collecting HeapDict==1.0.0
+  Downloading HeapDict-1.0.0.tar.gz (7.7 kB)
+Collecting html5lib==0.999
+  Downloading html5lib-0.999.tar.gz (885 kB)
+Collecting httplib2==0.10.3
+  Downloading httplib2-0.10.3.tar.gz (204 kB)
+Collecting httpretty==0.8.10
+  Downloading httpretty-0.8.10-py2-none-any.whl (29 kB)
+Collecting idna==2.5
+  Downloading idna-2.5-py2.py3-none-any.whl (55 kB)
+Collecting incremental==16.10.1
+  Downloading incremental-16.10.1-py2.py3-none-any.whl (16 kB)
+Collecting inflection==0.3.1
+  Downloading inflection-0.3.1.tar.gz (8.7 kB)
+Collecting ipaddress==1.0.18
+  Downloading ipaddress-1.0.18-py2-none-any.whl (17 kB)
+Collecting ipykernel==4.6.1
+  Downloading ipykernel-4.6.1-py2-none-any.whl (104 kB)
+Collecting ipython==5.3.0
+  Downloading ipython-5.3.0-py2-none-any.whl (750 kB)
+Collecting ipython-genutils==0.1.0
+  Downloading ipython_genutils-0.1.0-py2.py3-none-any.whl (26 kB)
+Collecting ipython-sql==0.3.6
+  Downloading ipython-sql-0.3.6.tar.gz (11 kB)
+Collecting ipywidgets==4.1.1
+  Downloading ipywidgets-4.1.1-py2.py3-none-any.whl (117 kB)
+Collecting itsdangerous==0.24
+  Downloading itsdangerous-0.24.tar.gz (46 kB)
+Collecting jellyfish==0.5.1
+  Downloading jellyfish-0.5.1.tar.gz (21 kB)
+Collecting Jinja2==2.9.6
+  Downloading Jinja2-2.9.6-py2.py3-none-any.whl (340 kB)
+Collecting jmespath==0.9.0
+  Downloading jmespath-0.9.0-py2.py3-none-any.whl (20 kB)
+Collecting joblib==0.9.4
+  Downloading joblib-0.9.4-py2.py3-none-any.whl (112 kB)
+Collecting jsonschema==2.6.0
+  Downloading jsonschema-2.6.0-py2.py3-none-any.whl (39 kB)
+Collecting jupyter-client==4.4.0
+  Downloading jupyter_client-4.4.0-py2.py3-none-any.whl (76 kB)
+Collecting jupyter-core==4.3.0
+  Downloading jupyter_core-4.3.0-py2.py3-none-any.whl (76 kB)
+Collecting kombu==3.0.35
+  Downloading kombu-3.0.35-py2.py3-none-any.whl (240 kB)
+Collecting lazy==1.2
+  Downloading lazy-1.2.zip (14 kB)
+Collecting librosa==0.5.0
+  Downloading librosa-0.5.0.tar.gz (1.5 MB)
+Collecting locket==0.2.0
+  Downloading locket-0.2.0.tar.gz (3.5 kB)
+Collecting lxml==3.8.0
+  Downloading lxml-3.8.0-cp27-cp27mu-manylinux1_x86_64.whl (6.8 MB)
+Collecting markdown2==2.3.1
+  Downloading markdown2-2.3.1.zip (147 kB)
+Collecting MarkupSafe==0.23
+  Downloading MarkupSafe-0.23.tar.gz (13 kB)
+Collecting matplotlib==2.0.2
+  Downloading matplotlib-2.0.2-cp27-cp27mu-manylinux1_x86_64.whl (14.5 MB)
+Collecting mccabe==0.6.1
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting mistune==0.7.4
+  Downloading mistune-0.7.4-py2.py3-none-any.whl (24 kB)
+Collecting mock==1.3.0
+  Downloading mock-1.3.0-py2.py3-none-any.whl (56 kB)
+Collecting more-itertools==3.1.0
+  Downloading more_itertools-3.1.0-py2-none-any.whl (37 kB)
+Collecting mpmath==0.19
+  Downloading mpmath-0.19.tar.gz (498 kB)
+Collecting mrjob==0.5.9
+  Downloading mrjob-0.5.9-py2.py3-none-any.whl (305 kB)
+Collecting murmurhash==0.26.4
+  Downloading murmurhash-0.26.4-cp27-cp27mu-manylinux1_x86_64.whl (35 kB)
+Collecting mwparserfromhell==0.4.3
+  Downloading mwparserfromhell-0.4.3.tar.gz (117 kB)
+Collecting nbconvert==5.2.1
+  Downloading nbconvert-5.2.1-py2.py3-none-any.whl (382 kB)
+Collecting nbformat==4.3.0
+  Downloading nbformat-4.3.0-py2.py3-none-any.whl (154 kB)
+Collecting ndg-httpsclient==0.4.2
+  Downloading ndg_httpsclient-0.4.2.tar.gz (25 kB)
+Collecting networkx==1.11
+  Downloading networkx-1.11-py2.py3-none-any.whl (1.3 MB)
+Collecting nltk==3.2.4
+  Downloading nltk-3.2.4.tar.gz (1.2 MB)
+Collecting nose==1.3.7
+  Downloading nose-1.3.7-py2-none-any.whl (154 kB)
+Collecting notebook==4.4.1
+  Downloading notebook-4.4.1-py2.py3-none-any.whl (6.9 MB)
+Collecting numexpr==2.6.2
+  Downloading numexpr-2.6.2-cp27-cp27mu-manylinux1_x86_64.whl (363 kB)
+Collecting numpy==1.11.3
+  Downloading numpy-1.11.3-cp27-cp27mu-manylinux1_x86_64.whl (15.4 MB)
+Collecting oauth2client==4.1.0
+  Downloading oauth2client-4.1.0-py2.py3-none-any.whl (185 kB)
+Collecting oauthlib==1.0.1
+  Downloading oauthlib-1.0.1.tar.gz (108 kB)
+Collecting packaging==16.8
+  Downloading packaging-16.8-py2.py3-none-any.whl (23 kB)
+Collecting pandas==0.20.1
+  Downloading pandas-0.20.1-cp27-cp27mu-manylinux1_x86_64.whl (22.3 MB)
+Collecting pandocfilters==1.4.1
+  Downloading pandocfilters-1.4.1.tar.gz (14 kB)
+Collecting paramiko==1.15.2
+  Downloading paramiko-1.15.2-py2.py3-none-any.whl (165 kB)
+Collecting partd==0.3.2
+  Downloading partd-0.3.2.tar.gz (17 kB)
+Collecting pathlib2==2.2.1
+  Downloading pathlib2-2.2.1-py2.py3-none-any.whl (16 kB)
+Collecting patsy==0.4.1
+  Downloading patsy-0.4.1-py2.py3-none-any.whl (233 kB)
+Collecting pbr==1.8.1
+  Downloading pbr-1.8.1-py2.py3-none-any.whl (89 kB)
+Collecting pep8==1.7.0
+  Downloading pep8-1.7.0-py2.py3-none-any.whl (41 kB)
+Collecting pexpect==4.2.1
+  Downloading pexpect-4.2.1-py2.py3-none-any.whl (55 kB)
+Collecting pickleshare==0.7.4
+  Downloading pickleshare-0.7.4-py2.py3-none-any.whl (6.9 kB)
+Collecting Pillow==3.4.2
+  Downloading Pillow-3.4.2-cp27-cp27mu-manylinux1_x86_64.whl (5.6 MB)
+Collecting plac==0.9.6
+  Downloading plac-0.9.6-py2.py3-none-any.whl (20 kB)
+Collecting preshed==0.46.4
+  Downloading preshed-0.46.4-cp27-cp27mu-manylinux1_x86_64.whl (223 kB)
+Collecting prettytable==0.7.2
+  Downloading prettytable-0.7.2.tar.bz2 (21 kB)
+Collecting prompt-toolkit==1.0.8
+  Downloading prompt_toolkit-1.0.8-py2-none-any.whl (240 kB)
+Collecting protobuf==3.2.0
+  Downloading protobuf-3.2.0-cp27-cp27mu-manylinux1_x86_64.whl (5.6 MB)
+Collecting psutil==4.1.0
+  Downloading psutil-4.1.0.tar.gz (301 kB)
+Collecting ptyprocess==0.5.1
+  Downloading ptyprocess-0.5.1-py2.py3-none-any.whl (12 kB)
+Collecting py==1.4.34
+  Downloading py-1.4.34-py2.py3-none-any.whl (84 kB)
+Collecting py2-ipaddress==3.4.1
+  Downloading py2-ipaddress-3.4.1.tar.gz (17 kB)
+Collecting py4j==0.10.3
+  Downloading py4j-0.10.3-py2.py3-none-any.whl (185 kB)
+Collecting pyasn1==0.2.3
+  Downloading pyasn1-0.2.3-py2.py3-none-any.whl (53 kB)
+Collecting pyasn1-modules==0.0.9
+  Downloading pyasn1_modules-0.0.9-py2.py3-none-any.whl (60 kB)
+Collecting pycparser==2.17
+  Downloading pycparser-2.17.tar.gz (231 kB)
+Collecting pycrypto==2.6.1
+  Downloading pycrypto-2.6.1.tar.gz (446 kB)
+Collecting pydot==1.0.28
+  Downloading pydot-1.0.28.tar.gz (19 kB)
+Collecting pyflakes==1.5.0
+  Downloading pyflakes-1.5.0-py2.py3-none-any.whl (225 kB)
+Collecting Pygments==2.2.0
+  Downloading Pygments-2.2.0-py2.py3-none-any.whl (841 kB)
+Collecting pyOpenSSL==0.15.1
+  Downloading pyOpenSSL-0.15.1-py2.py3-none-any.whl (102 kB)
+Collecting pyparsing==1.5.6
+  Downloading pyparsing-1.5.6.tar.gz (1.4 MB)
+Collecting pytest==2.9.1
+  Downloading pytest-2.9.1-py2.py3-none-any.whl (161 kB)
+Collecting python-dateutil==2.6.0
+  Downloading python_dateutil-2.6.0-py2.py3-none-any.whl (194 kB)
+Collecting pytidylib==0.2.4
+  Downloading pytidylib-0.2.4.tar.gz (86 kB)
+Collecting pytz==2017.2
+  Downloading pytz-2017.2-py2.py3-none-any.whl (484 kB)
+Collecting PyYAML==3.12
+  Downloading PyYAML-3.12.tar.gz (253 kB)
+Collecting pyzmq==16.0.2
+  Downloading pyzmq-16.0.2-cp27-cp27mu-manylinux1_x86_64.whl (3.0 MB)
+Collecting Quandl==3.0.1
+  Downloading Quandl-3.0.1-py2.py3-none-any.whl (22 kB)
+Collecting queuelib==1.2.2
+  Downloading queuelib-1.2.2-py2.py3-none-any.whl (9.5 kB)
+Collecting ratelim==0.1.6
+  Downloading ratelim-0.1.6-py2.py3-none-any.whl (4.0 kB)
+Collecting redis==2.10.5
+  Downloading redis-2.10.5-py2.py3-none-any.whl (60 kB)
+Collecting requests==2.14.2
+  Downloading requests-2.14.2-py2.py3-none-any.whl (560 kB)
+Collecting requests-futures==0.9.5
+  Downloading requests-futures-0.9.5.tar.gz (5.3 kB)
+Collecting requests-oauthlib==0.5.0
+  Downloading requests_oauthlib-0.5.0-py2.py3-none-any.whl (19 kB)
+Collecting resampy==0.1.5
+  Downloading resampy-0.1.5.tar.gz (444 kB)
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/kernel/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-7XC0ty/resampy/setup.py'"'"'; __file__='"'"'/tmp/pip-install-7XC0ty/resampy/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-install-7XC0ty/resampy/pip-egg-info
+         cwd: /tmp/pip-install-7XC0ty/resampy/
+    Complete output (5 lines):
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/tmp/pip-install-7XC0ty/resampy/setup.py", line 6, in <module>
+        import numpy as np
+    ImportError: No module named numpy
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+[0mRemoving intermediate container 2dec6d6e9f03
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-jjromano-tdi_stock_project:778945c', '/tmp/r2d-test-2020-07-16T07.17apu2duvr/github.com/jjromano/TDI_stock_project']' returned non-zero exit status 1.

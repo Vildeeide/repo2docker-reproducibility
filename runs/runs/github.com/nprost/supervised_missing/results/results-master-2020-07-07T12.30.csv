@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/nprost/supervised_missing,master,8d2f353,2020-05-13T20:52:14+02:00,build,build,True,github.com/nprost/supervised_missing/logs/build-master-2020-07-07T12.30.txt,2020-07-07T12:30:50.865858,2020-07-07T12.30,0.11.0
+https://github.com/nprost/supervised_missing,master,8d2f353,2020-05-13T20:52:14+02:00,notebook,Notebook/A toy regression model with missing values.ipynb,False,github.com/nprost/supervised_missing/logs/test-notebook-Notebook-A toy regression model with missing values.ipynb-2020-07-07T12.30.txt,2020-07-07T12:30:50.865858,2020-07-07T12.30,0.11.0

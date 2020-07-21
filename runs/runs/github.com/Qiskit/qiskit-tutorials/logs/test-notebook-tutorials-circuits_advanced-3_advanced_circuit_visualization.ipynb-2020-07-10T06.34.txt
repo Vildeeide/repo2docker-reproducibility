@@ -1,0 +1,6 @@
+[I 200710 06:46:11 inrepo:36] Testing notebook tutorials/circuits_advanced/3_advanced_circuit_visualization.ipynb
+[I 200710 06:46:13 inrepo:45] Found kernel python3
+[I 200710 06:46:14 execute:404] Executing notebook with kernel: python3
+[I 200710 06:46:25 inrepo:79] Saving exported notebook to /io/notebooks/tutorials/circuits_advanced/3_advanced_circuit_visualization.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

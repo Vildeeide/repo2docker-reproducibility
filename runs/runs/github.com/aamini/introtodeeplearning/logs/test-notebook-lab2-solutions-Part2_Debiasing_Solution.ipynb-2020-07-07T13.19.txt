@@ -1,0 +1,40 @@
+[I 200707 13:20:14 inrepo:36] Testing notebook lab2/solutions/Part2_Debiasing_Solution.ipynb
+[I 200707 13:20:14 inrepo:45] Found kernel python3
+[I 200707 13:20:15 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 450, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, reply['content'])
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Import Tensorflow 2.0
+%tensorflow_version 2.x
+import tensorflow as tf
+
+import IPython
+import functools
+import matplotlib.pyplot as plt
+import numpy as np
+from tqdm import tqdm
+
+# Download and import the MIT 6.S191 package
+!pip install mitdeeplearning
+import mitdeeplearning as mdl
+------------------
+
+
+UsageError: Line magic function `%tensorflow_version` not found.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

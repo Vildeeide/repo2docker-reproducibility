@@ -1,0 +1,63 @@
+[I 200703 06:57:53 inrepo:35] Testing notebook docs/sources/user_guide/plotting/plot_decision_regions.ipynb
+[I 200703 06:57:54 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import keras
+from keras.models import Sequential
+from keras.layers import Dense
+import matplotlib.pyplot as plt
+import numpy as np
+from mlxtend.data import iris_data
+from mlxtend.preprocessing import standardize
+from mlxtend.plotting import plot_decision_regions
+from keras.utils import to_categorical
+
+X, y = iris_data()
+X = X[:, [2, 3]]
+
+X = standardize(X)
+
+# OneHot encoding
+y_onehot = to_categorical(y)
+
+# Create the model
+np.random.seed(123)
+model = Sequential()
+model.add(Dense(8, input_shape=(2,), activation='relu', kernel_initializer='he_uniform'))
+model.add(Dense(4, activation='relu', kernel_initializer='he_uniform'))
+model.add(Dense(3, activation='softmax'))
+
+# Configure the model and start training
+model.compile(loss="categorical_crossentropy", optimizer=keras.optimizers.adam(lr=0.005), metrics=['accuracy'])
+history = model.fit(X, y_onehot, epochs=10, batch_size=5, verbose=1, validation_split=0.1)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-24-4b853b79c67c>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mkeras[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0mkeras[0m[0;34m.[0m[0mmodels[0m [0;32mimport[0m [0mSequential[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0mkeras[0m[0;34m.[0m[0mlayers[0m [0;32mimport[0m [0mDense[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'keras'
+ModuleNotFoundError: No module named 'keras'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

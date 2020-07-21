@@ -1,0 +1,5 @@
+[I 200706 12:35:36 inrepo:35] Testing notebook HorizontalStresses_Widget.ipynb
+[I 200706 12:35:37 execute:404] Executing notebook with kernel: python3
+[I 200706 12:35:38 inrepo:41] Saving exported notebook to /io/notebooks/HorizontalStresses_Widget.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

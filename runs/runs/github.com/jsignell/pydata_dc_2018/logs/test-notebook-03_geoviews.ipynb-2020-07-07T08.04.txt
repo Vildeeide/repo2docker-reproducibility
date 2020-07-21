@@ -1,0 +1,54 @@
+[I 200707 08:05:17 inrepo:35] Testing notebook 03_geoviews.ipynb
+[I 200707 08:05:18 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import holoviews as hv
+from holoviews import opts
+import geoviews as gv
+
+import geoviews.tile_sources as gts
+import cartopy.crs as ccrs
+hv.extension('bokeh')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-2-9b9303ce395e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;32mimport[0m [0mgeoviews[0m[0;34m.[0m[0mtile_sources[0m [0;32mas[0m [0mgts[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;32mimport[0m [0mcartopy[0m[0;34m.[0m[0mcrs[0m [0;32mas[0m [0mccrs[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m [0mhv[0m[0;34m.[0m[0mextension[0m[0;34m([0m[0;34m'bokeh'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/param/parameterized.py[0m in [0;36m__new__[0;34m(class_, *args, **params)[0m
+[1;32m   2810[0m         [0minst[0m [0;34m=[0m [0mclass_[0m[0;34m.[0m[0minstance[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2811[0m         [0minst[0m[0;34m.[0m[0mparam[0m[0;34m.[0m[0m_set_name[0m[0;34m([0m[0mclass_[0m[0;34m.[0m[0m__name__[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2812[0;31m         [0;32mreturn[0m [0minst[0m[0;34m.[0m[0m__call__[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m[0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2813[0m [0;34m[0m[0m
+[1;32m   2814[0m     [0;32mdef[0m [0m__call__[0m[0;34m([0m[0mself[0m[0;34m,[0m[0;34m*[0m[0margs[0m[0;34m,[0m[0;34m**[0m[0mkw[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/holoviews/util/__init__.py[0m in [0;36m__call__[0;34m(self, *args, **params)[0m
+[1;32m    698[0m [0;34m[0m[0m
+[1;32m    699[0m         [0;32mif[0m [0mselected_backend[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 700[0;31m             [0;32mraise[0m [0mImportError[0m[0;34m([0m[0;34m'None of the backends could be imported'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    701[0m         [0mStore[0m[0;34m.[0m[0mset_current_backend[0m[0;34m([0m[0mselected_backend[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    702[0m [0;34m[0m[0m
+
+[0;31mImportError[0m: None of the backends could be imported
+ImportError: None of the backends could be imported
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

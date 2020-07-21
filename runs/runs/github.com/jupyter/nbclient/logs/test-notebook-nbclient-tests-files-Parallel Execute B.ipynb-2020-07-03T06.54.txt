@@ -1,0 +1,48 @@
+[I 200703 06:56:45 inrepo:35] Testing notebook nbclient/tests/files/Parallel Execute B.ipynb
+[I 200703 06:56:46 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# the variable this_notebook is injectected in a cell above by the test framework.
+this_notebook = 'B'
+other_notebook = 'A'
+directory = os.environ['NBEXECUTE_TEST_PARALLEL_TMPDIR']
+with open(os.path.join(directory, 'test_file_{}.txt'.format(this_notebook)), 'w') as f:
+    f.write('Hello from {}'.format(this_notebook))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m<ipython-input-2-00a52659b766>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0mthis_notebook[0m [0;34m=[0m [0;34m'B'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mother_notebook[0m [0;34m=[0m [0;34m'A'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0mdirectory[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'NBEXECUTE_TEST_PARALLEL_TMPDIR'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mdirectory[0m[0;34m,[0m [0;34m'test_file_{}.txt'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mthis_notebook[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m [0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m     [0mf[0m[0;34m.[0m[0mwrite[0m[0;34m([0m[0;34m'Hello from {}'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mthis_notebook[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/os.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
+[1;32m    677[0m         [0;32mexcept[0m [0mKeyError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    678[0m             [0;31m# raise KeyError with the original key value[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 679[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    680[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdecodevalue[0m[0;34m([0m[0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    681[0m [0;34m[0m[0m
+
+[0;31mKeyError[0m: 'NBEXECUTE_TEST_PARALLEL_TMPDIR'
+KeyError: 'NBEXECUTE_TEST_PARALLEL_TMPDIR'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

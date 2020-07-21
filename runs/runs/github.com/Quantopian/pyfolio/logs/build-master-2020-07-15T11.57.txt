@@ -1,0 +1,222 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-15T11.57bke_1eye/github.com/quantopian/pyfolio.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 64100f754042
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e8f8389e5088
+Removing intermediate container e8f8389e5088
+ ---> 9105b0d94db6
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 37c86d349871
+Removing intermediate container 37c86d349871
+ ---> 8309a5fe0f41
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 97d17623de41
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: ipython>=3.2.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyfolio==0.9.2+74.gecc8308) (7.11.1)
+Collecting matplotlib>=1.4.0
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting numpy>=1.11.1
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting pandas>=0.18.1
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting pytz>=2014.10
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting scipy>=0.14.0
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting scikit-learn>=0.16.1
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting seaborn>=0.7.1
+  Downloading seaborn-0.10.1-py3-none-any.whl (215 kB)
+Collecting empyrical>=0.5.0
+  Downloading empyrical-0.5.3.tar.gz (50 kB)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (4.4.1)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.7.5)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (4.8.0)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (45.1.0.post20200119)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (3.0.3)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.1.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (2.5.2)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (4.3.3)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.16.0)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=1.4.0->pyfolio==0.9.2+74.gecc8308) (2.8.1)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting pandas-datareader>=0.2
+  Downloading pandas_datareader-0.9.0-py3-none-any.whl (107 kB)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.1.8)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (1.14.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.2.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=3.2.3->pyfolio==0.9.2+74.gecc8308) (0.6.0)
+Requirement already satisfied: requests>=2.19.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas-datareader>=0.2->empyrical>=0.5.0->pyfolio==0.9.2+74.gecc8308) (2.22.0)
+Collecting lxml
+  Downloading lxml-4.5.2-cp37-cp37m-manylinux1_x86_64.whl (5.5 MB)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19.0->pandas-datareader>=0.2->empyrical>=0.5.0->pyfolio==0.9.2+74.gecc8308) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19.0->pandas-datareader>=0.2->empyrical>=0.5.0->pyfolio==0.9.2+74.gecc8308) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19.0->pandas-datareader>=0.2->empyrical>=0.5.0->pyfolio==0.9.2+74.gecc8308) (2019.11.28)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19.0->pandas-datareader>=0.2->empyrical>=0.5.0->pyfolio==0.9.2+74.gecc8308) (3.0.4)
+Building wheels for collected packages: pyfolio, empyrical
+  Building wheel for pyfolio (setup.py): started
+  Building wheel for pyfolio (setup.py): finished with status 'done'
+  Created wheel for pyfolio: filename=pyfolio-0.9.2+74.gecc8308-py3-none-any.whl size=75766 sha256=fcc24d217eae23333689d4ec96d79c6de7dfa70146de3a300ef457cf8302838f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-y9o6cs1f/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for empyrical (setup.py): started
+  Building wheel for empyrical (setup.py): finished with status 'done'
+  Created wheel for empyrical: filename=empyrical-0.5.3-py3-none-any.whl size=37088 sha256=f1086577190dcb858688f4a6dbd27fba6fb03aa4a6bd4a42cedba769bb1cbda9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-y9o6cs1f/wheels/14/37/00/4e984eafe752f6df04a3b6c31c7ef42a0e9c5173ca5f2156d2
+Successfully built pyfolio empyrical
+Installing collected packages: kiwisolver, pyparsing, numpy, cycler, matplotlib, pytz, pandas, scipy, threadpoolctl, joblib, scikit-learn, seaborn, lxml, pandas-datareader, empyrical, pyfolio
+Successfully installed cycler-0.10.0 empyrical-0.5.3 joblib-0.16.0 kiwisolver-1.2.0 lxml-4.5.2 matplotlib-3.2.2 numpy-1.19.0 pandas-1.0.5 pandas-datareader-0.9.0 pyfolio-0.9.2+74.gecc8308 pyparsing-2.4.7 pytz-2020.1 scikit-learn-0.23.1 scipy-1.5.1 seaborn-0.10.1 threadpoolctl-2.1.0
+Removing intermediate container 97d17623de41
+ ---> 42982b9c2047
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 98fba2ffd428
+Removing intermediate container 98fba2ffd428
+ ---> 857f69d0fcca
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in 38560c72a383
+Removing intermediate container 38560c72a383
+ ---> 3cf1112175bc
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 5ed9c86c7acc
+Removing intermediate container 5ed9c86c7acc
+ ---> 291749bb4f1d
+Step 45/48 : USER ${NB_USER}
+ ---> Running in 76fe98ef3f43
+Removing intermediate container 76fe98ef3f43
+ ---> 62cc2d105a14
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 760b3f311511
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in a053cafb2b31
+Removing intermediate container a053cafb2b31
+ ---> 64d9f01700dd
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in bed8675352b2
+Removing intermediate container bed8675352b2
+ ---> cee307c71c3d
+{"aux": {"ID": "sha256:cee307c71c3d80c07c4ac9c1998b1ba16dc7ad76b241a1c965806171935bcf08"}}Successfully built cee307c71c3d
+Successfully tagged r2d-test-github.com-quantopian-pyfolio:ecc8308

@@ -1,0 +1,546 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T07.35rk4klj9i/github.com/astropy/astropy-tutorials.
+Using CondaBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 03eb8bfc39de
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in fd2273c1b737
+Removing intermediate container fd2273c1b737
+ ---> bfb216144381
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 08f7a3e2fcec
+Removing intermediate container 08f7a3e2fcec
+ ---> 2ad410fb414e
+Step 41/48 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 5151f1831237
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    |            |   1% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+python-3.7.6         | 53.0 MB   |            |   0% 
+python-3.7.6         | 53.0 MB   | #1         |  12% 
+python-3.7.6         | 53.0 MB   | ###        |  31% 
+python-3.7.6         | 53.0 MB   | #####      |  50% 
+python-3.7.6         | 53.0 MB   | ######9    |  69% 
+python-3.7.6         | 53.0 MB   | ########8  |  89% 
+python-3.7.6         | 53.0 MB   | ########## | 100% 
+
+xz-5.2.5             | 430 KB    |            |   0% 
+xz-5.2.5             | 430 KB    | ########## | 100% 
+
+pip-20.1.1           | 1.1 MB    |            |   0% 
+pip-20.1.1           | 1.1 MB    | 1          |   1% 
+pip-20.1.1           | 1.1 MB    | ########## | 100% 
+
+python_abi-3.7       | 4 KB      |            |   0% 
+python_abi-3.7       | 4 KB      | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Ran pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.z82qmj6y.requirements.txt']
+Pip subprocess output:
+Collecting IPython>=6.1
+  Downloading ipython-7.16.1-py3-none-any.whl (785 kB)
+Collecting astropy>=3
+  Downloading astropy-4.0.1.post1-cp37-cp37m-manylinux1_x86_64.whl (6.5 MB)
+Collecting astroquery>=0.3.7
+  Downloading astroquery-0.4.1.tar.gz (6.5 MB)
+Collecting matplotlib==3.0.2
+  Downloading matplotlib-3.0.2-cp37-cp37m-manylinux1_x86_64.whl (12.9 MB)
+Collecting numpy>=1.15
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting jupyter>=1.0
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting scipy>=1.0
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Requirement already up-to-date: notebook>=5.7.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r /home/vildeeide/pip-requirements.txt (line 8)) (6.0.3)
+Collecting aplpy
+  Downloading APLpy-2.0.3-py2.py3-none-any.whl (89 kB)
+Collecting spectral-cube
+  Downloading spectral-cube-0.4.5.tar.gz (351 kB)
+Collecting reproject==0.5.1
+  Downloading reproject-0.5.1-cp37-cp37m-manylinux1_x86_64.whl (393 kB)
+Collecting dust_extinction>=0.7
+  Downloading dust_extinction-0.9.tar.gz (58 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting astro-gala
+  Downloading astro-gala-1.1.tar.gz (4.8 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting synphot
+  Downloading synphot-0.3.tar.gz (1.3 MB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Requirement already satisfied, skipping upgrade: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (4.3.3)
+Requirement already satisfied, skipping upgrade: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied, skipping upgrade: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (2.5.2)
+Requirement already satisfied, skipping upgrade: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.7.5)
+Requirement already satisfied, skipping upgrade: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied, skipping upgrade: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (45.1.0.post20200119)
+Requirement already satisfied, skipping upgrade: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (4.8.0)
+Requirement already satisfied, skipping upgrade: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied, skipping upgrade: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.1.0)
+Requirement already satisfied, skipping upgrade: requests>=2.4.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2.22.0)
+Collecting keyring>=4.0
+  Downloading keyring-21.2.1-py3-none-any.whl (31 kB)
+Collecting beautifulsoup4>=4.3.2
+  Downloading beautifulsoup4-4.9.1-py3-none-any.whl (115 kB)
+Collecting html5lib>=0.999
+  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
+Requirement already satisfied, skipping upgrade: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (1.14.0)
+Requirement already satisfied, skipping upgrade: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib==3.0.2->-r /home/vildeeide/pip-requirements.txt (line 4)) (2.8.1)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting jupyter-console
+  Downloading jupyter_console-6.1.0-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied, skipping upgrade: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (7.5.1)
+Collecting qtconsole
+  Downloading qtconsole-4.7.5-py2.py3-none-any.whl (118 kB)
+Requirement already satisfied, skipping upgrade: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (5.1.4)
+Requirement already satisfied, skipping upgrade: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (5.6.1)
+Requirement already satisfied, skipping upgrade: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (5.0.4)
+Requirement already satisfied, skipping upgrade: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (6.0.3)
+Requirement already satisfied, skipping upgrade: jupyter-core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (4.6.1)
+Requirement already satisfied, skipping upgrade: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (0.8.3)
+Requirement already satisfied, skipping upgrade: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (0.7.1)
+Requirement already satisfied, skipping upgrade: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (18.1.1)
+Requirement already satisfied, skipping upgrade: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (1.5.0)
+Requirement already satisfied, skipping upgrade: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (0.2.0)
+Requirement already satisfied, skipping upgrade: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (2.11.0)
+Requirement already satisfied, skipping upgrade: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (5.3.4)
+Collecting shapely>=1.6
+  Downloading Shapely-1.7.0-cp37-cp37m-manylinux1_x86_64.whl (1.8 MB)
+Collecting pyregion>=2.0
+  Downloading pyregion-2.0.tar.gz (1.1 MB)
+Collecting scikit-image>=0.14
+  Downloading scikit_image-0.17.2-cp37-cp37m-manylinux1_x86_64.whl (12.5 MB)
+Collecting pyavm>=0.9.4
+  Downloading PyAVM-0.9.4-py2.py3-none-any.whl (379 kB)
+Collecting pillow>=4.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting radio_beam
+  Downloading radio_beam-0.3.2.tar.gz (233 kB)
+Collecting astropy-healpix>=0.2
+  Downloading astropy_healpix-0.5-cp37-cp37m-manylinux2010_x86_64.whl (206 kB)
+Collecting cython
+  Downloading Cython-0.29.20-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting pyyaml
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Requirement already satisfied, skipping upgrade: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.1.8)
+Requirement already satisfied, skipping upgrade: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied, skipping upgrade: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->IPython>=6.1->-r /home/vildeeide/pip-requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied, skipping upgrade: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.4.3->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (1.25.7)
+Requirement already satisfied, skipping upgrade: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.4.3->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2.8)
+Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.4.3->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (3.0.4)
+Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.4.3->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2020.6.20)
+Collecting SecretStorage>=3; sys_platform == "linux"
+  Downloading SecretStorage-3.1.2-py3-none-any.whl (14 kB)
+Requirement already satisfied, skipping upgrade: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from keyring>=4.0->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (1.5.0)
+Collecting jeepney>=0.4.2; sys_platform == "linux"
+  Downloading jeepney-0.4.3-py3-none-any.whl (21 kB)
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.0.1-py3-none-any.whl (32 kB)
+Requirement already satisfied, skipping upgrade: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from html5lib>=0.999->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (0.5.1)
+Requirement already satisfied, skipping upgrade: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (3.5.1)
+Collecting qtpy
+  Downloading QtPy-1.9.0-py2.py3-none-any.whl (54 kB)
+Requirement already satisfied, skipping upgrade: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (3.1.0)
+Requirement already satisfied, skipping upgrade: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (0.3)
+Requirement already satisfied, skipping upgrade: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (0.4.4)
+Requirement already satisfied, skipping upgrade: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (1.4.2)
+Requirement already satisfied, skipping upgrade: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (0.6.0)
+Requirement already satisfied, skipping upgrade: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0->-r /home/vildeeide/pip-requirements.txt (line 6)) (0.8.4)
+Requirement already satisfied, skipping upgrade: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (3.2.0)
+Requirement already satisfied, skipping upgrade: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (1.1.1)
+Collecting tifffile>=2019.7.26
+  Downloading tifffile-2020.6.3-py3-none-any.whl (133 kB)
+Collecting PyWavelets>=1.1.1
+  Downloading PyWavelets-1.1.1-cp37-cp37m-manylinux1_x86_64.whl (4.4 MB)
+Collecting networkx>=2.0
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Collecting imageio>=2.3.0
+  Downloading imageio-2.8.0-py3-none-any.whl (3.3 MB)
+Requirement already satisfied, skipping upgrade: cryptography in /srv/conda/envs/notebook/lib/python3.7/site-packages (from SecretStorage>=3; sys_platform == "linux"->keyring>=4.0->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2.8)
+Requirement already satisfied, skipping upgrade: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->keyring>=4.0->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2.1.0)
+Requirement already satisfied, skipping upgrade: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (0.15.7)
+Requirement already satisfied, skipping upgrade: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.7.2->-r /home/vildeeide/pip-requirements.txt (line 8)) (19.3.0)
+Requirement already satisfied, skipping upgrade: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=4.0->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (1.13.2)
+Requirement already satisfied, skipping upgrade: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=4.0->astroquery>=0.3.7->-r /home/vildeeide/pip-requirements.txt (line 3)) (2.19)
+Building wheels for collected packages: astroquery, spectral-cube, dust-extinction, astro-gala, synphot, pyregion, radio-beam, pyyaml
+  Building wheel for astroquery (setup.py): started
+  Building wheel for astroquery (setup.py): finished with status 'done'
+  Created wheel for astroquery: filename=astroquery-0.4.1-py3-none-any.whl size=3831871 sha256=ce3d4221a3205e92c8d202ea3dd7e02452262c33ec4b0909c6ba872930411e82
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/59/74/e3/a457b9b06b2cf6a0126f316459030ee535cfaa95a69bbcc36f
+  Building wheel for spectral-cube (setup.py): started
+  Building wheel for spectral-cube (setup.py): finished with status 'done'
+  Created wheel for spectral-cube: filename=spectral_cube-0.4.5-py3-none-any.whl size=211287 sha256=6c58b816533fe1efa380f17c072cf758d518fbf954b0f85f08533ea87e9c6916
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/15/d7/46/8d8601abb086ce9212ace4885639364aca553bf87d177ad450
+  Building wheel for dust-extinction (PEP 517): started
+  Building wheel for dust-extinction (PEP 517): finished with status 'done'
+  Created wheel for dust-extinction: filename=dust_extinction-0.9-py3-none-any.whl size=45536 sha256=bf56a4caf841c494bf7b9a03ac29beadb083fd956113cc788d17f9f0bed48fc9
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/eb/d8/07/cc5cb4414ae540e1a8732431592a6309129e0b14182165b724
+  Building wheel for astro-gala (PEP 517): started
+  Building wheel for astro-gala (PEP 517): still running...
+  Building wheel for astro-gala (PEP 517): finished with status 'done'
+  Created wheel for astro-gala: filename=astro_gala-1.1-cp37-cp37m-linux_x86_64.whl size=10402852 sha256=d7083aa4d5f02bc66cd25d2b2b7836a6ff2c93d00811c92e129578f106d0f761
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/0c/e1/95/c2c1e0066ebef5008ab1949121c091b85df3f2e4a64ce70bae
+  Building wheel for synphot (PEP 517): started
+  Building wheel for synphot (PEP 517): finished with status 'done'
+  Created wheel for synphot: filename=synphot-0.3-cp37-cp37m-linux_x86_64.whl size=927775 sha256=c9667bd6c8b70d977e070aa0a7e2554422f033bc7bc4804721419efea59d6c63
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/ad/93/a4/eca613ffd1e96ba17f258f14e1666fd01032eb843943323377
+  Building wheel for pyregion (setup.py): started
+  Building wheel for pyregion (setup.py): finished with status 'error'
+  Running setup.py clean for pyregion
+  Building wheel for radio-beam (setup.py): started
+  Building wheel for radio-beam (setup.py): finished with status 'done'
+  Created wheel for radio-beam: filename=radio_beam-0.3.2-py3-none-any.whl size=74189 sha256=2ffdadad00e4ea5e48cb71d33efd0b7acb909843f3fa7a9c1f04564ee7409d33
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/18/ac/9e/cdf34cf83c6ceadec039bafa662b3e3cf8737b837fcf8555a3
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393851 sha256=1483b9e9412668d11baad3ea226efc7f5e50f598a70a240076260ab44c68ffcc
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+Successfully built astroquery spectral-cube dust-extinction astro-gala synphot radio-beam pyyaml
+Failed to build pyregion
+Installing collected packages: IPython, numpy, astropy, jeepney, SecretStorage, keyring, soupsieve, beautifulsoup4, html5lib, astroquery, cycler, kiwisolver, pyparsing, matplotlib, jupyter-console, qtpy, qtconsole, jupyter, scipy, shapely, cython, pyregion, tifffile, PyWavelets, networkx, pillow, imageio, scikit-image, pyavm, astropy-healpix, reproject, aplpy, radio-beam, spectral-cube, dust-extinction, pyyaml, astro-gala, synphot
+  Attempting uninstall: IPython
+    Found existing installation: ipython 7.11.1
+    Uninstalling ipython-7.11.1:
+      Successfully uninstalled ipython-7.11.1
+    Running setup.py install for pyregion: started
+    Running setup.py install for pyregion: finished with status 'done'
+Successfully installed IPython-7.16.1 PyWavelets-1.1.1 SecretStorage-3.1.2 aplpy-2.0.3 astro-gala-1.1 astropy-4.0.1.post1 astropy-healpix-0.5 astroquery-0.4.1 beautifulsoup4-4.9.1 cycler-0.10.0 cython-0.29.20 dust-extinction-0.9 html5lib-1.1 imageio-2.8.0 jeepney-0.4.3 jupyter-1.0.0 jupyter-console-6.1.0 keyring-21.2.1 kiwisolver-1.2.0 matplotlib-3.0.2 networkx-2.4 numpy-1.19.0 pillow-7.2.0 pyavm-0.9.4 pyparsing-2.4.7 pyregion-2.0 pyyaml-5.3.1 qtconsole-4.7.5 qtpy-1.9.0 radio-beam-0.3.2 reproject-0.5.1 scikit-image-0.17.2 scipy-1.5.0 shapely-1.7.0 soupsieve-2.0.1 spectral-cube-0.4.5 synphot-0.3 tifffile-2020.6.3
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+aplpy                     2.0.3                    pypi_0    pypi
+astro-gala                1.1                      pypi_0    pypi
+astropy                   4.0.1.post1              pypi_0    pypi
+astropy-healpix           0.5                      pypi_0    pypi
+astroquery                0.4.1                    pypi_0    pypi
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+beautifulsoup4            4.9.1                    pypi_0    pypi
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2020.6.20        py37hc8dfbb8_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.13.2           py37h8022711_0    conda-forge
+chardet                   3.0.4                 py37_1003    conda-forge
+cryptography              2.8              py37h72c5cf5_1    conda-forge
+cycler                    0.10.0                   pypi_0    pypi
+cython                    0.29.20                  pypi_0    pypi
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+dust-extinction           0.9                      pypi_0    pypi
+entrypoints               0.3                   py37_1000    conda-forge
+html5lib                  1.1                      pypi_0    pypi
+idna                      2.8                   py37_1000    conda-forge
+imageio                   2.8.0                    pypi_0    pypi
+importlib_metadata        1.5.0                    py37_0    conda-forge
+inflect                   4.0.0                    py37_1    conda-forge
+ipykernel                 5.1.4            py37h5ca1d4c_0    conda-forge
+ipython                   7.16.1                   pypi_0    pypi
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0                   py37_0    conda-forge
+jeepney                   0.4.3                    pypi_0    pypi
+jinja2                    2.11.0                     py_0    conda-forge
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py37_0    conda-forge
+jupyter                   1.0.0                    pypi_0    pypi
+jupyter-console           6.1.0                    pypi_0    pypi
+jupyter_client            5.3.4                    py37_1    conda-forge
+jupyter_core              4.6.1                    py37_0    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py37_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py37_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+keyring                   21.2.1                   pypi_0    pypi
+kiwisolver                1.2.0                    pypi_0    pypi
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+ld_impl_linux-64          2.33.1               h53a641e_8    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markupsafe                1.1.1            py37h516909a_0    conda-forge
+matplotlib                3.0.2                    pypi_0    pypi
+mistune                   0.8.4           py37h516909a_1000    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+nbconvert                 5.6.1                    py37_0    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+networkx                  2.4                      pypi_0    pypi
+notebook                  6.0.3                    py37_0    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+numpy                     1.19.0                   pypi_0    pypi
+oauthlib                  3.0.1                      py_0    conda-forge
+openssl                   1.1.1g               h516909a_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+pexpect                   4.8.0                    py37_0    conda-forge
+pickleshare               0.7.5                 py37_1000    conda-forge
+pillow                    7.2.0                    pypi_0    pypi
+pip                       20.1.1                     py_1    conda-forge
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+pyavm                     0.9.4                    pypi_0    pypi
+pycparser                 2.19                     py37_1    conda-forge
+pycurl                    7.43.0.5         py37h16ce93b_0    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                   py37_0    conda-forge
+pyparsing                 2.4.7                    pypi_0    pypi
+pyregion                  2.0                      pypi_0    pypi
+pyrsistent                0.15.7           py37h516909a_0    conda-forge
+pysocks                   1.7.1                    py37_0    conda-forge
+python                    3.7.6           cpython_h8356626_6    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+python_abi                3.7                     1_cp37m    conda-forge
+pywavelets                1.1.1                    pypi_0    pypi
+pyyaml                    5.3.1                    pypi_0    pypi
+pyzmq                     18.1.1           py37h1768529_0    conda-forge
+qtconsole                 4.7.5                    pypi_0    pypi
+qtpy                      1.9.0                    pypi_0    pypi
+radio-beam                0.3.2                    pypi_0    pypi
+readline                  8.0                  hf8c457e_0    conda-forge
+reproject                 0.5.1                    pypi_0    pypi
+requests                  2.22.0                   py37_1    conda-forge
+ruamel.yaml               0.16.6           py37h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py37h516909a_0    conda-forge
+scikit-image              0.17.2                   pypi_0    pypi
+scipy                     1.5.0                    pypi_0    pypi
+secretstorage             3.1.2                    pypi_0    pypi
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                45.1.0                   py37_0    conda-forge
+shapely                   1.7.0                    pypi_0    pypi
+six                       1.14.0                   py37_0    conda-forge
+soupsieve                 2.0.1                    pypi_0    pypi
+spectral-cube             0.4.5                    pypi_0    pypi
+sqlalchemy                1.3.13           py37h516909a_0    conda-forge
+sqlite                    3.30.1               hcee41ef_0    conda-forge
+synphot                   0.3                      pypi_0    pypi
+terminado                 0.8.3                    py37_0    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+tifffile                  2020.6.3                 pypi_0    pypi
+tk                        8.6.10               hed695b0_0    conda-forge
+tornado                   6.0.3            py37h516909a_0    conda-forge
+traitlets                 4.3.3                    py37_0    conda-forge
+urllib3                   1.25.7                   py37_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+wheel                     0.34.1                   py37_0    conda-forge
+widgetsnbextension        3.5.1                    py37_0    conda-forge
+xz                        5.2.5                h516909a_0    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+Removing intermediate container 5151f1831237
+ ---> 89f91fd9f6fe
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 6982c0ea68f3
+Removing intermediate container 6982c0ea68f3
+ ---> 11e97406fd06
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in 763d5bcf0821
+Removing intermediate container 763d5bcf0821
+ ---> 8dad0bfeff88
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 1b815003865b
+Removing intermediate container 1b815003865b
+ ---> bac57b4c6447
+Step 45/48 : USER ${NB_USER}
+ ---> Running in ce3cc5b8ba71
+Removing intermediate container ce3cc5b8ba71
+ ---> 86877bf3ddb0
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 7d00c693a178
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in fbb7ba88c3f6
+Removing intermediate container fbb7ba88c3f6
+ ---> 6b38ca553f7d
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 3ccd46fffc57
+Removing intermediate container 3ccd46fffc57
+ ---> 5974a0b60776
+{"aux": {"ID": "sha256:5974a0b607766a7532dd55e1187f72f0574bdbdc5372357d2fd3ff6cee29f136"}}Successfully built 5974a0b60776
+Successfully tagged r2d-test-github.com-astropy-astropy-tutorials:5e6369e

@@ -1,0 +1,36 @@
+[I 200715 07:55:20 inrepo:36] Testing notebook notbook/wordvectors.ipynb
+[W 200715 07:55:20 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 07:55:20 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 07:55:22 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%matplotlib inline
+import utils; reload(utils)
+from utils import *
+from __future__ import division, print_function
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-0d238f0bc5f2>"[0;36m, line [0;32m2[0m
+[0;31m    import utils; reload(utils)[0m
+[0m                               ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m import * only allowed at module level
+
+SyntaxError: import * only allowed at module level (<ipython-input-1-0d238f0bc5f2>, line 2)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

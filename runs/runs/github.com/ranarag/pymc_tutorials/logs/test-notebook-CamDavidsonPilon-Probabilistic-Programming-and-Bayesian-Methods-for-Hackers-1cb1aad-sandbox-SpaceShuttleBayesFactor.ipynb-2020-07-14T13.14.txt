@@ -1,0 +1,52 @@
+[I 200714 13:15:10 inrepo:36] Testing notebook CamDavidsonPilon-Probabilistic-Programming-and-Bayesian-Methods-for-Hackers-1cb1aad/sandbox/SpaceShuttleBayesFactor.ipynb
+[I 200714 13:15:11 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+figsize(12.5, 6)
+subplot(211)
+plt.scatter(challenger_data[:, 0], challenger_data[:, 1], s=75,
+            color="k", alpha=0.5)
+plt.yticks([0, 1])
+plt.ylabel("Damage Incident?")
+plt.title("(Real) Defects of the Space Shuttle O-Rings vs temperature")
+
+subplot(212)
+n = challenger_data.shape[0]
+plt.scatter(challenger_data[:, 0], stats.bernoulli.rvs(0.6, size=n),
+            s=75, color="k", alpha=0.5)
+plt.yticks([0, 1])
+plt.ylabel("Damage Incident?")
+plt.xlabel("Outside temperature (Farhenhit)")
+plt.title("(Artificial) Defects of the Space Shuttle O-Rings vs \
+temperature")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-43de52ec3ab8>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mfigsize[0m[0;34m([0m[0;36m12.5[0m[0;34m,[0m [0;36m6[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0msubplot[0m[0;34m([0m[0;36m211[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m plt.scatter(challenger_data[:, 0], challenger_data[:, 1], s=75,
+[1;32m      4[0m             color="k", alpha=0.5)
+[1;32m      5[0m [0mplt[0m[0;34m.[0m[0myticks[0m[0;34m([0m[0;34m[[0m[0;36m0[0m[0;34m,[0m [0;36m1[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'figsize' is not defined
+NameError: name 'figsize' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

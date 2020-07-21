@@ -1,0 +1,5 @@
+[I 200703 06:36:54 inrepo:35] Testing notebook linear_least_squares/Gram-Schmidt--The Movie.ipynb
+[I 200703 06:36:56 execute:404] Executing notebook with kernel: python3
+[I 200703 06:36:56 inrepo:41] Saving exported notebook to /io/notebooks/linear_least_squares/Gram-Schmidt--The Movie.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

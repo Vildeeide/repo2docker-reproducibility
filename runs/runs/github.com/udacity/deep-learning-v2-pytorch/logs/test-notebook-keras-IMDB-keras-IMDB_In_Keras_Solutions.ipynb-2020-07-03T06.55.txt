@@ -1,0 +1,46 @@
+[I 200703 07:06:02 inrepo:35] Testing notebook keras/IMDB-keras/IMDB_In_Keras_Solutions.ipynb
+[I 200703 07:06:03 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Building the model architecture with one layer of length 100
+model = Sequential()
+model.add(Dense(512, activation='relu', input_dim=1000))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='softmax'))
+model.summary()
+
+# Compiling the model using categorical_crossentropy loss, and rmsprop optimizer.
+model.compile(loss='categorical_crossentropy',
+              optimizer='rmsprop',
+              metrics=['accuracy'])
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-a828ab79890e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Building the model architecture with one layer of length 100[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mmodel[0m [0;34m=[0m [0mSequential[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mmodel[0m[0;34m.[0m[0madd[0m[0;34m([0m[0mDense[0m[0;34m([0m[0;36m512[0m[0;34m,[0m [0mactivation[0m[0;34m=[0m[0;34m'relu'[0m[0;34m,[0m [0minput_dim[0m[0;34m=[0m[0;36m1000[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mmodel[0m[0;34m.[0m[0madd[0m[0;34m([0m[0mDropout[0m[0;34m([0m[0;36m0.5[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mmodel[0m[0;34m.[0m[0madd[0m[0;34m([0m[0mDense[0m[0;34m([0m[0mnum_classes[0m[0;34m,[0m [0mactivation[0m[0;34m=[0m[0;34m'softmax'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'Sequential' is not defined
+NameError: name 'Sequential' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

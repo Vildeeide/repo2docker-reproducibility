@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/emilkayumov/kaggle-bnp-paribas,master,aad2cf3,2016-04-22T09:03:28+03:00,build,build,True,github.com/emilkayumov/kaggle-bnp-paribas/logs/build-master-2020-07-21T07.30.txt,2020-07-21T07:30:39.168638,2020-07-21T07.30,0.11.0
+https://github.com/emilkayumov/kaggle-bnp-paribas,master,aad2cf3,2016-04-22T09:03:28+03:00,notebook,emilkayumov317_bnp_paribas.ipynb,False,github.com/emilkayumov/kaggle-bnp-paribas/logs/test-notebook-emilkayumov317_bnp_paribas.ipynb-2020-07-21T07.30.txt,2020-07-21T07:30:39.168638,2020-07-21T07.30,0.11.0

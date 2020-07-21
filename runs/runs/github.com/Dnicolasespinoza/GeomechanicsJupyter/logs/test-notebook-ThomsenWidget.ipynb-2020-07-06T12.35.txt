@@ -1,0 +1,5 @@
+[I 200706 12:35:32 inrepo:35] Testing notebook ThomsenWidget.ipynb
+[I 200706 12:35:33 execute:404] Executing notebook with kernel: python3
+[I 200706 12:35:34 inrepo:41] Saving exported notebook to /io/notebooks/ThomsenWidget.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

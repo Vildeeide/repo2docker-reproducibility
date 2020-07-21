@@ -1,0 +1,45 @@
+[I 200716 12:23:12 inrepo:36] Testing notebook wod_generator/.ipynb_checkpoints/dlnd_tv_script_generation-checkpoint.ipynb
+[I 200716 12:23:13 inrepo:45] Found kernel python3
+[I 200716 12:23:13 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+"""
+DON'T MODIFY ANYTHING IN THIS CELL
+"""
+import helper
+
+data_dir = './data/wod.csv'
+text = helper.load_data(data_dir)
+# Ignore notice, since we don't use it for analysing the data
+text = text[81:]
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-a86af9522cbb>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0mDON[0m[0;31m'[0m[0mT[0m [0mMODIFY[0m [0mANYTHING[0m [0mIN[0m [0mTHIS[0m [0mCELL[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m """
+[0;32m----> 4[0;31m [0;32mimport[0m [0mhelper[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;34m[0m[0m
+[1;32m      6[0m [0mdata_dir[0m [0;34m=[0m [0;34m'./data/wod.csv'[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'helper'
+ModuleNotFoundError: No module named 'helper'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

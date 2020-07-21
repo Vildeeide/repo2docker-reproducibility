@@ -1,0 +1,66 @@
+[I 200714 11:12:01 inrepo:36] Testing notebook CS229_ISL/Intro and Philosophy.ipynb
+[I 200714 11:12:02 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+from IPython.display import Image
+i = Image(filename=os.getcwd()+'/Images/Bias_Variance.jpg') # from the ISL text.
+i
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-1-72622abab23f>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mi[0m [0;34m=[0m [0mImage[0m[0;34m([0m[0mfilename[0m[0;34m=[0m[0mos[0m[0;34m.[0m[0mgetcwd[0m[0;34m([0m[0;34m)[0m[0;34m+[0m[0;34m'/Images/Bias_Variance.jpg'[0m[0;34m)[0m [0;31m# from the ISL text.[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0mi[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36m__init__[0;34m(self, data, url, filename, format, embed, width, height, retina, unconfined, metadata)[0m
+[1;32m   1202[0m         [0mself[0m[0;34m.[0m[0munconfined[0m [0;34m=[0m [0munconfined[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1203[0m         super(Image, self).__init__(data=data, url=url, filename=filename, 
+[0;32m-> 1204[0;31m                 metadata=metadata)
+[0m[1;32m   1205[0m [0;34m[0m[0m
+[1;32m   1206[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mwidth[0m [0;32mis[0m [0;32mNone[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0mmetadata[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m'width'[0m[0;34m,[0m [0;34m{[0m[0;34m}[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36m__init__[0;34m(self, data, url, filename, metadata)[0m
+[1;32m    625[0m             [0mself[0m[0;34m.[0m[0mmetadata[0m [0;34m=[0m [0;34m{[0m[0;34m}[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    626[0m [0;34m[0m[0m
+[0;32m--> 627[0;31m         [0mself[0m[0;34m.[0m[0mreload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    628[0m         [0mself[0m[0;34m.[0m[0m_check_data[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    629[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36mreload[0;34m(self)[0m
+[1;32m   1233[0m         [0;34m"""Reload the raw data from file or URL."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1234[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0membed[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1235[0;31m             [0msuper[0m[0;34m([0m[0mImage[0m[0;34m,[0m[0mself[0m[0;34m)[0m[0;34m.[0m[0mreload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1236[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mretina[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1237[0m                 [0mself[0m[0;34m.[0m[0m_retina_shape[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36mreload[0;34m(self)[0m
+[1;32m    650[0m         [0;34m"""Reload the raw data from file or URL."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    651[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mfilename[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 652[0;31m             [0;32mwith[0m [0mopen[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mfilename[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_read_flags[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    653[0m                 [0mself[0m[0;34m.[0m[0mdata[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    654[0m         [0;32melif[0m [0mself[0m[0;34m.[0m[0murl[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/home/vildeeide/CS229_ISL/Images/Bias_Variance.jpg'
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vildeeide/CS229_ISL/Images/Bias_Variance.jpg'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

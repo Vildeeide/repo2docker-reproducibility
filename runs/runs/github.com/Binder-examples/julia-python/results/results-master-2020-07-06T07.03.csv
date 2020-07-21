@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/binder-examples/julia-python,master,6c5c395,2019-10-30T11:43:53-07:00,build,build,True,github.com/binder-examples/julia-python/logs/build-master-2020-07-06T07.03.txt,2020-07-06T07:03:06.899147,2020-07-06T07.03,0.11.0
+https://github.com/binder-examples/julia-python,master,6c5c395,2019-10-30T11:43:53-07:00,notebook,python-and-julia.ipynb,False,github.com/binder-examples/julia-python/logs/test-notebook-python-and-julia.ipynb-2020-07-06T07.03.txt,2020-07-06T07:03:06.899147,2020-07-06T07.03,0.11.0
+https://github.com/binder-examples/julia-python,master,6c5c395,2019-10-30T11:43:53-07:00,notebook,python.ipynb,False,github.com/binder-examples/julia-python/logs/test-notebook-python.ipynb-2020-07-06T07.03.txt,2020-07-06T07:03:06.899147,2020-07-06T07.03,0.11.0
+https://github.com/binder-examples/julia-python,master,6c5c395,2019-10-30T11:43:53-07:00,notebook,julia.ipynb,False,github.com/binder-examples/julia-python/logs/test-notebook-julia.ipynb-2020-07-06T07.03.txt,2020-07-06T07:03:06.899147,2020-07-06T07.03,0.11.0

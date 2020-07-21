@@ -1,0 +1,116 @@
+[I 200706 12:56:50 inrepo:35] Testing notebook 04_modeling_behavior/src/graveyard.ipynb
+[I 200706 12:56:51 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+def redraw_figure(fig):
+    IPython.display.clear_output(wait=True)
+    IPython.display.display(fig)
+    time.sleep(0.25)
+    
+    
+def estimate_landing(iters=100, noise=0.1, k=5):
+    n_samples = 50
+    alt_guess = np.random.normal(500, 500, n_samples)
+    vsi_guess = np.random.normal(-50, 10, n_samples)
+    
+    
+    alt_true = 500
+    vsi_true = -47.5
+    
+    # set up a figure
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.set_ylim(-0.5, 700)
+    ax.set_ylabel("Altitude (m)")
+    ax.set_xlabel("Time (seconds)")
+    ax.set_xlim(-1, iters+1)
+    
+    for ix in range(iters):
+    
+        ## SIMULATION
+        # make a noisy observation
+        alt_obs = alt_true + np.random.normal(0, noise)
+        
+        # update our "true" model
+        alt_true += vsi_true
+        vsi_true *= 0.95
+        
+        ## LIKELIHOOD
+        # compute a weighting function 
+        u_weights = np.exp(-(alt_guess - alt_obs)**2 * k)                
+        weights = u_weights / np.sum(u_weights) # normalise
+        
+        
+        ## DRAWING
+        ax.text(ix, alt_true, '✈', size=50, horizontalalignment='center', color='C3', alpha=0.2)
+        ax.set_title("True")
+        redraw_figure(fig)
+        ax.plot(ix, alt_obs, 'C4o', markersize=20, alpha=0.8)
+        ax.set_title("Observed")
+        redraw_figure(fig)
+        ax.scatter(x=np.tile(ix, (len(alt_guess))), y=alt_guess, s=u_weights*100, 
+                   color='C0', zorder=10, edgecolor='black', alpha=0.5)
+        ax.set_title("Estimates")
+        redraw_figure(fig)
+        
+        ax.plot(ix, np.sum(alt_guess * weights), 'C1o', markersize=20, zorder=100)
+        redraw_figure(fig)
+        
+        
+        ## SAMPLING        
+        # copy the particles, favouring heavily weighted ones
+        copies = pfilter.resample(weights)
+        
+        alt_guess = alt_guess[copies]
+        vsi_guess = vsi_guess[copies]
+        
+        # INTERNAL DYNAMICS
+        # update our position estimate
+        # internal model
+        alt_guess += vsi_guess
+        vsi_guess *= 0.95
+        
+        # DIFFUSE              
+        # add a little noise
+        alt_guess += np.random.normal(0, 20, alt_guess.shape)
+        vsi_guess += np.random.normal(0, 2, vsi_guess.shape)
+                
+        
+estimate_landing(noise=100, k=8e-5, iters=10)  
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-ea4362cda07e>[0m in [0;36m<module>[0;34m[0m
+[1;32m     73[0m [0;34m[0m[0m
+[1;32m     74[0m [0;34m[0m[0m
+[0;32m---> 75[0;31m [0mestimate_landing[0m[0;34m([0m[0mnoise[0m[0;34m=[0m[0;36m100[0m[0;34m,[0m [0mk[0m[0;34m=[0m[0;36m8e-5[0m[0;34m,[0m [0miters[0m[0;34m=[0m[0;36m10[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-1-ea4362cda07e>[0m in [0;36mestimate_landing[0;34m(iters, noise, k)[0m
+[1;32m      7[0m [0;32mdef[0m [0mestimate_landing[0m[0;34m([0m[0miters[0m[0;34m=[0m[0;36m100[0m[0;34m,[0m [0mnoise[0m[0;34m=[0m[0;36m0.1[0m[0;34m,[0m [0mk[0m[0;34m=[0m[0;36m5[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m     [0mn_samples[0m [0;34m=[0m [0;36m50[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 9[0;31m     [0malt_guess[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0mnormal[0m[0;34m([0m[0;36m500[0m[0;34m,[0m [0;36m500[0m[0;34m,[0m [0mn_samples[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     10[0m     [0mvsi_guess[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0mnormal[0m[0;34m([0m[0;34m-[0m[0;36m50[0m[0;34m,[0m [0;36m10[0m[0;34m,[0m [0mn_samples[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m [0;34m[0m[0m
+
+[0;31mNameError[0m: name 'np' is not defined
+NameError: name 'np' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

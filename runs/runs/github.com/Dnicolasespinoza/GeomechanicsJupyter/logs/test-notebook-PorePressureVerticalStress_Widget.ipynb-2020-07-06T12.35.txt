@@ -1,0 +1,5 @@
+[I 200706 12:35:25 inrepo:35] Testing notebook PorePressureVerticalStress_Widget.ipynb
+[I 200706 12:35:27 execute:404] Executing notebook with kernel: python3
+[I 200706 12:35:31 inrepo:41] Saving exported notebook to /io/notebooks/PorePressureVerticalStress_Widget.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

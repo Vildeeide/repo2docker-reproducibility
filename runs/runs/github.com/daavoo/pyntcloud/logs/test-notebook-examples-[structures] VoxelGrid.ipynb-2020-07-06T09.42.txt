@@ -1,0 +1,5 @@
+[I 200706 09:42:48 inrepo:35] Testing notebook examples/[structures] VoxelGrid.ipynb
+[I 200706 09:42:49 execute:404] Executing notebook with kernel: python3
+[I 200706 09:42:56 inrepo:41] Saving exported notebook to /io/notebooks/examples/[structures] VoxelGrid.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

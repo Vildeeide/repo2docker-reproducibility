@@ -1,0 +1,5 @@
+[I 200706 14:23:29 inrepo:35] Testing notebook 01-Cool-Things.ipynb
+[I 200706 14:23:30 execute:404] Executing notebook with kernel: python3
+[I 200706 14:23:36 inrepo:41] Saving exported notebook to /io/notebooks/01-Cool-Things.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

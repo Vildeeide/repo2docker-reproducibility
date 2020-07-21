@@ -1,0 +1,5 @@
+[I 200707 06:09:59 inrepo:35] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.1 - Introduction variables et types.ipynb
+[I 200707 06:10:02 execute:404] Executing notebook with kernel: octave
+[I 200707 06:10:02 inrepo:41] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.1 - Introduction variables et types.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

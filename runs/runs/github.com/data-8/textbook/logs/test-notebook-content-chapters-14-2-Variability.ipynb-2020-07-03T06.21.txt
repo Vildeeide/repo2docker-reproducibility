@@ -1,0 +1,5 @@
+[I 200703 06:25:48 inrepo:35] Testing notebook content/chapters/14/2/Variability.ipynb
+[I 200703 06:25:50 execute:404] Executing notebook with kernel: python3
+[I 200703 06:25:54 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/14/2/Variability.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

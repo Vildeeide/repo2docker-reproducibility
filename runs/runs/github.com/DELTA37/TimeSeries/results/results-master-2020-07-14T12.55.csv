@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/DELTA37/TimeSeries,master,993b64e,2017-12-18T20:52:35+03:00,build,build,False,github.com/DELTA37/TimeSeries/logs/build-master-2020-07-14T12.55.txt,2020-07-14T12:55:52.971046,2020-07-14T12.55,0.11.0

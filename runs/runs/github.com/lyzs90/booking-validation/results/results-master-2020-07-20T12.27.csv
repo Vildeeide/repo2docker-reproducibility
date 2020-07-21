@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lyzs90/booking-validation,master,39e73a1,2017-10-16T20:35:33+08:00,build,build,True,github.com/lyzs90/booking-validation/logs/build-master-2020-07-20T12.27.txt,2020-07-20T12:27:02.282851,2020-07-20T12.27,0.11.0
+https://github.com/lyzs90/booking-validation,master,39e73a1,2017-10-16T20:35:33+08:00,notebook,booking_validation_notebook.ipynb,True,github.com/lyzs90/booking-validation/logs/test-notebook-booking_validation_notebook.ipynb-2020-07-20T12.27.txt,2020-07-20T12:27:02.282851,2020-07-20T12.27,0.11.0

@@ -1,0 +1,6 @@
+[I 200708 08:12:27 inrepo:36] Testing notebook ejercicios/10/integral_MC.ipynb
+[I 200708 08:12:27 inrepo:45] Found kernel python3
+[I 200708 08:12:28 execute:404] Executing notebook with kernel: python3
+[I 200708 08:12:31 inrepo:77] Saving exported notebook to /io/notebooks/ejercicios/10/integral_MC.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

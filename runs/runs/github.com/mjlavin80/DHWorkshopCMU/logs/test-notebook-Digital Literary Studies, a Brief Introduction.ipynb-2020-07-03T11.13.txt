@@ -1,0 +1,5 @@
+[I 200703 11:14:14 inrepo:35] Testing notebook Digital Literary Studies, a Brief Introduction.ipynb
+[I 200703 11:14:15 execute:404] Executing notebook with kernel: python3
+[I 200703 11:14:15 inrepo:41] Saving exported notebook to /io/notebooks/Digital Literary Studies, a Brief Introduction.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

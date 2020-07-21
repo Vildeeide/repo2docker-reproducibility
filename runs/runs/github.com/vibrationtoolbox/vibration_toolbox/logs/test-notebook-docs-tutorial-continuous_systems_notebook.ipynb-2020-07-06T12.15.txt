@@ -1,0 +1,5 @@
+[I 200706 12:15:42 inrepo:35] Testing notebook docs/tutorial/continuous_systems_notebook.ipynb
+[I 200706 12:15:43 execute:404] Executing notebook with kernel: python3
+[I 200706 12:15:45 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorial/continuous_systems_notebook.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

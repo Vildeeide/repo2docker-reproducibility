@@ -1,0 +1,6 @@
+  File "/src/inrepo.py", line 22
+    log.info(f"Testing import of {modname}")
+                                          ^
+SyntaxError: invalid syntax
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

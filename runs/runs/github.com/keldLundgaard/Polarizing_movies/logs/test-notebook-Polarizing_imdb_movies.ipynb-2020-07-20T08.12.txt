@@ -1,0 +1,6 @@
+[I 200720 08:13:26 inrepo:36] Testing notebook Polarizing_imdb_movies.ipynb
+[I 200720 08:13:26 inrepo:45] Found kernel python3
+[I 200720 08:13:27 execute:404] Executing notebook with kernel: python3
+[I 200720 08:13:38 inrepo:79] Saving exported notebook to /io/notebooks/Polarizing_imdb_movies.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

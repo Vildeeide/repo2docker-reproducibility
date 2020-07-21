@@ -1,0 +1,7 @@
+[I 200707 10:46:13 inrepo:36] Testing notebook point_charge_calc.ipynb
+[W 200707 10:46:14 inrepo:47] No such kernel conda-root-py, falling back on kernel language=python
+[W 200707 10:46:14 inrepo:59] Using kernel python3 to provide language: python
+[I 200707 10:46:15 execute:404] Executing notebook with kernel: python3
+[I 200707 10:46:17 inrepo:77] Saving exported notebook to /io/notebooks/point_charge_calc.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

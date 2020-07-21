@@ -1,0 +1,6 @@
+[I 200716 12:18:38 inrepo:36] Testing notebook it_step/ml_from_scratch/4_least-squares_continued/least-squares_empty.ipynb
+[I 200716 12:18:39 inrepo:45] Found kernel python3
+[I 200716 12:18:39 execute:404] Executing notebook with kernel: python3
+[I 200716 12:18:40 inrepo:79] Saving exported notebook to /io/notebooks/it_step/ml_from_scratch/4_least-squares_continued/least-squares_empty.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

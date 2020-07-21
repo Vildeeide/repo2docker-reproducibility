@@ -1,0 +1,7 @@
+[I 200710 09:44:51 inrepo:36] Testing notebook Day2/4_linear_algebra/2_ed_quantum_ising.ipynb
+[I 200710 09:44:51 inrepo:45] Found kernel julia-1.3
+Starting kernel event loops.
+[I 200710 09:45:00 execute:404] Executing notebook with kernel: julia-1.3
+[I 200710 09:51:14 inrepo:79] Saving exported notebook to /io/notebooks/Day2/4_linear_algebra/2_ed_quantum_ising.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

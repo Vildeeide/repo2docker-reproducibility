@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/medellinfein/dtemp,master,d81359c,2016-12-13T17:06:44-08:00,build,build,True,github.com/medellinfein/dtemp/logs/build-master-2020-07-16T13.37.txt,2020-07-16T13:37:06.911523,2020-07-16T13.37,0.11.0
+https://github.com/medellinfein/dtemp,master,d81359c,2016-12-13T17:06:44-08:00,notebook,vNew.ipynb,False,github.com/medellinfein/dtemp/logs/test-notebook-vNew.ipynb-2020-07-16T13.37.txt,2020-07-16T13:37:06.911523,2020-07-16T13.37,0.11.0
+https://github.com/medellinfein/dtemp,master,d81359c,2016-12-13T17:06:44-08:00,notebook,Bayes template to plug into-Copy1.ipynb,False,github.com/medellinfein/dtemp/logs/test-notebook-Bayes template to plug into-Copy1.ipynb-2020-07-16T13.37.txt,2020-07-16T13:37:06.911523,2020-07-16T13.37,0.11.0

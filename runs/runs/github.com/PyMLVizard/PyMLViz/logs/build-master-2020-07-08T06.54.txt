@@ -1,0 +1,174 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T06.54k4avf0tj/github.com/PyMLVizard/PyMLViz.
+Using PythonBuildPack builder
+Step 1/53 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/53 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/53 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/53 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/53 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/53 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/53 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/53 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/53 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/53 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/53 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/53 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/53 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/53 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/53 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/53 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/53 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/53 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/53 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/53 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/53 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/53 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/53 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/53 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/53 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/53 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/53 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/53 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/53 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/53 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/53 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> Using cache
+ ---> 226a4f29a91d
+Step 38/53 : USER root
+ ---> Using cache
+ ---> 8d95ee083e08
+Step 39/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 51da7b23accf
+Step 40/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 3aa5620a6dc0
+Step 41/53 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Using cache
+ ---> a54fc8f71aa0
+Step 42/53 : USER root
+ ---> Using cache
+ ---> d71cd474bfee
+Step 43/53 : COPY src/ ${REPO_DIR}
+ ---> fd3437f6f0dc
+Step 44/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 37b175f4fa0b
+Removing intermediate container 37b175f4fa0b
+ ---> 3e7dfb2af3b0
+Step 45/53 : LABEL repo2docker.ref="None"
+ ---> Running in e389fe56ca2a
+Removing intermediate container e389fe56ca2a
+ ---> 93bcf797f012
+Step 46/53 : LABEL repo2docker.repo="local"
+ ---> Running in e576e58981f3
+Removing intermediate container e576e58981f3
+ ---> 381edcf94b24
+Step 47/53 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f291a3e704f3
+Removing intermediate container f291a3e704f3
+ ---> de55efea62c7
+Step 48/53 : USER ${NB_USER}
+ ---> Running in 7d1edfd06446
+Removing intermediate container 7d1edfd06446
+ ---> da0e7a6496db
+Step 49/53 : RUN chmod +x binder/postBuild
+ ---> Running in bfeb078fff83
+Removing intermediate container bfeb078fff83
+ ---> 4ef2bd7ca912
+Step 50/53 : RUN ./binder/postBuild
+ ---> Running in 6775fe5d6924
+[91mEnabling notebook extension jupyter-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension bqplot/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0mRemoving intermediate container 6775fe5d6924
+ ---> cae37cdfb87f
+Step 51/53 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 7b3920ab2ce9
+Step 52/53 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 70680e92e4ce
+Removing intermediate container 70680e92e4ce
+ ---> 7f937a34ce5e
+Step 53/53 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 9a01dbe242c0
+Removing intermediate container 9a01dbe242c0
+ ---> ce14dbf93adc
+{"aux": {"ID": "sha256:ce14dbf93adcb8cf2b0f6406c2b777f1ff7998d4ecd02c5c91c7eb611cb89aeb"}}Successfully built ce14dbf93adc
+Successfully tagged r2d-test-github.com-pymlvizard-pymlviz:3703141

@@ -1,0 +1,13 @@
+[I 200706 14:01:05 inrepo:35] Testing notebook SequentialStructure_clean.ipynb
+[E 200706 14:01:05 __init__:79] Notebook JSON is invalid: {'model_id': '5e4839b1cb994bd199714351836b2a6b', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][1]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '5e4839b1cb994bd199714351836b2a6b',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200706 14:01:06 execute:404] Executing notebook with kernel: python3
+[I 200706 14:01:14 inrepo:41] Saving exported notebook to /io/notebooks/SequentialStructure_clean.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

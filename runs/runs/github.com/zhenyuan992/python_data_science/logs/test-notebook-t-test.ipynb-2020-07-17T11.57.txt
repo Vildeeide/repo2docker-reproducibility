@@ -1,0 +1,43 @@
+[I 200717 11:57:39 inrepo:36] Testing notebook t-test.ipynb
+[I 200717 11:57:39 inrepo:45] Found kernel python3
+[I 200717 11:57:40 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import scipy.stats as sstat
+
+arr1 = [1,2,4,6,2,1,2]
+arr2 = [10,21,14,26,12,1,2,50,61]
+# assume arr1 and arr2 might not have the same variance
+t , p = sstat.ttest_ind( arr1, arr2, equal_var=False)
+print("p-value=%.3f <0.05 means more than 95percent confident that arr1 and arr2 come from two different distributions"%(p))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-58f1114b814d>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mstats[0m [0;32mas[0m [0msstat[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0marr1[0m [0;34m=[0m [0;34m[[0m[0;36m1[0m[0;34m,[0m[0;36m2[0m[0;34m,[0m[0;36m4[0m[0;34m,[0m[0;36m6[0m[0;34m,[0m[0;36m2[0m[0;34m,[0m[0;36m1[0m[0;34m,[0m[0;36m2[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0marr2[0m [0;34m=[0m [0;34m[[0m[0;36m10[0m[0;34m,[0m[0;36m21[0m[0;34m,[0m[0;36m14[0m[0;34m,[0m[0;36m26[0m[0;34m,[0m[0;36m12[0m[0;34m,[0m[0;36m1[0m[0;34m,[0m[0;36m2[0m[0;34m,[0m[0;36m50[0m[0;34m,[0m[0;36m61[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;31m# assume arr1 and arr2 might not have the same variance[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'scipy'
+ModuleNotFoundError: No module named 'scipy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

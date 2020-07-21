@@ -1,0 +1,5 @@
+[I 200703 06:56:05 inrepo:35] Testing notebook nbclient/tests/files/update-display-id.ipynb
+[I 200703 06:56:09 execute:404] Executing notebook with kernel: python
+[I 200703 06:56:09 inrepo:41] Saving exported notebook to /io/notebooks/nbclient/tests/files/update-display-id.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

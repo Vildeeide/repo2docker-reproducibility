@@ -1,0 +1,76 @@
+Cloning into 'adminMongo'...
+2020-07-06T14:13:28.226+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] MongoDB starting : pid=21 port=27017 dbpath=/home/vildeeide/resources/local/mongodb-4.0.11/data/db 64-bit host=4814f12ae1f9
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] db version v4.0.11
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] git version: 417d1a712e9f040d54beca8e4943edce218e9a8c
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1  11 Sep 2018
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] modules: none
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] build environment:
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten]     distmod: ubuntu1804
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2020-07-06T14:13:28.232+0000 I CONTROL  [initandlisten] options: { storage: { dbPath: "/home/vildeeide/resources/local/mongodb-4.0.11/data/db" } }
+2020-07-06T14:13:28.234+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7494M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+[I 200706 14:13:28 inrepo:35] Testing notebook labs/lab2.querying/2.basic-operators.ipynb
+2020-07-06T14:13:28.892+0000 I STORAGE  [initandlisten] WiredTiger message [1594044808:892803][21:0x7fcffacf2a40], txn-recover: Set global recovery timestamp: 0
+2020-07-06T14:13:28.905+0000 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2020-07-06T14:13:28.931+0000 I CONTROL  [initandlisten] 
+2020-07-06T14:13:28.932+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-07-06T14:13:28.933+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-07-06T14:13:28.933+0000 I CONTROL  [initandlisten] 
+2020-07-06T14:13:28.933+0000 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2020-07-06T14:13:28.934+0000 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2020-07-06T14:13:28.934+0000 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2020-07-06T14:13:28.934+0000 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2020-07-06T14:13:28.935+0000 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2020-07-06T14:13:28.935+0000 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2020-07-06T14:13:28.935+0000 I CONTROL  [initandlisten] 
+2020-07-06T14:13:28.936+0000 I STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: 0dac1dc2-0750-4051-a660-7883a5df40b6
+2020-07-06T14:13:28.954+0000 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 4.0
+2020-07-06T14:13:28.960+0000 I STORAGE  [initandlisten] createCollection: local.startup_log with generated UUID: b7e37c00-a910-4591-bb78-7d56f30042b3
+2020-07-06T14:13:28.975+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/home/vildeeide/resources/local/mongodb-4.0.11/data/db/diagnostic.data'
+2020-07-06T14:13:28.977+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2020-07-06T14:13:28.978+0000 I STORAGE  [LogicalSessionCacheRefresh] createCollection: config.system.sessions with generated UUID: ca90715f-cb80-4613-a66c-4261d538f298
+2020-07-06T14:13:29.004+0000 I INDEX    [LogicalSessionCacheRefresh] build index on: config.system.sessions properties: { v: 2, key: { lastUse: 1 }, name: "lsidTTLIndex", ns: "config.system.sessions", expireAfterSeconds: 1800 }
+2020-07-06T14:13:29.005+0000 I INDEX    [LogicalSessionCacheRefresh] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2020-07-06T14:13:29.008+0000 I INDEX    [LogicalSessionCacheRefresh] build index done.  scanned 0 total records. 0 secs
+[I 200706 14:13:30 execute:404] Executing notebook with kernel: python3
+2020-07-06T14:13:31.138+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57660 #1 (1 connection now open)
+2020-07-06T14:13:31.139+0000 I NETWORK  [conn1] received client metadata from 127.0.0.1:57660 conn1: { driver: { name: "PyMongo", version: "3.10.1" }, os: { type: "Linux", name: "Linux", architecture: "x86_64", version: "5.4.0-1015-gcp" }, platform: "CPython 3.7.6.final.0" }
+2020-07-06T14:13:31.167+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57662 #2 (2 connections now open)
+2020-07-06T14:13:31.168+0000 I NETWORK  [conn2] received client metadata from 127.0.0.1:57662 conn2: { driver: { name: "PyMongo", version: "3.10.1" }, os: { type: "Linux", name: "Linux", architecture: "x86_64", version: "5.4.0-1015-gcp" }, platform: "CPython 3.7.6.final.0" }
+2020-07-06T14:13:31.170+0000 I STORAGE  [conn2] createCollection: thedatasocietydb.autores with generated UUID: c5125b35-9d52-43fd-b066-a23d5e33696e
+2020-07-06T14:13:31.665+0000 I STORAGE  [conn2] createCollection: thedatasocietydb.publicacoes with generated UUID: 3ae297b0-c4af-4a58-a04b-f23de0b1c099
+npm WARN deprecated electron-prebuilt@1.4.13: electron-prebuilt has been renamed to electron. For more details, see http://electron.atom.io/blog/2016/08/16/npm-install-electron
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated jade@0.26.3: Jade has been renamed to pug, please install the latest version of pug instead of jade
+npm WARN deprecated to-iso-string@0.0.2: to-iso-string has been deprecated, use @segment/to-iso-string instead.
+npm WARN deprecated mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+2020-07-06T14:13:33.688+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57664 #3 (3 connections now open)
+2020-07-06T14:13:33.691+0000 I NETWORK  [conn3] received client metadata from 127.0.0.1:57664 conn3: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "18.04" } }
+2020-07-06T14:13:33.701+0000 I NETWORK  [conn3] end connection 127.0.0.1:57664 (2 connections now open)
+2020-07-06T14:13:34.675+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57666 #4 (3 connections now open)
+2020-07-06T14:13:34.676+0000 I NETWORK  [conn4] received client metadata from 127.0.0.1:57666 conn4: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "18.04" } }
+2020-07-06T14:13:34.684+0000 I NETWORK  [conn4] end connection 127.0.0.1:57666 (2 connections now open)
+2020-07-06T14:13:35.742+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57668 #5 (3 connections now open)
+2020-07-06T14:13:35.743+0000 I NETWORK  [conn5] received client metadata from 127.0.0.1:57668 conn5: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "18.04" } }
+2020-07-06T14:13:35.752+0000 I NETWORK  [conn5] end connection 127.0.0.1:57668 (2 connections now open)
+npm WARN deprecated sprintf@0.1.5: The sprintf package is deprecated in favor of sprintf-js.
+npm WARN deprecated minimatch@0.3.0: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN deprecated mkdirp@0.3.0: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+npm WARN deprecated bson@1.0.1: Fixed a critical issue with BSON serialization documented in CVE-2019-2391, see https://bit.ly/2KcpXdo for more details
+npm WARN deprecated mongodb@2.2.16: Please upgrade to 2.2.19 or higher
+2020-07-06T14:13:37.734+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57670 #6 (3 connections now open)
+2020-07-06T14:13:37.735+0000 I NETWORK  [conn6] received client metadata from 127.0.0.1:57670 conn6: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "18.04" } }
+2020-07-06T14:13:37.745+0000 I NETWORK  [conn6] end connection 127.0.0.1:57670 (2 connections now open)
+npm WARN deprecated bson@1.0.9: Fixed a critical issue with BSON serialization documented in CVE-2019-2391, see https://bit.ly/2KcpXdo for more details
+npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+2020-07-06T14:13:39.732+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:57672 #7 (3 connections now open)
+2020-07-06T14:13:39.738+0000 I NETWORK  [conn7] received client metadata from 127.0.0.1:57672 conn7: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Linux", name: "Ubuntu", architecture: "x86_64", version: "18.04" } }
+2020-07-06T14:13:39.746+0000 I NETWORK  [conn7] end connection 127.0.0.1:57672 (2 connections now open)
+2020-07-06T14:13:40.239+0000 I NETWORK  [conn2] end connection 127.0.0.1:57662 (1 connection now open)
+2020-07-06T14:13:40.240+0000 I NETWORK  [conn1] end connection 127.0.0.1:57660 (0 connections now open)
+[I 200706 14:13:40 inrepo:41] Saving exported notebook to /io/notebooks/labs/lab2.querying/2.basic-operators.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

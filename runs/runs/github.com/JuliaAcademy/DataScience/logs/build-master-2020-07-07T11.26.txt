@@ -1,0 +1,642 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T11.2604gowi8x/github.com/JuliaAcademy/DataScience.
+Using JuliaProjectTomlBuildPack builder
+Step 1/56 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/56 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/56 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/56 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/56 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/56 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/56 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/56 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/56 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/56 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/56 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/56 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/56 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/56 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/56 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/56 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/56 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/56 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/56 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/56 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/56 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/56 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/56 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/56 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/56 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/56 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/56 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/56 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/56 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/56 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/56 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/56 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/56 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/56 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/56 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/56 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/56 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/56 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/56 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/56 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/56 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/56 : USER root
+ ---> Using cache
+ ---> b5bb45c841fe
+Step 46/56 : COPY src/ ${REPO_DIR}
+ ---> d1ffac68e820
+Step 47/56 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f101ce2b8899
+Removing intermediate container f101ce2b8899
+ ---> 9c0de5877859
+Step 48/56 : USER ${NB_USER}
+ ---> Running in 90c46f18e076
+Removing intermediate container 90c46f18e076
+ ---> 3d178d885d69
+Step 49/56 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in 96b8f84a13fa
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [==========>                              ]  24.0 %
+    Fetching: [====================>                    ]  50.0 %
+    Resolving Deltas: [======================================>  ]  93.5 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed VersionParsing ── v1.2.0
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed Conda ─────────── v1.4.1
+ Installed IJulia ────────── v1.21.2
+ Installed Parsers ───────── v1.0.6
+ Installed MbedTLS ───────── v1.0.2
+ Installed ZMQ ───────────── v1.2.1
+ Installed JSON ──────────── v0.21.0
+ Installed ZeroMQ_jll ────── v4.3.2+4
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.6
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h Installed libvorbis_jll ──────────────── v1.3.6+4
+ Installed SignedDistanceFields ───────── v0.4.0
+ Installed NaNMath ────────────────────── v0.3.3
+ Installed TimerOutputs ───────────────── v0.5.5
+ Installed Libiconv_jll ───────────────── v1.16.0+2
+ Installed QuadGK ─────────────────────── v2.3.1
+ Installed GeometryTypes ──────────────── v0.8.3
+ Installed IntelOpenMP_jll ────────────── v2018.0.3+0
+ Installed NLSolversBase ──────────────── v7.6.1
+ Installed Combinatorics ──────────────── v1.0.2
+ Installed HDF5_jll ───────────────────── v1.10.5+5
+ Installed JLD ────────────────────────── v0.10.0
+ Installed Interpolations ─────────────── v0.12.9
+ Installed NNlib ──────────────────────── v0.6.6
+ Installed GLFW ───────────────────────── v3.2.2
+ Installed EzXML ──────────────────────── v1.1.0
+ Installed Libgpg_error_jll ───────────── v1.36.0+1
+ Installed CompilerSupportLibraries_jll ─ v0.3.3+0
+ Installed StatsMakie ─────────────────── v0.2.2
+ Installed Intervals ──────────────────── v1.1.0
+ Installed HTTP ───────────────────────── v0.8.14
+ Installed Xorg_libpthread_stubs_jll ──── v0.1.0+1
+ Installed Quadmath ───────────────────── v0.5.4
+ Installed DataAPI ────────────────────── v1.3.0
+ Installed CodecZlib ──────────────────── v0.6.0
+ Installed FilePathsBase ──────────────── v0.6.2
+ Installed ComputationalResources ─────── v0.3.2
+ Installed MAT ────────────────────────── v0.8.0
+ Installed ColorBrewer ────────────────── v0.4.0
+ Installed Arpack ─────────────────────── v0.4.0
+ Installed GenericSchur ───────────────── v0.4.0
+ Installed ImageMetadata ──────────────── v0.9.1
+ Installed CoordinateTransformations ──── v0.5.1
+ Installed WinReg ─────────────────────── v0.3.1
+ Installed GLMNet ─────────────────────── v0.5.1
+ Installed FiniteDiff ─────────────────── v2.3.2
+ Installed StatsPlots ─────────────────── v0.14.6
+ Installed XLSX ───────────────────────── v0.7.0
+ Installed Media ──────────────────────── v0.5.0
+ Installed DataStructures ─────────────── v0.17.17
+ Installed IteratorInterfaceExtensions ── v1.0.0
+ Installed Graphics ───────────────────── v1.0.2
+ Installed CEnum ──────────────────────── v0.2.0
+ Installed ColorVectorSpace ───────────── v0.8.5
+ Installed ImageMorphology ────────────── v0.2.5
+ Installed WoodburyMatrices ───────────── v0.5.2
+ Installed Setfield ───────────────────── v0.6.0
+ Installed Convex ─────────────────────── v0.13.3
+ Installed InvertedIndices ────────────── v1.0.0
+ Installed HypothesisTests ────────────── v0.10.0
+ Installed Rmath ──────────────────────── v0.6.1
+ Installed Inflate ────────────────────── v0.1.2
+ Installed GR ─────────────────────────── v0.49.1
+ Installed TranscodingStreams ─────────── v0.9.5
+ Installed AxisAlgorithms ─────────────── v1.0.0
+ Installed JSONSchema ─────────────────── v0.2.0
+ Installed Adapt ──────────────────────── v1.0.1
+ Installed LLVM ───────────────────────── v1.5.1
+ Installed LineSearches ───────────────── v7.0.1
+ Installed JuMP ───────────────────────── v0.21.2
+ Installed StatsModels ────────────────── v0.6.11
+ Installed Xorg_libXau_jll ────────────── v1.0.9+2
+ Installed Flux ───────────────────────── v0.10.4
+ Installed PositiveFactorizations ─────── v0.2.3
+ Installed LIBLINEAR ──────────────────── v0.5.1
+ Installed LaTeXStrings ───────────────── v1.1.0
+ Installed FFMPEG_jll ─────────────────── v4.1.0+3
+ Installed CUDAdrv ────────────────────── v6.3.0
+ Installed Libgcrypt_jll ──────────────── v1.8.5+1
+ Installed MKL_jll ────────────────────── v2019.0.117+2
+ Installed GLPK_jll ───────────────────── v4.64.0+0
+ Installed RecipesPipeline ────────────── v0.1.9
+ Installed GLPK ───────────────────────── v0.13.0
+ Installed CommonSubexpressions ───────── v0.2.0
+ Installed ColorSchemes ───────────────── v3.9.0
+ Installed Observables ────────────────── v0.3.1
+ Installed DiffResults ────────────────── v1.0.2
+ Installed Contour ────────────────────── v0.5.3
+ Installed Vega ───────────────────────── v0.1.1
+ Installed LibVPX_jll ─────────────────── v1.8.1+1
+ Installed FreeTypeAbstraction ────────── v0.8.0
+ Installed ScikitLearnBase ────────────── v0.5.0
+ Installed Xorg_libXrandr_jll ─────────── v1.5.2+2
+ Installed IterTools ──────────────────── v1.3.0
+ Installed StatsBase ──────────────────── v0.33.0
+ Installed LsqFit ─────────────────────── v0.8.1
+ Installed HDF5 ───────────────────────── v0.13.2
+ Installed Packing ────────────────────── v0.4.0
+ Installed FFMPEG ─────────────────────── v0.3.0
+ Installed GaussianMixtures ───────────── v0.3.1
+ Installed glmnet_jll ─────────────────── v5.0.0+0
+ Installed LightGraphs ────────────────── v1.3.3
+ Installed KahanSummation ─────────────── v0.1.0
+ Installed FastGaussQuadrature ────────── v0.4.2
+ Installed Ratios ─────────────────────── v0.4.0
+ Installed XSLT_jll ───────────────────── v1.1.33+2
+ Installed ImageCore ──────────────────── v0.8.14
+ Installed OpenSSL_jll ────────────────── v1.1.1+2
+ Installed ProgressMeter ──────────────── v1.3.0
+ Installed LIBSVM ─────────────────────── v0.4.0
+ Installed ShiftedArrays ──────────────── v1.0.0
+ Installed StaticArrays ───────────────── v0.12.3
+ Installed SimpleTraits ───────────────── v0.9.2
+ Installed Requires ───────────────────── v1.0.1
+ Installed ArrayLayouts ───────────────── v0.2.6
+ Installed AxisArrays ─────────────────── v0.4.3
+ Installed FreeType2_jll ──────────────── v2.10.1+2
+ Installed CSV ────────────────────────── v0.6.2
+ Installed Distances ──────────────────── v0.8.2
+ Installed RDatasets ──────────────────── v0.6.8
+ Installed MutableArithmetics ─────────── v0.2.9
+ Installed Zlib_jll ───────────────────── v1.2.11+10
+ Installed GMP_jll ────────────────────── v6.1.2+5
+ Installed Libglvnd_jll ───────────────── v1.3.0+1
+ Installed ExprTools ──────────────────── v0.1.1
+ Installed PyPlot ─────────────────────── v2.9.0
+ Installed GLFW_jll ───────────────────── v3.3.2+0
+ Installed Lz4_jll ────────────────────── v1.9.2+0
+ Installed Compat ─────────────────────── v3.10.0
+ Installed ForwardDiff ────────────────── v0.10.10
+ Installed Optim ──────────────────────── v0.20.6
+ Installed OffsetArrays ───────────────── v1.0.4
+ Installed CodeTracking ───────────────── v0.5.11
+ Installed AbstractTrees ──────────────── v0.3.3
+ Installed KernelDensity ──────────────── v0.5.1
+ Installed CustomUnitRanges ───────────── v1.0.0
+ Installed SortingAlgorithms ──────────── v0.3.1
+ Installed Xorg_libXi_jll ─────────────── v1.7.10+2
+ Installed TableTraits ────────────────── v1.0.0
+ Installed Tables ─────────────────────── v1.0.4
+ Installed PooledArrays ───────────────── v0.5.3
+ Installed GLMakie ────────────────────── v0.1.4
+ Installed URIParser ──────────────────── v0.4.1
+ Installed Makie ──────────────────────── v0.10.0
+ Installed XML2_jll ───────────────────── v2.9.9+4
+ Installed OptimBase ──────────────────── v2.0.1
+ Installed IniFile ────────────────────── v0.5.0
+ Installed IterableTables ─────────────── v1.0.0
+ Installed DecisionTree ───────────────── v0.10.1
+ Installed ImageQualityIndexes ────────── v0.1.4
+ Installed Loess ──────────────────────── v0.5.1
+ Installed Ogg_jll ────────────────────── v1.3.4+0
+ Installed FFTW_jll ───────────────────── v3.3.9+5
+ Installed AbstractNumbers ────────────── v0.2.1
+ Installed LAME_jll ───────────────────── v3.100.0+1
+ Installed Opus_jll ───────────────────── v1.3.1+1
+ Installed Bzip2_jll ──────────────────── v1.0.6+2
+ Installed TimeZones ──────────────────── v1.2.0
+ Installed FilePaths ──────────────────── v0.8.0
+ Installed Widgets ────────────────────── v0.6.2
+ Installed StatsFuns ──────────────────── v0.9.5
+ Installed GPUArrays ──────────────────── v3.3.0
+ Installed Plots ──────────────────────── v1.3.3
+ Installed x265_jll ───────────────────── v3.0.0+1
+ Installed ZMQ ────────────────────────── v1.2.0
+ Installed Measures ───────────────────── v0.3.1
+ Installed OpenBLAS_jll ───────────────── v0.3.9+4
+ Installed ImageShow ──────────────────── v0.2.3
+ Installed ConstructionBase ───────────── v1.0.0
+ Installed Xorg_libxcb_jll ────────────── v1.13.0+2
+ Installed Blosc ──────────────────────── v0.7.0
+ Installed Xorg_libXrender_jll ────────── v0.9.10+2
+ Installed NearestNeighborDescent ─────── v0.3.0
+ Installed Nullables ──────────────────── v1.0.0
+ Installed VegaDatasets ───────────────── v2.1.0
+ Installed ImageDistances ─────────────── v0.2.7
+ Installed Roots ──────────────────────── v1.0.1
+ Installed GaussianProcesses ──────────── v0.12.0
+ Installed PlotThemes ─────────────────── v2.0.0
+ Installed FFTViews ───────────────────── v0.3.1
+ Installed FillArrays ─────────────────── v0.8.10
+ Installed Showoff ────────────────────── v0.3.1
+ Installed NBInclude ──────────────────── v2.2.0
+ Installed RecipesBase ────────────────── v1.0.1
+ Installed MappedArrays ───────────────── v0.2.2
+ Installed BufferedStreams ────────────── v1.0.0
+ Installed ImageMagick ────────────────── v1.1.5
+ Installed IdentityRanges ─────────────── v0.3.1
+ Installed DoubleFloats ───────────────── v1.1.10
+ Installed NodeJS ─────────────────────── v1.1.1
+ Installed SpecialFunctions ───────────── v0.10.3
+ Installed Xorg_libXdmcp_jll ──────────── v1.1.3+2
+ Installed ElasticPDMats ──────────────── v0.2.1
+ Installed NearestNeighbors ───────────── v0.4.4
+ Installed CUDAapi ────────────────────── v4.0.0
+ Installed Xorg_libXext_jll ───────────── v1.3.4+2
+ Installed CatIndices ─────────────────── v0.2.1
+ Installed Distributions ──────────────── v0.23.2
+ Installed MbedTLS_jll ────────────────── v2.16.0+2
+ Installed AbstractPlotting ───────────── v0.10.11
+ Installed MeshIO ─────────────────────── v0.4.0
+ Installed SCS ────────────────────────── v0.6.6
+ Installed GPUCompiler ────────────────── v0.2.0
+ Installed Mocking ────────────────────── v0.7.1
+ Installed x264_jll ───────────────────── v2019.5.25+2
+ Installed ColorTypes ─────────────────── v0.10.3
+ Installed ShaderAbstractions ─────────── v0.2.1
+ Installed RCall ──────────────────────── v0.13.7
+ Installed MathProgBase ───────────────── v0.7.8
+ Installed AbstractFFTs ───────────────── v0.5.0
+ Installed PDMats ─────────────────────── v0.9.12
+ Installed TableOperations ────────────── v0.2.1
+ Installed Rotations ──────────────────── v0.13.0
+ Installed IRTools ────────────────────── v0.3.3
+ Installed MathOptInterface ───────────── v0.9.13
+ Installed TableShowUtils ─────────────── v0.2.5
+ Installed OrderedCollections ─────────── v1.2.0
+ Installed Parameters ─────────────────── v0.12.1
+ Installed libfdk_aac_jll ─────────────── v0.1.6+2
+ Installed Images ─────────────────────── v0.22.2
+ Installed MultivariateStats ──────────── v0.7.0
+ Installed Calculus ───────────────────── v0.5.1
+ Installed IndirectArrays ─────────────── v0.5.1
+ Installed Missings ───────────────────── v0.4.3
+ Installed OpenSpecFun_jll ────────────── v0.5.3+3
+ Installed Xorg_libX11_jll ────────────── v1.6.9+2
+ Installed DocStringExtensions ────────── v0.8.1
+ Installed Libtiff_jll ────────────────── v4.1.0+0
+ Installed Zstd_jll ───────────────────── v1.4.5+0
+ Installed UnPack ─────────────────────── v1.0.1
+ Installed Polynomials ────────────────── v1.1.0
+ Installed Rmath_jll ──────────────────── v0.2.2+0
+ Installed DiffRules ──────────────────── v1.0.1
+ Installed PlotUtils ──────────────────── v1.0.4
+ Installed ImageTransformations ───────── v0.8.4
+ Installed FileIO ─────────────────────── v1.3.0
+ Installed RangeArrays ────────────────── v0.3.2
+ Installed PaddedViews ────────────────── v0.5.5
+ Installed UnicodeFun ─────────────────── v0.4.1
+ Installed libpng_jll ─────────────────── v1.6.37+3
+ Installed Cthulhu ────────────────────── v1.1.1
+ Installed PyCall ─────────────────────── v1.91.4
+ Installed CuArrays ───────────────────── v2.2.0
+ Installed DataValues ─────────────────── v0.4.13
+ Installed CategoricalArrays ──────────── v0.8.1
+ Installed MacroTools ─────────────────── v0.5.5
+ Installed Xorg_libXcursor_jll ────────── v1.2.0+2
+ Installed ScikitLearn ────────────────── v0.5.1
+ Installed Clustering ─────────────────── v0.14.0
+ Installed DataFrames ─────────────────── v0.21.1
+ Installed EllipsisNotation ───────────── v0.4.0
+ Installed ImageMagick_jll ────────────── v6.9.10-12+3
+ Installed RData ──────────────────────── v0.7.2
+ Installed FreeType ───────────────────── v3.0.0
+ Installed ElasticArrays ──────────────── v1.2.1
+ Installed MatrixNetworks ─────────────── v1.0.0
+ Installed FriBidi_jll ────────────────── v1.0.5+3
+ Installed CodecBzip2 ─────────────────── v0.7.2
+ Installed Xorg_libXinerama_jll ───────── v1.1.4+2
+ Installed ArrayInterface ─────────────── v2.8.7
+ Installed Arpack_jll ─────────────────── v3.5.0+3
+ Installed DataValueInterfaces ────────── v1.0.0
+ Installed BenchmarkTools ─────────────── v0.5.0
+ Installed FFTW ───────────────────────── v1.2.1
+ Installed UMAP ───────────────────────── v0.1.5
+ Installed Documenter ─────────────────── v0.24.11
+ Installed Xorg_xtrans_jll ────────────── v1.4.0+1
+ Installed GLM ────────────────────────── v1.3.9
+ Installed Zygote ─────────────────────── v0.4.20
+ Installed VegaLite ───────────────────── v2.1.3
+ Installed NPZ ────────────────────────── v0.4.0
+ Installed MosaicViews ────────────────── v0.2.2
+ Installed Blosc_jll ──────────────────── v1.14.3+1
+ Installed ArnoldiMethod ──────────────── v0.0.4
+ Installed Juno ───────────────────────── v0.8.2
+ Installed GenericSVD ─────────────────── v0.3.0
+ Installed TableTraitsUtils ───────────── v1.0.1
+ Installed GeometryBasics ─────────────── v0.2.10
+ Installed WeakRefStrings ─────────────── v0.6.2
+ Installed ModernGL ───────────────────── v1.1.2
+ Installed Colors ─────────────────────── v0.12.1
+ Installed ZygoteRules ────────────────── v0.2.0
+ Installed IntervalSets ───────────────── v0.5.1
+ Installed FixedPointNumbers ──────────── v0.8.0
+ Installed TextParse ──────────────────── v1.0.0
+ Installed Parsers ────────────────────── v1.0.4
+ Installed ImageContrastAdjustment ────── v0.3.5
+ Installed Reexport ───────────────────── v0.2.0
+ Installed ImageAxes ──────────────────── v0.6.4
+ Installed ZeroMQ_jll ─────────────────── v4.3.2+3
+ Installed Xorg_libXfixes_jll ─────────── v5.0.3+2
+ Installed JLD2 ───────────────────────── v0.1.13
+ Installed StructArrays ───────────────── v0.4.3
+ Installed TiledIteration ─────────────── v0.2.4
+ Installed libass_jll ─────────────────── v0.14.0+2
+ Installed CUDAnative ─────────────────── v3.1.0
+ Installed BinaryProvider ─────────────── v0.5.10
+ Installed ZipFile ────────────────────── v0.9.2
+ Installed JpegTurbo_jll ──────────────── v2.0.1+0
+ Installed ImageFiltering ─────────────── v0.6.11
+ Installed MLBase ─────────────────────── v0.8.0
+  Building NNlib ────→ `/srv/julia/pkg/packages/NNlib/FAI3o/deps/build.log`
+  Building CodecZlib → `/srv/julia/pkg/packages/CodecZlib/5t9zO/deps/build.log`
+  Building GR ───────→ `/srv/julia/pkg/packages/GR/cRdXQ/deps/build.log`
+  Building LIBLINEAR → `/srv/julia/pkg/packages/LIBLINEAR/yTdp5/deps/build.log`
+  Building GLPK ─────→ `/srv/julia/pkg/packages/GLPK/oTTtu/deps/build.log`
+  Building HDF5 ─────→ `/srv/julia/pkg/packages/HDF5/pAi1D/deps/build.log`
+  Building LIBSVM ───→ `/srv/julia/pkg/packages/LIBSVM/5Z99T/deps/build.log`
+  Building ModernGL ─→ `/srv/julia/pkg/packages/ModernGL/rVuW2/deps/build.log`
+[91m[ Info: No changes
+[0m  Building GLMakie ──→ `/srv/julia/pkg/packages/GLMakie/S9Zib/deps/build.log`
+[91m┌ Error: Error building `GLMakie`: 
+│ ERROR: LoadError: OpenGL/GLFW wasn't installed correctly. This likely means,
+│ you don't have an OpenGL capable Graphic Card,
+│ you don't have the newest video driver installed,
+│ or the GLFW build failed. If you're on linux and `]build` GLFW failed,
+│ try manually adding `sudo apt-get install libglfw3` and then `]build GLMakie`.
+│ If you're on a headless server, you still need to install x-server and
+│ proper GPU drivers. You can take inspiration from this article
+│ on how to get Makie running on a headless system:
+│ https://nextjournal.com/sdanisch/makie-1.0
+│ If you don't have a GPU, there is also a Cairo software backend
+│ for Makie which you can use:
+│ https://github.com/JuliaPlots/CairoMakie.jl.
+│ Please check the below error and open an issue at:
+│ https://github.com/JuliaPlots/GLMakie.jl.
+│ After you fixed your OpenGL install, please run `]build GLMakie` again!
+│ GLMakie will still load, but will be disabled as a default backend for Makie
+│ 
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] top-level scope at /srv/julia/pkg/packages/GLMakie/S9Zib/deps/build.jl:28
+│  [3] include at ./boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1105
+│  [5] include(::Module, ::String) at ./Base.jl:31
+│  [6] include(::String) at ./client.jl:424
+│  [7] top-level scope at none:5
+│ in expression starting at /srv/julia/pkg/packages/GLMakie/S9Zib/deps/build.jl:19
+│ caused by [exception 1]
+│ InitError: Exception[GLFW.GLFWError(GLFW.PLATFORM_ERROR, "X11: The DISPLAY environment variable is missing"), ErrorException("glfwInit failed")]
+│ Stacktrace:
+│  [1] __init__() at /srv/julia/pkg/packages/GLFW/g1nX6/src/GLFW.jl:40
+│  [2] _include_from_serialized(::String, ::Array{Any,1}) at ./loading.jl:692
+│  [3] _require_from_serialized(::String) at ./loading.jl:743
+│  [4] _require(::Base.PkgId) at ./loading.jl:1034
+│  [5] require(::Base.PkgId) at ./loading.jl:922
+│  [6] require(::Module, ::Symbol) at ./loading.jl:917
+│  [7] top-level scope at /srv/julia/pkg/packages/GLMakie/S9Zib/deps/build.jl:20
+│  [8] include at ./boot.jl:328 [inlined]
+│  [9] include_relative(::Module, ::String) at ./loading.jl:1105
+│  [10] include(::Module, ::String) at ./Base.jl:31
+│  [11] include(::String) at ./client.jl:424
+│  [12] top-level scope at none:5
+│ during initialization of module GLFW
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/backwards_compatible_isolation.jl:649
+[0m  Building TimeZones → `/srv/julia/pkg/packages/TimeZones/OjMoF/deps/build.log`
+  Building Plots ────→ `/srv/julia/pkg/packages/Plots/ninUP/deps/build.log`
+  Building SCS ──────→ `/srv/julia/pkg/packages/SCS/28Svy/deps/build.log`
+  Building RCall ────→ `/srv/julia/pkg/packages/RCall/Qzssx/deps/build.log`
+[91m┌ Error: Error building `RCall`: 
+│ ERROR: LoadError: R_HOME is not a directory.
+│ Stacktrace:
+│  [1] error(::String) at ./error.jl:33
+│  [2] top-level scope at /srv/julia/pkg/packages/RCall/Qzssx/deps/build.jl:48
+│  [3] include at ./boot.jl:328 [inlined]
+│  [4] include_relative(::Module, ::String) at ./loading.jl:1105
+│  [5] include(::Module, ::String) at ./Base.jl:31
+│  [6] include(::String) at ./client.jl:424
+│  [7] top-level scope at none:5
+│ in expression starting at /srv/julia/pkg/packages/RCall/Qzssx/deps/build.jl:11
+└ @ Pkg.Operations /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/backwards_compatible_isolation.jl:649
+[0m  Building PyCall ───→ `/srv/julia/pkg/packages/PyCall/zqDXB/deps/build.log`
+  Building FFTW ─────→ `/srv/julia/pkg/packages/FFTW/5DZuu/deps/build.log`
+Precompiling project...
+Precompiling GLPK
+Precompiling UMAP
+Precompiling NPZ
+Precompiling VegaDatasets
+Precompiling RData
+Precompiling Clustering
+Precompiling VegaLite
+Precompiling ScikitLearn
+Precompiling KernelDensity
+Precompiling MAT
+Precompiling Makie
+[91m┌ Warning: Loaded OpenGL Backend, but OpenGL isn't working
+└ @ GLMakie /srv/julia/pkg/packages/GLMakie/S9Zib/src/GLMakie.jl:60
+[0mPrecompiling Convex
+Precompiling GLMNet
+Precompiling CSV
+Precompiling MatrixNetworks
+Precompiling StatsPlots
+Precompiling SCS
+Precompiling Images
+Precompiling Flux
+Precompiling XLSX
+Precompiling RCall
+[91mERROR: [0m[91mLoadError: [0m[91mRCall not properly installed. Please run Pkg.build("RCall")[0m[91m
+Stacktrace:[0m[91m
+ [1] [0m[91merror[0m[91m([0m[91m::[0m[91mString) at ./error.jl:33[0m[91m
+ [2] top-level scope at /srv/julia/pkg/packages/RCall/Qzssx/src/RCall.jl:36
+ [3] [0m[91minclude at ./boot.jl:328 [inlined][0m[91m
+ [4] include_relative(::Module, ::String) at ./loading.jl:1105
+ [5] include(::Module, ::String) at ./Base.jl:31
+ [6] [0m[91mtop-level scope at none:2
+ [7] eval at ./boot.jl:330 [inlined]
+ [8] eval(::Expr) at ./client.jl:425
+ [9] top-level scope at ./none:3
+in expression starting at /srv/julia/pkg/packages/RCall/Qzssx/src/RCall.jl:33
+[0mPrecompiling LIBSVM
+Precompiling GLM
+Precompiling MLBase
+Precompiling HypothesisTests
+Precompiling JLD
+Precompiling JuMP
+Precompiling DecisionTree
+Precompiling RDatasets
+Removing intermediate container 96b8f84a13fa
+ ---> ca55159186b1
+Step 50/56 : LABEL repo2docker.ref="None"
+ ---> Running in d8e54f7728f3
+Removing intermediate container d8e54f7728f3
+ ---> 6e8967939f06
+Step 51/56 : LABEL repo2docker.repo="local"
+ ---> Running in 555b57b9d7a7
+Removing intermediate container 555b57b9d7a7
+ ---> 72c1d9520fc9
+Step 52/56 : LABEL repo2docker.version="0.11.0"
+ ---> Running in a5a94b59c25a
+Removing intermediate container a5a94b59c25a
+ ---> c22ec4d77ef2
+Step 53/56 : USER ${NB_USER}
+ ---> Running in c84489c02876
+Removing intermediate container c84489c02876
+ ---> 41a33b322c00
+Step 54/56 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 221fe9dee9da
+Step 55/56 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in bc7c3b577de5
+Removing intermediate container bc7c3b577de5
+ ---> da43cad2d306
+Step 56/56 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 5cc8036ce6c4
+Removing intermediate container 5cc8036ce6c4
+ ---> 9d5e7b2f274d
+{"aux": {"ID": "sha256:9d5e7b2f274df8e2c761d224e2286c64511d032319007e68aa30757a67fe1697"}}Successfully built 9d5e7b2f274d
+Successfully tagged r2d-test-github.com-juliaacademy-datascience:86f20ec

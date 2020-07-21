@@ -1,0 +1,5 @@
+[I 200703 06:37:24 inrepo:35] Testing notebook content/chapters/16/Inference_for_Regression.ipynb
+[I 200703 06:37:25 execute:404] Executing notebook with kernel: python3
+[I 200703 06:37:27 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/16/Inference_for_Regression.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

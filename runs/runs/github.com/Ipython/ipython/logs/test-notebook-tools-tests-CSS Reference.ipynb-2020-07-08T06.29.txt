@@ -1,0 +1,79 @@
+[I 200708 06:29:39 inrepo:36] Testing notebook tools/tests/CSS Reference.ipynb
+[I 200708 06:29:40 inrepo:45] Found kernel python3
+[I 200708 06:29:40 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+# a code cell 
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import LightSource
+
+# example showing how to make shaded relief plots
+# like Mathematica
+# (http://reference.wolfram.com/mathematica/ref/ReliefPlot.html)
+# or Generic Mapping Tools
+# (http://gmt.soest.hawaii.edu/gmt/doc/gmt/html/GMT_Docs/node145.html)
+
+# test data
+d= 1
+def maltc(ax, lambd=1, n=1):
+    I0=1
+    I= lambda theta,d : I0*(sin(2*theta)*sin(pi*n*d/lambd))**2
+    X,Y=np.mgrid[-5:5:0.05,-5:5:0.05]
+    Z=np.sqrt(X**2+Y**2)+np.sin(X**2+Y**2)
+    
+    r= np.sqrt(X**2+Y**2)
+    theta = np.angle(X+1.0j*Y)
+    
+    Iv= np.vectorize(I)
+    Z = Iv(r,theta)
+    
+    # create light source object.
+    #ls = LightSource(azdeg=0,altdeg=65)
+    # shade data, creating an rgb array.
+    #rgb = ls.shade(Z,plt.cm.copper)
+    # plot un-shaded and shaded images.
+    #plt.figure(figsize=(12,5))
+    #plt.subplot(121)
+    ax.imshow(Z,cmap=plt.cm.copper)
+    ax.set_title('d=%d lambda=%f'%(d,lambd))
+    
+fig, (axes) = plt.subplots(3,4)
+fig.set_figheight(10)
+fig.set_figwidth(20)
+
+flatten = [item for sublist in axes for item in sublist]
+
+for ax,l in zip(flatten,range(len(flatten))):
+   maltc(ax,lambd=(l+1)*pi/8.0)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-6f102eddb2e6>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [38;5;66m# a code cell [39m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcolors[39;00m [38;5;28;01mimport[39;00m LightSource
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

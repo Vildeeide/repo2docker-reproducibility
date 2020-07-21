@@ -1,0 +1,97 @@
+[I 200710 13:06:13 inrepo:36] Testing notebook samples/nucleus/inspect_nucleus_model.ipynb
+[I 200710 13:06:13 inrepo:45] Found kernel python3
+[I 200710 13:06:14 execute:404] Executing notebook with kernel: python3
+2020-07-10 13:06:17.683533: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-07-10 13:06:17.683585: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-07-10 13:06:17.683620: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (d79b7ee885f4): /proc/driver/nvidia/version does not exist
+2020-07-10 13:06:17.684636: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-10 13:06:17.693948: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2000000000 Hz
+2020-07-10 13:06:17.694395: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7ff860000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-10 13:06:17.694499: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Create model in inference mode
+with tf.device(DEVICE):
+    model = modellib.MaskRCNN(mode="inference",
+                              model_dir=LOGS_DIR,
+                              config=config)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-7-cbd73b52b7e8>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m     model = modellib.MaskRCNN(mode="inference",
+[1;32m      4[0m                               [0mmodel_dir[0m[0;34m=[0m[0mLOGS_DIR[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m                               config=config)
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py[0m in [0;36m__init__[0;34m(self, mode, config, model_dir)[0m
+[1;32m   1818[0m         [0mself[0m[0;34m.[0m[0mmodel_dir[0m [0;34m=[0m [0mmodel_dir[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1819[0m         [0mself[0m[0;34m.[0m[0mset_log_dir[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1820[0;31m         [0mself[0m[0;34m.[0m[0mkeras_model[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mbuild[0m[0;34m([0m[0mmode[0m[0;34m=[0m[0mmode[0m[0;34m,[0m [0mconfig[0m[0;34m=[0m[0mconfig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1821[0m [0;34m[0m[0m
+[1;32m   1822[0m     [0;32mdef[0m [0mbuild[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mmode[0m[0;34m,[0m [0mconfig[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py[0m in [0;36mbuild[0;34m(self, mode, config)[0m
+[1;32m   2013[0m                 fpn_classifier_graph(rpn_rois, mrcnn_feature_maps, input_image_meta,
+[1;32m   2014[0m                                      [0mconfig[0m[0;34m.[0m[0mPOOL_SIZE[0m[0;34m,[0m [0mconfig[0m[0;34m.[0m[0mNUM_CLASSES[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2015[0;31m                                      train_bn=config.TRAIN_BN)
+[0m[1;32m   2016[0m [0;34m[0m[0m
+[1;32m   2017[0m             [0;31m# Detections[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py[0m in [0;36mfpn_classifier_graph[0;34m(rois, feature_maps, image_meta, pool_size, num_classes, train_bn)[0m
+[1;32m    917[0m     [0;31m# Shape: [batch, num_boxes, pool_height, pool_width, channels][0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    918[0m     x = PyramidROIAlign([pool_size, pool_size],
+[0;32m--> 919[0;31m                         name="roi_align_classifier")([rois, image_meta] + feature_maps)
+[0m[1;32m    920[0m     [0;31m# Two 1024 FC layers (implemented with Conv2D for consistency)[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    921[0m     x = KL.TimeDistributed(KL.Conv2D(1024, (pool_size, pool_size), padding="valid"),
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py[0m in [0;36m__call__[0;34m(self, *args, **kwargs)[0m
+[1;32m    920[0m                     not base_layer_utils.is_in_eager_or_tf_function()):
+[1;32m    921[0m                   [0;32mwith[0m [0mauto_control_deps[0m[0;34m.[0m[0mAutomaticControlDependencies[0m[0;34m([0m[0;34m)[0m [0;32mas[0m [0macd[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 922[0;31m                     [0moutputs[0m [0;34m=[0m [0mcall_fn[0m[0;34m([0m[0mcast_inputs[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    923[0m                     [0;31m# Wrap Tensors in `outputs` in `tf.identity` to avoid[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    924[0m                     [0;31m# circular dependencies.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow/python/autograph/impl/api.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    263[0m       [0;32mexcept[0m [0mException[0m [0;32mas[0m [0me[0m[0;34m:[0m  [0;31m# pylint:disable=broad-except[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    264[0m         [0;32mif[0m [0mhasattr[0m[0;34m([0m[0me[0m[0;34m,[0m [0;34m'ag_error_metadata'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 265[0;31m           [0;32mraise[0m [0me[0m[0;34m.[0m[0mag_error_metadata[0m[0;34m.[0m[0mto_exception[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    266[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    267[0m           [0;32mraise[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: in user code:
+
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py:387 call  *
+        roi_level = log2_graph(tf.sqrt(h * w) / (224.0 / tf.sqrt(image_area)))
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py:338 log2_graph  *
+        return tf.log(x) / tf.log(2.0)
+
+    AttributeError: module 'tensorflow' has no attribute 'log'
+
+AttributeError: in user code:
+
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py:387 call  *
+        roi_level = log2_graph(tf.sqrt(h * w) / (224.0 / tf.sqrt(image_area)))
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py:338 log2_graph  *
+        return tf.log(x) / tf.log(2.0)
+
+    AttributeError: module 'tensorflow' has no attribute 'log'
+
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

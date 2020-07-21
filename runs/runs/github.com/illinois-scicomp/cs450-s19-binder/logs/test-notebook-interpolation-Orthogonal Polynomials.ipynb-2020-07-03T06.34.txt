@@ -1,0 +1,5 @@
+[I 200703 06:44:39 inrepo:35] Testing notebook interpolation/Orthogonal Polynomials.ipynb
+[I 200703 06:44:40 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:51 inrepo:41] Saving exported notebook to /io/notebooks/interpolation/Orthogonal Polynomials.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

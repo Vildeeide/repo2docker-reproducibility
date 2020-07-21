@@ -1,0 +1,6 @@
+[I 200715 12:44:49 inrepo:36] Testing notebook 07.machine learning/machineLearning.ipynb
+[I 200715 12:44:49 inrepo:45] Found kernel python3
+[I 200715 12:44:50 execute:404] Executing notebook with kernel: python3
+[I 200715 12:44:50 inrepo:79] Saving exported notebook to /io/notebooks/07.machine learning/machineLearning.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

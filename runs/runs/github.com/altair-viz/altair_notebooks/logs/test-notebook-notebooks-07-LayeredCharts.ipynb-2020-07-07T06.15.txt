@@ -1,0 +1,5 @@
+[I 200707 06:15:18 inrepo:35] Testing notebook notebooks/07-LayeredCharts.ipynb
+[I 200707 06:15:19 execute:404] Executing notebook with kernel: python3
+[I 200707 06:15:24 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/07-LayeredCharts.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

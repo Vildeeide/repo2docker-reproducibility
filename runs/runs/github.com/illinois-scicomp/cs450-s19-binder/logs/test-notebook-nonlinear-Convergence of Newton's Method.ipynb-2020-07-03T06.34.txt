@@ -1,0 +1,5 @@
+[I 200703 06:39:04 inrepo:35] Testing notebook nonlinear/Convergence of Newton's Method.ipynb
+[I 200703 06:39:05 execute:404] Executing notebook with kernel: python3
+[I 200703 06:39:07 inrepo:41] Saving exported notebook to /io/notebooks/nonlinear/Convergence of Newton's Method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

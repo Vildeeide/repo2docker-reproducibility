@@ -1,0 +1,50 @@
+[I 200714 13:48:21 inrepo:36] Testing notebook simple-conv-nn.ipynb
+[I 200714 13:48:21 inrepo:45] Found kernel python3
+[I 200714 13:48:22 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Train this network for 5,000 steps using a batch size of 1, 
+# using Adam as the optimizer with a learning rate of 0.001.
+train_acc, val_acc = train_and_predict(batch_size=10, num_steps=2000, opt=torch.optim.Adam, 
+                                       learning_rate=0.001, show_loss=True, show_curve=True)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mIndexError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-10-d3d71aa1b758>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;31m# using Adam as the optimizer with a learning rate of 0.001.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m train_acc, val_acc = train_and_predict(batch_size=10, num_steps=2000, opt=torch.optim.Adam, 
+[0;32m----> 4[0;31m                                        learning_rate=0.001, show_loss=True, show_curve=True)
+[0m
+[0;32m<ipython-input-9-28d1b7397573>[0m in [0;36mtrain_and_predict[0;34m(batch_size, num_steps, opt, learning_rate, show_loss, show_curve)[0m
+[1;32m     16[0m     [0mtrain_accs[0m[0;34m,[0m [0mval_accs[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m,[0m [0;34m[[0m[0;34m][0m [0;31m# clear the previous results[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m     [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mnum_steps[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 18[0;31m         [0mtrain[0m[0;34m([0m[0mbatch_size[0m[0;34m,[0m [0moptimizer[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     19[0m         [0;32mif[0m [0mi[0m [0;34m%[0m [0;36m100[0m [0;34m==[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m             [0mtrain_accs[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mapprox_train_accuracy[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-4-d91282ea2de2>[0m in [0;36mtrain[0;34m(batch_size, optimizer)[0m
+[1;32m     24[0m     [0mloss[0m[0;34m.[0m[0mbackward[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     25[0m     [0moptimizer[0m[0;34m.[0m[0mstep[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 26[0;31m     [0;32mreturn[0m [0mloss[0m[0;34m.[0m[0mdata[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mIndexError[0m: invalid index of a 0-dim tensor. Use `tensor.item()` in Python or `tensor.item<T>()` in C++ to convert a 0-dim tensor to a number
+IndexError: invalid index of a 0-dim tensor. Use `tensor.item()` in Python or `tensor.item<T>()` in C++ to convert a 0-dim tensor to a number
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

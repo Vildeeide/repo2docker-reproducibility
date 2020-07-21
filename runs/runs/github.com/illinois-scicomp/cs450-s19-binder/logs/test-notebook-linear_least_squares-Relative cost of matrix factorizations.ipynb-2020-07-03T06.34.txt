@@ -1,0 +1,5 @@
+[I 200703 06:37:28 inrepo:35] Testing notebook linear_least_squares/Relative cost of matrix factorizations.ipynb
+[I 200703 06:37:29 execute:404] Executing notebook with kernel: python
+[I 200703 06:37:50 inrepo:41] Saving exported notebook to /io/notebooks/linear_least_squares/Relative cost of matrix factorizations.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

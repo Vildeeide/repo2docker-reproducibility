@@ -1,0 +1,227 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T12.45_v7jubmn/github.com/martin3141/rats.
+Using RBuildPack builder
+Step 1/72 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/72 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/72 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/72 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/72 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/72 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/72 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/72 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/72 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/72 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/72 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/72 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/72 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/72 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/72 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/72 : RUN apt-get -qq update &&     apt-get -qq install --yes        libapparmor1        lsb-release        psmisc        sudo        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 6fb5de221d0d
+Step 17/72 : EXPOSE 8888
+ ---> Using cache
+ ---> 1b2fbe23d620
+Step 18/72 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> 97852dd972ff
+Step 19/72 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> e13c0a4ae05a
+Step 20/72 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 1b0dede8716f
+Step 21/72 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 735f593faabf
+Step 22/72 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 860594a269d3
+Step 23/72 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> e405e7a02e17
+Step 24/72 : ENV R_LIBS_USER ${APP_BASE}/rlibs
+ ---> Using cache
+ ---> 718ca88aea31
+Step 25/72 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:/usr/lib/rstudio-server/bin/:${PATH}
+ ---> Using cache
+ ---> 61eaf8d6820b
+Step 26/72 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> a2967a382753
+Step 27/72 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> e6b0c47e9224
+Step 28/72 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 40a7428275b1
+Step 29/72 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> ce8b96bbfa07
+Step 30/72 : USER ${NB_USER}
+ ---> Using cache
+ ---> 69669e77f50b
+Step 31/72 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 85b7cd962f40
+Step 32/72 : USER root
+ ---> Using cache
+ ---> 8705d498fe18
+Step 33/72 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> a41bba42da58
+Step 34/72 : RUN echo "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/" > /etc/apt/sources.list.d/r3.6-ubuntu.list
+ ---> Using cache
+ ---> 1e4b8b99a7c9
+Step 35/72 : RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+ ---> Using cache
+ ---> 2deb9f62652a
+Step 36/72 : RUN apt-get update && apt-get install --yes r-base=3.6.1-3bionic      r-base-dev=3.6.1-3bionic      r-recommended=3.6.1-3bionic      libclang-dev && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 4dee3e65f622
+Step 37/72 : RUN mkdir -p ${R_LIBS_USER} && chown -R ${NB_USER}:${NB_USER} ${R_LIBS_USER}
+ ---> Using cache
+ ---> 8fe0cbb9e980
+Step 38/72 : RUN curl --silent --location --fail https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5001-amd64.deb > /tmp/rstudio.deb && echo 'd33881b9ab786c09556c410e7dc477de /tmp/rstudio.deb' | md5sum -c - && apt-get update && apt install -y /tmp/rstudio.deb && rm /tmp/rstudio.deb && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> a34f109d2828
+Step 39/72 : RUN curl --silent --location --fail https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb > /tmp/shiny.deb && echo '9aeef6613e7f58f21c97a4600921340e /tmp/shiny.deb' | md5sum -c - && dpkg -i /tmp/shiny.deb && rm /tmp/shiny.deb
+ ---> Using cache
+ ---> 25d65e1888c1
+Step 40/72 : USER ${NB_USER}
+ ---> Using cache
+ ---> 33fb38825ff6
+Step 41/72 : RUN pip install --no-cache-dir https://github.com/jupyterhub/jupyter-server-proxy/archive/7ac0125.zip && pip install --no-cache-dir jupyter-rsession-proxy==1.0b6 && jupyter serverextension enable jupyter_server_proxy --sys-prefix && jupyter nbextension install --py jupyter_server_proxy --sys-prefix && jupyter nbextension enable --py jupyter_server_proxy --sys-prefix
+ ---> Using cache
+ ---> 984aa7af5711
+Step 42/72 : USER root
+ ---> Using cache
+ ---> 9c1f3fe1e7db
+Step 43/72 : RUN install -o ${NB_USER} -g ${NB_USER} -d /var/log/shiny-server && install -o ${NB_USER} -g ${NB_USER} -d /var/lib/shiny-server && install -o ${NB_USER} -g ${NB_USER} /dev/null /var/log/shiny-server.log && install -o ${NB_USER} -g ${NB_USER} /dev/null /var/run/shiny-server.pid
+ ---> Using cache
+ ---> ef676e9adb96
+Step 44/72 : RUN sed -i -e '/^R_LIBS_USER=/s/^/#/' /etc/R/Renviron && echo "R_LIBS_USER=${R_LIBS_USER}" >> /etc/R/Renviron
+ ---> Using cache
+ ---> 33986d0e8f69
+Step 45/72 : USER ${NB_USER}
+ ---> Using cache
+ ---> 3048c2b83056
+Step 46/72 : RUN R --quiet -e "install.packages('devtools', repos='https://mran.microsoft.com/snapshot/2018-02-01', method='libcurl')" && R --quiet -e "devtools::install_github('IRkernel/IRkernel', ref='1.0.2')" && R --quiet -e "IRkernel::installspec(prefix='$NB_PYTHON_PREFIX')"
+ ---> Using cache
+ ---> fa2813ebf3fd
+Step 47/72 : RUN R --quiet -e "install.packages('shiny', repos='https://mran.microsoft.com/snapshot/2019-09-22', method='libcurl')"
+ ---> Using cache
+ ---> daa1f2c7f881
+Step 48/72 : USER root
+ ---> Using cache
+ ---> 9ed918fb475b
+Step 49/72 : RUN echo "options(repos = c(CRAN='https://mran.microsoft.com/snapshot/2019-09-22'), download.file.method = 'libcurl')" > /etc/R/Rprofile.site
+ ---> Using cache
+ ---> c04be85cd6f3
+Step 50/72 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 13ee31c267c3
+Step 51/72 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 9383df7402b1
+Step 52/72 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> fdcfd22a7329
+Step 53/72 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> eecd2ef891ee
+Step 54/72 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 03926d9f256d
+Step 55/72 : COPY src/binder/install.R ${REPO_DIR}/binder/install.R
+ ---> Using cache
+ ---> e56dff8f7053
+Step 56/72 : USER root
+ ---> Using cache
+ ---> 9d770d8dae84
+Step 57/72 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> a0c8f81eb590
+Step 58/72 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends tk8.6-dev && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 7d5b25b11745
+Step 59/72 : USER ${NB_USER}
+ ---> Using cache
+ ---> 3b3fcbf3c598
+Step 60/72 : RUN Rscript binder/install.R && touch /tmp/.preassembled || true
+ ---> Using cache
+ ---> 22331253b380
+Step 61/72 : USER root
+ ---> Using cache
+ ---> 2ce660c8ffa3
+Step 62/72 : COPY src/ ${REPO_DIR}
+ ---> 1b505c2ef6a9
+Step 63/72 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f6368d89c2ac
+Removing intermediate container f6368d89c2ac
+ ---> d18581a9775d
+Step 64/72 : USER ${NB_USER}
+ ---> Running in dc4acf8c3a61
+Removing intermediate container dc4acf8c3a61
+ ---> 2584585b0d89
+Step 65/72 : RUN if [ ! -f /tmp/.preassembled ]; then Rscript binder/install.R; fi
+ ---> Running in 22d1b4cc4008
+Removing intermediate container 22d1b4cc4008
+ ---> 920027e45f8e
+Step 66/72 : LABEL repo2docker.ref="None"
+ ---> Running in 0af29c5a0879
+Removing intermediate container 0af29c5a0879
+ ---> 7e5d1d6b8186
+Step 67/72 : LABEL repo2docker.repo="local"
+ ---> Running in 7955c0fb243a
+Removing intermediate container 7955c0fb243a
+ ---> 6840cbab4712
+Step 68/72 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 75f41f331f87
+Removing intermediate container 75f41f331f87
+ ---> 392a0dd9f077
+Step 69/72 : USER ${NB_USER}
+ ---> Running in 548ae5cbcf5f
+Removing intermediate container 548ae5cbcf5f
+ ---> bf2bb39747c4
+Step 70/72 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> c90c85d61198
+Step 71/72 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in ca438c702c12
+Removing intermediate container ca438c702c12
+ ---> d5d6fe3f5552
+Step 72/72 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in d6174b14c6c5
+Removing intermediate container d6174b14c6c5
+ ---> 3c086ec6319b
+{"aux": {"ID": "sha256:3c086ec6319b1b4fb8312f8e5643b5b82491899ffa9e8882da89253a2dedb0c6"}}Successfully built 3c086ec6319b
+Successfully tagged r2d-test-github.com-martin3141-rats:9332376

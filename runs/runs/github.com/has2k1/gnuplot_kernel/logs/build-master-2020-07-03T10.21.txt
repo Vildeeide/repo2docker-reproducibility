@@ -1,0 +1,252 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T10.21lszjj9h8/github.com/has2k1/gnuplot_kernel.
+Using PythonBuildPack builder
+Step 1/55 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/55 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/55 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/55 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/55 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/55 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/55 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/55 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/55 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/55 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/55 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/55 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/55 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/55 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/55 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/55 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/55 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/55 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/55 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/55 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/55 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/55 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/55 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/55 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/55 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/55 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/55 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/55 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/55 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/55 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/55 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/55 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/55 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/55 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/55 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/55 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/55 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 7d1b83b24a23
+Step 38/55 : USER root
+ ---> Using cache
+ ---> a3faced67af9
+Step 39/55 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 2c7b4edc1d34
+Step 40/55 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends gnuplot && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 158a5ad96ebf
+Step 41/55 : USER root
+ ---> Using cache
+ ---> 98597b74aaf9
+Step 42/55 : COPY src/ ${REPO_DIR}
+ ---> eae32e6b0a44
+Step 43/55 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 78a5ab5b8a3e
+Removing intermediate container 78a5ab5b8a3e
+ ---> 82717fa79cb0
+Step 44/55 : USER ${NB_USER}
+ ---> Running in a1817f30717f
+Removing intermediate container a1817f30717f
+ ---> 5c1dbcab7209
+Step 45/55 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in d2e7f86ce01c
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 2)) (2.8.1)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->-r requirements.txt (line 2)) (1.14.0)
+Installing collected packages: numpy, cycler, pyparsing, kiwisolver, matplotlib
+Successfully installed cycler-0.10.0 kiwisolver-1.2.0 matplotlib-3.2.2 numpy-1.19.0 pyparsing-2.4.7
+Removing intermediate container d2e7f86ce01c
+ ---> 8c94dc92aec8
+Step 46/55 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 956fce4e1415
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting metakernel>=0.20.14
+  Downloading metakernel-0.24.4-py2.py3-none-any.whl (208 kB)
+Requirement already satisfied: notebook>=5.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from gnuplot-kernel==0.4.0) (6.0.3)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from metakernel>=0.20.14->gnuplot-kernel==0.4.0) (5.1.4)
+Requirement already satisfied: pexpect>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from metakernel>=0.20.14->gnuplot-kernel==0.4.0) (4.8.0)
+Requirement already satisfied: jupyter-core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (4.6.1)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (6.0.3)
+Requirement already satisfied: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (5.3.4)
+Requirement already satisfied: traitlets>=4.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (4.3.3)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (2.11.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.2.0)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (18.1.1)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (5.0.4)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.7.1)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (5.6.1)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.8.3)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=5.5.0->gnuplot-kernel==0.4.0) (1.5.0)
+Requirement already satisfied: ipython>=5.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (7.11.1)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect>=4.2->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.6.0)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client>=5.3.4->notebook>=5.5.0->gnuplot-kernel==0.4.0) (2.8.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=5.5.0->gnuplot-kernel==0.4.0) (1.14.0)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=5.5.0->gnuplot-kernel==0.4.0) (4.4.1)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=5.5.0->gnuplot-kernel==0.4.0) (1.1.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook>=5.5.0->gnuplot-kernel==0.4.0) (3.2.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (1.4.2)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.4.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.6.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (3.1.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (2.5.2)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.8.4)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.16.0)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.1.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.7.5)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (45.1.0.post20200119)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (3.0.3)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.5.0->gnuplot-kernel==0.4.0) (1.5.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.5.0->gnuplot-kernel==0.4.0) (19.3.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=5.5.0->gnuplot-kernel==0.4.0) (0.5.1)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=5.0.0->ipykernel->metakernel>=0.20.14->gnuplot-kernel==0.4.0) (0.1.8)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->notebook>=5.5.0->gnuplot-kernel==0.4.0) (2.1.0)
+Building wheels for collected packages: gnuplot-kernel
+  Building wheel for gnuplot-kernel (setup.py): started
+  Building wheel for gnuplot-kernel (setup.py): finished with status 'done'
+  Created wheel for gnuplot-kernel: filename=gnuplot_kernel-0.4.0-py3-none-any.whl size=20837 sha256=b4e813c8f2da3737bddd3b2be563f6b7a8e29ab52c6a06658ddc2a17808ca00d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-dsbps9d1/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built gnuplot-kernel
+Installing collected packages: metakernel, gnuplot-kernel
+Successfully installed gnuplot-kernel-0.4.0 metakernel-0.24.4
+Removing intermediate container 956fce4e1415
+ ---> ccb70a5caacf
+Step 47/55 : LABEL repo2docker.ref="None"
+ ---> Running in 248387ba6e6a
+Removing intermediate container 248387ba6e6a
+ ---> 858073c0719d
+Step 48/55 : LABEL repo2docker.repo="local"
+ ---> Running in d0ed2ac718b3
+Removing intermediate container d0ed2ac718b3
+ ---> abf681e7fd91
+Step 49/55 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 230fd84a19d4
+Removing intermediate container 230fd84a19d4
+ ---> abb2cf0df519
+Step 50/55 : USER ${NB_USER}
+ ---> Running in 13878ad8546d
+Removing intermediate container 13878ad8546d
+ ---> 2b39279e4622
+Step 51/55 : RUN chmod +x postBuild
+ ---> Running in 3703a706251a
+Removing intermediate container 3703a706251a
+ ---> e4f82b861b0e
+Step 52/55 : RUN ./postBuild
+ ---> Running in 85a0e16aefee
+[91m[InstallKernelSpec] Installed kernelspec gnuplot in /home/vildeeide/.local/share/jupyter/kernels/gnuplot
+[0mRemoving intermediate container 85a0e16aefee
+ ---> 833a9a1b6478
+Step 53/55 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 6ce4ff94f020
+Step 54/55 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in f205ae9d4fc4
+Removing intermediate container f205ae9d4fc4
+ ---> 97b7b08c3500
+Step 55/55 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 700bc1b5de0e
+Removing intermediate container 700bc1b5de0e
+ ---> 47cc4f21064f
+{"aux": {"ID": "sha256:47cc4f21064f5ad839ece9d1dda6468b6dd82db29f29d43f3c9cabe7a9afa883"}}Successfully built 47cc4f21064f
+Successfully tagged r2d-test-github.com-has2k1-gnuplot_kernel:98bdaec

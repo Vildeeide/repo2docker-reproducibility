@@ -1,0 +1,6 @@
+[I 200707 10:22:58 inrepo:36] Testing notebook 04_modeling_behavior/Modeling_Routine_Behavior.ipynb
+[I 200707 10:22:59 inrepo:45] Found kernel python3
+[I 200707 10:23:00 execute:404] Executing notebook with kernel: python3
+[I 200707 10:23:01 inrepo:77] Saving exported notebook to /io/notebooks/04_modeling_behavior/Modeling_Routine_Behavior.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

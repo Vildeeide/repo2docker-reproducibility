@@ -1,0 +1,7 @@
+[I 200717 13:50:03 inrepo:36] Testing notebook model_merging.ipynb
+[W 200717 13:50:03 inrepo:48] No such kernel sbml-merge, falling back on kernel language=python
+[W 200717 13:50:03 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 13:50:04 execute:404] Executing notebook with kernel: python3
+[I 200717 13:50:05 inrepo:79] Saving exported notebook to /io/notebooks/model_merging.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

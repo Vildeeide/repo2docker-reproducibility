@@ -1,0 +1,66 @@
+[I 200715 11:58:45 inrepo:36] Testing notebook pyfolio/examples/slippage_example.ipynb
+[I 200715 11:58:45 inrepo:45] Found kernel python3
+[I 200715 11:58:46 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+transactions = pd.read_csv(gzip.open('../tests/test_data/test_txn.csv.gz'),
+                    index_col=0, parse_dates=True)
+positions = pd.read_csv(gzip.open('../tests/test_data/test_pos.csv.gz'),
+                    index_col=0, parse_dates=True)
+returns = pd.read_csv(gzip.open('../tests/test_data/test_returns.csv.gz'),
+                    index_col=0, parse_dates=True, header=None)[1]
+returns.index = returns.index.tz_localize("UTC")
+positions.index = positions.index.tz_localize("UTC")
+transactions.index = transactions.index.tz_localize("UTC")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-2-20a6d8bbc9ca>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m returns = pd.read_csv(gzip.open('../tests/test_data/test_returns.csv.gz'),
+[1;32m      6[0m                     index_col=0, parse_dates=True, header=None)[1]
+[0;32m----> 7[0;31m [0mreturns[0m[0;34m.[0m[0mindex[0m [0;34m=[0m [0mreturns[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mtz_localize[0m[0;34m([0m[0;34m"UTC"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0mpositions[0m[0;34m.[0m[0mindex[0m [0;34m=[0m [0mpositions[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mtz_localize[0m[0;34m([0m[0;34m"UTC"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0mtransactions[0m[0;34m.[0m[0mindex[0m [0;34m=[0m [0mtransactions[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mtz_localize[0m[0;34m([0m[0;34m"UTC"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/accessor.py[0m in [0;36mf[0;34m(self, *args, **kwargs)[0m
+[1;32m     97[0m         [0;32mdef[0m [0m_create_delegator_method[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     98[0m             [0;32mdef[0m [0mf[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 99[0;31m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_delegate_method[0m[0;34m([0m[0mname[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    100[0m [0;34m[0m[0m
+[1;32m    101[0m             [0mf[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0mname[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/indexes/datetimelike.py[0m in [0;36m_delegate_method[0;34m(self, name, *args, **kwargs)[0m
+[1;32m    903[0m [0;34m[0m[0m
+[1;32m    904[0m     [0;32mdef[0m [0m_delegate_method[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 905[0;31m         [0mresult[0m [0;34m=[0m [0moperator[0m[0;34m.[0m[0mmethodcaller[0m[0;34m([0m[0mname[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_data[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    906[0m         [0;32mif[0m [0mname[0m [0;32mnot[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_raw_methods[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    907[0m             [0mresult[0m [0;34m=[0m [0mIndex[0m[0;34m([0m[0mresult[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/arrays/datetimes.py[0m in [0;36mtz_localize[0;34m(self, tz, ambiguous, nonexistent)[0m
+[1;32m    978[0m                 [0mnew_dates[0m [0;34m=[0m [0mtzconversion[0m[0;34m.[0m[0mtz_convert[0m[0;34m([0m[0mself[0m[0;34m.[0m[0masi8[0m[0;34m,[0m [0mtimezones[0m[0;34m.[0m[0mUTC[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mtz[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    979[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 980[0;31m                 [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0;34m"Already tz-aware, use tz_convert to convert."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    981[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    982[0m             [0mtz[0m [0;34m=[0m [0mtimezones[0m[0;34m.[0m[0mmaybe_get_tz[0m[0;34m([0m[0mtz[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: Already tz-aware, use tz_convert to convert.
+TypeError: Already tz-aware, use tz_convert to convert.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

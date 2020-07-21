@@ -1,0 +1,5 @@
+[I 200706 09:46:25 inrepo:35] Testing notebook Problem-set-2/4-Constructing-kernels.ipynb
+[I 200706 09:46:26 execute:404] Executing notebook with kernel: python3
+[I 200706 09:46:26 inrepo:41] Saving exported notebook to /io/notebooks/Problem-set-2/4-Constructing-kernels.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

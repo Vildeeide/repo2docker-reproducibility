@@ -1,0 +1,5 @@
+[I 200703 06:43:40 inrepo:35] Testing notebook optimization/Sequential Quadratic Programming.ipynb
+[I 200703 06:43:41 execute:404] Executing notebook with kernel: python
+[I 200703 06:43:42 inrepo:41] Saving exported notebook to /io/notebooks/optimization/Sequential Quadratic Programming.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

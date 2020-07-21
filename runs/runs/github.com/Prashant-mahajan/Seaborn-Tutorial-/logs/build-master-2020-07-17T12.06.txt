@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 261, in _raise_for_status
+    response.raise_for_status()
+  File "/usr/lib/python3/dist-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http+docker://localhost/v1.35/images/r2d-test-github.com-prashant-mahajan-seaborn-tutorial-:a618b33/json
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 113, in build_repo
+    image = d.images.get(image_id)
+  File "/usr/local/lib/python3.8/dist-packages/docker/models/images.py", line 316, in get
+    return self.prepare_model(self.client.api.inspect_image(name))
+  File "/usr/local/lib/python3.8/dist-packages/docker/utils/decorators.py", line 19, in wrapped
+    return f(self, resource_id, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/image.py", line 245, in inspect_image
+    return self._result(
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 267, in _result
+    self._raise_for_status(response)
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 263, in _raise_for_status
+    raise create_api_error_from_http_exception(e)
+  File "/usr/local/lib/python3.8/dist-packages/docker/errors.py", line 31, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation)
+docker.errors.APIError: 400 Client Error: Bad Request ("no such image: r2d-test-github.com-prashant-mahajan-seaborn-tutorial-:a618b33: invalid reference format")

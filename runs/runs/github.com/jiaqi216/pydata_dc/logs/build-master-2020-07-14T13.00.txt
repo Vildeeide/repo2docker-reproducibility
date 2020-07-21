@@ -1,0 +1,209 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-14T13.009uxzutor/github.com/jiaqi216/pydata_dc.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 06d0eb60a8b5
+Step 38/51 : USER root
+ ---> Running in 77140b460480
+Removing intermediate container 77140b460480
+ ---> aaebde93584a
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 64e4c98dad7d
+Removing intermediate container 64e4c98dad7d
+ ---> 8452d06c1968
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 87d853a76b6d
+Removing intermediate container 87d853a76b6d
+ ---> c0cbb0b60f3e
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in bfe084d8835e
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting python-Levenshtein
+  Downloading python-Levenshtein-0.12.0.tar.gz (48 kB)
+Collecting jellyfish
+  Downloading jellyfish-0.8.2-cp37-cp37m-manylinux2014_x86_64.whl (90 kB)
+Collecting Cython
+  Downloading Cython-0.29.21-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting word2vec
+  Downloading word2vec-0.11.1.tar.gz (42 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting psycopg2
+  Downloading psycopg2-2.8.5.tar.gz (380 kB)
+Requirement already satisfied: sqlalchemy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 6)) (1.3.13)
+Collecting kafka
+  Downloading kafka-1.3.5-py2.py3-none-any.whl (207 kB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-Levenshtein->-r requirements.txt (line 1)) (45.1.0.post20200119)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Building wheels for collected packages: python-Levenshtein, word2vec, psycopg2
+  Building wheel for python-Levenshtein (setup.py): started
+  Building wheel for python-Levenshtein (setup.py): finished with status 'done'
+  Created wheel for python-Levenshtein: filename=python_Levenshtein-0.12.0-cp37-cp37m-linux_x86_64.whl size=167843 sha256=f8685eaa37e477848b85388ccd069fc87cbe7da03f954f0d5fd3690b571094b5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ymmw30h_/wheels/f0/9b/13/49c281164c37be18343230d3cd0fca29efb23a493351db0009
+  Building wheel for word2vec (PEP 517): started
+  Building wheel for word2vec (PEP 517): finished with status 'done'
+  Created wheel for word2vec: filename=word2vec-0.11.1-py2.py3-none-any.whl size=164771 sha256=d6a83dce18d6c4de1ec078fabed56d903d611d583a4d6ad46e49a4c9f788dfdb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ymmw30h_/wheels/c9/c0/d4/29d797817e268124a32b6cf8beb8b8fe87b86f099d5a049e61
+  Building wheel for psycopg2 (setup.py): started
+  Building wheel for psycopg2 (setup.py): finished with status 'done'
+  Created wheel for psycopg2: filename=psycopg2-2.8.5-cp37-cp37m-linux_x86_64.whl size=452478 sha256=073ba6a71d7bd9589dab77549534017cc9adf9eae4051a1a16c1ae6d3a640df0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ymmw30h_/wheels/69/74/ec/7764aea035627654bf137f89a91405ac239c569ce10ae87137
+Successfully built python-Levenshtein word2vec psycopg2
+Installing collected packages: python-Levenshtein, jellyfish, Cython, joblib, numpy, word2vec, psycopg2, kafka
+Successfully installed Cython-0.29.21 jellyfish-0.8.2 joblib-0.16.0 kafka-1.3.5 numpy-1.19.0 psycopg2-2.8.5 python-Levenshtein-0.12.0 word2vec-0.11.1
+Removing intermediate container bfe084d8835e
+ ---> c6a68e84bf53
+Step 42/51 : USER root
+ ---> Running in 772bfb0d8416
+Removing intermediate container 772bfb0d8416
+ ---> 702e26dfb1c7
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> b025d6f731b5
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 5220c0e204a5
+Removing intermediate container 5220c0e204a5
+ ---> 05c04de8cc6a
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in 9f61ed336ba0
+Removing intermediate container 9f61ed336ba0
+ ---> 9bbba85e1889
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in 4d9eb9e6c464
+Removing intermediate container 4d9eb9e6c464
+ ---> 2d4b475c0f58
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 1cda97c9bb7c
+Removing intermediate container 1cda97c9bb7c
+ ---> 34920ce55c83
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 0a5b14e71e01
+Removing intermediate container 0a5b14e71e01
+ ---> 6270c4726439
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 660e16a24c92
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in bd35a70e78e5
+Removing intermediate container bd35a70e78e5
+ ---> ba56732b0056
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 4e0cf35e8967
+Removing intermediate container 4e0cf35e8967
+ ---> fe2e4d642ab0
+{"aux": {"ID": "sha256:fe2e4d642ab01444449cd1b741d2e079b9d6d1ac3e29fcb7082f98d9836e2c1d"}}Successfully built fe2e4d642ab0
+Successfully tagged r2d-test-github.com-jiaqi216-pydata_dc:7981589

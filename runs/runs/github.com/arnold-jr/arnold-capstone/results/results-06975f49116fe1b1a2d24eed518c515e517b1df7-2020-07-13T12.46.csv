@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/arnold-jr/arnold-capstone,06975f49116fe1b1a2d24eed518c515e517b1df7,06975f4,2017-01-11T14:42:52-06:00,build,build,False,github.com/arnold-jr/arnold-capstone/logs/build-06975f49116fe1b1a2d24eed518c515e517b1df7-2020-07-13T12.46.txt,2020-07-13T12:46:02.388142,2020-07-13T12.46,0.11.0

@@ -1,0 +1,65 @@
+[I 200703 06:30:13 inrepo:35] Testing notebook notebooks/Numba_049_release_demo.ipynb
+[I 200703 06:30:15 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from numba import get_num_threads, set_num_threads
+
+# Discover thread mask from Python
+print("Number of threads: {}".format(get_num_threads()))
+
+# Set thread mask from Python
+set_num_threads(2)
+
+# Check it was set
+print("Number of threads: {}".format(get_num_threads()))
+
+@njit
+def get_mask():
+    print("JIT code, number of threads", get_num_threads())
+
+# Discover thread mask from JIT code
+get_mask()
+
+@njit
+def set_mask(x):
+    set_num_threads(x)
+    print("JIT code, number of threads", get_num_threads())
+
+# Set thread mask from JIT code
+set_mask(3)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-2-e3c73bed1431>[0m in [0;36m<module>[0;34m[0m
+[1;32m     23[0m [0;34m[0m[0m
+[1;32m     24[0m [0;31m# Set thread mask from JIT code[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 25[0;31m [0mset_mask[0m[0;34m([0m[0;36m3[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/np/ufunc/parallel.py[0m in [0;36msnt_check[0;34m()[0m
+[1;32m    526[0m     [0;32mdef[0m [0msnt_check[0m[0;34m([0m[0mn[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    527[0m         [0;32mif[0m [0mn[0m [0;34m>[0m [0mNUMBA_NUM_THREADS[0m [0;32mor[0m [0mn[0m [0;34m<[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 528[0;31m             [0;32mraise[0m [0mValueError[0m[0;34m([0m[0mmsg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    529[0m     [0;32mreturn[0m [0msnt_check[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    530[0m [0;34m[0m[0m
+
+[0;31mValueError[0m: The number of threads must be between 1 and 2
+ValueError: The number of threads must be between 1 and 2
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

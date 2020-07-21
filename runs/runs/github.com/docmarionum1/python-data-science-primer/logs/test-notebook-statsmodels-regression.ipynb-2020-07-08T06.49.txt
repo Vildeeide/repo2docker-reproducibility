@@ -1,0 +1,6 @@
+[I 200708 06:49:30 inrepo:36] Testing notebook statsmodels/regression.ipynb
+[I 200708 06:49:31 inrepo:45] Found kernel python3
+[I 200708 06:49:31 execute:404] Executing notebook with kernel: python3
+[I 200708 06:49:41 inrepo:77] Saving exported notebook to /io/notebooks/statsmodels/regression.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

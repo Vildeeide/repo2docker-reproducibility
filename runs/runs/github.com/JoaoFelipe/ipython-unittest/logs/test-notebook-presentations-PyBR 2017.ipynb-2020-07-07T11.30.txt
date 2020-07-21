@@ -1,0 +1,18 @@
+[I 200707 11:31:09 inrepo:36] Testing notebook presentations/PyBR 2017.ipynb
+[E 200707 11:31:09 __init__:79] Notebook JSON is invalid: {'color': 'yellow', 'message': '', 'previous': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][3]['outputs'][0]['data']['application/unittest.status+json']:
+    {'color': 'yellow', 'message': '', 'previous': 0}
+[I 200707 11:31:09 inrepo:45] Found kernel python3
+[I 200707 11:31:10 execute:404] Executing notebook with kernel: python3
+[I 200707 11:31:13 inrepo:77] Saving exported notebook to /io/notebooks/presentations/PyBR 2017.ipynb
+[E 200707 11:31:13 __init__:109] Notebook JSON is invalid: {'color': 'yellow', 'message': '', 'previous': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][3]['outputs'][0]['data']['application/unittest.status+json']:
+    {'color': 'yellow', 'message': '', 'previous': 0}
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

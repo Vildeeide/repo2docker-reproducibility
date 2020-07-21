@@ -1,0 +1,81 @@
+[I 200716 12:16:36 inrepo:36] Testing notebook 1-TItanicSurvivor/Untitled.ipynb
+[W 200716 12:16:36 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200716 12:16:36 inrepo:60] Using kernel python3 to provide language: python
+[I 200716 12:16:37 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## Load Data
+import pandas
+data = pandas.read_csv('titanic_data.csv', sep=',')
+
+## Define outcome, drop non used features and generate a binary variable for Sex:
+outcomes = data['Survived']
+data = data.drop(['Survived','Name','Ticket','Cabin','Embarked','PassengerId'], axis = 1)
+data.loc[:, 'Sex'] = data['Sex'].apply(lambda x: 1. if x == 'female' else 0.)
+
+## impute missing values in the age column using Sex and Pclass:
+data.loc[:, 'Age'] = data.groupby(['Sex','Pclass']).transform(lambda x: x.fillna(x.median()))
+
+## Split the data into train/test sets: (train data is used to make the model learn from data and test data is used to estimate how well model generalized)
+from sklearn.cross_validation import StratifiedShuffleSplit
+sss = StratifiedShuffleSplit(outcomes, 1, test_size=0.3, random_state=450)
+for train_index, test_index in sss:
+    X_train = data.iloc[train_index]
+    y_train = outcomes.iloc[train_index]
+    X_test = data.iloc[test_index]
+    y_test = outcomes.iloc[test_index]
+
+## Define Decision Tree to use: (give it a try and change parameters to see the different trees built)
+from sklearn import tree
+clf = tree.DecisionTreeClassifier(max_features=3,max_depth=2)
+
+## Use train data to train the model:
+clf = clf.fit(X_train, y_train)
+
+# Generate predictions over test set:
+predictions = clf.predict(X_test)
+
+# Accuracy results over test set:
+from sklearn.metrics import accuracy_score
+print "Accuracy Score:", accuracy_score(y_test, predictions)
+
+## Represent Generated Tree:
+from sklearn.externals.six import StringIO
+from IPython.display import Image
+import pydot 
+print data.columns
+dot_data = StringIO() 
+tree.export_graphviz(clf, out_file=dot_data,  
+                         feature_names=data.columns,
+                         class_names=['Perished','Survived'], 
+                         filled=True, rounded=True,
+                         proportion = True,
+                         special_characters=True)  
+graph = pydot.graph_from_dot_data(dot_data.getvalue())  
+Image(graph.create_png())
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-3c5283952d85>"[0;36m, line [0;32m34[0m
+[0;31m    print "Accuracy Score:", accuracy_score(y_test, predictions)[0m
+[0m                          ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-3c5283952d85>, line 34)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

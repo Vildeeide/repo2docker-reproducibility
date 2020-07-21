@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/HEHenson/Pandas_index_tutorial,master,b25b3ef,2017-06-26T00:32:19-04:00,build,build,True,github.com/HEHenson/Pandas_index_tutorial/logs/build-master-2020-07-20T06.25.txt,2020-07-20T06:25:00.790534,2020-07-20T06.25,0.11.0
+https://github.com/HEHenson/Pandas_index_tutorial,master,b25b3ef,2017-06-26T00:32:19-04:00,notebook,Pandas and boolean index vectors.ipynb,False,github.com/HEHenson/Pandas_index_tutorial/logs/test-notebook-Pandas and boolean index vectors.ipynb-2020-07-20T06.25.txt,2020-07-20T06:25:00.790534,2020-07-20T06.25,0.11.0

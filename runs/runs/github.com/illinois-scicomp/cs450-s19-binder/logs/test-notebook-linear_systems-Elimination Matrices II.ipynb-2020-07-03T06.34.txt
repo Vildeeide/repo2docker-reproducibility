@@ -1,0 +1,5 @@
+[I 200703 06:43:47 inrepo:35] Testing notebook linear_systems/Elimination Matrices II.ipynb
+[I 200703 06:43:48 execute:404] Executing notebook with kernel: python
+[I 200703 06:43:48 inrepo:41] Saving exported notebook to /io/notebooks/linear_systems/Elimination Matrices II.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

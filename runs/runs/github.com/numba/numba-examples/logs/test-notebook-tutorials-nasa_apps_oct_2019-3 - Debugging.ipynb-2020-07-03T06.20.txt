@@ -1,0 +1,74 @@
+[I 200703 06:30:21 inrepo:35] Testing notebook tutorials/nasa_apps_oct_2019/3 - Debugging.ipynb
+[I 200703 06:30:24 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+@njit
+def type_inference_problem():
+    a = {}
+    return a
+
+type_inference_problem()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypingError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-2-9ae2f47bb5a7>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m     [0;32mreturn[0m [0ma[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+[0;32m----> 6[0;31m [0mtype_inference_problem[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/core/dispatcher.py[0m in [0;36m_compile_for_args[0;34m(self, *args, **kws)[0m
+[1;32m    413[0m                 [0me[0m[0;34m.[0m[0mpatch_message[0m[0;34m([0m[0mmsg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    414[0m [0;34m[0m[0m
+[0;32m--> 415[0;31m             [0merror_rewrite[0m[0;34m([0m[0me[0m[0;34m,[0m [0;34m'typing'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    416[0m         [0;32mexcept[0m [0merrors[0m[0;34m.[0m[0mUnsupportedError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    417[0m             [0;31m# Something unsupported is present in the user code, add help info[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/core/dispatcher.py[0m in [0;36merror_rewrite[0;34m(e, issue_type)[0m
+[1;32m    356[0m                 [0;32mraise[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    357[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 358[0;31m                 [0mreraise[0m[0;34m([0m[0mtype[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m,[0m [0me[0m[0;34m,[0m [0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    359[0m [0;34m[0m[0m
+[1;32m    360[0m         [0margtypes[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/core/utils.py[0m in [0;36mreraise[0;34m(tp, value, tb)[0m
+[1;32m     78[0m         [0mvalue[0m [0;34m=[0m [0mtp[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     79[0m     [0;32mif[0m [0mvalue[0m[0;34m.[0m[0m__traceback__[0m [0;32mis[0m [0;32mnot[0m [0mtb[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 80[0;31m         [0;32mraise[0m [0mvalue[0m[0;34m.[0m[0mwith_traceback[0m[0;34m([0m[0mtb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     81[0m     [0;32mraise[0m [0mvalue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     82[0m [0;34m[0m[0m
+
+[0;31mTypingError[0m: Failed in nopython mode pipeline (step: nopython frontend)
+[1mCannot infer the type of variable 'a', have imprecise type: DictType[undefined,undefined]. 
+[1m
+File "<ipython-input-2-9ae2f47bb5a7>", line 3:[0m
+[1mdef type_inference_problem():
+[1m    a = {}
+[0m    [1m^[0m[0m
+[0m
+TypingError: Failed in nopython mode pipeline (step: nopython frontend)
+[1mCannot infer the type of variable 'a', have imprecise type: DictType[undefined,undefined]. 
+[1m
+File "<ipython-input-2-9ae2f47bb5a7>", line 3:[0m
+[1mdef type_inference_problem():
+[1m    a = {}
+[0m    [1m^[0m[0m
+[0m
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

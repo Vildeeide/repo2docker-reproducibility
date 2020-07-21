@@ -1,0 +1,122 @@
+[I 200717 07:54:03 inrepo:36] Testing notebook notebooks/intrasubject_multimodal_registration.ipynb
+[W 200717 07:54:03 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200717 07:54:03 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 07:54:04 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Standard modules
+import numpy as np
+import nibabel as nib
+#import dipy.viz.regtools as rt
+import reg_utils.regviz as rv
+from dipy.align import VerbosityLevels
+from dipy.align.transforms import regtransforms
+from dipy.align.imaffine import (AffineMap,
+                                 transform_centers_of_mass,
+                                 MutualInformationMetric,
+                                 AffineRegistration)
+# Our modules
+from dataset_info.info import get_neobrain
+import pickle
+import os
+%pylab inline
+pylab.rcParams['figure.figsize'] = (14, 10)
+
+def load_nib(fname):
+    img_nib = nib.load(fname)
+    img = img_nib.get_data().squeeze()
+    img_affine = img_nib.get_affine()
+    return img, img_affine
+
+def dipy_align(static, static_grid2world, moving, moving_grid2world,
+               transforms=None, level_iters=None, prealign=None):
+    r''' Full rigid registration with Dipy's imaffine module
+
+    Here we implement an extra optimization heuristic: move the geometric
+    centers of the images to the origin. Imaffine does not do this by default
+    because we want to give the user as much control of the optimization
+    process as possible.
+
+    '''
+    # Bring the center of the moving image to the origin
+    c_moving = tuple(0.5 * np.array(moving.shape, dtype=np.float64))
+    c_moving = moving_grid2world.dot(c_moving+(1,))
+    correction_moving = np.eye(4, dtype=np.float64)
+    correction_moving[:3,3] = -1 * c_moving[:3]
+    centered_moving_aff = correction_moving.dot(moving_grid2world)
+
+    # Bring the center of the static image to the origin
+    c_static = tuple(0.5 * np.array(static.shape, dtype=np.float64))
+    c_static = static_grid2world.dot(c_static+(1,))
+    correction_static = np.eye(4, dtype=np.float64)
+    correction_static[:3,3] = -1 * c_static[:3]
+    centered_static_aff = correction_static.dot(static_grid2world)
+
+    dim = len(static.shape)
+    metric = MutualInformationMetric(nbins=32, sampling_proportion=0.3)
+    #metric = LocalCCMetric(radius=4)
+    #metric.verbosity = VerbosityLevels.DEBUG
+
+    # Registration schedule: center-of-mass then translation, then rigid and then affine
+    if prealign is None:
+        prealign = 'mass'
+
+    if transforms is None:
+        transforms = ['TRANSLATION', 'RIGID', 'AFFINE']
+    
+    nlevels = len(transforms)
+    if level_iters is None:
+        level_iters = [[10000, 1000, 100]] * nlevels
+
+    sol = np.eye(dim + 1)
+    for i in range(nlevels):
+        transform_name = transforms[i]
+        affr = AffineRegistration(metric=metric, level_iters=level_iters[i])
+        affr.verbosity = VerbosityLevels.DEBUG        
+        
+        
+        transform = regtransforms[(transform_name, dim)]
+        print('Optimizing: %s'%(transform_name,))
+        x0 = None
+        sol = affr.optimize(static, moving, transform, x0,
+                              centered_static_aff, centered_moving_aff, starting_affine = prealign)
+        prealign = sol.affine.copy()
+
+    # Now bring the geometric centers back to their original location
+    fixed = np.linalg.inv(correction_moving).dot(sol.affine.dot(correction_static))
+    sol.set_affine(fixed)
+    sol.domain_grid2world = static_grid2world
+    sol.codomain_grid2world = moving_grid2world
+
+    return sol
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-8a35b83e81e1>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Standard modules[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mnibabel[0m [0;32mas[0m [0mnib[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;31m#import dipy.viz.regtools as rt[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mreg_utils[0m[0;34m.[0m[0mregviz[0m [0;32mas[0m [0mrv[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

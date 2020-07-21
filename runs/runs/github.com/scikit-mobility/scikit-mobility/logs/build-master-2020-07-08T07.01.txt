@@ -1,0 +1,231 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T07.01bat7guxo/github.com/scikit-mobility/scikit-mobility.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 87e3f9cf2547
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 9cd8c06c4e92
+Removing intermediate container 9cd8c06c4e92
+ ---> 0a40dde990da
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 7428e813845d
+Removing intermediate container 7428e813845d
+ ---> dae30655f43a
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in becf59ceb7e9
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting numpy==1.17.0
+  Downloading numpy-1.17.0-cp37-cp37m-manylinux1_x86_64.whl (20.3 MB)
+Collecting pandas==0.24
+  Downloading pandas-0.24.0-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting geopandas==0.5.0
+  Downloading geopandas-0.5.0-py2.py3-none-any.whl (893 kB)
+Collecting scipy==1.3.0
+  Downloading scipy-1.3.0-cp37-cp37m-manylinux1_x86_64.whl (25.2 MB)
+Collecting powerlaw==1.4.4
+  Downloading powerlaw-1.4.4.tar.gz (27 kB)
+Collecting tqdm==4.32.1
+  Downloading tqdm-4.32.1-py2.py3-none-any.whl (49 kB)
+Requirement already satisfied: requests==2.22.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-mobility==1.0) (2.22.0)
+Collecting scikit-learn==0.21.2
+  Downloading scikit_learn-0.21.2-cp37-cp37m-manylinux1_x86_64.whl (6.7 MB)
+Collecting statsmodels==0.10.0rc2
+  Downloading statsmodels-0.10.0rc2-cp37-cp37m-manylinux1_x86_64.whl (8.1 MB)
+Collecting folium==0.9.1
+  Downloading folium-0.9.1-py2.py3-none-any.whl (91 kB)
+Collecting matplotlib==3.1.1
+  Downloading matplotlib-3.1.1-cp37-cp37m-manylinux1_x86_64.whl (13.1 MB)
+Collecting geojson==2.4.1
+  Downloading geojson-2.4.1-py2.py3-none-any.whl (15 kB)
+Collecting shapely==1.7a1
+  Downloading Shapely-1.7a1-cp37-cp37m-manylinux1_x86_64.whl (1.5 MB)
+Collecting fiona==1.8.6
+  Downloading Fiona-1.8.6-cp37-cp37m-manylinux1_x86_64.whl (17.9 MB)
+Collecting pytz>=2011k
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: python-dateutil>=2.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas==0.24->scikit-mobility==1.0) (2.8.1)
+Collecting pyproj
+  Downloading pyproj-2.6.1.post1-cp37-cp37m-manylinux2010_x86_64.whl (10.9 MB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests==2.22.0->scikit-mobility==1.0) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests==2.22.0->scikit-mobility==1.0) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests==2.22.0->scikit-mobility==1.0) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests==2.22.0->scikit-mobility==1.0) (2.8)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting patsy>=0.4.0
+  Downloading patsy-0.5.1-py2.py3-none-any.whl (231 kB)
+Requirement already satisfied: jinja2>=2.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium==0.9.1->scikit-mobility==1.0) (2.11.0)
+Collecting branca>=0.3.0
+  Downloading branca-0.4.1-py3-none-any.whl (24 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: attrs>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona==1.8.6->scikit-mobility==1.0) (19.3.0)
+Collecting cligj>=0.5
+  Downloading cligj-0.5.0-py3-none-any.whl (5.7 kB)
+Collecting click-plugins>=1.0
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting munch
+  Downloading munch-2.5.0-py2.py3-none-any.whl (10 kB)
+Collecting click<8,>=4.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Requirement already satisfied: six>=1.7 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona==1.8.6->scikit-mobility==1.0) (1.14.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.9->folium==0.9.1->scikit-mobility==1.0) (1.1.1)
+Building wheels for collected packages: scikit-mobility, powerlaw
+  Building wheel for scikit-mobility (setup.py): started
+  Building wheel for scikit-mobility (setup.py): finished with status 'done'
+  Created wheel for scikit-mobility: filename=scikit_mobility-1.0-py3-none-any.whl size=102555 sha256=9f6d30e6bcae3583b6641c07b491f3b5f3b84b408b0bbdebac72a2927625a22c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xqi3w1i0/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for powerlaw (setup.py): started
+  Building wheel for powerlaw (setup.py): finished with status 'done'
+  Created wheel for powerlaw: filename=powerlaw-1.4.4-py3-none-any.whl size=24775 sha256=c7a56c6cfa4a96374aeb364b1d90735ec3750105c7c0393615a1787d469d0d6e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xqi3w1i0/wheels/00/e9/e3/ae671a31cb49006db9d53241f823f78ba3dbb85b5abf741648
+Successfully built scikit-mobility powerlaw
+Installing collected packages: numpy, pytz, pandas, shapely, click, cligj, click-plugins, munch, fiona, pyproj, geopandas, scipy, powerlaw, tqdm, joblib, scikit-learn, patsy, statsmodels, branca, folium, pyparsing, cycler, kiwisolver, matplotlib, geojson, scikit-mobility
+Successfully installed branca-0.4.1 click-7.1.2 click-plugins-1.1.1 cligj-0.5.0 cycler-0.10.0 fiona-1.8.6 folium-0.9.1 geojson-2.4.1 geopandas-0.5.0 joblib-0.16.0 kiwisolver-1.2.0 matplotlib-3.1.1 munch-2.5.0 numpy-1.17.0 pandas-0.24.0 patsy-0.5.1 powerlaw-1.4.4 pyparsing-2.4.7 pyproj-2.6.1.post1 pytz-2020.1 scikit-learn-0.21.2 scikit-mobility-1.0 scipy-1.3.0 shapely-1.7a1 statsmodels-0.10.0rc2 tqdm-4.32.1
+Removing intermediate container becf59ceb7e9
+ ---> e6d3cf95eb17
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 576e8f805182
+Removing intermediate container 576e8f805182
+ ---> f2eb3a9de2d9
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in c8e89454b0dc
+Removing intermediate container c8e89454b0dc
+ ---> d64ee0b80741
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 38dfe87b2403
+Removing intermediate container 38dfe87b2403
+ ---> c986aeee6cf2
+Step 45/48 : USER ${NB_USER}
+ ---> Running in 47d9e1f73dc8
+Removing intermediate container 47d9e1f73dc8
+ ---> bda7b6b69815
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 08c128128693
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 5c1ab53d0a70
+Removing intermediate container 5c1ab53d0a70
+ ---> 6cb5c7abddcd
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 3de2987d9141
+Removing intermediate container 3de2987d9141
+ ---> af1ff52d87ab
+{"aux": {"ID": "sha256:af1ff52d87abd812201d8265c91f0c0a5ec59b6de68e7efc6d00e4847f5b7965"}}Successfully built af1ff52d87ab
+Successfully tagged r2d-test-github.com-scikit-mobility-scikit-mobility:812e167

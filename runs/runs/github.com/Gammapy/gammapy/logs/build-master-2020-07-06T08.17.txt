@@ -1,0 +1,196 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T08.176cc8o39l/github.com/Gammapy/gammapy.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 67284684645d
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in d11a6d754b4e
+Removing intermediate container d11a6d754b4e
+ ---> 187581985230
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 3e9fa79f3c7c
+Removing intermediate container 3e9fa79f3c7c
+ ---> a6e0931e6663
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 0d0935065f06
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting numpy>=1.16
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting astropy>=3.2
+  Downloading astropy-4.0.1.post1-cp37-cp37m-manylinux1_x86_64.whl (6.5 MB)
+Collecting scipy>=1.2
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting click>=7.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting pydantic>=1.0
+  Downloading pydantic-1.5.1-cp37-cp37m-manylinux2014_x86_64.whl (7.3 MB)
+Collecting pyyaml>=5.1
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting regions>=0.4
+  Downloading regions-0.4.tar.gz (1.1 MB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from regions>=0.4->gammapy==0.18.dev263+g4a0bf2a66) (1.14.0)
+Building wheels for collected packages: gammapy, pyyaml, regions
+  Building wheel for gammapy (PEP 517): started
+  Building wheel for gammapy (PEP 517): finished with status 'done'
+  Created wheel for gammapy: filename=gammapy-0.18.dev263+g4a0bf2a66-cp37-cp37m-linux_x86_64.whl size=707455 sha256=d03dd6cbeee938e04e6d32fb11ac2bbba71c1613bbeffc688c1f6385580df14d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-o39au4t5/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393752 sha256=7b4f56098ffdd42e5d4e7c3bb77ebfa325fe7815c13c2eb22adf17055a0be6ef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-o39au4t5/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for regions (setup.py): started
+  Building wheel for regions (setup.py): finished with status 'done'
+  Created wheel for regions: filename=regions-0.4-cp37-cp37m-linux_x86_64.whl size=986443 sha256=8c2b9283bd329422dc7e7cc8cbbfa181ddbd23660a1d5604eb6fef9933a831bd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-o39au4t5/wheels/ff/a3/08/2f3add74983d9650e881beb034acf0529209757158f7bea41c
+Successfully built gammapy pyyaml regions
+Installing collected packages: numpy, astropy, scipy, click, pydantic, pyyaml, regions, gammapy
+Successfully installed astropy-4.0.1.post1 click-7.1.2 gammapy-0.18.dev263+g4a0bf2a66 numpy-1.19.0 pydantic-1.5.1 pyyaml-5.3.1 regions-0.4 scipy-1.5.1
+Removing intermediate container 0d0935065f06
+ ---> 2685c142c6ec
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 3407957c1792
+Removing intermediate container 3407957c1792
+ ---> 3b097dcd4f8a
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in d9b3187604e9
+Removing intermediate container d9b3187604e9
+ ---> 4fa9a5f81457
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in bbf14df336e8
+Removing intermediate container bbf14df336e8
+ ---> a5107f4fdce8
+Step 45/48 : USER ${NB_USER}
+ ---> Running in e4cab721a641
+Removing intermediate container e4cab721a641
+ ---> 528fdbcb5e1e
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> abcde26c62a7
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 10eafb65a3ba
+Removing intermediate container 10eafb65a3ba
+ ---> c3081e5ff23a
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 9b372b4c4fbd
+Removing intermediate container 9b372b4c4fbd
+ ---> 7aa30bd38395
+{"aux": {"ID": "sha256:7aa30bd383958fce3f0eadcb9bc185cf922378261837bb0f4a0b7d083cf21744"}}Successfully built 7aa30bd38395
+Successfully tagged r2d-test-github.com-gammapy-gammapy:4a0bf2a

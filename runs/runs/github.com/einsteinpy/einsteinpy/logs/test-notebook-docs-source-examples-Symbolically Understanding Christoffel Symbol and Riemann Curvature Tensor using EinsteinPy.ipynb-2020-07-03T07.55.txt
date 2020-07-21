@@ -1,0 +1,5 @@
+[I 200703 07:57:52 inrepo:35] Testing notebook docs/source/examples/Symbolically Understanding Christoffel Symbol and Riemann Curvature Tensor using EinsteinPy.ipynb
+[I 200703 07:57:53 execute:404] Executing notebook with kernel: python3
+[I 200703 07:57:56 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Symbolically Understanding Christoffel Symbol and Riemann Curvature Tensor using EinsteinPy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

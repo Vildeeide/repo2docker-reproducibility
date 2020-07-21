@@ -1,0 +1,5 @@
+[I 200703 07:05:27 inrepo:35] Testing notebook docs/sources/user_guide/general_concepts/regularization-linear.ipynb
+[I 200703 07:05:28 execute:404] Executing notebook with kernel: python3
+[I 200703 07:05:29 inrepo:41] Saving exported notebook to /io/notebooks/docs/sources/user_guide/general_concepts/regularization-linear.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

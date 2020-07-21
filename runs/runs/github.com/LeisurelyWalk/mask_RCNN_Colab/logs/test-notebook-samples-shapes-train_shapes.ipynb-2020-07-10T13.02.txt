@@ -1,0 +1,95 @@
+[I 200710 13:05:37 inrepo:36] Testing notebook samples/shapes/train_shapes.ipynb
+[I 200710 13:05:37 inrepo:45] Found kernel python3
+[I 200710 13:05:38 execute:404] Executing notebook with kernel: python3
+2020-07-10 13:05:56.000206: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-07-10 13:05:56.000258: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-07-10 13:05:56.000296: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (43d2a7f25ff5): /proc/driver/nvidia/version does not exist
+2020-07-10 13:05:56.000828: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-10 13:05:56.009916: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2000000000 Hz
+2020-07-10 13:05:56.010389: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f5218000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-10 13:05:56.010496: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Create model in training mode
+model = modellib.MaskRCNN(mode="training", config=config,
+                          model_dir=MODEL_DIR)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-7-7928c4edfc77>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Create model in training mode[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m model = modellib.MaskRCNN(mode="training", config=config,
+[0;32m----> 3[0;31m                           model_dir=MODEL_DIR)
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py[0m in [0;36m__init__[0;34m(self, mode, config, model_dir)[0m
+[1;32m   1818[0m         [0mself[0m[0;34m.[0m[0mmodel_dir[0m [0;34m=[0m [0mmodel_dir[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1819[0m         [0mself[0m[0;34m.[0m[0mset_log_dir[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1820[0;31m         [0mself[0m[0;34m.[0m[0mkeras_model[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mbuild[0m[0;34m([0m[0mmode[0m[0;34m=[0m[0mmode[0m[0;34m,[0m [0mconfig[0m[0;34m=[0m[0mconfig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1821[0m [0;34m[0m[0m
+[1;32m   1822[0m     [0;32mdef[0m [0mbuild[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mmode[0m[0;34m,[0m [0mconfig[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/mrcnn/model.py[0m in [0;36mbuild[0;34m(self, mode, config)[0m
+[1;32m   1911[0m             [0manchors[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mbroadcast_to[0m[0;34m([0m[0manchors[0m[0;34m,[0m [0;34m([0m[0mconfig[0m[0;34m.[0m[0mBATCH_SIZE[0m[0;34m,[0m[0;34m)[0m [0;34m+[0m [0manchors[0m[0;34m.[0m[0mshape[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1912[0m             [0;31m# A hack to get around Keras's bad support for constants[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1913[0;31m             [0manchors[0m [0;34m=[0m [0mKL[0m[0;34m.[0m[0mLambda[0m[0;34m([0m[0;32mlambda[0m [0mx[0m[0;34m:[0m [0mtf[0m[0;34m.[0m[0mVariable[0m[0;34m([0m[0manchors[0m[0;34m)[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m"anchors"[0m[0;34m)[0m[0;34m([0m[0minput_image[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1914[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1915[0m             [0manchors[0m [0;34m=[0m [0minput_anchors[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow/python/keras/engine/base_layer.py[0m in [0;36m__call__[0;34m(self, *args, **kwargs)[0m
+[1;32m    920[0m                     not base_layer_utils.is_in_eager_or_tf_function()):
+[1;32m    921[0m                   [0;32mwith[0m [0mauto_control_deps[0m[0;34m.[0m[0mAutomaticControlDependencies[0m[0;34m([0m[0;34m)[0m [0;32mas[0m [0macd[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 922[0;31m                     [0moutputs[0m [0;34m=[0m [0mcall_fn[0m[0;34m([0m[0mcast_inputs[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    923[0m                     [0;31m# Wrap Tensors in `outputs` in `tf.identity` to avoid[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    924[0m                     [0;31m# circular dependencies.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow/python/keras/layers/core.py[0m in [0;36mcall[0;34m(self, inputs, mask, training)[0m
+[1;32m    887[0m         [0mvariable_scope[0m[0;34m.[0m[0mvariable_creator_scope[0m[0;34m([0m[0m_variable_creator[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    888[0m       [0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mfunction[0m[0;34m([0m[0minputs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 889[0;31m     [0mself[0m[0;34m.[0m[0m_check_variables[0m[0;34m([0m[0mcreated_variables[0m[0;34m,[0m [0mtape[0m[0;34m.[0m[0mwatched_variables[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    890[0m     [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    891[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow/python/keras/layers/core.py[0m in [0;36m_check_variables[0;34m(self, created_variables, accessed_variables)[0m
+[1;32m    914[0m           Variables.'''
+[1;32m    915[0m       ).format(name=self.name, variable_str=variable_str)
+[0;32m--> 916[0;31m       [0;32mraise[0m [0mValueError[0m[0;34m([0m[0merror_str[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    917[0m [0;34m[0m[0m
+[1;32m    918[0m     untracked_used_vars = [
+
+[0;31mValueError[0m: 
+The following Variables were created within a Lambda layer (anchors)
+but are not tracked by said layer:
+  <tf.Variable 'anchors/Variable:0' shape=(8, 4092, 4) dtype=float32>
+The layer cannot safely ensure proper Variable reuse across multiple
+calls, and consquently this behavior is disallowed for safety. Lambda
+layers are not well suited to stateful computation; instead, writing a
+subclassed Layer is the recommend way to define layers with
+Variables.
+ValueError: 
+The following Variables were created within a Lambda layer (anchors)
+but are not tracked by said layer:
+  <tf.Variable 'anchors/Variable:0' shape=(8, 4092, 4) dtype=float32>
+The layer cannot safely ensure proper Variable reuse across multiple
+calls, and consquently this behavior is disallowed for safety. Lambda
+layers are not well suited to stateful computation; instead, writing a
+subclassed Layer is the recommend way to define layers with
+Variables.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

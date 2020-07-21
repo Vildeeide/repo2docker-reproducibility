@@ -1,0 +1,91 @@
+[I 200714 13:04:56 inrepo:36] Testing notebook DC_GAN and basic GAN.ipynb
+[I 200714 13:04:56 inrepo:45] Found kernel python3
+[I 200714 13:04:57 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from __future__ import print_function, division
+import tensorflow as tf
+import numpy as np
+
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (10.0, 8.0) # set default size of plots
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+
+# A bunch of utility functions
+
+def show_images(images):
+    images = np.reshape(images, [images.shape[0], -1])  # images reshape to (batch_size, D)
+    sqrtn = int(np.ceil(np.sqrt(images.shape[0])))
+    sqrtimg = int(np.ceil(np.sqrt(images.shape[1])))
+
+    fig = plt.figure(figsize=(sqrtn, sqrtn))
+    gs = gridspec.GridSpec(sqrtn, sqrtn)
+    gs.update(wspace=0.05, hspace=0.05)
+
+    for i, img in enumerate(images):
+        ax = plt.subplot(gs[i])
+        plt.axis('off')
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        ax.set_aspect('equal')
+        plt.imshow(img.reshape([sqrtimg,sqrtimg]))
+    return
+
+def preprocess_img(x):
+    return 2 * x - 1.0
+
+def deprocess_img(x):
+    return (x + 1.0) / 2.0
+
+def rel_error(x,y):
+    return np.max(np.abs(x - y) / (np.maximum(1e-8, np.abs(x) + np.abs(y))))
+
+def count_params():
+    """Count the number of parameters in the current TensorFlow graph """
+    param_count = np.sum([np.prod(x.get_shape().as_list()) for x in tf.global_variables()])
+    return param_count
+
+
+def get_session():
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    session = tf.Session(config=config)
+    return session
+
+answers = np.load('gan-checks-tf.npz')
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-e57ee94fa94c>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0m__future__[0m [0;32mimport[0m [0mprint_function[0m[0;34m,[0m [0mdivision[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mtensorflow[0m [0;32mas[0m [0mtf[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'tensorflow'
+ModuleNotFoundError: No module named 'tensorflow'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

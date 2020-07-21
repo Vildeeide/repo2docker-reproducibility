@@ -1,0 +1,6 @@
+[I 200710 07:16:59 inrepo:36] Testing notebook demo.ipynb
+[I 200710 07:17:00 inrepo:45] Found kernel wangshuyi
+[I 200710 07:17:02 execute:404] Executing notebook with kernel: wangshuyi
+[I 200710 07:18:59 inrepo:79] Saving exported notebook to /io/notebooks/demo.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

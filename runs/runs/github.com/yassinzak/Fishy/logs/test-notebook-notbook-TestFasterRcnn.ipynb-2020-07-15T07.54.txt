@@ -1,0 +1,136 @@
+[I 200715 07:55:14 inrepo:36] Testing notebook notbook/TestFasterRcnn.ipynb
+[I 200715 07:55:15 inrepo:45] Found kernel python3
+[I 200715 07:55:16 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import random
+import xml.etree.ElementTree as ET
+import math
+import pprint
+import pdb
+import json
+import numpy as np
+import sys
+from keras_frcnn import config
+sys.path.insert(1, '/home/mh/opencv-master/build/lib/python3')
+import cv2
+
+sys.setrecursionlimit(40000)
+C = config.Config()
+C.use_horizontal_flips = False
+C.use_vertical_flips = False
+
+
+def format_img(img):
+	img_min_side = 600.0
+	(height,width,_) = img.shape
+	
+	if width <= height:
+		f = img_min_side/width
+		new_height = int(f * height)
+		new_width = int(img_min_side)
+	else:
+		f = img_min_side/height
+		new_width = int(f * width)
+		new_height = int(img_min_side)
+	img = cv2.resize(img,(new_width,new_height), interpolation=cv2.INTER_CUBIC)
+	img = img[:,:,(2,1,0)]
+	img = np.transpose(img,(2,0,1)).astype(np.float32)
+	img = np.expand_dims(img, axis=0)
+	img[:, 0, :, :] -= 103.939
+	img[:, 1, :, :] -= 116.779
+	img[:, 2, :, :] -= 123.68
+	return img
+
+with open('classes.json', 'r') as class_data_json:
+    class_mapping = json.load(class_data_json)
+
+if 'bg' not in class_mapping:
+	class_mapping['bg'] = len(class_mapping)
+
+class_mapping = {v: k for k, v in class_mapping.items()}
+
+class_to_color = {class_mapping[v]:np.random.randint(0,255,3) for v in class_mapping}
+num_rois = 16
+
+import keras_frcnn.resnet as nn
+from keras import backend as K
+from keras.layers import Input
+from keras.models import Model
+from keras_frcnn import roi_helpers
+
+if K.image_dim_ordering() == 'th':
+	input_shape_img = (3, None, None)
+	input_shape_features = (1024, None, None)
+else:
+	input_shape_img = (None, None, 3)
+	input_shape_features = (None, None, 1024)
+
+
+img_input = Input(shape=input_shape_img)
+
+feature_map_input = Input(shape=input_shape_features)
+
+roi_input = Input(shape=(num_rois, 4))
+
+# define the base network (resnet here, can be VGG, Inception, etc)
+shared_layers = nn.nn_base(img_input)
+
+# define the RPN, built on the base layers
+num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)
+rpn = nn.rpn(shared_layers,num_anchors)
+
+# classifier, uses base layers + proposals
+print(class_mapping)
+
+classifier = nn.classifier(feature_map_input,roi_input,num_rois,nb_classes=len(class_mapping))
+
+model_rpn = Model(img_input,rpn + [shared_layers])
+model_classifier = Model([feature_map_input,roi_input],classifier)
+
+# weights_path = 'model_frcnn.hdf5'
+weights_path = '/home/mh/ws/fish_challenge/input/models/frcnn_1_7_3epochs.h5'
+
+model_rpn.load_weights(weights_path, by_name=True)
+model_classifier.load_weights(weights_path, by_name=True)
+
+model_rpn.compile(optimizer='sgd',loss='mse')
+model_classifier.compile(optimizer='sgd',loss='mse')
+
+all_imgs = []
+
+classes = {}
+
+visualise = True
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-1128145ae63b>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;32mimport[0m [0mpdb[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;32mimport[0m [0mjson[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;32mimport[0m [0msys[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mfrom[0m [0mkeras_frcnn[0m [0;32mimport[0m [0mconfig[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

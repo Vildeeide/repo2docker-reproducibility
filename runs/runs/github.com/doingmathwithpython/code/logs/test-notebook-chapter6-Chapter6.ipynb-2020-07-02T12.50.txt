@@ -1,0 +1,97 @@
+[I 200702 12:51:26 inrepo:35] Testing notebook chapter6/Chapter6.ipynb
+[I 200702 12:51:28 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#P156: Animating a projectile's projectory
+'''
+Animate the trajectory of an object in projectile motion
+'''
+from matplotlib import pyplot as plt
+from matplotlib import animation
+import math
+g = 9.8
+
+def get_intervals(u, theta):
+    t_flight = 2*u*math.sin(theta)/g
+    intervals = []
+    start = 0
+    interval = 0.005
+    while start < t_flight:
+        intervals.append(start)
+        start = start + interval
+    return intervals
+
+def update_position(i, circle, intervals, u, theta):
+    t = intervals[i]
+    x = u*math.cos(theta)*t
+    y = u*math.sin(theta)*t - 0.5*g*t*t
+    circle.center = x, y
+    return circle,
+
+def create_animation(u, theta):
+    intervals = get_intervals(u, theta)
+    xmin = 0
+    xmax = u*math.cos(theta)*intervals[-1]
+    ymin = 0
+    t_max = u*math.sin(theta)/g
+    ymax = u*math.sin(theta)*t_max - 0.5*g*t_max**2
+    fig = plt.gcf()
+    ax = plt.axes(xlim=(xmin, xmax), ylim=(ymin, ymax))
+    circle = plt.Circle((xmin, ymin), 1.0)
+    ax.add_patch(circle)
+    anim = animation.FuncAnimation(fig, update_position,
+                        fargs=(circle, intervals, u, theta),
+                        frames=len(intervals), interval=1,
+                        repeat=False)
+    plt.title('Projectile Motion')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.show()
+
+if __name__ == '__main__':
+    try:
+        u = float(input('Enter the initial velocity (m/s): '))
+        theta = float(input('Enter the angle of projection (degrees): '))
+    except ValueError:
+        print('You entered an invalid input')
+    else:
+        theta = math.radians(theta)
+        create_animation(u, theta)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-4-f0b31c217bba>[0m in [0;36m<module>[0;34m[0m
+[1;32m     47[0m [0;32mif[0m [0m__name__[0m [0;34m==[0m [0;34m'__main__'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m         [0mu[0m [0;34m=[0m [0mfloat[0m[0;34m([0m[0minput[0m[0;34m([0m[0;34m'Enter the initial velocity (m/s): '[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     50[0m         [0mtheta[0m [0;34m=[0m [0mfloat[0m[0;34m([0m[0minput[0m[0;34m([0m[0;34m'Enter the angle of projection (degrees): '[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     51[0m     [0;32mexcept[0m [0mValueError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    852[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    853[0m             raise StdinNotImplementedError(
+[0;32m--> 854[0;31m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    855[0m             )
+[1;32m    856[0m         return self._input_request(str(prompt),
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

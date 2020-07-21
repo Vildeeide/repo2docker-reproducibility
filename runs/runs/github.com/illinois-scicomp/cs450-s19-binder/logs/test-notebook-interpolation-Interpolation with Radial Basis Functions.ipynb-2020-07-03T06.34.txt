@@ -1,0 +1,5 @@
+[I 200703 06:44:19 inrepo:35] Testing notebook interpolation/Interpolation with Radial Basis Functions.ipynb
+[I 200703 06:44:20 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:22 inrepo:41] Saving exported notebook to /io/notebooks/interpolation/Interpolation with Radial Basis Functions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

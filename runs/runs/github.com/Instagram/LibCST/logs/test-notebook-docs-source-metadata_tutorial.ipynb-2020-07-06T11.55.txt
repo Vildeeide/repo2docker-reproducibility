@@ -1,0 +1,5 @@
+[I 200706 11:56:14 inrepo:35] Testing notebook docs/source/metadata_tutorial.ipynb
+[I 200706 11:56:15 execute:404] Executing notebook with kernel: python3
+[I 200706 11:56:16 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/metadata_tutorial.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

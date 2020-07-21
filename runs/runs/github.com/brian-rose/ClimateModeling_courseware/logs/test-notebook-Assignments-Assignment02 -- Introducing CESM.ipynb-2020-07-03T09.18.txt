@@ -1,0 +1,121 @@
+[I 200703 09:19:26 inrepo:35] Testing notebook Assignments/Assignment02 -- Introducing CESM.ipynb
+[E 200703 09:19:26 __init__:79] Notebook JSON is invalid: {'model_id': '434dbe1b6e8442c6ae9be875ae0bbe36', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][49]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '434dbe1b6e8442c6ae9be875ae0bbe36',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200703 09:19:27 execute:404] Executing notebook with kernel: python3
+syntax error, unexpected WORD_WORD, expecting SCAN_ATTR or SCAN_DATASET or SCAN_ERROR
+context: <!DOCTYPE^ html><html><head><title>Error</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/fontawesome/css/all.min.css" type="text/css" /><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/jquery-ui-1.12.1/jquery-ui.min.css" type="text/css" /><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/superfish/css/superfish.css"/><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/selectbox/jquery.selectBoxIt.css"/><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/jbreadcrumb/Styles/BreadCrumb.css"/><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/bootstrap-3.3/css/bootstrap.min.css"/><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/fancybox-3/jquery.fancybox.min.css" type="text/css" /><link rel="stylesheet" href="/repository/htdocs_v3_0_31/lib/datatables/jquery.dataTables.min.css" type="text/css" /><link rel="stylesheet" href="/repository/htdocs_v3_0_31/style.css" type="text/css" /><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jquery/js/jquery-3.3.1.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/datatables/jquery.dataTables.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jquery/js/jquery.cookie.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jquery.easing.1.3.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jquery.bt.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/jbreadcrumb/js/jquery.jBreadCrumb.1.1.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/superfish/js/superfish.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/selectbox/jquery.selectBoxIt.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/lib/fancybox-3/jquery.fancybox.min.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/base.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/utils.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/ramadda.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/entry.js"></script><script type="text/javascript" language="JavaScript1.2" src="/repository/htdocs_v3_0_31/wiki.js"></script><style type="text/css">.ramadda-footer { margin:0px; padding:10px; text-align:center; background-repeat: repeat;  background-image:url(/repository/images/background.png); border-top: 1px #e0e0e0 solid;}.ramadda-innercontent { padding-top: 0px;}.navlinks { margin-top:10px; border-bottom: 1px #444 solid;}.ramadda-header { z-index:1000; position:fixed; padding: 1px; padding-left: 6px; padding-right: 6px; width:100%; left:0; top:0;}/* the margin should be a little more than the max-height of the logo image */.ramadda-outercontents { margin-top:63px;}.ramadda-logo-image {height:60px;max-height:60px;}.ramadda-breadcrumbs { border-bottom : 0px #e0e0e0 solid;}.ramadda-register-outer {text-align:inherit;}</style></head><body><div class="ramadda-header"><table border="0" width="100%" cellspacing="0" cellpadding="0"><tr valign="center"><td width="5%" rowspan="2"><a href="/repository"><img valign="bottom" class="ramadda-logo-image" src="/repository/images/logo.png" ></a></td><td align="right" colspan="2"> </td></tr><tr valign="bottom"><td> </td><td align="right"><div class="ramadda-user-menu" ><a href="javascript:void(0);" onClick="Utils.searchPopup('searchlink');" ><span title="Search" class="ramadda-user-menu-image" id="searchlink" ><i class="fa fa-search"></i></span></a>&nbsp;&nbsp;<a href="javascript:noop();" onClick="showPopup(event,'menulink_151467','menu_151466',1);" id="menulink_151467" class="ramadda-popup-link" ><span title="Login, user settings, help" class="ramadda-user-menu-image" ><i class="fa fa-cog"></i></span></a><div id="menu_151466" style="display:none;" class="ramadda-popup" ><div class="ramadda-user-menu" ><div onClick="document.location='/repository/entry/show'" class="ramadda-user-link"><span ><i class="fa fa-home"></i></span> UAlbany DAES RAMADDA Data Repository</div><div onClick="document.location='http://ramadda.atmos.albany.edu:8080/repository/user/login?redirect=L3JlcG9zaXRvcnkvb3BlbmRhcC9sYXRlc3QvVG9wL1VzZXJzL0JyaWFuUm9zZS9DRVNNX3J1bnMvc29tX2lucHV0L1VTR1MtZ3RvcG8zMF8xLjl4Mi41X3JlbWFwX2MwNTA2MDIubmMvZW50cnkuZGFzLmRkcz8%3D'" class="ramadda-user-link"><span ><i class="fa fa-sign-in-alt"></i></span> Login</div><div onClick="document.location='/repository/user/cart'" class="ramadda-user-link"><img border="0" src="/repository/icons/cart.png" /> Data Cart</div><div onClick="document.location='/repository/docs'" class="ramadda-user-link"><span ><i class="fa fa-question-circle"></i></span> Help</div></div></div></div></td></tr></table></div><div class="ramadda-outercontents"><div class="ramadda-content"><div class="ramadda-innercontent"><div class="ramadda-message" id="messageblock" ><table><tr valign=top><td><div class="ramadda-message-link"><img border="0" src="/repository/icons/error.png" /></div></td><td><div class="ramadda-message-inner">An error has occurred&#58;<p>Could not find entry&#58;&#47;Top&#47;Users&#47;BrianRose&#47;CESM&#95;runs&#47;som&#95;input&#47;USGS&#45;gtopo30&#95;1&#46;9x2&#46;5&#95;remap&#95;c050602&#46;nc</div></td></tr></table></div><br><div id="ramadda-popupdiv" class="ramadda-popup" ></div><div id="ramadda-selectdiv" class="ramadda-selectdiv" ></div><div id="ramadda-floatdiv" class="ramadda-floatdiv" ></div><nowiki><script type="text/JavaScript" >$( document ).ready(function() {Utils.initPage(); });</script></nowiki></div> <!-- close ramadda-innercontent --></div> <!-- close ramadda-content --></div> <!-- close ramadda-outercontents --><div class="ramadda-footer"></div><!-- close ramadda-footer --><div class="ramadda-acknowledgement">Powered by <a href="https://geodesystems.com">Geode Systems and RAMADDA</a></div><!-- close bottom --></body></html>
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#  Now we actually open the dataset
+topo = xr.open_dataset( fullURL )
+print( topo)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/file_manager.py[0m in [0;36m_acquire_with_cache_info[0;34m(self, needs_lock)[0m
+[1;32m    197[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 198[0;31m                 [0mfile[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_cache[0m[0;34m[[0m[0mself[0m[0;34m.[0m[0m_key[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    199[0m             [0;32mexcept[0m [0mKeyError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/lru_cache.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
+[1;32m     52[0m         [0;32mwith[0m [0mself[0m[0;34m.[0m[0m_lock[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 53[0;31m             [0mvalue[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_cache[0m[0;34m[[0m[0mkey[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     54[0m             [0mself[0m[0;34m.[0m[0m_cache[0m[0;34m.[0m[0mmove_to_end[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mKeyError[0m: [<class 'netCDF4._netCDF4.Dataset'>, ('http://ramadda.atmos.albany.edu:8080/repository/opendap/latest/Top/Users/BrianRose/CESM_runs/som_input/USGS-gtopo30_1.9x2.5_remap_c050602.nc/entry.das',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m<ipython-input-4-be16e1b2dbaf>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m#  Now we actually open the dataset[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mtopo[0m [0;34m=[0m [0mxr[0m[0;34m.[0m[0mopen_dataset[0m[0;34m([0m [0mfullURL[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mprint[0m[0;34m([0m [0mtopo[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/api.py[0m in [0;36mopen_dataset[0;34m(filename_or_obj, group, decode_cf, mask_and_scale, decode_times, autoclose, concat_characters, decode_coords, engine, chunks, lock, cache, drop_variables, backend_kwargs, use_cftime)[0m
+[1;32m    499[0m             [0mengine[0m [0;34m=[0m [0m_get_default_engine[0m[0;34m([0m[0mfilename_or_obj[0m[0;34m,[0m [0mallow_remote[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    500[0m         [0;32mif[0m [0mengine[0m [0;34m==[0m [0;34m"netcdf4"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 501[0;31m             store = backends.NetCDF4DataStore.open(
+[0m[1;32m    502[0m                 [0mfilename_or_obj[0m[0;34m,[0m [0mgroup[0m[0;34m=[0m[0mgroup[0m[0;34m,[0m [0mlock[0m[0;34m=[0m[0mlock[0m[0;34m,[0m [0;34m**[0m[0mbackend_kwargs[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    503[0m             )
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/netCDF4_.py[0m in [0;36mopen[0;34m(cls, filename, mode, format, group, clobber, diskless, persist, lock, lock_maker, autoclose)[0m
+[1;32m    356[0m             [0mnetCDF4[0m[0;34m.[0m[0mDataset[0m[0;34m,[0m [0mfilename[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0mmode[0m[0;34m,[0m [0mkwargs[0m[0;34m=[0m[0mkwargs[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    357[0m         )
+[0;32m--> 358[0;31m         [0;32mreturn[0m [0mcls[0m[0;34m([0m[0mmanager[0m[0;34m,[0m [0mgroup[0m[0;34m=[0m[0mgroup[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0mmode[0m[0;34m,[0m [0mlock[0m[0;34m=[0m[0mlock[0m[0;34m,[0m [0mautoclose[0m[0;34m=[0m[0mautoclose[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    359[0m [0;34m[0m[0m
+[1;32m    360[0m     [0;32mdef[0m [0m_acquire[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mneeds_lock[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/netCDF4_.py[0m in [0;36m__init__[0;34m(self, manager, group, mode, lock, autoclose)[0m
+[1;32m    312[0m         [0mself[0m[0;34m.[0m[0m_group[0m [0;34m=[0m [0mgroup[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    313[0m         [0mself[0m[0;34m.[0m[0m_mode[0m [0;34m=[0m [0mmode[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 314[0;31m         [0mself[0m[0;34m.[0m[0mformat[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mds[0m[0;34m.[0m[0mdata_model[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    315[0m         [0mself[0m[0;34m.[0m[0m_filename[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mds[0m[0;34m.[0m[0mfilepath[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    316[0m         [0mself[0m[0;34m.[0m[0mis_remote[0m [0;34m=[0m [0mis_remote_uri[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/netCDF4_.py[0m in [0;36mds[0;34m(self)[0m
+[1;32m    365[0m     [0;34m@[0m[0mproperty[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    366[0m     [0;32mdef[0m [0mds[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 367[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_acquire[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    368[0m [0;34m[0m[0m
+[1;32m    369[0m     [0;32mdef[0m [0mopen_store_variable[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m,[0m [0mvar[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/netCDF4_.py[0m in [0;36m_acquire[0;34m(self, needs_lock)[0m
+[1;32m    359[0m [0;34m[0m[0m
+[1;32m    360[0m     [0;32mdef[0m [0m_acquire[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mneeds_lock[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 361[0;31m         [0;32mwith[0m [0mself[0m[0;34m.[0m[0m_manager[0m[0;34m.[0m[0macquire_context[0m[0;34m([0m[0mneeds_lock[0m[0;34m)[0m [0;32mas[0m [0mroot[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    362[0m             [0mds[0m [0;34m=[0m [0m_nc4_require_group[0m[0;34m([0m[0mroot[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_group[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0m_mode[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    363[0m         [0;32mreturn[0m [0mds[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/contextlib.py[0m in [0;36m__enter__[0;34m(self)[0m
+[1;32m    111[0m         [0;32mdel[0m [0mself[0m[0;34m.[0m[0margs[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mkwds[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mfunc[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    112[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 113[0;31m             [0;32mreturn[0m [0mnext[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mgen[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    114[0m         [0;32mexcept[0m [0mStopIteration[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    115[0m             [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0;34m"generator didn't yield"[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/file_manager.py[0m in [0;36macquire_context[0;34m(self, needs_lock)[0m
+[1;32m    184[0m     [0;32mdef[0m [0macquire_context[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mneeds_lock[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    185[0m         [0;34m"""Context manager for acquiring a file."""[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 186[0;31m         [0mfile[0m[0;34m,[0m [0mcached[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_acquire_with_cache_info[0m[0;34m([0m[0mneeds_lock[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    187[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    188[0m             [0;32myield[0m [0mfile[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/xarray/backends/file_manager.py[0m in [0;36m_acquire_with_cache_info[0;34m(self, needs_lock)[0m
+[1;32m    202[0m                     [0mkwargs[0m [0;34m=[0m [0mkwargs[0m[0;34m.[0m[0mcopy[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    203[0m                     [0mkwargs[0m[0;34m[[0m[0;34m"mode"[0m[0;34m][0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_mode[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 204[0;31m                 [0mfile[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_opener[0m[0;34m([0m[0;34m*[0m[0mself[0m[0;34m.[0m[0m_args[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    205[0m                 [0;32mif[0m [0mself[0m[0;34m.[0m[0m_mode[0m [0;34m==[0m [0;34m"w"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    206[0m                     [0;31m# ensure file doesn't get overriden when opened again[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32mnetCDF4/_netCDF4.pyx[0m in [0;36mnetCDF4._netCDF4.Dataset.__init__[0;34m()[0m
+
+[0;32mnetCDF4/_netCDF4.pyx[0m in [0;36mnetCDF4._netCDF4._ensure_nc_success[0;34m()[0m
+
+[0;31mOSError[0m: [Errno -70] NetCDF: DAP server error: b'http://ramadda.atmos.albany.edu:8080/repository/opendap/latest/Top/Users/BrianRose/CESM_runs/som_input/USGS-gtopo30_1.9x2.5_remap_c050602.nc/entry.das'
+OSError: [Errno -70] NetCDF: DAP server error: b'http://ramadda.atmos.albany.edu:8080/repository/opendap/latest/Top/Users/BrianRose/CESM_runs/som_input/USGS-gtopo30_1.9x2.5_remap_c050602.nc/entry.das'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

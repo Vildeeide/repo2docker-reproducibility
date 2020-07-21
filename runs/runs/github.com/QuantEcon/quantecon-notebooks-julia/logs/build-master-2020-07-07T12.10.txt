@@ -1,0 +1,593 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T12.10yw29gj95/github.com/QuantEcon/quantecon-notebooks-julia.
+Using JuliaProjectTomlBuildPack builder
+Step 1/58 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/58 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/58 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/58 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/58 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/58 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/58 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/58 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/58 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/58 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/58 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/58 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/58 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/58 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/58 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/58 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/58 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/58 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/58 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/58 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/58 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/58 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/58 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/58 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/58 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/58 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/58 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/58 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/58 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/58 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/58 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/58 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/58 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/58 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/58 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/58 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/58 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/58 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/58 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/58 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/58 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/58 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/58 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/58 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/58 : USER root
+ ---> Using cache
+ ---> b5bb45c841fe
+Step 46/58 : COPY src/ ${REPO_DIR}
+ ---> 3f5bcbec0e18
+Step 47/58 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 11de8e5f1d37
+Removing intermediate container 11de8e5f1d37
+ ---> 753cc81d4d1f
+Step 48/58 : USER ${NB_USER}
+ ---> Running in 53a02d27e300
+Removing intermediate container 53a02d27e300
+ ---> c761707caab5
+Step 49/58 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in 87123eb462f1
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [=>                                       ]  0.8 %
+    Fetching: [==>                                      ]  4.3 %
+    Fetching: [===========>                             ]  26.3 %
+    Fetching: [==================>                      ]  44.8 %
+    Fetching: [===================================>     ]  86.8 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed VersionParsing ── v1.2.0
+ Installed Conda ─────────── v1.4.1
+ Installed Parsers ───────── v1.0.6
+ Installed MbedTLS ───────── v1.0.2
+ Installed ZMQ ───────────── v1.2.1
+ Installed IJulia ────────── v1.21.2
+ Installed JSON ──────────── v0.21.0
+ Installed ZeroMQ_jll ────── v4.3.2+4
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.6
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h   Cloning git-repo `https://github.com/KristofferC/TimerOutputs.jl`
+[?25l    Fetching: [>                                        ]  0.0 %
+[2K[?25h  Updating git-repo `https://github.com/KristofferC/TimerOutputs.jl`
+[?25l    Fetching: [>                                        ]  0.0 %
+[2K[?25h Installed NaNMath ──────────────────────── v0.3.3
+ Installed libvorbis_jll ────────────────── v1.3.6+4
+ Installed Suppressor ───────────────────── v0.1.1
+ Installed QuadGK ───────────────────────── v2.3.1
+ Installed Libiconv_jll ─────────────────── v1.16.0+2
+ Installed NLopt ────────────────────────── v0.6.0
+ Installed ModelingToolkit ──────────────── v3.6.4
+ Installed PrettyPrint ──────────────────── v0.1.0
+ Installed IntelOpenMP_jll ──────────────── v2018.0.3+0
+ Installed Combinatorics ────────────────── v1.0.2
+ Installed Interpolations ───────────────── v0.12.9
+ Installed CPUTime ──────────────────────── v1.0.0
+ Installed NLSolversBase ────────────────── v7.6.1
+ Installed KrylovKit ────────────────────── v0.4.2
+ Installed GeometryTypes ────────────────── v0.8.3
+ Installed LoggingExtras ────────────────── v0.4.1
+ Installed LeftChildRightSiblingTrees ───── v0.1.2
+ Installed NNlib ────────────────────────── v0.6.6
+ Installed InstantiateFromURL ───────────── v0.5.0
+ Installed EzXML ────────────────────────── v1.1.0
+ Installed Intervals ────────────────────── v1.2.0
+ Installed CodecZlib ────────────────────── v0.7.0
+ Installed CompilerSupportLibraries_jll ─── v0.3.3+0
+ Installed HTTP ─────────────────────────── v0.8.15
+ Installed ApproxFunFourier ─────────────── v0.2.4
+ Installed DataAPI ──────────────────────── v1.3.0
+ Installed FilePathsBase ────────────────── v0.6.2
+ Installed Arpack ───────────────────────── v0.4.0
+ Installed MatrixFactorizations ─────────── v0.4.0
+ Installed FiniteDiff ───────────────────── v2.3.2
+ Installed StatsPlots ───────────────────── v0.14.6
+ Installed DiffEqJump ───────────────────── v6.7.6
+ Installed Media ────────────────────────── v0.5.0
+ Installed OrdinaryDiffEq ───────────────── v5.38.1
+ Installed IteratorInterfaceExtensions ──── v1.0.0
+ Installed DataStructures ───────────────── v0.17.17
+ Installed CEnum ────────────────────────── v0.3.0
+ Installed WoodburyMatrices ─────────────── v0.5.2
+ Installed Setfield ─────────────────────── v0.6.0
+ Installed InvertedIndices ──────────────── v1.0.0
+ Installed ApproxFunSingularities ───────── v0.1.8
+ Installed Inflate ──────────────────────── v0.1.2
+ Installed LowRankApprox ────────────────── v0.4.0
+ Installed Rmath ────────────────────────── v0.6.1
+ Installed Mustache ─────────────────────── v1.0.3
+ Installed AxisAlgorithms ───────────────── v1.0.0
+ Installed GR ───────────────────────────── v0.49.1
+ Installed TranscodingStreams ───────────── v0.9.5
+ Installed LLVM ─────────────────────────── v1.5.1
+ Installed StatsModels ──────────────────── v0.6.11
+ Installed JSONSchema ───────────────────── v0.2.0
+ Installed LabelledArrays ───────────────── v1.2.1
+ Installed Adapt ────────────────────────── v1.1.0
+ Installed LineSearches ─────────────────── v7.0.1
+ Installed Flux ─────────────────────────── v0.10.4
+ Installed CUDAdrv ──────────────────────── v6.3.0
+ Installed PositiveFactorizations ───────── v0.2.3
+ Installed JuMP ─────────────────────────── v0.21.2
+ Installed LaTeXStrings ─────────────────── v1.1.0
+ Installed FFMPEG_jll ───────────────────── v4.1.0+3
+ Installed ApproxFunOrthogonalPolynomials ─ v0.3.4
+ Installed MKL_jll ──────────────────────── v2020.1.216+0
+ Installed FixedEffectModels ────────────── v0.10.7
+ Installed Krylov ───────────────────────── v0.5.1
+ Installed RecipesPipeline ──────────────── v0.1.9
+ Installed ColorSchemes ─────────────────── v3.9.0
+ Installed CommonSubexpressions ─────────── v0.2.0
+ Installed GeneralizedGenerated ─────────── v0.2.4
+ Installed Observables ──────────────────── v0.3.1
+ Installed PoissonRandom ────────────────── v0.4.0
+ Installed Contour ──────────────────────── v0.5.3
+ Installed SafeTestsets ─────────────────── v0.0.1
+ Installed Vega ─────────────────────────── v0.1.1
+ Installed MPFR_jll ─────────────────────── v4.0.2+2
+ Installed DiffResults ──────────────────── v1.0.2
+ Installed LibVPX_jll ───────────────────── v1.8.1+1
+ Installed FixedEffects ─────────────────── v0.7.3
+ Installed NameResolution ───────────────── v0.1.3
+ Installed LeastSquaresOptim ────────────── v0.7.5
+ Installed IterTools ────────────────────── v1.3.0
+ Installed StatsBase ────────────────────── v0.32.2
+ Installed FFMPEG ───────────────────────── v0.3.0
+ Installed LightGraphs ──────────────────── v1.3.3
+ Installed MLStyle ──────────────────────── v0.3.1
+ Installed Ratios ───────────────────────── v0.4.0
+ Installed FastGaussQuadrature ──────────── v0.4.2
+ Installed Latexify ─────────────────────── v0.13.2
+ Installed CSV ──────────────────────────── v0.6.2
+ Installed ProgressMeter ────────────────── v1.2.0
+ Installed OpenSSL_jll ──────────────────── v1.1.1+2
+ Installed ShiftedArrays ────────────────── v1.0.0
+ Installed PkgTemplates ─────────────────── v0.6.4
+ Installed SimpleTraits ─────────────────── v0.9.2
+ Installed ApproxFun ────────────────────── v0.11.13
+ Installed StaticArrays ─────────────────── v0.12.3
+ Installed Preconditioners ──────────────── v0.3.0
+ Installed JuliaVariables ───────────────── v0.2.0
+ Installed Requires ─────────────────────── v1.0.1
+ Installed ArrayLayouts ─────────────────── v0.2.6
+ Installed FreeType2_jll ────────────────── v2.10.1+2
+ Installed RDatasets ────────────────────── v0.6.8
+ Installed Distances ────────────────────── v0.8.2
+ Installed RandomNumbers ────────────────── v1.4.0
+ Installed Zlib_jll ─────────────────────── v1.2.11+10
+ Installed MutableArithmetics ───────────── v0.2.9
+ Installed GMP_jll ──────────────────────── v6.1.2+5
+ Installed ExprTools ────────────────────── v0.1.1
+ Installed Compat ───────────────────────── v2.2.0
+ Installed Optim ────────────────────────── v0.20.1
+ Installed RegressionTables ─────────────── v0.4.0
+ Installed ForwardDiff ──────────────────── v0.10.10
+ Installed OffsetArrays ─────────────────── v1.0.4
+ Installed LimitedLDLFactorizations ─────── v0.3.0
+ Installed JuliaInterpreter ─────────────── v0.7.19
+ Installed RecursiveArrayTools ──────────── v2.3.5
+ Installed CodeTracking ─────────────────── v0.5.11
+ Installed ResettableStacks ─────────────── v1.0.0
+ Installed LoweredCodeUtils ─────────────── v0.4.5
+ Installed KernelDensity ────────────────── v0.5.1
+ Installed SortingAlgorithms ────────────── v0.3.1
+ Installed TableTraits ──────────────────── v1.0.0
+ Installed Tables ───────────────────────── v1.0.4
+ Installed AbstractTrees ────────────────── v0.3.3
+ Installed PooledArrays ─────────────────── v0.5.3
+ Installed XML2_jll ─────────────────────── v2.9.9+4
+ Installed AlgebraicMultigrid ───────────── v0.2.2
+ Installed BandedMatrices ───────────────── v0.15.7
+ Installed URIParser ────────────────────── v0.4.1
+ Installed IterableTables ───────────────── v1.0.0
+ Installed NLsolve ──────────────────────── v4.3.0
+ Installed Unitful ──────────────────────── v1.2.1
+ Installed ConsoleProgressMonitor ───────── v0.1.2
+ Installed DomainSets ───────────────────── v0.3.1
+ Installed IniFile ──────────────────────── v0.5.0
+ Installed Ogg_jll ──────────────────────── v1.3.4+0
+ Installed FFTW_jll ─────────────────────── v3.3.9+5
+ Installed TreeViews ────────────────────── v0.3.0
+ Installed LAME_jll ─────────────────────── v3.100.0+1
+ Installed SymbolicUtils ────────────────── v0.3.2
+ Installed SpatialIndexing ──────────────── v0.1.2
+ Installed Cassette ─────────────────────── v0.3.3
+ Installed Opus_jll ─────────────────────── v1.3.1+1
+ Installed TimeZones ────────────────────── v1.2.0
+ Installed Bzip2_jll ────────────────────── v1.0.6+2
+ Installed FilePaths ────────────────────── v0.8.0
+ Installed Widgets ──────────────────────── v0.6.2
+ Installed InfiniteArrays ───────────────── v0.7.0
+ Installed GPUArrays ────────────────────── v3.4.1
+ Installed BlackBoxOptim ────────────────── v0.5.0
+ Installed Plots ────────────────────────── v1.2.5
+ Installed x265_jll ─────────────────────── v3.0.0+1
+ Installed StatsFuns ────────────────────── v0.9.5
+ Installed Measures ─────────────────────── v0.3.1
+ Installed OpenBLAS_jll ─────────────────── v0.3.9+4
+ Installed ConstructionBase ─────────────── v1.0.0
+ Installed DataFramesMeta ───────────────── v0.5.1
+ Installed ExponentialUtilities ─────────── v1.6.0
+ Installed FunctionWrappers ─────────────── v1.1.1
+ Installed Nullables ────────────────────── v1.0.0
+ Installed PlotThemes ───────────────────── v2.0.0
+ Installed Showoff ──────────────────────── v0.3.1
+ Installed FillArrays ───────────────────── v0.8.9
+ Installed ProgressLogging ──────────────── v0.1.2
+ Installed RecipesBase ──────────────────── v1.0.1
+ Installed Roots ────────────────────────── v1.0.1
+ Installed NodeJS ───────────────────────── v1.1.1
+ Installed LoopVectorization ────────────── v0.8.2
+ Installed CUDAapi ──────────────────────── v4.0.0
+ Installed FastClosures ─────────────────── v0.3.2
+ Installed SpecialFunctions ─────────────── v0.10.3
+ Installed NearestNeighbors ─────────────── v0.4.4
+ Installed MbedTLS_jll ──────────────────── v2.16.0+2
+ Installed Distributions ────────────────── v0.23.2
+ Installed DiffEqNoiseProcess ───────────── v3.11.0
+ Installed TerminalLoggers ──────────────── v0.1.1
+ Installed QueryOperators ───────────────── v0.9.1
+ Installed GPUCompiler ──────────────────── v0.2.0
+ Installed Mocking ──────────────────────── v0.7.1
+ Installed ColorTypes ───────────────────── v0.10.3
+ Installed x264_jll ─────────────────────── v2019.5.25+2
+ Installed MathProgBase ─────────────────── v0.7.8
+ Installed AbstractFFTs ─────────────────── v0.5.0
+ Installed TableOperations ──────────────── v0.2.1
+ Installed IRTools ──────────────────────── v0.3.3
+ Installed Expokit ──────────────────────── v0.2.0
+ Installed Formatting ───────────────────── v0.4.1
+ Installed MathOptInterface ─────────────── v0.9.13
+ Installed PDMats ───────────────────────── v0.9.12
+ Installed DiffEqBase ───────────────────── v6.36.3
+ Installed TableShowUtils ───────────────── v0.2.5
+ Installed OrderedCollections ───────────── v1.2.0
+ Installed Parameters ───────────────────── v0.12.1
+ Installed FastTransforms ───────────────── v0.8.2
+ Installed LinearMaps ───────────────────── v2.6.1
+ Installed SparseDiffTools ──────────────── v1.8.0
+ Installed MultivariateStats ────────────── v0.7.0
+ Installed libfdk_aac_jll ───────────────── v0.1.6+2
+ Installed QuantEcon ────────────────────── v0.16.2
+ Installed Calculus ─────────────────────── v0.5.1
+ Installed OpenSpecFun_jll ──────────────── v0.5.3+3
+ Installed Missings ─────────────────────── v0.4.3
+ Installed DocStringExtensions ──────────── v0.8.1
+ Installed UnPack ───────────────────────── v1.0.1
+ Installed Polynomials ──────────────────── v1.0.6
+ Installed SparsityDetection ────────────── v0.3.1
+ Installed PlotUtils ────────────────────── v1.0.4
+ Installed FileIO ───────────────────────── v1.3.0
+ Installed Query ────────────────────────── v0.12.2
+ Installed DiffRules ────────────────────── v1.0.1
+ Installed Rmath_jll ────────────────────── v0.2.2+0
+ Installed BlockArrays ──────────────────── v0.12.5
+ Installed Cthulhu ──────────────────────── v1.1.1
+ Installed Ipopt ────────────────────────── v0.6.1
+ Installed SLEEFPirates ─────────────────── v0.5.0
+ Installed VertexSafeGraphs ─────────────── v0.1.2
+ Installed VectorizationBase ────────────── v0.12.6
+ Installed DiffEqOperators ──────────────── v4.10.0
+ Installed CpuId ────────────────────────── v0.2.2
+ Installed CuArrays ─────────────────────── v2.2.0
+ Installed FastTransforms_jll ───────────── v0.2.13+1
+ Installed CategoricalArrays ────────────── v0.8.0
+ Installed DataValues ───────────────────── v0.4.13
+ Installed MacroTools ───────────────────── v0.5.5
+ Installed Expectations ─────────────────── v1.1.1
+ Installed Clustering ───────────────────── v0.14.0
+ Installed Dierckx ──────────────────────── v0.4.1
+ Installed RData ────────────────────────── v0.7.2
+ Installed EllipsisNotation ─────────────── v0.4.0
+ Installed FriBidi_jll ──────────────────── v1.0.5+3
+ Installed CodecBzip2 ───────────────────── v0.7.2
+ Installed DataFrames ───────────────────── v0.21.0
+ Installed ArrayInterface ───────────────── v2.8.7
+ Installed Arpack_jll ───────────────────── v3.5.0+3
+ Installed BenchmarkTools ───────────────── v0.5.0
+ Installed DataValueInterfaces ──────────── v1.0.0
+ Installed FFTW ─────────────────────────── v1.2.2
+ Installed GLM ──────────────────────────── v1.3.9
+ Installed LinearOperators ──────────────── v1.1.0
+ Installed VegaLite ─────────────────────── v2.1.3
+ Installed Zygote ───────────────────────── v0.4.20
+ Installed RecursiveFactorization ───────── v0.1.2
+ Installed IncompleteLU ─────────────────── v0.1.1
+ Installed TableTraitsUtils ─────────────── v1.0.1
+ Installed Juno ─────────────────────────── v0.8.2
+ Installed WeakRefStrings ───────────────── v0.6.2
+ Installed ChainRulesCore ───────────────── v0.8.0
+ Installed ArnoldiMethod ────────────────── v0.0.4
+ Installed Revise ───────────────────────── v2.6.6
+ Installed GenericSVD ───────────────────── v0.3.0
+ Installed DSP ──────────────────────────── v0.6.7
+ Installed ZygoteRules ──────────────────── v0.2.0
+ Installed IntervalSets ─────────────────── v0.5.1
+ Installed FixedPointNumbers ────────────── v0.8.0
+ Installed SIMDPirates ──────────────────── v0.8.5
+ Installed Parsers ──────────────────────── v1.0.4
+ Installed Colors ───────────────────────── v0.12.1
+ Installed DualNumbers ──────────────────── v0.6.2
+ Installed ToeplitzMatrices ─────────────── v0.6.1
+ Installed Reexport ─────────────────────── v0.2.0
+ Installed CanonicalTraits ──────────────── v0.2.1
+ Installed BlockBandedMatrices ──────────── v0.8.4
+ Installed Primes ───────────────────────── v0.4.0
+ Installed BinaryProvider ───────────────── v0.5.10
+ Installed NLopt_jll ────────────────────── v2.6.2+0
+ Installed CUDAnative ───────────────────── v3.1.0
+ Installed MuladdMacro ──────────────────── v0.2.2
+ Installed libass_jll ───────────────────── v0.14.0+2
+ Installed ApproxFunBase ────────────────── v0.3.5
+ Installed LazyArrays ───────────────────── v0.16.9
+ Installed IterativeSolvers ─────────────── v0.8.4
+ Installed AMD ──────────────────────────── v0.4.0
+ Installed ZipFile ──────────────────────── v0.9.2
+ Installed StochasticDiffEq ─────────────── v6.20.0
+  Building NNlib ────────────→ `/srv/julia/pkg/packages/NNlib/FAI3o/deps/build.log`
+  Building GR ───────────────→ `/srv/julia/pkg/packages/GR/cRdXQ/deps/build.log`
+  Building Preconditioners ──→ `/srv/julia/pkg/packages/Preconditioners/uMaQw/deps/build.log`
+  Building TimeZones ────────→ `/srv/julia/pkg/packages/TimeZones/OjMoF/deps/build.log`
+  Building Plots ────────────→ `/srv/julia/pkg/packages/Plots/5srrj/deps/build.log`
+  Building FFTW ─────────────→ `/srv/julia/pkg/packages/FFTW/kcXL6/deps/build.log`
+  Building FastTransforms ───→ `/srv/julia/pkg/packages/FastTransforms/MjTJy/deps/build.log`
+  Building Ipopt ────────────→ `/srv/julia/pkg/packages/Ipopt/ruIXY/deps/build.log`
+  Building VectorizationBase → `/srv/julia/pkg/packages/VectorizationBase/SyqTC/deps/build.log`
+  Building SLEEFPirates ─────→ `/srv/julia/pkg/packages/SLEEFPirates/mkNmA/deps/build.log`
+  Building Dierckx ──────────→ `/srv/julia/pkg/packages/Dierckx/9SY4A/deps/build.log`
+Precompiling project...
+Precompiling ForwardDiff
+Precompiling Preconditioners
+Precompiling Arpack
+Precompiling RegressionTables
+Precompiling StochasticDiffEq
+Precompiling IncompleteLU
+Precompiling SparsityDetection
+Precompiling LazyArrays
+Precompiling OrdinaryDiffEq
+Precompiling ModelingToolkit
+Precompiling Zygote
+Precompiling Expectations
+Precompiling LeastSquaresOptim
+Precompiling GR
+Precompiling Krylov
+Precompiling KrylovKit
+Precompiling VegaLite
+Precompiling KernelDensity
+Precompiling Polynomials
+Precompiling ApproxFun
+Precompiling Revise
+Precompiling BenchmarkTools
+Precompiling InstantiateFromURL
+Precompiling StatsPlots
+Precompiling Expokit
+Precompiling DataFramesMeta
+Precompiling Dierckx
+Precompiling Flux
+Precompiling BlackBoxOptim
+Precompiling LinearMaps
+Precompiling JuMP
+Precompiling Query
+Precompiling DiffEqOperators
+Precompiling Ipopt
+Precompiling NLopt
+Precompiling PkgTemplates
+Precompiling RDatasets
+Precompiling QuantEcon
+Removing intermediate container 87123eb462f1
+ ---> ceeeb2e00827
+Step 50/58 : LABEL repo2docker.ref="None"
+ ---> Running in 8934412cf2f8
+Removing intermediate container 8934412cf2f8
+ ---> 23d48dcc1cf8
+Step 51/58 : LABEL repo2docker.repo="local"
+ ---> Running in c3cacbe01800
+Removing intermediate container c3cacbe01800
+ ---> 69508a5a07fd
+Step 52/58 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 55eededbe125
+Removing intermediate container 55eededbe125
+ ---> 054aba21b604
+Step 53/58 : USER ${NB_USER}
+ ---> Running in 6a54c65dc83e
+Removing intermediate container 6a54c65dc83e
+ ---> d49817206ab1
+Step 54/58 : RUN chmod +x postBuild
+ ---> Running in db997b406e0d
+Removing intermediate container db997b406e0d
+ ---> 94182e3cdaec
+Step 55/58 : RUN ./postBuild
+ ---> Running in bdbe0ba730ba
+  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l    Fetching: [>                                        ]  0.0 %
+[2K[?25h Resolving package versions...
+[91mERROR: [0m[91mUnsatisfiable requirements detected for package InstantiateFromURL [43edad99]:
+ InstantiateFromURL [43edad99] log:
+ ├─possible versions are: [0.1.0, 0.2.0-0.2.1, 0.3.0-0.3.3, 0.4.0, 0.5.0] or uninstalled
+ ├─restricted to versions 0.5.0 by an explicit requirement, leaving only versions 0.5.0
+ └─restricted by julia compatibility requirements to versions: [0.1.0, 0.2.0-0.2.1, 0.3.0-0.3.3, 0.4.0] or uninstalled — no versions left[0m[91m
+Stacktrace:[0m[91m
+ [1] [0m[91m#propagate_constraints!#61[0m[91m([0m[91m::[0m[91mBool, ::typeof(Pkg.GraphType.propagate_constraints!), ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/GraphType.jl:1007
+ [2] [0m[91mpropagate_constraints! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/GraphType.jl:948 [inlined]
+ [3] #simplify_graph!#121(::Bool, ::typeof(Pkg.GraphType.simplify_graph!), ::Pkg.GraphType.Graph, ::Set{Int64}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/GraphType.jl:1462
+ [4] simplify_graph! at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/GraphType.jl:1462 [inlined][0m[91m (repeats [0m[91m2 times)
+ [5] resolve_versions!(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,[0m[91m1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/Operations.jl:321
+ [6] #add#112(::[0m[91mBool, ::Pkg.BinaryPlatforms.Linux, ::typeof(Pkg.Operations.add), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}, ::Array{Base.UUID,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/Operations.jl:1010
+ [7] #add at ./none:0 [inlined]
+ [8] #add#25(::Bool, ::Pkg.BinaryPlatforms.Linux, ::Base.Iterators.Pairs{[0m[91mUnion{},Union{},Tuple{},NamedTuple{[0m[91m([0m[91m),Tuple{}}}, ::typeof(Pkg.API.add), ::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at [0m[91m/buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/API.jl:102
+ [9] add(::Pkg.Types.Context, ::Array{Pkg.Types.PackageSpec,1}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/API.jl:72
+ [10] do_add!(::Dict{Symbol,Any}, ::Array{Pkg.Types.PackageSpec,1}, ::Dict{Symbol,Any}) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/REPLMode.jl:505
+ [11] #invokelatest#1(::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}, ::typeof(Base.invokelatest), ::Any, ::Any, ::[0m[91mVararg{Any,[0m[91mN} where N) at ./essentials.jl:709
+ [12] invokelatest(::Any, ::Any, ::Vararg{Any,N} where N) at ./essentials.jl:708
+ [13] do_cmd!(::Pkg.REPLMode.Command, ::Pkg.REPLMode.MiniREPL) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/REPLMode.jl:412
+ [14] #do_cmd#23(::Bool, ::typeof(Pkg.REPLMode.do_cmd), ::Pkg.REPLMode.MiniREPL, ::String) at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.3/Pkg/src/REPLMode.jl:391
+ [15] [0m[91m(::Pkg.REPLMode.var"#kw##do_cmd")(::NamedTuple{[0m[91m([0m[91m:[0m[91mdo_rethrow,),Tuple{Bool}}, ::typeof(Pkg.REPLMode.do_cmd), ::Pkg.REPLMode.MiniREPL, ::String) at ./none:0
+ [16] top-level scope at none:1
+[0mRemoving intermediate container bdbe0ba730ba
+The command '/bin/sh -c ./postBuild' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-quantecon-quantecon-notebooks-julia:a093c1e', '/tmp/r2d-test-2020-07-07T12.10yw29gj95/github.com/QuantEcon/quantecon-notebooks-julia']' returned non-zero exit status 1.

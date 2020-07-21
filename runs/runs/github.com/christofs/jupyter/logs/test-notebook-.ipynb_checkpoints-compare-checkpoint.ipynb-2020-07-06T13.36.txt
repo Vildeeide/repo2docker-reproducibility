@@ -1,0 +1,5 @@
+[I 200706 13:36:51 inrepo:35] Testing notebook .ipynb_checkpoints/compare-checkpoint.ipynb
+[I 200706 13:36:52 execute:404] Executing notebook with kernel: python3
+[I 200706 13:36:55 inrepo:41] Saving exported notebook to /io/notebooks/.ipynb_checkpoints/compare-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

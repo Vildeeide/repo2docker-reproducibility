@@ -1,0 +1,7 @@
+[I 200707 10:45:34 inrepo:36] Testing notebook reactor-physics/reactor-physics.ipynb
+[W 200707 10:45:34 inrepo:48] No such kernel Python [Root], falling back on kernel language=python
+[W 200707 10:45:34 inrepo:60] Using kernel python3 to provide language: python
+[I 200707 10:45:35 execute:404] Executing notebook with kernel: python3
+[I 200707 10:45:40 inrepo:77] Saving exported notebook to /io/notebooks/reactor-physics/reactor-physics.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

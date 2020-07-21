@@ -1,0 +1,430 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T08.375cuxam7e/github.com/crstnbr/JuliaOulu20.
+Using JuliaProjectTomlBuildPack builder
+Step 1/63 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/63 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/63 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/63 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/63 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/63 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/63 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/63 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/63 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/63 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/63 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/63 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/63 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/63 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/63 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/63 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/63 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/63 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/63 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/63 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/63 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/63 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/63 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/63 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/63 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/63 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/63 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/63 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/63 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/63 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/63 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/63 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/63 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/63 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/63 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/63 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/63 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/63 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/63 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/63 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/63 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/63 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/63 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/63 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/63 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> Using cache
+ ---> 3a0b79a635b5
+Step 46/63 : USER root
+ ---> Using cache
+ ---> d926fba68bde
+Step 47/63 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 24cc0e02bbdd
+Step 48/63 : USER ${NB_USER}
+ ---> Using cache
+ ---> 94285b630c49
+Step 49/63 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> c5e6e9d2d28c
+Step 50/63 : USER root
+ ---> Using cache
+ ---> 23a9510fcf73
+Step 51/63 : COPY src/ ${REPO_DIR}
+ ---> 12837b14168b
+Step 52/63 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 9aeafc8be2e1
+Removing intermediate container 9aeafc8be2e1
+ ---> 16f4f050bdc7
+Step 53/63 : USER ${NB_USER}
+ ---> Running in d79f94e96893
+Removing intermediate container d79f94e96893
+ ---> be6f19a86061
+Step 54/63 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in 1fc811566464
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [===========>                             ]  25.0 %
+    Fetching: [======================>                  ]  54.0 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed VersionParsing ── v1.2.0
+ Installed Conda ─────────── v1.4.1
+ Installed ZMQ ───────────── v1.2.1
+ Installed Parsers ───────── v1.0.6
+ Installed IJulia ────────── v1.21.2
+ Installed MbedTLS ───────── v1.0.2
+ Installed ZeroMQ_jll ────── v4.3.2+4
+ Installed JSON ──────────── v0.21.0
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.6
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h   Cloning git-repo `https://github.com/StephenVavasis/Unroll.jl`
+[?25l    Fetching: [>                                        ]  0.0 %
+[2K[?25h  Updating git-repo `https://github.com/StephenVavasis/Unroll.jl`
+[?25l[2K[?25h Installed NaNMath ───────────────────── v0.3.3
+ Installed TimerOutputs ──────────────── v0.5.3
+ Installed AssetRegistry ─────────────── v0.1.0
+ Installed DiffResults ───────────────── v1.0.2
+ Installed GPUArrays ─────────────────── v2.0.1
+ Installed Plots ─────────────────────── v0.28.4
+ Installed StatsBase ─────────────────── v0.32.0
+ Installed PlotUtils ─────────────────── v0.6.3
+ Installed Widgets ───────────────────── v0.6.2
+ Installed DiffRules ─────────────────── v1.0.0
+ Installed QuadGK ────────────────────── v2.3.1
+ Installed StatsFuns ─────────────────── v0.9.3
+ Installed MbedTLS ───────────────────── v0.7.0
+ Installed IJulia ────────────────────── v1.20.2
+ Installed PyCall ────────────────────── v1.91.2
+ Installed Measures ──────────────────── v0.3.1
+ Installed ZMQ ───────────────────────── v1.2.0
+ Installed VertexSafeGraphs ──────────── v0.1.1
+ Installed IntelOpenMP_jll ───────────── v2018.0.3+0
+ Installed GeometryTypes ─────────────── v0.7.7
+ Installed KrylovKit ─────────────────── v0.4.1
+ Installed SymPy ─────────────────────── v1.0.11
+ Installed FFMPEG ────────────────────── v0.2.4
+ Installed CuArrays ──────────────────── v1.7.1
+ Installed ExponentialUtilities ──────── v1.6.0
+ Installed OpenBLAS_jll ──────────────── v0.3.7+5
+ Installed LightGraphs ───────────────── v1.3.0
+ Installed CpuId ─────────────────────── v0.2.2
+ Installed PkgTemplates ──────────────── v0.6.3
+ Installed MacroTools ────────────────── v0.5.4
+ Installed FunctionWrappers ──────────── v1.0.0
+ Installed NNlib ─────────────────────── v0.6.4
+ Installed Traceur ───────────────────── v0.3.0
+ Installed InteractBase ──────────────── v0.10.3
+ Installed Roots ─────────────────────── v0.8.4
+ Installed HTTP ──────────────────────── v0.8.8
+ Installed GenericLinearAlgebra ──────── v0.2.1
+ Installed ArrayInterface ────────────── v2.4.1
+ Installed FillArrays ────────────────── v0.8.4
+ Installed CodecZlib ─────────────────── v0.6.0
+ Installed BinDeps ───────────────────── v1.0.0
+ Installed Pidfile ───────────────────── v1.1.0
+ Installed PlotThemes ────────────────── v1.0.1
+ Installed Hwloc ─────────────────────── v1.0.3
+ Installed CSSUtil ───────────────────── v0.1.0
+ Installed Showoff ───────────────────── v0.3.1
+ Installed DataAPI ───────────────────── v1.1.0
+ Installed BenchmarkTools ────────────── v0.4.3
+ Installed Arpack ────────────────────── v0.4.0
+ Installed Arpack_jll ────────────────── v3.5.0+2
+ Installed DataValueInterfaces ───────── v1.0.0
+ Installed OrdinaryDiffEq ────────────── v5.28.1
+ Installed SimpleTraits ──────────────── v0.9.1
+ Installed Knockout ──────────────────── v0.2.3
+ Installed StaticArrays ──────────────── v0.12.1
+ Installed Requires ──────────────────── v1.0.1
+ Installed FiniteDiff ────────────────── v2.2.0
+ Installed RecursiveFactorization ────── v0.1.0
+ Installed RecipesBase ───────────────── v0.7.0
+ Installed FFTW ──────────────────────── v1.2.0
+ Installed Media ─────────────────────── v0.5.0
+ Installed DataStructures ────────────── v0.17.9
+ Installed CUDAapi ───────────────────── v3.1.0
+ Installed Zygote ────────────────────── v0.4.6
+ Installed Zlib_jll ──────────────────── v1.2.11+8
+ Installed SpecialFunctions ──────────── v0.8.0
+ Installed ChainRulesCore ────────────── v0.6.1
+ Installed IteratorInterfaceExtensions ─ v1.0.0
+ Installed Distributions ─────────────── v0.21.9
+ Installed Juno ──────────────────────── v0.7.2
+ Installed ArnoldiMethod ─────────────── v0.0.4
+ Installed CEnum ─────────────────────── v0.2.0
+ Installed ForwardDiff ───────────────── v0.10.9
+ Installed ColorTypes ────────────────── v0.8.1
+ Installed Compat ────────────────────── v2.2.0
+ Installed RecursiveArrayTools ───────── v2.1.0
+ Installed JSExpr ────────────────────── v0.5.1
+ Installed FunctionalCollections ─────── v0.5.0
+ Installed GR ────────────────────────── v0.44.0
+ Installed GenericSVD ────────────────── v0.2.2
+ Installed AbstractTrees ─────────────── v0.3.1
+ Installed FixedPointNumbers ─────────── v0.6.1
+ Installed Colors ────────────────────── v0.9.6
+ Installed WebSockets ────────────────── v1.5.2
+ Installed IRTools ───────────────────── v0.3.1
+ Installed AbstractFFTs ──────────────── v0.5.0
+ Installed ZygoteRules ───────────────── v0.2.0
+ Installed Parsers ───────────────────── v0.3.11
+ Installed DiffEqBase ────────────────── v6.14.0
+ Installed SortingAlgorithms ─────────── v0.3.1
+ Installed Inflate ───────────────────── v0.1.1
+ Installed Primes ────────────────────── v0.4.0
+ Installed Rmath ─────────────────────── v0.6.0
+ Installed Mustache ──────────────────── v1.0.0
+ Installed TranscodingStreams ────────── v0.9.5
+ Installed LLVM ──────────────────────── v1.3.3
+ Installed PDMats ────────────────────── v0.9.11
+ Installed TableTraits ───────────────── v1.0.0
+ Installed Tables ────────────────────── v0.2.11
+ Installed ZeroMQ_jll ────────────────── v4.3.1+0
+ Installed Reexport ──────────────────── v0.2.0
+ Installed Adapt ─────────────────────── v1.0.1
+ Installed SparseDiffTools ───────────── v1.3.3
+ Installed Conda ─────────────────────── v1.4.0
+ Installed Flux ──────────────────────── v0.10.1
+ Installed OrderedCollections ────────── v1.1.0
+ Installed URIParser ─────────────────── v0.4.0
+ Installed CUDAdrv ───────────────────── v6.0.0
+ Installed BinaryProvider ────────────── v0.5.8
+ Installed IniFile ───────────────────── v0.5.0
+ Installed CUDAnative ────────────────── v2.10.2
+ Installed WebIO ─────────────────────── v0.8.11
+ Installed MuladdMacro ───────────────── v0.2.2
+ Installed Parameters ────────────────── v0.12.0
+ Installed Calculus ──────────────────── v0.5.1
+ Installed MKL_jll ───────────────────── v2019.0.117+2
+ Installed Cassette ──────────────────── v0.3.1
+ Installed DistributedArrays ─────────── v0.6.4
+ Installed IterativeSolvers ──────────── v0.8.1
+ Installed CommonSubexpressions ──────── v0.2.0
+ Installed Missings ──────────────────── v0.4.3
+ Installed DocStringExtensions ───────── v0.8.1
+ Installed Contour ───────────────────── v0.5.1
+ Installed TreeViews ─────────────────── v0.3.0
+ Installed Measurements ──────────────── v2.1.1
+ Installed FFTW_jll ──────────────────── v3.3.9+3
+ Installed ZipFile ───────────────────── v0.9.1
+ Installed Observables ───────────────── v0.2.3
+ Installed Interact ──────────────────── v0.10.3
+  Building GR ──────────────→ `/srv/julia/pkg/packages/GR/oiZD3/deps/build.log`
+  Building FFMPEG ──────────→ `/srv/julia/pkg/packages/FFMPEG/guN1x/deps/build.log`
+  Building Plots ───────────→ `/srv/julia/pkg/packages/Plots/qZHsp/deps/build.log`
+  Building MbedTLS ─────────→ `/srv/julia/pkg/packages/MbedTLS/a1JFn/deps/build.log`
+  Building Conda ───────────→ `/srv/julia/pkg/packages/Conda/OIHWB/deps/build.log`
+  Building PyCall ──────────→ `/srv/julia/pkg/packages/PyCall/ttONZ/deps/build.log`
+  Building IJulia ──────────→ `/srv/julia/pkg/packages/IJulia/F1GUo/deps/build.log`
+  Building NNlib ───────────→ `/srv/julia/pkg/packages/NNlib/3krvM/deps/build.log`
+  Building WebIO ───────────→ `/srv/julia/pkg/packages/WebIO/2mZPb/deps/build.log`
+  Building Knockout ────────→ `/srv/julia/pkg/packages/Knockout/1sDlc/deps/build.log`
+  Building InteractBase ────→ `/srv/julia/pkg/packages/InteractBase/9mFwe/deps/build.log`
+  Building CodecZlib ───────→ `/srv/julia/pkg/packages/CodecZlib/5t9zO/deps/build.log`
+  Building Hwloc ───────────→ `/srv/julia/pkg/packages/Hwloc/1kB0k/deps/build.log`
+  Building FFTW ────────────→ `/srv/julia/pkg/packages/FFTW/qqcBj/deps/build.log`
+  Building SpecialFunctions → `/srv/julia/pkg/packages/SpecialFunctions/ne2iw/deps/build.log`
+  Building Rmath ───────────→ `/srv/julia/pkg/packages/Rmath/BoBag/deps/build.log`
+  Building Interact ────────→ `/srv/julia/pkg/packages/Interact/SbgIk/deps/build.log`
+Precompiling project...
+Precompiling Interact
+Precompiling ForwardDiff
+Precompiling Distributions
+Precompiling Hwloc
+Precompiling BenchmarkTools
+Precompiling CpuId
+Precompiling KrylovKit
+Precompiling CUDAdrv
+Precompiling GenericLinearAlgebra
+Precompiling Measurements
+Precompiling TimerOutputs
+Precompiling Unroll
+Precompiling PyCall
+Precompiling Traceur
+Precompiling SymPy
+Precompiling PkgTemplates
+Precompiling ArnoldiMethod
+Precompiling CuArrays
+Precompiling Flux
+Precompiling IJulia
+Precompiling OrdinaryDiffEq
+Precompiling Plots
+Precompiling DistributedArrays
+Removing intermediate container 1fc811566464
+ ---> a2bbccb7e829
+Step 55/63 : LABEL repo2docker.ref="None"
+ ---> Running in 320dbd307da4
+Removing intermediate container 320dbd307da4
+ ---> 55d442072438
+Step 56/63 : LABEL repo2docker.repo="local"
+ ---> Running in f8dbff3ecc71
+Removing intermediate container f8dbff3ecc71
+ ---> 840ffc632614
+Step 57/63 : LABEL repo2docker.version="0.11.0"
+ ---> Running in ffdb19b291f6
+Removing intermediate container ffdb19b291f6
+ ---> f1e3141672a1
+Step 58/63 : USER ${NB_USER}
+ ---> Running in ff08aa179927
+Removing intermediate container ff08aa179927
+ ---> 6e5c7433580b
+Step 59/63 : RUN chmod +x "${REPO_DIR}/start"
+ ---> Running in 7d2a625bb185
+Removing intermediate container 7d2a625bb185
+ ---> d1e6c6e2400a
+Step 60/63 : ENV R2D_ENTRYPOINT "${REPO_DIR}/start"
+ ---> Running in 485d67b66848
+Removing intermediate container 485d67b66848
+ ---> ea07449cd832
+Step 61/63 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> b4a80356890b
+Step 62/63 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in c0c21e2df78b
+Removing intermediate container c0c21e2df78b
+ ---> 26cdb7b93b79
+Step 63/63 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in a6d4b20ea49c
+Removing intermediate container a6d4b20ea49c
+ ---> b7abe87a397c
+{"aux": {"ID": "sha256:b7abe87a397c6d893f9dadf9681af0b05880d33e2f837a982a1aefe2652c204d"}}Successfully built b7abe87a397c
+Successfully tagged r2d-test-github.com-crstnbr-juliaoulu20:1479195

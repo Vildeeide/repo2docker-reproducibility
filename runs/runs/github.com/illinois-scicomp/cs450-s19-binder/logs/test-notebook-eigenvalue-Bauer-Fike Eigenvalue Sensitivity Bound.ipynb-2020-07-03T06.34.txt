@@ -1,0 +1,5 @@
+[I 200703 06:38:29 inrepo:35] Testing notebook eigenvalue/Bauer-Fike Eigenvalue Sensitivity Bound.ipynb
+[I 200703 06:38:30 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:31 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Bauer-Fike Eigenvalue Sensitivity Bound.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

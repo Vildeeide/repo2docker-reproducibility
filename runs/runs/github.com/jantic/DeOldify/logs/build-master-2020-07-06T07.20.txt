@@ -1,0 +1,263 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.20t8oeyfm0/github.com/jantic/DeOldify.
+Using DockerBuildPack builder
+Step 1/20 : From nvcr.io/nvidia/pytorch:19.04-py3
+ ---> 668e0337f321
+Step 2/20 : RUN apt-get -y update
+ ---> Using cache
+ ---> a95db74b5941
+Step 3/20 : RUN apt-get install -y python3-pip software-properties-common wget ffmpeg
+ ---> Using cache
+ ---> 3ce39712a413
+Step 4/20 : RUN add-apt-repository ppa:git-core/ppa
+ ---> Using cache
+ ---> 68522f5efab7
+Step 5/20 : RUN apt-get -y update
+ ---> Using cache
+ ---> 15eb9c07d0e7
+Step 6/20 : RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+ ---> Using cache
+ ---> 7da6deb79ea3
+Step 7/20 : RUN apt-get install -y git-lfs --allow-unauthenticated
+ ---> Using cache
+ ---> 3b146210c0f3
+Step 8/20 : RUN git lfs install
+ ---> Using cache
+ ---> c537a7cd259f
+Step 9/20 : ENV GIT_WORK_TREE=/data
+ ---> Using cache
+ ---> 5603c30da49d
+Step 10/20 : RUN mkdir -p /root/.torch/models
+ ---> Using cache
+ ---> 9941e6fc4aeb
+Step 11/20 : RUN mkdir -p /data/models
+ ---> Using cache
+ ---> 30c04334fa84
+Step 12/20 : RUN wget -O /root/.torch/models/vgg16_bn-6c64b313.pth https://download.pytorch.org/models/vgg16_bn-6c64b313.pth
+ ---> Using cache
+ ---> 22fa58298eb9
+Step 13/20 : RUN wget -O /root/.torch/models/resnet34-333f7ec4.pth https://download.pytorch.org/models/resnet34-333f7ec4.pth
+ ---> Using cache
+ ---> 997cc4b8ef0b
+Step 14/20 : RUN wget -O /data/models/ColorizeArtistic_gen.pth https://www.dropbox.com/s/zkehq1uwahhbc2o/ColorizeArtistic_gen.pth?dl=0
+ ---> Using cache
+ ---> 8bfa530b920c
+Step 15/20 : ADD . /data/
+ ---> 896139e129a5
+Step 16/20 : WORKDIR /data
+ ---> Running in d1805082f764
+Removing intermediate container d1805082f764
+ ---> f5b1b5831c04
+Step 17/20 : RUN pip install -r requirements.txt
+ ---> Running in 245a58b615ef
+Collecting fastai==1.0.51 (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/44/cc/dcc702cf43bb8c908d172e5be156615928f962366a20834c320cbca2b9d0/fastai-1.0.51-py3-none-any.whl (214kB)
+Collecting wandb (from -r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/00/8e/d43984196a0fa8ef961ae3dce91ada52ae7747fbf39d41f5743c27152d97/wandb-0.9.2-py2.py3-none-any.whl (1.4MB)
+Collecting tensorboardX==1.6 (from -r requirements.txt (line 3))
+  Downloading https://files.pythonhosted.org/packages/5c/76/89dd44458eb976347e5a6e75eb79fecf8facd46c1ce259bad54e0044ea35/tensorboardX-1.6-py2.py3-none-any.whl (129kB)
+Collecting ffmpeg (from -r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/f0/cc/3b7408b8ecf7c1d20ad480c3eaed7619857bf1054b690226e906fdf14258/ffmpeg-1.4.tar.gz
+Collecting ffmpeg-python==0.1.17 (from -r requirements.txt (line 5))
+  Downloading https://files.pythonhosted.org/packages/3d/10/330cbc8e63d072d40413f4d470444a6a1e8c8c6a80b2a4ac302d1252ca1b/ffmpeg_python-0.1.17-py3-none-any.whl
+Collecting youtube-dl>=2019.4.17 (from -r requirements.txt (line 6))
+  Downloading https://files.pythonhosted.org/packages/a4/5f/db1fb30596fbfabd3500e741cd9c73d0cb1d25387582fd21289bed05a9c2/youtube_dl-2020.6.16.1-py2.py3-none-any.whl (1.8MB)
+Requirement already satisfied: jupyterlab in /opt/conda/lib/python3.6/site-packages (from -r requirements.txt (line 7)) (0.35.4)
+Requirement already satisfied: opencv-python>=3.3.0.10 in /opt/conda/lib/python3.6/site-packages (from -r requirements.txt (line 8)) (3.4.1.15)
+Collecting pillow==6.2.2 (from -r requirements.txt (line 9))
+  Downloading https://files.pythonhosted.org/packages/8a/fd/bbbc569f98f47813c50a116b539d97b3b17a86ac7a309f83b2022d26caf2/Pillow-6.2.2-cp36-cp36m-manylinux1_x86_64.whl (2.1MB)
+Requirement already satisfied: matplotlib in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied: pandas in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (0.24.2)
+Requirement already satisfied: scipy in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (1.2.1)
+Collecting numexpr (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/36/ed/eac5f6123f54a61cd13b7e89826b97edea54adf76d9f8e9fa2ce70e2fdf8/numexpr-2.7.1-cp36-cp36m-manylinux1_x86_64.whl (162kB)
+Requirement already satisfied: requests in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (2.21.0)
+Requirement already satisfied: typing in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (3.6.6)
+Collecting spacy>=2.0.18 (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/31/c7/e66e2af1cfa418c3a3917c116c4e00ccffa546f18f59e6acd7953d833c5c/spacy-2.3.0-cp36-cp36m-manylinux1_x86_64.whl (10.0MB)
+Collecting nvidia-ml-py3 (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/6d/64/cce82bddb80c0b0f5c703bbdafa94bfb69a1c5ad7a79cff00b482468f0d3/nvidia-ml-py3-7.352.0.tar.gz
+Requirement already satisfied: beautifulsoup4 in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (4.7.1)
+Requirement already satisfied: packaging in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (19.0)
+Collecting dataclasses; python_version < "3.7" (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/e1/d2/6f02df2616fd4016075f60157c7a0452b38d8f7938ae94343911e0fb0b09/dataclasses-0.7-py3-none-any.whl
+Requirement already satisfied: numpy>=1.15 in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (1.16.2)
+Requirement already satisfied: torchvision in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (0.2.1)
+Requirement already satisfied: torch>=1.0.0 in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (1.1.0a0+9eb0f43)
+Collecting bottleneck (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/5b/08/278c6ee569458e168096f6b51019cc1c81c288da3d1026a22ee2ccead102/Bottleneck-1.3.2.tar.gz (88kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Requirement already satisfied: pyyaml in /opt/conda/lib/python3.6/site-packages (from fastai==1.0.51->-r requirements.txt (line 1)) (5.1)
+Collecting fastprogress>=0.1.19 (from fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/a3/da/ffd8fe0daf7e679804a32a1e8654ac2988e2ef85937fc1d223e98eee736e/fastprogress-0.2.3-py3-none-any.whl
+Collecting gql==0.2.0 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/c4/6f/cf9a3056045518f06184e804bae89390eb706168349daa9dff8ac609962a/gql-0.2.0.tar.gz
+Collecting sentry-sdk>=0.4.0 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/a9/84/b4cfabda293bdf40742510c1145534e063f8e629446e619b9d8b2d549390/sentry_sdk-0.16.0-py2.py3-none-any.whl (107kB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /opt/conda/lib/python3.6/site-packages (from wandb->-r requirements.txt (line 2)) (2.8.0)
+Requirement already satisfied: Click>=7.0 in /opt/conda/lib/python3.6/site-packages (from wandb->-r requirements.txt (line 2)) (7.0)
+Collecting subprocess32>=3.5.3 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/32/c8/564be4d12629b912ea431f1a50eb8b3b9d00f1a0b1ceff17f266be190007/subprocess32-3.5.4.tar.gz (97kB)
+Requirement already satisfied: psutil>=5.0.0 in /opt/conda/lib/python3.6/site-packages (from wandb->-r requirements.txt (line 2)) (5.6.1)
+Collecting GitPython>=1.0.0 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/8c/f9/c315aa88e51fabdc08e91b333cfefb255aff04a2ee96d632c32cb19180c9/GitPython-3.1.3-py3-none-any.whl (451kB)
+Collecting configparser>=3.8.1 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/4b/6b/01baa293090240cf0562cc5eccb69c6f5006282127f2b846fad011305c79/configparser-5.0.0-py3-none-any.whl
+Collecting shortuuid>=0.5.0 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/25/a6/2ecc1daa6a304e7f1b216f0896b26156b78e7c38e1211e9b798b4716c53d/shortuuid-1.0.1-py3-none-any.whl
+Collecting docker-pycreds>=0.4.0 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/f5/e8/f6bd1eee09314e7e6dee49cbe2c5e22314ccdb38db16c9fc72d2fa80d054/docker_pycreds-0.4.0-py2.py3-none-any.whl
+Requirement already satisfied: six>=1.10.0 in /opt/conda/lib/python3.6/site-packages (from wandb->-r requirements.txt (line 2)) (1.12.0)
+Collecting watchdog>=0.8.3 (from wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/0e/06/121302598a4fc01aca942d937f4a2c33430b7181137b35758913a8db10ad/watchdog-0.10.3.tar.gz (94kB)
+Requirement already satisfied: protobuf>=3.2.0 in /opt/conda/lib/python3.6/site-packages (from tensorboardX==1.6->-r requirements.txt (line 3)) (3.7.1)
+Requirement already satisfied: future in /opt/conda/lib/python3.6/site-packages (from ffmpeg-python==0.1.17->-r requirements.txt (line 5)) (0.17.1)
+Requirement already satisfied: jupyterlab-server<0.3.0,>=0.2.0 in /opt/conda/lib/python3.6/site-packages (from jupyterlab->-r requirements.txt (line 7)) (0.2.0)
+Requirement already satisfied: notebook>=4.3.1 in /opt/conda/lib/python3.6/site-packages (from jupyterlab->-r requirements.txt (line 7)) (5.7.8)
+Requirement already satisfied: kiwisolver>=1.0.1 in /opt/conda/lib/python3.6/site-packages (from matplotlib->fastai==1.0.51->-r requirements.txt (line 1)) (1.0.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /opt/conda/lib/python3.6/site-packages (from matplotlib->fastai==1.0.51->-r requirements.txt (line 1)) (2.3.1)
+Requirement already satisfied: cycler>=0.10 in /opt/conda/lib/python3.6/site-packages (from matplotlib->fastai==1.0.51->-r requirements.txt (line 1)) (0.10.0)
+Requirement already satisfied: pytz>=2011k in /opt/conda/lib/python3.6/site-packages (from pandas->fastai==1.0.51->-r requirements.txt (line 1)) (2018.9)
+Requirement already satisfied: urllib3<1.25,>=1.21.1 in /opt/conda/lib/python3.6/site-packages (from requests->fastai==1.0.51->-r requirements.txt (line 1)) (1.24.1)
+Requirement already satisfied: idna<2.9,>=2.5 in /opt/conda/lib/python3.6/site-packages (from requests->fastai==1.0.51->-r requirements.txt (line 1)) (2.8)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /opt/conda/lib/python3.6/site-packages (from requests->fastai==1.0.51->-r requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.6/site-packages (from requests->fastai==1.0.51->-r requirements.txt (line 1)) (2019.3.9)
+Requirement already satisfied: cymem<2.1.0,>=2.0.2 in /opt/conda/lib/python3.6/site-packages (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1)) (2.0.2)
+Collecting tqdm<5.0.0,>=4.38.0 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/46/62/7663894f67ac5a41a0d8812d78d9d2a9404124051885af9d77dc526fb399/tqdm-4.47.0-py2.py3-none-any.whl (66kB)
+Requirement already satisfied: setuptools in /opt/conda/lib/python3.6/site-packages (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1)) (40.8.0)
+Collecting thinc==7.4.1 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/10/ae/ef3ae5e93639c0ef8e3eb32e3c18341e511b3c515fcfc603f4b808087651/thinc-7.4.1-cp36-cp36m-manylinux1_x86_64.whl (2.1MB)
+Collecting srsly<1.1.0,>=1.0.2 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/0e/9a/70bd934dd4d25545c9aa6c8cd4edbac2a33ba9c915439a9209b69f0ec0ad/srsly-1.0.2-cp36-cp36m-manylinux1_x86_64.whl (185kB)
+Collecting wasabi<1.1.0,>=0.4.0 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/04/e5/aa1892776a8ed6f6d552ba1be0640e6403f07e850d36e79f475f1e605aa9/wasabi-0.7.0.tar.gz
+Requirement already satisfied: murmurhash<1.1.0,>=0.28.0 in /opt/conda/lib/python3.6/site-packages (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1)) (1.0.2)
+Collecting catalogue<1.1.0,>=0.0.7 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/6c/f9/9a5658e2f56932e41eb264941f9a2cb7f3ce41a80cb36b2af6ab78e2f8af/catalogue-1.0.0-py2.py3-none-any.whl
+Collecting blis<0.5.0,>=0.4.0 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/41/19/f95c75562d18eb27219df3a3590b911e78d131b68466ad79fdf5847eaac4/blis-0.4.1-cp36-cp36m-manylinux1_x86_64.whl (3.7MB)
+Collecting preshed<3.1.0,>=3.0.2 (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/db/6b/e07fad36913879757c90ba03d6fb7f406f7279e11dcefc105ee562de63ea/preshed-3.0.2-cp36-cp36m-manylinux1_x86_64.whl (119kB)
+Requirement already satisfied: plac<1.2.0,>=0.9.6 in /opt/conda/lib/python3.6/site-packages (from spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1)) (0.9.6)
+Requirement already satisfied: soupsieve>=1.2 in /opt/conda/lib/python3.6/site-packages (from beautifulsoup4->fastai==1.0.51->-r requirements.txt (line 1)) (1.8)
+Requirement already satisfied: pillow-simd>=4.1.1 in /opt/conda/lib/python3.6/site-packages (from torchvision->fastai==1.0.51->-r requirements.txt (line 1)) (5.3.0.post0)
+Collecting graphql-core<2,>=0.5.0 (from gql==0.2.0->wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/b0/89/00ad5e07524d8c523b14d70c685e0299a8b0de6d0727e368c41b89b7ed0b/graphql-core-1.1.tar.gz (70kB)
+Collecting promise<3,>=2.0 (from gql==0.2.0->wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/cf/9c/fb5d48abfe5d791cd496e4242ebcf87a4bb2e0c3dcd6e0ae68c11426a528/promise-2.3.tar.gz
+Collecting gitdb<5,>=4.0.1 (from GitPython>=1.0.0->wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/48/11/d1800bca0a3bae820b84b7d813ad1eff15a48a64caea9c823fc8c1b119e8/gitdb-4.0.5-py3-none-any.whl (63kB)
+Collecting pathtools>=0.1.1 (from watchdog>=0.8.3->wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/e7/7f/470d6fcdf23f9f3518f6b0b76be9df16dcc8630ad409947f8be2eb0ed13a/pathtools-0.1.2.tar.gz
+Requirement already satisfied: jsonschema>=2.6.0 in /opt/conda/lib/python3.6/site-packages (from jupyterlab-server<0.3.0,>=0.2.0->jupyterlab->-r requirements.txt (line 7)) (3.0.1)
+Requirement already satisfied: jinja2 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (2.10)
+Requirement already satisfied: tornado<7,>=4.1 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (6.0.2)
+Requirement already satisfied: nbconvert in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (5.4.1)
+Requirement already satisfied: traitlets>=4.2.1 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (4.3.2)
+Requirement already satisfied: pyzmq>=17 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (18.0.1)
+Requirement already satisfied: nbformat in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (4.4.0)
+Requirement already satisfied: terminado>=0.8.1 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.8.2)
+Requirement already satisfied: prometheus-client in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.6.0)
+Requirement already satisfied: ipykernel in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (5.1.0)
+Requirement already satisfied: jupyter-client>=5.2.0 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (5.2.4)
+Requirement already satisfied: jupyter-core>=4.4.0 in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (4.4.0)
+Requirement already satisfied: Send2Trash in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (1.5.0)
+Requirement already satisfied: ipython-genutils in /opt/conda/lib/python3.6/site-packages (from notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.2.0)
+Collecting importlib-metadata>=0.20; python_version < "3.8" (from catalogue<1.1.0,>=0.0.7->spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/8e/58/cdea07eb51fc2b906db0968a94700866fc46249bdc75cac23f9d13168929/importlib_metadata-1.7.0-py2.py3-none-any.whl
+Collecting smmap<4,>=3.0.1 (from gitdb<5,>=4.0.1->GitPython>=1.0.0->wandb->-r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/b0/9a/4d409a6234eb940e6a78dfdfc66156e7522262f5f2fecca07dc55915952d/smmap-3.0.4-py2.py3-none-any.whl
+Requirement already satisfied: attrs>=17.4.0 in /opt/conda/lib/python3.6/site-packages (from jsonschema>=2.6.0->jupyterlab-server<0.3.0,>=0.2.0->jupyterlab->-r requirements.txt (line 7)) (19.1.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /opt/conda/lib/python3.6/site-packages (from jsonschema>=2.6.0->jupyterlab-server<0.3.0,>=0.2.0->jupyterlab->-r requirements.txt (line 7)) (0.14.11)
+Requirement already satisfied: MarkupSafe>=0.23 in /opt/conda/lib/python3.6/site-packages (from jinja2->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (1.1.1)
+Requirement already satisfied: entrypoints>=0.2.2 in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.3)
+Requirement already satisfied: bleach in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (3.1.0)
+Requirement already satisfied: defusedxml in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.5.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (1.4.2)
+Requirement already satisfied: mistune>=0.8.1 in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.8.4)
+Requirement already satisfied: testpath in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.4.2)
+Requirement already satisfied: pygments in /opt/conda/lib/python3.6/site-packages (from nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (2.3.1)
+Requirement already satisfied: decorator in /opt/conda/lib/python3.6/site-packages (from traitlets>=4.2.1->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (4.4.0)
+Requirement already satisfied: ptyprocess; os_name != "nt" in /opt/conda/lib/python3.6/site-packages (from terminado>=0.8.1->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.6.0)
+Requirement already satisfied: ipython>=5.0.0 in /opt/conda/lib/python3.6/site-packages (from ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (7.4.0)
+Collecting zipp>=0.5 (from importlib-metadata>=0.20; python_version < "3.8"->catalogue<1.1.0,>=0.0.7->spacy>=2.0.18->fastai==1.0.51->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/b2/34/bfcb43cc0ba81f527bc4f40ef41ba2ff4080e047acb0586b56b3d017ace4/zipp-3.1.0-py3-none-any.whl
+Requirement already satisfied: webencodings in /opt/conda/lib/python3.6/site-packages (from bleach->nbconvert->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.5.1)
+Requirement already satisfied: prompt-toolkit<2.1.0,>=2.0.0 in /opt/conda/lib/python3.6/site-packages (from ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (2.0.9)
+Requirement already satisfied: backcall in /opt/conda/lib/python3.6/site-packages (from ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.1.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /opt/conda/lib/python3.6/site-packages (from ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (4.6.0)
+Requirement already satisfied: jedi>=0.10 in /opt/conda/lib/python3.6/site-packages (from ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.13.3)
+Requirement already satisfied: pickleshare in /opt/conda/lib/python3.6/site-packages (from ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.7.5)
+Requirement already satisfied: wcwidth in /opt/conda/lib/python3.6/site-packages (from prompt-toolkit<2.1.0,>=2.0.0->ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.1.7)
+Requirement already satisfied: parso>=0.3.0 in /opt/conda/lib/python3.6/site-packages (from jedi>=0.10->ipython>=5.0.0->ipykernel->notebook>=4.3.1->jupyterlab->-r requirements.txt (line 7)) (0.3.4)
+Building wheels for collected packages: bottleneck
+  Building wheel for bottleneck (PEP 517): started
+  Building wheel for bottleneck (PEP 517): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/97/a9/12/41b13e8b44889ab05ec4dcc91f27da21634bacf2a0e87473b8
+Successfully built bottleneck
+Building wheels for collected packages: ffmpeg, nvidia-ml-py3, gql, subprocess32, watchdog, wasabi, graphql-core, promise, pathtools
+  Building wheel for ffmpeg (setup.py): started
+  Building wheel for ffmpeg (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/b6/68/c3/a05a35f647ba871e5572b9bbfc0b95fd1c6637a2219f959e7a
+  Building wheel for nvidia-ml-py3 (setup.py): started
+  Building wheel for nvidia-ml-py3 (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/e4/1d/06/640c93f5270d67d0247f30be91f232700d19023f9e66d735c7
+  Building wheel for gql (setup.py): started
+  Building wheel for gql (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/ce/0e/7b/58a8a5268655b3ad74feef5aa97946f0addafb3cbb6bd2da23
+  Building wheel for subprocess32 (setup.py): started
+  Building wheel for subprocess32 (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/68/39/1a/5e402bdfdf004af1786c8b853fd92f8c4a04f22aad179654d1
+  Building wheel for watchdog (setup.py): started
+  Building wheel for watchdog (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/a8/1d/38/2c19bb311f67cc7b4d07a2ec5ea36ab1a0a0ea50db994a5bc7
+  Building wheel for wasabi (setup.py): started
+  Building wheel for wasabi (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/33/96/74/01741d5dde3d866a4461a05b3fc6aa43bd7ece8729a7264bf7
+  Building wheel for graphql-core (setup.py): started
+  Building wheel for graphql-core (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/45/99/d7/c424029bb0fe910c63b68dbf2aa20d3283d023042521bcd7d5
+  Building wheel for promise (setup.py): started
+  Building wheel for promise (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/19/49/34/c3c1e78bcb954c49e5ec0d31784fe63d14d427f316b12fbde9
+  Building wheel for pathtools (setup.py): started
+  Building wheel for pathtools (setup.py): finished with status 'done'
+  Stored in directory: /root/.cache/pip/wheels/0b/04/79/c3b0c3a0266a3cb4376da31e5bfe8bba0c489246968a68e843
+Successfully built ffmpeg nvidia-ml-py3 gql subprocess32 watchdog wasabi graphql-core promise pathtools
+Installing collected packages: pillow, numexpr, tqdm, srsly, wasabi, zipp, importlib-metadata, catalogue, preshed, blis, thinc, spacy, nvidia-ml-py3, dataclasses, bottleneck, fastprogress, fastai, promise, graphql-core, gql, sentry-sdk, subprocess32, smmap, gitdb, GitPython, configparser, shortuuid, docker-pycreds, pathtools, watchdog, wandb, tensorboardX, ffmpeg, ffmpeg-python, youtube-dl
+  Found existing installation: tqdm 4.31.1
+    Uninstalling tqdm-4.31.1:
+      Successfully uninstalled tqdm-4.31.1
+  Found existing installation: preshed 2.0.1
+    Uninstalling preshed-2.0.1:
+      Successfully uninstalled preshed-2.0.1
+  Found existing installation: thinc 6.12.1
+    Uninstalling thinc-6.12.1:
+      Successfully uninstalled thinc-6.12.1
+  Found existing installation: spacy 2.0.16
+    Uninstalling spacy-2.0.16:
+      Successfully uninstalled spacy-2.0.16
+Successfully installed GitPython-3.1.3 blis-0.4.1 bottleneck-1.3.2 catalogue-1.0.0 configparser-5.0.0 dataclasses-0.7 docker-pycreds-0.4.0 fastai-1.0.51 fastprogress-0.2.3 ffmpeg-1.4 ffmpeg-python-0.1.17 gitdb-4.0.5 gql-0.2.0 graphql-core-1.1 importlib-metadata-1.7.0 numexpr-2.7.1 nvidia-ml-py3-7.352.0 pathtools-0.1.2 pillow-6.2.2 preshed-3.0.2 promise-2.3 sentry-sdk-0.16.0 shortuuid-1.0.1 smmap-3.0.4 spacy-2.3.0 srsly-1.0.2 subprocess32-3.5.4 tensorboardX-1.6 thinc-7.4.1 tqdm-4.47.0 wandb-0.9.2 wasabi-0.7.0 watchdog-0.10.3 youtube-dl-2020.6.16.1 zipp-3.1.0
+Removing intermediate container 245a58b615ef
+ ---> d3af2e3f2f89
+Step 18/20 : RUN cd /data/test_images && git lfs pull
+ ---> Running in 348002d932f6
+Removing intermediate container 348002d932f6
+ ---> 8c15934d709e
+Step 19/20 : EXPOSE 8888
+ ---> Running in cdba8e8c7169
+Removing intermediate container cdba8e8c7169
+ ---> ed65d946b5b0
+Step 20/20 : ENTRYPOINT ["sh", "/data/run_notebook.sh"]
+ ---> Running in 8b84e5c39bba
+Removing intermediate container 8b84e5c39bba
+ ---> fe1d259e421d
+{"aux": {"ID": "sha256:fe1d259e421dbc3d8b15f019b7246f66dc7596f9519782db0636b921cf44009b"}}[Warning] One or more build-args [NB_USER NB_UID] were not consumed
+Successfully built fe1d259e421d
+Successfully tagged r2d-test-github.com-jantic-deoldify:cb78c17

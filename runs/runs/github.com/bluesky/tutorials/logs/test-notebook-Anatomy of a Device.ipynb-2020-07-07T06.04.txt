@@ -1,0 +1,7 @@
+Saved workspace: /home/vildeeide/.jupyter/lab/workspaces/lab-a511.jupyterlab-workspace
+[I 200707 06:12:48 inrepo:35] Testing notebook Anatomy of a Device.ipynb
+[I 200707 06:12:50 execute:404] Executing notebook with kernel: python3
+[I 06:12:54.509     repeater:   90] Repeater is listening on 0.0.0.0:5065
+[I 200707 06:13:01 inrepo:41] Saving exported notebook to /io/notebooks/Anatomy of a Device.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

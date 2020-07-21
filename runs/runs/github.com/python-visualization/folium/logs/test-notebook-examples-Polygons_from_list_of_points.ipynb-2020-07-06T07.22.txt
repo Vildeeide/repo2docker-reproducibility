@@ -1,0 +1,5 @@
+[I 200706 08:44:38 inrepo:35] Testing notebook examples/Polygons_from_list_of_points.ipynb
+[I 200706 08:44:39 execute:404] Executing notebook with kernel: python3
+[I 200706 08:44:40 inrepo:41] Saving exported notebook to /io/notebooks/examples/Polygons_from_list_of_points.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

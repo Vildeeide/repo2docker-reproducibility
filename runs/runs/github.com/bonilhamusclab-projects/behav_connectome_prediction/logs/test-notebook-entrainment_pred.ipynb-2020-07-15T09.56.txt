@@ -1,0 +1,4 @@
+[I 200715 09:57:45 inrepo:36] Testing notebook entrainment_pred.ipynb
+[W 200715 09:57:46 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 09:57:46 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 09:57:46 execute:404] Executing notebook with kernel: python3

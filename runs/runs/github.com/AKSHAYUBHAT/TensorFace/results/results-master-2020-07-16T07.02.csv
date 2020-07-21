@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/AKSHAYUBHAT/TensorFace,master,f4af77c,2017-03-07T21:31:03-05:00,build,build,True,github.com/AKSHAYUBHAT/TensorFace/logs/build-master-2020-07-16T07.02.txt,2020-07-16T07:02:06.639629,2020-07-16T07.02,0.11.0
+https://github.com/AKSHAYUBHAT/TensorFace,master,f4af77c,2017-03-07T21:31:03-05:00,notebook,simple.ipynb,False,github.com/AKSHAYUBHAT/TensorFace/logs/test-notebook-simple.ipynb-2020-07-16T07.02.txt,2020-07-16T07:02:06.639629,2020-07-16T07.02,0.11.0
+https://github.com/AKSHAYUBHAT/TensorFace,master,f4af77c,2017-03-07T21:31:03-05:00,notebook,vggface/torch_verify.ipynb,False,github.com/AKSHAYUBHAT/TensorFace/logs/test-notebook-vggface-torch_verify.ipynb-2020-07-16T07.02.txt,2020-07-16T07:02:06.639629,2020-07-16T07.02,0.11.0

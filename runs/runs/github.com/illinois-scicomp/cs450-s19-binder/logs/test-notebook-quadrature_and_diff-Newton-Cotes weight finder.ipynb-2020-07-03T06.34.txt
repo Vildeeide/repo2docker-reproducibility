@@ -1,0 +1,5 @@
+[I 200703 06:40:28 inrepo:35] Testing notebook quadrature_and_diff/Newton-Cotes weight finder.ipynb
+[I 200703 06:40:30 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:30 inrepo:41] Saving exported notebook to /io/notebooks/quadrature_and_diff/Newton-Cotes weight finder.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

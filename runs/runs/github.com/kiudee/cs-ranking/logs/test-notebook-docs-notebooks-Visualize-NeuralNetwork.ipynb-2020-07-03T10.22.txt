@@ -1,0 +1,65 @@
+[I 200703 10:25:50 inrepo:35] Testing notebook docs/notebooks/Visualize-NeuralNetwork.ipynb
+[I 200703 10:25:51 execute:404] Executing notebook with kernel: python3
+2020-07-03 10:25:55.744902: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-03 10:25:55.752409: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000000000 Hz
+2020-07-03 10:25:55.752955: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55bb952c7460 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-03 10:25:55.753128: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+SUB_FOLDER = "gr_vis"
+log_path = os.path.join(os.getcwd(), SUB_FOLDER, "gr.log")
+configure_numpy_keras(seed=42)
+setup_logging(log_path)
+logger = logging.getLogger('Experiment')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNotFoundError[0m                             Traceback (most recent call last)
+[0;32m<ipython-input-2-cafb06ced514>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mSUB_FOLDER[0m [0;34m=[0m [0;34m"gr_vis"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mlog_path[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mgetcwd[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mSUB_FOLDER[0m[0;34m,[0m [0;34m"gr.log"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mconfigure_numpy_keras[0m[0;34m([0m[0mseed[0m[0;34m=[0m[0;36m42[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0msetup_logging[0m[0;34m([0m[0mlog_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mlogger[0m [0;34m=[0m [0mlogging[0m[0;34m.[0m[0mgetLogger[0m[0;34m([0m[0;34m'Experiment'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/csrank/tensorflow_util.py[0m in [0;36mconfigure_numpy_keras[0;34m(seed)[0m
+[1;32m     62[0m             [0minter_op_parallelism_threads[0m[0;34m=[0m[0;36m2[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     63[0m         )  # , gpu_options = gpu_options)
+[0;32m---> 64[0;31m     [0msess[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mSession[0m[0;34m([0m[0mconfig[0m[0;34m=[0m[0mconfig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     65[0m     [0mK[0m[0;34m.[0m[0mset_session[0m[0;34m([0m[0msess[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     66[0m     [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0mseed[0m[0;34m([0m[0mseed[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow_core/python/client/session.py[0m in [0;36m__init__[0;34m(self, target, graph, config)[0m
+[1;32m   1583[0m           [0mprotocol[0m [0mbuffer[0m [0;32mwith[0m [0mconfiguration[0m [0moptions[0m [0;32mfor[0m [0mthe[0m [0msession[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1584[0m     """
+[0;32m-> 1585[0;31m     [0msuper[0m[0;34m([0m[0mSession[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mtarget[0m[0;34m,[0m [0mgraph[0m[0;34m,[0m [0mconfig[0m[0;34m=[0m[0mconfig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1586[0m     [0;31m# NOTE(mrry): Create these on first `__enter__` to avoid a reference cycle.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1587[0m     [0mself[0m[0;34m.[0m[0m_default_graph_context_manager[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tensorflow_core/python/client/session.py[0m in [0;36m__init__[0;34m(self, target, graph, config)[0m
+[1;32m    697[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    698[0m       [0;31m# pylint: disable=protected-access[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 699[0;31m       [0mself[0m[0;34m.[0m[0m_session[0m [0;34m=[0m [0mtf_session[0m[0;34m.[0m[0mTF_NewSessionRef[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_graph[0m[0;34m.[0m[0m_c_graph[0m[0;34m,[0m [0mopts[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    700[0m       [0;31m# pylint: enable=protected-access[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    701[0m     [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNotFoundError[0m: No CPU devices are available in this process
+NotFoundError: No CPU devices are available in this process
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

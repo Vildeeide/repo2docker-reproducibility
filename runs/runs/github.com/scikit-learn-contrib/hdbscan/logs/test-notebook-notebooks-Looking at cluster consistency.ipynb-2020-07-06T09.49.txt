@@ -1,0 +1,5 @@
+[I 200706 09:49:27 inrepo:35] Testing notebook notebooks/Looking at cluster consistency.ipynb
+[I 200706 09:49:28 execute:404] Executing notebook with kernel: python3
+[I 200706 09:49:38 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/Looking at cluster consistency.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

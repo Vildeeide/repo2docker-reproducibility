@@ -1,0 +1,5 @@
+[I 200703 06:43:44 inrepo:35] Testing notebook linear_systems/Vanilla Gaussian Elimination.ipynb
+[I 200703 06:43:45 execute:404] Executing notebook with kernel: python
+[I 200703 06:43:45 inrepo:41] Saving exported notebook to /io/notebooks/linear_systems/Vanilla Gaussian Elimination.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

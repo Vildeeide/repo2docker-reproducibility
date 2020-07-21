@@ -1,0 +1,112 @@
+[I 200716 06:50:46 inrepo:36] Testing notebook mki_code/mki_code_mpld3.ipynb
+[W 200716 06:50:47 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200716 06:50:47 inrepo:60] Using kernel python3 to provide language: python
+[I 200716 06:50:48 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+fig, ax = plt.subplots(subplot_kw=dict(axisbg='#EEEEEE'))
+N = 20
+
+scatter = ax.scatter(np.random.normal(size=N),
+                     np.random.normal(size=N),
+                     c=np.random.random(size=N),
+                     s=1000 * np.random.random(size=N),
+                     alpha=0.3,
+                     cmap=plt.cm.jet)
+ax.grid(color='white', linestyle='solid')
+
+ax.set_title("Scatter Plot (with tooltips)", size=20)
+
+#define what do we want to be label
+labels = ['point {0}'.format(i + 1) for i in range(N)]
+
+#create a new plugin that implement at label
+tooltip = mpld3.plugins.PointLabelTooltip(scatter, labels=labels)
+mpld3.plugins.connect(fig, tooltip)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-13-3b7fd04cab75>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mfig[0m[0;34m,[0m [0max[0m [0;34m=[0m [0mplt[0m[0;34m.[0m[0msubplots[0m[0;34m([0m[0msubplot_kw[0m[0;34m=[0m[0mdict[0m[0;34m([0m[0maxisbg[0m[0;34m=[0m[0;34m'#EEEEEE'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mN[0m [0;34m=[0m [0;36m20[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m scatter = ax.scatter(np.random.normal(size=N),
+[1;32m      5[0m                      [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0mnormal[0m[0;34m([0m[0msize[0m[0;34m=[0m[0mN[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/pyplot.py[0m in [0;36msubplots[0;34m(nrows, ncols, sharex, sharey, squeeze, subplot_kw, gridspec_kw, **fig_kw)[0m
+[1;32m   1178[0m     axs = fig.subplots(nrows=nrows, ncols=ncols, sharex=sharex, sharey=sharey,
+[1;32m   1179[0m                        [0msqueeze[0m[0;34m=[0m[0msqueeze[0m[0;34m,[0m [0msubplot_kw[0m[0;34m=[0m[0msubplot_kw[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1180[0;31m                        gridspec_kw=gridspec_kw)
+[0m[1;32m   1181[0m     [0;32mreturn[0m [0mfig[0m[0;34m,[0m [0maxs[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1182[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/figure.py[0m in [0;36msubplots[0;34m(self, nrows, ncols, sharex, sharey, squeeze, subplot_kw, gridspec_kw)[0m
+[1;32m   1574[0m                 [0msubplot_kw[0m[0;34m[[0m[0;34m"sharex"[0m[0;34m][0m [0;34m=[0m [0mshared_with[0m[0;34m[[0m[0msharex[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1575[0m                 [0msubplot_kw[0m[0;34m[[0m[0;34m"sharey"[0m[0;34m][0m [0;34m=[0m [0mshared_with[0m[0;34m[[0m[0msharey[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1576[0;31m                 [0maxarr[0m[0;34m[[0m[0mrow[0m[0;34m,[0m [0mcol[0m[0;34m][0m [0;34m=[0m [0mself[0m[0;34m.[0m[0madd_subplot[0m[0;34m([0m[0mgs[0m[0;34m[[0m[0mrow[0m[0;34m,[0m [0mcol[0m[0;34m][0m[0;34m,[0m [0;34m**[0m[0msubplot_kw[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1577[0m [0;34m[0m[0m
+[1;32m   1578[0m         [0;31m# turn off redundant tick labeling[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/figure.py[0m in [0;36madd_subplot[0;34m(self, *args, **kwargs)[0m
+[1;32m   1417[0m                     [0mself[0m[0;34m.[0m[0m_axstack[0m[0;34m.[0m[0mremove[0m[0;34m([0m[0max[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1418[0m [0;34m[0m[0m
+[0;32m-> 1419[0;31m             [0ma[0m [0;34m=[0m [0msubplot_class_factory[0m[0;34m([0m[0mprojection_class[0m[0;34m)[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1420[0m [0;34m[0m[0m
+[1;32m   1421[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_add_axes_internal[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/axes/_subplots.py[0m in [0;36m__init__[0;34m(self, fig, *args, **kwargs)[0m
+[1;32m     74[0m [0;34m[0m[0m
+[1;32m     75[0m         [0;31m# _axes_class is set in the subplot_class_factory[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 76[0;31m         [0mself[0m[0;34m.[0m[0m_axes_class[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfig[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mfigbox[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     77[0m         [0;31m# add a layout box to this, for both the full axis, and the poss[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     78[0m         [0;31m# of the axis.  We need both because the axes may become smaller[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/axes/_base.py[0m in [0;36m__init__[0;34m(self, fig, rect, facecolor, frameon, sharex, sharey, label, xscale, yscale, **kwargs)[0m
+[1;32m    466[0m             [0mself[0m[0;34m.[0m[0mset_yscale[0m[0;34m([0m[0myscale[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    467[0m [0;34m[0m[0m
+[0;32m--> 468[0;31m         [0mself[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    469[0m [0;34m[0m[0m
+[1;32m    470[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mxaxis[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36mupdate[0;34m(self, props)[0m
+[1;32m   1004[0m [0;34m[0m[0m
+[1;32m   1005[0m         [0;32mwith[0m [0mcbook[0m[0;34m.[0m[0m_setattr_cm[0m[0;34m([0m[0mself[0m[0;34m,[0m [0meventson[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1006[0;31m             [0mret[0m [0;34m=[0m [0;34m[[0m[0m_update_property[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mprops[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1007[0m [0;34m[0m[0m
+[1;32m   1008[0m         [0;32mif[0m [0mlen[0m[0;34m([0m[0mret[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m   1004[0m [0;34m[0m[0m
+[1;32m   1005[0m         [0;32mwith[0m [0mcbook[0m[0;34m.[0m[0m_setattr_cm[0m[0;34m([0m[0mself[0m[0;34m,[0m [0meventson[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1006[0;31m             [0mret[0m [0;34m=[0m [0;34m[[0m[0m_update_property[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mprops[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1007[0m [0;34m[0m[0m
+[1;32m   1008[0m         [0;32mif[0m [0mlen[0m[0;34m([0m[0mret[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/artist.py[0m in [0;36m_update_property[0;34m(self, k, v)[0m
+[1;32m   1000[0m                 [0;32mif[0m [0;32mnot[0m [0mcallable[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1001[0m                     raise AttributeError('{!r} object has no property {!r}'
+[0;32m-> 1002[0;31m                                          .format(type(self).__name__, k))
+[0m[1;32m   1003[0m                 [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0mv[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1004[0m [0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'AxesSubplot' object has no property 'axisbg'
+AttributeError: 'AxesSubplot' object has no property 'axisbg'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

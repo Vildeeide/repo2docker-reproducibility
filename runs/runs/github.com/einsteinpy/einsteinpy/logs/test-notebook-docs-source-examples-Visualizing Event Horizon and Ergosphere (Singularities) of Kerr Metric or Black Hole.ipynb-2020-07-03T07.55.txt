@@ -1,0 +1,5 @@
+[I 200703 07:59:36 inrepo:35] Testing notebook docs/source/examples/Visualizing Event Horizon and Ergosphere (Singularities) of Kerr Metric or Black Hole.ipynb
+[I 200703 07:59:37 execute:404] Executing notebook with kernel: python3
+[I 200703 07:59:39 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Visualizing Event Horizon and Ergosphere (Singularities) of Kerr Metric or Black Hole.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

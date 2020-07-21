@@ -1,0 +1,5 @@
+[I 200706 08:44:42 inrepo:35] Testing notebook examples/SmoothFactor.ipynb
+[I 200706 08:44:43 execute:404] Executing notebook with kernel: python3
+[I 200706 08:44:45 inrepo:41] Saving exported notebook to /io/notebooks/examples/SmoothFactor.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,242 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-14T11.13sjepz6id/github.com/apockill/EasyInference.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 75b58acff81e
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a79cd1877a22
+Removing intermediate container a79cd1877a22
+ ---> ecf65a1b1cce
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 909387b68485
+Removing intermediate container 909387b68485
+ ---> 876ecf3655a6
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 4ae86b2e8abe
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting tensorflow-gpu
+  Downloading tensorflow_gpu-2.2.0-cp37-cp37m-manylinux2010_x86_64.whl (516.2 MB)
+Collecting numpy<2.0,>=1.16.0
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Requirement already satisfied: wheel>=0.26; python_version >= "3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow-gpu->easyinference==0.1) (0.34.1)
+Collecting wrapt>=1.11.1
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting protobuf>=3.8.0
+  Downloading protobuf-3.12.2-cp37-cp37m-manylinux1_x86_64.whl (1.3 MB)
+Requirement already satisfied: six>=1.12.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow-gpu->easyinference==0.1) (1.14.0)
+Collecting absl-py>=0.7.0
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+Collecting tensorflow-estimator<2.3.0,>=2.2.0
+  Downloading tensorflow_estimator-2.2.0-py2.py3-none-any.whl (454 kB)
+Collecting astunparse==1.6.3
+  Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+Collecting grpcio>=1.8.6
+  Downloading grpcio-1.30.0-cp37-cp37m-manylinux2010_x86_64.whl (3.0 MB)
+Collecting scipy==1.4.1; python_version >= "3"
+  Downloading scipy-1.4.1-cp37-cp37m-manylinux1_x86_64.whl (26.1 MB)
+Collecting tensorboard<2.3.0,>=2.2.0
+  Downloading tensorboard-2.2.2-py3-none-any.whl (3.0 MB)
+Collecting opt-einsum>=2.3.2
+  Downloading opt_einsum-3.2.1-py3-none-any.whl (63 kB)
+Collecting google-pasta>=0.1.8
+  Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+Collecting h5py<2.11.0,>=2.10.0
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting keras-preprocessing>=1.1.0
+  Downloading Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting gast==0.3.3
+  Downloading gast-0.3.3-py2.py3-none-any.whl (9.7 kB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from protobuf>=3.8.0->tensorflow-gpu->easyinference==0.1) (45.1.0.post20200119)
+Collecting markdown>=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Downloading google_auth_oauthlib-0.4.1-py2.py3-none-any.whl (18 kB)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Downloading tensorboard_plugin_wit-1.7.0-py3-none-any.whl (779 kB)
+Requirement already satisfied: requests<3,>=2.21.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (2.22.0)
+Collecting google-auth<2,>=1.6.3
+  Downloading google_auth-1.19.0-py2.py3-none-any.whl (91 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from markdown>=2.6.8->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (1.5.0)
+Collecting requests-oauthlib>=0.7.0
+  Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (2019.11.28)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (2.8)
+Collecting rsa<5,>=3.1.4; python_version >= "3"
+  Downloading rsa-4.6-py3-none-any.whl (47 kB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting cachetools<5.0,>=2.0.0
+  Downloading cachetools-4.1.1-py3-none-any.whl (10 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->markdown>=2.6.8->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (2.1.0)
+Requirement already satisfied: oauthlib>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.3.0,>=2.2.0->tensorflow-gpu->easyinference==0.1) (3.0.1)
+Collecting pyasn1>=0.1.3
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Building wheels for collected packages: easyinference, wrapt, absl-py, termcolor
+  Building wheel for easyinference (setup.py): started
+  Building wheel for easyinference (setup.py): finished with status 'done'
+  Created wheel for easyinference: filename=easyinference-0.1-py3-none-any.whl size=5558 sha256=f400ad4bd0cbee2aaf2b519ae1d5c2990d0fbc6ba117436a863223d0a4d79326
+  Stored in directory: /tmp/pip-ephem-wheel-cache-0sehbcwz/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=70961 sha256=c8691f9a0aa37bda96e8443de81ce160e00eb421ee74f13875fb0368f698d8bf
+  Stored in directory: /tmp/pip-ephem-wheel-cache-0sehbcwz/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+  Building wheel for absl-py (setup.py): started
+  Building wheel for absl-py (setup.py): finished with status 'done'
+  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121932 sha256=834e11f28359f4939a3bd6d857b241c32aab029908531ac22611dd77a9b265aa
+  Stored in directory: /tmp/pip-ephem-wheel-cache-0sehbcwz/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=e5a4391829cd9e747ab26d7c3629f1f79ca19363e128d9dbbb66388b4b6b4ecc
+  Stored in directory: /tmp/pip-ephem-wheel-cache-0sehbcwz/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+Successfully built easyinference wrapt absl-py termcolor
+Installing collected packages: numpy, wrapt, protobuf, absl-py, tensorflow-estimator, astunparse, grpcio, scipy, markdown, pyasn1, rsa, pyasn1-modules, cachetools, google-auth, requests-oauthlib, google-auth-oauthlib, werkzeug, tensorboard-plugin-wit, tensorboard, opt-einsum, google-pasta, h5py, keras-preprocessing, termcolor, gast, tensorflow-gpu, easyinference
+Successfully installed absl-py-0.9.0 astunparse-1.6.3 cachetools-4.1.1 easyinference-0.1 gast-0.3.3 google-auth-1.19.0 google-auth-oauthlib-0.4.1 google-pasta-0.2.0 grpcio-1.30.0 h5py-2.10.0 keras-preprocessing-1.1.2 markdown-3.2.2 numpy-1.19.0 opt-einsum-3.2.1 protobuf-3.12.2 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-oauthlib-1.3.0 rsa-4.6 scipy-1.4.1 tensorboard-2.2.2 tensorboard-plugin-wit-1.7.0 tensorflow-estimator-2.2.0 tensorflow-gpu-2.2.0 termcolor-1.1.0 werkzeug-1.0.1 wrapt-1.12.1
+Removing intermediate container 4ae86b2e8abe
+ ---> b34bd478204f
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 284be08a3bae
+Removing intermediate container 284be08a3bae
+ ---> b3175356100a
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in c369a0275f4d
+Removing intermediate container c369a0275f4d
+ ---> fc061b1e148e
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 043ca30217dc
+Removing intermediate container 043ca30217dc
+ ---> 05fe2484f84d
+Step 45/48 : USER ${NB_USER}
+ ---> Running in dfd438254e1a
+Removing intermediate container dfd438254e1a
+ ---> 4cd9ee0199c2
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 8e24792666f2
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 620578d2876f
+Removing intermediate container 620578d2876f
+ ---> 5810e132139f
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 79e3a9d21832
+Removing intermediate container 79e3a9d21832
+ ---> 9253d1c67a81
+{"aux": {"ID": "sha256:9253d1c67a81e872767b60eaf5a83f270946c207e19a119b2109108596215fa6"}}Successfully built 9253d1c67a81
+Successfully tagged r2d-test-github.com-apockill-easyinference:33dc9c9

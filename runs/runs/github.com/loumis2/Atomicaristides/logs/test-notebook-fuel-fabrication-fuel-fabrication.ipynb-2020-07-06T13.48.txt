@@ -1,0 +1,5 @@
+[I 200706 13:48:20 inrepo:35] Testing notebook fuel-fabrication/fuel-fabrication.ipynb
+[I 200706 13:48:21 execute:404] Executing notebook with kernel: python3
+[I 200706 13:48:21 inrepo:41] Saving exported notebook to /io/notebooks/fuel-fabrication/fuel-fabrication.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,88 @@
+[I 200706 13:43:12 inrepo:35] Testing notebook index.ipynb
+[I 200706 13:43:13 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+frame2.pivot('sample', 'position')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-28-169e4f808dbc>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mframe2[0m[0;34m.[0m[0mpivot[0m[0;34m([0m[0;34m'sample'[0m[0;34m,[0m [0;34m'position'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/frame.py[0m in [0;36mpivot[0;34m(self, index, columns, values)[0m
+[1;32m   5921[0m         [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mreshape[0m[0;34m.[0m[0mpivot[0m [0;32mimport[0m [0mpivot[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   5922[0m [0;34m[0m[0m
+[0;32m-> 5923[0;31m         [0;32mreturn[0m [0mpivot[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mindex[0m[0;34m=[0m[0mindex[0m[0;34m,[0m [0mcolumns[0m[0;34m=[0m[0mcolumns[0m[0;34m,[0m [0mvalues[0m[0;34m=[0m[0mvalues[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   5924[0m [0;34m[0m[0m
+[1;32m   5925[0m     _shared_docs[
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/reshape/pivot.py[0m in [0;36mpivot[0;34m(data, index, columns, values)[0m
+[1;32m    448[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    449[0m             [0mindexed[0m [0;34m=[0m [0mdata[0m[0;34m.[0m[0m_constructor_sliced[0m[0;34m([0m[0mdata[0m[0;34m[[0m[0mvalues[0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m,[0m [0mindex[0m[0;34m=[0m[0mindex[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 450[0;31m     [0;32mreturn[0m [0mindexed[0m[0;34m.[0m[0munstack[0m[0;34m([0m[0mcolumns[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    451[0m [0;34m[0m[0m
+[1;32m    452[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/frame.py[0m in [0;36munstack[0;34m(self, level, fill_value)[0m
+[1;32m   6384[0m         [0;32mfrom[0m [0mpandas[0m[0;34m.[0m[0mcore[0m[0;34m.[0m[0mreshape[0m[0;34m.[0m[0mreshape[0m [0;32mimport[0m [0munstack[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6385[0m [0;34m[0m[0m
+[0;32m-> 6386[0;31m         [0;32mreturn[0m [0munstack[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mlevel[0m[0;34m,[0m [0mfill_value[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   6387[0m [0;34m[0m[0m
+[1;32m   6388[0m     _shared_docs[
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/reshape/reshape.py[0m in [0;36munstack[0;34m(obj, level, fill_value)[0m
+[1;32m    406[0m     [0;32mif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mDataFrame[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    407[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m.[0m[0mindex[0m[0;34m,[0m [0mMultiIndex[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 408[0;31m             [0;32mreturn[0m [0m_unstack_frame[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mlevel[0m[0;34m,[0m [0mfill_value[0m[0;34m=[0m[0mfill_value[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    409[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    410[0m             [0;32mreturn[0m [0mobj[0m[0;34m.[0m[0mT[0m[0;34m.[0m[0mstack[0m[0;34m([0m[0mdropna[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/reshape/reshape.py[0m in [0;36m_unstack_frame[0;34m(obj, level, fill_value)[0m
+[1;32m    427[0m             [0m_Unstacker[0m[0;34m,[0m [0mindex[0m[0;34m=[0m[0mobj[0m[0;34m.[0m[0mindex[0m[0;34m,[0m [0mlevel[0m[0;34m=[0m[0mlevel[0m[0;34m,[0m [0mfill_value[0m[0;34m=[0m[0mfill_value[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    428[0m         )
+[0;32m--> 429[0;31m         [0mblocks[0m [0;34m=[0m [0mobj[0m[0;34m.[0m[0m_data[0m[0;34m.[0m[0munstack[0m[0;34m([0m[0munstacker[0m[0;34m,[0m [0mfill_value[0m[0;34m=[0m[0mfill_value[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    430[0m         [0;32mreturn[0m [0mobj[0m[0;34m.[0m[0m_constructor[0m[0;34m([0m[0mblocks[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    431[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/internals/managers.py[0m in [0;36munstack[0;34m(self, unstacker_func, fill_value)[0m
+[1;32m   1434[0m         """
+[1;32m   1435[0m         [0mn_rows[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mshape[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1436[0;31m         [0mdummy[0m [0;34m=[0m [0munstacker_func[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mempty[0m[0;34m([0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0;36m0[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m [0mvalue_columns[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mitems[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1437[0m         [0mnew_columns[0m [0;34m=[0m [0mdummy[0m[0;34m.[0m[0mget_new_columns[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1438[0m         [0mnew_index[0m [0;34m=[0m [0mdummy[0m[0;34m.[0m[0mget_new_index[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/reshape/reshape.py[0m in [0;36m__init__[0;34m(self, values, index, level, value_columns, fill_value, constructor)[0m
+[1;32m    139[0m [0;34m[0m[0m
+[1;32m    140[0m         [0mself[0m[0;34m.[0m[0m_make_sorted_values_labels[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 141[0;31m         [0mself[0m[0;34m.[0m[0m_make_selectors[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    142[0m [0;34m[0m[0m
+[1;32m    143[0m     [0;32mdef[0m [0m_make_sorted_values_labels[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/reshape/reshape.py[0m in [0;36m_make_selectors[0;34m(self)[0m
+[1;32m    177[0m [0;34m[0m[0m
+[1;32m    178[0m         [0;32mif[0m [0mmask[0m[0;34m.[0m[0msum[0m[0;34m([0m[0;34m)[0m [0;34m<[0m [0mlen[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mindex[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 179[0;31m             [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"Index contains duplicate entries, cannot reshape"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    180[0m [0;34m[0m[0m
+[1;32m    181[0m         [0mself[0m[0;34m.[0m[0mgroup_index[0m [0;34m=[0m [0mcomp_index[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: Index contains duplicate entries, cannot reshape
+ValueError: Index contains duplicate entries, cannot reshape
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

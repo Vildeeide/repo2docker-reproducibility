@@ -1,0 +1,165 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T06.251dii_vjh/github.com/stencila/examples.
+Using PythonBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/52 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/52 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/52 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/52 : ENV STENCILA_ARCHIVE_DIR ${REPO_DIR}/r-spreadsheet
+ ---> Using cache
+ ---> e27ef64d526b
+Step 37/52 : ENV STENCILA_ARCHIVE r-sheet.dar
+ ---> Using cache
+ ---> f47533fc4233
+Step 38/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 1071d7953f23
+Step 39/52 : USER root
+ ---> Using cache
+ ---> ee5dbb900888
+Step 40/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 268fd7c01104
+Step 41/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 3c975d8528e1
+Step 42/52 : RUN ${NB_PYTHON_PREFIX}/bin/pip install --no-cache nbstencilaproxy==0.1.1 && jupyter serverextension enable --sys-prefix --py nbstencilaproxy && jupyter nbextension install    --sys-prefix --py nbstencilaproxy && jupyter nbextension enable     --sys-prefix --py nbstencilaproxy
+ ---> Using cache
+ ---> c484745bdacf
+Step 43/52 : USER root
+ ---> Using cache
+ ---> f1977b39bec8
+Step 44/52 : COPY src/ ${REPO_DIR}
+ ---> 3ba41dd98b53
+Step 45/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in b57fb51d4c2a
+Removing intermediate container b57fb51d4c2a
+ ---> 2987d4f2dda2
+Step 46/52 : LABEL repo2docker.ref="None"
+ ---> Running in 45a7b3a92a90
+Removing intermediate container 45a7b3a92a90
+ ---> f2a5c50baa08
+Step 47/52 : LABEL repo2docker.repo="local"
+ ---> Running in 049edfbb070a
+Removing intermediate container 049edfbb070a
+ ---> 69bb4e5e243e
+Step 48/52 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 89544f7f5147
+Removing intermediate container 89544f7f5147
+ ---> b8319eabbd69
+Step 49/52 : USER ${NB_USER}
+ ---> Running in bfe23138673e
+Removing intermediate container bfe23138673e
+ ---> 93bb6e103c8f
+Step 50/52 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> e747d993cc2f
+Step 51/52 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in b2127825293b
+Removing intermediate container b2127825293b
+ ---> 030355fbc4e4
+Step 52/52 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in f5480093e259
+Removing intermediate container f5480093e259
+ ---> e17ecb7aec5d
+{"aux": {"ID": "sha256:e17ecb7aec5d52808c9f1955641b6e5c6b8a6cd11402b365b4c80a8b7f88dda9"}}Successfully built e17ecb7aec5d
+Successfully tagged r2d-test-github.com-stencila-examples:fc6efa3

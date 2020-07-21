@@ -1,0 +1,5 @@
+[I 200703 06:40:47 inrepo:35] Testing notebook error_and_fp/Density of Floating Point Numbers.ipynb
+[I 200703 06:40:49 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:51 inrepo:41] Saving exported notebook to /io/notebooks/error_and_fp/Density of Floating Point Numbers.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

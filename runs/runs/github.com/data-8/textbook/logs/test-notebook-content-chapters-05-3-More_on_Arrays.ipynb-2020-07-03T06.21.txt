@@ -1,0 +1,5 @@
+[I 200703 06:29:50 inrepo:35] Testing notebook content/chapters/05/3/More_on_Arrays.ipynb
+[I 200703 06:29:52 execute:404] Executing notebook with kernel: python3
+[I 200703 06:29:56 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/05/3/More_on_Arrays.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

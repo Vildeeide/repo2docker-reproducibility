@@ -1,0 +1,139 @@
+[I 200720 06:28:14 inrepo:36] Testing notebook EclipseTracker.ipynb
+[I 200720 06:28:14 inrepo:45] Found kernel python3
+[I 200720 06:28:15 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import json
+from datetime import datetime
+import threading
+import os
+import tweepy
+from tweepy import Stream, OAuthHandler
+from tweepy.streaming import StreamListener
+
+# Keep the "Consumer Secret" a secret. This key should never be human-readable in your application. 
+
+cons_key = 'YOUR CONSUMER KEY'
+cons_secret = 'YOUR CONSUMER SECRET'
+access_token = 'YOUR ACCESS TOKEN'
+access_secret = 'YOUR ACCESS SECRET'
+
+auth = OAuthHandler(cons_key, cons_secret)
+auth.set_access_token(access_token, access_secret)
+
+api = tweepy.API(auth)
+
+path = 'Twitter Data/'
+outfile = path + 'eclipsefile'
+ext = '.json'
+
+maxfilesize = 1E9 # 1E3 for testing
+maxfilenum = 120 # 5 for testing
+
+# start = datetime(2017, 8, 19, 1, 14, 0) # testing
+# end = datetime(2017, 8, 19, 1, 14, 30) # testing
+
+start = datetime(2017, 8, 21, 15, 0, 0)
+end = datetime(2017, 8, 21, 21, 0, 0)
+
+def get_delay():
+    now = datetime.utcnow() # test with datetime.now()
+    delay = (start - now).total_seconds()
+    print('The eclipse begins in %f seconds.' % delay)
+    return delay
+
+message = 'running...'
+
+class EclipseListener(StreamListener):
+    
+    def __init__(self, api=api):
+        super(EclipseListener, self).__init__()
+        self.num_tweets = 0
+        self.file_num = 1
+        self.counter = 0
+
+    def on_status(self, status):
+        self.counter += 1
+        if self.counter == 100:
+            print(message)
+            self.counter = 0
+        now = datetime.utcnow() # test with datetime.now()
+        if start <= now <= end:
+            status = status._json
+            place = status['place']
+            if place != None and place['country'] == 'United States':
+                self.num_tweets += 1
+                tweet = {'USER': status['user']['screen_name'], 'TEXT': status['text'], 'CREATED AT': status['created_at'], 
+                         'PLACE': [place['place_type'], place['full_name'], place['country'], place['bounding_box']['coordinates']]}
+                print('USER = ' + tweet['USER'])
+                myfile = outfile + str(self.file_num) + ext
+                with open(myfile, 'a') as fp:
+                    if self.file_num <= maxfilenum:
+                        if os.path.getsize(myfile) < maxfilesize:
+                            json.dump(tweet,fp)
+                            return True
+                        else:
+                            self.file_num += 1
+                    else:
+                        print('------------------------------------------------------------')
+                        print('Maximum number of Eclipse tweets reached. Data acquisition complete.')
+                        return False
+        else:
+            print('------------------------------------------------------------')
+            print('The Great American Eclipse has ended! Data acquisition complete.')
+            return False
+        
+    def on_timeout(self, status):
+        print('Stream disconnected; continuing...')
+
+def stream_now():
+    print('------------------------------------------------------------')
+    print('Now Streaming!')
+    print('------------------------------------------------------------')
+    stream = Stream(auth, EclipseListener())
+    stream.filter(track = ['eclipse', 'sun']) # 'eclipse' = 'e' for testing
+
+
+timeinterval = 900 # test at 10
+
+def countdown():
+    delay = get_delay()
+    if delay <= timeinterval:
+        t = threading.Timer(delay, stream_now)
+        t.start()
+    else:
+        t = threading.Timer(timeinterval, countdown)
+        t.start()
+
+countdown()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-ad9a77350aa5>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0;32mimport[0m [0mthreading[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0;32mimport[0m [0mtweepy[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0;32mfrom[0m [0mtweepy[0m [0;32mimport[0m [0mStream[0m[0;34m,[0m [0mOAuthHandler[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;32mfrom[0m [0mtweepy[0m[0;34m.[0m[0mstreaming[0m [0;32mimport[0m [0mStreamListener[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'tweepy'
+ModuleNotFoundError: No module named 'tweepy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,6 @@
+[I 200717 12:26:04 inrepo:36] Testing notebook week_3/composition_models.ipynb
+[I 200717 12:26:04 inrepo:45] Found kernel python3
+[I 200717 12:26:05 execute:404] Executing notebook with kernel: python3
+[I 200717 12:26:05 inrepo:79] Saving exported notebook to /io/notebooks/week_3/composition_models.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

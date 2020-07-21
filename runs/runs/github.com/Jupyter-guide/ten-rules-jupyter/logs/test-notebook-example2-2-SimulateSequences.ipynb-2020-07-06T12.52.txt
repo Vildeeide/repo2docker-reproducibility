@@ -1,0 +1,5 @@
+[I 200706 12:53:12 inrepo:35] Testing notebook example2/2-SimulateSequences.ipynb
+[I 200706 12:53:13 execute:404] Executing notebook with kernel: python3
+[I 200706 12:53:20 inrepo:41] Saving exported notebook to /io/notebooks/example2/2-SimulateSequences.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

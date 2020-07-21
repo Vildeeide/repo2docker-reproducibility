@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/madeleineudell/Convex-Finance-2017,master,b17fa85,2017-09-25T14:06:38-04:00,build,build,True,github.com/madeleineudell/Convex-Finance-2017/logs/build-master-2020-07-15T08.04.txt,2020-07-15T08:04:47.750634,2020-07-15T08.04,0.11.0
+https://github.com/madeleineudell/Convex-Finance-2017,master,b17fa85,2017-09-25T14:06:38-04:00,notebook,Convex-tutorial.ipynb,False,github.com/madeleineudell/Convex-Finance-2017/logs/test-notebook-Convex-tutorial.ipynb-2020-07-15T08.04.txt,2020-07-15T08:04:47.750634,2020-07-15T08.04,0.11.0

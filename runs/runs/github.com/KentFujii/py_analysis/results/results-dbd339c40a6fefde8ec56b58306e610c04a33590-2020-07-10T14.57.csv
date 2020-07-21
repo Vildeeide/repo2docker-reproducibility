@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/KentFujii/py_analysis,dbd339c40a6fefde8ec56b58306e610c04a33590,dbd339c,2018-06-17T01:13:35+09:00,build,build,False,github.com/KentFujii/py_analysis/logs/build-dbd339c40a6fefde8ec56b58306e610c04a33590-2020-07-10T14.57.txt,2020-07-10T14:57:20.778020,2020-07-10T14.57,0.11.0

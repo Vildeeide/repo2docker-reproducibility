@@ -1,0 +1,156 @@
+[I 200713 12:29:36 inrepo:36] Testing notebook Trains.ipynb
+[I 200713 12:29:37 inrepo:45] Found kernel python3
+[I 200713 12:29:38 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import datetime
+import csv 
+
+'''
+print(
+    datetime.datetime.fromtimestamp(
+        int("1284101485")
+    ).strftime('%Y-%m-%d %H:%M:%S')
+)
+time = datetime.datetime.fromtimestamp(int("1284101485")).strftime('%Y-%m-%d %H:%M:%S')
+print (time[11:19]) #atlantis standard time (AST)
+'''
+north = []
+south = []
+
+def csv_to_list(file):
+    with open(file, 'r') as csvfile:
+        csv_reader = csv.reader(csvfile, delimiter=',')
+        for row in csv_reader:
+            new_time = datetime.datetime.fromtimestamp(int(row[2])).strftime('%Y-%m-%d %H:%M:%S')
+            new_time = new_time[11:16] + new_time[17:19]
+            new_time = str.replace(new_time, ':', '.')
+            if row[1][3] == 'N':
+                north.append([row[1], new_time])
+            elif row[1][3] == 'S':
+                south.append([row[1], new_time])
+
+def build_graph(list):
+    x = []
+    y = []
+    for item in list:
+        x.append(item[0][0:3])
+        y.append(item[1])
+    #print(x)
+    #print(y)
+    
+    plt.xlabel('Stop_ID')
+    plt.ylabel('Time (AST)')
+    plt.scatter(x,y)
+
+    plt.show()
+
+#test function
+def convert_time(file):
+    with open(file, 'r') as csvfile:
+            csv_reader = csv.reader(csvfile, delimiter=',')
+            for row in csv_reader:
+                new_time = datetime.datetime.fromtimestamp(int(row[2])).strftime('%Y-%m-%d %H:%M:%S')
+                if row[1][3] == 'N':
+                    north.append([row[1], new_time])
+                elif row[1][3] == 'S':
+                    south.append([row[1], new_time])
+                
+#convert_time('saturday/actual/sat.csv')
+#print(north)
+#print(south)
+
+
+def convert_time1(file):
+    with open(file, 'r') as csvfile:
+        csv_reader = csv.reader(csvfile, delimiter=",")
+        for row in csv_reader:
+            for item in row:
+                item = datetime.datetime.fromtimestamp(int(item)).strftime('%Y-%m-%d %H:%M:%S')
+                print (item)
+                
+                
+#convert_time1('saturday/scheduled/sat_timetable_s.csv')
+
+                
+#SATURDAY DATA AND GRAPHS
+csv_to_list('saturday/actual/sat.csv')
+#print ('\n\n')
+#print("***SATURDAY NORTH***\n", north)
+#print ('\n\n')
+#print("***SATURDAY SOUTH***\n", south)
+
+print('\n\n')
+print('***SATURDAY NORTH***')
+build_graph(north)
+
+print('\n\n')
+print('***SATURDAY SOUTH***')
+build_graph(south)
+
+
+
+#SUNDAY DATA AND GRAPHS
+csv_to_list('sunday/sun.csv')
+#print ('\n\n')
+#print("***SUNDAY NORTH***\n", north)
+#print ('\n\n')
+#print("***SUNDAY SOUTH***\n", south)
+
+print('\n\n')
+print('***SUNDAY NORTH***')
+build_graph(north)
+
+print('\n\n')
+print('***SUNDAY SOUTH***')
+build_graph(south)
+
+
+
+#MONDAY DATA AND GRAPH
+csv_to_list('monday/actual/monday.csv')
+#print ('\n\n')
+#print("***MONDAY NORTH***\n", north)
+#print ('\n\n')
+#print("***MONDAY SOUTH***\n", south)
+
+print('\n\n')
+print('***MONDAY NORTH***')
+build_graph(north)
+
+print('\n\n')
+print('***MONDAY SOUTH***')
+build_graph(south)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-e2e6e790eb18>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mdatetime[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mcsv[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

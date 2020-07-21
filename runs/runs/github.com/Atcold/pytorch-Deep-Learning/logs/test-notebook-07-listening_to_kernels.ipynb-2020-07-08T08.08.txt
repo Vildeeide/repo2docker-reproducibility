@@ -1,0 +1,7 @@
+[I 200708 08:08:46 inrepo:36] Testing notebook 07-listening_to_kernels.ipynb
+[W 200708 08:08:47 inrepo:47] No such kernel conda-env-dl-minicourse-py, falling back on kernel language=python
+[W 200708 08:08:47 inrepo:59] Using kernel python3 to provide language: python
+[I 200708 08:08:47 execute:404] Executing notebook with kernel: python3
+[I 200708 08:08:55 inrepo:77] Saving exported notebook to /io/notebooks/07-listening_to_kernels.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

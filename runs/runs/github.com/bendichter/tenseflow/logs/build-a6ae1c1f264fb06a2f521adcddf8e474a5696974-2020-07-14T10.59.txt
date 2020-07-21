@@ -1,0 +1,446 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-14T10.59jm3jzg6y/github.com/bendichter/tenseflow.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${CONDA_DIR}/envs/kernel
+ ---> Using cache
+ ---> d02eeac85c53
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${KERNEL_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> 6f0f9264e9b8
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 94b11c12a020
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> 837c948b4854
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d2-2e7-2efrozen-2eyml-379f74 /tmp/kernel-environment.yml
+ ---> Using cache
+ ---> 34bb82896423
+Step 27/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 77ce9857cea0
+Step 28/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 4569f9280b08
+Step 29/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 4955cce20e9a
+Step 30/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 45c6e4d929f4
+Step 31/51 : USER root
+ ---> Using cache
+ ---> 9523e61984af
+Step 32/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> f8fcfe6c372e
+Step 33/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> b572ecda404b
+Step 34/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> d9f4a864c0ad
+Step 35/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 9dd615a29832
+Step 36/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 91b8186d472b
+Step 37/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 685a83c45c09
+Step 38/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 3c8b1f32249b
+Step 39/51 : USER root
+ ---> Running in 6f89ecdcd6e2
+Removing intermediate container 6f89ecdcd6e2
+ ---> 9e3b1aed1bfa
+Step 40/51 : COPY src/ ${REPO_DIR}
+ ---> a6165ed2698b
+Step 41/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e0afb66db9f1
+Removing intermediate container e0afb66db9f1
+ ---> 1a5c754f1649
+Step 42/51 : USER ${NB_USER}
+ ---> Running in 6ce340819ce7
+Removing intermediate container 6ce340819ce7
+ ---> b416b57842fd
+Step 43/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in b46f4f2dd144
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0m[91mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+[0mCollecting spacy
+  Downloading spacy-2.3.2.tar.gz (5.9 MB)
+  Installing build dependencies: started
+  Installing build dependencies: still running...
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting pattern
+  Downloading Pattern-3.6.0.tar.gz (22.2 MB)
+Collecting gunicorn==19.6.0
+  Downloading gunicorn-19.6.0-py2.py3-none-any.whl (114 kB)
+Collecting flask
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting sqlalchemy
+  Downloading SQLAlchemy-1.3.18-cp27-cp27mu-manylinux2010_x86_64.whl (1.2 MB)
+Collecting pytest
+  Downloading pytest-4.6.11-py2.py3-none-any.whl (231 kB)
+Collecting cymem<2.1.0,>=2.0.2
+  Downloading cymem-2.0.3.tar.gz (51 kB)
+Requirement already satisfied: setuptools in /srv/conda/envs/kernel/lib/python2.7/site-packages (from spacy->-r requirements.txt (line 1)) (44.0.0.post20200102)
+Collecting thinc==7.4.1
+  Downloading thinc-7.4.1.tar.gz (1.3 MB)
+Collecting numpy>=1.15.0
+  Downloading numpy-1.16.6-cp27-cp27mu-manylinux1_x86_64.whl (17.0 MB)
+Collecting murmurhash<1.1.0,>=0.28.0
+  Downloading murmurhash-1.0.2-cp27-cp27mu-manylinux1_x86_64.whl (18 kB)
+Collecting requests<3.0.0,>=2.13.0
+  Downloading requests-2.24.0-py2.py3-none-any.whl (61 kB)
+Collecting catalogue<1.1.0,>=0.0.7
+  Downloading catalogue-1.0.0-py2.py3-none-any.whl (7.7 kB)
+Collecting tqdm<5.0.0,>=4.38.0
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Collecting preshed<3.1.0,>=3.0.2
+  Downloading preshed-3.0.2-cp27-cp27mu-manylinux1_x86_64.whl (113 kB)
+Collecting plac<1.2.0,>=0.9.6
+  Downloading plac-1.1.3-py2.py3-none-any.whl (20 kB)
+Collecting wasabi<1.1.0,>=0.4.0
+  Downloading wasabi-0.7.0.tar.gz (22 kB)
+Collecting blis<0.5.0,>=0.4.0
+  Downloading blis-0.4.1-cp27-cp27mu-manylinux1_x86_64.whl (3.7 MB)
+Collecting pathlib==1.0.1; python_version < "3.4"
+  Downloading pathlib-1.0.1.tar.gz (49 kB)
+Collecting srsly<1.1.0,>=1.0.2
+  Downloading srsly-1.0.2.tar.gz (192 kB)
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting backports.csv
+  Downloading backports.csv-1.0.7-py2.py3-none-any.whl (12 kB)
+Collecting mysqlclient
+  Downloading mysqlclient-1.4.6.tar.gz (85 kB)
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.9.1-py2-none-any.whl (111 kB)
+Collecting lxml
+  Downloading lxml-4.5.2-cp27-cp27mu-manylinux1_x86_64.whl (5.5 MB)
+Collecting feedparser
+  Downloading feedparser-5.2.1.tar.bz2 (192 kB)
+Collecting pdfminer
+  Downloading pdfminer-20191016.tar.gz (4.2 MB)
+Collecting scipy
+  Downloading scipy-1.2.3-cp27-cp27mu-manylinux1_x86_64.whl (24.8 MB)
+Collecting nltk
+  Downloading nltk-3.5.zip (1.4 MB)
+Collecting python-docx
+  Downloading python-docx-0.8.10.tar.gz (5.5 MB)
+Collecting cherrypy
+  Downloading CherryPy-17.4.2-py2.py3-none-any.whl (421 kB)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting click>=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting Jinja2>=2.10.1
+  Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+Collecting atomicwrites>=1.0
+  Downloading atomicwrites-1.4.0-py2.py3-none-any.whl (6.8 kB)
+Requirement already satisfied: six>=1.10.0 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from pytest->-r requirements.txt (line 6)) (1.14.0)
+Collecting py>=1.5.0
+  Downloading py-1.9.0-py2.py3-none-any.whl (99 kB)
+Collecting more-itertools<6.0.0,>=4.0.0; python_version <= "2.7"
+  Downloading more_itertools-5.0.0-py2-none-any.whl (52 kB)
+Collecting attrs>=17.4.0
+  Downloading attrs-19.3.0-py2.py3-none-any.whl (39 kB)
+Collecting importlib-metadata>=0.12; python_version < "3.8"
+  Downloading importlib_metadata-1.7.0-py2.py3-none-any.whl (31 kB)
+Collecting funcsigs>=1.0; python_version < "3.0"
+  Downloading funcsigs-1.0.2-py2.py3-none-any.whl (17 kB)
+Collecting pluggy<1.0,>=0.12
+  Downloading pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: wcwidth in /srv/conda/envs/kernel/lib/python2.7/site-packages (from pytest->-r requirements.txt (line 6)) (0.1.8)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: pathlib2>=2.2.0; python_version < "3.6" in /srv/conda/envs/kernel/lib/python2.7/site-packages (from pytest->-r requirements.txt (line 6)) (2.3.5)
+Collecting idna<3,>=2.5
+  Downloading idna-2.10-py2.py3-none-any.whl (58 kB)
+Collecting chardet<4,>=3.0.2
+  Downloading chardet-3.0.4-py2.py3-none-any.whl (133 kB)
+Collecting urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1
+  Downloading urllib3-1.25.9-py2.py3-none-any.whl (126 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from requests<3.0.0,>=2.13.0->spacy->-r requirements.txt (line 1)) (2019.11.28)
+Collecting soupsieve<2.0
+  Downloading soupsieve-1.9.6-py2.py3-none-any.whl (33 kB)
+Collecting pycryptodome
+  Downloading pycryptodome-3.9.8-cp27-cp27mu-manylinux1_x86_64.whl (13.7 MB)
+Collecting joblib
+  Downloading joblib-0.14.1-py2.py3-none-any.whl (294 kB)
+Collecting regex
+  Downloading regex-2020.6.8.tar.gz (690 kB)
+Collecting cheroot>=6.2.4
+  Downloading cheroot-8.3.1-py2.py3-none-any.whl (88 kB)
+Collecting portend>=2.1.1
+  Downloading portend-2.6-py2.py3-none-any.whl (5.1 kB)
+Collecting zc.lockfile
+  Downloading zc.lockfile-2.0-py2.py3-none-any.whl (9.7 kB)
+Collecting contextlib2
+  Downloading contextlib2-0.6.0.post1-py2.py3-none-any.whl (9.8 kB)
+Collecting MarkupSafe>=0.23
+  Downloading MarkupSafe-1.1.1-cp27-cp27mu-manylinux1_x86_64.whl (24 kB)
+Collecting zipp>=0.5
+  Downloading zipp-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Requirement already satisfied: configparser>=3.5; python_version < "3" in /srv/conda/envs/kernel/lib/python2.7/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest->-r requirements.txt (line 6)) (3.7.3)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: scandir; python_version < "3.5" in /srv/conda/envs/kernel/lib/python2.7/site-packages (from pathlib2>=2.2.0; python_version < "3.6"->pytest->-r requirements.txt (line 6)) (1.10.0)
+Collecting backports.functools-lru-cache; python_version < "3"
+  Downloading backports.functools_lru_cache-1.6.1-py2.py3-none-any.whl (5.7 kB)
+Collecting jaraco.functools
+  Downloading jaraco.functools-2.0-py2.py3-none-any.whl (6.7 kB)
+Collecting tempora>=1.8
+  Downloading tempora-1.14.1-py2.py3-none-any.whl (13 kB)
+Collecting pytz
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Building wheels for collected packages: spacy, pattern, cymem, thinc, wasabi, pathlib, srsly, future, mysqlclient, feedparser, pdfminer, nltk, python-docx, regex
+  Building wheel for spacy (PEP 517): started
+  Building wheel for spacy (PEP 517): still running...
+  Building wheel for spacy (PEP 517): still running...
+  Building wheel for spacy (PEP 517): still running...
+  Building wheel for spacy (PEP 517): finished with status 'done'
+  Created wheel for spacy: filename=spacy-2.3.2-cp27-cp27mu-linux_x86_64.whl size=19642854 sha256=9fa4104ca3a039290104ce78936b0cb5dc178f720fd7f45066861df0a19526a2
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/7a/60/41/a54bc1f434e8e6f5f1d9252eb9ade8c686ffcceceb3b974e13
+  Building wheel for pattern (setup.py): started
+  Building wheel for pattern (setup.py): finished with status 'done'
+  Created wheel for pattern: filename=Pattern-3.6-py2-none-any.whl size=22332719 sha256=974ea67b827d19e6dc6d176b9b35928aa72985fba4198a617f66e99cdf8ac28c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/4a/24/1f/28582973de190e0ca5bb5042de2e5869b78cb23a8c71af89cb
+  Building wheel for cymem (setup.py): started
+  Building wheel for cymem (setup.py): finished with status 'done'
+  Created wheel for cymem: filename=cymem-2.0.3-cp27-cp27mu-linux_x86_64.whl size=106511 sha256=033ba480f0241173ee3308e00120f4d17777ba90d7ded055fd6d34b31c1ed641
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/06/09/8b/070d3c2ece06d08e1438f6033decb843dd82059b7b8b62b20f
+  Building wheel for thinc (setup.py): started
+  Building wheel for thinc (setup.py): finished with status 'done'
+  Created wheel for thinc: filename=thinc-7.4.1-cp27-cp27mu-linux_x86_64.whl size=4197200 sha256=33df847f76fb3747d1dcf40c2df346801725c95dc9ec844f2abe699bf079dd20
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/45/e0/f8/cdf70f935e54d809e5eaf449be84f15291036a55b8c7fb471a
+  Building wheel for wasabi (setup.py): started
+  Building wheel for wasabi (setup.py): finished with status 'done'
+  Created wheel for wasabi: filename=wasabi-0.7.0-py2-none-any.whl size=20834 sha256=1e7e1cd3390237ff0c48ad0039ef1e626501a95bc7309a5f3eddf315541c70f4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/50/d9/c1/d0ac2e1d6d1b26f2821287cebb47b1c7de669ef702378d7f07
+  Building wheel for pathlib (setup.py): started
+  Building wheel for pathlib (setup.py): finished with status 'done'
+  Created wheel for pathlib: filename=pathlib-1.0.1-py2-none-any.whl size=14347 sha256=803d3aeae867debb0f7ff34d2023eaf04cef6195305df843021e25fcf066b494
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/46/37/4f/332bcea757140ff34e14dec7be65931f544c7ac94eb671ae9f
+  Building wheel for srsly (setup.py): started
+  Building wheel for srsly (setup.py): finished with status 'done'
+  Created wheel for srsly: filename=srsly-1.0.2-cp27-cp27mu-linux_x86_64.whl size=422071 sha256=c2903914c0d878203f5341a40ff0dc48b58171bf1ad137d55aa0f45ed50ebb0b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/98/c2/52/50f636044bc4fe70915bfbd30dd546eed2584b87a88105e618
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py2-none-any.whl size=502567 sha256=1345fb7338feac93509a7af45e08f7251ee8b7dc5092e47292232cf01dec00d0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/5f/11/0c/aad680baf5ef4fbcbab992c9f03e1130357e0c173a4fdabfff
+  Building wheel for mysqlclient (setup.py): started
+  Building wheel for mysqlclient (setup.py): finished with status 'done'
+  Created wheel for mysqlclient: filename=mysqlclient-1.4.6-cp27-cp27mu-linux_x86_64.whl size=96014 sha256=05152916ad976f2b6d5b8d15b55e9182f6d77c1ba233d41a92870d96ac016612
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/04/5f/2b/e542c27913779611971f196081df58f969c742c01d93af1197
+  Building wheel for feedparser (setup.py): started
+  Building wheel for feedparser (setup.py): finished with status 'done'
+  Created wheel for feedparser: filename=feedparser-5.2.1-py2-none-any.whl size=44997 sha256=f38ed4dec1f9cd695cde8e7499fb93d6c06d6ea7b28d007a25fad9f8bae2f534
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/d4/3c/a1/fd7bcf389a776ce0be95e1e3176421b92dd24d0b78a58908a1
+  Building wheel for pdfminer (setup.py): started
+  Building wheel for pdfminer (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/kernel/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"'; __file__='"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-pF1nh0
+       cwd: /tmp/pip-install-4Zzpji/pdfminer/
+  Complete output (68 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib
+  creating build/lib/pdfminer
+  copying pdfminer/__init__.py -> build/lib/pdfminer
+  copying pdfminer/latin_enc.py -> build/lib/pdfminer
+  copying pdfminer/glyphlist.py -> build/lib/pdfminer
+  copying pdfminer/pdfdocument.py -> build/lib/pdfminer
+  copying pdfminer/runlength.py -> build/lib/pdfminer
+  copying pdfminer/cmapdb.py -> build/lib/pdfminer
+  copying pdfminer/utils.py -> build/lib/pdfminer
+  copying pdfminer/rijndael.py -> build/lib/pdfminer
+  copying pdfminer/pdfcolor.py -> build/lib/pdfminer
+  copying pdfminer/ccitt.py -> build/lib/pdfminer
+  copying pdfminer/pdfparser.py -> build/lib/pdfminer
+  copying pdfminer/pdffont.py -> build/lib/pdfminer
+  copying pdfminer/psparser.py -> build/lib/pdfminer
+  copying pdfminer/ascii85.py -> build/lib/pdfminer
+  copying pdfminer/arcfour.py -> build/lib/pdfminer
+  copying pdfminer/pdfinterp.py -> build/lib/pdfminer
+  copying pdfminer/layout.py -> build/lib/pdfminer
+  copying pdfminer/lzw.py -> build/lib/pdfminer
+  copying pdfminer/pdfpage.py -> build/lib/pdfminer
+  copying pdfminer/converter.py -> build/lib/pdfminer
+  copying pdfminer/image.py -> build/lib/pdfminer
+  copying pdfminer/fontmetrics.py -> build/lib/pdfminer
+  copying pdfminer/encodingdb.py -> build/lib/pdfminer
+  copying pdfminer/pdftypes.py -> build/lib/pdfminer
+  copying pdfminer/pdfdevice.py -> build/lib/pdfminer
+  running build_scripts
+  creating build/scripts-2.7
+  copying and adjusting tools/pdf2txt.py -> build/scripts-2.7
+  copying and adjusting tools/dumppdf.py -> build/scripts-2.7
+  changing mode of build/scripts-2.7/pdf2txt.py from 644 to 755
+  changing mode of build/scripts-2.7/dumppdf.py from 644 to 755
+  installing to build/bdist.linux-x86_64/wheel
+  running install
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/tmp/pip-install-4Zzpji/pdfminer/setup.py", line 71, in <module>
+      'Topic :: Text Processing',
+    File "/srv/conda/envs/kernel/lib/python2.7/site-packages/setuptools/__init__.py", line 145, in setup
+      return distutils.core.setup(**attrs)
+    File "/srv/conda/envs/kernel/lib/python2.7/distutils/core.py", line 151, in setup
+      dist.run_commands()
+    File "/srv/conda/envs/kernel/lib/python2.7/distutils/dist.py", line 953, in run_commands
+      self.run_command(cmd)
+    File "/srv/conda/envs/kernel/lib/python2.7/distutils/dist.py", line 972, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/kernel/lib/python2.7/site-packages/wheel/bdist_wheel.py", line 228, in run
+      self.run_command('install')
+    File "/srv/conda/envs/kernel/lib/python2.7/distutils/cmd.py", line 326, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/kernel/lib/python2.7/distutils/dist.py", line 972, in run_command
+      cmd_obj.run()
+    File "/tmp/pip-install-4Zzpji/pdfminer/setup.py", line 11, in run
+      from pdfminer.cmapdb import convert_cmap
+    File "pdfminer/cmapdb.py", line 22, in <module>
+      from .psparser import PSStackParser
+    File "pdfminer/psparser.py", line 4, in <module>
+      from .utils import choplist
+    File "pdfminer/utils.py", line 219, in <module>
+      0x00f8, 0x00f9, 0x00fa, 0x00fb, 0x00fc, 0x00fd, 0x00fe, 0x00ff,
+    File "pdfminer/utils.py", line 187, in <genexpr>
+      PDFDocEncoding = ''.join(chr(x) for x in (
+  ValueError: chr() arg not in range(256)
+  ----------------------------------------
+  ERROR: Failed building wheel for pdfminer
+[0m  Running setup.py clean for pdfminer
+  Building wheel for nltk (setup.py): started
+  Building wheel for nltk (setup.py): finished with status 'done'
+  Created wheel for nltk: filename=nltk-3.5-py2-none-any.whl size=1434678 sha256=412680d9ef5f8148d388c076536b0c126ea9dd8a86f07156839e316355c65603
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/c7/b1/76/54236c34227a12d32dc9cfe18731976baf8950d8a5aabaea6c
+  Building wheel for python-docx (setup.py): started
+  Building wheel for python-docx (setup.py): finished with status 'done'
+  Created wheel for python-docx: filename=python_docx-0.8.10-py2-none-any.whl size=184490 sha256=f7643e9b393456e8fa38e60ca6086bf10fe64ed165c34c9476b37d5277183cef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/b4/21/b4/44c8370a1028535a0a1c41b551d11a3bdc855529fa1f7ad4c3
+  Building wheel for regex (setup.py): started
+  Building wheel for regex (setup.py): finished with status 'done'
+  Created wheel for regex: filename=regex-2020.6.8-cp27-cp27mu-linux_x86_64.whl size=574603 sha256=1016a726a2c4978f426e4c909ffad160d5f75bb4a2ceb2c1167fdb3552720286
+  Stored in directory: /tmp/pip-ephem-wheel-cache-n1Eyph/wheels/11/ac/66/74720404e03906181ddff8345d795ad4dc5a9c4e111117f346
+Successfully built spacy pattern cymem thinc wasabi pathlib srsly future mysqlclient feedparser nltk python-docx regex
+Failed to build pdfminer
+Installing collected packages: cymem, murmurhash, preshed, numpy, blis, wasabi, pathlib, srsly, contextlib2, zipp, importlib-metadata, catalogue, plac, tqdm, thinc, idna, chardet, urllib3, requests, spacy, future, backports.csv, mysqlclient, backports.functools-lru-cache, soupsieve, beautifulsoup4, lxml, feedparser, pycryptodome, pdfminer, scipy, click, joblib, regex, nltk, python-docx, more-itertools, jaraco.functools, cheroot, pytz, tempora, portend, zc.lockfile, cherrypy, pattern, gunicorn, Werkzeug, itsdangerous, MarkupSafe, Jinja2, flask, sqlalchemy, atomicwrites, py, attrs, funcsigs, pluggy, pyparsing, packaging, pytest
+    Running setup.py install for pdfminer: started
+    Running setup.py install for pdfminer: finished with status 'error'
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/kernel/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"'; __file__='"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-HKajr_/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/kernel/include/python2.7/pdfminer
+         cwd: /tmp/pip-install-4Zzpji/pdfminer/
+    Complete output (24 lines):
+    running install
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/tmp/pip-install-4Zzpji/pdfminer/setup.py", line 71, in <module>
+        'Topic :: Text Processing',
+      File "/srv/conda/envs/kernel/lib/python2.7/site-packages/setuptools/__init__.py", line 145, in setup
+        return distutils.core.setup(**attrs)
+      File "/srv/conda/envs/kernel/lib/python2.7/distutils/core.py", line 151, in setup
+        dist.run_commands()
+      File "/srv/conda/envs/kernel/lib/python2.7/distutils/dist.py", line 953, in run_commands
+        self.run_command(cmd)
+      File "/srv/conda/envs/kernel/lib/python2.7/distutils/dist.py", line 972, in run_command
+        cmd_obj.run()
+      File "/tmp/pip-install-4Zzpji/pdfminer/setup.py", line 11, in run
+        from pdfminer.cmapdb import convert_cmap
+      File "pdfminer/cmapdb.py", line 22, in <module>
+        from .psparser import PSStackParser
+      File "pdfminer/psparser.py", line 4, in <module>
+        from .utils import choplist
+      File "pdfminer/utils.py", line 219, in <module>
+        0x00f8, 0x00f9, 0x00fa, 0x00fb, 0x00fc, 0x00fd, 0x00fe, 0x00ff,
+      File "pdfminer/utils.py", line 187, in <genexpr>
+        PDFDocEncoding = ''.join(chr(x) for x in (
+    ValueError: chr() arg not in range(256)
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: /srv/conda/envs/kernel/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"'; __file__='"'"'/tmp/pip-install-4Zzpji/pdfminer/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-HKajr_/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/kernel/include/python2.7/pdfminer Check the logs for full command output.
+[0mRemoving intermediate container b46f4f2dd144
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-bendichter-tenseflow:a6ae1c1', '/tmp/r2d-test-2020-07-14T10.59jm3jzg6y/github.com/bendichter/tenseflow']' returned non-zero exit status 1.

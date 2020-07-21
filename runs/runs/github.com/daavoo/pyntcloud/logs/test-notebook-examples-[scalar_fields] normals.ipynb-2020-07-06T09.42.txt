@@ -1,0 +1,5 @@
+[I 200706 09:42:39 inrepo:35] Testing notebook examples/[scalar_fields] normals.ipynb
+[I 200706 09:42:40 execute:404] Executing notebook with kernel: python3
+[I 200706 09:42:47 inrepo:41] Saving exported notebook to /io/notebooks/examples/[scalar_fields] normals.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

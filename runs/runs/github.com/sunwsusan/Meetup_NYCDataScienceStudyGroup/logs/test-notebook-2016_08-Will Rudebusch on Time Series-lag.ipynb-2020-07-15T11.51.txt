@@ -1,0 +1,79 @@
+[I 200715 11:52:15 inrepo:36] Testing notebook 2016_08/Will Rudebusch on Time Series/lag.ipynb
+[W 200715 11:52:15 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 11:52:15 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 11:52:16 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import correlate
+%matplotlib inline
+
+## notes ## drx.index = 2015-04-12 12:40:33, ..., 2015-04-12 14:15:46
+# no hnu raw data
+
+## interpolation function
+def fix(df):
+    df.drop_duplicates(subset='datetime', keep='last', inplace=True)
+    #df = df.reset_index()
+    start = df.datetime.iloc[0]
+    end = df.datetime.iloc[-1]
+    rng = pd.date_range(start, end, freq='S')
+    df1 = df.set_index('datetime')
+    df2 = df1.reindex(rng)
+    #print df2.head()
+    df3 = df2.convert_objects(convert_numeric=True)
+    df4 = df3.apply(pd.Series.interpolate)
+    #print df3.head()
+    return(df4)
+
+def normalize(A):
+    A -= A.mean(); A /= A.std()
+    return A
+
+def maxccf(A,B):
+    nsamples=len(A)
+    xcorr = correlate(A, B)
+    et = np.arange(1-nsamples, nsamples)
+    recovered_time_shift = et[xcorr.argmax()]
+    #print recovered_time_shift
+    return  recovered_time_shift
+
+def lag(df,lag=0):
+    #df = df.set_index('datetime')
+    df.index = df.index+pd.offsets.Second(lag)
+    return df
+
+dateparse2 = lambda x: pd.datetime.strptime(x, '%m/%d/%Y %H:%M:%S')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-af00315f5ede>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mscipy[0m[0;34m.[0m[0msignal[0m [0;32mimport[0m [0mcorrelate[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'matplotlib'[0m[0;34m,[0m [0;34m'inline'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

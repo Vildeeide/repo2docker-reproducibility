@@ -1,0 +1,5 @@
+[I 200703 06:34:24 inrepo:35] Testing notebook content/chapters/15/3/Method_of_Least_Squares.ipynb
+[I 200703 06:34:25 execute:404] Executing notebook with kernel: python3
+[I 200703 06:34:32 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/15/3/Method_of_Least_Squares.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

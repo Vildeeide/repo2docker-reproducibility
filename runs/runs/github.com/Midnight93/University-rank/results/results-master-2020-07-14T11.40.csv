@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Midnight93/University-rank,master,640650e,2017-06-16T18:16:32+02:00,build,build,True,github.com/Midnight93/University-rank/logs/build-master-2020-07-14T11.40.txt,2020-07-14T11:40:58.430522,2020-07-14T11.40,0.11.0
+https://github.com/Midnight93/University-rank,master,640650e,2017-06-16T18:16:32+02:00,notebook,university.ipynb,False,github.com/Midnight93/University-rank/logs/test-notebook-university.ipynb-2020-07-14T11.40.txt,2020-07-14T11:40:58.430522,2020-07-14T11.40,0.11.0

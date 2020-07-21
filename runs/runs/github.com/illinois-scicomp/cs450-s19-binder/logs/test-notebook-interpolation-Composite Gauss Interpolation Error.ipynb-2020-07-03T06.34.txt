@@ -1,0 +1,58 @@
+[I 200703 06:44:56 inrepo:35] Testing notebook interpolation/Composite Gauss Interpolation Error.ipynb
+[I 200703 06:44:57 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+nmany_nodes = 32
+
+many_gauss_nodes = ss.legendre(nmany_nodes).weights[:, 0]*0.5 + 0.5
+many_nodes = mesh[:-1, np.newaxis] + widths[:, np.newaxis] * many_gauss_nodes
+
+def legendre_vdm(nodes, nmodes):
+    result = np.empty((len(nodes), nmodes))
+    for i in xrange(nmodes):
+        result[:, i] = ss.eval_legendre(i, nodes)
+    return result
+
+vdm = legendre_vdm(gauss_nodes, nnodes)
+many_vdm = legendre_vdm(many_gauss_nodes, nnodes)
+zero_pad = np.zeros((nmany_nodes, nnodes))
+zero_pad[:nnodes, :nnodes] = np.eye(nnodes)
+upterpolate = np.dot(many_vdm, la.inv(vdm))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-4-03c600664961>[0m in [0;36m<module>[0;34m[0m
+[1;32m     10[0m     [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m [0;34m[0m[0m
+[0;32m---> 12[0;31m [0mvdm[0m [0;34m=[0m [0mlegendre_vdm[0m[0;34m([0m[0mgauss_nodes[0m[0;34m,[0m [0mnnodes[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     13[0m [0mmany_vdm[0m [0;34m=[0m [0mlegendre_vdm[0m[0;34m([0m[0mmany_gauss_nodes[0m[0;34m,[0m [0mnnodes[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m [0mzero_pad[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mzeros[0m[0;34m([0m[0;34m([0m[0mnmany_nodes[0m[0;34m,[0m [0mnnodes[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-4-03c600664961>[0m in [0;36mlegendre_vdm[0;34m(nodes, nmodes)[0m
+[1;32m      6[0m [0;32mdef[0m [0mlegendre_vdm[0m[0;34m([0m[0mnodes[0m[0;34m,[0m [0mnmodes[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m     [0mresult[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mempty[0m[0;34m([0m[0;34m([0m[0mlen[0m[0;34m([0m[0mnodes[0m[0;34m)[0m[0;34m,[0m [0mnmodes[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m     [0;32mfor[0m [0mi[0m [0;32min[0m [0mxrange[0m[0;34m([0m[0mnmodes[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m         [0mresult[0m[0;34m[[0m[0;34m:[0m[0;34m,[0m [0mi[0m[0;34m][0m [0;34m=[0m [0mss[0m[0;34m.[0m[0meval_legendre[0m[0;34m([0m[0mi[0m[0;34m,[0m [0mnodes[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m     [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'xrange' is not defined
+NameError: name 'xrange' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

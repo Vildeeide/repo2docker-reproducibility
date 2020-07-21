@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/django/django,master,639142e,2020-06-30T22:54:39-04:00,build,build,True,github.com/django/django/logs/build-master-2020-07-08T06.32.txt,2020-07-08T06:32:09.204259,2020-07-08T06.32,0.11.0

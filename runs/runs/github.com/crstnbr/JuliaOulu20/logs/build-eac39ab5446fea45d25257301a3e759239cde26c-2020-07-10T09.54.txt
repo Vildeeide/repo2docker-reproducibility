@@ -1,0 +1,307 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T09.54jjy9ufut/github.com/crstnbr/JuliaOulu20.
+Using JuliaProjectTomlBuildPack builder
+Step 1/61 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/61 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/61 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/61 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/61 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/61 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/61 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/61 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/61 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/61 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/61 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/61 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/61 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/61 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/61 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/61 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/61 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/61 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/61 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/61 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/61 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/61 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/61 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/61 : ENV JULIA_DEPOT_PATH ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> 8d388cdee809
+Step 25/61 : ENV JULIA_VERSION 1.3.1
+ ---> Using cache
+ ---> 65caa7349185
+Step 26/61 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 41c3da69eab0
+Step 27/61 : ENV JUPYTER_DATA_DIR ${NB_PYTHON_PREFIX}/share/jupyter
+ ---> Using cache
+ ---> 9696a3baffee
+Step 28/61 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_PATH}/bin:${PATH}
+ ---> Using cache
+ ---> 689cd831d8e9
+Step 29/61 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 24b2d109a98a
+Step 30/61 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 005dc11b1f46
+Step 31/61 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 4be025e8139a
+Step 32/61 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 672b6c36454d
+Step 33/61 : USER ${NB_USER}
+ ---> Using cache
+ ---> 7421d9783b8b
+Step 34/61 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 9d77f5ad8488
+Step 35/61 : USER root
+ ---> Using cache
+ ---> 057c4c5ee2a8
+Step 36/61 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 715b1e7f0167
+Step 37/61 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 1e036681eee8
+Step 38/61 : RUN mkdir -p ${JULIA_DEPOT_PATH} && chown ${NB_USER}:${NB_USER} ${JULIA_DEPOT_PATH}
+ ---> Using cache
+ ---> 9fd8c6281144
+Step 39/61 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 483ff7958b7d
+Step 40/61 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 81ac5f92fb29
+Step 41/61 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 1c81e57d707b
+Step 42/61 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> e772b5712354
+Step 43/61 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7d6834f9de37
+Step 44/61 : ENV JULIA_PROJECT ${REPO_DIR}
+ ---> Using cache
+ ---> 12b8aac1ddbb
+Step 45/61 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> Using cache
+ ---> 3a0b79a635b5
+Step 46/61 : USER root
+ ---> Using cache
+ ---> d926fba68bde
+Step 47/61 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 24cc0e02bbdd
+Step 48/61 : USER ${NB_USER}
+ ---> Using cache
+ ---> 94285b630c49
+Step 49/61 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> c5e6e9d2d28c
+Step 50/61 : USER root
+ ---> Using cache
+ ---> 23a9510fcf73
+Step 51/61 : COPY src/ ${REPO_DIR}
+ ---> c33d70d59bf3
+Step 52/61 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 4afc924f5003
+Removing intermediate container 4afc924f5003
+ ---> 4a7ccd7de60b
+Step 53/61 : USER ${NB_USER}
+ ---> Running in 72a8ff5bb948
+Removing intermediate container 72a8ff5bb948
+ ---> c558c8534b5b
+Step 54/61 : RUN JULIA_PROJECT="" julia -e "using Pkg; Pkg.add(\"IJulia\"); using IJulia; installkernel(\"Julia\", \"--project=${REPO_DIR}\");" && julia --project=${REPO_DIR} -e 'using Pkg; Pkg.instantiate(); pkg"precompile"'
+ ---> Running in b3446d06cc37
+   Cloning default registries into `/srv/julia/pkg`
+   Cloning registry from "https://github.com/JuliaRegistries/General.git"
+[?25l    Fetching: [>                                        ]  0.0 %
+    Fetching: [===========>                             ]  27.1 %
+    Fetching: [===========================>             ]  66.0 %
+[2K[?25h     Added registry `General` to `/srv/julia/pkg/registries/General`
+ Resolving package versions...
+ Installed MbedTLS_jll ───── v2.16.6+1
+ Installed VersionParsing ── v1.2.0
+ Installed SoftGlobalScope ─ v1.0.10
+ Installed Conda ─────────── v1.4.1
+ Installed Parsers ───────── v1.0.7
+ Installed ZMQ ───────────── v1.2.1
+ Installed IJulia ────────── v1.21.2
+ Installed MbedTLS ───────── v1.0.2
+ Installed ZeroMQ_jll ────── v4.3.2+4
+ Installed JSON ──────────── v0.21.0
+  Updating `/srv/julia/pkg/environments/v1.3/Project.toml`
+  [7073ff75] + IJulia v1.21.2
+  Updating `/srv/julia/pkg/environments/v1.3/Manifest.toml`
+  [8f4d0f93] + Conda v1.4.1
+  [7073ff75] + IJulia v1.21.2
+  [682c06a0] + JSON v0.21.0
+  [739be429] + MbedTLS v1.0.2
+  [c8ffd9c3] + MbedTLS_jll v2.16.6+1
+  [69de0a69] + Parsers v1.0.7
+  [b85f4697] + SoftGlobalScope v1.0.10
+  [81def892] + VersionParsing v1.2.0
+  [c2297ded] + ZMQ v1.2.1
+  [8f1865be] + ZeroMQ_jll v4.3.2+4
+  [2a0f44e3] + Base64 
+  [ade2ca70] + Dates 
+  [8ba89e20] + Distributed 
+  [7b1f6079] + FileWatching 
+  [b77e0a4c] + InteractiveUtils 
+  [76f85450] + LibGit2 
+  [8f399da3] + Libdl 
+  [56ddb016] + Logging 
+  [d6f4376e] + Markdown 
+  [a63ad114] + Mmap 
+  [44cfe95a] + Pkg 
+  [de0858da] + Printf 
+  [3fa0cd96] + REPL 
+  [9a3f8284] + Random 
+  [ea8e919c] + SHA 
+  [9e88b42a] + Serialization 
+  [6462fe0b] + Sockets 
+  [8dfed614] + Test 
+  [cf7118a7] + UUIDs 
+  [4ec0a83e] + Unicode 
+  Building Conda ─→ `/srv/julia/pkg/packages/Conda/3rPhK/deps/build.log`
+  Building IJulia → `/srv/julia/pkg/packages/IJulia/DrVMH/deps/build.log`
+[91m[ Info: Installing Julia kernelspec in /srv/conda/envs/notebook/share/jupyter/kernels/julia-1.3
+[0m  Updating registry at `/srv/julia/pkg/registries/General`
+  Updating git-repo `https://github.com/JuliaRegistries/General.git`
+[?25l[2K[?25h Installed NaNMath ─────────────── v0.3.2
+ Installed AssetRegistry ───────── v0.1.0
+ Installed Widgets ─────────────── v0.6.2
+ Installed IterTools ───────────── v1.2.0
+ Installed Plots ───────────────── v0.27.0
+ Installed StatsBase ───────────── v0.32.0
+ Installed PlotUtils ───────────── v0.6.0
+ Installed MbedTLS ─────────────── v0.7.0
+ Installed Measures ────────────── v0.3.0
+ Installed FFMPEG ──────────────── v0.2.3
+ Installed Pidfile ─────────────── v1.1.0
+ Installed InteractBase ────────── v0.10.3
+ Installed HTTP ────────────────── v0.8.6
+ Installed MacroTools ──────────── v0.5.1
+ Installed GeometryTypes ───────── v0.7.6
+ Installed PlotThemes ──────────── v0.4.0
+ Installed DataAPI ─────────────── v1.1.0
+ Installed CSSUtil ─────────────── v0.1.0
+ Installed Showoff ─────────────── v0.3.1
+ Installed Knockout ────────────── v0.2.3
+ Installed BenchmarkTools ──────── v0.4.3
+ Installed Requires ────────────── v0.5.2
+ Installed RecipesBase ─────────── v0.7.0
+ Installed StaticArrays ────────── v0.11.1
+ Installed DataStructures ──────── v0.17.5
+ Installed ColorTypes ──────────── v0.8.0
+ Installed Compat ──────────────── v2.2.0
+ Installed JSExpr ──────────────── v0.5.1
+ Installed FunctionalCollections ─ v0.5.0
+ Installed FixedPointNumbers ───── v0.6.1
+ Installed SortingAlgorithms ───── v0.3.1
+ Installed WebSockets ──────────── v1.5.2
+ Installed GR ──────────────────── v0.42.0
+ Installed Reexport ────────────── v0.2.0
+ Installed Parsers ─────────────── v0.3.7
+ Installed Colors ──────────────── v0.9.6
+ Installed OrderedCollections ──── v1.1.0
+ Installed Tokenize ────────────── v0.5.6
+ Installed IniFile ─────────────── v0.5.0
+ Installed Missings ────────────── v0.4.3
+ Installed BinaryProvider ──────── v0.5.7
+ Installed CSTParser ───────────── v1.0.0
+ Installed WebIO ───────────────── v0.8.11
+ Installed Interact ────────────── v0.10.3
+ Installed Observables ─────────── v0.2.3
+ Installed Contour ─────────────── v0.5.1
+  Building GR ──────────→ `/srv/julia/pkg/packages/GR/f1Iqi/deps/build.log`
+  Building FFMPEG ──────→ `/srv/julia/pkg/packages/FFMPEG/bkWgb/deps/build.log`
+  Building Plots ───────→ `/srv/julia/pkg/packages/Plots/Iuc9S/deps/build.log`
+  Building MbedTLS ─────→ `/srv/julia/pkg/packages/MbedTLS/a1JFn/deps/build.log`
+  Building WebIO ───────→ `/srv/julia/pkg/packages/WebIO/2mZPb/deps/build.log`
+  Building Knockout ────→ `/srv/julia/pkg/packages/Knockout/1sDlc/deps/build.log`
+  Building InteractBase → `/srv/julia/pkg/packages/InteractBase/9mFwe/deps/build.log`
+  Building Interact ────→ `/srv/julia/pkg/packages/Interact/SbgIk/deps/build.log`
+Precompiling project...
+Precompiling Interact
+Precompiling Plots
+Precompiling BenchmarkTools
+Removing intermediate container b3446d06cc37
+ ---> 48bcd9fa751a
+Step 55/61 : LABEL repo2docker.ref="None"
+ ---> Running in 7224a753b6c1
+Removing intermediate container 7224a753b6c1
+ ---> 7efa09d9c021
+Step 56/61 : LABEL repo2docker.repo="local"
+ ---> Running in 7195a3f7fec4
+Removing intermediate container 7195a3f7fec4
+ ---> 385aa9be5d07
+Step 57/61 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 28329a5cdd92
+Removing intermediate container 28329a5cdd92
+ ---> 52660370c332
+Step 58/61 : USER ${NB_USER}
+ ---> Running in c4271eb1e331
+Removing intermediate container c4271eb1e331
+ ---> acf67e9db572
+Step 59/61 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> d60a3dddef84
+Step 60/61 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 00a1cbcf7676
+Removing intermediate container 00a1cbcf7676
+ ---> 6f3728892f47
+Step 61/61 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 07e0a97235bf
+Removing intermediate container 07e0a97235bf
+ ---> d1f7e0aa1652
+{"aux": {"ID": "sha256:d1f7e0aa1652ff303e1d4b0eeb169cb7612dd8e47961d23385d332f7f84064ef"}}Successfully built d1f7e0aa1652
+Successfully tagged r2d-test-github.com-crstnbr-juliaoulu20:eac39ab

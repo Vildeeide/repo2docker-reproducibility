@@ -1,0 +1,5 @@
+[I 200703 10:40:35 inrepo:35] Testing notebook docs/tutorials/quickstart.ipynb
+[I 200703 10:40:37 execute:404] Executing notebook with kernel: python3
+[I 200703 10:40:39 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorials/quickstart.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

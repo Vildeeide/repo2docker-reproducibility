@@ -1,0 +1,9 @@
+[I 200703 10:24:43 inrepo:35] Testing notebook docs/notebooks/FATE-Net-Ranking.ipynb
+[I 200703 10:24:45 execute:404] Executing notebook with kernel: python3
+2020-07-03 10:25:00.618338: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-03 10:25:00.626103: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2000000000 Hz
+2020-07-03 10:25:00.626849: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55bfaca2e5a0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-03 10:25:00.626896: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+[I 200703 10:25:29 inrepo:41] Saving exported notebook to /io/notebooks/docs/notebooks/FATE-Net-Ranking.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

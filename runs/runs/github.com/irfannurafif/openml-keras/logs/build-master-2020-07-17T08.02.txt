@@ -1,0 +1,334 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-17T08.02ea5mxl0f/github.com/irfannurafif/openml-keras.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 1755da07718f
+Step 38/50 : USER root
+ ---> Running in 49b4734289a6
+Removing intermediate container 49b4734289a6
+ ---> 1f5779883995
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 92b293bedfac
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 68d8ce082419
+Removing intermediate container 68d8ce082419
+ ---> 609b33384246
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 4db655848633
+Removing intermediate container 4db655848633
+ ---> 3814b655def6
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in cfa58df920a5
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting mock
+  Downloading mock-4.0.2-py3-none-any.whl (28 kB)
+Collecting numpy>=1.6.2
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy>=0.13.3
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting liac-arff>=2.1.1
+  Downloading liac-arff-2.4.0.tar.gz (15 kB)
+Collecting xmltodict
+  Downloading xmltodict-0.12.0-py2.py3-none-any.whl (9.2 kB)
+Collecting nose
+  Downloading nose-1.3.7-py3-none-any.whl (154 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 7)) (2.22.0)
+Collecting scikit-learn>=0.18
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 9)) (5.6.1)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 10)) (5.0.4)
+Requirement already satisfied: python-dateutil in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 11)) (2.8.1)
+Collecting oslo.concurrency
+  Downloading oslo.concurrency-4.2.0-py3-none-any.whl (42 kB)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (3.0.4)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (4.6.1)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (4.3.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (1.4.2)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (0.6.0)
+Requirement already satisfied: jinja2>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (2.11.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (0.3)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (2.5.2)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (3.1.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (0.4.4)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->-r requirements.txt (line 9)) (0.8.4)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->-r requirements.txt (line 10)) (0.2.0)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->-r requirements.txt (line 10)) (3.2.0)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil->-r requirements.txt (line 11)) (1.14.0)
+Collecting pbr!=2.1.0,>=2.0.0
+  Downloading pbr-5.4.5-py2.py3-none-any.whl (110 kB)
+Collecting oslo.config>=5.2.0
+  Downloading oslo.config-8.2.0-py3-none-any.whl (125 kB)
+Collecting oslo.i18n>=3.15.3
+  Downloading oslo.i18n-5.0.0-py3-none-any.whl (46 kB)
+Collecting fasteners>=0.7.0
+  Downloading fasteners-0.15-py2.py3-none-any.whl (23 kB)
+Collecting oslo.utils>=3.33.0
+  Downloading oslo.utils-4.2.2-py3-none-any.whl (95 kB)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->nbconvert->-r requirements.txt (line 9)) (4.4.1)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.4->nbconvert->-r requirements.txt (line 9)) (1.1.1)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->-r requirements.txt (line 9)) (0.5.1)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->-r requirements.txt (line 10)) (1.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->-r requirements.txt (line 10)) (19.3.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->-r requirements.txt (line 10)) (0.15.7)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->-r requirements.txt (line 10)) (45.1.0.post20200119)
+Collecting netaddr>=0.7.18
+  Downloading netaddr-0.8.0-py2.py3-none-any.whl (1.9 MB)
+Collecting stevedore>=1.20.0
+  Downloading stevedore-3.1.0-py3-none-any.whl (41 kB)
+Collecting rfc3986>=1.2.0
+  Downloading rfc3986-1.4.0-py2.py3-none-any.whl (31 kB)
+Collecting debtcollector>=1.2.0
+  Downloading debtcollector-2.1.0-py3-none-any.whl (23 kB)
+Collecting PyYAML>=3.12
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting monotonic>=0.1
+  Downloading monotonic-1.5-py2.py3-none-any.whl (5.3 kB)
+Collecting pytz>=2013.6
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting iso8601>=0.1.11
+  Downloading iso8601-0.1.12-py2.py3-none-any.whl (12 kB)
+Collecting pyparsing>=2.1.0
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting netifaces>=0.10.4
+  Downloading netifaces-0.10.9.tar.gz (28 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->-r requirements.txt (line 10)) (2.1.0)
+Collecting wrapt>=1.7.0
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Building wheels for collected packages: liac-arff, PyYAML, netifaces, wrapt
+  Building wheel for liac-arff (setup.py): started
+  Building wheel for liac-arff (setup.py): finished with status 'done'
+  Created wheel for liac-arff: filename=liac_arff-2.4.0-py3-none-any.whl size=13333 sha256=cd8c5661b6642e36dc0be47dffb83f6d1eabcd9b0c9a86f4578ad0edf11955ff
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ay42jjoy/wheels/db/b2/8d/8737daed1b77ee2e9e834da36b2213d6e439bf42d82ce5e911
+  Building wheel for PyYAML (setup.py): started
+  Building wheel for PyYAML (setup.py): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393709 sha256=8315a9f63b07c47450f27c14913332195d15d3a92c03525498cb48cc9a788d33
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ay42jjoy/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for netifaces (setup.py): started
+  Building wheel for netifaces (setup.py): finished with status 'done'
+  Created wheel for netifaces: filename=netifaces-0.10.9-cp37-cp37m-linux_x86_64.whl size=37340 sha256=c909285546c38a968f2e8f3d3a85fe82711b288e7c8c095200a4ccee172b3ac9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ay42jjoy/wheels/5f/09/cf/2b1aa8371c071fa89518ac0bbda1b8cca4e65b6e2538af4192
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=70967 sha256=e46141927859e58392f6c026bf41e61164de254682cbd64603757d6a9359b784
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ay42jjoy/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+Successfully built liac-arff PyYAML netifaces wrapt
+[91mERROR: stevedore 3.1.0 has requirement importlib-metadata>=1.7.0; python_version < "3.8", but you'll have importlib-metadata 1.5.0 which is incompatible.
+[0mInstalling collected packages: mock, numpy, scipy, liac-arff, xmltodict, nose, joblib, threadpoolctl, scikit-learn, pbr, netaddr, stevedore, oslo.i18n, rfc3986, wrapt, debtcollector, PyYAML, oslo.config, monotonic, fasteners, pytz, iso8601, pyparsing, netifaces, oslo.utils, oslo.concurrency
+Successfully installed PyYAML-5.3.1 debtcollector-2.1.0 fasteners-0.15 iso8601-0.1.12 joblib-0.16.0 liac-arff-2.4.0 mock-4.0.2 monotonic-1.5 netaddr-0.8.0 netifaces-0.10.9 nose-1.3.7 numpy-1.19.0 oslo.concurrency-4.2.0 oslo.config-8.2.0 oslo.i18n-5.0.0 oslo.utils-4.2.2 pbr-5.4.5 pyparsing-2.4.7 pytz-2020.1 rfc3986-1.4.0 scikit-learn-0.23.1 scipy-1.5.1 stevedore-3.1.0 threadpoolctl-2.1.0 wrapt-1.12.1 xmltodict-0.12.0
+Removing intermediate container cfa58df920a5
+ ---> c17b9975f84b
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 96ebe6703c86
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: mock in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (4.0.2)
+Requirement already satisfied: numpy>=1.6.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (1.19.0)
+Requirement already satisfied: scipy>=0.13.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (1.5.1)
+Requirement already satisfied: liac-arff>=2.1.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (2.4.0)
+Requirement already satisfied: xmltodict in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (0.12.0)
+Requirement already satisfied: nose in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (1.3.7)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (2.22.0)
+Requirement already satisfied: scikit-learn>=0.18 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (0.23.1)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (5.6.1)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (5.0.4)
+Requirement already satisfied: python-dateutil in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (2.8.1)
+Requirement already satisfied: oslo.concurrency in /srv/conda/envs/notebook/lib/python3.7/site-packages (from openml==0.6.0) (4.2.0)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->openml==0.6.0) (2019.11.28)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->openml==0.6.0) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->openml==0.6.0) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->openml==0.6.0) (3.0.4)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn>=0.18->openml==0.6.0) (2.1.0)
+Requirement already satisfied: joblib>=0.11 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn>=0.18->openml==0.6.0) (0.16.0)
+Requirement already satisfied: jinja2>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (2.11.0)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (4.3.3)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (4.6.1)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (1.4.2)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (0.4.4)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (3.1.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (0.3)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (0.8.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (0.6.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->openml==0.6.0) (2.5.2)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->openml==0.6.0) (0.2.0)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->openml==0.6.0) (3.2.0)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil->openml==0.6.0) (1.14.0)
+Requirement already satisfied: oslo.utils>=3.33.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.concurrency->openml==0.6.0) (4.2.2)
+Requirement already satisfied: oslo.config>=5.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.concurrency->openml==0.6.0) (8.2.0)
+Requirement already satisfied: fasteners>=0.7.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.concurrency->openml==0.6.0) (0.15)
+Requirement already satisfied: oslo.i18n>=3.15.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.concurrency->openml==0.6.0) (5.0.0)
+Requirement already satisfied: pbr!=2.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.concurrency->openml==0.6.0) (5.4.5)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.4->nbconvert->openml==0.6.0) (1.1.1)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->nbconvert->openml==0.6.0) (4.4.1)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->openml==0.6.0) (0.5.1)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->openml==0.6.0) (45.1.0.post20200119)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->openml==0.6.0) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->openml==0.6.0) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->openml==0.6.0) (1.5.0)
+Requirement already satisfied: debtcollector>=1.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (2.1.0)
+Requirement already satisfied: netaddr>=0.7.18 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (0.8.0)
+Requirement already satisfied: iso8601>=0.1.11 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (0.1.12)
+Requirement already satisfied: pytz>=2013.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (2020.1)
+Requirement already satisfied: netifaces>=0.10.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (0.10.9)
+Requirement already satisfied: pyparsing>=2.1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (2.4.7)
+Requirement already satisfied: stevedore>=1.20.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.config>=5.2.0->oslo.concurrency->openml==0.6.0) (3.1.0)
+Requirement already satisfied: rfc3986>=1.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.config>=5.2.0->oslo.concurrency->openml==0.6.0) (1.4.0)
+Requirement already satisfied: PyYAML>=3.12 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oslo.config>=5.2.0->oslo.concurrency->openml==0.6.0) (5.3.1)
+Requirement already satisfied: monotonic>=0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fasteners>=0.7.0->oslo.concurrency->openml==0.6.0) (1.5)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->openml==0.6.0) (2.1.0)
+Requirement already satisfied: wrapt>=1.7.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from debtcollector>=1.2.0->oslo.utils>=3.33.0->oslo.concurrency->openml==0.6.0) (1.12.1)
+Building wheels for collected packages: openml
+  Building wheel for openml (setup.py): started
+  Building wheel for openml (setup.py): finished with status 'done'
+  Created wheel for openml: filename=openml-0.6.0-py3-none-any.whl size=103036 sha256=697647dd7274ee7d1aac39755d492f37a8f30fcb7f2f9fbe37c733ee04d93aff
+  Stored in directory: /tmp/pip-ephem-wheel-cache-at9buwbm/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built openml
+Installing collected packages: openml
+Successfully installed openml-0.6.0
+Removing intermediate container 96ebe6703c86
+ ---> ea0654d2d3c6
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 751aba01b30f
+Removing intermediate container 751aba01b30f
+ ---> adbdbdb1be5f
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in b61c4348ffca
+Removing intermediate container b61c4348ffca
+ ---> c4c0a3f4c0eb
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in bf51db2e35ff
+Removing intermediate container bf51db2e35ff
+ ---> e21e964e6487
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 76e22c07557a
+Removing intermediate container 76e22c07557a
+ ---> 8afcf3f74cc4
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 1ae516abf62f
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 3947bdc0c49e
+Removing intermediate container 3947bdc0c49e
+ ---> f4bbce3938dd
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in e7b239b2fea2
+Removing intermediate container e7b239b2fea2
+ ---> ea4d03e8e36b
+{"aux": {"ID": "sha256:ea4d03e8e36ba0c291ed2b58dca51c92cbe32c8069306a008d24e5e1f220cb67"}}Successfully built ea4d03e8e36b
+Successfully tagged r2d-test-github.com-irfannurafif-openml-keras:f5a6f7b

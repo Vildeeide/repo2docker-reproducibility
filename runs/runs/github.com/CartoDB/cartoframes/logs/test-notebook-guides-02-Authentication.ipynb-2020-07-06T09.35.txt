@@ -1,0 +1,5 @@
+[I 200706 09:36:54 inrepo:35] Testing notebook guides/02-Authentication.ipynb
+[I 200706 09:36:55 execute:404] Executing notebook with kernel: python3
+[I 200706 09:36:55 inrepo:41] Saving exported notebook to /io/notebooks/guides/02-Authentication.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

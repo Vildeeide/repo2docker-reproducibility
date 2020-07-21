@@ -1,0 +1,210 @@
+[I 200714 13:53:37 inrepo:36] Testing notebook FINA2390/Project 5. Web Crawling/5.18/cedars.ipynb
+[W 200714 13:53:38 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200714 13:53:38 inrepo:60] Using kernel python3 to provide language: python
+[I 200714 13:53:39 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import csv
+import pandas as pd
+import os
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+############################################################################################
+#Initial variables
+#This part of the code is used to set the inital parameters for the web crawler
+############################################################################################
+START_PAGE = 2
+END_PAGE = 5
+PROJECT_ABBR = "cedars"
+PROJECT_NAME = "Project 5"
+URL = "https://web2.cedars.hku.hk:4181/jobs/searchtutor.php?&page=1"
+
+#For login
+USERNAME = ''
+PASSWORD = ''
+
+#Main window
+driver =webdriver.Firefox(executable_path=r'D:\git\FINA2390-Programs\geckodriver.exe')
+driver.get(URL)
+
+#Secondary window
+driver2 = webdriver.Firefox(executable_path=r'D:\git\FINA2390-Programs\geckodriver.exe')
+
+df_columns = ['Date',
+              'Year of Study',
+              'Subject',
+              'Sex',
+              'Location',
+              'Time',
+              'Salary',
+              'Remarks']
+
+
+df_etf = pd.DataFrame(columns=df_columns)
+
+############################################################################################
+#Class
+#This particular class to define the conditions for explict wait
+#The condition states that the crawler will jump to next page if and only if the webpage can find the text presented
+############################################################################################
+class text_appear(object):
+  def __init__(self, locator1, locator2, locator3):
+    self.locator1 = locator1
+    self.locator2 = locator2
+    self.locator3 = locator3
+
+  def __call__(self, driver):
+    element1 = driver.find_element(*self.locator1) 
+    element2 = driver.find_element(*self.locator2)
+    element3 = driver.find_element(*self.locator3)
+    if len(element1.text) != 0 and len(element2.text) !=0 and len(element3.text) !=0:
+        return True
+    else:
+        return False
+def driver_login():
+    driver.find_element_by_xpath('/html/body/div[3]/a[1]').click
+    time.sleep(2)
+    driver.find_element_by_xpath('//*[@id="username"]').send_keys(USERNAME)
+    driver.fine_element_by_xpath('//*[@id="password"]').send_keys(PASSWORD)
+    
+def go_to_page(page):
+    if page != 1:
+        print 'GOING TO PAGE' + str(page)
+        driver.get('https://web2.cedars.hku.hk:4181/jobs/searchtutor.php?&page='+str(page))
+        print 'ARRIVED PAGE' + str(page)
+    else:
+        return
+
+def save_file(state, CURRENT_PAGE):
+    if state == 'backup':
+        filename = '['+ PROJECT_ABBR +'][Intrim Backup][' + str(CURRENT_PAGE) + ']' + PROJECT_NAME + ' PAGE ' + str(START_PAGE) + ' to PAGE ' + str(CURRENT_PAGE) + ' Records.csv'
+        df_etf.to_csv(filename, index=False,  encoding='utf_8_sig')
+        print '[Intrim Backup]Saved First '+ str(CURRENT_PAGE) + 'Pages Records to CSV'
+    elif state == 'all':
+        filename = '['+ PROJECT_ABBR +']'+ PROJECT_NAME +' PAGE ' + str(START_PAGE) + 'to PAGE ' + str(END_PAGE) + 'Records.csv'
+        df_etf.to_csv(filename, index=False, encoding='utf_8_sig')
+        print 'Exported to csv'
+        
+    
+def dig(link, row_index):
+    
+    #Open a new window
+    driver2.get(link.get_attribute('href'))
+    time.sleep(1)
+    
+    xsex = '//*[@id="content"]/div[4]/span/table/tbody/tr/td[3]'
+    xyof = '//*[@id="content"]/div[4]/span/table/tbody/tr/td[2]'
+    xsubject = '//*[@id="content"]/div[4]/span/table/tbody/tr/td[4]/ul/li'
+    xtime = '//*[@id="content"]/div[5]/span'
+    xsalary = '//*[@id="content"]/div[11]/span'
+    xremarks = '//*[@id="content"]/div[11]/span'
+    
+    #find fields on the new driver
+    time.sleep(1)
+    if len(driver2.find_element_by_xpath(xsubject)) != 0:
+        delimiter = ','
+        subjects = []
+        for subject in driver2.find_element_by_xpath(xsubject):
+            subjects.append(subject)
+            
+        df_etf.loc[row_index, 'Subject'] = delimiter.join(subjects)
+    if len(driver2.find_element_by_xpath(xtime)) != 0:
+        df_etf.loc[row_index, 'Time']    = driver2.find_element_by_xpath(xtime).text + ' Sessions per week'
+    if len(driver2.find_element_by_xpath(xsalary)) != 0:    
+        df_etf.loc[row_index, 'Salary']  = driver2.find_element_by_xpath(xsalary).text
+    if len(driver2.find_element_by_xpath(xremarks)) != 0:
+        df_etf.loc[row_index, 'Remarks']  = driver2.find_element_by_xpath(xremarks).text
+    if len(driver2.find_element_by_xpath(xyos)) != 0:
+        df_etf.loc[row_index, 'Year of Study']  = driver2.find_element_by_xpath(xyos).text
+    if len(driver2.find_element_by_xpath(xsex))!= 0:
+        df_etf.loc[row_index, 'Sex']  = driver2.find_element_by_xpath(xsex).text
+    
+                                                
+
+############################################################################################
+#Main
+#This part is the main function of the program
+############################################################################################
+def main():
+    time.sleep(3)
+    driver_login()
+                                         
+    go_to_page(START_PAGE)
+    time.sleep(1)
+    print 'Start at PAGE'+ str(START_PAGE)
+    
+    n = 1
+    for CURRENT_PAGE in range(START_PAGE,END_PAGE+1):
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' START--------------------'
+        START_TIMESTAMP = time.time()
+        
+        
+        for row in driver.find_elements_by_xpath('//*[@id="search_tutors"]/tbody/tr'):
+            df_etf.loc[n, 'Location']         = row.find_element_by_xpath('td[2]/a').text
+            df_etf.loc[n, 'Date'] = row.find_element_by_xpath('td[4]/a').text
+
+            link = row.find_element_by_xpath('td[1]/a')
+            
+            #open the univesity profile to get other fields
+            #dig(link, n)
+            
+            print '--------------------ROW ' + str(n)+ ' FINISHED--------------------'
+            n = n + 1
+            
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' FINISH--------------------'
+        END_TIMESTAMP = time.time()
+        print '-TIME USED:' + str(START_TIMESTAMP-END_TIMESTAMP) + '-'
+        
+        #store every first 5,10,15... pages to CSV for backup purpose
+        if(CURRENT_PAGE % 5) == 0:
+            save_file('backup', CURRENT_PAGE)
+            
+        go_to_page(CURRENT_PAGE + 1)
+        
+    #set Source as QS for every row as this is crawl from QS
+    
+    #export the file to CSV
+    save_file('all', CURRENT_PAGE)
+    
+    #close the driver
+    driver.quit()
+    
+if __name__ == "__main__":
+    main()
+
+
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-3784de93d74c>"[0;36m, line [0;32m75[0m
+[0;31m    print 'GOING TO PAGE' + str(page)[0m
+[0m                        ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-3784de93d74c>, line 75)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

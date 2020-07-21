@@ -1,0 +1,57 @@
+[I 200703 08:28:38 inrepo:35] Testing notebook docs/examples/Beats.ipynb
+[E 200703 08:28:38 __init__:79] Notebook JSON is invalid: {'model_id': '5a7e3a2416a142a8bfe5e9e4e35059a9', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][4]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '5a7e3a2416a142a8bfe5e9e4e35059a9',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200703 08:28:39 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+@interact(wdr=widgets.FloatSlider(min=900.1, max=1100.1, step=1, value=1100))
+def f(wdr):
+    t, a = vtb.forced_analytical(m=1, k=10**6, x0=0, v0=0, wdr=wdr, F0=200, tf=5)
+    display(Audio(data=a, rate=1/0.000125))
+    plt.plot(t, a, alpha=0.5)
+    plt.show()
+    
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipywidgets/widgets/interaction.py[0m in [0;36mupdate[0;34m(self, *args)[0m
+[1;32m    254[0m                     [0mvalue[0m [0;34m=[0m [0mwidget[0m[0;34m.[0m[0mget_interact_value[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    255[0m                     [0mself[0m[0;34m.[0m[0mkwargs[0m[0;34m[[0m[0mwidget[0m[0;34m.[0m[0m_kwarg[0m[0;34m][0m [0;34m=[0m [0mvalue[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 256[0;31m                 [0mself[0m[0;34m.[0m[0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mf[0m[0;34m([0m[0;34m**[0m[0mself[0m[0;34m.[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    257[0m                 [0mshow_inline_matplotlib_plots[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    258[0m                 [0;32mif[0m [0mself[0m[0;34m.[0m[0mauto_display[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0mresult[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-2-284ebb229b2c>[0m in [0;36mf[0;34m(wdr)[0m
+[1;32m      1[0m [0;34m@[0m[0minteract[0m[0;34m([0m[0mwdr[0m[0;34m=[0m[0mwidgets[0m[0;34m.[0m[0mFloatSlider[0m[0;34m([0m[0mmin[0m[0;34m=[0m[0;36m900.1[0m[0;34m,[0m [0mmax[0m[0;34m=[0m[0;36m1100.1[0m[0;34m,[0m [0mstep[0m[0;34m=[0m[0;36m1[0m[0;34m,[0m [0mvalue[0m[0;34m=[0m[0;36m1100[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mdef[0m [0mf[0m[0;34m([0m[0mwdr[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m     [0mt[0m[0;34m,[0m [0ma[0m [0;34m=[0m [0mvtb[0m[0;34m.[0m[0mforced_analytical[0m[0;34m([0m[0mm[0m[0;34m=[0m[0;36m1[0m[0;34m,[0m [0mk[0m[0;34m=[0m[0;36m10[0m[0;34m**[0m[0;36m6[0m[0;34m,[0m [0mx0[0m[0;34m=[0m[0;36m0[0m[0;34m,[0m [0mv0[0m[0;34m=[0m[0;36m0[0m[0;34m,[0m [0mwdr[0m[0;34m=[0m[0mwdr[0m[0;34m,[0m [0mF0[0m[0;34m=[0m[0;36m200[0m[0;34m,[0m [0mtf[0m[0;34m=[0m[0;36m5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m     [0mdisplay[0m[0;34m([0m[0mAudio[0m[0;34m([0m[0mdata[0m[0;34m=[0m[0ma[0m[0;34m,[0m [0mrate[0m[0;34m=[0m[0;36m1[0m[0;34m/[0m[0;36m0.000125[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m     [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m[0;34m,[0m [0ma[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0;36m0.5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'vibration_toolbox' has no attribute 'forced_analytical'
+AttributeError: module 'vibration_toolbox' has no attribute 'forced_analytical'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

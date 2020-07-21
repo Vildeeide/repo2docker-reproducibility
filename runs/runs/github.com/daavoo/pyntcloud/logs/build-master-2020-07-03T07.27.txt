@@ -1,0 +1,193 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T07.27o6sgis9l/github.com/daavoo/pyntcloud.
+Using CondaBuildPack builder
+Step 1/53 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/53 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/53 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/53 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/53 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/53 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/53 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/53 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/53 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/53 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/53 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/53 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/53 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/53 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/53 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/53 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/53 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/53 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/53 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/53 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/53 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/53 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/53 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/53 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/53 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/53 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/53 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/53 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/53 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/53 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/53 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> Using cache
+ ---> 4b65c732ebc7
+Step 38/53 : USER root
+ ---> Using cache
+ ---> fe8db2f71e48
+Step 39/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 9e1ffc1af79c
+Step 40/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> e6a4a34b76db
+Step 41/53 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 202d998434f2
+Step 42/53 : USER root
+ ---> Using cache
+ ---> 36fe6ec7bb1f
+Step 43/53 : COPY src/ ${REPO_DIR}
+ ---> b5b9c2b89b8e
+Step 44/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 38cdf70ffd96
+Removing intermediate container 38cdf70ffd96
+ ---> faeb64501b46
+Step 45/53 : LABEL repo2docker.ref="None"
+ ---> Running in 4a42e8c71f02
+Removing intermediate container 4a42e8c71f02
+ ---> b28eea734faf
+Step 46/53 : LABEL repo2docker.repo="local"
+ ---> Running in 781fbe2d0309
+Removing intermediate container 781fbe2d0309
+ ---> 8a5994b32f36
+Step 47/53 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f8115468e6a8
+Removing intermediate container f8115468e6a8
+ ---> ac956ff23464
+Step 48/53 : USER ${NB_USER}
+ ---> Running in 748171d254e7
+Removing intermediate container 748171d254e7
+ ---> b33987e676fc
+Step 49/53 : RUN chmod +x binder/postBuild
+ ---> Running in 7382eafb0868
+Removing intermediate container 7382eafb0868
+ ---> 70483648c3ec
+Step 50/53 : RUN ./binder/postBuild
+ ---> Running in ff62cbea03b2
+[91mEnabling notebook extension jupyter-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension appmode/main...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling: appmode.server_extension
+- Writing config: /srv/conda/envs/notebook/etc/jupyter
+[0m[91m    - Validating...
+[0m[91m      appmode.server_extension  [32mOK[0m
+[0mProcessing /home/vildeeide
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyntcloud==0.1.2) (1.18.5)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyntcloud==0.1.2) (1.4.1)
+Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyntcloud==0.1.2) (1.0.5)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->pyntcloud==0.1.2) (2020.1)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->pyntcloud==0.1.2) (2.8.1)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas->pyntcloud==0.1.2) (1.14.0)
+Building wheels for collected packages: pyntcloud
+  Building wheel for pyntcloud (setup.py): started
+  Building wheel for pyntcloud (setup.py): finished with status 'done'
+  Created wheel for pyntcloud: filename=pyntcloud-0.1.2-py3-none-any.whl size=343754 sha256=5f25b7acc01e649c3638d8c0234fc79859e80965f64f8350c135677ecbbc4e97
+  Stored in directory: /tmp/pip-ephem-wheel-cache-j9d3or66/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built pyntcloud
+Installing collected packages: pyntcloud
+Successfully installed pyntcloud-0.1.2
+Removing intermediate container ff62cbea03b2
+ ---> 8b3e1405f944
+Step 51/53 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> e835cb28fad6
+Step 52/53 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 63d41aa3b18e
+Removing intermediate container 63d41aa3b18e
+ ---> 0a50f0e2585c
+Step 53/53 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in b398077e3d7d
+Removing intermediate container b398077e3d7d
+ ---> 1924f2602bea
+{"aux": {"ID": "sha256:1924f2602bea8426c438823903a846b24d107f5dbbb6ad0e0c15484589300c06"}}Successfully built 1924f2602bea
+Successfully tagged r2d-test-github.com-daavoo-pyntcloud:7efd058

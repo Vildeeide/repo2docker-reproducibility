@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/healpy/healpy,master,6dc4a6f,2020-06-29T20:23:23-07:00,build,build,True,github.com/healpy/healpy/logs/build-master-2020-07-06T07.44.txt,2020-07-06T07:44:34.683905,2020-07-06T07.44,0.11.0
+https://github.com/healpy/healpy,master,6dc4a6f,2020-06-29T20:23:23-07:00,notebook,doc/healpy_tutorial.ipynb,False,github.com/healpy/healpy/logs/test-notebook-doc-healpy_tutorial.ipynb-2020-07-06T07.44.txt,2020-07-06T07:44:34.683905,2020-07-06T07.44,0.11.0

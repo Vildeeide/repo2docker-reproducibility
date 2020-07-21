@@ -1,0 +1,5 @@
+[I 200703 06:35:51 inrepo:35] Testing notebook ivp_odes/Stability regions.ipynb
+[I 200703 06:35:53 execute:404] Executing notebook with kernel: python3
+[I 200703 06:35:56 inrepo:41] Saving exported notebook to /io/notebooks/ivp_odes/Stability regions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,1323 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.51t247btj1/github.com/stijnvanhoey/hydropy.
+Using CondaBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${CONDA_DIR}/envs/kernel
+ ---> Using cache
+ ---> d02eeac85c53
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${KERNEL_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> 6f0f9264e9b8
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 94b11c12a020
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> 837c948b4854
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d2-2e7-2efrozen-2eyml-379f74 /tmp/kernel-environment.yml
+ ---> Using cache
+ ---> 34bb82896423
+Step 27/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 77ce9857cea0
+Step 28/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 4569f9280b08
+Step 29/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 4955cce20e9a
+Step 30/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 45c6e4d929f4
+Step 31/52 : USER root
+ ---> Using cache
+ ---> 9523e61984af
+Step 32/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Running in ace2352a067f
+[91m++ dirname /tmp/install-miniconda.bash
+[0m[91m+ cd /tmp
+[0m[91m+ MINICONDA_VERSION=4.7.12.1
+[0m[91m+ CONDA_VERSION=4.7.12
+[0m[91m+ MD5SUM=81c773ff87af5cfac79ab862942ab6b3
+[0m[91m+ URL=https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh
+[0m[91m+ INSTALLER_PATH=/tmp/miniconda-installer.sh
+[0m[91m+ unset HOME
+[0m[91m+ wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O /tmp/miniconda-installer.sh
+[0m[91m+ chmod +x /tmp/miniconda-installer.sh
+[0m[91m+ md5sum --quiet -c -
+[0m[91m+ echo '81c773ff87af5cfac79ab862942ab6b3  /tmp/miniconda-installer.sh'
+[0m[91m+ bash /tmp/miniconda-installer.sh -b -p /srv/conda
+[0mPREFIX=/srv/conda
+Unpacking payload ...
+[91m
+  0%|          | 0/35 [00:00<?, ?it/s][0m[91m
+Extracting : readline-7.0-h7b6447c_5.conda:   0%|          | 0/35 [00:00<?, ?it/s][0m[91m
+Extracting : readline-7.0-h7b6447c_5.conda:   3%|▎         | 1/35 [00:00<00:09,  3.56it/s]
+Extracting : zlib-1.2.11-h7b6447c_3.conda:   3%|▎         | 1/35 [00:00<00:09,  3.56it/s] [0m[91m
+Extracting : python-3.7.4-h265db76_1.conda:   6%|▌         | 2/35 [00:08<00:09,  3.56it/s][0m[91m
+Extracting : python-3.7.4-h265db76_1.conda:   9%|▊         | 3/35 [00:08<00:47,  1.49s/it][0m[91m
+Extracting : libstdcxx-ng-9.1.0-hdf63c60_0.conda:   9%|▊         | 3/35 [00:08<00:47,  1.49s/it][0m[91m
+Extracting : tk-8.6.8-hbc83047_0.conda:  11%|█▏        | 4/35 [00:08<00:46,  1.49s/it]          [0m[91m
+Extracting : ncurses-6.1-he6710b0_1.conda:  14%|█▍        | 5/35 [00:08<00:44,  1.49s/it][0m[91m
+Extracting : xz-5.2.4-h14c3975_4.conda:  17%|█▋        | 6/35 [00:08<00:43,  1.49s/it]   [0m[91m
+Extracting : six-1.12.0-py37_0.conda:  20%|██        | 7/35 [00:08<00:41,  1.49s/it]  [0m[91m
+Extracting : libedit-3.1.20181209-hc058e9b_0.conda:  23%|██▎       | 8/35 [00:08<00:40,  1.49s/it][0m[91m
+Extracting : requests-2.22.0-py37_0.conda:  26%|██▌       | 9/35 [00:08<00:38,  1.49s/it]         [0m[91m
+Extracting : libffi-3.2.1-hd88cf55_4.conda:  29%|██▊       | 10/35 [00:08<00:37,  1.49s/it][0m[91m
+Extracting : libgcc-ng-9.1.0-hdf63c60_0.conda:  31%|███▏      | 11/35 [00:08<00:35,  1.49s/it][0m[91m
+Extracting : chardet-3.0.4-py37_1003.conda:  34%|███▍      | 12/35 [00:08<00:34,  1.49s/it]   [0m[91m
+Extracting : pyopenssl-19.0.0-py37_0.conda:  37%|███▋      | 13/35 [00:08<00:32,  1.49s/it][0m[91m
+Extracting : idna-2.8-py37_0.conda:  40%|████      | 14/35 [00:08<00:31,  1.49s/it]        [0m[91m
+Extracting : yaml-0.1.7-had09818_2.conda:  43%|████▎     | 15/35 [00:08<00:29,  1.49s/it][0m[91m
+Extracting : _libgcc_mutex-0.1-main.conda:  46%|████▌     | 16/35 [00:08<00:28,  1.49s/it][0m[91m
+Extracting : ruamel_yaml-0.15.46-py37h14c3975_0.conda:  49%|████▊     | 17/35 [00:08<00:26,  1.49s/it][0m[91m
+Extracting : urllib3-1.24.2-py37_0.conda:  51%|█████▏    | 18/35 [00:08<00:25,  1.49s/it]             [0m[91m
+Extracting : pycparser-2.19-py37_0.conda:  54%|█████▍    | 19/35 [00:08<00:23,  1.49s/it][0m[91m
+Extracting : tqdm-4.36.1-py_0.conda:  57%|█████▋    | 20/35 [00:08<00:22,  1.49s/it]     [0m[91m
+Extracting : pycosat-0.6.3-py37h14c3975_0.conda:  60%|██████    | 21/35 [00:08<00:20,  1.49s/it][0m[91m
+Extracting : conda-package-handling-1.6.0-py37h7b6447c_0.conda:  63%|██████▎   | 22/35 [00:08<00:19,  1.49s/it][0m[91m
+Extracting : wheel-0.33.6-py37_0.tar.bz2:  66%|██████▌   | 23/35 [00:08<00:17,  1.49s/it]                      [0m[91m
+Extracting : conda-4.7.12-py37_0.tar.bz2:  69%|██████▊   | 24/35 [00:19<00:16,  1.49s/it][0m[91m
+Extracting : conda-4.7.12-py37_0.tar.bz2:  71%|███████▏  | 25/35 [00:19<00:11,  1.19s/it][0m[91m
+Extracting : certifi-2019.9.11-py37_0.tar.bz2:  71%|███████▏  | 25/35 [00:19<00:11,  1.19s/it][0m[91m
+Extracting : sqlite-3.30.0-h7b6447c_0.tar.bz2:  74%|███████▍  | 26/35 [00:19<00:10,  1.19s/it][0m[91m
+Extracting : setuptools-41.4.0-py37_0.tar.bz2:  77%|███████▋  | 27/35 [00:19<00:09,  1.19s/it][0m[91m
+Extracting : pip-19.3.1-py37_0.tar.bz2:  80%|████████  | 28/35 [00:24<00:08,  1.19s/it]       [0m[91m
+Extracting : pip-19.3.1-py37_0.tar.bz2:  83%|████████▎ | 29/35 [00:24<00:07,  1.19s/it][0m[91m
+Extracting : openssl-1.1.1d-h7b6447c_3.tar.bz2:  83%|████████▎ | 29/35 [00:30<00:07,  1.19s/it][0m[91m
+Extracting : openssl-1.1.1d-h7b6447c_3.tar.bz2:  86%|████████▌ | 30/35 [00:30<00:12,  2.48s/it][0m[91m
+Extracting : cffi-1.13.0-py37h2e261b9_0.tar.bz2:  86%|████████▌ | 30/35 [00:30<00:12,  2.48s/it][0m[91m
+Extracting : asn1crypto-1.2.0-py37_0.tar.bz2:  89%|████████▊ | 31/35 [00:30<00:09,  2.48s/it]   [0m[91m
+Extracting : pysocks-1.7.1-py37_0.tar.bz2:  91%|█████████▏| 32/35 [00:30<00:07,  2.48s/it]   [0m[91m
+Extracting : ca-certificates-2019.10.16-0.tar.bz2:  94%|█████████▍| 33/35 [00:30<00:04,  2.48s/it][0m[91m
+Extracting : cryptography-2.8-py37h1ba5d50_0.tar.bz2:  97%|█████████▋| 34/35 [00:30<00:02,  2.48s/it][0m[91m
+                                                                                                     [0m[91m
+[0mCollecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /srv/conda
+
+  added / updated specs:
+    - _libgcc_mutex==0.1=main
+    - asn1crypto==1.2.0=py37_0
+    - ca-certificates==2019.10.16=0
+    - certifi==2019.9.11=py37_0
+    - cffi==1.13.0=py37h2e261b9_0
+    - chardet==3.0.4=py37_1003
+    - conda-package-handling==1.6.0=py37h7b6447c_0
+    - conda==4.7.12=py37_0
+    - cryptography==2.8=py37h1ba5d50_0
+    - idna==2.8=py37_0
+    - libedit==3.1.20181209=hc058e9b_0
+    - libffi==3.2.1=hd88cf55_4
+    - libgcc-ng==9.1.0=hdf63c60_0
+    - libstdcxx-ng==9.1.0=hdf63c60_0
+    - ncurses==6.1=he6710b0_1
+    - openssl==1.1.1d=h7b6447c_3
+    - pip==19.3.1=py37_0
+    - pycosat==0.6.3=py37h14c3975_0
+    - pycparser==2.19=py37_0
+    - pyopenssl==19.0.0=py37_0
+    - pysocks==1.7.1=py37_0
+    - python==3.7.4=h265db76_1
+    - readline==7.0=h7b6447c_5
+    - requests==2.22.0=py37_0
+    - ruamel_yaml==0.15.46=py37h14c3975_0
+    - setuptools==41.4.0=py37_0
+    - six==1.12.0=py37_0
+    - sqlite==3.30.0=h7b6447c_0
+    - tk==8.6.8=hbc83047_0
+    - tqdm==4.36.1=py_0
+    - urllib3==1.24.2=py37_0
+    - wheel==0.33.6=py37_0
+    - xz==5.2.4=h14c3975_4
+    - yaml==0.1.7=had09818_2
+    - zlib==1.2.11=h7b6447c_3
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main
+  asn1crypto         pkgs/main/linux-64::asn1crypto-1.2.0-py37_0
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2019.10.16-0
+  certifi            pkgs/main/linux-64::certifi-2019.9.11-py37_0
+  cffi               pkgs/main/linux-64::cffi-1.13.0-py37h2e261b9_0
+  chardet            pkgs/main/linux-64::chardet-3.0.4-py37_1003
+  conda              pkgs/main/linux-64::conda-4.7.12-py37_0
+  conda-package-han~ pkgs/main/linux-64::conda-package-handling-1.6.0-py37h7b6447c_0
+  cryptography       pkgs/main/linux-64::cryptography-2.8-py37h1ba5d50_0
+  idna               pkgs/main/linux-64::idna-2.8-py37_0
+  libedit            pkgs/main/linux-64::libedit-3.1.20181209-hc058e9b_0
+  libffi             pkgs/main/linux-64::libffi-3.2.1-hd88cf55_4
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-9.1.0-hdf63c60_0
+  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-9.1.0-hdf63c60_0
+  ncurses            pkgs/main/linux-64::ncurses-6.1-he6710b0_1
+  openssl            pkgs/main/linux-64::openssl-1.1.1d-h7b6447c_3
+  pip                pkgs/main/linux-64::pip-19.3.1-py37_0
+  pycosat            pkgs/main/linux-64::pycosat-0.6.3-py37h14c3975_0
+  pycparser          pkgs/main/linux-64::pycparser-2.19-py37_0
+  pyopenssl          pkgs/main/linux-64::pyopenssl-19.0.0-py37_0
+  pysocks            pkgs/main/linux-64::pysocks-1.7.1-py37_0
+  python             pkgs/main/linux-64::python-3.7.4-h265db76_1
+  readline           pkgs/main/linux-64::readline-7.0-h7b6447c_5
+  requests           pkgs/main/linux-64::requests-2.22.0-py37_0
+  ruamel_yaml        pkgs/main/linux-64::ruamel_yaml-0.15.46-py37h14c3975_0
+  setuptools         pkgs/main/linux-64::setuptools-41.4.0-py37_0
+  six                pkgs/main/linux-64::six-1.12.0-py37_0
+  sqlite             pkgs/main/linux-64::sqlite-3.30.0-h7b6447c_0
+  tk                 pkgs/main/linux-64::tk-8.6.8-hbc83047_0
+  tqdm               pkgs/main/noarch::tqdm-4.36.1-py_0
+  urllib3            pkgs/main/linux-64::urllib3-1.24.2-py37_0
+  wheel              pkgs/main/linux-64::wheel-0.33.6-py37_0
+  xz                 pkgs/main/linux-64::xz-5.2.4-h14c3975_4
+  yaml               pkgs/main/linux-64::yaml-0.1.7-had09818_2
+  zlib               pkgs/main/linux-64::zlib-1.2.11-h7b6447c_3
+
+
+Preparing transaction: ...working... done
+Executing transaction: ...working... done
+installation finished.
+[91m+ export PATH=/srv/conda/bin:/srv/conda/envs/notebook/bin:/srv/conda/envs/kernel/bin:/srv/conda/bin:/srv/npm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[0m[91m+ PATH=/srv/conda/bin:/srv/conda/envs/notebook/bin:/srv/conda/envs/kernel/bin:/srv/conda/bin:/srv/npm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+[0m[91m+ conda config --system --add channels conda-forge
+[0m[91m+ conda config --system --set auto_update_conda false
+[0m[91m+ conda config --system --set show_channel_urls true
+[0m[91m+ echo 'update_dependencies: false'
+[0m[91m+ [[ 4.7.12 != \4\.\7\.\1\2\.\1 ]]
++ conda install -yq conda==4.7.12
+[0mCollecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /srv/conda
+
+  added / updated specs:
+    - conda==4.7.12
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2020.6.20  |       hecda079_0         145 KB  conda-forge
+    certifi-2020.6.20          |   py37hc8dfbb8_0         151 KB  conda-forge
+    openssl-1.1.1g             |       h516909a_0         2.1 MB  conda-forge
+    python_abi-3.7             |          1_cp37m           4 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:         2.4 MB
+
+The following NEW packages will be INSTALLED:
+
+  python_abi         conda-forge/linux-64::python_abi-3.7-1_cp37m
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2019.10.16~ --> conda-forge::ca-certificates-2020.6.20-hecda079_0
+  certifi               pkgs/main::certifi-2019.9.11-py37_0 --> conda-forge::certifi-2020.6.20-py37hc8dfbb8_0
+  openssl              pkgs/main::openssl-1.1.1d-h7b6447c_3 --> conda-forge::openssl-1.1.1g-h516909a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m+ conda config --system --set channel_priority flexible
+[0minstalling notebook env:
+# AUTO GENERATED FROM environment.py-3.7.yml, DO NOT MANUALLY MODIFY
+# Frozen on 2020-01-30 10:54:05 UTC
+name: r2d
+channels:
+  - conda-forge
+  - defaults
+  - conda-forge/label/broken
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=0_gnu
+  - alembic=1.3.3=py_0
+  - async_generator=1.10=py_0
+  - attrs=19.3.0=py_0
+  - backcall=0.1.0=py_0
+  - bleach=3.1.0=py_0
+  - blinker=1.4=py_1
+  - ca-certificates=2019.11.28=hecc5488_0
+  - certifi=2019.11.28=py37_0
+  - certipy=0.1.3=py_0
+  - cffi=1.13.2=py37h8022711_0
+  - chardet=3.0.4=py37_1003
+  - cryptography=2.8=py37h72c5cf5_1
+  - decorator=4.4.1=py_0
+  - defusedxml=0.6.0=py_0
+  - entrypoints=0.3=py37_1000
+  - idna=2.8=py37_1000
+  - importlib_metadata=1.5.0=py37_0
+  - inflect=4.0.0=py37_1
+  - ipykernel=5.1.4=py37h5ca1d4c_0
+  - ipython=7.11.1=py37h5ca1d4c_0
+  - ipython_genutils=0.2.0=py_1
+  - ipywidgets=7.5.1=py_0
+  - jaraco.itertools=5.0.0=py_0
+  - jedi=0.16.0=py37_0
+  - jinja2=2.11.0=py_0
+  - json5=0.8.5=py_0
+  - jsonschema=3.2.0=py37_0
+  - jupyter_client=5.3.4=py37_1
+  - jupyter_core=4.6.1=py37_0
+  - jupyter_telemetry=0.0.4=py_0
+  - jupyterhub-base=1.1.0=py37_2
+  - jupyterhub-singleuser=1.1.0=py37_2
+  - jupyterlab=1.2.6=py_0
+  - jupyterlab_server=1.0.6=py_0
+  - krb5=1.16.4=h2fd8d38_0
+  - ld_impl_linux-64=2.33.1=h53a641e_8
+  - libcurl=7.65.3=hda55be3_0
+  - libedit=3.1.20170329=hf8c457e_1001
+  - libffi=3.2.1=he1b5a44_1006
+  - libgcc-ng=9.2.0=h24d8f2e_2
+  - libgomp=9.2.0=h24d8f2e_2
+  - libsodium=1.0.17=h516909a_0
+  - libssh2=1.8.2=h22169c7_2
+  - libstdcxx-ng=9.2.0=hdf63c60_2
+  - mako=1.1.0=py_0
+  - markupsafe=1.1.1=py37h516909a_0
+  - mistune=0.8.4=py37h516909a_1000
+  - more-itertools=8.2.0=py_0
+  - nbconvert=5.6.1=py37_0
+  - nbformat=5.0.4=py_0
+  - ncurses=6.1=hf484d3e_1002
+  - notebook=6.0.3=py37_0
+  - nteract_on_jupyter=2.1.3=py_0
+  - oauthlib=3.0.1=py_0
+  - openssl=1.1.1d=h516909a_0
+  - pamela=1.0.0=py_0
+  - pandoc=2.9.1.1=0
+  - pandocfilters=1.4.2=py_1
+  - parso=0.6.0=py_0
+  - pexpect=4.8.0=py37_0
+  - pickleshare=0.7.5=py37_1000
+  - pip=20.0.2=py37_0
+  - prometheus_client=0.7.1=py_0
+  - prompt_toolkit=3.0.3=py_0
+  - ptyprocess=0.6.0=py_1001
+  - pycparser=2.19=py37_1
+  - pycurl=7.43.0.5=py37h16ce93b_0
+  - pygments=2.5.2=py_0
+  - pyjwt=1.7.1=py_0
+  - pyopenssl=19.1.0=py37_0
+  - pyrsistent=0.15.7=py37h516909a_0
+  - pysocks=1.7.1=py37_0
+  - python=3.7.6=h357f687_2
+  - python-dateutil=2.8.1=py_0
+  - python-editor=1.0.4=py_0
+  - python-json-logger=0.1.11=py_0
+  - pyzmq=18.1.1=py37h1768529_0
+  - readline=8.0=hf8c457e_0
+  - requests=2.22.0=py37_1
+  - ruamel.yaml=0.16.6=py37h516909a_0
+  - ruamel.yaml.clib=0.2.0=py37h516909a_0
+  - send2trash=1.5.0=py_0
+  - setuptools=45.1.0=py37_0
+  - six=1.14.0=py37_0
+  - sqlalchemy=1.3.13=py37h516909a_0
+  - sqlite=3.30.1=hcee41ef_0
+  - terminado=0.8.3=py37_0
+  - testpath=0.4.4=py_0
+  - tk=8.6.10=hed695b0_0
+  - tornado=6.0.3=py37h516909a_0
+  - traitlets=4.3.3=py37_0
+  - urllib3=1.25.7=py37_0
+  - wcwidth=0.1.8=py_0
+  - webencodings=0.5.1=py_1
+  - wheel=0.34.1=py37_0
+  - widgetsnbextension=3.5.1=py37_0
+  - xz=5.2.4=h14c3975_1001
+  - zeromq=4.3.2=he1b5a44_2
+  - zipp=2.1.0=py_0
+  - zlib=1.2.11=h516909a_1006
+prefix: /opt/conda/envs/r2d
+
+[91m+ echo 'installing notebook env:'
++ cat /tmp/environment.yml
+[0m[91m+ conda env create -p /srv/conda/envs/notebook -f /tmp/environment.yml
+[0mCollecting package metadata (repodata.json): ...working... [91mWARNING conda.models.version:get_matcher(531): Using .* with relational operator is superfluous and deprecated and will be removed in a future version of conda. Your spec was 1.*, but conda is ignoring the .* and treating it as 1
+[0mdone
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+pexpect-4.8.0        | 79 KB     |            |   0% 
+pexpect-4.8.0        | 79 KB     | ##         |  20% 
+pexpect-4.8.0        | 79 KB     | ########## | 100% 
+
+pyzmq-18.1.1         | 517 KB    |            |   0% 
+pyzmq-18.1.1         | 517 KB    | ########## | 100% 
+
+chardet-3.0.4        | 167 KB    |            |   0% 
+chardet-3.0.4        | 167 KB    | ########## | 100% 
+
+async_generator-1.10 | 18 KB     |            |   0% 
+async_generator-1.10 | 18 KB     | ########## | 100% 
+
+libssh2-1.8.2        | 257 KB    |            |   0% 
+libssh2-1.8.2        | 257 KB    | ########## | 100% 
+
+jaraco.itertools-5.0 | 14 KB     |            |   0% 
+jaraco.itertools-5.0 | 14 KB     | ########## | 100% 
+
+pygments-2.5.2       | 669 KB    |            |   0% 
+pygments-2.5.2       | 669 KB    | ########8  |  89% 
+pygments-2.5.2       | 669 KB    | ########## | 100% 
+
+pyrsistent-0.15.7    | 89 KB     |            |   0% 
+pyrsistent-0.15.7    | 89 KB     | ########## | 100% 
+
+defusedxml-0.6.0     | 22 KB     |            |   0% 
+defusedxml-0.6.0     | 22 KB     | ########## | 100% 
+
+tk-8.6.10            | 3.2 MB    |            |   0% 
+tk-8.6.10            | 3.2 MB    | ###3       |  33% 
+tk-8.6.10            | 3.2 MB    | #########2 |  93% 
+tk-8.6.10            | 3.2 MB    | ########## | 100% 
+
+ruamel.yaml-0.16.6   | 166 KB    |            |   0% 
+ruamel.yaml-0.16.6   | 166 KB    | ########## | 100% 
+
+inflect-4.0.0        | 56 KB     |            |   0% 
+inflect-4.0.0        | 56 KB     | ########## | 100% 
+
+more-itertools-8.2.0 | 35 KB     |            |   0% 
+more-itertools-8.2.0 | 35 KB     | ########## | 100% 
+
+wheel-0.34.1         | 42 KB     |            |   0% 
+wheel-0.34.1         | 42 KB     | ########## | 100% 
+
+cffi-1.13.2          | 220 KB    |            |   0% 
+cffi-1.13.2          | 220 KB    | ########## | 100% 
+
+markupsafe-1.1.1     | 26 KB     |            |   0% 
+markupsafe-1.1.1     | 26 KB     | ########## | 100% 
+
+python-json-logger-0 | 8 KB      |            |   0% 
+python-json-logger-0 | 8 KB      | ########## | 100% 
+
+libgcc-ng-9.2.0      | 8.2 MB    |            |   0% 
+libgcc-ng-9.2.0      | 8.2 MB    | 5          |   6% 
+libgcc-ng-9.2.0      | 8.2 MB    | ###1       |  31% 
+libgcc-ng-9.2.0      | 8.2 MB    | ######4    |  65% 
+libgcc-ng-9.2.0      | 8.2 MB    | #########1 |  92% 
+libgcc-ng-9.2.0      | 8.2 MB    | ########## | 100% 
+
+nbformat-5.0.4       | 98 KB     |            |   0% 
+nbformat-5.0.4       | 98 KB     | ########## | 100% 
+
+_libgcc_mutex-0.1    | 3 KB      |            |   0% 
+_libgcc_mutex-0.1    | 3 KB      | ########## | 100% 
+
+jinja2-2.11.0        | 94 KB     |            |   0% 
+jinja2-2.11.0        | 94 KB     | ########## | 100% 
+
+sqlite-3.30.1        | 2.0 MB    |            |   0% 
+sqlite-3.30.1        | 2.0 MB    | ########   |  80% 
+sqlite-3.30.1        | 2.0 MB    | ########## | 100% 
+
+pyopenssl-19.1.0     | 83 KB     |            |   0% 
+pyopenssl-19.1.0     | 83 KB     | ########## | 100% 
+
+mistune-0.8.4        | 53 KB     |            |   0% 
+mistune-0.8.4        | 53 KB     | ########## | 100% 
+
+decorator-4.4.1      | 11 KB     |            |   0% 
+decorator-4.4.1      | 11 KB     | ########## | 100% 
+
+tornado-6.0.3        | 637 KB    |            |   0% 
+tornado-6.0.3        | 637 KB    | ########## | 100% 
+
+jsonschema-3.2.0     | 89 KB     |            |   0% 
+jsonschema-3.2.0     | 89 KB     | ########## | 100% 
+
+pandocfilters-1.4.2  | 9 KB      |            |   0% 
+pandocfilters-1.4.2  | 9 KB      | ########## | 100% 
+
+readline-8.0         | 441 KB    |            |   0% 
+readline-8.0         | 441 KB    | ########## | 100% 
+
+alembic-1.3.3        | 108 KB    |            |   0% 
+alembic-1.3.3        | 108 KB    | ########## | 100% 
+
+certifi-2019.11.28   | 148 KB    |            |   0% 
+certifi-2019.11.28   | 148 KB    | ########## | 100% 
+
+ld_impl_linux-64-2.3 | 589 KB    |            |   0% 
+ld_impl_linux-64-2.3 | 589 KB    | ########## | 100% 
+
+json5-0.8.5          | 24 KB     |            |   0% 
+json5-0.8.5          | 24 KB     | ########## | 100% 
+
+parso-0.6.0          | 66 KB     |            |   0% 
+parso-0.6.0          | 66 KB     | ########## | 100% 
+
+certipy-0.1.3        | 17 KB     |            |   0% 
+certipy-0.1.3        | 17 KB     | ########## | 100% 
+
+sqlalchemy-1.3.13    | 1.8 MB    |            |   0% 
+sqlalchemy-1.3.13    | 1.8 MB    | #######4   |  75% 
+sqlalchemy-1.3.13    | 1.8 MB    | ########## | 100% 
+
+pycparser-2.19       | 171 KB    |            |   0% 
+pycparser-2.19       | 171 KB    | ########## | 100% 
+
+python-3.7.6         | 52.9 MB   |            |   0% 
+python-3.7.6         | 52.9 MB   |            |   1% 
+python-3.7.6         | 52.9 MB   | 3          |   3% 
+python-3.7.6         | 52.9 MB   | 6          |   7% 
+python-3.7.6         | 52.9 MB   | 9          |  10% 
+python-3.7.6         | 52.9 MB   | #3         |  14% 
+python-3.7.6         | 52.9 MB   | #7         |  17% 
+python-3.7.6         | 52.9 MB   | ##         |  20% 
+python-3.7.6         | 52.9 MB   | ##3        |  23% 
+python-3.7.6         | 52.9 MB   | ##6        |  26% 
+python-3.7.6         | 52.9 MB   | ##9        |  29% 
+python-3.7.6         | 52.9 MB   | ###3       |  33% 
+python-3.7.6         | 52.9 MB   | ###6       |  37% 
+python-3.7.6         | 52.9 MB   | ####       |  40% 
+python-3.7.6         | 52.9 MB   | ####3      |  44% 
+python-3.7.6         | 52.9 MB   | ####6      |  47% 
+python-3.7.6         | 52.9 MB   | ####9      |  50% 
+python-3.7.6         | 52.9 MB   | #####3     |  53% 
+python-3.7.6         | 52.9 MB   | #####6     |  56% 
+python-3.7.6         | 52.9 MB   | #####9     |  59% 
+python-3.7.6         | 52.9 MB   | ######2    |  62% 
+python-3.7.6         | 52.9 MB   | ######5    |  66% 
+python-3.7.6         | 52.9 MB   | ######9    |  69% 
+python-3.7.6         | 52.9 MB   | #######2   |  73% 
+python-3.7.6         | 52.9 MB   | #######6   |  76% 
+python-3.7.6         | 52.9 MB   | #######9   |  79% 
+python-3.7.6         | 52.9 MB   | ########2  |  83% 
+python-3.7.6         | 52.9 MB   | ########5  |  86% 
+python-3.7.6         | 52.9 MB   | ########9  |  90% 
+python-3.7.6         | 52.9 MB   | #########3 |  93% 
+python-3.7.6         | 52.9 MB   | #########6 |  97% 
+python-3.7.6         | 52.9 MB   | ########## | 100% 
+
+ipython-7.11.1       | 1.1 MB    |            |   0% 
+ipython-7.11.1       | 1.1 MB    | ###2       |  33% 
+ipython-7.11.1       | 1.1 MB    | ########## | 100% 
+
+pyjwt-1.7.1          | 17 KB     |            |   0% 
+pyjwt-1.7.1          | 17 KB     | #########1 |  92% 
+pyjwt-1.7.1          | 17 KB     | ########## | 100% 
+
+importlib_metadata-1 | 42 KB     |            |   0% 
+importlib_metadata-1 | 42 KB     | ########## | 100% 
+
+nbconvert-5.6.1      | 487 KB    |            |   0% 
+nbconvert-5.6.1      | 487 KB    | #########1 |  92% 
+nbconvert-5.6.1      | 487 KB    | ########## | 100% 
+
+bleach-3.1.0         | 110 KB    |            |   0% 
+bleach-3.1.0         | 110 KB    | ########## | 100% 
+
+requests-2.22.0      | 84 KB     |            |   0% 
+requests-2.22.0      | 84 KB     | ########## | 100% 
+
+zipp-2.1.0           | 9 KB      |            |   0% 
+zipp-2.1.0           | 9 KB      | ########## | 100% 
+
+libgomp-9.2.0        | 816 KB    |            |   0% 
+libgomp-9.2.0        | 816 KB    | ######2    |  63% 
+libgomp-9.2.0        | 816 KB    | ########## | 100% 
+
+jupyterhub-base-1.1. | 1.7 MB    |            |   0% 
+jupyterhub-base-1.1. | 1.7 MB    | ####8      |  49% 
+jupyterhub-base-1.1. | 1.7 MB    | ########## | 100% 
+
+pickleshare-0.7.5    | 12 KB     |            |   0% 
+pickleshare-0.7.5    | 12 KB     | ########## | 100% 
+
+ca-certificates-2019 | 145 KB    |            |   0% 
+ca-certificates-2019 | 145 KB    | ########## | 100% 
+
+entrypoints-0.3      | 11 KB     |            |   0% 
+entrypoints-0.3      | 11 KB     | ########## | 100% 
+
+pamela-1.0.0         | 9 KB      |            |   0% 
+pamela-1.0.0         | 9 KB      | ########## | 100% 
+
+mako-1.1.0           | 57 KB     |            |   0% 
+mako-1.1.0           | 57 KB     | ########## | 100% 
+
+blinker-1.4          | 13 KB     |            |   0% 
+blinker-1.4          | 13 KB     | ########## | 100% 
+
+ptyprocess-0.6.0     | 15 KB     |            |   0% 
+ptyprocess-0.6.0     | 15 KB     | ########## | 100% 
+
+jupyter_client-5.3.4 | 131 KB    |            |   0% 
+jupyter_client-5.3.4 | 131 KB    | ########## | 100% 
+
+libsodium-1.0.17     | 330 KB    |            |   0% 
+libsodium-1.0.17     | 330 KB    | ########## | 100% 
+
+jupyterhub-singleuse | 4 KB      |            |   0% 
+jupyterhub-singleuse | 4 KB      | ########## | 100% 
+
+ipywidgets-7.5.1     | 101 KB    |            |   0% 
+ipywidgets-7.5.1     | 101 KB    | ########## | 100% 
+
+pycurl-7.43.0.5      | 69 KB     |            |   0% 
+pycurl-7.43.0.5      | 69 KB     | ########## | 100% 
+
+jupyter_telemetry-0. | 11 KB     |            |   0% 
+jupyter_telemetry-0. | 11 KB     | ########## | 100% 
+
+ncurses-6.1          | 1.3 MB    |            |   0% 
+ncurses-6.1          | 1.3 MB    | ####6      |  46% 
+ncurses-6.1          | 1.3 MB    | ########## | 100% 
+
+zeromq-4.3.2         | 668 KB    |            |   0% 
+zeromq-4.3.2         | 668 KB    | #######6   |  77% 
+zeromq-4.3.2         | 668 KB    | #########8 |  98% 
+zeromq-4.3.2         | 668 KB    | ########## | 100% 
+
+ruamel.yaml.clib-0.2 | 155 KB    |            |   0% 
+ruamel.yaml.clib-0.2 | 155 KB    | ########## | 100% 
+
+pip-20.0.2           | 1.9 MB    |            |   0% 
+pip-20.0.2           | 1.9 MB    | #####2     |  53% 
+pip-20.0.2           | 1.9 MB    | ########## | 100% 
+
+setuptools-45.1.0    | 648 KB    |            |   0% 
+setuptools-45.1.0    | 648 KB    | ########## | 100% 
+
+wcwidth-0.1.8        | 19 KB     |            |   0% 
+wcwidth-0.1.8        | 19 KB     | ########## | 100% 
+
+oauthlib-3.0.1       | 82 KB     |            |   0% 
+oauthlib-3.0.1       | 82 KB     | ########## | 100% 
+
+attrs-19.3.0         | 35 KB     |            |   0% 
+attrs-19.3.0         | 35 KB     | ########## | 100% 
+
+jupyterlab-1.2.6     | 4.8 MB    |            |   0% 
+jupyterlab-1.2.6     | 4.8 MB    | ##2        |  23% 
+jupyterlab-1.2.6     | 4.8 MB    | #####3     |  54% 
+jupyterlab-1.2.6     | 4.8 MB    | #########9 |  99% 
+jupyterlab-1.2.6     | 4.8 MB    | ########## | 100% 
+
+ipython_genutils-0.2 | 21 KB     |            |   0% 
+ipython_genutils-0.2 | 21 KB     | ########## | 100% 
+
+backcall-0.1.0       | 13 KB     |            |   0% 
+backcall-0.1.0       | 13 KB     | ########## | 100% 
+
+webencodings-0.5.1   | 12 KB     |            |   0% 
+webencodings-0.5.1   | 12 KB     | ########## | 100% 
+
+idna-2.8             | 100 KB    |            |   0% 
+idna-2.8             | 100 KB    | ########## | 100% 
+
+pysocks-1.7.1        | 27 KB     |            |   0% 
+pysocks-1.7.1        | 27 KB     | ########## | 100% 
+
+jupyter_core-4.6.1   | 70 KB     |            |   0% 
+jupyter_core-4.6.1   | 70 KB     | ########## | 100% 
+
+pandoc-2.9.1.1       | 16.6 MB   |            |   0% 
+pandoc-2.9.1.1       | 16.6 MB   | 5          |   6% 
+pandoc-2.9.1.1       | 16.6 MB   | #5         |  16% 
+pandoc-2.9.1.1       | 16.6 MB   | ##         |  21% 
+pandoc-2.9.1.1       | 16.6 MB   | ##8        |  28% 
+pandoc-2.9.1.1       | 16.6 MB   | ###4       |  35% 
+pandoc-2.9.1.1       | 16.6 MB   | ####3      |  44% 
+pandoc-2.9.1.1       | 16.6 MB   | #####1     |  51% 
+pandoc-2.9.1.1       | 16.6 MB   | ######     |  61% 
+pandoc-2.9.1.1       | 16.6 MB   | #######    |  70% 
+pandoc-2.9.1.1       | 16.6 MB   | #######8   |  78% 
+pandoc-2.9.1.1       | 16.6 MB   | ########7  |  87% 
+pandoc-2.9.1.1       | 16.6 MB   | #########5 |  96% 
+pandoc-2.9.1.1       | 16.6 MB   | ########## | 100% 
+
+send2trash-1.5.0     | 12 KB     |            |   0% 
+send2trash-1.5.0     | 12 KB     | ########## | 100% 
+
+libstdcxx-ng-9.2.0   | 4.5 MB    |            |   0% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | 9          |   9% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | ###1       |  32% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | #####9     |  60% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | #########2 |  93% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | ########## | 100% 
+
+openssl-1.1.1d       | 2.1 MB    |            |   0% 
+openssl-1.1.1d       | 2.1 MB    | #####3     |  53% 
+openssl-1.1.1d       | 2.1 MB    | ########## | 100% 
+
+urllib3-1.25.7       | 159 KB    |            |   0% 
+urllib3-1.25.7       | 159 KB    | ########## | 100% 
+
+jedi-0.16.0          | 781 KB    |            |   0% 
+jedi-0.16.0          | 781 KB    | #####9     |  59% 
+jedi-0.16.0          | 781 KB    | ########## | 100% 
+
+libcurl-7.65.3       | 575 KB    |            |   0% 
+libcurl-7.65.3       | 575 KB    | ########## | 100% 
+
+python-dateutil-2.8. | 220 KB    |            |   0% 
+python-dateutil-2.8. | 220 KB    | ########## | 100% 
+
+widgetsnbextension-3 | 1.8 MB    |            |   0% 
+widgetsnbextension-3 | 1.8 MB    | ##5        |  25% 
+widgetsnbextension-3 | 1.8 MB    | ########## | 100% 
+
+xz-5.2.4             | 366 KB    |            |   0% 
+xz-5.2.4             | 366 KB    | ########## | 100% 
+
+_openmp_mutex-4.5    | 435 KB    |            |   0% 
+_openmp_mutex-4.5    | 435 KB    | ########## | 100% 
+
+six-1.14.0           | 23 KB     |            |   0% 
+six-1.14.0           | 23 KB     | ########## | 100% 
+
+traitlets-4.3.3      | 133 KB    |            |   0% 
+traitlets-4.3.3      | 133 KB    | ########## | 100% 
+
+libffi-3.2.1         | 46 KB     |            |   0% 
+libffi-3.2.1         | 46 KB     | ########## | 100% 
+
+terminado-0.8.3      | 23 KB     |            |   0% 
+terminado-0.8.3      | 23 KB     | ########## | 100% 
+
+jupyterlab_server-1. | 23 KB     |            |   0% 
+jupyterlab_server-1. | 23 KB     | ########## | 100% 
+
+ipykernel-5.1.4      | 160 KB    |            |   0% 
+ipykernel-5.1.4      | 160 KB    | ########## | 100% 
+
+nteract_on_jupyter-2 | 28.0 MB   |            |   0% 
+nteract_on_jupyter-2 | 28.0 MB   | 2          |   2% 
+nteract_on_jupyter-2 | 28.0 MB   | 6          |   6% 
+nteract_on_jupyter-2 | 28.0 MB   | #1         |  12% 
+nteract_on_jupyter-2 | 28.0 MB   | #8         |  18% 
+nteract_on_jupyter-2 | 28.0 MB   | ##3        |  24% 
+nteract_on_jupyter-2 | 28.0 MB   | ##8        |  29% 
+nteract_on_jupyter-2 | 28.0 MB   | ###5       |  35% 
+nteract_on_jupyter-2 | 28.0 MB   | ####1      |  42% 
+nteract_on_jupyter-2 | 28.0 MB   | ####7      |  48% 
+nteract_on_jupyter-2 | 28.0 MB   | #####2     |  53% 
+nteract_on_jupyter-2 | 28.0 MB   | #####8     |  59% 
+nteract_on_jupyter-2 | 28.0 MB   | ######4    |  64% 
+nteract_on_jupyter-2 | 28.0 MB   | ######9    |  70% 
+nteract_on_jupyter-2 | 28.0 MB   | #######5   |  76% 
+nteract_on_jupyter-2 | 28.0 MB   | ########2  |  82% 
+nteract_on_jupyter-2 | 28.0 MB   | ########7  |  87% 
+nteract_on_jupyter-2 | 28.0 MB   | #########2 |  93% 
+nteract_on_jupyter-2 | 28.0 MB   | ########## | 100% 
+
+zlib-1.2.11          | 105 KB    |            |   0% 
+zlib-1.2.11          | 105 KB    | ########## | 100% 
+
+krb5-1.16.4          | 1.4 MB    |            |   0% 
+krb5-1.16.4          | 1.4 MB    | ####4      |  45% 
+krb5-1.16.4          | 1.4 MB    | ########## | 100% 
+
+libedit-3.1.20170329 | 172 KB    |            |   0% 
+libedit-3.1.20170329 | 172 KB    | ########## | 100% 
+
+prometheus_client-0. | 38 KB     |            |   0% 
+prometheus_client-0. | 38 KB     | ########## | 100% 
+
+python-editor-1.0.4  | 9 KB      |            |   0% 
+python-editor-1.0.4  | 9 KB      | ########## | 100% 
+
+cryptography-2.8     | 625 KB    |            |   0% 
+cryptography-2.8     | 625 KB    | ########## | 100% 
+
+notebook-6.0.3       | 6.2 MB    |            |   0% 
+notebook-6.0.3       | 6.2 MB    | 6          |   7% 
+notebook-6.0.3       | 6.2 MB    | ###6       |  36% 
+notebook-6.0.3       | 6.2 MB    | ######1    |  61% 
+notebook-6.0.3       | 6.2 MB    | ########4  |  85% 
+notebook-6.0.3       | 6.2 MB    | ########## | 100% 
+
+testpath-0.4.4       | 85 KB     |            |   0% 
+testpath-0.4.4       | 85 KB     | ########## | 100% 
+
+prompt_toolkit-3.0.3 | 231 KB    |            |   0% 
+prompt_toolkit-3.0.3 | 231 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'Enabling notebook extension jupyter-js-widgets/extension...\n      - Validating: \x1b[32mOK\x1b[0m\n'
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m[91m+ echo ''
+[0m[91m+ [[ -f /tmp/kernel-environment.yml ]]
+[0m[91m+ echo 'installing kernel env:'
++ cat /tmp/kernel-environment.yml
+[0minstalling kernel env:
+# AUTO GENERATED FROM environment.py-2.7.yml, DO NOT MANUALLY MODIFY
+# Frozen on 2020-01-27 12:28:36 UTC
+name: r2d
+channels:
+  - conda-forge
+  - defaults
+  - conda-forge/label/broken
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=0_gnu
+  - backports=1.0=py_2
+  - backports.shutil_get_terminal_size=1.0.0=py_3
+  - backports_abc=0.5=py_1
+  - ca-certificates=2019.11.28=hecc5488_0
+  - certifi=2019.11.28=py27_0
+  - configparser=3.7.3=py27_1
+  - decorator=4.4.1=py_0
+  - entrypoints=0.3=py27_1000
+  - enum34=1.1.6=py27_1002
+  - futures=3.3.0=py27_0
+  - ipykernel=4.8.2=py27_0
+  - ipython=5.8.0=py27_1
+  - ipython_genutils=0.2.0=py_1
+  - jupyter_client=5.3.4=py27_1
+  - jupyter_core=4.6.1=py27_0
+  - libffi=3.2.1=he1b5a44_1006
+  - libgcc-ng=9.2.0=h24d8f2e_2
+  - libgomp=9.2.0=h24d8f2e_2
+  - libsodium=1.0.17=h516909a_0
+  - libstdcxx-ng=9.2.0=hdf63c60_2
+  - ncurses=6.1=hf484d3e_1002
+  - openssl=1.1.1d=h516909a_0
+  - pathlib2=2.3.5=py27_0
+  - pexpect=4.8.0=py27_0
+  - pickleshare=0.7.5=py27_1000
+  - pip=20.0.2=py27_0
+  - prompt_toolkit=1.0.15=py_1
+  - ptyprocess=0.6.0=py_1001
+  - pygments=2.5.2=py_0
+  - python=2.7.15=h5a48372_1009
+  - python-dateutil=2.8.1=py_0
+  - pyzmq=18.1.1=py27h1768529_0
+  - readline=8.0=hf8c457e_0
+  - scandir=1.10.0=py27h516909a_0
+  - setuptools=44.0.0=py27_0
+  - simplegeneric=0.8.1=py_1
+  - singledispatch=3.4.0.3=py27_1000
+  - six=1.14.0=py27_0
+  - sqlite=3.30.1=hcee41ef_0
+  - tk=8.6.10=hed695b0_0
+  - tornado=5.1.1=py27h14c3975_1000
+  - traitlets=4.3.3=py27_0
+  - wcwidth=0.1.8=py_0
+  - wheel=0.33.6=py27_0
+  - zeromq=4.3.2=he1b5a44_2
+  - zlib=1.2.11=h516909a_1006
+prefix: /opt/conda/envs/r2d
+
+[91m+ conda env create -p /srv/conda/envs/kernel -f /tmp/kernel-environment.yml
+[0mCollecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+backports-1.0        | 4 KB      |            |   0% 
+backports-1.0        | 4 KB      | ########## | 100% 
+
+ipython-5.8.0        | 1.1 MB    |            |   0% 
+ipython-5.8.0        | 1.1 MB    | ######4    |  65% 
+ipython-5.8.0        | 1.1 MB    | ########## | 100% 
+
+pathlib2-2.3.5       | 33 KB     |            |   0% 
+pathlib2-2.3.5       | 33 KB     | ########## | 100% 
+
+enum34-1.1.6         | 57 KB     |            |   0% 
+enum34-1.1.6         | 57 KB     | ########## | 100% 
+
+ipykernel-4.8.2      | 147 KB    |            |   0% 
+ipykernel-4.8.2      | 147 KB    | ########## | 100% 
+
+python-2.7.15        | 12.7 MB   |            |   0% 
+python-2.7.15        | 12.7 MB   | 6          |   6% 
+python-2.7.15        | 12.7 MB   | #4         |  15% 
+python-2.7.15        | 12.7 MB   | ##5        |  26% 
+python-2.7.15        | 12.7 MB   | ###5       |  35% 
+python-2.7.15        | 12.7 MB   | ####5      |  46% 
+python-2.7.15        | 12.7 MB   | #####8     |  58% 
+python-2.7.15        | 12.7 MB   | ######6    |  67% 
+python-2.7.15        | 12.7 MB   | #######8   |  78% 
+python-2.7.15        | 12.7 MB   | #########2 |  92% 
+python-2.7.15        | 12.7 MB   | ########## | 100% 
+
+simplegeneric-0.8.1  | 7 KB      |            |   0% 
+simplegeneric-0.8.1  | 7 KB      | ########## | 100% 
+
+pexpect-4.8.0        | 77 KB     |            |   0% 
+pexpect-4.8.0        | 77 KB     | ########## | 100% 
+
+setuptools-44.0.0    | 663 KB    |            |   0% 
+setuptools-44.0.0    | 663 KB    | ########## | 100% 
+
+jupyter_core-4.6.1   | 70 KB     |            |   0% 
+jupyter_core-4.6.1   | 70 KB     | ########## | 100% 
+
+pickleshare-0.7.5    | 11 KB     |            |   0% 
+pickleshare-0.7.5    | 11 KB     | ########## | 100% 
+
+prompt_toolkit-1.0.1 | 154 KB    |            |   0% 
+prompt_toolkit-1.0.1 | 154 KB    | ########## | 100% 
+
+configparser-3.7.3   | 36 KB     |            |   0% 
+configparser-3.7.3   | 36 KB     | ########## | 100% 
+
+singledispatch-3.4.0 | 15 KB     |            |   0% 
+singledispatch-3.4.0 | 15 KB     | ########## | 100% 
+
+certifi-2019.11.28   | 149 KB    |            |   0% 
+certifi-2019.11.28   | 149 KB    | ########## | 100% 
+
+futures-3.3.0        | 25 KB     |            |   0% 
+futures-3.3.0        | 25 KB     | ########## | 100% 
+
+scandir-1.10.0       | 28 KB     |            |   0% 
+scandir-1.10.0       | 28 KB     | ########## | 100% 
+
+pyzmq-18.1.1         | 489 KB    |            |   0% 
+pyzmq-18.1.1         | 489 KB    | ########## | 100% 
+
+backports_abc-0.5    | 5 KB      |            |   0% 
+backports_abc-0.5    | 5 KB      | ########## | 100% 
+
+six-1.14.0           | 22 KB     |            |   0% 
+six-1.14.0           | 22 KB     | ########## | 100% 
+
+traitlets-4.3.3      | 128 KB    |            |   0% 
+traitlets-4.3.3      | 128 KB    | ########## | 100% 
+
+tornado-5.1.1        | 642 KB    |            |   0% 
+tornado-5.1.1        | 642 KB    | ########## | 100% 
+
+backports.shutil_get | 7 KB      |            |   0% 
+backports.shutil_get | 7 KB      | ########## | 100% 
+
+jupyter_client-5.3.4 | 129 KB    |            |   0% 
+jupyter_client-5.3.4 | 129 KB    | ########## | 100% 
+
+wheel-0.33.6         | 35 KB     |            |   0% 
+wheel-0.33.6         | 35 KB     | ####6      |  46% 
+wheel-0.33.6         | 35 KB     | ########## | 100% 
+
+pip-20.0.2           | 1.9 MB    |            |   0% 
+pip-20.0.2           | 1.9 MB    | ###8       |  38% 
+pip-20.0.2           | 1.9 MB    | ########## | 100% 
+
+entrypoints-0.3      | 13 KB     |            |   0% 
+entrypoints-0.3      | 13 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/kernel
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+[91m+ /srv/conda/envs/kernel/bin/ipython kernel install --prefix /srv/conda/envs/notebook
+[0m[91m[InstallIPythonKernelSpecApp] WARNING | Installing to /srv/conda/envs/notebook/share/jupyter/kernels, which is not in [u'/root/.local/share/jupyter/kernels', '/srv/conda/envs/kernel/share/jupyter/kernels', '/usr/local/share/jupyter/kernels', '/usr/share/jupyter/kernels', u'/root/.ipython/kernels']. The kernelspec may not be found.
+[0mInstalled kernelspec python2 in /srv/conda/envs/notebook/share/jupyter/kernels/python2
+[91m+ echo ''
+[0m[91m+ conda list -p /srv/conda/envs/kernel
+[0m# packages in environment at /srv/conda/envs/kernel:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+backports                 1.0                        py_2    conda-forge
+backports.shutil_get_terminal_size 1.0.0                      py_3    conda-forge
+backports_abc             0.5                        py_1    conda-forge
+ca-certificates           2019.11.28           hecc5488_0    conda-forge
+certifi                   2019.11.28               py27_0    conda-forge
+configparser              3.7.3                    py27_1    conda-forge
+decorator                 4.4.1                      py_0    conda-forge
+entrypoints               0.3                   py27_1000    conda-forge
+enum34                    1.1.6                 py27_1002    conda-forge
+futures                   3.3.0                    py27_0    conda-forge
+ipykernel                 4.8.2                    py27_0    conda-forge
+ipython                   5.8.0                    py27_1    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+jupyter_client            5.3.4                    py27_1    conda-forge
+jupyter_core              4.6.1                    py27_0    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+openssl                   1.1.1d               h516909a_0    conda-forge
+pathlib2                  2.3.5                    py27_0    conda-forge
+pexpect                   4.8.0                    py27_0    conda-forge
+pickleshare               0.7.5                 py27_1000    conda-forge
+pip                       20.0.2                   py27_0    conda-forge
+prompt_toolkit            1.0.15                     py_1    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+python                    2.7.15            h5a48372_1009    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+pyzmq                     18.1.1           py27h1768529_0    conda-forge
+readline                  8.0                  hf8c457e_0    conda-forge
+scandir                   1.10.0           py27h516909a_0    conda-forge
+setuptools                44.0.0                   py27_0    conda-forge
+simplegeneric             0.8.1                      py_1    conda-forge
+singledispatch            3.4.0.3               py27_1000    conda-forge
+six                       1.14.0                   py27_0    conda-forge
+sqlite                    3.30.1               hcee41ef_0    conda-forge
+tk                        8.6.10               hed695b0_0    conda-forge
+tornado                   5.1.1           py27h14c3975_1000    conda-forge
+traitlets                 4.3.3                    py27_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+wheel                     0.33.6                   py27_0    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+[91m+ conda clean --all -f -y
+[0mRemove all contents from the following package caches?
+  - /srv/conda/pkgs
+[91m+ rm /tmp/miniconda-installer.sh
+[0m[91m+ rm -rf /root/.cache
+[0m[91m+ chown -R vildeeide:vildeeide /srv/conda
+[0m[91m+ conda list -n root
+[0m# packages in environment at /srv/conda:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                        main    defaults
+asn1crypto                1.2.0                    py37_0    defaults
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2020.6.20        py37hc8dfbb8_0    conda-forge
+cffi                      1.13.0           py37h2e261b9_0    defaults
+chardet                   3.0.4                 py37_1003    defaults
+conda                     4.7.12                   py37_0    defaults
+conda-package-handling    1.6.0            py37h7b6447c_0    defaults
+cryptography              2.8              py37h1ba5d50_0    defaults
+idna                      2.8                      py37_0    defaults
+libedit                   3.1.20181209         hc058e9b_0    defaults
+libffi                    3.2.1                hd88cf55_4    defaults
+libgcc-ng                 9.1.0                hdf63c60_0    defaults
+libstdcxx-ng              9.1.0                hdf63c60_0    defaults
+ncurses                   6.1                  he6710b0_1    defaults
+openssl                   1.1.1g               h516909a_0    conda-forge
+pip                       19.3.1                   py37_0    defaults
+pycosat                   0.6.3            py37h14c3975_0    defaults
+pycparser                 2.19                     py37_0    defaults
+pyopenssl                 19.0.0                   py37_0    defaults
+pysocks                   1.7.1                    py37_0    defaults
+python                    3.7.4                h265db76_1    defaults
+python_abi                3.7                     1_cp37m    conda-forge
+readline                  7.0                  h7b6447c_5    defaults
+requests                  2.22.0                   py37_0    defaults
+ruamel_yaml               0.15.46          py37h14c3975_0    defaults
+setuptools                41.4.0                   py37_0    defaults
+six                       1.12.0                   py37_0    defaults
+sqlite                    3.30.0               h7b6447c_0    defaults
+tk                        8.6.8                hbc83047_0    defaults
+tqdm                      4.36.1                     py_0    defaults
+urllib3                   1.24.2                   py37_0    defaults
+wheel                     0.33.6                   py37_0    defaults
+xz                        5.2.4                h14c3975_4    defaults
+yaml                      0.1.7                had09818_2    defaults
+zlib                      1.2.11               h7b6447c_3    defaults
+[91m+ conda list -p /srv/conda/envs/notebook
+[0m# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+ca-certificates           2019.11.28           hecc5488_0    conda-forge
+certifi                   2019.11.28               py37_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.13.2           py37h8022711_0    conda-forge
+chardet                   3.0.4                 py37_1003    conda-forge
+cryptography              2.8              py37h72c5cf5_1    conda-forge
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+entrypoints               0.3                   py37_1000    conda-forge
+idna                      2.8                   py37_1000    conda-forge
+importlib_metadata        1.5.0                    py37_0    conda-forge
+inflect                   4.0.0                    py37_1    conda-forge
+ipykernel                 5.1.4            py37h5ca1d4c_0    conda-forge
+ipython                   7.11.1           py37h5ca1d4c_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0                   py37_0    conda-forge
+jinja2                    2.11.0                     py_0    conda-forge
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py37_0    conda-forge
+jupyter_client            5.3.4                    py37_1    conda-forge
+jupyter_core              4.6.1                    py37_0    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py37_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py37_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+ld_impl_linux-64          2.33.1               h53a641e_8    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markupsafe                1.1.1            py37h516909a_0    conda-forge
+mistune                   0.8.4           py37h516909a_1000    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+nbconvert                 5.6.1                    py37_0    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+notebook                  6.0.3                    py37_0    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+oauthlib                  3.0.1                      py_0    conda-forge
+openssl                   1.1.1d               h516909a_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+pexpect                   4.8.0                    py37_0    conda-forge
+pickleshare               0.7.5                 py37_1000    conda-forge
+pip                       20.0.2                   py37_0    conda-forge
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+pycparser                 2.19                     py37_1    conda-forge
+pycurl                    7.43.0.5         py37h16ce93b_0    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                   py37_0    conda-forge
+pyrsistent                0.15.7           py37h516909a_0    conda-forge
+pysocks                   1.7.1                    py37_0    conda-forge
+python                    3.7.6                h357f687_2    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+pyzmq                     18.1.1           py37h1768529_0    conda-forge
+readline                  8.0                  hf8c457e_0    conda-forge
+requests                  2.22.0                   py37_1    conda-forge
+ruamel.yaml               0.16.6           py37h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py37h516909a_0    conda-forge
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                45.1.0                   py37_0    conda-forge
+six                       1.14.0                   py37_0    conda-forge
+sqlalchemy                1.3.13           py37h516909a_0    conda-forge
+sqlite                    3.30.1               hcee41ef_0    conda-forge
+terminado                 0.8.3                    py37_0    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+tk                        8.6.10               hed695b0_0    conda-forge
+tornado                   6.0.3            py37h516909a_0    conda-forge
+traitlets                 4.3.3                    py37_0    conda-forge
+urllib3                   1.25.7                   py37_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+wheel                     0.34.1                   py37_0    conda-forge
+widgetsnbextension        3.5.1                    py37_0    conda-forge
+xz                        5.2.4             h14c3975_1001    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+Removing intermediate container ace2352a067f
+ ---> f8fcfe6c372e
+Step 33/52 : ARG REPO_DIR=${HOME}
+ ---> Running in 210e1bf8cda0
+Removing intermediate container 210e1bf8cda0
+ ---> b572ecda404b
+Step 34/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Running in 576d4da27b73
+Removing intermediate container 576d4da27b73
+ ---> d9f4a864c0ad
+Step 35/52 : WORKDIR ${REPO_DIR}
+ ---> Running in 7300069b05c1
+Removing intermediate container 7300069b05c1
+ ---> 9dd615a29832
+Step 36/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Running in 93204ea0ba97
+Removing intermediate container 93204ea0ba97
+ ---> 91b8186d472b
+Step 37/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Running in 97de3b56a7ed
+Removing intermediate container 97de3b56a7ed
+ ---> 685a83c45c09
+Step 38/52 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> 6d3bba5d76e3
+Step 39/52 : USER root
+ ---> Running in 074b793f3256
+Removing intermediate container 074b793f3256
+ ---> 42b976859b86
+Step 40/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 9ab3922f14eb
+Removing intermediate container 9ab3922f14eb
+ ---> 3f9b760516a9
+Step 41/52 : USER ${NB_USER}
+ ---> Running in 4fff24cabfc8
+Removing intermediate container 4fff24cabfc8
+ ---> 23931c8b7c51
+Step 42/52 : RUN conda env update -p ${KERNEL_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${KERNEL_PYTHON_PREFIX}
+ ---> Running in c125f5550c72
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed
+[91m
+ResolvePackageNotFound: 
+  - ipython==4.0.0=py27_0
+  - pixman==0.26.2=0
+  - traitlets==4.0.0=py27_0
+  - ipython-notebook==4.0.4=py27_0
+  - py2cairo==1.10.0=py27_2
+  - scipy==0.16.0=np19py27_1
+  - sqlite==3.8.4.1=1
+  - pygments==2.0.2=py27_0
+  - python-dateutil==2.4.2=py27_0
+  - six==1.9.0=py27_0
+  - ipykernel==4.0.3=py27_0
+  - tk==8.5.18=0
+  - path.py==7.6.1=py27_0
+  - pandas==0.16.2=np19py27_0
+  - libgfortran==1.0=0
+  - python==2.7.10=1
+  - sip==4.16.5=py27_0
+  - terminado==0.5=py27_0
+  - certifi==14.05.14=py27_0
+  - nbformat==4.0.0=py27_0
+  - pexpect==3.3=py27_0
+  - zeromq==4.0.5=0
+  - mistune==0.7.1=py27_0
+  - libpng==1.6.17=0
+  - jupyter_core==4.0.4=py27_0
+  - qt==4.8.6=3
+  - jsonschema==2.4.0=py27_0
+  - notebook==4.0.4=py27_0
+  - pyqt==4.11.3=py27_1
+  - cairo==1.12.18=4
+  - freetype==2.5.2=2
+  - libsodium==0.4.5=0
+  - seaborn==0.6.0=np19py27_0
+  - setuptools==18.1=py27_0
+  - pickleshare==0.5=py27_0
+  - ptyprocess==0.4=py27_0
+  - pytz==2015.4=py27_0
+  - libxml2==2.9.2=0
+  - pyparsing==2.0.3=py27_0
+  - matplotlib==1.4.3=np19py27_2
+  - readline==6.2=2
+  - numpy==1.9.2=py27_2
+  - jupyter_client==4.0.0=py27_0
+  - decorator==4.0.2=py27_0
+  - openblas==0.2.14=2
+  - ssl_match_hostname==3.4.0.2=py27_0
+  - openssl==1.0.1k=1
+  - nbconvert==4.0.0=py27_0
+
+[0mRemoving intermediate container c125f5550c72
+The command '/bin/sh -c conda env update -p ${KERNEL_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${KERNEL_PYTHON_PREFIX}' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-stijnvanhoey-hydropy:af5f635', '/tmp/r2d-test-2020-07-06T07.51t247btj1/github.com/stijnvanhoey/hydropy']' returned non-zero exit status 1.

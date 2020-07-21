@@ -1,0 +1,100 @@
+[I 200715 07:01:32 inrepo:36] Testing notebook notebooks/2_TopicModeling_LDAandNMF.ipynb
+[I 200715 07:01:33 inrepo:45] Found kernel python3
+[I 200715 07:01:33 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.decomposition import NMF, LatentDirichletAllocation
+import pandas as pd
+import os
+import re
+
+df_Clusters = pd.DataFrame(columns=('Year', 'Model', 'Cluster', 'Features'))
+
+def write_topics_to_file(year, model_name, model, feature_names, no_top_words):
+    
+    df_tmp = pd.DataFrame(columns=('Year', 'Model', 'Cluster', 'Features'))
+
+    for topic_idx, topic in enumerate(model.components_):
+        
+        top_features = " ".join([feature_names[i]
+                        for i in topic.argsort()[:-no_top_words - 1:-1]])
+        
+        df_tmp = df_tmp.append({'Year':year, 'Model':model_name, 'Cluster': topic_idx, 'Features':top_features}, ignore_index=True) 
+        
+    print("Year", year, "model", model_name, "number of topics", len(df_tmp))
+    return df_tmp  
+
+# /Data_AllSources/PKLs/ contians 12 files, each has articles published in a particular a year from the study range. 
+
+for filename in os.listdir(os.getcwd()+"/Data_AllSources/PKLs/"):
+                
+    df = pd.read_pickle("Data_AllSources/PKLs/"+filename)
+    documents = df.text
+    
+    # get the year from the name of the file
+    numbers_from_string = re.compile(r'\d+')
+    year = re.findall(numbers_from_string, filename)
+    year = str(year[0])
+    
+    no_features = 1000
+
+    # NMF is able to use tf-idf
+    tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
+    tfidf = tfidf_vectorizer.fit_transform(documents)
+    tfidf_feature_names = tfidf_vectorizer.get_feature_names()
+
+    # LDA can only use raw term counts for LDA because it is a probabilistic graphical model
+    tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
+    tf = tf_vectorizer.fit_transform(documents)
+    tf_feature_names = tf_vectorizer.get_feature_names()
+
+    for no_topics in range(5,11):
+
+        # Run NMF
+        nmf = NMF(n_components=no_topics, random_state=1, alpha=.1, l1_ratio=.5, init='nndsvd').fit(tfidf)
+
+        # Run LDA
+        lda = LatentDirichletAllocation(n_topics=no_topics, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
+
+        no_top_words = 10
+        df_tmp = write_topics_to_file(year, "NMF", nmf, tfidf_feature_names, no_top_words)
+        df_Clusters = df_Clusters.append(df_tmp, ignore_index = True)
+        df_tmp = write_topics_to_file(year, "LDA", lda, tf_feature_names, no_top_words)
+        df_Clusters = df_Clusters.append(df_tmp, ignore_index = True)
+        
+
+print("File", filename, "number of lines",len(df_Clusters))
+df_Clusters.to_csv("Clusters/Clusters.csv")        
+    
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-f80207629389>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mfeature_extraction[0m[0;34m.[0m[0mtext[0m [0;32mimport[0m [0mTfidfVectorizer[0m[0;34m,[0m [0mCountVectorizer[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdecomposition[0m [0;32mimport[0m [0mNMF[0m[0;34m,[0m [0mLatentDirichletAllocation[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mre[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

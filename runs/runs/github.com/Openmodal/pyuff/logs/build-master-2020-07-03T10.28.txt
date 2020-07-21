@@ -1,0 +1,198 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T10.28h9cya4tl/github.com/Openmodal/pyuff.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 48ed06d80aba
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 37733588a3e3
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> e06ba9305611
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 89f70d86f60d
+Removing intermediate container 89f70d86f60d
+ ---> 4b464cb3e8ae
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 83dd9803608b
+Removing intermediate container 83dd9803608b
+ ---> b77a982164f3
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 3dfb33968f36
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy>=1.12.0
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting pytest>=3.0.5
+  Downloading pytest-5.4.3-py3-none-any.whl (248 kB)
+Collecting py>=1.5.0
+  Downloading py-1.9.0-py2.py3-none-any.whl (99 kB)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest>=3.0.5->-r requirements.txt (line 2)) (19.3.0)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest>=3.0.5->-r requirements.txt (line 2)) (1.5.0)
+Requirement already satisfied: more-itertools>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest>=3.0.5->-r requirements.txt (line 2)) (8.2.0)
+Collecting pluggy<1.0,>=0.12
+  Downloading pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest>=3.0.5->-r requirements.txt (line 2)) (0.1.8)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest>=3.0.5->-r requirements.txt (line 2)) (2.1.0)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from packaging->pytest>=3.0.5->-r requirements.txt (line 2)) (1.14.0)
+Installing collected packages: numpy, py, pluggy, pyparsing, packaging, pytest
+Successfully installed numpy-1.19.0 packaging-20.4 pluggy-0.13.1 py-1.9.0 pyparsing-2.4.7 pytest-5.4.3
+Removing intermediate container 3dfb33968f36
+ ---> 3d88d68c41a9
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 5e454a6ad690
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyuff==1.23) (1.19.0)
+Building wheels for collected packages: pyuff
+  Building wheel for pyuff (setup.py): started
+  Building wheel for pyuff (setup.py): finished with status 'done'
+  Created wheel for pyuff: filename=pyuff-1.23-py3-none-any.whl size=18284 sha256=502b748047a94308705ff43e570911d33d384d96f2c1b5dda307b15211e871c5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-du0ayr9r/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built pyuff
+Installing collected packages: pyuff
+Successfully installed pyuff-1.23
+Removing intermediate container 5e454a6ad690
+ ---> a26c0802bda8
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in cdd9c26dbb9d
+Removing intermediate container cdd9c26dbb9d
+ ---> df883fd9d669
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in c187733cc9bd
+Removing intermediate container c187733cc9bd
+ ---> 1e9150105f69
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 6cd70bd1362f
+Removing intermediate container 6cd70bd1362f
+ ---> 8475ee4f64c0
+Step 47/50 : USER ${NB_USER}
+ ---> Running in cc160ddf913b
+Removing intermediate container cc160ddf913b
+ ---> 261685b7914c
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 8a56a8e8e24d
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 9d54b32dbf0a
+Removing intermediate container 9d54b32dbf0a
+ ---> c84d88a3d514
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 6a1825fc589c
+Removing intermediate container 6a1825fc589c
+ ---> d6165a177b39
+{"aux": {"ID": "sha256:d6165a177b39ab66c3363dab9249a72de34e6a34a0c344c9932c157f6464ed20"}}Successfully built d6165a177b39
+Successfully tagged r2d-test-github.com-openmodal-pyuff:e37a6b2

@@ -1,0 +1,5 @@
+[I 200703 08:28:07 inrepo:35] Testing notebook docs/tutorial/mdof_notebook.ipynb
+[I 200703 08:28:08 execute:404] Executing notebook with kernel: python3
+[I 200703 08:28:08 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorial/mdof_notebook.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

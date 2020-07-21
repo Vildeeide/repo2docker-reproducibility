@@ -1,0 +1,57 @@
+[I 200710 08:35:09 inrepo:36] Testing notebook Introduction to Model Interpretability.ipynb
+[I 200710 08:35:12 inrepo:45] Found kernel python3
+[I 200710 08:35:14 execute:404] Executing notebook with kernel: python3
+/srv/conda/envs/notebook/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/srv/conda/envs/notebook/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+/srv/conda/envs/notebook/lib/python3.7/site-packages/sklearn/externals/joblib/externals/cloudpickle/cloudpickle.py:47: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import imp
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+shap.dependence_plot("nr.employed", shap_values, 
+                     pd.DataFrame(observations, columns=all_features))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-72-d7c86589daad>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m shap.dependence_plot("nr.employed", shap_values, 
+[0;32m----> 2[0;31m                      pd.DataFrame(observations, columns=all_features))
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/shap/plots/dependence.py[0m in [0;36mdependence_plot[0;34m(ind, shap_values, features, feature_names, display_features, interaction_index, color, axis_color, dot_size, alpha, title, show)[0m
+[1;32m    137[0m     [0mcolor_norm[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    138[0m     [0;32mif[0m [0mcategorical_interaction[0m [0;32mand[0m [0mclow[0m [0;34m!=[0m [0mchigh[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 139[0;31m         [0mbounds[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlinspace[0m[0;34m([0m[0mclow[0m[0;34m,[0m [0mchigh[0m[0;34m,[0m [0mchigh[0m [0;34m-[0m [0mclow[0m [0;34m+[0m [0;36m2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    140[0m         [0mcolor_norm[0m [0;34m=[0m [0mmatplotlib[0m[0;34m.[0m[0mcolors[0m[0;34m.[0m[0mBoundaryNorm[0m[0;34m([0m[0mbounds[0m[0;34m,[0m [0mcolors[0m[0;34m.[0m[0mred_blue[0m[0;34m.[0m[0mN[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m [0;34m[0m[0m
+
+[0;32m<__array_function__ internals>[0m in [0;36mlinspace[0;34m(*args, **kwargs)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/core/function_base.py[0m in [0;36mlinspace[0;34m(start, stop, num, endpoint, retstep, dtype, axis)[0m
+[1;32m    111[0m [0;34m[0m[0m
+[1;32m    112[0m     """
+[0;32m--> 113[0;31m     [0mnum[0m [0;34m=[0m [0moperator[0m[0;34m.[0m[0mindex[0m[0;34m([0m[0mnum[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    114[0m     [0;32mif[0m [0mnum[0m [0;34m<[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    115[0m         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"Number of samples, %s, must be non-negative."[0m [0;34m%[0m [0mnum[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: 'numpy.float64' object cannot be interpreted as an integer
+TypeError: 'numpy.float64' object cannot be interpreted as an integer
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,179 @@
+[I 200717 12:47:03 inrepo:36] Testing notebook Cache.ipynb
+[W 200717 12:47:03 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200717 12:47:03 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 12:47:04 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+class Node(object):
+    def __init__(self,key=None,value=None):
+        self.key = key
+        self.value = value
+        self.rightNeigh = None 
+        self.leftNeigh = None
+        
+    def __str__(self):
+        return "key: {}, value: {}".format(self.key,self.value)
+
+class Cache(object):
+    """
+    Cache is implemented as a Doubly Linked list with
+    size : size of cache
+    head : pointing to first node
+    tail : pointing to last node
+    num_keys: number of (key,value) pairs stored in the cache
+    """
+    def __init__(self,size):
+        self.size = size
+        self.num_keys = 0
+        self.head = None
+        self.tail = None
+        
+    
+    def loadKey(self,key):
+        """
+        Gets a value from the cache
+        
+        Args:
+         key: string object
+         
+        Returns:
+          None
+          
+        Prints:
+          GOT 'value' if value in cache
+          ERROR if key has spaces
+          NOTFOUND if key not in the cache
+        """
+        # Searching will take O(cache_size) operations
+        if key.find(" ") != -1:
+            print "ERROR"
+        else:
+            curr = self.head
+            found = False
+            while curr != None:
+                if key == curr.key:
+                    found = True
+                    print "GOT {}".format(curr.value)
+                    self.pushNode(curr) # this node is recently used so push to end
+                    break
+                else:
+                    curr = curr.rightNeigh
+            if not found:
+                print "NOTFOUND"
+           
+    
+    
+    def storeKey(self,key,value):
+        """
+        Adds a new (key,value) to the cache
+        
+        Args:
+         key: string object
+         value: string object
+         
+        Returns:
+          None
+          
+        Prints:
+          SET OK if value successfully added
+          ERROR if failed to add value
+        """
+        # Adding a new key will be O(1) operation 
+        
+        if key.find(" ") != -1 or value.find(" ") != -1:
+            print ("ERROR")
+        else:
+            # insert node at the end
+            if self.head != None:
+
+                # Search if key is already present
+                curr = self.head
+                found = False
+                while curr != None:
+                    if key == curr.key:
+                        found = True
+                        curr.value = value
+                        self.pushNode(curr) # this node is recently used so push to end
+                        break
+                    else:
+                        curr = curr.rightNeigh
+
+
+                if not found:
+                    if self.num_keys == self.size:  
+                        self.removeLRU()  # cache is full
+                    elif self.num_keys > self.size:
+                        raise Error("Something wrong with setting values")
+
+                    newNode = Node(key,value)
+                    self.tail.rightNeigh = newNode
+                    newNode.leftNeigh = self.tail
+                    self.tail = newNode
+                    self.num_keys += 1
+            else:
+                self.head = Node(key,value)
+                self.tail = self.head
+                self.num_keys += 1
+
+            print('SET OK')
+
+    
+    
+    def removeLRU(self):
+        """Removes the least recently used (key,value) from
+        the cache.
+        """
+        # It will be O(1) time complexity
+        if self.head != None:
+            self.head = self.head.rightNeigh
+            self.head.leftNeigh = None
+        self.num_keys -= 1
+        if self.head == None:
+            self.tail = self.head
+            
+    
+    def pushNode(self,node):
+        """ Push the recently used node to the end of cache"""
+        if node.rightNeigh == None:
+            return  # It is already the tail
+        elif node.leftNeigh == None:
+            self.head = node.rightNeigh # It is the head
+            self.head.leftNeigh = None
+        else:
+            node.leftNeigh.rightNeigh = node.rightNeigh  #middle node
+            node.rightNeigh.leftNeigh = node.leftNeigh
+         
+        # push node to the end
+        self.tail.rightNeigh = node
+        node.leftNeigh = self.tail
+        self.tail = node
+        self.tail.rightNeigh = None
+        return
+        
+        
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-4a783c75bbcb>"[0;36m, line [0;32m43[0m
+[0;31m    print "ERROR"[0m
+[0m                ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print("ERROR")?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print("ERROR")? (<ipython-input-1-4a783c75bbcb>, line 43)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

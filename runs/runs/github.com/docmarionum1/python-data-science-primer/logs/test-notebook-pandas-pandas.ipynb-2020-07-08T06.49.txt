@@ -1,0 +1,6 @@
+[I 200708 06:49:25 inrepo:36] Testing notebook pandas/pandas.ipynb
+[I 200708 06:49:25 inrepo:45] Found kernel python3
+[I 200708 06:49:26 execute:404] Executing notebook with kernel: python3
+[I 200708 06:49:29 inrepo:77] Saving exported notebook to /io/notebooks/pandas/pandas.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,47 @@
+[I 200715 11:20:51 inrepo:36] Testing notebook julia-benchmark.ipynb
+[W 200715 11:20:52 inrepo:48] No such kernel anaconda3, falling back on kernel language=python
+[W 200715 11:20:52 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 11:20:52 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#non-numba verion
+import cplane_np_hw as cp
+
+%time a = cp.JuliaPlane(c =(-2,2,2000,-2,2,2000), d = 0.3)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-ef53072bdfe8>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m#non-numba verion[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mcplane_np_hw[0m [0;32mas[0m [0mcp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'time'[0m[0;34m,[0m [0;34m'a = cp.JuliaPlane(c =(-2,2,2000,-2,2,2000), d = 0.3)'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/cplane_np_hw.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;31m# Assignment: CW-08[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;31m###[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0;32mimport[0m [0mcplane_np[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'cplane_np'
+ModuleNotFoundError: No module named 'cplane_np'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

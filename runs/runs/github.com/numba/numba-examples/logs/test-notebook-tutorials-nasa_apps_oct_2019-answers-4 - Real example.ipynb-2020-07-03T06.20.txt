@@ -1,0 +1,5 @@
+[I 200703 06:34:30 inrepo:35] Testing notebook tutorials/nasa_apps_oct_2019/answers/4 - Real example.ipynb
+[I 200703 06:34:32 execute:404] Executing notebook with kernel: python3
+[I 200703 06:34:48 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/nasa_apps_oct_2019/answers/4 - Real example.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

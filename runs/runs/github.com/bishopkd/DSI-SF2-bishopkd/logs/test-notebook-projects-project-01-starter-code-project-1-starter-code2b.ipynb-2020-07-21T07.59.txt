@@ -1,0 +1,40 @@
+[I 200721 08:00:52 inrepo:36] Testing notebook projects/project-01/starter-code/project-1-starter-code2b.ipynb
+[W 200721 08:00:52 inrepo:48] No such kernel Python [dsi], falling back on kernel language=python
+[W 200721 08:00:52 inrepo:60] Using kernel python3 to provide language: python
+[I 200721 08:00:53 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Example output:
+# 
+# ['amazon.com', 'ebay.com']
+gym_list = ['reddit.com','amazon.com','twitter.com','linkedin.com','ebay.com',
+            'netflix.com','amazon.com','stackoverflow.com','github.com','quora.com']
+gyms_visited.append(gym_list[5])
+gyms_visited.append(gym_list[7])
+print gyms_visited
+------------------
+
+[0;36m  File [0;32m"<ipython-input-3-aa64cdde962e>"[0;36m, line [0;32m8[0m
+[0;31m    print gyms_visited[0m
+[0m                     ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print(gyms_visited)?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(gyms_visited)? (<ipython-input-3-aa64cdde962e>, line 8)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

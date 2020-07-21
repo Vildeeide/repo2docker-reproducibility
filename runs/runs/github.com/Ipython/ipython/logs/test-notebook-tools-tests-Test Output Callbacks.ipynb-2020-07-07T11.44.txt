@@ -1,0 +1,84 @@
+[I 200707 11:45:35 inrepo:36] Testing notebook tools/tests/Test Output Callbacks.ipynb
+[I 200707 11:45:36 inrepo:45] Found kernel python3
+[I 200707 11:45:37 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%matplotlib inline
+import matplotlib.pyplot as plt
+plt.plot([1,3,2])
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-5-54576798c885>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0m [48;5;17mget_ipython[49m[48;5;17m([49m[48;5;17m)[49m[38;5;241;48;5;17m.[39;49m[48;5;17mrun_line_magic[49m[48;5;17m([49m[38;5;124;48;5;17m'[39;49m[38;5;124;48;5;17mmatplotlib[39;49m[38;5;124;48;5;17m'[39;49m[48;5;17m,[49m[48;5;17m [49m[38;5;124;48;5;17m'[39;49m[38;5;124;48;5;17minline[39;49m[38;5;124;48;5;17m'[39;49m[48;5;17m)[49m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      3[0m plt[38;5;241m.[39mplot([[38;5;241m1[39m,[38;5;241m3[39m,[38;5;241m2[39m])
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mInteractiveShell.run_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
+[1;32m   2324[0m     kwargs[[38;5;124m'[39m[38;5;124mlocal_ns[39m[38;5;124m'[39m] [38;5;241m=[39m sys[38;5;241m.[39m_getframe(stack_depth)[38;5;241m.[39mf_locals
+[1;32m   2325[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
+[0;32m-> 2326[0m     result [38;5;241m=[39m [48;5;17mfn[49m[48;5;17m([49m[38;5;241;48;5;17m*[39;49m[48;5;17margs[49m[48;5;17m,[49m[48;5;17m [49m[38;5;241;48;5;17m*[39;49m[38;5;241;48;5;17m*[39;49m[48;5;17mkwargs[49m[48;5;17m)[49m
+[1;32m   2327[0m [38;5;28;01mreturn[39;00m result
+
+[0;32m</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-108>[0m in [0;36mmatplotlib[0;34m(self, line)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magic.py[0m in [0;36m_method_magic_marker.<locals>.magic_deco.<locals>.<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    186[0m [38;5;28;01mdef[39;00m [38;5;21mmagic_deco[39m(arg):
+[0;32m--> 187[0m     call [38;5;241m=[39m [38;5;28;01mlambda[39;00m f, [38;5;241m*[39ma, [38;5;241m*[39m[38;5;241m*[39mk: [48;5;17mf[49m[48;5;17m([49m[38;5;241;48;5;17m*[39;49m[48;5;17ma[49m[48;5;17m,[49m[48;5;17m [49m[38;5;241;48;5;17m*[39;49m[38;5;241;48;5;17m*[39;49m[48;5;17mk[49m[48;5;17m)[49m
+[1;32m    189[0m     [38;5;28;01mif[39;00m callable(arg):
+[1;32m    190[0m         [38;5;66m# "Naked" decorator call (just @foo, no args)[39m
+[1;32m    191[0m         func [38;5;241m=[39m arg
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magics/pylab.py[0m in [0;36mPylabMagics.matplotlib[0;34m(self, line)[0m
+[1;32m     97[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mAvailable matplotlib backends: [39m[38;5;132;01m%s[39;00m[38;5;124m"[39m [38;5;241m%[39m backends_list)
+[1;32m     98[0m [38;5;28;01melse[39;00m:
+[0;32m---> 99[0m     gui, backend [38;5;241m=[39m [38;5;28;48;5;17mself[39;49m[38;5;241;48;5;17m.[39;49m[48;5;17mshell[49m[38;5;241;48;5;17m.[39;49m[48;5;17menable_matplotlib[49m[48;5;17m([49m[48;5;17margs[49m[38;5;241;48;5;17m.[39;49m[48;5;17mgui[49m[38;5;241;48;5;17m.[39;49m[48;5;17mlower[49m[48;5;17m([49m[48;5;17m)[49m[48;5;17m [49m[38;5;28;48;5;17;01mif[39;49;00m[48;5;17m [49m[38;5;28;48;5;17misinstance[39;49m[48;5;17m([49m[48;5;17margs[49m[38;5;241;48;5;17m.[39;49m[48;5;17mgui[49m[48;5;17m,[49m[48;5;17m [49m[38;5;28;48;5;17mstr[39;49m[48;5;17m)[49m[48;5;17m [49m[38;5;28;48;5;17;01melse[39;49;00m[48;5;17m [49m[48;5;17margs[49m[38;5;241;48;5;17m.[39;49m[48;5;17mgui[49m[48;5;17m)[49m
+[1;32m    100[0m     [38;5;28mself[39m[38;5;241m.[39m_show_matplotlib_backend(args[38;5;241m.[39mgui, backend)
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mInteractiveShell.enable_matplotlib[0;34m(self, gui)[0m
+[1;32m   3397[0m [38;5;124m"""Enable interactive matplotlib and inline figure support.[39m
+[1;32m   3398[0m [38;5;124m[39m
+[1;32m   3399[0m [38;5;124mThis takes the following steps:[39m
+[0;32m   (...)[0m
+[1;32m   3415[0m [38;5;124m  display figures inline.[39m
+[1;32m   3416[0m [38;5;124m"""[39m
+[1;32m   3417[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m [38;5;28;01mimport[39;00m pylabtools [38;5;28;01mas[39;00m pt
+[0;32m-> 3418[0m gui, backend [38;5;241m=[39m [48;5;17mpt[49m[38;5;241;48;5;17m.[39;49m[48;5;17mfind_gui_and_backend[49m[48;5;17m([49m[48;5;17mgui[49m[48;5;17m,[49m[48;5;17m [49m[38;5;28;48;5;17mself[39;49m[38;5;241;48;5;17m.[39;49m[48;5;17mpylab_gui_select[49m[48;5;17m)[49m
+[1;32m   3420[0m [38;5;28;01mif[39;00m gui [38;5;241m!=[39m [38;5;124m'[39m[38;5;124minline[39m[38;5;124m'[39m:
+[1;32m   3421[0m     [38;5;66m# If we have our first gui selection, store it[39m
+[1;32m   3422[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mpylab_gui_select [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/pylabtools.py[0m in [0;36mfind_gui_and_backend[0;34m(gui, gui_select)[0m
+[1;32m    263[0m [38;5;28;01mdef[39;00m [38;5;21mfind_gui_and_backend[39m(gui[38;5;241m=[39m[38;5;28;01mNone[39;00m, gui_select[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    264[0m     [38;5;124m"""Given a gui string return the gui and mpl backend.[39m
+[1;32m    265[0m 
+[1;32m    266[0m [38;5;124m    Parameters[39m
+[0;32m   (...)[0m
+[1;32m    277[0m [38;5;124m    'WXAgg','Qt4Agg','module://ipykernel.pylab.backend_inline','agg').[39m
+[1;32m    278[0m [38;5;124m    """[39m
+[0;32m--> 280[0m     [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
+[1;32m    282[0m     [38;5;28;01mif[39;00m gui [38;5;129;01mand[39;00m gui [38;5;241m!=[39m [38;5;124m'[39m[38;5;124mauto[39m[38;5;124m'[39m:
+[1;32m    283[0m         [38;5;66m# select backend based on requested gui[39m
+[1;32m    284[0m         backend [38;5;241m=[39m backends[gui]
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

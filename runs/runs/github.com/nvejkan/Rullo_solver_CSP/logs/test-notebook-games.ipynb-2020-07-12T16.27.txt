@@ -1,0 +1,63 @@
+[I 200712 16:27:46 inrepo:36] Testing notebook games.ipynb
+[I 200712 16:27:46 inrepo:45] Found kernel python3
+[I 200712 16:27:47 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from games import *
+from notebook import psource, pseudocode
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-1-15af2d6e6b96>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mgames[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mfrom[0m [0mnotebook[0m [0;32mimport[0m [0mpsource[0m[0;34m,[0m [0mpseudocode[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/notebook.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mgames[0m [0;32mimport[0m [0mTicTacToe[0m[0;34m,[0m [0malphabeta_player[0m[0;34m,[0m [0mrandom_player[0m[0;34m,[0m [0mFig52Extended[0m[0;34m,[0m [0minfinity[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0mlogic[0m [0;32mimport[0m [0mparse_definite_clause[0m[0;34m,[0m [0mstandardize_variables[0m[0;34m,[0m [0munify[0m[0;34m,[0m [0msubst[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mfrom[0m [0mlearning[0m [0;32mimport[0m [0mDataSet[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mHTML[0m[0;34m,[0m [0mdisplay[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m [0;32mfrom[0m [0mcollections[0m [0;32mimport[0m [0mCounter[0m[0;34m,[0m [0mdefaultdict[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/learning.py[0m in [0;36m<module>[0;34m[0m
+[1;32m   1105[0m [0;34m[0m[0m
+[1;32m   1106[0m orings = DataSet(name='orings', target='Distressed',
+[0;32m-> 1107[0;31m                  attrnames="Rings Distressed Temp Pressure Flightnum")
+[0m[1;32m   1108[0m [0;34m[0m[0m
+[1;32m   1109[0m [0;34m[0m[0m
+
+[0;32m~/learning.py[0m in [0;36m__init__[0;34m(self, examples, attrs, attrnames, target, inputs, values, distance, name, source, exclude)[0m
+[1;32m     96[0m             [0mself[0m[0;34m.[0m[0mexamples[0m [0;34m=[0m [0mparse_csv[0m[0;34m([0m[0mexamples[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     97[0m         [0;32melif[0m [0mexamples[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 98[0;31m             [0mself[0m[0;34m.[0m[0mexamples[0m [0;34m=[0m [0mparse_csv[0m[0;34m([0m[0mopen_data[0m[0;34m([0m[0mname[0m [0;34m+[0m [0;34m'.csv'[0m[0;34m)[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     99[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    100[0m             [0mself[0m[0;34m.[0m[0mexamples[0m [0;34m=[0m [0mexamples[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/utils.py[0m in [0;36mopen_data[0;34m(name, mode)[0m
+[1;32m    414[0m     [0maima_file[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0maima_root[0m[0;34m,[0m [0;34m*[0m[0;34m[[0m[0;34m'aima-data'[0m[0;34m,[0m [0mname[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    415[0m [0;34m[0m[0m
+[0;32m--> 416[0;31m     [0;32mreturn[0m [0mopen[0m[0;34m([0m[0maima_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    417[0m [0;34m[0m[0m
+[1;32m    418[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/home/vildeeide/aima-data/orings.csv'
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vildeeide/aima-data/orings.csv'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

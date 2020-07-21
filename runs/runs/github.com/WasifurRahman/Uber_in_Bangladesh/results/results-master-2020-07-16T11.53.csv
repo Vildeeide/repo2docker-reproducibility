@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/WasifurRahman/Uber_in_Bangladesh,master,53237df,2017-10-22T20:22:17+06:00,build,build,False,github.com/WasifurRahman/Uber_in_Bangladesh/logs/build-master-2020-07-16T11.53.txt,2020-07-16T11:53:31.416342,2020-07-16T11.53,0.11.0

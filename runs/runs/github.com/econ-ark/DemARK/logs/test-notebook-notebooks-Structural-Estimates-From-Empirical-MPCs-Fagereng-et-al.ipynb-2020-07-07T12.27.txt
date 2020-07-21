@@ -1,0 +1,408 @@
+[I 200707 12:29:12 inrepo:36] Testing notebook notebooks/Structural-Estimates-From-Empirical-MPCs-Fagereng-et-al.ipynb
+[I 200707 12:29:13 inrepo:45] Found kernel python3
+[I 200707 12:29:14 execute:404] Executing notebook with kernel: python3
+GIFPF            = 0.953333 
+GIFInd           = 0.961919 
+GIFAgg           = 0.929500 
+Thorn = AIF      = 0.953333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.871406 
+WRIF             = 0.060998 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.961333 
+GIFInd           = 0.969991 
+GIFAgg           = 0.937300 
+Thorn = AIF      = 0.961333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.878719 
+WRIF             = 0.061510 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.969333 
+GIFInd           = 0.978063 
+GIFAgg           = 0.945100 
+Thorn = AIF      = 0.969333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.886031 
+WRIF             = 0.062022 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.977333 
+GIFInd           = 0.986135 
+GIFAgg           = 0.952900 
+Thorn = AIF      = 0.977333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.893344 
+WRIF             = 0.062534 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.985333 
+GIFInd           = 0.994207 
+GIFAgg           = 0.960700 
+Thorn = AIF      = 0.985333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.900656 
+WRIF             = 0.063046 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.993333 
+GIFInd           = 1.002279 
+GIFAgg           = 0.968500 
+Thorn = AIF      = 0.993333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.907969 
+WRIF             = 0.063558 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.001333 
+GIFInd           = 1.010351 
+GIFAgg           = 0.976300 
+Thorn = AIF      = 1.001333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.915281 
+WRIF             = 0.064070 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.009333 
+GIFInd           = 1.018423 
+GIFAgg           = 0.984100 
+Thorn = AIF      = 1.009333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.922594 
+WRIF             = 0.064582 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.002400 
+GIFInd           = 1.011427 
+GIFAgg           = 0.977340 
+Thorn = AIF      = 1.002400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.916256 
+WRIF             = 0.064138 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.010400 
+GIFInd           = 1.019499 
+GIFAgg           = 0.985140 
+Thorn = AIF      = 1.010400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.923569 
+WRIF             = 0.064650 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.018400 
+GIFInd           = 1.027571 
+GIFAgg           = 0.992940 
+Thorn = AIF      = 1.018400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.930881 
+WRIF             = 0.065162 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.026400 
+GIFInd           = 1.035643 
+GIFAgg           = 1.000740 
+Thorn = AIF      = 1.026400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.938194 
+WRIF             = 0.065674 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.034400 
+GIFInd           = 1.043715 
+GIFAgg           = 1.008540 
+Thorn = AIF      = 1.034400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.945506 
+WRIF             = 0.066185 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.042400 
+GIFInd           = 1.051787 
+GIFAgg           = 1.016340 
+Thorn = AIF      = 1.042400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.952819 
+WRIF             = 0.066697 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.050400 
+GIFInd           = 1.059859 
+GIFAgg           = 1.024140 
+Thorn = AIF      = 1.050400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.960131 
+WRIF             = 0.067209 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.058400 
+GIFInd           = 1.067931 
+GIFAgg           = 1.031940 
+Thorn = AIF      = 1.058400 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.967444 
+WRIF             = 0.067721 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.951933 
+GIFInd           = 0.960506 
+GIFAgg           = 0.928135 
+Thorn = AIF      = 0.951933 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.870127 
+WRIF             = 0.060909 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.960333 
+GIFInd           = 0.968982 
+GIFAgg           = 0.936325 
+Thorn = AIF      = 0.960333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.877805 
+WRIF             = 0.061446 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.968733 
+GIFInd           = 0.977457 
+GIFAgg           = 0.944515 
+Thorn = AIF      = 0.968733 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.885483 
+WRIF             = 0.061984 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.977133 
+GIFInd           = 0.985933 
+GIFAgg           = 0.952705 
+Thorn = AIF      = 0.977133 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.893161 
+WRIF             = 0.062521 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.985533 
+GIFInd           = 0.994409 
+GIFAgg           = 0.960895 
+Thorn = AIF      = 0.985533 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.900839 
+WRIF             = 0.063059 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.993933 
+GIFInd           = 1.002884 
+GIFAgg           = 0.969085 
+Thorn = AIF      = 0.993933 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.908517 
+WRIF             = 0.063596 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.002333 
+GIFInd           = 1.011360 
+GIFAgg           = 0.977275 
+Thorn = AIF      = 1.002333 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.916195 
+WRIF             = 0.064134 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 1.010733 
+GIFInd           = 1.019835 
+GIFAgg           = 0.985465 
+Thorn = AIF      = 1.010733 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.923873 
+WRIF             = 0.064671 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.902867 
+GIFInd           = 0.910997 
+GIFAgg           = 0.880295 
+Thorn = AIF      = 0.902867 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.825277 
+WRIF             = 0.057769 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.911267 
+GIFInd           = 0.919473 
+GIFAgg           = 0.888485 
+Thorn = AIF      = 0.911267 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.832955 
+WRIF             = 0.058307 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.919667 
+GIFInd           = 0.927949 
+GIFAgg           = 0.896675 
+Thorn = AIF      = 0.919667 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.840633 
+WRIF             = 0.058844 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.928067 
+GIFInd           = 0.936424 
+GIFAgg           = 0.904865 
+Thorn = AIF      = 0.928067 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.848311 
+WRIF             = 0.059382 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.936467 
+GIFInd           = 0.944900 
+GIFAgg           = 0.913055 
+Thorn = AIF      = 0.936467 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.855989 
+WRIF             = 0.059919 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.944867 
+GIFInd           = 0.953376 
+GIFAgg           = 0.921245 
+Thorn = AIF      = 0.944867 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.863667 
+WRIF             = 0.060457 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+[E 200707 12:29:48 execute:499] Timeout waiting for execute reply (30s).
+GIFPF            = 0.953267 
+GIFInd           = 0.961851 
+GIFAgg           = 0.929435 
+Thorn = AIF      = 0.953267 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.871345 
+WRIF             = 0.060994 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.961667 
+GIFInd           = 0.970327 
+GIFAgg           = 0.937625 
+Thorn = AIF      = 0.961667 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.879023 
+WRIF             = 0.061532 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.853100 
+GIFInd           = 0.860783 
+GIFAgg           = 0.831773 
+Thorn = AIF      = 0.853100 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.779787 
+WRIF             = 0.054585 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.861700 
+GIFInd           = 0.869460 
+GIFAgg           = 0.840158 
+Thorn = AIF      = 0.861700 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.787648 
+WRIF             = 0.055135 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.870300 
+GIFInd           = 0.878137 
+GIFAgg           = 0.848543 
+Thorn = AIF      = 0.870300 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.795509 
+WRIF             = 0.055686 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.878900 
+GIFInd           = 0.886815 
+GIFAgg           = 0.856927 
+Thorn = AIF      = 0.878900 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.803370 
+WRIF             = 0.056236 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.887500 
+GIFInd           = 0.895492 
+GIFAgg           = 0.865313 
+Thorn = AIF      = 0.887500 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.811230 
+WRIF             = 0.056786 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+GIFPF            = 0.896100 
+GIFInd           = 0.904170 
+GIFAgg           = 0.873698 
+Thorn = AIF      = 0.896100 
+PermGroFacAdj    = 0.991075 
+uInvEpShkuInv    = 1.000000 
+FVAF             = 0.819091 
+WRIF             = 0.057336 
+DiscFacGIFIndMax = 0.929133 
+DiscFacGIFAggMax = 0.961538 
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 438, in preprocess_cell
+    reply, outputs = self.run_cell(cell, cell_index, store_history)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 571, in run_cell
+    if self._passed_deadline(deadline):
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 541, in _passed_deadline
+    self._handle_timeout()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 504, in _handle_timeout
+    raise TimeoutError("Cell execution timed out")
+TimeoutError: Cell execution timed out
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,6 @@
+[I 200708 06:44:28 inrepo:36] Testing notebook 3-jupyter/jupyter-intro.ipynb
+[I 200708 06:44:29 inrepo:45] Found kernel python3
+[I 200708 06:44:29 execute:404] Executing notebook with kernel: python3
+[I 200708 06:44:41 inrepo:77] Saving exported notebook to /io/notebooks/3-jupyter/jupyter-intro.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

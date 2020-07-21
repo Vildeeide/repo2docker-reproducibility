@@ -1,0 +1,39 @@
+[I 200717 12:44:03 inrepo:36] Testing notebook yvzatuliДЗ3.ipynb
+[W 200717 12:44:04 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200717 12:44:04 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 12:44:04 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+function_2_1(3) == 6
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-17-0612b40c0c4b>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mfunction_2_1[0m[0;34m([0m[0;36m3[0m[0;34m)[0m [0;34m==[0m [0;36m6[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-16-66eb3967f049>[0m in [0;36mfunction_2_1[0;34m(n)[0m
+[1;32m      8[0m     [0;31m# то есть фактически нужно сделать reduce с функцией умножения[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m     [0;31m# xrange правый конец не включает, поэтому нужно его брать равным n + 1,  а не n[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m     [0;32mreturn[0m [0mreduce[0m[0;34m([0m[0;32mlambda[0m [0mx[0m[0;34m,[0m [0my[0m[0;34m:[0m [0mx[0m [0;34m*[0m [0my[0m[0;34m,[0m [0mxrange[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0mn[0m [0;34m+[0m [0;36m1[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mNameError[0m: name 'reduce' is not defined
+NameError: name 'reduce' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200703 08:28:18 inrepo:35] Testing notebook docs/tutorial/sdof_characteristic_responses.ipynb
+[I 200703 08:28:19 execute:404] Executing notebook with kernel: python3
+[I 200703 08:28:22 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorial/sdof_characteristic_responses.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

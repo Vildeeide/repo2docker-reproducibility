@@ -1,0 +1,220 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T07.55ptxk19l2/github.com/einsteinpy/einsteinpy.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 68f3daefb781
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 94bd434c498e
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> ea98019075df
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in d91b7fd7c5dc
+Removing intermediate container d91b7fd7c5dc
+ ---> f879ff7a59c5
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 0506e075a20b
+Removing intermediate container 0506e075a20b
+ ---> 413c1e050a6a
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in e5673e85a8a9
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mRemoving intermediate container e5673e85a8a9
+ ---> b75599dd473e
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in e113100d9f82
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting numba!=0.49.0,>=0.46; implementation_name == "cpython"
+  Downloading numba-0.50.1-cp37-cp37m-manylinux2014_x86_64.whl (3.6 MB)
+Collecting scipy>=1.0
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting sympy>=1.1
+  Downloading sympy-1.6.1-py3-none-any.whl (5.8 MB)
+Collecting plotly>=4.0
+  Downloading plotly-4.8.2-py2.py3-none-any.whl (11.5 MB)
+Collecting astropy
+  Downloading astropy-4.0.1.post1-cp37-cp37m-manylinux1_x86_64.whl (6.5 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from numba!=0.49.0,>=0.46; implementation_name == "cpython"->einsteinpy==0.4.dev0) (45.1.0.post20200119)
+Collecting llvmlite<0.34,>=0.33.0.dev0
+  Downloading llvmlite-0.33.0-cp37-cp37m-manylinux1_x86_64.whl (18.3 MB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->einsteinpy==0.4.dev0) (2.8.1)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting mpmath>=0.19
+  Downloading mpmath-1.1.0.tar.gz (512 kB)
+Collecting retrying>=1.3.3
+  Downloading retrying-1.3.3.tar.gz (10 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotly>=4.0->einsteinpy==0.4.dev0) (1.14.0)
+Building wheels for collected packages: einsteinpy, mpmath, retrying
+  Building wheel for einsteinpy (PEP 517): started
+  Building wheel for einsteinpy (PEP 517): finished with status 'done'
+  Created wheel for einsteinpy: filename=einsteinpy-0.4.dev0-py3-none-any.whl size=73746 sha256=1cb0a60c009311709f5a69332c6869211495e966661d7df6171af89aced7953f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p87azuxy/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for mpmath (setup.py): started
+  Building wheel for mpmath (setup.py): finished with status 'done'
+  Created wheel for mpmath: filename=mpmath-1.1.0-py3-none-any.whl size=532238 sha256=70be7e08372ae0a84e86d3913c1e13ac44bf25a1c2f3caa830bd9b8572be06c2
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p87azuxy/wheels/e2/46/78/e78f76c356bca9277368f1f97a31b37a8cb937176d9511af31
+  Building wheel for retrying (setup.py): started
+  Building wheel for retrying (setup.py): finished with status 'done'
+  Created wheel for retrying: filename=retrying-1.3.3-py3-none-any.whl size=11429 sha256=576b129a56c633bc6e45f47bbc940ba79e0dc615c1693c0f688ef2ae3f27503c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p87azuxy/wheels/f9/8d/8d/f6af3f7f9eea3553bc2fe6d53e4b287dad18b06a861ac56ddf
+Successfully built einsteinpy mpmath retrying
+Installing collected packages: numpy, llvmlite, numba, scipy, kiwisolver, cycler, pyparsing, matplotlib, mpmath, sympy, retrying, plotly, astropy, einsteinpy
+Successfully installed astropy-4.0.1.post1 cycler-0.10.0 einsteinpy-0.4.dev0 kiwisolver-1.2.0 llvmlite-0.33.0 matplotlib-3.2.2 mpmath-1.1.0 numba-0.50.1 numpy-1.19.0 plotly-4.8.2 pyparsing-2.4.7 retrying-1.3.3 scipy-1.5.0 sympy-1.6.1
+Removing intermediate container e113100d9f82
+ ---> 903b3c105e10
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 51ff89b24449
+Removing intermediate container 51ff89b24449
+ ---> 67f83bba0f98
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 72849e951a91
+Removing intermediate container 72849e951a91
+ ---> 456ac7d215a7
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 7e8b80fea18d
+Removing intermediate container 7e8b80fea18d
+ ---> ad1fb092a03a
+Step 47/50 : USER ${NB_USER}
+ ---> Running in aacbf4940b14
+Removing intermediate container aacbf4940b14
+ ---> 895f14003e04
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> ed3838b150e6
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in f75c77ddaac0
+Removing intermediate container f75c77ddaac0
+ ---> 91c065566e9d
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 881b1bd5ce96
+Removing intermediate container 881b1bd5ce96
+ ---> 335e731c74c2
+{"aux": {"ID": "sha256:335e731c74c2ddb925db9ca2708498b7d88c02db58d37df2ecede32ace15cb68"}}Successfully built 335e731c74c2
+Successfully tagged r2d-test-github.com-einsteinpy-einsteinpy:78bf5d9

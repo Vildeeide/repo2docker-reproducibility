@@ -1,0 +1,5 @@
+[I 200703 06:21:32 inrepo:35] Testing notebook notebooks/Numba_045_release_demo.ipynb
+[I 200703 06:21:33 execute:404] Executing notebook with kernel: python3
+[I 200703 06:22:41 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/Numba_045_release_demo.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

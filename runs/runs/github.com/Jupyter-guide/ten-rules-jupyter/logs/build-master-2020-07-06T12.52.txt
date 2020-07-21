@@ -1,0 +1,1 @@
+Image r2d-test-github.com-jupyter-guide-ten-rules-jupyter:e7b184c already built

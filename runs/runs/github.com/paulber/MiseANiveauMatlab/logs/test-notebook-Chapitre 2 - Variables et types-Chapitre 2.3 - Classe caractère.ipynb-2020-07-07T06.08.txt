@@ -1,0 +1,5 @@
+[I 200707 06:09:46 inrepo:35] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.3 - Classe caractère.ipynb
+[I 200707 06:09:49 execute:404] Executing notebook with kernel: octave
+[I 200707 06:09:50 inrepo:41] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.3 - Classe caractère.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,6 @@
+[I 200720 08:04:38 inrepo:36] Testing notebook booking_validation_notebook.ipynb
+[I 200720 08:04:39 inrepo:45] Found kernel python3
+[I 200720 08:04:39 execute:404] Executing notebook with kernel: python3
+[I 200720 08:04:40 inrepo:79] Saving exported notebook to /io/notebooks/booking_validation_notebook.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

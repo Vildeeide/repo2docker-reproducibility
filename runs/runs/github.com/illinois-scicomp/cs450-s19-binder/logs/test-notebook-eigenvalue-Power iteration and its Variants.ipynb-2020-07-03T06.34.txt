@@ -1,0 +1,5 @@
+[I 200703 06:38:33 inrepo:35] Testing notebook eigenvalue/Power iteration and its Variants.ipynb
+[I 200703 06:38:34 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:35 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Power iteration and its Variants.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

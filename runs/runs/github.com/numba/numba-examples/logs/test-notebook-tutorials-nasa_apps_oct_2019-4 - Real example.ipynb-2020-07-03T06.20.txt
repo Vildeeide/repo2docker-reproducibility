@@ -1,0 +1,36 @@
+[I 200703 06:30:48 inrepo:35] Testing notebook tutorials/nasa_apps_oct_2019/4 - Real example.ipynb
+[I 200703 06:30:50 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from numba import stencil
+
+@stencil
+def my_blur(img):
+     # return uint8, this is an image!
+    return np.uint8(# You write this!)
+------------------
+
+[0;36m  File [0;32m"<ipython-input-3-3599dfd335d8>"[0;36m, line [0;32m6[0m
+[0;31m    return np.uint8(# You write this!)[0m
+[0m                                      ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m unexpected EOF while parsing
+
+SyntaxError: unexpected EOF while parsing (<ipython-input-3-3599dfd335d8>, line 6)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

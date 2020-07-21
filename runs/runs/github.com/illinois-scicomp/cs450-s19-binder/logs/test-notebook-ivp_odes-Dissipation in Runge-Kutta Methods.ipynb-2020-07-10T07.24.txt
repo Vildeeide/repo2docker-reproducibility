@@ -1,0 +1,6 @@
+[I 200710 07:24:44 inrepo:36] Testing notebook ivp_odes/Dissipation in Runge-Kutta Methods.ipynb
+[I 200710 07:24:45 inrepo:45] Found kernel python3
+[I 200710 07:24:46 execute:404] Executing notebook with kernel: python3
+[I 200710 07:24:51 inrepo:79] Saving exported notebook to /io/notebooks/ivp_odes/Dissipation in Runge-Kutta Methods.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

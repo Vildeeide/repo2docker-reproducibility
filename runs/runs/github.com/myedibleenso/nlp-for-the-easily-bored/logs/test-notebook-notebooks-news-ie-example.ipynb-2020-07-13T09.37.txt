@@ -1,0 +1,40 @@
+[I 200713 09:40:47 inrepo:36] Testing notebook notebooks/news-ie-example.ipynb
+[I 200713 09:40:47 inrepo:45] Found kernel python3
+[I 200713 09:40:48 execute:404] Executing notebook with kernel: python3
+[W 200713 09:42:13 execute:599] Timeout waiting for IOPub output
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+for i in range(limit):
+    doc = API.fastnlp.annotate(article_text[i].strip())
+    formatted_dict = json.dumps(doc.nes, sort_keys=True, indent=4)
+    print("{}\n".format(formatted_dict))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-6-711dc599264a>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mlimit[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m     [0mdoc[0m [0;34m=[0m [0mAPI[0m[0;34m.[0m[0mfastnlp[0m[0;34m.[0m[0mannotate[0m[0;34m([0m[0marticle_text[0m[0;34m[[0m[0mi[0m[0;34m][0m[0;34m.[0m[0mstrip[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m     [0mformatted_dict[0m [0;34m=[0m [0mjson[0m[0;34m.[0m[0mdumps[0m[0;34m([0m[0mdoc[0m[0;34m.[0m[0mnes[0m[0;34m,[0m [0msort_keys[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m [0mindent[0m[0;34m=[0m[0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m     [0mprint[0m[0;34m([0m[0;34m"{}\n"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mformatted_dict[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'NoneType' object has no attribute 'nes'
+AttributeError: 'NoneType' object has no attribute 'nes'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,65 @@
+[I 200706 09:36:34 inrepo:35] Testing notebook guides/03-Quickstart.ipynb
+[I 200706 09:36:35 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cartoframes.auth import set_default_credentials
+
+set_default_credentials('creds.json')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cartoframes/auth/credentials.py[0m in [0;36mfrom_file[0;34m(cls, config_file, session)[0m
+[1;32m    152[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 153[0;31m                 [0mcredentials[0m [0;34m=[0m [0mread_from_config[0m[0;34m([0m[0mfilepath[0m[0;34m=[0m[0mconfig_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    154[0m             return cls(
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cartoframes/utils/utils.py[0m in [0;36mread_from_config[0;34m(filename, filepath)[0m
+[1;32m    513[0m [0;34m[0m[0m
+[0;32m--> 514[0;31m     [0;32mwith[0m [0mopen[0m[0;34m([0m[0mfilepath[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    515[0m         [0;32mreturn[0m [0mjson[0m[0;34m.[0m[0mload[0m[0;34m([0m[0mf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'creds.json'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-3-06fd5584e404>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mcartoframes[0m[0;34m.[0m[0mauth[0m [0;32mimport[0m [0mset_default_credentials[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;34m[0m[0m
+[0;32m----> 3[0;31m [0mset_default_credentials[0m[0;34m([0m[0;34m'creds.json'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cartoframes/auth/defaults.py[0m in [0;36mset_default_credentials[0;34m(first, second, credentials, filepath, username, base_url, api_key, session, allow_non_secure)[0m
+[1;32m     97[0m [0;34m[0m[0m
+[1;32m     98[0m     [0;32melif[0m [0misinstance[0m[0;34m([0m[0m_filepath[0m[0;34m,[0m [0mstr[0m[0;34m)[0m [0;32mand[0m [0mis_json_filepath[0m[0;34m([0m[0m_filepath[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 99[0;31m         [0m_default_credentials[0m [0;34m=[0m [0mCredentials[0m[0;34m.[0m[0mfrom_file[0m[0;34m([0m[0m_filepath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    100[0m [0;34m[0m[0m
+[1;32m    101[0m     [0;32melif[0m [0misinstance[0m[0;34m([0m[0m_base_url[0m [0;32mor[0m [0m_username[0m[0;34m,[0m [0mstr[0m[0;34m)[0m [0;32mand[0m [0misinstance[0m[0;34m([0m[0m_api_key[0m[0;34m,[0m [0mstr[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cartoframes/auth/credentials.py[0m in [0;36mfrom_file[0;34m(cls, config_file, session)[0m
+[1;32m    160[0m             )
+[1;32m    161[0m         [0;32mexcept[0m [0mFileNotFoundError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 162[0;31m             raise FileNotFoundError('There is no default credentials file. '
+[0m[1;32m    163[0m                                     'Run `Credentials(...).save()` to create a credentials file.')
+[1;32m    164[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: There is no default credentials file. Run `Credentials(...).save()` to create a credentials file.
+FileNotFoundError: There is no default credentials file. Run `Credentials(...).save()` to create a credentials file.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

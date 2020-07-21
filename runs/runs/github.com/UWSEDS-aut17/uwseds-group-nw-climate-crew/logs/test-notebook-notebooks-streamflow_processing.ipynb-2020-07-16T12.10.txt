@@ -1,0 +1,57 @@
+[I 200716 12:12:07 inrepo:36] Testing notebook notebooks/streamflow_processing.ipynb
+[I 200716 12:12:07 inrepo:45] Found kernel python3
+[I 200716 12:12:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pylab inline
+import os
+import glob
+import numpy as np
+import pandas as pd
+import xarray as xr
+import geopandas as gp
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from jupyterthemes import jtplot
+import utm
+from scipy.spatial import KDTree
+jtplot.style(jtplot.infer_theme(), context='paper', fscale=2)
+jtplot.figsize(x=20, y=12)
+from futurefish.data_processing import calcLatLon, get_model_ts, 
+    metric_min7day_streamflow, locate_nearest_neighbor_values,
+    create_collated_dataset_temperature, convert_coordinates
+
+# Set this parameter where you have downloaded the stream temperature files
+SHAPEFILES = glob.glob('../../data/**/**/*.shp')
+
+STREAMFLOW_META = '../futurefish/data/full_site_test_dataset.csv'
+
+# Set this parameter given your own file system with the location where
+# you have downloaded the streamflow files
+streamflow_file_directory = 
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-8ffa984aeae3>"[0;36m, line [0;32m16[0m
+[0;31m    metric_min7day_streamflow, locate_nearest_neighbor_values,[0m
+[0m    ^[0m
+[0;31mIndentationError[0m[0;31m:[0m unexpected indent
+
+IndentationError: unexpected indent (<ipython-input-1-8ffa984aeae3>, line 16)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

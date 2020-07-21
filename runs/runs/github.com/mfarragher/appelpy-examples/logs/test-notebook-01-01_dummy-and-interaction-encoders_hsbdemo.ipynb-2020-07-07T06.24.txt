@@ -1,0 +1,5 @@
+[I 200707 06:25:12 inrepo:35] Testing notebook 01-01_dummy-and-interaction-encoders_hsbdemo.ipynb
+[I 200707 06:25:13 execute:404] Executing notebook with kernel: python3
+[I 200707 06:25:18 inrepo:41] Saving exported notebook to /io/notebooks/01-01_dummy-and-interaction-encoders_hsbdemo.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

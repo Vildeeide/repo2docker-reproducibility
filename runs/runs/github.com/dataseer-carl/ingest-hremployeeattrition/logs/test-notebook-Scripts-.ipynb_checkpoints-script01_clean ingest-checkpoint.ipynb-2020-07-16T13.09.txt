@@ -1,0 +1,5 @@
+[I 200716 13:09:51 inrepo:36] Testing notebook Scripts/.ipynb_checkpoints/script01_clean ingest-checkpoint.ipynb
+[I 200716 13:09:52 execute:404] Executing notebook with kernel: python
+[I 200716 13:09:52 inrepo:79] Saving exported notebook to /io/notebooks/Scripts/.ipynb_checkpoints/script01_clean ingest-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

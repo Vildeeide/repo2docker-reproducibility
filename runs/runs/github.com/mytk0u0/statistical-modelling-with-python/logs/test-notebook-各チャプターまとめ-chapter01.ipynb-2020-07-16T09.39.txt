@@ -1,0 +1,7 @@
+[I 200716 09:39:53 inrepo:36] Testing notebook 各チャプターまとめ/chapter01.ipynb
+[W 200716 09:39:54 inrepo:48] No such kernel conda-root-py, falling back on kernel language=python
+[W 200716 09:39:54 inrepo:60] Using kernel python3 to provide language: python
+[I 200716 09:39:54 execute:404] Executing notebook with kernel: python3
+[I 200716 09:39:55 inrepo:79] Saving exported notebook to /io/notebooks/各チャプターまとめ/chapter01.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

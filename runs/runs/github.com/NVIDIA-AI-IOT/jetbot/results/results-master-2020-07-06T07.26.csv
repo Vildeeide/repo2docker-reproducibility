@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/NVIDIA-AI-IOT/jetbot,master,65d9eec,2020-01-15T20:53:05-08:00,build,build,False,github.com/NVIDIA-AI-IOT/jetbot/logs/build-master-2020-07-06T07.26.txt,2020-07-06T07:26:00.959350,2020-07-06T07.26,0.11.0

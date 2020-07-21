@@ -1,0 +1,6 @@
+[I 200716 13:35:16 inrepo:36] Testing notebook jupyter扩展插件 Nbextensions 使用.ipynb
+[I 200716 13:35:16 inrepo:45] Found kernel python3
+[I 200716 13:35:17 execute:404] Executing notebook with kernel: python3
+[I 200716 13:35:21 inrepo:79] Saving exported notebook to /io/notebooks/jupyter扩展插件 Nbextensions 使用.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

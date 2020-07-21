@@ -1,0 +1,5 @@
+[I 200703 06:43:14 inrepo:35] Testing notebook optimization/Conjugate Gradient Parallel Tangents as Krylov Subspace Method.ipynb
+[I 200703 06:43:15 execute:404] Executing notebook with kernel: python3
+[I 200703 06:43:16 inrepo:41] Saving exported notebook to /io/notebooks/optimization/Conjugate Gradient Parallel Tangents as Krylov Subspace Method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

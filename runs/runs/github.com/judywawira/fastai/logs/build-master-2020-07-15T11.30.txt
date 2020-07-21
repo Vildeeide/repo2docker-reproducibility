@@ -1,0 +1,1126 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-15T11.30w1p09gss/github.com/judywawira/fastai.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> f5fc05ba58c0
+Step 38/51 : USER root
+ ---> Running in d42fbeda763e
+Removing intermediate container d42fbeda763e
+ ---> 5de600bc8546
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a901956cba07
+Removing intermediate container a901956cba07
+ ---> a3352f58ad6a
+Step 40/51 : USER ${NB_USER}
+ ---> Running in daad29f4fea9
+Removing intermediate container daad29f4fea9
+ ---> b80d176f04c0
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 23a00468cc9e
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+python-3.7.7         | 45.1 MB   |            |   0% 
+python-3.7.7         | 45.1 MB   |            |   0% 
+python-3.7.7         | 45.1 MB   | #          |  10% 
+python-3.7.7         | 45.1 MB   | ###        |  31% 
+python-3.7.7         | 45.1 MB   | #####1     |  52% 
+python-3.7.7         | 45.1 MB   | #######2   |  73% 
+python-3.7.7         | 45.1 MB   | #########3 |  94% 
+python-3.7.7         | 45.1 MB   | ########## | 100% 
+
+yaml-0.2.5           | 75 KB     |            |   0% 
+yaml-0.2.5           | 75 KB     | ########## | 100% 
+
+cloudpickle-1.5.0    | 22 KB     |            |   0% 
+cloudpickle-1.5.0    | 22 KB     | ########## | 100% 
+
+olefile-0.46         | 50 KB     |            |   0% 
+olefile-0.46         | 50 KB     | ########## | 100% 
+
+zlib-1.2.11          | 103 KB    |            |   0% 
+zlib-1.2.11          | 103 KB    | ########## | 100% 
+
+libxml2-2.9.10       | 1.2 MB    |            |   0% 
+libxml2-2.9.10       | 1.2 MB    | ########## | 100% 
+
+gstreamer-1.14.0     | 3.1 MB    |            |   0% 
+gstreamer-1.14.0     | 3.1 MB    | ########## | 100% 
+
+pyparsing-2.4.7      | 65 KB     |            |   0% 
+pyparsing-2.4.7      | 65 KB     | ########## | 100% 
+
+toolz-0.10.0         | 52 KB     |            |   0% 
+toolz-0.10.0         | 52 KB     | ########## | 100% 
+
+typing_extensions-3. | 27 KB     |            |   0% 
+typing_extensions-3. | 27 KB     | ########## | 100% 
+
+path.py-12.4.0       | 7 KB      |            |   0% 
+path.py-12.4.0       | 7 KB      | ########## | 100% 
+
+numpy-base-1.18.5    | 4.1 MB    |            |   0% 
+numpy-base-1.18.5    | 4.1 MB    | ########## | 100% 
+
+expat-2.2.9          | 156 KB    |            |   0% 
+expat-2.2.9          | 156 KB    | ########## | 100% 
+
+xz-5.2.5             | 341 KB    |            |   0% 
+xz-5.2.5             | 341 KB    | ########## | 100% 
+
+jpeg-9b              | 214 KB    |            |   0% 
+jpeg-9b              | 214 KB    | ########## | 100% 
+
+matplotlib-3.2.2     | 21 KB     |            |   0% 
+matplotlib-3.2.2     | 21 KB     | ########## | 100% 
+
+pytz-2020.1          | 184 KB    |            |   0% 
+pytz-2020.1          | 184 KB    | ########## | 100% 
+
+snappy-1.1.8         | 40 KB     |            |   0% 
+snappy-1.1.8         | 40 KB     | ########## | 100% 
+
+lcms2-2.11           | 307 KB    |            |   0% 
+lcms2-2.11           | 307 KB    | ########## | 100% 
+
+pyqt-5.9.2           | 4.5 MB    |            |   0% 
+pyqt-5.9.2           | 4.5 MB    | ########## | 100% 
+
+jupyter_console-6.1. | 24 KB     |            |   0% 
+jupyter_console-6.1. | 24 KB     | ########## | 100% 
+
+pcre-8.44            | 212 KB    |            |   0% 
+pcre-8.44            | 212 KB    | ########## | 100% 
+
+pycparser-2.20       | 94 KB     |            |   0% 
+pycparser-2.20       | 94 KB     | ########## | 100% 
+
+nbformat-5.0.7       | 89 KB     |            |   0% 
+nbformat-5.0.7       | 89 KB     | ########## | 100% 
+
+setuptools-49.1.0    | 729 KB    |            |   0% 
+setuptools-49.1.0    | 729 KB    | ########## | 100% 
+
+ptyprocess-0.6.0     | 23 KB     |            |   0% 
+ptyprocess-0.6.0     | 23 KB     | ########## | 100% 
+
+dask-core-2.20.0     | 590 KB    |            |   0% 
+dask-core-2.20.0     | 590 KB    | ########## | 100% 
+
+blosc-1.19.0         | 71 KB     |            |   0% 
+blosc-1.19.0         | 71 KB     | ########## | 100% 
+
+zict-2.0.0           | 13 KB     |            |   0% 
+zict-2.0.0           | 13 KB     | ########## | 100% 
+
+libpng-1.6.37        | 278 KB    |            |   0% 
+libpng-1.6.37        | 278 KB    | ########## | 100% 
+
+libedit-3.1.20191231 | 116 KB    |            |   0% 
+libedit-3.1.20191231 | 116 KB    | ########## | 100% 
+
+notebook-6.0.3       | 4.0 MB    |            |   0% 
+notebook-6.0.3       | 4.0 MB    | ########## | 100% 
+
+pandocfilters-1.4.2  | 13 KB     |            |   0% 
+pandocfilters-1.4.2  | 13 KB     | ########## | 100% 
+
+bokeh-2.1.1          | 5.4 MB    |            |   0% 
+bokeh-2.1.1          | 5.4 MB    | ########## | 100% 
+
+sqlite-3.32.3        | 1.1 MB    |            |   0% 
+sqlite-3.32.3        | 1.1 MB    | ########## | 100% 
+
+openssl-1.1.1g       | 2.5 MB    |            |   0% 
+openssl-1.1.1g       | 2.5 MB    | ########## | 100% 
+
+six-1.15.0           | 13 KB     |            |   0% 
+six-1.15.0           | 13 KB     | ########## | 100% 
+
+wcwidth-0.2.5        | 29 KB     |            |   0% 
+wcwidth-0.2.5        | 29 KB     | ########## | 100% 
+
+partd-1.1.0          | 20 KB     |            |   0% 
+partd-1.1.0          | 20 KB     | ########## | 100% 
+
+readline-8.0         | 356 KB    |            |   0% 
+readline-8.0         | 356 KB    | ########## | 100% 
+
+mkl-2020.1           | 129.0 MB  |            |   0% 
+mkl-2020.1           | 129.0 MB  | 5          |   6% 
+mkl-2020.1           | 129.0 MB  | #3         |  13% 
+mkl-2020.1           | 129.0 MB  | ##         |  21% 
+mkl-2020.1           | 129.0 MB  | ##8        |  28% 
+mkl-2020.1           | 129.0 MB  | ###5       |  35% 
+mkl-2020.1           | 129.0 MB  | ####2      |  43% 
+mkl-2020.1           | 129.0 MB  | #####      |  50% 
+mkl-2020.1           | 129.0 MB  | #####8     |  58% 
+mkl-2020.1           | 129.0 MB  | ######6    |  66% 
+mkl-2020.1           | 129.0 MB  | #######3   |  74% 
+mkl-2020.1           | 129.0 MB  | ########1  |  82% 
+mkl-2020.1           | 129.0 MB  | ########9  |  89% 
+mkl-2020.1           | 129.0 MB  | #########6 |  97% 
+mkl-2020.1           | 129.0 MB  | ########## | 100% 
+
+intel-openmp-2020.1  | 780 KB    |            |   0% 
+intel-openmp-2020.1  | 780 KB    | ########## | 100% 
+
+bleach-3.1.5         | 116 KB    |            |   0% 
+bleach-3.1.5         | 116 KB    | ########## | 100% 
+
+testpath-0.4.4       | 82 KB     |            |   0% 
+testpath-0.4.4       | 82 KB     | ########## | 100% 
+
+dask-2.20.0          | 4 KB      |            |   0% 
+dask-2.20.0          | 4 KB      | ########## | 100% 
+
+zstd-1.4.4           | 447 KB    |            |   0% 
+zstd-1.4.4           | 447 KB    | ########## | 100% 
+
+libuuid-1.0.3        | 15 KB     |            |   0% 
+libuuid-1.0.3        | 15 KB     | ########## | 100% 
+
+click-7.1.2          | 71 KB     |            |   0% 
+click-7.1.2          | 71 KB     | ########## | 100% 
+
+locket-0.2.0         | 9 KB      |            |   0% 
+locket-0.2.0         | 9 KB      | ########## | 100% 
+
+prompt_toolkit-3.0.5 | 11 KB     |            |   0% 
+prompt_toolkit-3.0.5 | 11 KB     | ########## | 100% 
+
+mistune-0.8.4        | 54 KB     |            |   0% 
+mistune-0.8.4        | 54 KB     | ########## | 100% 
+
+qtpy-1.9.0           | 38 KB     |            |   0% 
+qtpy-1.9.0           | 38 KB     | ########## | 100% 
+
+pygments-2.6.1       | 654 KB    |            |   0% 
+pygments-2.6.1       | 654 KB    | ########## | 100% 
+
+matplotlib-base-3.2. | 5.4 MB    |            |   0% 
+matplotlib-base-3.2. | 5.4 MB    | ########## | 100% 
+
+psutil-5.7.0         | 319 KB    |            |   0% 
+psutil-5.7.0         | 319 KB    | ########## | 100% 
+
+decorator-4.4.2      | 14 KB     |            |   0% 
+decorator-4.4.2      | 14 KB     | ########## | 100% 
+
+packaging-20.4       | 36 KB     |            |   0% 
+packaging-20.4       | 36 KB     | ########## | 100% 
+
+entrypoints-0.3      | 12 KB     |            |   0% 
+entrypoints-0.3      | 12 KB     | ########## | 100% 
+
+python-dateutil-2.8. | 215 KB    |            |   0% 
+python-dateutil-2.8. | 215 KB    | ########## | 100% 
+
+jupyter_client-6.1.5 | 76 KB     |            |   0% 
+jupyter_client-6.1.5 | 76 KB     | ########## | 100% 
+
+pexpect-4.8.0        | 77 KB     |            |   0% 
+pexpect-4.8.0        | 77 KB     | ########## | 100% 
+
+patsy-0.5.1          | 274 KB    |            |   0% 
+patsy-0.5.1          | 274 KB    | 5          |   6% 
+patsy-0.5.1          | 274 KB    | ########## | 100% 
+
+jbig-2.1             | 40 KB     |            |   0% 
+jbig-2.1             | 40 KB     | ####       |  40% 
+jbig-2.1             | 40 KB     | ########## | 100% 
+
+lz4-c-1.9.2          | 191 KB    |            |   0% 
+lz4-c-1.9.2          | 191 KB    | ########## | 100% 
+
+ncurses-6.2          | 817 KB    |            |   0% 
+ncurses-6.2          | 817 KB    | ########## | 100% 
+
+lzo-2.10             | 184 KB    |            |   0% 
+lzo-2.10             | 184 KB    | ########## | 100% 
+
+traitlets-4.3.3      | 140 KB    |            |   0% 
+traitlets-4.3.3      | 140 KB    | ########## | 100% 
+
+pip-20.1.1           | 1.7 MB    |            |   0% 
+pip-20.1.1           | 1.7 MB    | ########## | 100% 
+
+distributed-2.20.0   | 992 KB    |            |   0% 
+distributed-2.20.0   | 992 KB    | ########## | 100% 
+
+mkl_random-1.1.1     | 322 KB    |            |   0% 
+mkl_random-1.1.1     | 322 KB    | ########## | 100% 
+
+libsodium-1.0.18     | 244 KB    |            |   0% 
+libsodium-1.0.18     | 244 KB    | ########## | 100% 
+
+libgfortran-ng-7.3.0 | 1006 KB   |            |   0% 
+libgfortran-ng-7.3.0 | 1006 KB   | ########## | 100% 
+
+tqdm-4.47.0          | 62 KB     |            |   0% 
+tqdm-4.47.0          | 62 KB     | ########## | 100% 
+
+libgcc-7.2.0         | 269 KB    |            |   0% 
+libgcc-7.2.0         | 269 KB    | ########## | 100% 
+
+jedi-0.17.1          | 921 KB    |            |   0% 
+jedi-0.17.1          | 921 KB    | ########## | 100% 
+
+cytoolz-0.10.1       | 376 KB    |            |   0% 
+cytoolz-0.10.1       | 376 KB    | 4          |   4% 
+cytoolz-0.10.1       | 376 KB    | ########## | 100% 
+
+libffi-3.3           | 50 KB     |            |   0% 
+libffi-3.3           | 50 KB     | ########## | 100% 
+
+ninja-1.9.0          | 1.2 MB    |            |   0% 
+ninja-1.9.0          | 1.2 MB    | ########## | 100% 
+
+cffi-1.14.0          | 224 KB    |            |   0% 
+cffi-1.14.0          | 224 KB    | ########## | 100% 
+
+bcolz-1.2.1          | 706 KB    |            |   0% 
+bcolz-1.2.1          | 706 KB    | 2          |   2% 
+bcolz-1.2.1          | 706 KB    | ########## | 100% 
+
+sortedcontainers-2.2 | 29 KB     |            |   0% 
+sortedcontainers-2.2 | 29 KB     | ########## | 100% 
+
+mock-4.0.2           | 32 KB     |            |   0% 
+mock-4.0.2           | 32 KB     | ########## | 100% 
+
+heapdict-1.0.1       | 9 KB      |            |   0% 
+heapdict-1.0.1       | 9 KB      | ########## | 100% 
+
+ipython-7.16.1       | 987 KB    |            |   0% 
+ipython-7.16.1       | 987 KB    | ########## | 100% 
+
+freetype-2.10.2      | 608 KB    |            |   0% 
+freetype-2.10.2      | 608 KB    | ########## | 100% 
+
+msgpack-python-1.0.0 | 89 KB     |            |   0% 
+msgpack-python-1.0.0 | 89 KB     | ########## | 100% 
+
+parso-0.7.0          | 72 KB     |            |   0% 
+parso-0.7.0          | 72 KB     | ########## | 100% 
+
+gst-plugins-base-1.1 | 4.8 MB    |            |   0% 
+gst-plugins-base-1.1 | 4.8 MB    | ########## | 100% 
+
+pickleshare-0.7.5    | 13 KB     |            |   0% 
+pickleshare-0.7.5    | 13 KB     | ########## | 100% 
+
+pyyaml-5.3.1         | 180 KB    |            |   0% 
+pyyaml-5.3.1         | 180 KB    | ########## | 100% 
+
+jsonschema-3.2.0     | 91 KB     |            |   0% 
+jsonschema-3.2.0     | 91 KB     | ########## | 100% 
+
+certifi-2020.6.20    | 156 KB    |            |   0% 
+certifi-2020.6.20    | 156 KB    | ########## | 100% 
+
+icu-58.2             | 10.5 MB   |            |   0% 
+icu-58.2             | 10.5 MB   | #####2     |  53% 
+icu-58.2             | 10.5 MB   | ########## | 100% 
+
+sip-4.19.8           | 274 KB    |            |   0% 
+sip-4.19.8           | 274 KB    | ########## | 100% 
+
+statsmodels-0.11.1   | 7.8 MB    |            |   0% 
+statsmodels-0.11.1   | 7.8 MB    | ########8  |  89% 
+statsmodels-0.11.1   | 7.8 MB    | ########## | 100% 
+
+terminado-0.8.3      | 26 KB     |            |   0% 
+terminado-0.8.3      | 26 KB     | ########## | 100% 
+
+cycler-0.10.0        | 13 KB     |            |   0% 
+cycler-0.10.0        | 13 KB     | ########## | 100% 
+
+jinja2-2.11.2        | 103 KB    |            |   0% 
+jinja2-2.11.2        | 103 KB    | ########## | 100% 
+
+ipywidgets-7.5.1     | 104 KB    |            |   0% 
+ipywidgets-7.5.1     | 104 KB    | ########## | 100% 
+
+pyzmq-19.0.1         | 459 KB    |            |   0% 
+pyzmq-19.0.1         | 459 KB    | ########## | 100% 
+
+nbconvert-5.6.1      | 451 KB    |            |   0% 
+nbconvert-5.6.1      | 451 KB    | ########## | 100% 
+
+torchvision-0.2.1    | 37 KB     |            |   0% 
+torchvision-0.2.1    | 37 KB     | ########## | 100% 
+
+html5lib-1.1         | 93 KB     |            |   0% 
+html5lib-1.1         | 93 KB     | ########## | 100% 
+
+kiwisolver-1.2.0     | 84 KB     |            |   0% 
+kiwisolver-1.2.0     | 84 KB     | ########## | 100% 
+
+tblib-1.6.0          | 16 KB     |            |   0% 
+tblib-1.6.0          | 16 KB     | ########## | 100% 
+
+qtconsole-4.7.5      | 96 KB     |            |   0% 
+qtconsole-4.7.5      | 96 KB     | ########## | 100% 
+
+fsspec-0.7.4         | 63 KB     |            |   0% 
+fsspec-0.7.4         | 63 KB     | ########## | 100% 
+
+libxcb-1.14          | 505 KB    |            |   0% 
+libxcb-1.14          | 505 KB    | ########## | 100% 
+
+mkl-service-2.3.0    | 218 KB    |            |   0% 
+mkl-service-2.3.0    | 218 KB    | ########## | 100% 
+
+seaborn-0.10.1       | 163 KB    |            |   0% 
+seaborn-0.10.1       | 163 KB    | ########## | 100% 
+
+wheel-0.34.2         | 51 KB     |            |   0% 
+wheel-0.34.2         | 51 KB     | ########## | 100% 
+
+ipykernel-5.3.0      | 177 KB    |            |   0% 
+ipykernel-5.3.0      | 177 KB    | ########## | 100% 
+
+qt-5.9.7             | 68.5 MB   |            |   0% 
+qt-5.9.7             | 68.5 MB   | 8          |   9% 
+qt-5.9.7             | 68.5 MB   | ##1        |  21% 
+qt-5.9.7             | 68.5 MB   | ###3       |  34% 
+qt-5.9.7             | 68.5 MB   | ####4      |  44% 
+qt-5.9.7             | 68.5 MB   | #####6     |  57% 
+qt-5.9.7             | 68.5 MB   | ######8    |  69% 
+qt-5.9.7             | 68.5 MB   | ########   |  80% 
+qt-5.9.7             | 68.5 MB   | #########2 |  93% 
+qt-5.9.7             | 68.5 MB   | ########## | 100% 
+
+simplegeneric-0.8.1  | 10 KB     |            |   0% 
+simplegeneric-0.8.1  | 10 KB     | ########## | 100% 
+
+prompt-toolkit-3.0.5 | 245 KB    |            |   0% 
+prompt-toolkit-3.0.5 | 245 KB    | ########## | 100% 
+
+pandas-1.0.5         | 7.8 MB    |            |   0% 
+pandas-1.0.5         | 7.8 MB    | #########5 |  96% 
+pandas-1.0.5         | 7.8 MB    | ########## | 100% 
+
+numpy-1.18.5         | 5 KB      |            |   0% 
+numpy-1.18.5         | 5 KB      | ########## | 100% 
+
+pytorch-1.0.0        | 498.7 MB  |            |   0% 
+pytorch-1.0.0        | 498.7 MB  | ########## | 100% 
+
+jupyter-1.0.0        | 6 KB      |            |   0% 
+jupyter-1.0.0        | 6 KB      | ########## | 100% 
+
+widgetsnbextension-3 | 862 KB    |            |   0% 
+widgetsnbextension-3 | 862 KB    | ########## | 100% 
+
+tornado-6.0.4        | 611 KB    |            |   0% 
+tornado-6.0.4        | 611 KB    | ########## | 100% 
+
+ipython_genutils-0.2 | 39 KB     |            |   0% 
+ipython_genutils-0.2 | 39 KB     | ########## | 100% 
+
+pillow-7.2.0         | 617 KB    |            |   0% 
+pillow-7.2.0         | 617 KB    | ########## | 100% 
+
+tk-8.6.10            | 3.0 MB    |            |   0% 
+tk-8.6.10            | 3.0 MB    | ########## | 100% 
+
+glib-2.65.0          | 2.9 MB    |            |   0% 
+glib-2.65.0          | 2.9 MB    | ########## | 100% 
+
+libgfortran-3.0.0    | 281 KB    |            |   0% 
+libgfortran-3.0.0    | 281 KB    | ########## | 100% 
+
+hdf5-1.10.4          | 3.9 MB    |            |   0% 
+hdf5-1.10.4          | 3.9 MB    | ########## | 100% 
+
+fontconfig-2.13.0    | 227 KB    |            |   0% 
+fontconfig-2.13.0    | 227 KB    | ########## | 100% 
+
+blas-1.0             | 6 KB      |            |   0% 
+blas-1.0             | 6 KB      | ########## | 100% 
+
+numexpr-2.7.1        | 187 KB    |            |   0% 
+numexpr-2.7.1        | 187 KB    | 8          |   9% 
+numexpr-2.7.1        | 187 KB    | ########## | 100% 
+
+zeromq-4.3.2         | 510 KB    |            |   0% 
+zeromq-4.3.2         | 510 KB    | ########## | 100% 
+
+mkl_fft-1.1.0        | 143 KB    |            |   0% 
+mkl_fft-1.1.0        | 143 KB    | ########## | 100% 
+
+scipy-1.5.0          | 14.4 MB   |            |   0% 
+scipy-1.5.0          | 14.4 MB   | ###7       |  38% 
+scipy-1.5.0          | 14.4 MB   | ########9  |  89% 
+scipy-1.5.0          | 14.4 MB   | ########## | 100% 
+
+libiconv-1.15        | 721 KB    |            |   0% 
+libiconv-1.15        | 721 KB    | ########## | 100% 
+
+jupyter_core-4.6.3   | 71 KB     |            |   0% 
+jupyter_core-4.6.3   | 71 KB     | ########## | 100% 
+
+markupsafe-1.1.1     | 26 KB     |            |   0% 
+markupsafe-1.1.1     | 26 KB     | ########## | 100% 
+
+pytables-3.6.1       | 1.2 MB    |            |   0% 
+pytables-3.6.1       | 1.2 MB    | 1          |   1% 
+pytables-3.6.1       | 1.2 MB    | ########## | 100% 
+
+bzip2-1.0.8          | 78 KB     |            |   0% 
+bzip2-1.0.8          | 78 KB     | ########## | 100% 
+
+dbus-1.13.16         | 501 KB    |            |   0% 
+dbus-1.13.16         | 501 KB    | ########## | 100% 
+
+path-13.1.0          | 35 KB     |            |   0% 
+path-13.1.0          | 35 KB     | ####5      |  46% 
+path-13.1.0          | 35 KB     | ########## | 100% 
+
+libtiff-4.1.0        | 449 KB    |            |   0% 
+libtiff-4.1.0        | 449 KB    | ########## | 100% 
+
+ca-certificates-2020 | 125 KB    |            |   0% 
+ca-certificates-2020 | 125 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'Uninstalling jupyter-js-widgets jupyter-js-widgets/extension\nRemoving: /srv/conda/envs/notebook/share/jupyter/nbextensions/jupyter-js-widgets\n'
+done
+Ran pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.qjhy7bck.requirements.txt']
+Pip subprocess output:
+Collecting git+https://github.com/SauceCat/PDPbox.git (from -r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13))
+  Cloning https://github.com/SauceCat/PDPbox.git to /tmp/pip-req-build-yb1rj8ha
+Collecting opencv-python
+  Downloading opencv_python-4.3.0.36-cp37-cp37m-manylinux2014_x86_64.whl (43.7 MB)
+Collecting isoweek
+  Downloading isoweek-1.3.3-py2.py3-none-any.whl (7.1 kB)
+Collecting pandas_summary
+  Downloading pandas_summary-0.0.7-py2.py3-none-any.whl (5.2 kB)
+Collecting torchtext
+  Downloading torchtext-0.6.0-py3-none-any.whl (64 kB)
+Collecting graphviz
+  Downloading graphviz-0.14.1-py2.py3-none-any.whl (18 kB)
+Collecting sklearn_pandas
+  Downloading sklearn_pandas-1.8.0-py2.py3-none-any.whl (12 kB)
+Collecting feather-format
+  Downloading feather-format-0.4.1.tar.gz (3.2 kB)
+Collecting jupyter_contrib_nbextensions
+  Downloading jupyter_contrib_nbextensions-0.5.1-py2.py3-none-any.whl (20.9 MB)
+Collecting plotnine
+  Downloading plotnine-0.7.0-py3-none-any.whl (4.4 MB)
+Collecting docrepr
+  Downloading docrepr-0.1.1-py2.py3-none-any.whl (150 kB)
+Collecting awscli
+  Downloading awscli-1.18.97-py2.py3-none-any.whl (3.2 MB)
+Collecting kaggle-cli
+  Downloading kaggle-cli-0.12.13.tar.gz (6.5 kB)
+Requirement already satisfied, skipping upgrade: pandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (1.0.5)
+Requirement already satisfied, skipping upgrade: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (1.18.5)
+Requirement already satisfied, skipping upgrade: scipy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (1.5.0)
+Requirement already satisfied, skipping upgrade: matplotlib>=2.1.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (3.2.2)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Requirement already satisfied, skipping upgrade: psutil in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (5.7.0)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Requirement already satisfied, skipping upgrade: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (1.15.0)
+Collecting sentencepiece
+  Downloading sentencepiece-0.1.91-cp37-cp37m-manylinux1_x86_64.whl (1.1 MB)
+Requirement already satisfied, skipping upgrade: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (2.22.0)
+Requirement already satisfied, skipping upgrade: torch in /srv/conda/envs/notebook/lib/python3.7/site-packages (from torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (1.0.0)
+Requirement already satisfied, skipping upgrade: tqdm in /srv/conda/envs/notebook/lib/python3.7/site-packages (from torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (4.47.0)
+Collecting pyarrow>=0.4.0
+  Downloading pyarrow-0.17.1-cp37-cp37m-manylinux2014_x86_64.whl (63.8 MB)
+Requirement already satisfied, skipping upgrade: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.2.0)
+Requirement already satisfied, skipping upgrade: notebook>=4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (6.0.3)
+Requirement already satisfied, skipping upgrade: nbconvert>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (5.6.1)
+Requirement already satisfied, skipping upgrade: traitlets>=4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (4.3.3)
+Collecting jupyter-highlight-selected-word>=0.1.1
+  Downloading jupyter_highlight_selected_word-0.2.0-py2.py3-none-any.whl (11 kB)
+Collecting jupyter-nbextensions-configurator>=0.4.0
+  Downloading jupyter_nbextensions_configurator-0.4.1.tar.gz (479 kB)
+Collecting jupyter-latex-envs>=1.3.8
+  Downloading jupyter_latex_envs-1.4.6.tar.gz (861 kB)
+Collecting lxml
+  Downloading lxml-4.5.2-cp37-cp37m-manylinux1_x86_64.whl (5.5 MB)
+Requirement already satisfied, skipping upgrade: pyyaml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (5.3.1)
+Collecting jupyter-contrib-core>=0.3.3
+  Downloading jupyter_contrib_core-0.3.3-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied, skipping upgrade: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (4.6.3)
+Requirement already satisfied, skipping upgrade: tornado in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (6.0.4)
+Requirement already satisfied, skipping upgrade: patsy>=0.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotnine->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 9)) (0.5.1)
+Collecting mizani>=0.7.1
+  Downloading mizani-0.7.1-py3-none-any.whl (62 kB)
+Requirement already satisfied, skipping upgrade: statsmodels>=0.11.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotnine->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 9)) (0.11.1)
+Collecting descartes>=1.1.0
+  Downloading descartes-1.1.0-py3-none-any.whl (5.8 kB)
+Collecting docutils
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Requirement already satisfied, skipping upgrade: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from docrepr->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 10)) (2.11.2)
+Collecting sphinx
+  Downloading Sphinx-3.1.2-py3-none-any.whl (2.9 MB)
+Collecting colorama<0.4.4,>=0.2.5; python_version != "3.4"
+  Downloading colorama-0.4.3-py2.py3-none-any.whl (15 kB)
+Collecting s3transfer<0.4.0,>=0.3.0
+  Downloading s3transfer-0.3.3-py2.py3-none-any.whl (69 kB)
+Collecting rsa<=4.5.0,>=3.1.2; python_version != "3.4"
+  Downloading rsa-4.5-py2.py3-none-any.whl (36 kB)
+Collecting botocore==1.17.20
+  Downloading botocore-1.17.20-py2.py3-none-any.whl (6.3 MB)
+Collecting cliff<2.9,>=2.8.0
+  Downloading cliff-2.8.3-py2.py3-none-any.whl (74 kB)
+Collecting MechanicalSoup<0.9,>=0.7.0
+  Downloading MechanicalSoup-0.8.0-py2.py3-none-any.whl (8.9 kB)
+Collecting cssselect<1.1,>=1.0.1
+  Downloading cssselect-1.0.3-py2.py3-none-any.whl (16 kB)
+Collecting configparser
+  Downloading configparser-5.0.0-py3-none-any.whl (22 kB)
+Collecting progressbar2<3.35,>=3.34.3
+  Downloading progressbar2-3.34.3-py2.py3-none-any.whl (25 kB)
+Collecting beautifulsoup4<4.7,>=4.6.0
+  Downloading beautifulsoup4-4.6.3-py3-none-any.whl (90 kB)
+Requirement already satisfied, skipping upgrade: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (2020.1)
+Requirement already satisfied, skipping upgrade: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (2.8.1)
+Requirement already satisfied, skipping upgrade: kiwisolver>=1.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=2.1.2->PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (1.2.0)
+Requirement already satisfied, skipping upgrade: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=2.1.2->PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (2.4.7)
+Requirement already satisfied, skipping upgrade: cycler>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=2.1.2->PDPbox==0.2.0+13.g73c6966->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 13)) (0.10.0)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied, skipping upgrade: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (1.25.7)
+Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (3.0.4)
+Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (2020.6.20)
+Requirement already satisfied, skipping upgrade: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->torchtext->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 4)) (2.8)
+Requirement already satisfied, skipping upgrade: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (19.0.1)
+Requirement already satisfied, skipping upgrade: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (6.1.5)
+Requirement already satisfied, skipping upgrade: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (5.0.7)
+Requirement already satisfied, skipping upgrade: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.7.1)
+Requirement already satisfied, skipping upgrade: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.8.3)
+Requirement already satisfied, skipping upgrade: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (5.3.0)
+Requirement already satisfied, skipping upgrade: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (1.5.0)
+Requirement already satisfied, skipping upgrade: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (3.1.5)
+Requirement already satisfied, skipping upgrade: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.4.4)
+Requirement already satisfied, skipping upgrade: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.8.4)
+Requirement already satisfied, skipping upgrade: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.6.0)
+Requirement already satisfied, skipping upgrade: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (2.6.1)
+Requirement already satisfied, skipping upgrade: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (1.4.2)
+Requirement already satisfied, skipping upgrade: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.3)
+Requirement already satisfied, skipping upgrade: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.1->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (4.4.2)
+Requirement already satisfied, skipping upgrade: ipython in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (7.16.1)
+Requirement already satisfied, skipping upgrade: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-contrib-core>=0.3.3->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (49.1.0.post20200710)
+Collecting palettable
+  Downloading palettable-3.3.0-py2.py3-none-any.whl (111 kB)
+Requirement already satisfied, skipping upgrade: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->docrepr->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 10)) (1.1.1)
+Requirement already satisfied, skipping upgrade: packaging in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx->docrepr->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 10)) (20.4)
+Collecting babel>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl (90 kB)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl (121 kB)
+Collecting sphinxcontrib-serializinghtml
+  Downloading sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl (89 kB)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl (84 kB)
+Collecting sphinxcontrib-htmlhelp
+  Downloading sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl (96 kB)
+Collecting pyasn1>=0.1.3
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Collecting jmespath<1.0.0,>=0.7.1
+  Downloading jmespath-0.10.0-py2.py3-none-any.whl (24 kB)
+Collecting cmd2>=0.6.7; python_version >= "3.0"
+  Downloading cmd2-1.2.1-py3-none-any.whl (121 kB)
+Collecting PrettyTable<0.8,>=0.7.1
+  Downloading prettytable-0.7.2.tar.bz2 (21 kB)
+Collecting pbr!=2.1.0,>=2.0.0
+  Downloading pbr-5.4.5-py2.py3-none-any.whl (110 kB)
+Collecting stevedore>=1.20.0
+  Downloading stevedore-3.1.0-py3-none-any.whl (41 kB)
+Collecting python-utils>=2.1.0
+  Downloading python_utils-2.4.0-py2.py3-none-any.whl (12 kB)
+Requirement already satisfied, skipping upgrade: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (3.2.0)
+Requirement already satisfied, skipping upgrade: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert>=4.2->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.5.1)
+Requirement already satisfied, skipping upgrade: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.1.0)
+Requirement already satisfied, skipping upgrade: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (3.0.5)
+Requirement already satisfied, skipping upgrade: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.17.1)
+Requirement already satisfied, skipping upgrade: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (4.8.0)
+Requirement already satisfied, skipping upgrade: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.7.5)
+Collecting pyperclip>=1.6
+  Downloading pyperclip-1.8.0.tar.gz (16 kB)
+Requirement already satisfied, skipping upgrade: attrs>=16.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cmd2>=0.6.7; python_version >= "3.0"->cliff<2.9,>=2.8.0->kaggle-cli->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 12)) (19.3.0)
+Collecting importlib-metadata>=1.6.0; python_version < "3.8"
+  Downloading importlib_metadata-1.7.0-py2.py3-none-any.whl (31 kB)
+Requirement already satisfied, skipping upgrade: wcwidth>=0.1.7 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cmd2>=0.6.7; python_version >= "3.0"->cliff<2.9,>=2.8.0->kaggle-cli->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 12)) (0.2.5)
+Requirement already satisfied, skipping upgrade: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.15.7)
+Requirement already satisfied, skipping upgrade: parso<0.8.0,>=0.7.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.7.0)
+Requirement already satisfied, skipping upgrade: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython->jupyter-latex-envs>=1.3.8->jupyter_contrib_nbextensions->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 8)) (0.6.0)
+Requirement already satisfied, skipping upgrade: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=1.6.0; python_version < "3.8"->cmd2>=0.6.7; python_version >= "3.0"->cliff<2.9,>=2.8.0->kaggle-cli->-r /home/vildeeide/condaenv.qjhy7bck.requirements.txt (line 12)) (2.1.0)
+Building wheels for collected packages: feather-format, kaggle-cli, PDPbox, jupyter-nbextensions-configurator, jupyter-latex-envs, PrettyTable, pyperclip
+  Building wheel for feather-format (setup.py): started
+  Building wheel for feather-format (setup.py): finished with status 'done'
+  Created wheel for feather-format: filename=feather_format-0.4.1-py3-none-any.whl size=2453 sha256=6ce3e014e833b9623f018d33bac6895bfbad5ce653343772ee56f5f6172ee6a4
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/6e/3d/05/ebe8270ca366aa12810ee508ed4fac30d6343ac1584523f9ac
+  Building wheel for kaggle-cli (setup.py): started
+  Building wheel for kaggle-cli (setup.py): finished with status 'done'
+  Created wheel for kaggle-cli: filename=kaggle_cli-0.12.13-py3-none-any.whl size=9489 sha256=60a4510581c013878a8170f5edf3fb37ba54484d8944a0efcc025da6b0841e0b
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/76/b7/49/f439aedefd1839a586a54a03f30d5b9a5320c703cbee1631be
+  Building wheel for PDPbox (setup.py): started
+  Building wheel for PDPbox (setup.py): finished with status 'done'
+  Created wheel for PDPbox: filename=PDPbox-0.2.0+13.g73c6966-py3-none-any.whl size=57691683 sha256=6f147c37beec827241570bc58f65d8d8f1e637f87099e11cc36fb0867c952bb0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-0qt3xv5c/wheels/d9/b2/92/a79dc6bd7902ad6759a0f0214a5a9fc3f1e1e9b520d87276d7
+  Building wheel for jupyter-nbextensions-configurator (setup.py): started
+  Building wheel for jupyter-nbextensions-configurator (setup.py): finished with status 'done'
+  Created wheel for jupyter-nbextensions-configurator: filename=jupyter_nbextensions_configurator-0.4.1-py2.py3-none-any.whl size=465825 sha256=8d99f52a096e7a9503d984218bacb3b925e83ec18718da19c64fed5ed177ffa9
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/8d/c4/b5/e4b61f624036f83566580d61f24af7b73180b1361ee1ab3722
+  Building wheel for jupyter-latex-envs (setup.py): started
+  Building wheel for jupyter-latex-envs (setup.py): finished with status 'done'
+  Created wheel for jupyter-latex-envs: filename=jupyter_latex_envs-1.4.6-py2.py3-none-any.whl size=963395 sha256=0770062372f4d9435e50f28f131005ac3402cdbcb0ef744e51f6434a31248513
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/a0/95/26/4cf34fb92765c95fb7851fd447511594bcc3a50e504bd09af9
+  Building wheel for PrettyTable (setup.py): started
+  Building wheel for PrettyTable (setup.py): finished with status 'done'
+  Created wheel for PrettyTable: filename=prettytable-0.7.2-py3-none-any.whl size=13698 sha256=050a5fd147dbfb01b9214dd38eb01e0652d607a121bc3e3c254d9c4a73b1b5f6
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/8c/76/0b/eb9eb3da7e2335e3577e3f96a0ae9f74f206e26457bd1a2bc8
+  Building wheel for pyperclip (setup.py): started
+  Building wheel for pyperclip (setup.py): finished with status 'done'
+  Created wheel for pyperclip: filename=pyperclip-1.8.0-py3-none-any.whl size=8691 sha256=b6a502fb54be65535f40203d5542d02a24e18a03277c8d3becda06995c20080c
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/e5/5e/f7/441179ddf6ac56f36cb1d84d94f35beedd5da15986ce3d321d
+Successfully built feather-format kaggle-cli PDPbox jupyter-nbextensions-configurator jupyter-latex-envs PrettyTable pyperclip
+Installing collected packages: opencv-python, isoweek, pandas-summary, sentencepiece, torchtext, graphviz, joblib, threadpoolctl, scikit-learn, sklearn-pandas, pyarrow, feather-format, jupyter-highlight-selected-word, jupyter-contrib-core, jupyter-nbextensions-configurator, jupyter-latex-envs, lxml, jupyter-contrib-nbextensions, palettable, mizani, descartes, plotnine, docutils, babel, alabaster, sphinxcontrib-qthelp, imagesize, sphinxcontrib-applehelp, sphinxcontrib-serializinghtml, snowballstemmer, sphinxcontrib-jsmath, sphinxcontrib-devhelp, sphinxcontrib-htmlhelp, sphinx, docrepr, colorama, jmespath, botocore, s3transfer, pyasn1, rsa, awscli, pyperclip, importlib-metadata, cmd2, PrettyTable, pbr, stevedore, cliff, beautifulsoup4, MechanicalSoup, cssselect, configparser, python-utils, progressbar2, kaggle-cli, PDPbox
+  Attempting uninstall: importlib-metadata
+    Found existing installation: importlib-metadata 1.5.0
+    Uninstalling importlib-metadata-1.5.0:
+      Successfully uninstalled importlib-metadata-1.5.0
+Successfully installed MechanicalSoup-0.8.0 PDPbox-0.2.0+13.g73c6966 PrettyTable-0.7.2 alabaster-0.7.12 awscli-1.18.97 babel-2.8.0 beautifulsoup4-4.6.3 botocore-1.17.20 cliff-2.8.3 cmd2-1.2.1 colorama-0.4.3 configparser-5.0.0 cssselect-1.0.3 descartes-1.1.0 docrepr-0.1.1 docutils-0.16 feather-format-0.4.1 graphviz-0.14.1 imagesize-1.2.0 importlib-metadata-1.7.0 isoweek-1.3.3 jmespath-0.10.0 joblib-0.16.0 jupyter-contrib-core-0.3.3 jupyter-contrib-nbextensions-0.5.1 jupyter-highlight-selected-word-0.2.0 jupyter-latex-envs-1.4.6 jupyter-nbextensions-configurator-0.4.1 kaggle-cli-0.12.13 lxml-4.5.2 mizani-0.7.1 opencv-python-4.3.0.36 palettable-3.3.0 pandas-summary-0.0.7 pbr-5.4.5 plotnine-0.7.0 progressbar2-3.34.3 pyarrow-0.17.1 pyasn1-0.4.8 pyperclip-1.8.0 python-utils-2.4.0 rsa-4.5 s3transfer-0.3.3 scikit-learn-0.23.1 sentencepiece-0.1.91 sklearn-pandas-1.8.0 snowballstemmer-2.0.0 sphinx-3.1.2 sphinxcontrib-applehelp-1.0.2 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-1.0.3 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.4 stevedore-3.1.0 threadpoolctl-2.1.0 torchtext-0.6.0
+
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0mRemove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+alabaster                 0.7.12                   pypi_0    pypi
+alembic                   1.3.3                      py_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+awscli                    1.18.97                  pypi_0    pypi
+babel                     2.8.0                    pypi_0    pypi
+backcall                  0.1.0                      py_0    conda-forge
+bcolz                     1.2.1            py37h04863e7_0    defaults
+beautifulsoup4            4.6.3                    pypi_0    pypi
+blas                      1.0                         mkl    defaults
+bleach                    3.1.5                      py_0    defaults
+blinker                   1.4                        py_1    conda-forge
+blosc                     1.19.0               hd408876_0    defaults
+bokeh                     2.1.1                    py37_0    defaults
+botocore                  1.17.20                  pypi_0    pypi
+bzip2                     1.0.8                h7b6447c_0    defaults
+ca-certificates           2020.6.24                     0    defaults
+certifi                   2020.6.20                py37_0    defaults
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.14.0           py37he30daa8_1    defaults
+chardet                   3.0.4                 py37_1003    conda-forge
+click                     7.1.2                      py_0    defaults
+cliff                     2.8.3                    pypi_0    pypi
+cloudpickle               1.5.0                      py_0    defaults
+cmd2                      1.2.1                    pypi_0    pypi
+colorama                  0.4.3                    pypi_0    pypi
+configparser              5.0.0                    pypi_0    pypi
+cryptography              2.8              py37h72c5cf5_1    conda-forge
+cssselect                 1.0.3                    pypi_0    pypi
+cycler                    0.10.0                   py37_0    defaults
+cytoolz                   0.10.1           py37h7b6447c_0    defaults
+dask                      2.20.0                     py_0    defaults
+dask-core                 2.20.0                     py_0    defaults
+dbus                      1.13.16              hb2f20db_0    defaults
+decorator                 4.4.2                      py_0    defaults
+defusedxml                0.6.0                      py_0    conda-forge
+descartes                 1.1.0                    pypi_0    pypi
+distributed               2.20.0                   py37_0    defaults
+docrepr                   0.1.1                    pypi_0    pypi
+docutils                  0.16                     pypi_0    pypi
+entrypoints               0.3                      py37_0    defaults
+expat                     2.2.9                he6710b0_2    defaults
+feather-format            0.4.1                    pypi_0    pypi
+fontconfig                2.13.0               h9420a91_0    defaults
+freetype                  2.10.2               h5ab3b9f_0    defaults
+fsspec                    0.7.4                      py_0    defaults
+glib                      2.65.0               h3eb4bd4_0    defaults
+gst-plugins-base          1.14.0               hbbd80ab_1    defaults
+gstreamer                 1.14.0               hb31296c_0    defaults
+hdf5                      1.10.4               hb1b8bf9_0    defaults
+heapdict                  1.0.1                      py_0    defaults
+html5lib                  1.1                        py_0    defaults
+icu                       58.2                 he6710b0_3    defaults
+idna                      2.8                   py37_1000    conda-forge
+imagesize                 1.2.0                    pypi_0    pypi
+importlib-metadata        1.7.0                    pypi_0    pypi
+inflect                   4.0.0                    py37_1    conda-forge
+intel-openmp              2020.1                      217    defaults
+ipykernel                 5.3.0            py37h5ca1d4c_0    defaults
+ipython                   7.16.1           py37h5ca1d4c_0    defaults
+ipython_genutils          0.2.0                    py37_0    defaults
+ipywidgets                7.5.1                      py_0    defaults
+isoweek                   1.3.3                    pypi_0    pypi
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jbig                      2.1                  hdba287a_0    defaults
+jedi                      0.17.1                   py37_0    defaults
+jinja2                    2.11.2                     py_0    defaults
+jmespath                  0.10.0                   pypi_0    pypi
+joblib                    0.16.0                   pypi_0    pypi
+jpeg                      9b                   h024ee3a_2    defaults
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py37_1    defaults
+jupyter                   1.0.0                    py37_7    defaults
+jupyter-contrib-core      0.3.3                    pypi_0    pypi
+jupyter-contrib-nbextensions 0.5.1                    pypi_0    pypi
+jupyter-highlight-selected-word 0.2.0                    pypi_0    pypi
+jupyter-latex-envs        1.4.6                    pypi_0    pypi
+jupyter-nbextensions-configurator 0.4.1                    pypi_0    pypi
+jupyter_client            6.1.5                      py_0    defaults
+jupyter_console           6.1.0                      py_0    defaults
+jupyter_core              4.6.3                    py37_0    defaults
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py37_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py37_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+kaggle-cli                0.12.13                  pypi_0    pypi
+kiwisolver                1.2.0            py37hfd86e86_0    defaults
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+lcms2                     2.11                 h396b838_0    defaults
+ld_impl_linux-64          2.33.1               h53a641e_8    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20191231         h14c3975_1    defaults
+libffi                    3.3                  he6710b0_2    defaults
+libgcc                    7.2.0                h69d50b8_2    defaults
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgfortran               3.0.0                         1    conda-forge
+libgfortran-ng            7.3.0                hdf63c60_0    defaults
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libiconv                  1.15                 h63c8f33_5    defaults
+libpng                    1.6.37               hbc83047_0    defaults
+libsodium                 1.0.18               h7b6447c_0    defaults
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+libtiff                   4.1.0                h2733197_1    defaults
+libuuid                   1.0.3                h1bed415_2    defaults
+libxcb                    1.14                 h7b6447c_0    defaults
+libxml2                   2.9.10               he19cac6_1    defaults
+locket                    0.2.0                    py37_1    defaults
+lxml                      4.5.2                    pypi_0    pypi
+lz4-c                     1.9.2                he6710b0_0    defaults
+lzo                       2.10                 h7b6447c_2    defaults
+mako                      1.1.0                      py_0    conda-forge
+markupsafe                1.1.1            py37h14c3975_1    defaults
+matplotlib                3.2.2                         0    defaults
+matplotlib-base           3.2.2            py37hef1b27d_0    defaults
+mechanicalsoup            0.8.0                    pypi_0    pypi
+mistune                   0.8.4           py37h14c3975_1001    defaults
+mizani                    0.7.1                    pypi_0    pypi
+mkl                       2020.1                      217    defaults
+mkl-service               2.3.0            py37he904b0f_0    defaults
+mkl_fft                   1.1.0            py37h23d657b_0    defaults
+mkl_random                1.1.1            py37h0573a6f_0    defaults
+mock                      4.0.2                      py_0    defaults
+more-itertools            8.2.0                      py_0    conda-forge
+msgpack-python            1.0.0            py37hfd86e86_1    defaults
+nbconvert                 5.6.1                    py37_1    defaults
+nbformat                  5.0.7                      py_0    defaults
+ncurses                   6.2                  he6710b0_1    defaults
+ninja                     1.9.0            py37hfd86e86_0    defaults
+notebook                  6.0.3                    py37_0    defaults
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+numexpr                   2.7.1            py37h423224d_0    defaults
+numpy                     1.18.5           py37ha1c710e_0    defaults
+numpy-base                1.18.5           py37hde5b4d6_0    defaults
+oauthlib                  3.0.1                      py_0    conda-forge
+olefile                   0.46                     py37_0    defaults
+opencv-python             4.3.0.36                 pypi_0    pypi
+openssl                   1.1.1g               h7b6447c_0    defaults
+packaging                 20.4                       py_0    defaults
+palettable                3.3.0                    pypi_0    pypi
+pamela                    1.0.0                      py_0    conda-forge
+pandas                    1.0.5            py37h0573a6f_0    defaults
+pandas-summary            0.0.7                    pypi_0    pypi
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                    py37_1    defaults
+parso                     0.7.0                      py_0    defaults
+partd                     1.1.0                      py_0    defaults
+path                      13.1.0                   py37_0    defaults
+path.py                   12.4.0                        0    defaults
+patsy                     0.5.1                    py37_0    defaults
+pbr                       5.4.5                    pypi_0    pypi
+pcre                      8.44                 he6710b0_0    defaults
+pdpbox                    0.2.0+13.g73c6966          pypi_0    pypi
+pexpect                   4.8.0                    py37_1    defaults
+pickleshare               0.7.5                 py37_1001    defaults
+pillow                    7.2.0            py37hb39fc2d_0    defaults
+pip                       20.1.1                   py37_1    defaults
+plotnine                  0.7.0                    pypi_0    pypi
+prettytable               0.7.2                    pypi_0    pypi
+progressbar2              3.34.3                   pypi_0    pypi
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt-toolkit            3.0.5                      py_0    defaults
+prompt_toolkit            3.0.5                         0    defaults
+psutil                    5.7.0            py37h7b6447c_0    defaults
+ptyprocess                0.6.0                    py37_0    defaults
+pyarrow                   0.17.1                   pypi_0    pypi
+pyasn1                    0.4.8                    pypi_0    pypi
+pycparser                 2.20                       py_2    defaults
+pycurl                    7.43.0.5         py37h16ce93b_0    conda-forge
+pygments                  2.6.1                      py_0    defaults
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                   py37_0    conda-forge
+pyparsing                 2.4.7                      py_0    defaults
+pyperclip                 1.8.0                    pypi_0    pypi
+pyqt                      5.9.2            py37h05f1152_2    defaults
+pyrsistent                0.15.7           py37h516909a_0    conda-forge
+pysocks                   1.7.1                    py37_0    conda-forge
+pytables                  3.6.1            py37h71ec239_0    defaults
+python                    3.7.7                hcff3b4d_5    defaults
+python-dateutil           2.8.1                      py_0    defaults
+python-editor             1.0.4                      py_0    conda-forge
+python-graphviz           0.14.1                   pypi_0    pypi
+python-json-logger        0.1.11                     py_0    conda-forge
+python-utils              2.4.0                    pypi_0    pypi
+pytorch                   1.0.0           py3.7_cuda9.0.176_cudnn7.4.1_1    soumith
+pytz                      2020.1                     py_0    defaults
+pyyaml                    5.3.1            py37h7b6447c_1    defaults
+pyzmq                     19.0.1           py37he6710b0_1    defaults
+qt                        5.9.7                h5867ecd_1    defaults
+qtconsole                 4.7.5                      py_0    defaults
+qtpy                      1.9.0                      py_0    defaults
+readline                  8.0                  h7b6447c_0    defaults
+requests                  2.22.0                   py37_1    conda-forge
+rsa                       4.5                      pypi_0    pypi
+ruamel.yaml               0.16.6           py37h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py37h516909a_0    conda-forge
+s3transfer                0.3.3                    pypi_0    pypi
+scikit-learn              0.23.1                   pypi_0    pypi
+scipy                     1.5.0            py37h0b6359f_0    defaults
+seaborn                   0.10.1                     py_0    defaults
+send2trash                1.5.0                      py_0    conda-forge
+sentencepiece             0.1.91                   pypi_0    pypi
+setuptools                49.1.0                   py37_0    defaults
+simplegeneric             0.8.1                    py37_2    defaults
+sip                       4.19.8           py37hf484d3e_0    defaults
+six                       1.15.0                     py_0    defaults
+sklearn-pandas            1.8.0                    pypi_0    pypi
+snappy                    1.1.8                he6710b0_0    defaults
+snowballstemmer           2.0.0                    pypi_0    pypi
+sortedcontainers          2.2.2                      py_0    defaults
+sphinx                    3.1.2                    pypi_0    pypi
+sphinxcontrib-applehelp   1.0.2                    pypi_0    pypi
+sphinxcontrib-devhelp     1.0.2                    pypi_0    pypi
+sphinxcontrib-htmlhelp    1.0.3                    pypi_0    pypi
+sphinxcontrib-jsmath      1.0.1                    pypi_0    pypi
+sphinxcontrib-qthelp      1.0.3                    pypi_0    pypi
+sphinxcontrib-serializinghtml 1.1.4                    pypi_0    pypi
+sqlalchemy                1.3.13           py37h516909a_0    conda-forge
+sqlite                    3.32.3               h62c20be_0    defaults
+statsmodels               0.11.1           py37h7b6447c_0    defaults
+stevedore                 3.1.0                    pypi_0    pypi
+tblib                     1.6.0                      py_0    defaults
+terminado                 0.8.3                    py37_0    defaults
+testpath                  0.4.4                      py_0    defaults
+threadpoolctl             2.1.0                    pypi_0    pypi
+tk                        8.6.10               hbc83047_0    defaults
+toolz                     0.10.0                     py_0    defaults
+torchtext                 0.6.0                    pypi_0    pypi
+torchvision               0.2.1                      py_2    soumith
+tornado                   6.0.4            py37h7b6447c_1    defaults
+tqdm                      4.47.0                     py_0    defaults
+traitlets                 4.3.3                    py37_0    defaults
+typing_extensions         3.7.4.2                    py_0    defaults
+urllib3                   1.25.7                   py37_0    conda-forge
+wcwidth                   0.2.5                      py_0    defaults
+webencodings              0.5.1                      py_1    conda-forge
+wheel                     0.34.2                   py37_0    defaults
+widgetsnbextension        3.5.1                    py37_0    defaults
+xz                        5.2.5                h7b6447c_0    defaults
+yaml                      0.2.5                h7b6447c_0    defaults
+zeromq                    4.3.2                he6710b0_2    defaults
+zict                      2.0.0                      py_0    defaults
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11               h7b6447c_3    defaults
+zstd                      1.4.4                h0b5b093_3    defaults
+Removing intermediate container 23a00468cc9e
+ ---> 674bc9fec680
+Step 42/51 : USER root
+ ---> Running in 61e6975fea74
+Removing intermediate container 61e6975fea74
+ ---> 8fc1ef3b01e0
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 37cb124f109c
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 925c846478f8
+Removing intermediate container 925c846478f8
+ ---> a11a2bbd190b
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in efd56328e89f
+Removing intermediate container efd56328e89f
+ ---> a0f7cd1a4a43
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in 2708d90ee026
+Removing intermediate container 2708d90ee026
+ ---> a6ec47485e3d
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f2f36cf95096
+Removing intermediate container f2f36cf95096
+ ---> fa77e7452ef6
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 1e5332eb96bd
+Removing intermediate container 1e5332eb96bd
+ ---> 9e93980a826b
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> b9c876c46059
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in f25b8a4ca48b
+Removing intermediate container f25b8a4ca48b
+ ---> d64259d9c067
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in d3f119d9d3aa
+Removing intermediate container d3f119d9d3aa
+ ---> 0f0ea3237bdf
+{"aux": {"ID": "sha256:0f0ea3237bdfeea21715c95350e4ce31fe5deec7f93acde1bd262f34790008bb"}}Successfully built 0f0ea3237bdf
+Successfully tagged r2d-test-github.com-judywawira-fastai:ca18ca6

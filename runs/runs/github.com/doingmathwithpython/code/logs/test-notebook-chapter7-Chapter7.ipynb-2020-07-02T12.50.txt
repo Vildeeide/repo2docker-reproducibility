@@ -1,0 +1,63 @@
+[I 200702 12:52:07 inrepo:35] Testing notebook chapter7/Chapter7.ipynb
+[I 200702 12:52:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#P186: Derivative calculator
+'''
+Derivative Calculator
+'''
+from sympy import Symbol, Derivative, sympify, pprint
+from sympy.core.sympify import SympifyError
+
+def derivative(f, var):
+    var = Symbol(var)
+    d = Derivative(f, var).doit()
+    pprint(d)
+
+if __name__=='__main__':
+    f = input('Enter a function: ')
+    var = input('Enter the variable to differentiate with respect to: ')
+    try:
+        f = sympify(f)
+    except SympifyError:
+        print('Invalid input')
+    else:
+        derivative(f, var)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-9-b268932d6bf8>[0m in [0;36m<module>[0;34m[0m
+[1;32m     12[0m [0;34m[0m[0m
+[1;32m     13[0m [0;32mif[0m [0m__name__[0m[0;34m==[0m[0;34m'__main__'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 14[0;31m     [0mf[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m'Enter a function: '[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     15[0m     [0mvar[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m'Enter the variable to differentiate with respect to: '[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    852[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    853[0m             raise StdinNotImplementedError(
+[0;32m--> 854[0;31m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    855[0m             )
+[1;32m    856[0m         return self._input_request(str(prompt),
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

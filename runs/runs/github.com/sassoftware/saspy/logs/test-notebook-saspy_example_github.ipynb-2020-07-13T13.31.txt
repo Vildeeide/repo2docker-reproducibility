@@ -1,0 +1,54 @@
+[I 200713 13:31:47 inrepo:36] Testing notebook saspy_example_github.ipynb
+[I 200713 13:31:47 inrepo:45] Found kernel python3
+[I 200713 13:31:48 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+cars = sas.sasdata('cars', libref='sashelp')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-5-f1550a6800bf>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mcars[0m [0;34m=[0m [0msas[0m[0;34m.[0m[0msasdata[0m[0;34m([0m[0;34m'cars'[0m[0;34m,[0m [0mlibref[0m[0;34m=[0m[0;34m'sashelp'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/saspy/sasbase.py[0m in [0;36msasdata[0;34m(self, table, libref, results, dsopts)[0m
+[1;32m    512[0m             [0mresults[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mresults[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    513[0m         [0msd[0m [0;34m=[0m [0mSASdata[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mlibref[0m[0;34m,[0m [0mtable[0m[0;34m,[0m [0mresults[0m[0;34m,[0m [0mdsopts[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 514[0;31m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mexist[0m[0;34m([0m[0msd[0m[0;34m.[0m[0mtable[0m[0;34m,[0m [0msd[0m[0;34m.[0m[0mlibref[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    515[0m             [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mbatch[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    516[0m                 print(
+
+[0;32m~/saspy/sasbase.py[0m in [0;36mexist[0;34m(self, table, libref)[0m
+[1;32m    404[0m         [0;34m:[0m[0mrtype[0m[0;34m:[0m [0mbool[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    405[0m         """
+[0;32m--> 406[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_io[0m[0;34m.[0m[0mexist[0m[0;34m([0m[0mtable[0m[0;34m,[0m [0mlibref[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    407[0m [0;34m[0m[0m
+[1;32m    408[0m     [0;32mdef[0m [0msasets[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m->[0m [0;34m'SASets'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/saspy/sasiostdio.py[0m in [0;36mexist[0;34m(self, table, libref)[0m
+[1;32m    765[0m       [0ml2[0m [0;34m=[0m [0mll[0m[0;34m[[0m[0;34m'LOG'[0m[0;34m][0m[0;34m.[0m[0mrpartition[0m[0;34m([0m[0;34m"TABLE_EXISTS= "[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    766[0m       [0ml2[0m [0;34m=[0m [0ml2[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m.[0m[0mpartition[0m[0;34m([0m[0;34m"\n"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 767[0;31m       [0mexists[0m [0;34m=[0m [0mint[0m[0;34m([0m[0ml2[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    768[0m [0;34m[0m[0m
+[1;32m    769[0m       [0;32mreturn[0m [0mexists[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: invalid literal for int() with base 10: 'No SAS process attached. SAS process has terminated unexpectedly.'
+ValueError: invalid literal for int() with base 10: 'No SAS process attached. SAS process has terminated unexpectedly.'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,113 @@
+[I 200713 09:55:06 inrepo:36] Testing notebook main.py.ipynb
+[W 200713 09:55:06 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200713 09:55:06 inrepo:60] Using kernel python3 to provide language: python
+[I 200713 09:55:07 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import tweepy           # To consume Twitter's API
+import pandas as pd     # To handle data
+import numpy as np      # For number computing
+
+from IPython.display import display
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+from credentials import *    # This will allow us to use the keys as variables
+
+from textblob import TextBlob
+import re
+
+
+def twitter_setup():
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+
+    api = tweepy.API(auth)
+    return api
+
+
+extractor = twitter_setup()
+
+# Put Your Desired #Hashtag To Extract Tweets
+tweets = extractor.search(q="#HateSpeech", count = 200)
+
+print("Number of tweets extracted: {}.\n".format(len(tweets)))
+
+
+def clean_tweet(tweet):
+    return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
+
+
+def analize_sentiment(tweet):
+    # Simple implementation of the sgn(x) function to make the analysis more comprenesive. 
+    
+    analysis = TextBlob(clean_tweet(tweet))
+    if analysis.sentiment.polarity > 0:
+        return 1
+    elif analysis.sentiment.polarity == 0:
+        return 0
+    else:
+        return -1
+
+
+data = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])    
+data['ID'] = np.array([tweet.id for tweet in tweets])
+data['SA'] = np.array([ analize_sentiment(tweet) for tweet in data['Tweets'] ])
+
+pos_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] > 0]
+neu_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] == 0]
+neg_tweets = [ tweet for index, tweet in enumerate(data['Tweets']) if data['SA'][index] < 0]
+
+print("Percentage of positive tweets: {}%".format(len(pos_tweets)*100/len(data['Tweets'])))
+print("Percentage of neutral tweets: {}%".format(len(neu_tweets)*100/len(data['Tweets'])))
+print("Percentage of negative tweets: {}%".format(len(neg_tweets)*100/len(data['Tweets'])))
+
+
+display(data.head(20))
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTweepError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-1-91eb88a9a363>[0m in [0;36m<module>[0;34m[0m
+[1;32m     25[0m [0;34m[0m[0m
+[1;32m     26[0m [0;31m# Put Your Desired #Hashtag To Extract Tweets[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 27[0;31m [0mtweets[0m [0;34m=[0m [0mextractor[0m[0;34m.[0m[0msearch[0m[0;34m([0m[0mq[0m[0;34m=[0m[0;34m"#HateSpeech"[0m[0;34m,[0m [0mcount[0m [0;34m=[0m [0;36m200[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     28[0m [0;34m[0m[0m
+[1;32m     29[0m [0mprint[0m[0;34m([0m[0;34m"Number of tweets extracted: {}.\n"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mtweets[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tweepy/binder.py[0m in [0;36m_call[0;34m(*args, **kwargs)[0m
+[1;32m    250[0m                 [0;32mreturn[0m [0mmethod[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    251[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 252[0;31m                 [0;32mreturn[0m [0mmethod[0m[0;34m.[0m[0mexecute[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    253[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    254[0m             [0mmethod[0m[0;34m.[0m[0msession[0m[0;34m.[0m[0mclose[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tweepy/binder.py[0m in [0;36mexecute[0;34m(self)[0m
+[1;32m    232[0m                     [0;32mraise[0m [0mRateLimitError[0m[0;34m([0m[0merror_msg[0m[0;34m,[0m [0mresp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    233[0m                 [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 234[0;31m                     [0;32mraise[0m [0mTweepError[0m[0;34m([0m[0merror_msg[0m[0;34m,[0m [0mresp[0m[0;34m,[0m [0mapi_code[0m[0;34m=[0m[0mapi_error_code[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    235[0m [0;34m[0m[0m
+[1;32m    236[0m             [0;31m# Parse the response payload[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTweepError[0m: [{'code': 89, 'message': 'Invalid or expired token.'}]
+TweepError: [{'code': 89, 'message': 'Invalid or expired token.'}]
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

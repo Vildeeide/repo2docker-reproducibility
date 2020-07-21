@@ -1,0 +1,7 @@
+[I 200707 10:51:16 inrepo:36] Testing notebook quickstart.ipynb
+[W 200707 10:51:16 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200707 10:51:16 inrepo:60] Using kernel python3 to provide language: python
+[I 200707 10:51:17 execute:404] Executing notebook with kernel: python3
+[I 200707 10:51:44 inrepo:77] Saving exported notebook to /io/notebooks/quickstart.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

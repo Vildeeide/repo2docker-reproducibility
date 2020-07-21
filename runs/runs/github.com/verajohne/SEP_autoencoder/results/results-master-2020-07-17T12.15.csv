@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/verajohne/SEP_autoencoder,master,1537222,2016-08-01T19:41:38+01:00,build,build,True,github.com/verajohne/SEP_autoencoder/logs/build-master-2020-07-17T12.15.txt,2020-07-17T12:15:19.061606,2020-07-17T12.15,0.11.0
+https://github.com/verajohne/SEP_autoencoder,master,1537222,2016-08-01T19:41:38+01:00,notebook,exact/Exact EP-- known W.ipynb,False,github.com/verajohne/SEP_autoencoder/logs/test-notebook-exact-Exact EP-- known W.ipynb-2020-07-17T12.15.txt,2020-07-17T12:15:19.061606,2020-07-17T12.15,0.11.0
+https://github.com/verajohne/SEP_autoencoder,master,1537222,2016-08-01T19:41:38+01:00,notebook,exact/.ipynb_checkpoints/Exact EP-- known W-checkpoint.ipynb,False,github.com/verajohne/SEP_autoencoder/logs/test-notebook-exact-.ipynb_checkpoints-Exact EP-- known W-checkpoint.ipynb-2020-07-17T12.15.txt,2020-07-17T12:15:19.061606,2020-07-17T12.15,0.11.0

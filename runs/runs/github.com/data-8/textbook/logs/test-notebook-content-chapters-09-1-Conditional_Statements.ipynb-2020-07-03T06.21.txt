@@ -1,0 +1,5 @@
+[I 200703 06:27:13 inrepo:35] Testing notebook content/chapters/09/1/Conditional_Statements.ipynb
+[I 200703 06:27:14 execute:404] Executing notebook with kernel: python3
+[I 200703 06:27:17 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/09/1/Conditional_Statements.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

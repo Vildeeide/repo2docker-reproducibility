@@ -1,0 +1,48 @@
+[I 200706 12:36:42 inrepo:35] Testing notebook sandbox/distortion_i418.ipynb
+[I 200706 12:36:43 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+wos = pyFAI.detector_factory("/users/kieffer/workspace-400/pyFAI/doc/source/usage/tutorial/Distortion/WOS.h5")
+print(wos)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+[0;32m<ipython-input-3-0bc3e3349969>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mwos[0m [0;34m=[0m [0mpyFAI[0m[0;34m.[0m[0mdetector_factory[0m[0;34m([0m[0;34m"/users/kieffer/workspace-400/pyFAI/doc/source/usage/tutorial/Distortion/WOS.h5"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mprint[0m[0;34m([0m[0mwos[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyFAI/__init__.py[0m in [0;36mdetector_factory[0;34m(name, config)[0m
+[1;32m     97[0m     """
+[1;32m     98[0m     [0;32mfrom[0m [0;34m.[0m[0mdetectors[0m [0;32mimport[0m [0mDetector[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 99[0;31m     [0;32mreturn[0m [0mDetector[0m[0;34m.[0m[0mfactory[0m[0;34m([0m[0mname[0m[0;34m,[0m [0mconfig[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    100[0m [0;34m[0m[0m
+[1;32m    101[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyFAI/detectors/_common.py[0m in [0;36mfactory[0;34m(cls, name, config)[0m
+[1;32m    157[0m                    "please check if the filename exists or select one from %s" % (name, cls.registry.keys()))
+[1;32m    158[0m             [0mlogger[0m[0;34m.[0m[0merror[0m[0;34m([0m[0mmsg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 159[0;31m             [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0mmsg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    160[0m [0;34m[0m[0m
+[1;32m    161[0m         [0;31m# Create the detector[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mRuntimeError[0m: Detector /users/kieffer/workspace-400/pyfai/doc/source/usage/tutorial/distortion/wos.h5 is unknown !, please check if the filename exists or select one from dict_keys(['detector', 'adsc_q315', 'quantum_315', 'quantum315', 'adsc_q210', 'quantum_210', 'quantum210', 'adsc_q270', 'quantum_270', 'quantum270', 'adsc_q4', 'quantum_4', 'quantum4', 'hf_130k', 'hf-130k', 'hf_262k', 'hf-262k', 'hf_1m', 'hf-1m', 'hf_2m', 'hf-2.4m', 'hf_4m', 'hf-4m', 'hf_9m', 'hf-9.4m', 'eiger500k', 'eiger_500k', 'eiger1m', 'eiger_1m', 'eiger4m', 'eiger_4m', 'eiger9m', 'eiger_9m', 'eiger16m', 'eiger_16m', 'mythen', 'mythen_1280', 'mythen1280', 'pilatus100k', 'pilatus_100k', 'pilatus200k', 'pilatus_200k', 'pilatus300k', 'pilatus_300k', 'pilatus300kw', 'pilatus_300kw', 'pilatus1m', 'pilatus_1m', 'pilatus2m', 'pilatus_2m', 'pilatus6m', 'pilatus_6m', 'pilatuscdte300k', 'pilatus_cdte_300k', 'pilatus_300k_cdte', 'pilatus300kcdte', 'pilatus300k_cdte', 'pilatuscdte300kw', 'pilatus_cdte_300kw', 'pilatus_300kw_cdte', 'pilatus300kwcdte', 'pilatus300kw_cdte', 'pilatuscdte900kw', 'pilatus_cdte_900kw', 'pilatus_900kw_cdte', 'pilatus900kwcdte', 'pilatus900kw_cdte', 'pilatuscdte1m', 'pilatus_cdte_1m', 'pilatus_1m_cdte', 'pilatus1mcdte', 'pilatus1m_cdte', 'pilatuscdte2m', 'pilatus_cdte_2m', 'pilatus_2m_cdte', 'pilatus2mcdte', 'pilatus2m_cdte', 'imxpads10', 'imxpad_s10', 'imxpads70', 'imxpad_s70', 'imxpads70v', 'imxpad_s70_v', 'imxpads140', 'imxpad_s140', 'xpad_flat', 'xpad_s540_flat', 'xpads540flat', 'd5', 'cirpad', 'xcirpad', 'rayonix133', 'mar_133', 'mar133', 'rayonixsx165', 'rayonix_sx165', 'mar_165', 'mar165', 'rayonixsx200', 'rayonix_sx200', 'rayonixlx170', 'rayonix_lx170', 'rayonix_lx170-hs', 'rayonixlx170-hs', 'rayonix_lx170_hs', 'rayonixlx170hs', 'rayonixmx170', 'rayonix_mx170', 'rayonix_mx170-hs', 'rayonixmx170-hs', 'rayonixmx170hs', 'rayonix_mx170_hs', 'rayonixlx255', 'rayonix_lx255', 'rayonix_lx255-hs', 'rayonixlx255-hs', 'rayonix_lx_255hs', 'rayonixlx255hs', 'rayonixlx225hs', 'rayonixmx225', 'rayonix_mx225', 'mar_225', 'mar225', 'rayonixmx225hs', 'rayonix_mx225hs', 'rayonix_mx225_hs', 'rayonixmx300', 'rayonix_mx300', 'mar_300', 'mar300', 'rayonixmx300hs', 'rayonix_mx300hs', 'rayonix_mx300_hs', 'rayonixmx340hs', 'rayonix_mx340hs', 'rayonixsx30hs', 'rayonix_sx30hs', 'rayonix_sx30_hs', 'rayonixsx85hs', 'rayonix_sx85hs', 'rayonix_sx85_hs', 'rayonixmx425hs', 'rayonix_mx425hs', 'rayonix_mx425_hs', 'rayonixmx325', 'rayonix_mx325', 'mar345', 'mar_345', 'mar3450', 'mar555', 'mar_555', 'frelon', 'maxipix', 'maxipix_1x1', 'maxipix1x1', 'maxipix2x2', 'maxipix_2x2', 'maxipix5x1', 'maxipix_5x1', 'fairchild', 'condor', 'fairchild_condor_486:90', 'fairchildcondor486:90', 'titan', 'titan_2k_x_2k', 'titan2kx2k', 'oxd_titan', 'oxdtitan', 'agilent_titan', 'agilenttitan', 'dexela2923', 'dexela_2923', 'basler', 'aca1300', 'perkin', 'perkin_detector', 'perkindetector', 'perkin_elmer', 'perkinelmer', 'aarhus', 'pixium', 'pixium_4700', 'pixium4700', 'pixium_4700_detector', 'pixium4700detector', 'thales_electronics', 'thaleselectronics', 'apex2', 'apexii', 'bruker', 'raspberrypi5m', 'picam_v1', 'picamv1', 'raspberrypi8m', 'picam_v2', 'picamv2'])
+RuntimeError: Detector /users/kieffer/workspace-400/pyfai/doc/source/usage/tutorial/distortion/wos.h5 is unknown !, please check if the filename exists or select one from dict_keys(['detector', 'adsc_q315', 'quantum_315', 'quantum315', 'adsc_q210', 'quantum_210', 'quantum210', 'adsc_q270', 'quantum_270', 'quantum270', 'adsc_q4', 'quantum_4', 'quantum4', 'hf_130k', 'hf-130k', 'hf_262k', 'hf-262k', 'hf_1m', 'hf-1m', 'hf_2m', 'hf-2.4m', 'hf_4m', 'hf-4m', 'hf_9m', 'hf-9.4m', 'eiger500k', 'eiger_500k', 'eiger1m', 'eiger_1m', 'eiger4m', 'eiger_4m', 'eiger9m', 'eiger_9m', 'eiger16m', 'eiger_16m', 'mythen', 'mythen_1280', 'mythen1280', 'pilatus100k', 'pilatus_100k', 'pilatus200k', 'pilatus_200k', 'pilatus300k', 'pilatus_300k', 'pilatus300kw', 'pilatus_300kw', 'pilatus1m', 'pilatus_1m', 'pilatus2m', 'pilatus_2m', 'pilatus6m', 'pilatus_6m', 'pilatuscdte300k', 'pilatus_cdte_300k', 'pilatus_300k_cdte', 'pilatus300kcdte', 'pilatus300k_cdte', 'pilatuscdte300kw', 'pilatus_cdte_300kw', 'pilatus_300kw_cdte', 'pilatus300kwcdte', 'pilatus300kw_cdte', 'pilatuscdte900kw', 'pilatus_cdte_900kw', 'pilatus_900kw_cdte', 'pilatus900kwcdte', 'pilatus900kw_cdte', 'pilatuscdte1m', 'pilatus_cdte_1m', 'pilatus_1m_cdte', 'pilatus1mcdte', 'pilatus1m_cdte', 'pilatuscdte2m', 'pilatus_cdte_2m', 'pilatus_2m_cdte', 'pilatus2mcdte', 'pilatus2m_cdte', 'imxpads10', 'imxpad_s10', 'imxpads70', 'imxpad_s70', 'imxpads70v', 'imxpad_s70_v', 'imxpads140', 'imxpad_s140', 'xpad_flat', 'xpad_s540_flat', 'xpads540flat', 'd5', 'cirpad', 'xcirpad', 'rayonix133', 'mar_133', 'mar133', 'rayonixsx165', 'rayonix_sx165', 'mar_165', 'mar165', 'rayonixsx200', 'rayonix_sx200', 'rayonixlx170', 'rayonix_lx170', 'rayonix_lx170-hs', 'rayonixlx170-hs', 'rayonix_lx170_hs', 'rayonixlx170hs', 'rayonixmx170', 'rayonix_mx170', 'rayonix_mx170-hs', 'rayonixmx170-hs', 'rayonixmx170hs', 'rayonix_mx170_hs', 'rayonixlx255', 'rayonix_lx255', 'rayonix_lx255-hs', 'rayonixlx255-hs', 'rayonix_lx_255hs', 'rayonixlx255hs', 'rayonixlx225hs', 'rayonixmx225', 'rayonix_mx225', 'mar_225', 'mar225', 'rayonixmx225hs', 'rayonix_mx225hs', 'rayonix_mx225_hs', 'rayonixmx300', 'rayonix_mx300', 'mar_300', 'mar300', 'rayonixmx300hs', 'rayonix_mx300hs', 'rayonix_mx300_hs', 'rayonixmx340hs', 'rayonix_mx340hs', 'rayonixsx30hs', 'rayonix_sx30hs', 'rayonix_sx30_hs', 'rayonixsx85hs', 'rayonix_sx85hs', 'rayonix_sx85_hs', 'rayonixmx425hs', 'rayonix_mx425hs', 'rayonix_mx425_hs', 'rayonixmx325', 'rayonix_mx325', 'mar345', 'mar_345', 'mar3450', 'mar555', 'mar_555', 'frelon', 'maxipix', 'maxipix_1x1', 'maxipix1x1', 'maxipix2x2', 'maxipix_2x2', 'maxipix5x1', 'maxipix_5x1', 'fairchild', 'condor', 'fairchild_condor_486:90', 'fairchildcondor486:90', 'titan', 'titan_2k_x_2k', 'titan2kx2k', 'oxd_titan', 'oxdtitan', 'agilent_titan', 'agilenttitan', 'dexela2923', 'dexela_2923', 'basler', 'aca1300', 'perkin', 'perkin_detector', 'perkindetector', 'perkin_elmer', 'perkinelmer', 'aarhus', 'pixium', 'pixium_4700', 'pixium4700', 'pixium_4700_detector', 'pixium4700detector', 'thales_electronics', 'thaleselectronics', 'apex2', 'apexii', 'bruker', 'raspberrypi5m', 'picam_v1', 'picamv1', 'raspberrypi8m', 'picam_v2', 'picamv2'])
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

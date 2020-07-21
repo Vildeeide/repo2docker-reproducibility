@@ -1,0 +1,5 @@
+[I 200703 11:48:12 inrepo:35] Testing notebook Github demo.ipynb
+[I 200703 11:48:13 execute:404] Executing notebook with kernel: python3
+[I 200703 11:48:13 inrepo:41] Saving exported notebook to /io/notebooks/Github demo.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,6 @@
+[I 200709 12:26:53 inrepo:36] Testing notebook tutorial/A2 - Visualizing Big Data with Datashader.ipynb
+[I 200709 12:26:54 inrepo:45] Found kernel python3
+[I 200709 12:26:55 execute:404] Executing notebook with kernel: python3
+[I 200709 12:27:23 inrepo:79] Saving exported notebook to /io/notebooks/tutorial/A2 - Visualizing Big Data with Datashader.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

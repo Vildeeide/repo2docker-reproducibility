@@ -1,0 +1,6 @@
+[I 200720 07:05:18 inrepo:36] Testing notebook Lab_1/Log_Parser/My_jupyter_notebook.ipynb
+[I 200720 07:05:18 inrepo:45] Found kernel python3
+[I 200720 07:05:19 execute:404] Executing notebook with kernel: python3
+[I 200720 07:05:20 inrepo:79] Saving exported notebook to /io/notebooks/Lab_1/Log_Parser/My_jupyter_notebook.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

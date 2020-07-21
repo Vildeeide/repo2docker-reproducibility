@@ -1,0 +1,5 @@
+[I 200703 06:38:04 inrepo:35] Testing notebook bvp_odes/Finite differences.ipynb
+[I 200703 06:38:05 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:07 inrepo:41] Saving exported notebook to /io/notebooks/bvp_odes/Finite differences.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

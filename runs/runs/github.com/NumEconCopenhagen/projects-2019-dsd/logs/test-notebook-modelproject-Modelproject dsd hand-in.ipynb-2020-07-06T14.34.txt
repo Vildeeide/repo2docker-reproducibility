@@ -1,0 +1,5 @@
+[I 200706 14:35:26 inrepo:35] Testing notebook modelproject/Modelproject dsd hand-in.ipynb
+[I 200706 14:35:27 execute:404] Executing notebook with kernel: python3
+[I 200706 14:35:33 inrepo:41] Saving exported notebook to /io/notebooks/modelproject/Modelproject dsd hand-in.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

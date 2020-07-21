@@ -1,0 +1,8 @@
+[I 200707 13:00:41 inrepo:36] Testing notebook SLAM/GraphBasedSLAM/graphSLAM_doc.ipynb
+[I 200707 13:00:41 inrepo:45] Found kernel python3
+[I 200707 13:00:42 execute:404] Executing notebook with kernel: python3
+/srv/conda/envs/notebook/lib/python3.8/site-packages/jupyter_client/manager.py:357: FutureWarning: Method cleanup(connection_file=True) is deprecated, use cleanup_resources(restart=False).
+  warnings.warn("Method cleanup(connection_file=True) is deprecated, use cleanup_resources(restart=False).",
+[I 200707 13:00:44 inrepo:77] Saving exported notebook to /io/notebooks/SLAM/GraphBasedSLAM/graphSLAM_doc.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

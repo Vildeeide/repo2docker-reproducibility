@@ -1,0 +1,5 @@
+[I 200703 06:42:52 inrepo:35] Testing notebook error_and_fp/Vector Norms.ipynb
+[I 200703 06:42:53 execute:404] Executing notebook with kernel: python3
+[I 200703 06:42:55 inrepo:41] Saving exported notebook to /io/notebooks/error_and_fp/Vector Norms.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

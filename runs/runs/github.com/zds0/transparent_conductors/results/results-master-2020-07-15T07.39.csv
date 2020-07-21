@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/zds0/transparent_conductors,master,c0bcb5d,2018-02-17T17:42:04-06:00,build,build,False,github.com/zds0/transparent_conductors/logs/build-master-2020-07-15T07.39.txt,2020-07-15T07:39:35.050187,2020-07-15T07.39,0.11.0

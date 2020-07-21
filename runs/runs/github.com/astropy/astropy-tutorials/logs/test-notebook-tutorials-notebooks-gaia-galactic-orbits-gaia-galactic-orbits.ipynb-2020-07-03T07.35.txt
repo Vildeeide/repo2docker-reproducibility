@@ -1,0 +1,2 @@
+[I 200703 07:41:58 inrepo:35] Testing notebook tutorials/notebooks/gaia-galactic-orbits/gaia-galactic-orbits.ipynb
+[I 200703 07:41:59 execute:404] Executing notebook with kernel: python3

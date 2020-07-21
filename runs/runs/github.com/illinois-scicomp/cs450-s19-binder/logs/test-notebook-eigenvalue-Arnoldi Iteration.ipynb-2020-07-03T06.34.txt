@@ -1,0 +1,5 @@
+[I 200703 06:38:15 inrepo:35] Testing notebook eigenvalue/Arnoldi Iteration.ipynb
+[I 200703 06:38:16 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:18 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Arnoldi Iteration.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

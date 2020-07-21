@@ -1,0 +1,21 @@
+[I 200706 14:49:57 inrepo:35] Testing notebook Reviews.ipynb
+[E 200706 14:49:57 __init__:79] Notebook JSON is invalid: {'model_id': '50b18f1623f84205880b9e93d0af43dd', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][22]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '50b18f1623f84205880b9e93d0af43dd',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200706 14:49:58 execute:404] Executing notebook with kernel: python3
+[I 200706 14:50:54 inrepo:41] Saving exported notebook to /io/notebooks/Reviews.ipynb
+[E 200706 14:50:54 __init__:109] Notebook JSON is invalid: {'version_major': 2, 'version_minor': 0, 'model_id': '122d1ab3c20b4439b38a5fc36cc396b5'} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][22]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '122d1ab3c20b4439b38a5fc36cc396b5',
+     'version_major': 2,
+     'version_minor': 0}
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200703 06:54:32 inrepo:35] Testing notebook nbclient/tests/files/Check History in Memory.ipynb
+[I 200703 06:54:34 execute:404] Executing notebook with kernel: python
+[I 200703 06:54:35 inrepo:41] Saving exported notebook to /io/notebooks/nbclient/tests/files/Check History in Memory.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

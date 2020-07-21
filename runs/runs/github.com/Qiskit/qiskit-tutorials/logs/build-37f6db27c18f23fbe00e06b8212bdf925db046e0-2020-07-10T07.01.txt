@@ -1,0 +1,691 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T07.01oiy2s70t/github.com/Qiskit/qiskit-tutorials.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> dbac24f334dc
+Step 38/51 : USER root
+ ---> Running in e4b1c1c1cb84
+Removing intermediate container e4b1c1c1cb84
+ ---> 51f0701def9e
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 0d9c85c60ec1
+Removing intermediate container 0d9c85c60ec1
+ ---> e8a0c12f9933
+Step 40/51 : USER ${NB_USER}
+ ---> Running in a682c1197a83
+Removing intermediate container a682c1197a83
+ ---> 95161e851ee5
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 5b7220a79436
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+xz-5.2.5             | 343 KB    |            |   0% 
+xz-5.2.5             | 343 KB    | ########## | 100% 
+
+libgfortran-ng-7.5.0 | 1.7 MB    |            |   0% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########## | 100% 
+
+notebook-6.0.3       | 6.2 MB    |            |   0% 
+notebook-6.0.3       | 6.2 MB    |            |   0% 
+notebook-6.0.3       | 6.2 MB    | 2          |   2% 
+notebook-6.0.3       | 6.2 MB    | 7          |   8% 
+notebook-6.0.3       | 6.2 MB    | ##2        |  23% 
+notebook-6.0.3       | 6.2 MB    | ####7      |  47% 
+notebook-6.0.3       | 6.2 MB    | #######9   |  80% 
+notebook-6.0.3       | 6.2 MB    | ########## | 100% 
+
+libcblas-3.8.0       | 10 KB     |            |   0% 
+libcblas-3.8.0       | 10 KB     | ########## | 100% 
+
+matplotlib-3.2.2     | 6 KB      |            |   0% 
+matplotlib-3.2.2     | 6 KB      | ########## | 100% 
+
+matplotlib-base-3.2. | 7.0 MB    |            |   0% 
+matplotlib-base-3.2. | 7.0 MB    | ####       |  41% 
+matplotlib-base-3.2. | 7.0 MB    | ########## | 100% 
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+python_abi-3.7       | 4 KB      |            |   0% 
+python_abi-3.7       | 4 KB      | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+libopenblas-0.3.7    | 7.6 MB    |            |   0% 
+libopenblas-0.3.7    | 7.6 MB    | ###1       |  31% 
+libopenblas-0.3.7    | 7.6 MB    | ########## | 100% 
+
+python-3.7.6         | 53.0 MB   |            |   0% 
+python-3.7.6         | 53.0 MB   | 4          |   5% 
+python-3.7.6         | 53.0 MB   | #5         |  15% 
+python-3.7.6         | 53.0 MB   | ##1        |  21% 
+python-3.7.6         | 53.0 MB   | ##9        |  30% 
+python-3.7.6         | 53.0 MB   | ###8       |  39% 
+python-3.7.6         | 53.0 MB   | ####6      |  46% 
+python-3.7.6         | 53.0 MB   | #####3     |  54% 
+python-3.7.6         | 53.0 MB   | ######     |  61% 
+python-3.7.6         | 53.0 MB   | ######9    |  69% 
+python-3.7.6         | 53.0 MB   | #######7   |  77% 
+python-3.7.6         | 53.0 MB   | ########5  |  85% 
+python-3.7.6         | 53.0 MB   | #########7 |  98% 
+python-3.7.6         | 53.0 MB   | ########## | 100% 
+
+liblapack-3.8.0      | 10 KB     |            |   0% 
+liblapack-3.8.0      | 10 KB     | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+numpy-1.18.5         | 5.1 MB    |            |   0% 
+numpy-1.18.5         | 5.1 MB    | ########4  |  85% 
+numpy-1.18.5         | 5.1 MB    | ########## | 100% 
+
+libblas-3.8.0        | 10 KB     |            |   0% 
+libblas-3.8.0        | 10 KB     | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+kiwisolver-1.2.0     | 87 KB     |            |   0% 
+kiwisolver-1.2.0     | 87 KB     | ########## | 100% 
+
+rise-5.6.1           | 2.4 MB    |            |   0% 
+rise-5.6.1           | 2.4 MB    |            |   1% 
+rise-5.6.1           | 2.4 MB    | ########7  |  87% 
+rise-5.6.1           | 2.4 MB    | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+pip-18.1             | 1.7 MB    |            |   0% 
+pip-18.1             | 1.7 MB    |            |   1% 
+pip-18.1             | 1.7 MB    | ########## | 100% 
+
+icu-67.1             | 12.9 MB   |            |   0% 
+icu-67.1             | 12.9 MB   | ###6       |  37% 
+icu-67.1             | 12.9 MB   | ########9  |  90% 
+icu-67.1             | 12.9 MB   | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Ran pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.hnmuvs7f.requirements.txt']
+Pip subprocess output:
+Collecting qiskit (from -r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/38/4e/f275e4b0bc1b8d1c61d8088d693e480fa396c8f3d32e516655f25c510792/qiskit-0.19.6.tar.gz
+Collecting qiskit-terra==0.14.2 (from qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/8a/ef/0c7f0dc2671521553efafda38bfea9b95f347f071a2422bd026b001052b6/qiskit_terra-0.14.2-cp37-cp37m-manylinux1_x86_64.whl (6.7MB)
+Collecting qiskit-aer==0.5.2 (from qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/b7/2b/5fb0735a315989e5795f98035a59d96d947c21588a4a166fe39a9f2dafa6/qiskit-aer-0.5.2.tar.gz (10.3MB)
+Collecting qiskit-ibmq-provider==0.7.2 (from qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/92/1f/0c6b290064a471a8a9c1e3366367b46d320efdad6b730eadefbd1f3c4eb0/qiskit_ibmq_provider-0.7.2-py3-none-any.whl (155kB)
+Collecting qiskit-ignis==0.3.3 (from qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/06/5e/273c6f99b4b64dcbab37990627778ed38d8f52e8060db7fc67f38f09fbb2/qiskit_ignis-0.3.3-py3-none-any.whl (179kB)
+Collecting qiskit-aqua==0.7.3 (from qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/89/18/00c426f06abfa0461a4d794d833c036f8ac5f88062f368d01f739ee1c032/qiskit_aqua-0.7.3-py3-none-any.whl (1.9MB)
+Collecting psutil>=5 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/c4/b8/3512f0e93e0db23a71d82485ba256071ebef99b227351f0f5540f744af41/psutil-5.7.0.tar.gz
+Collecting marshmallow<4,>=3 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/c9/e3/afff202331777faa5b1c772a0b9f2f8c207fde0bef5733cc7ce9d7dbb71a/marshmallow-3.7.0-py2.py3-none-any.whl
+Collecting scipy>=1.4 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/30/45/ff9df4beceab76f979ee0ea7f5d248596aa5b0c179aa3d30589a3f4549eb/scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl
+Collecting marshmallow-polyfield<6,>=5.7 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/0c/7e/ceb805d05cd03709b8de122b4ac1e736c4eb91d05281ad2a2bcb484accef/marshmallow-polyfield-5.9.tar.gz
+Collecting sympy>=1.3 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/1e/ed/4b0576282597e87e7cf3be33fa4f738d5974471f9b59a55b3730c3877530/sympy-1.6.1-py3-none-any.whl
+Collecting networkx>=2.2; python_version > "3.5" (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/41/8f/dd6a8e85946def36e4f2c69c84219af0fa5e832b018c970e92f2ad337e45/networkx-2.4-py3-none-any.whl
+Collecting retworkx>=0.3.2 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/2d/f3/ca329fe63b7ecbe2cf8e64cad89c9231a3b770ba74e6ce741ed2aad09a97/retworkx-0.3.4-cp37-cp37m-manylinux1_x86_64.whl
+Collecting dill>=0.3 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/e2/96/518a8ea959a734b70d2e95fef98bcbfdc7adad1c1e5f5dd9148c835205a5/dill-0.3.2.zip
+Requirement already satisfied, skipping upgrade: jsonschema>=2.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (3.2.0)
+Requirement already satisfied, skipping upgrade: numpy>=1.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (1.18.5)
+Collecting python-constraint>=1.4 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/37/8b/5f1bc2734ca611943e1d6733ee244238679f6410a10cd45ede55a61a8402/python-constraint-1.4.0.tar.bz2
+Collecting ply>=3.10 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/a3/58/35da89ee790598a0700ea49b2a66594140f44dec458c07e8e3d4979137fc/ply-3.11-py2.py3-none-any.whl
+Collecting fastjsonschema>=2.10 (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/3a/2b/5e93ebbdc92fe742bfc006f79336c2ddcb436747ef579bc05057c43ad876/fastjsonschema-2.14.4-py3-none-any.whl
+Requirement already satisfied, skipping upgrade: python-dateutil>=2.8.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.8.1)
+Collecting cython>=0.27.1 (from qiskit-aer==0.5.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/6b/36/d6c18632a339dafa54fd128b0dd2c36c6dc4bc86b8e0d366ccd9f22b480a/Cython-0.29.21-cp37-cp37m-manylinux1_x86_64.whl
+Requirement already satisfied, skipping upgrade: pybind11>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-aer==0.5.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.5.0)
+Requirement already satisfied, skipping upgrade: urllib3>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (1.25.7)
+Requirement already satisfied, skipping upgrade: requests>=2.19 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.22.0)
+Collecting websockets<8,>=7 (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/aa/53/1dbfbe51e8ba9a2b9bc0b7201df77fe597f1e57b6b5d9bb094d3729aeecf/websockets-7.0-cp37-cp37m-manylinux1_x86_64.whl (63kB)
+Collecting nest-asyncio!=1.1.0,>=1.0.0 (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/74/b4/b24e0a271fb78990c2c62238321686454824b1357ce7abcf20f431fd903d/nest_asyncio-1.3.3-py3-none-any.whl
+Collecting requests-ntlm>=1.1.0 (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/03/4b/8b9a1afde8072c4d5710d9fa91433d504325821b038e00237dc8d6d833dc/requests_ntlm-1.1.0-py2.py3-none-any.whl
+Collecting scikit-learn>=0.17 (from qiskit-ignis==0.3.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/b8/7e/74e707b66490d4eb05f702966ad0990881127acecf9d5cdcef3c95ec6c16/scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8MB)
+Requirement already satisfied, skipping upgrade: setuptools>=40.1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qiskit-ignis==0.3.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (45.1.0.post20200119)
+Collecting pyscf; sys_platform != "win32" (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/a4/18/ded1ccca772b0ee506c2b71df3d484612a9e5e1899cbcd99e42e79f9afb1/pyscf-1.7.3-cp37-cp37m-manylinux1_x86_64.whl (26.0MB)
+Collecting docplex (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/00/06/ad4441a00b8a9ff415882ff31273fe6519034879b6c2b65c47758a0278d5/docplex-2.14.186.tar.gz (572kB)
+Collecting quandl (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/21/ce/281f4ae2554ba676735157a91205e808af149e97be534d6a1b9196638e63/Quandl-3.5.1-py2.py3-none-any.whl
+Collecting dlx (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/54/c0/b8fb5bb727e983b6f5251433ef941b48f38c65bb0bd6ec509e9185bcd406/dlx-1.0.4.tar.gz
+Collecting fastdtw (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/99/43/30f2d8db076f216b15c10db663b46e22d1750b1ebacd7af6e62b83d6ab98/fastdtw-0.3.4.tar.gz (133kB)
+Collecting h5py (from qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/3f/c0/abde58b837e066bca19a3f7332d9d0493521d7dd6b48248451a9e3fe2214/h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9MB)
+Collecting mpmath>=0.19 (from sympy>=1.3->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Using cached https://files.pythonhosted.org/packages/ca/63/3384ebb3b51af9610086b23ea976e6d27d6d97bf140a76a365bd77a3eb32/mpmath-1.1.0.tar.gz
+Requirement already satisfied, skipping upgrade: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx>=2.2; python_version > "3.5"->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied, skipping upgrade: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied, skipping upgrade: six>=1.11.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied, skipping upgrade: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (0.15.7)
+Requirement already satisfied, skipping upgrade: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied, skipping upgrade: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2020.6.20)
+Requirement already satisfied, skipping upgrade: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.8)
+Collecting ntlm-auth>=1.0.2 (from requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/ff/84/97c550164b54942b0e908c31ef09d9469f3ba4cd7332a671e2125732f63b/ntlm_auth-1.5.0-py2.py3-none-any.whl
+Requirement already satisfied, skipping upgrade: cryptography>=1.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.8)
+Collecting threadpoolctl>=2.0.0 (from scikit-learn>=0.17->qiskit-ignis==0.3.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/f7/12/ec3f2e203afa394a149911729357aa48affc59c20e2c1c8297a60f33f133/threadpoolctl-2.1.0-py3-none-any.whl
+Collecting joblib>=0.11 (from scikit-learn>=0.17->qiskit-ignis==0.3.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/51/dd/0e015051b4a27ec5a58b02ab774059f3289a94b0906f880a3f9507e74f38/joblib-0.16.0-py3-none-any.whl (300kB)
+Collecting inflection>=0.3.1 (from quandl->qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/d2/cd/f04c661d1b5ba6b7d77008e8fedd28a27a683eeeffcd93c6b2dbe54ea983/inflection-0.5.0-py2.py3-none-any.whl
+Collecting pandas>=0.14 (from quandl->qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/af/f3/683bf2547a3eaeec15b39cef86f61e921b3b187f250fcd2b5c5fb4386369/pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1MB)
+Requirement already satisfied, skipping upgrade: more-itertools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from quandl->qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (8.2.0)
+Requirement already satisfied, skipping upgrade: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied, skipping upgrade: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (1.13.2)
+Collecting pytz>=2017.2 (from pandas>=0.14->quandl->qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/4f/a4/879454d49688e2fad93e59d7d4efda580b783c745fd2ec2a3adf87b0808d/pytz-2020.1-py2.py3-none-any.whl (510kB)
+Requirement already satisfied, skipping upgrade: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.hnmuvs7f.requirements.txt (line 1)) (2.19)
+Building wheels for collected packages: qiskit, qiskit-aer, psutil, marshmallow-polyfield, dill, python-constraint, docplex, dlx, fastdtw, mpmath
+  Running setup.py bdist_wheel for qiskit: started
+  Running setup.py bdist_wheel for qiskit: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/35/45/55/8b82d355edf738ebd6d7f261f17ef1e7ca9ffc7d139c878e10
+  Running setup.py bdist_wheel for qiskit-aer: started
+  Running setup.py bdist_wheel for qiskit-aer: finished with status 'error'
+  Complete output from command /srv/conda/envs/notebook/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-d45yfnyz/qiskit-aer/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" bdist_wheel -d /tmp/pip-wheel-n6qlrq01 --python-tag cp37:
+  
+  
+  --------------------------------------------------------------------------------
+  -- Trying "Ninja" generator
+  --------------------------------
+  ---------------------------
+  ----------------------
+  -----------------
+  ------------
+  -------
+  --
+  Not searching for unused variables given on the command line.
+  CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+  -- Configuring incomplete, errors occurred!
+  See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_cmake_test_compile/build/CMakeFiles/CMakeOutput.log".
+  --
+  -------
+  ------------
+  -----------------
+  ----------------------
+  ---------------------------
+  --------------------------------
+  -- Trying "Ninja" generator - failure
+  --------------------------------------------------------------------------------
+  
+  
+  
+  --------------------------------------------------------------------------------
+  -- Trying "Unix Makefiles" generator
+  --------------------------------
+  ---------------------------
+  ----------------------
+  -----------------
+  ------------
+  -------
+  --
+  Not searching for unused variables given on the command line.
+  -- The C compiler identification is GNU 7.5.0
+  -- Check for working C compiler: /usr/bin/cc
+  -- Check for working C compiler: /usr/bin/cc - works
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - done
+  -- Detecting C compile features
+  -- Detecting C compile features - done
+  -- The CXX compiler identification is GNU 7.5.0
+  -- Check for working CXX compiler: /usr/bin/c++
+  -- Check for working CXX compiler: /usr/bin/c++ - works
+  -- Detecting CXX compiler ABI info
+  -- Detecting CXX compiler ABI info - done
+  -- Detecting CXX compile features
+  -- Detecting CXX compile features - done
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: /tmp/pip-install-d45yfnyz/qiskit-aer/_cmake_test_compile/build
+  --
+  -------
+  ------------
+  -----------------
+  ----------------------
+  ---------------------------
+  --------------------------------
+  -- Trying "Unix Makefiles" generator - success
+  --------------------------------------------------------------------------------
+  
+  Configuring Project
+    Working directory:
+      /tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build
+    Command:
+      /tmp/pip-install-d45yfnyz/qiskit-aer/.eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/bin/cmake /tmp/pip-install-d45yfnyz/qiskit-aer -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-install -DPYTHON_EXECUTABLE:FILEPATH=/srv/conda/envs/notebook/bin/python -DPYTHON_VERSION_STRING:STRING=3.7.6 -DPYTHON_INCLUDE_DIR:PATH=/srv/conda/envs/notebook/include/python3.7m -DPYTHON_LIBRARY:FILEPATH=/srv/conda/envs/notebook/lib/libpython3.7m.so -DSKBUILD:BOOL=TRUE -DCMAKE_MODULE_PATH:PATH=/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/resources/cmake -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.9 -DCMAKE_BUILD_TYPE:STRING=Release
+  
+  -- The CXX compiler identification is GNU 7.5.0
+  -- The C compiler identification is GNU 7.5.0
+  -- Check for working CXX compiler: /usr/bin/c++
+  -- Check for working CXX compiler: /usr/bin/c++ - works
+  -- Detecting CXX compiler ABI info
+  -- Detecting CXX compiler ABI info - done
+  -- Detecting CXX compile features
+  -- Detecting CXX compile features - done
+  -- Check for working C compiler: /usr/bin/cc
+  -- Check for working C compiler: /usr/bin/cc - works
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - done
+  -- Detecting C compile features
+  -- Detecting C compile features - done
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Performing Test flag_supported
+  -- Performing Test flag_supported - Success
+  -- Looking for OpenMP support...
+  -- OpenMP found!
+  -- OpenMP_CXX_FLAGS = -fopenmp
+  -- OpenMP_EXE_LINKER_FLAGS =
+  -- Looking for NLOHMANN Json library...
+  -- nlohmann include dir: /tmp/pip-install-d45yfnyz/qiskit-aer/src/third-party/headers
+  -- Looking for pthread.h
+  -- Looking for pthread.h - found
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+  -- Looking for pthread_create in pthreads
+  -- Looking for pthread_create in pthreads - not found
+  -- Looking for pthread_create in pthread
+  -- Looking for pthread_create in pthread - found
+  -- Found Threads: TRUE
+  -- Looking for OpenBLAS library...
+  -- OpenBLAS not found. Looking for any other BLAS library...
+  -- Looking for sgemm_
+  -- Looking for sgemm_ - not found
+  CMake Error at .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:164 (message):
+    Could NOT find BLAS (missing: BLAS_LIBRARIES)
+  Call Stack (most recent call first):
+    .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:445 (_FPHSA_FAILURE_MESSAGE)
+    .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindBLAS.cmake:892 (find_package_handle_standard_args)
+    CMakeLists.txt:190 (find_package)
+  
+  
+  -- Configuring incomplete, errors occurred!
+  See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build/CMakeFiles/CMakeOutput.log".
+  See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build/CMakeFiles/CMakeError.log".
+  Traceback (most recent call last):
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/setuptools_wrap.py", line 586, in setup
+      languages=cmake_languages
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/cmaker.py", line 240, in configure
+      os.path.abspath(CMAKE_BUILD_DIR())))
+  
+  An error occurred while configuring with CMake.
+    Command:
+      /tmp/pip-install-d45yfnyz/qiskit-aer/.eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/bin/cmake /tmp/pip-install-d45yfnyz/qiskit-aer -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-install -DPYTHON_EXECUTABLE:FILEPATH=/srv/conda/envs/notebook/bin/python -DPYTHON_VERSION_STRING:STRING=3.7.6 -DPYTHON_INCLUDE_DIR:PATH=/srv/conda/envs/notebook/include/python3.7m -DPYTHON_LIBRARY:FILEPATH=/srv/conda/envs/notebook/lib/libpython3.7m.so -DSKBUILD:BOOL=TRUE -DCMAKE_MODULE_PATH:PATH=/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/resources/cmake -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.9 -DCMAKE_BUILD_TYPE:STRING=Release
+    Source directory:
+      /tmp/pip-install-d45yfnyz/qiskit-aer
+    Working directory:
+      /tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build
+  Please see CMake's output for more information.
+  
+  ----------------------------------------
+  Running setup.py clean for qiskit-aer
+  Running setup.py bdist_wheel for psutil: started
+  Running setup.py bdist_wheel for psutil: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/d7/69/b4/3200b95828d1f0ddb3cb5699083717f4fdbd9b4223d0644c57
+  Running setup.py bdist_wheel for marshmallow-polyfield: started
+  Running setup.py bdist_wheel for marshmallow-polyfield: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/69/27/3e/7472f75eab2db111aa387715fe009af15899459517fc1a1906
+  Running setup.py bdist_wheel for dill: started
+  Running setup.py bdist_wheel for dill: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/27/4b/a2/34ccdcc2f158742cfe9650675560dea85f78c3f4628f7daad0
+  Running setup.py bdist_wheel for python-constraint: started
+  Running setup.py bdist_wheel for python-constraint: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/34/31/15/7b070b25d0a549d20ce2e9fe6d727471c2c61ef904720fd40c
+  Running setup.py bdist_wheel for docplex: started
+  Running setup.py bdist_wheel for docplex: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/aa/28/cd/ba75f92d49b25dacec6b80f99efcc393dc84abf33f96632ac4
+  Running setup.py bdist_wheel for dlx: started
+  Running setup.py bdist_wheel for dlx: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/bb/ba/15/fdd0deb104df3254912998150ba9245668db06b00af5912d1a
+  Running setup.py bdist_wheel for fastdtw: started
+  Running setup.py bdist_wheel for fastdtw: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/7e/95/df/935f19af51d6ab63d416c103c0d6eae7048a8c2ecb00a1497f
+  Running setup.py bdist_wheel for mpmath: started
+  Running setup.py bdist_wheel for mpmath: finished with status 'done'
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/63/9d/8e/37c3f6506ed3f152733a699e92d8e0c9f5e5f01dea262f80ad
+Successfully built qiskit psutil marshmallow-polyfield dill python-constraint docplex dlx fastdtw mpmath
+Failed to build qiskit-aer
+Installing collected packages: psutil, marshmallow, scipy, marshmallow-polyfield, mpmath, sympy, networkx, retworkx, dill, python-constraint, ply, fastjsonschema, qiskit-terra, cython, qiskit-aer, websockets, nest-asyncio, ntlm-auth, requests-ntlm, qiskit-ibmq-provider, threadpoolctl, joblib, scikit-learn, qiskit-ignis, h5py, pyscf, docplex, inflection, pytz, pandas, quandl, dlx, fastdtw, qiskit-aqua, qiskit
+  Running setup.py install for qiskit-aer: started
+    Running setup.py install for qiskit-aer: finished with status 'error'
+    Complete output from command /srv/conda/envs/notebook/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-d45yfnyz/qiskit-aer/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-record-l8k7s_61/install-record.txt --single-version-externally-managed --compile:
+    
+    
+    --------------------------------------------------------------------------------
+    -- Trying "Ninja" generator
+    --------------------------------
+    ---------------------------
+    ----------------------
+    -----------------
+    ------------
+    -------
+    --
+    Not searching for unused variables given on the command line.
+    CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+    -- Configuring incomplete, errors occurred!
+    See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_cmake_test_compile/build/CMakeFiles/CMakeOutput.log".
+    --
+    -------
+    ------------
+    -----------------
+    ----------------------
+    ---------------------------
+    --------------------------------
+    -- Trying "Ninja" generator - failure
+    --------------------------------------------------------------------------------
+    
+    
+    
+    --------------------------------------------------------------------------------
+    -- Trying "Unix Makefiles" generator
+    --------------------------------
+    ---------------------------
+    ----------------------
+    -----------------
+    ------------
+    -------
+    --
+    Not searching for unused variables given on the command line.
+    -- The C compiler identification is GNU 7.5.0
+    -- Check for working C compiler: /usr/bin/cc
+    -- Check for working C compiler: /usr/bin/cc - works
+    -- Detecting C compiler ABI info
+    -- Detecting C compiler ABI info - done
+    -- Detecting C compile features
+    -- Detecting C compile features - done
+    -- The CXX compiler identification is GNU 7.5.0
+    -- Check for working CXX compiler: /usr/bin/c++
+    -- Check for working CXX compiler: /usr/bin/c++ - works
+    -- Detecting CXX compiler ABI info
+    -- Detecting CXX compiler ABI info - done
+    -- Detecting CXX compile features
+    -- Detecting CXX compile features - done
+    -- Configuring done
+    -- Generating done
+    -- Build files have been written to: /tmp/pip-install-d45yfnyz/qiskit-aer/_cmake_test_compile/build
+    --
+    -------
+    ------------
+    -----------------
+    ----------------------
+    ---------------------------
+    --------------------------------
+    -- Trying "Unix Makefiles" generator - success
+    --------------------------------------------------------------------------------
+    
+    Configuring Project
+      Working directory:
+        /tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build
+      Command:
+        /tmp/pip-install-d45yfnyz/qiskit-aer/.eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/bin/cmake /tmp/pip-install-d45yfnyz/qiskit-aer -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-install -DPYTHON_EXECUTABLE:FILEPATH=/srv/conda/envs/notebook/bin/python -DPYTHON_VERSION_STRING:STRING=3.7.6 -DPYTHON_INCLUDE_DIR:PATH=/srv/conda/envs/notebook/include/python3.7m -DPYTHON_LIBRARY:FILEPATH=/srv/conda/envs/notebook/lib/libpython3.7m.so -DSKBUILD:BOOL=TRUE -DCMAKE_MODULE_PATH:PATH=/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/resources/cmake -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.9 -DCMAKE_BUILD_TYPE:STRING=Release
+    
+    -- The CXX compiler identification is GNU 7.5.0
+    -- The C compiler identification is GNU 7.5.0
+    -- Check for working CXX compiler: /usr/bin/c++
+    -- Check for working CXX compiler: /usr/bin/c++ - works
+    -- Detecting CXX compiler ABI info
+    -- Detecting CXX compiler ABI info - done
+    -- Detecting CXX compile features
+    -- Detecting CXX compile features - done
+    -- Check for working C compiler: /usr/bin/cc
+    -- Check for working C compiler: /usr/bin/cc - works
+    -- Detecting C compiler ABI info
+    -- Detecting C compiler ABI info - done
+    -- Detecting C compile features
+    -- Detecting C compile features - done
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Performing Test flag_supported
+    -- Performing Test flag_supported - Success
+    -- Looking for OpenMP support...
+    -- OpenMP found!
+    -- OpenMP_CXX_FLAGS = -fopenmp
+    -- OpenMP_EXE_LINKER_FLAGS =
+    -- Looking for NLOHMANN Json library...
+    -- nlohmann include dir: /tmp/pip-install-d45yfnyz/qiskit-aer/src/third-party/headers
+    -- Looking for pthread.h
+    -- Looking for pthread.h - found
+    -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+    -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+    -- Looking for pthread_create in pthreads
+    -- Looking for pthread_create in pthreads - not found
+    -- Looking for pthread_create in pthread
+    -- Looking for pthread_create in pthread - found
+    -- Found Threads: TRUE
+    -- Looking for OpenBLAS library...
+    -- OpenBLAS not found. Looking for any other BLAS library...
+    -- Looking for sgemm_
+    -- Looking for sgemm_ - not found
+    CMake Error at .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:164 (message):
+      Could NOT find BLAS (missing: BLAS_LIBRARIES)
+    Call Stack (most recent call first):
+      .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake:445 (_FPHSA_FAILURE_MESSAGE)
+      .eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/share/cmake-3.17/Modules/FindBLAS.cmake:892 (find_package_handle_standard_args)
+      CMakeLists.txt:190 (find_package)
+    
+    
+    -- Configuring incomplete, errors occurred!
+    See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build/CMakeFiles/CMakeOutput.log".
+    See also "/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build/CMakeFiles/CMakeError.log".
+    Traceback (most recent call last):
+      File "/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/setuptools_wrap.py", line 586, in setup
+        languages=cmake_languages
+      File "/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/cmaker.py", line 240, in configure
+        os.path.abspath(CMAKE_BUILD_DIR())))
+    
+    An error occurred while configuring with CMake.
+      Command:
+        /tmp/pip-install-d45yfnyz/qiskit-aer/.eggs/cmake-3.17.3-py3.7-linux-x86_64.egg/cmake/data/bin/cmake /tmp/pip-install-d45yfnyz/qiskit-aer -G 'Unix Makefiles' -DCMAKE_INSTALL_PREFIX:PATH=/tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-install -DPYTHON_EXECUTABLE:FILEPATH=/srv/conda/envs/notebook/bin/python -DPYTHON_VERSION_STRING:STRING=3.7.6 -DPYTHON_INCLUDE_DIR:PATH=/srv/conda/envs/notebook/include/python3.7m -DPYTHON_LIBRARY:FILEPATH=/srv/conda/envs/notebook/lib/libpython3.7m.so -DSKBUILD:BOOL=TRUE -DCMAKE_MODULE_PATH:PATH=/srv/conda/envs/notebook/lib/python3.7/site-packages/skbuild/resources/cmake -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.9 -DCMAKE_BUILD_TYPE:STRING=Release
+      Source directory:
+        /tmp/pip-install-d45yfnyz/qiskit-aer
+      Working directory:
+        /tmp/pip-install-d45yfnyz/qiskit-aer/_skbuild/linux-x86_64-3.7/cmake-build
+    Please see CMake's output for more information.
+    
+    ----------------------------------------
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Pip subprocess error:
+  Failed building wheel for qiskit-aer
+Command "/srv/conda/envs/notebook/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-install-d45yfnyz/qiskit-aer/setup.py';f=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-record-l8k7s_61/install-record.txt --single-version-externally-managed --compile" failed with error code 1 in /tmp/pip-install-d45yfnyz/qiskit-aer/
+
+
+CondaEnvException: Pip failed
+
+[0m
+Removing intermediate container 5b7220a79436
+The command '/bin/sh -c conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-qiskit-qiskit-tutorials:37f6db2', '/tmp/r2d-test-2020-07-10T07.01oiy2s70t/github.com/Qiskit/qiskit-tutorials']' returned non-zero exit status 1.

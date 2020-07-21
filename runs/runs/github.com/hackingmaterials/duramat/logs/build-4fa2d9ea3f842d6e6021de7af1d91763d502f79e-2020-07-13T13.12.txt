@@ -1,0 +1,238 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T13.12xngzqmee/github.com/hackingmaterials/duramat.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 0d3bd4aa990f
+Step 38/51 : USER root
+ ---> Running in 78b5e83bf015
+Removing intermediate container 78b5e83bf015
+ ---> 639c3d16d199
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 5b6d93aee417
+Removing intermediate container 5b6d93aee417
+ ---> 2e267323e6a5
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 6cbc35ded68a
+Removing intermediate container 6cbc35ded68a
+ ---> e51915d57a46
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 29a17f0fb3eb
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting cufflinks
+  Downloading cufflinks-0.17.3.tar.gz (81 kB)
+Collecting numpy>=1.9.2
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting pandas>=0.19.2
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting plotly>=4.1.1
+  Downloading plotly-4.8.2-py2.py3-none-any.whl (11.5 MB)
+Requirement already satisfied: six>=1.9.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 1)) (1.14.0)
+Collecting colorlover>=0.2.1
+  Downloading colorlover-0.3.0-py3-none-any.whl (8.9 kB)
+Requirement already satisfied: setuptools>=34.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 1)) (45.1.0.post20200119)
+Requirement already satisfied: ipython>=5.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 1)) (7.11.1)
+Requirement already satisfied: ipywidgets>=7.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 1)) (7.5.1)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.19.2->cufflinks->-r requirements.txt (line 1)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting retrying>=1.3.3
+  Downloading retrying-1.3.3.tar.gz (10 kB)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.7.5)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (2.5.2)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (4.8.0)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.1.0)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (4.3.3)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (5.0.4)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (5.1.4)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (3.5.1)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.1.8)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=5.3.0->cufflinks->-r requirements.txt (line 1)) (0.2.0)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (4.6.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (3.2.0)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (6.0.3)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (5.3.4)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (6.0.3)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.15.7)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (18.1.1)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (2.11.0)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (5.6.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.7.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (1.1.1)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (1.4.2)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (3.1.0)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.8.4)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.4.4)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.0.0->cufflinks->-r requirements.txt (line 1)) (0.5.1)
+Building wheels for collected packages: cufflinks, retrying
+  Building wheel for cufflinks (setup.py): started
+  Building wheel for cufflinks (setup.py): finished with status 'done'
+  Created wheel for cufflinks: filename=cufflinks-0.17.3-py3-none-any.whl size=67921 sha256=b68d98f5eebde11bbb6a838ac2f096f054685d2bbcddf1bc3c9ca757c9f191d6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-v1fgvf8l/wheels/e1/27/13/3fe67fa7ea7be444b831d117220b3b586b872c9acd4df480d0
+  Building wheel for retrying (setup.py): started
+  Building wheel for retrying (setup.py): finished with status 'done'
+  Created wheel for retrying: filename=retrying-1.3.3-py3-none-any.whl size=11429 sha256=f921d264ca9e4a493b8c48b32ceb7ae9780fe4570322ece581beb7e30862a345
+  Stored in directory: /tmp/pip-ephem-wheel-cache-v1fgvf8l/wheels/f9/8d/8d/f6af3f7f9eea3553bc2fe6d53e4b287dad18b06a861ac56ddf
+Successfully built cufflinks retrying
+Installing collected packages: numpy, pytz, pandas, retrying, plotly, colorlover, cufflinks
+Successfully installed colorlover-0.3.0 cufflinks-0.17.3 numpy-1.19.0 pandas-1.0.5 plotly-4.8.2 pytz-2020.1 retrying-1.3.3
+Removing intermediate container 29a17f0fb3eb
+ ---> 34e1710bd24a
+Step 42/51 : USER root
+ ---> Running in c5ccd7cd674c
+Removing intermediate container c5ccd7cd674c
+ ---> 0f261bf6381d
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> a7c7c9e4b800
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 03704e3abb53
+Removing intermediate container 03704e3abb53
+ ---> b2ff40580548
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in 402145cd9dea
+Removing intermediate container 402145cd9dea
+ ---> a4ce6ff9c35f
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in 73f683dcd58a
+Removing intermediate container 73f683dcd58a
+ ---> c565be210601
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in cd7f4a2b75d1
+Removing intermediate container cd7f4a2b75d1
+ ---> 469257d22fa2
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 9af0ed05fa7e
+Removing intermediate container 9af0ed05fa7e
+ ---> aa9e54ec85b6
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 3fc1738cdd2b
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 09c3ad253a78
+Removing intermediate container 09c3ad253a78
+ ---> e005d04764c6
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 2980953b9a65
+Removing intermediate container 2980953b9a65
+ ---> 5f5e88ceed12
+{"aux": {"ID": "sha256:5f5e88ceed120fd3c0aed8096a46d2a68922e2546ad5f66583d267c7151d7baf"}}Successfully built 5f5e88ceed12
+Successfully tagged r2d-test-github.com-hackingmaterials-duramat:4fa2d9e

@@ -1,0 +1,5 @@
+[I 200703 06:43:01 inrepo:35] Testing notebook error_and_fp/Polynomial Evaluation Floating Point.ipynb
+[I 200703 06:43:02 execute:404] Executing notebook with kernel: python3
+[I 200703 06:43:04 inrepo:41] Saving exported notebook to /io/notebooks/error_and_fp/Polynomial Evaluation Floating Point.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

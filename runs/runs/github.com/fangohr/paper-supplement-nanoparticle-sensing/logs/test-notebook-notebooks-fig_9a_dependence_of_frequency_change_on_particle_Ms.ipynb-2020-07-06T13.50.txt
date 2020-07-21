@@ -1,0 +1,5 @@
+[I 200706 13:50:26 inrepo:35] Testing notebook notebooks/fig_9a_dependence_of_frequency_change_on_particle_Ms.ipynb
+[I 200706 13:50:29 execute:404] Executing notebook with kernel: python3
+[I 200706 13:50:35 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/fig_9a_dependence_of_frequency_change_on_particle_Ms.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

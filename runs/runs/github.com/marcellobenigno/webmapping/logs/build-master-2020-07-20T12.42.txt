@@ -1,0 +1,1432 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-20T12.42u9uxcoda/github.com/marcellobenigno/webmapping.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 9008d158a79a
+Step 38/51 : USER root
+ ---> Using cache
+ ---> 4ea2bb641207
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 03b6aae896ce
+Step 40/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 31362f8bde8a
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in f210e2661a25
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting appnope==0.1.0
+  Downloading appnope-0.1.0-py2.py3-none-any.whl (4.0 kB)
+Collecting bleach==1.5.0
+  Downloading bleach-1.5.0-py2.py3-none-any.whl (17 kB)
+Collecting decorator==4.0.10
+  Downloading decorator-4.0.10-py2.py3-none-any.whl (9.2 kB)
+Collecting entrypoints==0.2.2
+  Downloading entrypoints-0.2.2-py2.py3-none-any.whl (3.2 kB)
+Collecting folium==0.2.1
+  Downloading folium-0.2.1.tar.gz (69 kB)
+Collecting html5lib==0.9999999
+  Downloading html5lib-0.9999999.tar.gz (889 kB)
+Collecting ipykernel==4.5.2
+  Downloading ipykernel-4.5.2-py2.py3-none-any.whl (98 kB)
+Collecting ipython==5.1.0
+  Downloading ipython-5.1.0-py3-none-any.whl (747 kB)
+Collecting ipython-genutils==0.1.0
+  Downloading ipython_genutils-0.1.0-py2.py3-none-any.whl (26 kB)
+Collecting ipywidgets==5.2.2
+  Downloading ipywidgets-5.2.2-py2.py3-none-any.whl (43 kB)
+Collecting Jinja2==2.8
+  Downloading Jinja2-2.8-py2.py3-none-any.whl (263 kB)
+Collecting jsonschema==2.5.1
+  Downloading jsonschema-2.5.1-py2.py3-none-any.whl (38 kB)
+Collecting jupyter==1.0.0
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting jupyter-client==4.4.0
+  Downloading jupyter_client-4.4.0-py2.py3-none-any.whl (76 kB)
+Collecting jupyter-console==5.0.0
+  Downloading jupyter_console-5.0.0-py2.py3-none-any.whl (20 kB)
+Collecting jupyter-core==4.2.1
+  Downloading jupyter_core-4.2.1-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe==0.23
+  Downloading MarkupSafe-0.23.tar.gz (13 kB)
+Collecting mistune==0.7.3
+  Downloading mistune-0.7.3-py2.py3-none-any.whl (16 kB)
+Collecting nbconvert==5.0.0
+  Downloading nbconvert-5.0.0-py2.py3-none-any.whl (371 kB)
+Collecting nbformat==4.2.0
+  Downloading nbformat-4.2.0-py2.py3-none-any.whl (153 kB)
+Collecting notebook==4.3.0
+  Downloading notebook-4.3.0-py2.py3-none-any.whl (6.9 MB)
+Collecting pandocfilters==1.4.1
+  Downloading pandocfilters-1.4.1.tar.gz (14 kB)
+Collecting pexpect==4.2.1
+  Downloading pexpect-4.2.1-py2.py3-none-any.whl (55 kB)
+Collecting pickleshare==0.7.4
+  Downloading pickleshare-0.7.4-py2.py3-none-any.whl (6.9 kB)
+Collecting prompt-toolkit==1.0.9
+  Downloading prompt_toolkit-1.0.9-py3-none-any.whl (241 kB)
+Collecting ptyprocess==0.5.1
+  Downloading ptyprocess-0.5.1-py2.py3-none-any.whl (12 kB)
+Collecting Pygments==2.1.3
+  Downloading Pygments-2.1.3-py2.py3-none-any.whl (755 kB)
+Collecting pyshp==1.2.10
+  Downloading pyshp-1.2.10.tar.gz (176 kB)
+Collecting pyzmq==16.0.2
+  Downloading pyzmq-16.0.2.tar.gz (1.0 MB)
+Collecting qtconsole==4.2.1
+  Downloading qtconsole-4.2.1-py2.py3-none-any.whl (104 kB)
+Collecting simplegeneric==0.8.1
+  Downloading simplegeneric-0.8.1.zip (12 kB)
+Collecting six==1.10.0
+  Downloading six-1.10.0-py2.py3-none-any.whl (10 kB)
+Collecting terminado==0.6
+  Downloading terminado-0.6.tar.gz (10 kB)
+Collecting testpath==0.3
+  Downloading testpath-0.3-py2.py3-none-any.whl (82 kB)
+Collecting tornado==4.4.2
+  Downloading tornado-4.4.2.tar.gz (460 kB)
+Collecting traitlets==4.3.1
+  Downloading traitlets-4.3.1-py2.py3-none-any.whl (74 kB)
+Collecting wcwidth==0.1.7
+  Downloading wcwidth-0.1.7-py2.py3-none-any.whl (21 kB)
+Collecting widgetsnbextension==1.2.6
+  Downloading widgetsnbextension-1.2.6-py2.py3-none-any.whl (1.5 MB)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython==5.1.0->-r requirements.txt (line 8)) (45.1.0.post20200119)
+Building wheels for collected packages: folium, html5lib, MarkupSafe, pandocfilters, pyshp, pyzmq, simplegeneric, terminado, tornado
+  Building wheel for folium (setup.py): started
+  Building wheel for folium (setup.py): finished with status 'done'
+  Created wheel for folium: filename=folium-0.2.1-py3-none-any.whl size=79978 sha256=55d91caf1dd80e6ab776066645fa647ef490cfdc5abb0a3715eae316dbeab71f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/9a/f0/3a/3f79a6914ff5affaf50cabad60c9f4d565283283c97f0bdccf
+  Building wheel for html5lib (setup.py): started
+  Building wheel for html5lib (setup.py): finished with status 'done'
+  Created wheel for html5lib: filename=html5lib-0.9999999-py3-none-any.whl size=107217 sha256=c24f21ef4574eb5cd6f7b0d4af6ccc9d7729a190150c1994912ad009a4b09e99
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/53/8d/2f/a9d4c8e58cffde4e60ba7f8aac7495de9bc12cffdc2f947723
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status 'done'
+  Created wheel for MarkupSafe: filename=MarkupSafe-0.23-cp37-cp37m-linux_x86_64.whl size=32685 sha256=4e89ad2dfafa97eb82461a2fbb4fcbb00a7e1896f0959d408db56cd0e2c84fa6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/83/7d/bf/4a59a93a6f9984421409d4c31f3c21b7ef2c9230cc456f955f
+  Building wheel for pandocfilters (setup.py): started
+  Building wheel for pandocfilters (setup.py): finished with status 'done'
+  Created wheel for pandocfilters: filename=pandocfilters-1.4.1-py3-none-any.whl size=7859 sha256=109c40fe4d92693f1861d1b533ba80fbf057a4209528eb15f645a8dfcffc9c49
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/4c/dc/1b/08c207faa739942a3c046147c4db8d9df989f0788094501487
+  Building wheel for pyshp (setup.py): started
+  Building wheel for pyshp (setup.py): finished with status 'done'
+  Created wheel for pyshp: filename=pyshp-1.2.10-py3-none-any.whl size=20468 sha256=7cfbfdbf07383ea69fc73a3f06ae752e8b81125a8046b36972c804869e044928
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/aa/cb/ed/c4af42e7718157f9a76dea841c585e0577742ffed5a5b17d32
+  Building wheel for pyzmq (setup.py): started
+  Building wheel for pyzmq (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"'; __file__='"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-npc2fuzp
+       cwd: /tmp/pip-install-vpfkbahp/pyzmq/
+  Complete output (549 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/zmq
+  copying zmq/__init__.py -> build/lib.linux-x86_64-3.7/zmq
+  copying zmq/error.py -> build/lib.linux-x86_64-3.7/zmq
+  copying zmq/decorators.py -> build/lib.linux-x86_64-3.7/zmq
+  creating build/lib.linux-x86_64-3.7/zmq/ssh
+  copying zmq/ssh/__init__.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+  copying zmq/ssh/tunnel.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+  copying zmq/ssh/forward.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+  creating build/lib.linux-x86_64-3.7/zmq/auth
+  copying zmq/auth/__init__.py -> build/lib.linux-x86_64-3.7/zmq/auth
+  copying zmq/auth/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/auth
+  copying zmq/auth/thread.py -> build/lib.linux-x86_64-3.7/zmq/auth
+  copying zmq/auth/base.py -> build/lib.linux-x86_64-3.7/zmq/auth
+  copying zmq/auth/certs.py -> build/lib.linux-x86_64-3.7/zmq/auth
+  creating build/lib.linux-x86_64-3.7/zmq/auth/asyncio
+  copying zmq/auth/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/auth/asyncio
+  creating build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/__init__.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/attrsettr.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/socket.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/frame.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/poll.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/context.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/constants.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/stopwatch.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/version.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  copying zmq/sugar/tracker.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+  creating build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/win32.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/__init__.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/jsonapi.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/strtypes.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/monitor.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/z85.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/constant_names.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/garbage.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/interop.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/sixcerpt.py -> build/lib.linux-x86_64-3.7/zmq/utils
+  creating build/lib.linux-x86_64-3.7/zmq/log
+  copying zmq/log/__init__.py -> build/lib.linux-x86_64-3.7/zmq/log
+  copying zmq/log/handlers.py -> build/lib.linux-x86_64-3.7/zmq/log
+  creating build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_auth.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_retry_eintr.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_etc.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/__init__.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_monqueue.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_socket.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_z85.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_future.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_decorators.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_message.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_pair.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_version.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_error.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_ioloop.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_device.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_context.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_constants.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_poll.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_log.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_ssh.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_win32_shim.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_imports.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_reqrep.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_includes.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_monitor.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_security.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_pubsub.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_cffi_backend.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  copying zmq/tests/test_multipart.py -> build/lib.linux-x86_64-3.7/zmq/tests
+  creating build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+  copying zmq/tests/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+  copying zmq/tests/asyncio/test_asyncio.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+  copying zmq/tests/asyncio/_test_asyncio.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+  creating build/lib.linux-x86_64-3.7/zmq/backend
+  copying zmq/backend/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend
+  copying zmq/backend/select.py -> build/lib.linux-x86_64-3.7/zmq/backend
+  creating build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/devices.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/socket.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/utils.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/error.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/_poll.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/_cffi.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/context.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/constants.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/message.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  creating build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  creating build/lib.linux-x86_64-3.7/zmq/green
+  copying zmq/green/__init__.py -> build/lib.linux-x86_64-3.7/zmq/green
+  copying zmq/green/device.py -> build/lib.linux-x86_64-3.7/zmq/green
+  copying zmq/green/core.py -> build/lib.linux-x86_64-3.7/zmq/green
+  copying zmq/green/poll.py -> build/lib.linux-x86_64-3.7/zmq/green
+  creating build/lib.linux-x86_64-3.7/zmq/green/eventloop
+  copying zmq/green/eventloop/__init__.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+  copying zmq/green/eventloop/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+  copying zmq/green/eventloop/zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+  creating build/lib.linux-x86_64-3.7/zmq/devices
+  copying zmq/devices/__init__.py -> build/lib.linux-x86_64-3.7/zmq/devices
+  copying zmq/devices/basedevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+  copying zmq/devices/proxydevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+  copying zmq/devices/monitoredqueue.py -> build/lib.linux-x86_64-3.7/zmq/devices
+  copying zmq/devices/monitoredqueuedevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+  creating build/lib.linux-x86_64-3.7/zmq/eventloop
+  copying zmq/eventloop/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+  copying zmq/eventloop/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+  copying zmq/eventloop/zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+  copying zmq/eventloop/future.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+  creating build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/log.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/util.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/stack_context.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  copying zmq/eventloop/minitornado/concurrent.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+  creating build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/posix.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/interface.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/auto.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/common.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  copying zmq/eventloop/minitornado/platform/windows.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+  creating build/lib.linux-x86_64-3.7/zmq/asyncio
+  copying zmq/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/asyncio
+  copying zmq/utils/buffers.pxd -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/ipcmaxlen.h -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/zmq_constants.h -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/pyversion_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/getpid_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/utils/zmq_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+  copying zmq/backend/cffi/_cdefs.h -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cffi/_verify.c -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+  copying zmq/backend/cython/socket.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/context.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/message.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/checkrc.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/libzmq.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/constants.pxi -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/backend/cython/constant_enums.pxi -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+  copying zmq/devices/monitoredqueue.pxd -> build/lib.linux-x86_64-3.7/zmq/devices
+  running build_ext
+  running configure
+  Did not find libzmq via pkg-config.
+  {'libraries': ['zmq'], 'include_dirs': [], 'library_dirs': [], 'runtime_library_dirs': [], 'extra_link_args': []}
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -c build/temp.linux-x86_64-3.7/scratch/check_sys_un.c -o build/temp.linux-x86_64-3.7/scratch/check_sys_un.o
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/scratch/check_sys_un.o -o build/temp.linux-x86_64-3.7/scratch/check_sys_un
+  ************************************************
+  Configure: Autodetecting ZMQ settings...
+      Custom ZMQ dir:
+  creating build/temp.linux-x86_64-3.7/scratch/tmp
+  cc -c /tmp/timer_creatennnelaqe.c -o build/temp.linux-x86_64-3.7/scratch/tmp/timer_creatennnelaqe.o
+  /tmp/timer_creatennnelaqe.c: In function ‘main’:
+  /tmp/timer_creatennnelaqe.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+       timer_create();
+       ^~~~~~~~~~~~
+  cc build/temp.linux-x86_64-3.7/scratch/tmp/timer_creatennnelaqe.o -o build/temp.linux-x86_64-3.7/scratch/a.out
+  build/temp.linux-x86_64-3.7/scratch/tmp/timer_creatennnelaqe.o: In function `main':
+  timer_creatennnelaqe.c:(.text+0x15): undefined reference to `timer_create'
+  collect2: error: ld returned 1 exit status
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Izmq/utils -Izmq/backend/cython -Izmq/devices -c build/temp.linux-x86_64-3.7/scratch/vers.c -o build/temp.linux-x86_64-3.7/scratch/vers.o
+  build/temp.linux-x86_64-3.7/scratch/vers.c:4:10: fatal error: zmq.h: No such file or directory
+   #include "zmq.h"
+            ^~~~~~~
+  compilation terminated.
+  
+  error: command 'gcc' failed with exit status 1
+  
+  Failed with default libzmq, trying again with /usr/local
+  {'libraries': ['zmq'], 'include_dirs': ['/usr/local/include'], 'library_dirs': ['/usr/local/lib'], 'runtime_library_dirs': [], 'extra_link_args': []}
+  ************************************************
+  Configure: Autodetecting ZMQ settings...
+      Custom ZMQ dir:       /usr/local
+  cc -c /tmp/timer_create95blmddm.c -o build/temp.linux-x86_64-3.7/scratch/tmp/timer_create95blmddm.o
+  /tmp/timer_create95blmddm.c: In function ‘main’:
+  /tmp/timer_create95blmddm.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+       timer_create();
+       ^~~~~~~~~~~~
+  Assembler messages:
+  Fatal error: can't create build/temp.linux-x86_64-3.7/scratch/tmp/timer_create95blmddm.o: No such file or directory
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/local/include -Izmq/utils -Izmq/backend/cython -Izmq/devices -c build/temp.linux-x86_64-3.7/scratch/vers.c -o build/temp.linux-x86_64-3.7/scratch/vers.o
+  build/temp.linux-x86_64-3.7/scratch/vers.c:4:10: fatal error: zmq.h: No such file or directory
+   #include "zmq.h"
+            ^~~~~~~
+  compilation terminated.
+  
+  error: command 'gcc' failed with exit status 1
+  
+  ************************************************
+  Warning: Couldn't find an acceptable libzmq on the system.
+  
+  If you expected pyzmq to link against an installed libzmq, please check to make sure:
+  
+      * You have a C compiler installed
+      * A development version of Python is installed (including headers)
+      * A development version of ZMQ >= 3.2 is installed (including headers)
+      * If ZMQ is not in a default location, supply the argument --zmq=<path>
+      * If you did recently install ZMQ to a default location,
+        try rebuilding the ld cache with `sudo ldconfig`
+        or specify zmq's location with `--zmq=/usr/local`
+  
+  You can skip all this detection/waiting nonsense if you know
+  you want pyzmq to bundle libzmq as an extension by passing:
+  
+      `--zmq=bundled`
+  
+  I will now try to build libzmq as a Python extension
+  unless you interrupt me (^C) in the next 10 seconds...
+  
+  
+  10...
+   9...
+   8...
+   7...
+   6...
+   5...
+   4...
+   3...
+   2...
+   1...
+  ************************************************
+  Using bundled libzmq
+  already have bundled/zeromq
+  attempting ./configure to generate platform.hpp
+  Warning: failed to configure libzmq:
+  b'/bin/sh: 1: ./configure: not found\n'
+  staging platform.hpp from: /tmp/pip-install-vpfkbahp/pyzmq/buildutils/include_linux
+  ************************************************
+  checking for timer_create
+  creating build/temp.linux-x86_64-3.7/tmp
+  cc -c /tmp/timer_createqkpt9v4g.c -o build/temp.linux-x86_64-3.7/tmp/timer_createqkpt9v4g.o
+  /tmp/timer_createqkpt9v4g.c: In function ‘main’:
+  /tmp/timer_createqkpt9v4g.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+       timer_create();
+       ^~~~~~~~~~~~
+  cc build/temp.linux-x86_64-3.7/tmp/timer_createqkpt9v4g.o -o build/temp.linux-x86_64-3.7/a.out
+  build/temp.linux-x86_64-3.7/tmp/timer_createqkpt9v4g.o: In function `main':
+  timer_createqkpt9v4g.c:(.text+0x15): undefined reference to `timer_create'
+  collect2: error: ld returned 1 exit status
+  no timer_create, linking librt
+  ************************************************
+  building 'zmq.libzmq' extension
+  creating build/temp.linux-x86_64-3.7/buildutils
+  creating build/temp.linux-x86_64-3.7/bundled
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq/src
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib
+  creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c buildutils/initlibzmq.c -o build/temp.linux-x86_64-3.7/buildutils/initlibzmq.o
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_mechanism_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_mechanism_base.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/clock.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/clock.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v2_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_decoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/stream_engine.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream_engine.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/req.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/req.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/rep.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/rep.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pub.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/msg.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/msg.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ip.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ip.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/curve_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_client.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/raw_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_decoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/options.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/options.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/null_mechanism.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/null_mechanism.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mtrie.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mtrie.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/xsub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xsub.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/curve_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_server.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_sender.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_sender.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_socket.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_socket.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/stream.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/fq.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/fq.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/xpub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xpub.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/poll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poll.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/dist.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dist.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/kqueue.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/kqueue.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/zmq.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_address.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall [0m[91m-Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pull.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pull.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_connecter.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/signaler.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/signaler.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/router.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/router.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/io_thread.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_thread.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pair.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pair.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v1_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_encoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_connecter.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v1_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_decoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v2_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_encoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/address.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_address.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/proxy.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/proxy.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_client.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/zmq_utils.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq_utils.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_listener.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ctx.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ctx.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/err.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/err.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/own.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/own.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socket_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socket_base.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/raw_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_encoder.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/thread.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/thread.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socks_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks_connecter.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_listener.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/epoll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/epoll.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/sub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/sub.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/lb.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/lb.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/reaper.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/reaper.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/io_object.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_object.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/random.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/random.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/precompiled.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/precompiled.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_connecter.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/metadata.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/metadata.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/dealer.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dealer.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/devpoll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/devpoll.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socks.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/session_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/session_base.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_address.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_receiver.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_receiver.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mailbox.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mailbox.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/poller_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poller_base.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/object.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/object.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_server.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/plain_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_server.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/plain_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_client.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/push.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/push.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mechanism.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mechanism.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_listener.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pipe.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pipe.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/norm_engine.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/norm_engine.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/trie.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/trie.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/select.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/select.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/tweetnacl/src/tweetnacl.c -o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src/tweetnacl.o
+  bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘vn’:
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   #define FOR(i,n) for (i = 0;i < n;++i)
+                                 ^
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:66:3: note: in expansion of macro ‘FOR’
+     FOR(i,n) d |= x[i]^y[i];
+     ^~~
+  bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘crypto_sign’:
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   #define FOR(i,n) for (i = 0;i < n;++i)
+                                 ^
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:732:3: note: in expansion of macro ‘FOR’
+     FOR(i,n) sm[64 + i] = m[i];
+     ^~~
+  bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘crypto_sign_open’:
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   #define FOR(i,n) for (i = 0;i < n;++i)
+                                 ^
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:799:3: note: in expansion of macro ‘FOR’
+     FOR(i,n) m[i] = sm[i];
+     ^~~
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   #define FOR(i,n) for (i = 0;i < n;++i)
+                                 ^
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:811:5: note: in expansion of macro ‘FOR’
+       FOR(i,n) m[i] = 0;
+       ^~~
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   #define FOR(i,n) for (i = 0;i < n;++i)
+                                 ^
+  bundled/zeromq/tweetnacl/src/tweetnacl.c:815:3: note: in expansion of macro ‘FOR’
+     FOR(i,n) m[i] = sm[i + 64];
+     ^~~
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.c -o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.o
+  g++ -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,-[0m[91m-sysroot=/ build/temp.linux-x86_64-3.7/buildutils/initlibzmq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_mechanism_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/clock.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream_engine.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/req.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/rep.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/msg.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ip.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/options.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/null_mechanism.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mtrie.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xsub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_sender.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_socket.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/fq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xpub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dist.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/kqueue.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pull.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/signaler.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/router.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_thread.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pair.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/proxy.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq_utils.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ctx.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/err.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/own.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socket_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/thread.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/epoll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/sub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/lb.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/reaper.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_object.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/random.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/precompiled.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/metadata.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dealer.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/devpoll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/session_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_receiver.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mailbox.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poller_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/object.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/push.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mechanism.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pipe.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/norm_engine.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/trie.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/select.o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src/tweetnacl.o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.o -lrt -o build/lib.linux-x86_64-3.7/zmq/libzmq.cpython-37m-x86_64-linux-gnu.so
+  building 'zmq.backend.cython._device' extension
+  creating build/temp.linux-x86_64-3.7/zmq
+  creating build/temp.linux-x86_64-3.7/zmq/backend
+  creating build/temp.linux-x86_64-3.7/zmq/backend/cython
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DHAVE_SYS_UN_H=1 -Ibundled/zeromq/include -Izmq/utils -Izmq/backend/cython -Izmq/devices -I/srv/conda/envs/notebook/include/python3.7m -c zmq/backend/cython/_device.c -o build/temp.linux-x86_64-3.7/zmq/backend/cython/_device.o
+  zmq/backend/cython/_device.c: In function ‘__pyx_pf_3zmq_7backend_6cython_7_device_device’:
+  zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+  zmq/backend/cython/_device.c:1343:9: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c: In function ‘__pyx_f_3zmq_7backend_6cython_7checkrc__check_rc’:
+  zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+  zmq/backend/cython/_device.c:2070:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+           if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+  zmq/backend/cython/_device.c:2170:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+           if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+  zmq/backend/cython/_device.c:2270:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+           if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+  zmq/backend/cython/_device.c:2361:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+           if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c: In function ‘__Pyx_PyCFunction_FastCall’:
+  zmq/backend/cython/_device.c:3093:13: error: too many arguments to function ‘(PyObject * (*)(PyObject *, PyObject * const*, Py_ssize_t))meth’
+       return (*((__Pyx_PyCFunctionFast)meth)) (self, args, nargs, NULL);
+              ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  zmq/backend/cython/_device.c:3084:9: warning: unused variable ‘flags’ [-Wunused-variable]
+       int flags;
+           ^~~~~
+  zmq/backend/cython/_device.c:3083:15: warning: unused variable ‘result’ [-Wunused-variable]
+       PyObject *result;
+                 ^~~~~~
+  zmq/backend/cython/_device.c: In function ‘__Pyx__ExceptionSave’:
+  zmq/backend/cython/_device.c:3120:21: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       *type = tstate->exc_type;
+                       ^~~~~~~~
+                       curexc_type
+  zmq/backend/cython/_device.c:3121:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       *value = tstate->exc_value;
+                        ^~~~~~~~~
+                        curexc_value
+  zmq/backend/cython/_device.c:3122:19: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       *tb = tstate->exc_traceback;
+                     ^~~~~~~~~~~~~
+                     curexc_traceback
+  zmq/backend/cython/_device.c: In function ‘__Pyx__ExceptionReset’:
+  zmq/backend/cython/_device.c:3129:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  zmq/backend/cython/_device.c:3130:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  zmq/backend/cython/_device.c:3131:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  zmq/backend/cython/_device.c:3132:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tstate->exc_type = type;
+               ^~~~~~~~
+               curexc_type
+  zmq/backend/cython/_device.c:3133:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tstate->exc_value = value;
+               ^~~~~~~~~
+               curexc_value
+  zmq/backend/cython/_device.c:3134:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tstate->exc_traceback = tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  zmq/backend/cython/_device.c: In function ‘__Pyx__GetException’:
+  zmq/backend/cython/_device.c:3189:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  zmq/backend/cython/_device.c:3190:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  zmq/backend/cython/_device.c:3191:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  zmq/backend/cython/_device.c:3192:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tstate->exc_type = local_type;
+               ^~~~~~~~
+               curexc_type
+  zmq/backend/cython/_device.c:3193:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tstate->exc_value = local_value;
+               ^~~~~~~~~
+               curexc_value
+  zmq/backend/cython/_device.c:3194:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tstate->exc_traceback = local_tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  error: command 'gcc' failed with exit status 1
+  ----------------------------------------
+  ERROR: Failed building wheel for pyzmq
+[0m  Running setup.py clean for pyzmq
+  Building wheel for simplegeneric (setup.py): started
+  Building wheel for simplegeneric (setup.py): finished with status 'done'
+  Created wheel for simplegeneric: filename=simplegeneric-0.8.1-py3-none-any.whl size=5075 sha256=b58a579e2a3ad27b092294b6f0a255d9842aa91aedf763e87ca0db0bb681533d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/90/de/df/f1324f4dd966636ab877b82d467acad38a0998b1c42ddb7288
+  Building wheel for terminado (setup.py): started
+  Building wheel for terminado (setup.py): finished with status 'done'
+  Created wheel for terminado: filename=terminado-0.6-py2.py3-none-any.whl size=12507 sha256=dfb0f0bbe488af2e09c65adc1ddb89ccea22ba7126fb7a40d5d72c0a04031d9f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/a4/10/e5/f2ddad8633076c00292e0f243fb7c24a2a005fdd188e51cb85
+  Building wheel for tornado (setup.py): started
+  Building wheel for tornado (setup.py): finished with status 'done'
+  Created wheel for tornado: filename=tornado-4.4.2-cp37-cp37m-linux_x86_64.whl size=413314 sha256=1434940c4c121eb60fd18075107d17697dee091012c5db05110abcffa18e2dbd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-twppqcps/wheels/02/f6/4f/cf35cf41c75e4174569e0308982fe90dfce8022c2cbfd81eb4
+Successfully built folium html5lib MarkupSafe pandocfilters pyshp simplegeneric terminado tornado
+Failed to build pyzmq
+[91mERROR: jupyterlab 1.2.6 has requirement jinja2>=2.10, but you'll have jinja2 2.8 which is incompatible.
+[0m[91mERROR: jupyterlab 1.2.6 has requirement notebook>=4.3.1, but you'll have notebook 4.3.0 which is incompatible.
+ERROR: jupyterlab-server 1.0.6 has requirement jinja2>=2.10, but you'll have jinja2 2.8 which is incompatible.
+ERROR: jupyterlab-server 1.0.6 has requirement jsonschema>=3.0.1, but you'll have jsonschema 2.5.1 which is incompatible.
+[0m[91mERROR: jupyterhub 1.1.0 has requirement tornado>=5.0, but you'll have tornado 4.4.2 which is incompatible.
+ERROR: jupyterhub 1.1.0 has requirement traitlets>=4.3.2, but you'll have traitlets 4.3.1 which is incompatible.
+[0mInstalling collected packages: appnope, six, html5lib, bleach, decorator, entrypoints, MarkupSafe, Jinja2, folium, ipython-genutils, traitlets, jupyter-core, pyzmq, jupyter-client, tornado, Pygments, pickleshare, ptyprocess, pexpect, wcwidth, prompt-toolkit, simplegeneric, ipython, ipykernel, jsonschema, nbformat, testpath, pandocfilters, mistune, nbconvert, terminado, notebook, widgetsnbextension, ipywidgets, jupyter-console, qtconsole, jupyter, pyshp
+  Attempting uninstall: six
+    Found existing installation: six 1.14.0
+    Uninstalling six-1.14.0:
+      Successfully uninstalled six-1.14.0
+  Attempting uninstall: bleach
+    Found existing installation: bleach 3.1.0
+    Uninstalling bleach-3.1.0:
+      Successfully uninstalled bleach-3.1.0
+  Attempting uninstall: decorator
+    Found existing installation: decorator 4.4.1
+    Uninstalling decorator-4.4.1:
+      Successfully uninstalled decorator-4.4.1
+  Attempting uninstall: entrypoints
+    Found existing installation: entrypoints 0.3
+    Uninstalling entrypoints-0.3:
+      Successfully uninstalled entrypoints-0.3
+  Attempting uninstall: MarkupSafe
+    Found existing installation: MarkupSafe 1.1.1
+    Uninstalling MarkupSafe-1.1.1:
+      Successfully uninstalled MarkupSafe-1.1.1
+  Attempting uninstall: Jinja2
+    Found existing installation: Jinja2 2.11.0
+    Uninstalling Jinja2-2.11.0:
+      Successfully uninstalled Jinja2-2.11.0
+  Attempting uninstall: ipython-genutils
+    Found existing installation: ipython-genutils 0.2.0
+    Uninstalling ipython-genutils-0.2.0:
+      Successfully uninstalled ipython-genutils-0.2.0
+  Attempting uninstall: traitlets
+    Found existing installation: traitlets 4.3.3
+    Uninstalling traitlets-4.3.3:
+      Successfully uninstalled traitlets-4.3.3
+  Attempting uninstall: jupyter-core
+    Found existing installation: jupyter-core 4.6.1
+    Uninstalling jupyter-core-4.6.1:
+      Successfully uninstalled jupyter-core-4.6.1
+  Attempting uninstall: pyzmq
+    Found existing installation: pyzmq 18.1.1
+    Uninstalling pyzmq-18.1.1:
+      Successfully uninstalled pyzmq-18.1.1
+    Running setup.py install for pyzmq: started
+    Running setup.py install for pyzmq: finished with status 'error'
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"'; __file__='"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-hivs0pzs/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/pyzmq
+         cwd: /tmp/pip-install-vpfkbahp/pyzmq/
+    Complete output (546 lines):
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-x86_64-3.7
+    creating build/lib.linux-x86_64-3.7/zmq
+    copying zmq/__init__.py -> build/lib.linux-x86_64-3.7/zmq
+    copying zmq/error.py -> build/lib.linux-x86_64-3.7/zmq
+    copying zmq/decorators.py -> build/lib.linux-x86_64-3.7/zmq
+    creating build/lib.linux-x86_64-3.7/zmq/ssh
+    copying zmq/ssh/__init__.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+    copying zmq/ssh/tunnel.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+    copying zmq/ssh/forward.py -> build/lib.linux-x86_64-3.7/zmq/ssh
+    creating build/lib.linux-x86_64-3.7/zmq/auth
+    copying zmq/auth/__init__.py -> build/lib.linux-x86_64-3.7/zmq/auth
+    copying zmq/auth/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/auth
+    copying zmq/auth/thread.py -> build/lib.linux-x86_64-3.7/zmq/auth
+    copying zmq/auth/base.py -> build/lib.linux-x86_64-3.7/zmq/auth
+    copying zmq/auth/certs.py -> build/lib.linux-x86_64-3.7/zmq/auth
+    creating build/lib.linux-x86_64-3.7/zmq/auth/asyncio
+    copying zmq/auth/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/auth/asyncio
+    creating build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/__init__.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/attrsettr.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/socket.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/frame.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/poll.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/context.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/constants.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/stopwatch.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/version.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    copying zmq/sugar/tracker.py -> build/lib.linux-x86_64-3.7/zmq/sugar
+    creating build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/win32.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/__init__.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/jsonapi.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/strtypes.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/monitor.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/z85.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/constant_names.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/garbage.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/interop.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/sixcerpt.py -> build/lib.linux-x86_64-3.7/zmq/utils
+    creating build/lib.linux-x86_64-3.7/zmq/log
+    copying zmq/log/__init__.py -> build/lib.linux-x86_64-3.7/zmq/log
+    copying zmq/log/handlers.py -> build/lib.linux-x86_64-3.7/zmq/log
+    creating build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_auth.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_retry_eintr.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_etc.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/__init__.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_monqueue.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_socket.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_z85.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_future.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_decorators.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_message.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_pair.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_version.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_error.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_ioloop.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_device.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_context.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_constants.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_poll.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_log.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_ssh.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_win32_shim.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_imports.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_reqrep.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_includes.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_monitor.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_security.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_pubsub.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_cffi_backend.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    copying zmq/tests/test_multipart.py -> build/lib.linux-x86_64-3.7/zmq/tests
+    creating build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+    copying zmq/tests/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+    copying zmq/tests/asyncio/test_asyncio.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+    copying zmq/tests/asyncio/_test_asyncio.py -> build/lib.linux-x86_64-3.7/zmq/tests/asyncio
+    creating build/lib.linux-x86_64-3.7/zmq/backend
+    copying zmq/backend/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend
+    copying zmq/backend/select.py -> build/lib.linux-x86_64-3.7/zmq/backend
+    creating build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/devices.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/socket.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/utils.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/error.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/_poll.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/_cffi.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/context.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/constants.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/message.py -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    creating build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/__init__.py -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    creating build/lib.linux-x86_64-3.7/zmq/green
+    copying zmq/green/__init__.py -> build/lib.linux-x86_64-3.7/zmq/green
+    copying zmq/green/device.py -> build/lib.linux-x86_64-3.7/zmq/green
+    copying zmq/green/core.py -> build/lib.linux-x86_64-3.7/zmq/green
+    copying zmq/green/poll.py -> build/lib.linux-x86_64-3.7/zmq/green
+    creating build/lib.linux-x86_64-3.7/zmq/green/eventloop
+    copying zmq/green/eventloop/__init__.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+    copying zmq/green/eventloop/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+    copying zmq/green/eventloop/zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/green/eventloop
+    creating build/lib.linux-x86_64-3.7/zmq/devices
+    copying zmq/devices/__init__.py -> build/lib.linux-x86_64-3.7/zmq/devices
+    copying zmq/devices/basedevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+    copying zmq/devices/proxydevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+    copying zmq/devices/monitoredqueue.py -> build/lib.linux-x86_64-3.7/zmq/devices
+    copying zmq/devices/monitoredqueuedevice.py -> build/lib.linux-x86_64-3.7/zmq/devices
+    creating build/lib.linux-x86_64-3.7/zmq/eventloop
+    copying zmq/eventloop/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+    copying zmq/eventloop/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+    copying zmq/eventloop/zmqstream.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+    copying zmq/eventloop/future.py -> build/lib.linux-x86_64-3.7/zmq/eventloop
+    creating build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/log.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/ioloop.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/util.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/stack_context.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    copying zmq/eventloop/minitornado/concurrent.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado
+    creating build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/posix.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/__init__.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/interface.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/auto.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/common.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    copying zmq/eventloop/minitornado/platform/windows.py -> build/lib.linux-x86_64-3.7/zmq/eventloop/minitornado/platform
+    creating build/lib.linux-x86_64-3.7/zmq/asyncio
+    copying zmq/asyncio/__init__.py -> build/lib.linux-x86_64-3.7/zmq/asyncio
+    copying zmq/utils/buffers.pxd -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/ipcmaxlen.h -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/zmq_constants.h -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/pyversion_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/getpid_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/utils/zmq_compat.h -> build/lib.linux-x86_64-3.7/zmq/utils
+    copying zmq/backend/cffi/_cdefs.h -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cffi/_verify.c -> build/lib.linux-x86_64-3.7/zmq/backend/cffi
+    copying zmq/backend/cython/socket.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/context.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/message.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/checkrc.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/libzmq.pxd -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/constants.pxi -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/backend/cython/constant_enums.pxi -> build/lib.linux-x86_64-3.7/zmq/backend/cython
+    copying zmq/devices/monitoredqueue.pxd -> build/lib.linux-x86_64-3.7/zmq/devices
+    running build_ext
+    running configure
+    Did not find libzmq via pkg-config.
+    {'libraries': ['zmq'], 'include_dirs': [], 'library_dirs': [], 'runtime_library_dirs': [], 'extra_link_args': []}
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -c build/temp.linux-x86_64-3.7/scratch/check_sys_un.c -o build/temp.linux-x86_64-3.7/scratch/check_sys_un.o
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/scratch/check_sys_un.o -o build/temp.linux-x86_64-3.7/scratch/check_sys_un
+    ************************************************
+    Configure: Autodetecting ZMQ settings...
+        Custom ZMQ dir:
+    creating build/temp.linux-x86_64-3.7/scratch/tmp
+    cc -c /tmp/timer_createumqnu6xk.c -o build/temp.linux-x86_64-3.7/scratch/tmp/timer_createumqnu6xk.o
+    /tmp/timer_createumqnu6xk.c: In function ‘main’:
+    /tmp/timer_createumqnu6xk.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+         timer_create();
+         ^~~~~~~~~~~~
+    cc build/temp.linux-x86_64-3.7/scratch/tmp/timer_createumqnu6xk.o -o build/temp.linux-x86_64-3.7/scratch/a.out
+    build/temp.linux-x86_64-3.7/scratch/tmp/timer_createumqnu6xk.o: In function `main':
+    timer_createumqnu6xk.c:(.text+0x15): undefined reference to `timer_create'
+    collect2: error: ld returned 1 exit status
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Izmq/utils -Izmq/backend/cython -Izmq/devices -c build/temp.linux-x86_64-3.7/scratch/vers.c -o build/temp.linux-x86_64-3.7/scratch/vers.o
+    build/temp.linux-x86_64-3.7/scratch/vers.c:4:10: fatal error: zmq.h: No such file or directory
+     #include "zmq.h"
+              ^~~~~~~
+    compilation terminated.
+    
+    error: command 'gcc' failed with exit status 1
+    
+    Failed with default libzmq, trying again with /usr/local
+    {'libraries': ['zmq'], 'include_dirs': ['/usr/local/include'], 'library_dirs': ['/usr/local/lib'], 'runtime_library_dirs': [], 'extra_link_args': []}
+    ************************************************
+    Configure: Autodetecting ZMQ settings...
+        Custom ZMQ dir:       /usr/local
+    cc -c /tmp/timer_createpli94caz.c -o build/temp.linux-x86_64-3.7/scratch/tmp/timer_createpli94caz.o
+    /tmp/timer_createpli94caz.c: In function ‘main’:
+    /tmp/timer_createpli94caz.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+         timer_create();
+         ^~~~~~~~~~~~
+    Assembler messages:
+    Fatal error: can't create build/temp.linux-x86_64-3.7/scratch/tmp/timer_createpli94caz.o: No such file or directory
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/local/include -Izmq/utils -Izmq/backend/cython -Izmq/devices -c build/temp.linux-x86_64-3.7/scratch/vers.c -o build/temp.linux-x86_64-3.7/scratch/vers.o
+    build/temp.linux-x86_64-3.7/scratch/vers.c:4:10: fatal error: zmq.h: No such file or directory
+     #include "zmq.h"
+              ^~~~~~~
+    compilation terminated.
+    
+    error: command 'gcc' failed with exit status 1
+    
+    ************************************************
+    Warning: Couldn't find an acceptable libzmq on the system.
+    
+    If you expected pyzmq to link against an installed libzmq, please check to make sure:
+    
+        * You have a C compiler installed
+        * A development version of Python is installed (including headers)
+        * A development version of ZMQ >= 3.2 is installed (including headers)
+        * If ZMQ is not in a default location, supply the argument --zmq=<path>
+        * If you did recently install ZMQ to a default location,
+          try rebuilding the ld cache with `sudo ldconfig`
+          or specify zmq's location with `--zmq=/usr/local`
+    
+    You can skip all this detection/waiting nonsense if you know
+    you want pyzmq to bundle libzmq as an extension by passing:
+    
+        `--zmq=bundled`
+    
+    I will now try to build libzmq as a Python extension
+    unless you interrupt me (^C) in the next 10 seconds...
+    
+    
+    10...
+     9...
+     8...
+     7...
+     6...
+     5...
+     4...
+     3...
+     2...
+     1...
+    ************************************************
+    Using bundled libzmq
+    already have bundled/zeromq
+    already have platform.hpp
+    ************************************************
+    checking for timer_create
+    creating build/temp.linux-x86_64-3.7/tmp
+    cc -c /tmp/timer_createq_92645i.c -o build/temp.linux-x86_64-3.7/tmp/timer_createq_92645i.o
+    /tmp/timer_createq_92645i.c: In function ‘main’:
+    /tmp/timer_createq_92645i.c:2:5: warning: implicit declaration of function ‘timer_create’ [-Wimplicit-function-declaration]
+         timer_create();
+         ^~~~~~~~~~~~
+    cc build/temp.linux-x86_64-3.7/tmp/timer_createq_92645i.o -o build/temp.linux-x86_64-3.7/a.out
+    build/temp.linux-x86_64-3.7/tmp/timer_createq_92645i.o: In function `main':
+    timer_createq_92645i.c:(.text+0x15): undefined reference to `timer_create'
+    collect2: error: ld returned 1 exit status
+    no timer_create, linking librt
+    ************************************************
+    building 'zmq.libzmq' extension
+    creating build/temp.linux-x86_64-3.7/buildutils
+    creating build/temp.linux-x86_64-3.7/bundled
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq/src
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib
+    creating build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c buildutils/initlibzmq.c -o build/temp.linux-x86_64-3.7/buildutils/initlibzmq.o
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_mechanism_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_mechanism_base.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/clock.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/clock.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v2_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_decoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/stream_engine.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream_engine.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/req.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/req.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/rep.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/rep.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pub.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/msg.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/msg.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ip.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ip.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/curve_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_client.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/raw_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_decoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/options.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/options.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/null_mechanism.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/null_mechanism.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mtrie.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mtrie.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/xsub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xsub.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/curve_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_server.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_sender.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_sender.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_socket.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_socket.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/stream.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/fq.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/fq.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/xpub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xpub.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/poll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poll.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/dist.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dist.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/kqueue.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/kqueue.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/zmq.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Ws[0m[91mtrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_address.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pull.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pull.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_connecter.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/signaler.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/signaler.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/router.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/router.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/io_thread.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_thread.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pair.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pair.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v1_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_encoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_connecter.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v1_decoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_decoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/v2_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_encoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/address.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_address.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/proxy.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/proxy.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_client.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/zmq_utils.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq_utils.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tipc_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_listener.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ctx.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ctx.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/err.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/err.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/own.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/own.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socket_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socket_base.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/raw_encoder.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_encoder.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/thread.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/thread.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socks_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks_connecter.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_listener.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/epoll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/epoll.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/sub.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/sub.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/lb.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/lb.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/reaper.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/reaper.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/io_object.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_object.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/random.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/random.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/precompiled.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/precompiled.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_connecter.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_connecter.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/metadata.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/metadata.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/dealer.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dealer.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/devpoll.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/devpoll.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/socks.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/session_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/session_base.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/tcp_address.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_address.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pgm_receiver.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_receiver.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mailbox.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mailbox.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/poller_base.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poller_base.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/object.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/object.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/gssapi_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_server.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/plain_server.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_server.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/plain_client.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_client.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/push.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/push.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/mechanism.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mechanism.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/ipc_listener.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_listener.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/pipe.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pipe.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/norm_engine.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/norm_engine.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/trie.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/trie.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/src/select.cpp -o build/temp.linux-x86_64-3.7/bundled/zeromq/src/select.o
+    cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/tweetnacl/src/tweetnacl.c -o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src/tweetnacl.o
+    bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘vn’:
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     #define FOR(i,n) for (i = 0;i < n;++i)
+                                   ^
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:66:3: note: in expansion of macro ‘FOR’
+       FOR(i,n) d |= x[i]^y[i];
+       ^~~
+    bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘crypto_sign’:
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     #define FOR(i,n) for (i = 0;i < n;++i)
+                                   ^
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:732:3: note: in expansion of macro ‘FOR’
+       FOR(i,n) sm[64 + i] = m[i];
+       ^~~
+    bundled/zeromq/tweetnacl/src/tweetnacl.c: In function ‘crypto_sign_open’:
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     #define FOR(i,n) for (i = 0;i < n;++i)
+                                   ^
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:799:3: note: in expansion of macro ‘FOR’
+       FOR(i,n) m[i] = sm[i];
+       ^~~
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     #define FOR(i,n) for (i = 0;i < n;++i)
+                                   ^
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:811:5: note: in expansion of macro ‘FOR’
+         FOR(i,n) m[i] = 0;
+         ^~~
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:9:31: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     #define FOR(i,n) for (i = 0;i < n;++i)
+  [0m[91m                                 ^
+    bundled/zeromq/tweetnacl/src/tweetnacl.c:815:3: note: in expansion of macro ‘FOR’
+       FOR(i,n) m[i] = sm[i + 64];
+       ^~~
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DZMQ_HAVE_CURVE=1 -DZMQ_USE_TWEETNACL=1 -DZMQ_USE_EPOLL=1 -Ibundled/zeromq/include -Ibundled/zeromq/tweetnacl/src -Ibundled/zeromq/tweetnacl/contrib/randombytes -Ibundled -I/srv/conda/envs/notebook/include/python3.7m -c bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.c -o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.o
+    g++ -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/buildutils/initlibzmq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_mechanism_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/clock.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream_engine.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/req.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/rep.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/msg.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ip.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/options.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/null_mechanism.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mtrie.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xsub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/curve_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_sender.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_socket.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/stream.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/fq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/xpub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dist.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/kqueue.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pull.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/signaler.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/router.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_thread.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pair.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v1_decoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/v2_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/proxy.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/zmq_utils.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tipc_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ctx.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/err.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/own.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socket_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/raw_encoder.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/thread.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/epoll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/sub.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/lb.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/reaper.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/io_object.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/random.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/precompiled.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_connecter.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/metadata.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/dealer.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/devpoll.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/socks.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/session_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/tcp_address.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pgm_receiver.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mailbox.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/poller_base.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/object.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/gssapi_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_server.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/plain_client.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/push.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/mechanism.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/ipc_listener.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/pipe.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/norm_engine.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/trie.o build/temp.linux-x86_64-3.7/bundled/zeromq/src/select.o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/src/tweetnacl.o build/temp.linux-x86_64-3.7/bundled/zeromq/tweetnacl/contrib/randombytes/devurandom.o -lrt -o build/lib.linux-x86_64-3.7/zmq/libzmq.cpython-37m-x86_64-linux-gnu.so
+    building 'zmq.backend.cython._device' extension
+    creating build/temp.linux-x86_64-3.7/zmq
+    creating build/temp.linux-x86_64-3.7/zmq/backend
+    creating build/temp.linux-x86_64-3.7/zmq/backend/cython
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -DHAVE_SYS_UN_H=1 -Ibundled/zeromq/include -Izmq/utils -Izmq/backend/cython -Izmq/devices -I/srv/conda/envs/notebook/include/python3.7m -c zmq/backend/cython/_device.c -o build/temp.linux-x86_64-3.7/zmq/backend/cython/_device.o
+    zmq/backend/cython/_device.c: In function ‘__pyx_pf_3zmq_7backend_6cython_7_device_device’:
+    zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+    zmq/backend/cython/_device.c:1343:9: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+         if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c: In function ‘__pyx_f_3zmq_7backend_6cython_7checkrc__check_rc’:
+    zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+    zmq/backend/cython/_device.c:2070:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+             if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+    zmq/backend/cython/_device.c:2170:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+             if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+    zmq/backend/cython/_device.c:2270:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+             if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c:193:48: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         ((PyCFunction_Check(func) && METH_FASTCALL == PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)))
+    zmq/backend/cython/_device.c:2361:13: note: in expansion of macro ‘__Pyx_PyFastCFunction_Check’
+             if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c: In function ‘__Pyx_PyCFunction_FastCall’:
+    zmq/backend/cython/_device.c:3093:13: error: too many arguments to function ‘(PyObject * (*)(PyObject *, PyObject * const*, Py_ssize_t))meth’
+         return (*((__Pyx_PyCFunctionFast)meth)) (self, args, nargs, NULL);
+                ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    zmq/backend/cython/_device.c:3084:9: warning: unused variable ‘flags’ [-Wunused-variable]
+         int flags;
+             ^~~~~
+    zmq/backend/cython/_device.c:3083:15: warning: unused variable ‘result’ [-Wunused-variable]
+         PyObject *result;
+                   ^~~~~~
+    zmq/backend/cython/_device.c: In function ‘__Pyx__ExceptionSave’:
+    zmq/backend/cython/_device.c:3120:21: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         *type = tstate->exc_type;
+                         ^~~~~~~~
+                         curexc_type
+    zmq/backend/cython/_device.c:3121:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         *value = tstate->exc_value;
+                          ^~~~~~~~~
+                          curexc_value
+    zmq/backend/cython/_device.c:3122:19: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         *tb = tstate->exc_traceback;
+                       ^~~~~~~~~~~~~
+                       curexc_traceback
+    zmq/backend/cython/_device.c: In function ‘__Pyx__ExceptionReset’:
+    zmq/backend/cython/_device.c:3129:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tmp_type = tstate->exc_type;
+                            ^~~~~~~~
+                            curexc_type
+    zmq/backend/cython/_device.c:3130:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tmp_value = tstate->exc_value;
+                             ^~~~~~~~~
+                             curexc_value
+    zmq/backend/cython/_device.c:3131:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tmp_tb = tstate->exc_traceback;
+                          ^~~~~~~~~~~~~
+                          curexc_traceback
+    zmq/backend/cython/_device.c:3132:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tstate->exc_type = type;
+                 ^~~~~~~~
+                 curexc_type
+    zmq/backend/cython/_device.c:3133:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tstate->exc_value = value;
+                 ^~~~~~~~~
+                 curexc_value
+    zmq/backend/cython/_device.c:3134:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tstate->exc_traceback = tb;
+                 ^~~~~~~~~~~~~
+                 curexc_traceback
+    zmq/backend/cython/_device.c: In function ‘__Pyx__GetException’:
+    zmq/backend/cython/_device.c:3189:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tmp_type = tstate->exc_type;
+                            ^~~~~~~~
+                            curexc_type
+    zmq/backend/cython/_device.c:3190:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tmp_value = tstate->exc_value;
+                             ^~~~~~~~~
+                             curexc_value
+    zmq/backend/cython/_device.c:3191:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tmp_tb = tstate->exc_traceback;
+                          ^~~~~~~~~~~~~
+                          curexc_traceback
+    zmq/backend/cython/_device.c:3192:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tstate->exc_type = local_type;
+                 ^~~~~~~~
+                 curexc_type
+    zmq/backend/cython/_device.c:3193:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tstate->exc_value = local_value;
+                 ^~~~~~~~~
+                 curexc_value
+    zmq/backend/cython/_device.c:3194:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tstate->exc_traceback = local_tb;
+                 ^~~~~~~~~~~~~
+                 curexc_traceback
+    error: command 'gcc' failed with exit status 1
+    ----------------------------------------
+[0m  Rolling back uninstall of pyzmq
+  Moving to /srv/conda/envs/notebook/lib/python3.7/site-packages/pyzmq-18.1.1-py3.7.egg-info
+   from /srv/conda/envs/notebook/lib/python3.7/site-packages/~yzmq-18.1.1-py3.7.egg-info
+  Moving to /srv/conda/envs/notebook/lib/python3.7/site-packages/zmq/
+   from /srv/conda/envs/notebook/lib/python3.7/site-packages/~mq
+[91mERROR: Command errored out with exit status 1: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"'; __file__='"'"'/tmp/pip-install-vpfkbahp/pyzmq/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-hivs0pzs/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/pyzmq Check the logs for full command output.
+[0mRemoving intermediate container f210e2661a25
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-marcellobenigno-webmapping:b3457d2', '/tmp/r2d-test-2020-07-20T12.42u9uxcoda/github.com/marcellobenigno/webmapping']' returned non-zero exit status 1.

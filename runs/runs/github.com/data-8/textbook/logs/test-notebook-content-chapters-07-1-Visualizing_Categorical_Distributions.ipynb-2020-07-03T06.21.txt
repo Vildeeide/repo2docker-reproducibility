@@ -1,0 +1,5 @@
+[I 200703 06:40:47 inrepo:35] Testing notebook content/chapters/07/1/Visualizing_Categorical_Distributions.ipynb
+[I 200703 06:40:49 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:57 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/07/1/Visualizing_Categorical_Distributions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

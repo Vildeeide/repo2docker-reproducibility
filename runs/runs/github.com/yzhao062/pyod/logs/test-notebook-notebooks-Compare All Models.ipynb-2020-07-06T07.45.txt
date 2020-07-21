@@ -1,0 +1,104 @@
+[I 200706 08:39:21 inrepo:35] Testing notebook notebooks/Compare All Models.ipynb
+[I 200706 08:39:22 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Fit the models with the generated data and 
+# compare model performances
+for i, offset in enumerate(clusters_separation):
+    np.random.seed(42)
+    # Data generation
+    X1 = 0.3 * np.random.randn(n_inliers // 2, 2) - offset
+    X2 = 0.3 * np.random.randn(n_inliers // 2, 2) + offset
+    X = np.r_[X1, X2]
+    # Add outliers
+    X = np.r_[X, np.random.uniform(low=-6, high=6, size=(n_outliers, 2))]
+
+    # Fit the model
+    plt.figure(figsize=(15, 12))
+    for i, (clf_name, clf) in enumerate(classifiers.items()):
+        print(i + 1, 'fitting', clf_name)
+        # fit the data and tag outliers
+        clf.fit(X)
+        scores_pred = clf.decision_function(X) * -1
+        y_pred = clf.predict(X)
+        threshold = percentile(scores_pred, 100 * outliers_fraction)
+        n_errors = (y_pred != ground_truth).sum()
+        # plot the levels lines and the points
+
+        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()]) * -1
+        Z = Z.reshape(xx.shape)
+        subplot = plt.subplot(3, 4, i + 1)
+        subplot.contourf(xx, yy, Z, levels=np.linspace(Z.min(), threshold, 7),
+                         cmap=plt.cm.Blues_r)
+        a = subplot.contour(xx, yy, Z, levels=[threshold],
+                            linewidths=2, colors='red')
+        subplot.contourf(xx, yy, Z, levels=[threshold, Z.max()],
+                         colors='orange')
+        b = subplot.scatter(X[:-n_outliers, 0], X[:-n_outliers, 1], c='white',
+                            s=20, edgecolor='k')
+        c = subplot.scatter(X[-n_outliers:, 0], X[-n_outliers:, 1], c='black',
+                            s=20, edgecolor='k')
+        subplot.axis('tight')
+        subplot.legend(
+            [a.collections[0], b, c],
+            ['learned decision function', 'true inliers', 'true outliers'],
+            prop=matplotlib.font_manager.FontProperties(size=10),
+            loc='lower right')
+        subplot.set_xlabel("%d. %s (errors: %d)" % (i + 1, clf_name, n_errors))
+        subplot.set_xlim((-7, 7))
+        subplot.set_ylim((-7, 7))
+    plt.subplots_adjust(0.04, 0.1, 0.96, 0.94, 0.1, 0.26)
+    plt.suptitle("Outlier detection")
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-6-7534011e3995>[0m in [0;36m<module>[0;34m[0m
+[1;32m     16[0m         [0;31m# fit the data and tag outliers[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m         [0mclf[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 18[0;31m         [0mscores_pred[0m [0;34m=[0m [0mclf[0m[0;34m.[0m[0mdecision_function[0m[0;34m([0m[0mX[0m[0;34m)[0m [0;34m*[0m [0;34m-[0m[0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     19[0m         [0my_pred[0m [0;34m=[0m [0mclf[0m[0;34m.[0m[0mpredict[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m         [0mthreshold[0m [0;34m=[0m [0mpercentile[0m[0;34m([0m[0mscores_pred[0m[0;34m,[0m [0;36m100[0m [0;34m*[0m [0moutliers_fraction[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyod/models/lscp.py[0m in [0;36mdecision_function[0;34m(self, X)[0m
+[1;32m    210[0m [0;34m[0m[0m
+[1;32m    211[0m         [0;31m# get decision scores and return[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 212[0;31m         [0mdecision_scores[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_get_decision_scores[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    213[0m         [0;32mreturn[0m [0mdecision_scores[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    214[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pyod/models/lscp.py[0m in [0;36m_get_decision_scores[0;34m(self, X)[0m
+[1;32m    271[0m             [0;32mfor[0m [0md[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mn_clf[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    272[0m                 pearson_corr_scores[d,] = pearsonr(
+[0;32m--> 273[0;31m                     local_pseudo_ground_truth, local_train_scores[:, d])[0]
+[0m[1;32m    274[0m [0;34m[0m[0m
+[1;32m    275[0m             [0;31m# return best score[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/scipy/stats/stats.py[0m in [0;36mpearsonr[0;34m(x, y)[0m
+[1;32m   3836[0m [0;34m[0m[0m
+[1;32m   3837[0m     [0;32mif[0m [0mn[0m [0;34m<[0m [0;36m2[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3838[0;31m         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m'x and y must have length at least 2.'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3839[0m [0;34m[0m[0m
+[1;32m   3840[0m     [0mx[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0masarray[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: x and y must have length at least 2.
+ValueError: x and y must have length at least 2.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

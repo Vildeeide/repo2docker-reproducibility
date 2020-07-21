@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/klemag/pydata_nyc2018-intro-to-model-interpretability,dfbd39e84acae257a2913290690506a57f804523,dfbd39e,2018-10-19T05:54:52+01:00,build,build,True,github.com/klemag/pydata_nyc2018-intro-to-model-interpretability/logs/build-dfbd39e84acae257a2913290690506a57f804523-2020-07-10T09.38.txt,2020-07-10T09:38:43.560455,2020-07-10T09.38,0.11.0

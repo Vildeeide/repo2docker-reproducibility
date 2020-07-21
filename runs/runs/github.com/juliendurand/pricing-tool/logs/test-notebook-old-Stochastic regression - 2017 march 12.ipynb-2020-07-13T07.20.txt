@@ -1,0 +1,75 @@
+[I 200713 07:21:19 inrepo:36] Testing notebook old/Stochastic regression - 2017 march 12.ipynb
+[I 200713 07:21:19 inrepo:45] Found kernel python3
+[I 200713 07:21:20 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#i, intercept, b, l, errors = fit_online(arrray_iterator(x, y), p1=0)
+i, intercept, b, l, errors = fit_online(file_iterator('data.ml', p,  rolling=True), p1=0, family='poisson')
+trailing_errors = moving_average(errors, 1000)
+
+print('minimum achieved at :', np.argmin(errors))
+print('lambda : ', l[-1])
+print('error : ', errors[-1])
+print(i, 'th iteration')
+print('intercept : ', intercept)
+print('Trailing error : ', trailing_errors[-1:])
+print("Difference of coefficient :", np.sum(abs(beta - b)), abs((b-beta)[:5]))
+print('NB of non null coefficients : ', np.count_nonzero(np.greater(b, 0.01)))
+print("Mean squared error : %.2f" % np.mean(np.square((np.inner(x, b) + intercept - y))))
+e = np.average(np.abs(np.inner(x, b) + intercept - y))
+print("Sum of log10 abs error : ", log10(e))
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(errors)), np.log10(errors + 1e-20))
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(errors)), np.log10(trailing_errors + 1e-20), color='red')
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(errors)), np.ones(len(errors))*np.log10(e), color='green')
+plt.show()
+fig = plt.figure()
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(l)), np.log10(l + 1e-20))
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(l)), np.log10(trailing_errors + 1e-20)[:len(l)], color='red')
+ax = fig.add_subplot(111)
+line, = ax.plot(range(len(l)), np.ones(len(l))*np.log10(l[-1] + 1e-20), color='green')
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-5-708987bd7624>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m#i, intercept, b, l, errors = fit_online(arrray_iterator(x, y), p1=0)[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mi[0m[0;34m,[0m [0mintercept[0m[0;34m,[0m [0mb[0m[0;34m,[0m [0ml[0m[0;34m,[0m [0merrors[0m [0;34m=[0m [0mfit_online[0m[0;34m([0m[0mfile_iterator[0m[0;34m([0m[0;34m'data.ml'[0m[0;34m,[0m [0mp[0m[0;34m,[0m  [0mrolling[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m,[0m [0mp1[0m[0;34m=[0m[0;36m0[0m[0;34m,[0m [0mfamily[0m[0;34m=[0m[0;34m'poisson'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mtrailing_errors[0m [0;34m=[0m [0mmoving_average[0m[0;34m([0m[0merrors[0m[0;34m,[0m [0;36m1000[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0mprint[0m[0;34m([0m[0;34m'minimum achieved at :'[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0margmin[0m[0;34m([0m[0merrors[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-3-98746723c756>[0m in [0;36mfit_online[0;34m(xy_iterator, fit_intercept, nb_adaptative_steps, moving_average_size, family, p1, p2, max_iterations, exposure, average_size)[0m
+[1;32m     11[0m     [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0mmax_iterations[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m         [0;32mif[0m [0mexposure[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m             [0mx[0m[0;34m,[0m [0my[0m[0;34m,[0m [0mexposure[0m [0;34m=[0m [0mnext[0m[0;34m([0m[0mxy_iterator[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m             [0mx[0m[0;34m,[0m [0my[0m [0;34m=[0m [0mnext[0m[0;34m([0m[0mxy_iterator[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: not enough values to unpack (expected 3, got 2)
+ValueError: not enough values to unpack (expected 3, got 2)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

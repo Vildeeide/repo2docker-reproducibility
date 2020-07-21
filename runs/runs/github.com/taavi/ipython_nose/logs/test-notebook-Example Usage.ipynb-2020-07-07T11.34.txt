@@ -1,0 +1,31 @@
+[I 200707 11:35:00 inrepo:36] Testing notebook Example Usage.ipynb
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 736, in executenb
+    ep = ExecutePreprocessor(**kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 41, in __init__
+    super(Preprocessor, self).__init__(**kw)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/utils/base.py", line 29, in __init__
+    super(NbConvertBase, self).__init__(**kw)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/configurable.py", line 73, in __init__
+    super(Configurable, self).__init__(**kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 997, in __init__
+    setattr(self, key, value)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 585, in __set__
+    self.set(obj, value)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 559, in set
+    new_value = self._validate(obj, value)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 591, in _validate
+    value = self.validate(obj, value)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 2054, in validate
+    self.error(obj, value)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/traitlets.py", line 625, in error
+    raise TraitError(e)
+traitlets.traitlets.TraitError: The 'kernel_name' trait of an ExecutePreprocessor instance must be a unicode string, but a value of None <class 'NoneType'> was specified.
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

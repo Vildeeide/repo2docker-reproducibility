@@ -1,0 +1,5 @@
+[I 200703 06:14:01 inrepo:35] Testing notebook tutorial/02 - Styling and Theming.ipynb
+[I 200703 06:14:02 execute:404] Executing notebook with kernel: python3
+[I 200703 06:14:06 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/02 - Styling and Theming.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

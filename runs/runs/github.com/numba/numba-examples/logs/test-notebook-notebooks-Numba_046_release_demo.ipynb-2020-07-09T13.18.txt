@@ -1,0 +1,155 @@
+[I 200709 13:23:39 inrepo:36] Testing notebook notebooks/Numba_046_release_demo.ipynb
+[I 200709 13:23:39 inrepo:45] Found kernel python3
+[I 200709 13:23:40 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from scipy import special
+
+@njit
+def call_scipy_in_jitted_code():
+    print("special.beta(1.2, 3.4)", special.beta(1.2, 3.4))
+    print("special.j0(5.6)       ", special.j0(5.6))
+    
+call_scipy_in_jitted_code()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-2-03f837626a5b>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m     [0mprint[0m[0;34m([0m[0;34m"special.j0(5.6)       "[0m[0;34m,[0m [0mspecial[0m[0;34m.[0m[0mj0[0m[0;34m([0m[0;36m5.6[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;34m[0m[0m
+[0;32m----> 8[0;31m [0mcall_scipy_in_jitted_code[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36m_compile_for_args[0;34m(self, *args, **kws)[0m
+[1;32m    418[0m                     [0me[0m[0;34m.[0m[0mpatch_message[0m[0;34m([0m[0;34m'\n'[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0;34m([0m[0mstr[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m.[0m[0mrstrip[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mhelp_msg[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    419[0m             [0;31m# ignore the FULL_TRACEBACKS config, this needs reporting![0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 420[0;31m             [0;32mraise[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    421[0m [0;34m[0m[0m
+[1;32m    422[0m     [0;32mdef[0m [0minspect_llvm[0m[0;34m([0m[0mself[0m[0;34m,[0m [0msignature[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36m_compile_for_args[0;34m(self, *args, **kws)[0m
+[1;32m    351[0m                 [0margtypes[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mtypeof_pyval[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    352[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 353[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mcompile[0m[0;34m([0m[0mtuple[0m[0;34m([0m[0margtypes[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    354[0m         [0;32mexcept[0m [0merrors[0m[0;34m.[0m[0mForceLiteralArg[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    355[0m             [0;31m# Received request for compiler re-entry with the list of arguments[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/compiler_lock.py[0m in [0;36m_acquire_compile_lock[0;34m(*args, **kwargs)[0m
+[1;32m     30[0m         [0;32mdef[0m [0m_acquire_compile_lock[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     31[0m             [0;32mwith[0m [0mself[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 32[0;31m                 [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     33[0m         [0;32mreturn[0m [0m_acquire_compile_lock[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     34[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36mcompile[0;34m(self, sig)[0m
+[1;32m    766[0m             [0mself[0m[0;34m.[0m[0m_cache_misses[0m[0;34m[[0m[0msig[0m[0;34m][0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    767[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 768[0;31m                 [0mcres[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_compiler[0m[0;34m.[0m[0mcompile[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mreturn_type[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    769[0m             [0;32mexcept[0m [0merrors[0m[0;34m.[0m[0mForceLiteralArg[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    770[0m                 [0;32mdef[0m [0mfolded[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mkws[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36mcompile[0;34m(self, args, return_type)[0m
+[1;32m     75[0m [0;34m[0m[0m
+[1;32m     76[0m     [0;32mdef[0m [0mcompile[0m[0;34m([0m[0mself[0m[0;34m,[0m [0margs[0m[0;34m,[0m [0mreturn_type[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 77[0;31m         [0mstatus[0m[0;34m,[0m [0mretval[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_compile_cached[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mreturn_type[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     78[0m         [0;32mif[0m [0mstatus[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     79[0m             [0;32mreturn[0m [0mretval[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36m_compile_cached[0;34m(self, args, return_type)[0m
+[1;32m     89[0m [0;34m[0m[0m
+[1;32m     90[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 91[0;31m             [0mretval[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_compile_core[0m[0;34m([0m[0margs[0m[0;34m,[0m [0mreturn_type[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     92[0m         [0;32mexcept[0m [0merrors[0m[0;34m.[0m[0mTypingError[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     93[0m             [0mself[0m[0;34m.[0m[0m_failed_cache[0m[0;34m[[0m[0mkey[0m[0;34m][0m [0;34m=[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/dispatcher.py[0m in [0;36m_compile_core[0;34m(self, args, return_type)[0m
+[1;32m    107[0m                                       [0margs[0m[0;34m=[0m[0margs[0m[0;34m,[0m [0mreturn_type[0m[0;34m=[0m[0mreturn_type[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    108[0m                                       [0mflags[0m[0;34m=[0m[0mflags[0m[0;34m,[0m [0mlocals[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mlocals[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 109[0;31m                                       pipeline_class=self.pipeline_class)
+[0m[1;32m    110[0m         [0;31m# Check typing error if object mode is used[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    111[0m         [0;32mif[0m [0mcres[0m[0;34m.[0m[0mtyping_error[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m [0;32mand[0m [0;32mnot[0m [0mflags[0m[0;34m.[0m[0menable_pyobject[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/compiler.py[0m in [0;36mcompile_extra[0;34m(typingctx, targetctx, func, args, return_type, flags, locals, library, pipeline_class)[0m
+[1;32m    525[0m     """
+[1;32m    526[0m     pipeline = pipeline_class(typingctx, targetctx, library,
+[0;32m--> 527[0;31m                               args, return_type, flags, locals)
+[0m[1;32m    528[0m     [0;32mreturn[0m [0mpipeline[0m[0;34m.[0m[0mcompile_extra[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    529[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/compiler.py[0m in [0;36m__init__[0;34m(self, typingctx, targetctx, library, args, return_type, flags, locals)[0m
+[1;32m    276[0m         [0mconfig[0m[0;34m.[0m[0mreload_config[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    277[0m         [0mtypingctx[0m[0;34m.[0m[0mrefresh[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 278[0;31m         [0mtargetctx[0m[0;34m.[0m[0mrefresh[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    279[0m [0;34m[0m[0m
+[1;32m    280[0m         [0mself[0m[0;34m.[0m[0mstate[0m [0;34m=[0m [0mStateDict[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/targets/base.py[0m in [0;36mrefresh[0;34m(self)[0m
+[1;32m    269[0m             [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    270[0m         [0mself[0m[0;34m.[0m[0minstall_registry[0m[0;34m([0m[0mbuiltin_registry[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 271[0;31m         [0mself[0m[0;34m.[0m[0mload_additional_registries[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    272[0m         [0;31m# Also refresh typing context, since @overload declarations can[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    273[0m         [0;31m# affect it.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/targets/cpu.py[0m in [0;36mload_additional_registries[0;34m(self)[0m
+[1;32m     78[0m [0;34m[0m[0m
+[1;32m     79[0m         [0;31m# load 3rd party extensions[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 80[0;31m         [0mnumba[0m[0;34m.[0m[0mentrypoints[0m[0;34m.[0m[0minit_all[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     81[0m [0;34m[0m[0m
+[1;32m     82[0m     [0;34m@[0m[0mproperty[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/entrypoints.py[0m in [0;36minit_all[0;34m()[0m
+[1;32m     22[0m         [0mlogger[0m[0;34m.[0m[0mdebug[0m[0;34m([0m[0;34m'Loading extension:'[0m[0;34m,[0m [0mentry_point[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     23[0m         [0mfunc[0m [0;34m=[0m [0mentry_point[0m[0;34m.[0m[0mload[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 24[0;31m         [0mfunc[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba_scipy/__init__.py[0m in [0;36m_init_extension[0;34m()[0m
+[1;32m     10[0m     [0mThis[0m [0mentry_point[0m [0;32mis[0m [0mcalled[0m [0mby[0m [0mNumba[0m [0mwhen[0m [0mit[0m [0minitializes[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m     '''
+[0;32m---> 12[0;31m     [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0mspecial[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba_scipy/special/__init__.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0moverloads[0m [0;32mas[0m [0m_overloads[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0m_overloads[0m[0;34m.[0m[0madd_overloads[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba_scipy/special/overloads.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;32mimport[0m [0mscipy[0m[0;34m.[0m[0mspecial[0m [0;32mas[0m [0msc[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0msignatures[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;34m[0m[0m
+[1;32m      6[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba_scipy/special/signatures.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    374[0m     [0;34m([0m[0;34m'nbdtri'[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mlong_[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mlong_[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m)[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mCFUNCTYPE[0m[0;34m([0m[0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_long[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_long[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m)[0m[0;34m([0m[0mget_cython_function_address[0m[0;34m([0m[0;34m'scipy.special.cython_special'[0m[0;34m,[0m [0;34m'__pyx_fuse_1nbdtri'[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    375[0m     [0;34m([0m[0;34m'ndtr'[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m)[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mCFUNCTYPE[0m[0;34m([0m[0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m)[0m[0;34m([0m[0mget_cython_function_address[0m[0;34m([0m[0;34m'scipy.special.cython_special'[0m[0;34m,[0m [0;34m'__pyx_fuse_1ndtr'[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 376[0;31m     [0;34m([0m[0;34m'pdtr'[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m)[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mCFUNCTYPE[0m[0;34m([0m[0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m)[0m[0;34m([0m[0mget_cython_function_address[0m[0;34m([0m[0;34m'scipy.special.cython_special'[0m[0;34m,[0m [0;34m'__pyx_fuse_0pdtr'[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    377[0m     [0;34m([0m[0;34m'pdtr'[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mlong_[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m)[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mCFUNCTYPE[0m[0;34m([0m[0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_long[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m)[0m[0;34m([0m[0mget_cython_function_address[0m[0;34m([0m[0;34m'scipy.special.cython_special'[0m[0;34m,[0m [0;34m'__pyx_fuse_1pdtr'[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    378[0m     [0;34m([0m[0;34m'pdtrc'[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m,[0m [0mnumba[0m[0;34m.[0m[0mtypes[0m[0;34m.[0m[0mfloat64[0m[0;34m)[0m[0;34m:[0m [0mctypes[0m[0;34m.[0m[0mCFUNCTYPE[0m[0;34m([0m[0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m,[0m [0mctypes[0m[0;34m.[0m[0mc_double[0m[0;34m)[0m[0;34m([0m[0mget_cython_function_address[0m[0;34m([0m[0;34m'scipy.special.cython_special'[0m[0;34m,[0m [0;34m'__pyx_fuse_0pdtrc'[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numba/extending.py[0m in [0;36mget_cython_function_address[0;34m(module_name, function_name)[0m
+[1;32m    391[0m [0;34m[0m[0m
+[1;32m    392[0m     """
+[0;32m--> 393[0;31m     [0;32mreturn[0m [0m_import_cython_function[0m[0;34m([0m[0mmodule_name[0m[0;34m,[0m [0mfunction_name[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    394[0m [0;34m[0m[0m
+[1;32m    395[0m [0;34m[0m[0m
+
+[0;31mValueError[0m: No function '__pyx_fuse_0pdtr' found in __pyx_capi__ of 'scipy.special.cython_special'
+ValueError: No function '__pyx_fuse_0pdtr' found in __pyx_capi__ of 'scipy.special.cython_special'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

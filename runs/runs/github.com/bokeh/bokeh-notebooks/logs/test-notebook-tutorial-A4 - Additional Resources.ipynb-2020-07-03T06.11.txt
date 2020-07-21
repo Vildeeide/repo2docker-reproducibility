@@ -1,0 +1,5 @@
+[I 200703 06:12:37 inrepo:35] Testing notebook tutorial/A4 - Additional Resources.ipynb
+[I 200703 06:12:39 execute:404] Executing notebook with kernel: python3
+[I 200703 06:12:39 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/A4 - Additional Resources.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200703 06:19:34 inrepo:35] Testing notebook phone/.ipynb_checkpoints/Juno-Intro-Scipy-part-5-checkpoint.ipynb
+[I 200703 06:19:35 execute:404] Executing notebook with kernel: python3
+[I 200703 06:19:38 inrepo:41] Saving exported notebook to /io/notebooks/phone/.ipynb_checkpoints/Juno-Intro-Scipy-part-5-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

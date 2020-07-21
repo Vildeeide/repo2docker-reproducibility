@@ -1,0 +1,1098 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.02w71ji9cd/github.com/ipython/ipython-in-depth.
+Using CondaBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e6-2efrozen-2eyml-7faaa9 /tmp/environment.yml
+ ---> Using cache
+ ---> 8bf90b0af9a4
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> d94262206d7f
+Step 27/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> a0d9a2009de8
+Step 28/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> d346cab5791b
+Step 29/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> d9689a512ce1
+Step 30/52 : USER root
+ ---> Using cache
+ ---> 0698c74eac04
+Step 31/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 923c36d4009c
+Step 32/52 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> be7951594e5a
+Step 33/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> dd36de80f9ae
+Step 34/52 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 147d1c57f768
+Step 35/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> ee1cce3f64fc
+Step 36/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> f42b790c0d6f
+Step 37/52 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> 64a5c641edb3
+Step 38/52 : USER root
+ ---> Running in 9f1a6275fec1
+Removing intermediate container 9f1a6275fec1
+ ---> df088d118cbe
+Step 39/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in b2acd12c5118
+Removing intermediate container b2acd12c5118
+ ---> 1f61fa90f2f7
+Step 40/52 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends texlive && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Running in 7c56b41dcd1f
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  fonts-lmodern libavahi-client3 libavahi-common-data libavahi-common3
+  libcups2 libcupsimage2 libdbus-1-3 libgs9 libgs9-common libidn11 libijs-0.35
+  libjbig2dec0 libkpathsea6 libnspr4 libnss3 libpaper-utils libpaper1
+  libpoppler73 libpotrace0 libptexenc1 libsynctex1 libtexlua52 libtexluajit2
+  libxaw7 libxi6 libxmu6 libxpm4 libzzip-0-13 poppler-data t1utils tex-common
+  texlive-base texlive-binaries texlive-fonts-recommended texlive-latex-base
+  texlive-latex-recommended xdg-utils
+Suggested packages:
+  cups-common poppler-utils ghostscript fonts-japanese-mincho
+  | fonts-ipafont-mincho fonts-japanese-gothic | fonts-ipafont-gothic
+  fonts-arphic-ukai fonts-arphic-uming fonts-nanum debhelper gv
+  | postscript-viewer perl-tk xpdf-reader | pdf-viewer
+  texlive-fonts-recommended-doc texlive-latex-base-doc
+  texlive-latex-recommended-doc texlive-pstricks
+Recommended packages:
+  libcupsfilters1 dbus fonts-droid-fallback lmodern tex-gyre tipa
+  libfile-mimeinfo-perl libnet-dbus-perl libx11-protocol-perl x11-utils
+  x11-xserver-utils
+The following NEW packages will be installed:
+  fonts-lmodern libavahi-client3 libavahi-common-data libavahi-common3
+  libcups2 libcupsimage2 libdbus-1-3 libgs9 libgs9-common libidn11 libijs-0.35
+  libjbig2dec0 libkpathsea6 libnspr4 libnss3 libpaper-utils libpaper1
+  libpoppler73 libpotrace0 libptexenc1 libsynctex1 libtexlua52 libtexluajit2
+  libxaw7 libxi6 libxmu6 libxpm4 libzzip-0-13 poppler-data t1utils tex-common
+  texlive texlive-base texlive-binaries texlive-fonts-recommended
+  texlive-latex-base texlive-latex-recommended xdg-utils
+0 upgraded, 38 newly installed, 0 to remove and 35 not upgraded.
+Need to get 64.9 MB of archives.
+After this operation, 209 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 poppler-data all 0.4.8-2 [1,479 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 tex-common all 6.09 [33.0 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libdbus-1-3 amd64 1.12.2-1ubuntu1.2 [175 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libidn11 amd64 1.33-2.1ubuntu1.2 [46.6 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-lmodern all 2.004.5-3 [4,551 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common-data amd64 0.7-3.1ubuntu1.2 [22.1 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-common3 amd64 0.7-3.1ubuntu1.2 [21.6 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libavahi-client3 amd64 0.7-3.1ubuntu1.2 [25.2 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcups2 amd64 2.2.7-1ubuntu2.8 [211 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcupsimage2 amd64 2.2.7-1ubuntu2.8 [18.6 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/main amd64 libijs-0.35 amd64 0.35-13 [15.5 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjbig2dec0 amd64 0.13-6 [55.9 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpaper1 amd64 1.1.24+nmu5ubuntu1 [13.6 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9-common all 9.26~dfsg+0-0ubuntu0.18.04.12 [5,092 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgs9 amd64 9.26~dfsg+0-0ubuntu0.18.04.12 [2,264 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libkpathsea6 amd64 2017.20170613.44572-8ubuntu0.1 [54.9 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic/main amd64 libnspr4 amd64 2:4.18-1ubuntu1 [112 kB]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnss3 amd64 2:3.35-2ubuntu2.8 [1,136 kB]
+Get:19 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpaper-utils amd64 1.1.24+nmu5ubuntu1 [8,170 B]
+Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpoppler73 amd64 0.62.0-2ubuntu2.10 [800 kB]
+Get:21 http://archive.ubuntu.com/ubuntu bionic/main amd64 libpotrace0 amd64 1.14-2 [17.4 kB]
+Get:22 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libptexenc1 amd64 2017.20170613.44572-8ubuntu0.1 [34.5 kB]
+Get:23 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libsynctex1 amd64 2017.20170613.44572-8ubuntu0.1 [41.4 kB]
+Get:24 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libtexlua52 amd64 2017.20170613.44572-8ubuntu0.1 [91.2 kB]
+Get:25 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libtexluajit2 amd64 2017.20170613.44572-8ubuntu0.1 [230 kB]
+Get:26 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxmu6 amd64 2:1.1.2-2 [46.0 kB]
+Get:27 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
+Get:28 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxaw7 amd64 2:1.0.13-1 [173 kB]
+Get:29 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxi6 amd64 2:1.7.9-1 [29.2 kB]
+Get:30 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libzzip-0-13 amd64 0.13.62-3.1ubuntu0.18.04.1 [26.0 kB]
+Get:31 http://archive.ubuntu.com/ubuntu bionic/main amd64 t1utils amd64 1.41-2 [56.0 kB]
+Get:32 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 texlive-binaries amd64 2017.20170613.44572-8ubuntu0.1 [8,179 kB]
+Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 xdg-utils all 1.1.2-1ubuntu2.3 [60.7 kB]
+Get:34 http://archive.ubuntu.com/ubuntu bionic/main amd64 texlive-base all 2017.20180305-1 [18.7 MB]
+Get:35 http://archive.ubuntu.com/ubuntu bionic/universe amd64 texlive-fonts-recommended all 2017.20180305-1 [5,262 kB]
+Get:36 http://archive.ubuntu.com/ubuntu bionic/main amd64 texlive-latex-base all 2017.20180305-1 [951 kB]
+Get:37 http://archive.ubuntu.com/ubuntu bionic/main amd64 texlive-latex-recommended all 2017.20180305-1 [14.9 MB]
+Get:38 http://archive.ubuntu.com/ubuntu bionic/universe amd64 texlive all 2017.20180305-1 [14.4 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 64.9 MB in 2s (31.9 MB/s)
+Selecting previously unselected package poppler-data.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 25659 files and directories currently installed.)
+Preparing to unpack .../00-poppler-data_0.4.8-2_all.deb ...
+Unpacking poppler-data (0.4.8-2) ...
+Selecting previously unselected package tex-common.
+Preparing to unpack .../01-tex-common_6.09_all.deb ...
+Unpacking tex-common (6.09) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../02-libdbus-1-3_1.12.2-1ubuntu1.2_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../03-libidn11_1.33-2.1ubuntu1.2_amd64.deb ...
+Unpacking libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Selecting previously unselected package fonts-lmodern.
+Preparing to unpack .../04-fonts-lmodern_2.004.5-3_all.deb ...
+Unpacking fonts-lmodern (2.004.5-3) ...
+Selecting previously unselected package libavahi-common-data:amd64.
+Preparing to unpack .../05-libavahi-common-data_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-common-data:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libavahi-common3:amd64.
+Preparing to unpack .../06-libavahi-common3_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-common3:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libavahi-client3:amd64.
+Preparing to unpack .../07-libavahi-client3_0.7-3.1ubuntu1.2_amd64.deb ...
+Unpacking libavahi-client3:amd64 (0.7-3.1ubuntu1.2) ...
+Selecting previously unselected package libcups2:amd64.
+Preparing to unpack .../08-libcups2_2.2.7-1ubuntu2.8_amd64.deb ...
+Unpacking libcups2:amd64 (2.2.7-1ubuntu2.8) ...
+Selecting previously unselected package libcupsimage2:amd64.
+Preparing to unpack .../09-libcupsimage2_2.2.7-1ubuntu2.8_amd64.deb ...
+Unpacking libcupsimage2:amd64 (2.2.7-1ubuntu2.8) ...
+Selecting previously unselected package libijs-0.35:amd64.
+Preparing to unpack .../10-libijs-0.35_0.35-13_amd64.deb ...
+Unpacking libijs-0.35:amd64 (0.35-13) ...
+Selecting previously unselected package libjbig2dec0:amd64.
+Preparing to unpack .../11-libjbig2dec0_0.13-6_amd64.deb ...
+Unpacking libjbig2dec0:amd64 (0.13-6) ...
+Selecting previously unselected package libpaper1:amd64.
+Preparing to unpack .../12-libpaper1_1.1.24+nmu5ubuntu1_amd64.deb ...
+Unpacking libpaper1:amd64 (1.1.24+nmu5ubuntu1) ...
+Selecting previously unselected package libgs9-common.
+Preparing to unpack .../13-libgs9-common_9.26~dfsg+0-0ubuntu0.18.04.12_all.deb ...
+Unpacking libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.12) ...
+Selecting previously unselected package libgs9:amd64.
+Preparing to unpack .../14-libgs9_9.26~dfsg+0-0ubuntu0.18.04.12_amd64.deb ...
+Unpacking libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.12) ...
+Selecting previously unselected package libkpathsea6:amd64.
+Preparing to unpack .../15-libkpathsea6_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking libkpathsea6:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package libnspr4:amd64.
+Preparing to unpack .../16-libnspr4_2%3a4.18-1ubuntu1_amd64.deb ...
+Unpacking libnspr4:amd64 (2:4.18-1ubuntu1) ...
+Selecting previously unselected package libnss3:amd64.
+Preparing to unpack .../17-libnss3_2%3a3.35-2ubuntu2.8_amd64.deb ...
+Unpacking libnss3:amd64 (2:3.35-2ubuntu2.8) ...
+Selecting previously unselected package libpaper-utils.
+Preparing to unpack .../18-libpaper-utils_1.1.24+nmu5ubuntu1_amd64.deb ...
+Unpacking libpaper-utils (1.1.24+nmu5ubuntu1) ...
+Selecting previously unselected package libpoppler73:amd64.
+Preparing to unpack .../19-libpoppler73_0.62.0-2ubuntu2.10_amd64.deb ...
+Unpacking libpoppler73:amd64 (0.62.0-2ubuntu2.10) ...
+Selecting previously unselected package libpotrace0.
+Preparing to unpack .../20-libpotrace0_1.14-2_amd64.deb ...
+Unpacking libpotrace0 (1.14-2) ...
+Selecting previously unselected package libptexenc1:amd64.
+Preparing to unpack .../21-libptexenc1_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking libptexenc1:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package libsynctex1:amd64.
+Preparing to unpack .../22-libsynctex1_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking libsynctex1:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package libtexlua52:amd64.
+Preparing to unpack .../23-libtexlua52_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking libtexlua52:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package libtexluajit2:amd64.
+Preparing to unpack .../24-libtexluajit2_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking libtexluajit2:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package libxmu6:amd64.
+Preparing to unpack .../25-libxmu6_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmu6:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package libxpm4:amd64.
+Preparing to unpack .../26-libxpm4_1%3a3.5.12-1_amd64.deb ...
+Unpacking libxpm4:amd64 (1:3.5.12-1) ...
+Selecting previously unselected package libxaw7:amd64.
+Preparing to unpack .../27-libxaw7_2%3a1.0.13-1_amd64.deb ...
+Unpacking libxaw7:amd64 (2:1.0.13-1) ...
+Selecting previously unselected package libxi6:amd64.
+Preparing to unpack .../28-libxi6_2%3a1.7.9-1_amd64.deb ...
+Unpacking libxi6:amd64 (2:1.7.9-1) ...
+Selecting previously unselected package libzzip-0-13:amd64.
+Preparing to unpack .../29-libzzip-0-13_0.13.62-3.1ubuntu0.18.04.1_amd64.deb ...
+Unpacking libzzip-0-13:amd64 (0.13.62-3.1ubuntu0.18.04.1) ...
+Selecting previously unselected package t1utils.
+Preparing to unpack .../30-t1utils_1.41-2_amd64.deb ...
+Unpacking t1utils (1.41-2) ...
+Selecting previously unselected package texlive-binaries.
+Preparing to unpack .../31-texlive-binaries_2017.20170613.44572-8ubuntu0.1_amd64.deb ...
+Unpacking texlive-binaries (2017.20170613.44572-8ubuntu0.1) ...
+Selecting previously unselected package xdg-utils.
+Preparing to unpack .../32-xdg-utils_1.1.2-1ubuntu2.3_all.deb ...
+Unpacking xdg-utils (1.1.2-1ubuntu2.3) ...
+Selecting previously unselected package texlive-base.
+Preparing to unpack .../33-texlive-base_2017.20180305-1_all.deb ...
+Unpacking texlive-base (2017.20180305-1) ...
+Selecting previously unselected package texlive-fonts-recommended.
+Preparing to unpack .../34-texlive-fonts-recommended_2017.20180305-1_all.deb ...
+Unpacking texlive-fonts-recommended (2017.20180305-1) ...
+Selecting previously unselected package texlive-latex-base.
+Preparing to unpack .../35-texlive-latex-base_2017.20180305-1_all.deb ...
+Unpacking texlive-latex-base (2017.20180305-1) ...
+Selecting previously unselected package texlive-latex-recommended.
+Preparing to unpack .../36-texlive-latex-recommended_2017.20180305-1_all.deb ...
+Unpacking texlive-latex-recommended (2017.20180305-1) ...
+Selecting previously unselected package texlive.
+Preparing to unpack .../37-texlive_2017.20180305-1_all.deb ...
+Unpacking texlive (2017.20180305-1) ...
+Setting up libgs9-common (9.26~dfsg+0-0ubuntu0.18.04.12) ...
+Setting up libxi6:amd64 (2:1.7.9-1) ...
+Setting up libkpathsea6:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Setting up libpaper1:amd64 (1.1.24+nmu5ubuntu1) ...
+
+Creating config file /etc/papersize with new version
+Setting up libtexlua52:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Setting up libpaper-utils (1.1.24+nmu5ubuntu1) ...
+Setting up libsynctex1:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Setting up libptexenc1:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Setting up tex-common (6.09) ...
+update-language: texlive-base not installed and configured, doing nothing!
+Setting up poppler-data (0.4.8-2) ...
+Setting up libnspr4:amd64 (2:4.18-1ubuntu1) ...
+Setting up libxmu6:amd64 (2:1.1.2-2) ...
+Setting up libjbig2dec0:amd64 (0.13-6) ...
+Setting up t1utils (1.41-2) ...
+Setting up libijs-0.35:amd64 (0.35-13) ...
+Setting up libxpm4:amd64 (1:3.5.12-1) ...
+Setting up libpotrace0 (1.14-2) ...
+Setting up libzzip-0-13:amd64 (0.13.62-3.1ubuntu0.18.04.1) ...
+Setting up xdg-utils (1.1.2-1ubuntu2.3) ...
+Setting up libtexluajit2:amd64 (2017.20170613.44572-8ubuntu0.1) ...
+Setting up libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Setting up libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Setting up fonts-lmodern (2.004.5-3) ...
+Setting up libavahi-common-data:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libxaw7:amd64 (2:1.0.13-1) ...
+Setting up libnss3:amd64 (2:3.35-2ubuntu2.8) ...
+Setting up libpoppler73:amd64 (0.62.0-2ubuntu2.10) ...
+Setting up libavahi-common3:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libavahi-client3:amd64 (0.7-3.1ubuntu1.2) ...
+Setting up libcups2:amd64 (2.2.7-1ubuntu2.8) ...
+Setting up libcupsimage2:amd64 (2.2.7-1ubuntu2.8) ...
+Setting up libgs9:amd64 (9.26~dfsg+0-0ubuntu0.18.04.12) ...
+Setting up texlive-binaries (2017.20170613.44572-8ubuntu0.1) ...
+update-alternatives: using /usr/bin/xdvi-xaw to provide /usr/bin/xdvi.bin (xdvi.bin) in auto mode
+update-alternatives: using /usr/bin/bibtex.original to provide /usr/bin/bibtex (bibtex) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/bibtex.1.gz because associated file /usr/share/man/man1/bibtex.original.1.gz (of link group bibtex) doesn't exist
+Setting up texlive-base (2017.20180305-1) ...
+tl-paper: setting paper size for dvips to a4: /var/lib/texmf/dvips/config/config-paper.ps
+tl-paper: setting paper size for dvipdfmx to a4: /var/lib/texmf/dvipdfmx/dvipdfmx-paper.cfg
+tl-paper: setting paper size for xdvi to a4: /var/lib/texmf/xdvi/XDvi-paper
+tl-paper: setting paper size for pdftex to a4: /var/lib/texmf/tex/generic/config/pdftexconfig.tex
+tl-paper: setting paper size for dvipdfmx to letter: /var/lib/texmf/dvipdfmx/dvipdfmx-paper.cfg
+tl-paper: setting paper size for dvips to letter: /var/lib/texmf/dvips/config/config-paper.ps
+tl-paper: setting paper size for pdftex to letter: /var/lib/texmf/tex/generic/config/pdftexconfig.tex
+tl-paper: setting paper size for xdvi to letter: /var/lib/texmf/xdvi/XDvi-paper
+Setting up texlive-fonts-recommended (2017.20180305-1) ...
+Setting up texlive-latex-base (2017.20180305-1) ...
+Setting up texlive-latex-recommended (2017.20180305-1) ...
+Setting up texlive (2017.20180305-1) ...
+Processing triggers for mime-support (3.60ubuntu1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Processing triggers for fontconfig (2.12.6-0ubuntu2) ...
+Processing triggers for tex-common (6.09) ...
+Running updmap-sys. This may take some time... done.
+Running mktexlsr /var/lib/texmf ... done.
+Building format(s) --all.
+	This may take some time... done.
+Removing intermediate container 7c56b41dcd1f
+ ---> cd38a3b9ed90
+Step 41/52 : USER ${NB_USER}
+ ---> Running in 3a1b03eda09c
+Removing intermediate container 3a1b03eda09c
+ ---> 1c3735124f21
+Step 42/52 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 1cbabc2560f1
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+libllvm9-9.0.1       | 25.1 MB   |            |   0% 
+libllvm9-9.0.1       | 25.1 MB   |            |   0% 
+libllvm9-9.0.1       | 25.1 MB   | 6          |   6% 
+libllvm9-9.0.1       | 25.1 MB   | #9         |  19% 
+libllvm9-9.0.1       | 25.1 MB   | ###6       |  37% 
+libllvm9-9.0.1       | 25.1 MB   | ######3    |  63% 
+libllvm9-9.0.1       | 25.1 MB   | #######8   |  78% 
+libllvm9-9.0.1       | 25.1 MB   | #########7 |  98% 
+libllvm9-9.0.1       | 25.1 MB   | ########## | 100% 
+
+fontconfig-2.13.1    | 340 KB    |            |   0% 
+fontconfig-2.13.1    | 340 KB    | ########## | 100% 
+
+ld_impl_linux-64-2.3 | 616 KB    |            |   0% 
+ld_impl_linux-64-2.3 | 616 KB    | ########## | 100% 
+
+pyqt-5.12.3          | 6.5 MB    |            |   0% 
+pyqt-5.12.3          | 6.5 MB    |            |   0% 
+pyqt-5.12.3          | 6.5 MB    | ##5        |  26% 
+pyqt-5.12.3          | 6.5 MB    | #####3     |  53% 
+pyqt-5.12.3          | 6.5 MB    | ########7  |  88% 
+pyqt-5.12.3          | 6.5 MB    | ########## | 100% 
+
+sympy-1.6.1          | 10.6 MB   |            |   0% 
+sympy-1.6.1          | 10.6 MB   |            |   0% 
+sympy-1.6.1          | 10.6 MB   | ##         |  20% 
+sympy-1.6.1          | 10.6 MB   | ####       |  40% 
+sympy-1.6.1          | 10.6 MB   | #####8     |  58% 
+sympy-1.6.1          | 10.6 MB   | #######9   |  80% 
+sympy-1.6.1          | 10.6 MB   | #########9 |  99% 
+sympy-1.6.1          | 10.6 MB   | ########## | 100% 
+
+snappy-1.1.8         | 32 KB     |            |   0% 
+snappy-1.1.8         | 32 KB     | #####      |  50% 
+snappy-1.1.8         | 32 KB     | ########## | 100% 
+
+gstreamer-1.14.5     | 4.5 MB    |            |   0% 
+gstreamer-1.14.5     | 4.5 MB    | ###4       |  34% 
+gstreamer-1.14.5     | 4.5 MB    | ########## | 100% 
+
+mpc-1.1.0            | 151 KB    |            |   0% 
+mpc-1.1.0            | 151 KB    | #          |  11% 
+mpc-1.1.0            | 151 KB    | ########## | 100% 
+
+pcre-8.44            | 261 KB    |            |   0% 
+pcre-8.44            | 261 KB    | ########## | 100% 
+
+liblapack-3.8.0      | 10 KB     |            |   0% 
+liblapack-3.8.0      | 10 KB     | ########## | 100% 
+
+libuuid-2.32.1       | 26 KB     |            |   0% 
+libuuid-2.32.1       | 26 KB     | ########## | 100% 
+
+pytz-2020.1          | 227 KB    |            |   0% 
+pytz-2020.1          | 227 KB    | ########## | 100% 
+
+dask-core-2.20.0     | 623 KB    |            |   0% 
+dask-core-2.20.0     | 623 KB    | ########## | 100% 
+
+libgfortran-ng-7.5.0 | 1.7 MB    |            |   0% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########## | 100% 
+
+nspr-4.26            | 1.6 MB    |            |   0% 
+nspr-4.26            | 1.6 MB    | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+pyyaml-5.3.1         | 186 KB    |            |   0% 
+pyyaml-5.3.1         | 186 KB    | 8          |   9% 
+pyyaml-5.3.1         | 186 KB    | ########## | 100% 
+
+scikit-learn-0.23.1  | 6.8 MB    |            |   0% 
+scikit-learn-0.23.1  | 6.8 MB    |            |   0% 
+scikit-learn-0.23.1  | 6.8 MB    | ###5       |  36% 
+scikit-learn-0.23.1  | 6.8 MB    | #####9     |  59% 
+scikit-learn-0.23.1  | 6.8 MB    | ########## | 100% 
+
+kiwisolver-1.2.0     | 87 KB     |            |   0% 
+kiwisolver-1.2.0     | 87 KB     | #8         |  18% 
+kiwisolver-1.2.0     | 87 KB     | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+
+matplotlib-base-3.2. | 7.2 MB    |            |   0% 
+matplotlib-base-3.2. | 7.2 MB    |            |   0% 
+matplotlib-base-3.2. | 7.2 MB    | ###1       |  31% 
+matplotlib-base-3.2. | 7.2 MB    | ######2    |  63% 
+matplotlib-base-3.2. | 7.2 MB    | ########6  |  86% 
+matplotlib-base-3.2. | 7.2 MB    | ########## | 100% 
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+expat-2.2.9          | 191 KB    |            |   0% 
+expat-2.2.9          | 191 KB    | ########## | 100% 
+
+mpmath-1.1.0         | 432 KB    |            |   0% 
+mpmath-1.1.0         | 432 KB    | ########## | 100% 
+
+glib-2.65.0          | 3.5 MB    |            |   0% 
+glib-2.65.0          | 3.5 MB    | ########## | 100% 
+
+matplotlib-3.2.2     | 6 KB      |            |   0% 
+matplotlib-3.2.2     | 6 KB      | ########## | 100% 
+
+yaml-0.2.5           | 82 KB     |            |   0% 
+yaml-0.2.5           | 82 KB     | ########## | 100% 
+
+libclang-9.0.1       | 22.3 MB   |            |   0% 
+libclang-9.0.1       | 22.3 MB   | 8          |   8% 
+libclang-9.0.1       | 22.3 MB   | ##8        |  28% 
+libclang-9.0.1       | 22.3 MB   | ####4      |  45% 
+libclang-9.0.1       | 22.3 MB   | #####7     |  57% 
+libclang-9.0.1       | 22.3 MB   | ######9    |  69% 
+libclang-9.0.1       | 22.3 MB   | ########5  |  86% 
+libclang-9.0.1       | 22.3 MB   | ########## | 100% 
+
+brotli-1.0.7         | 1.0 MB    |            |   0% 
+brotli-1.0.7         | 1.0 MB    | 1          |   2% 
+brotli-1.0.7         | 1.0 MB    | ######     |  60% 
+brotli-1.0.7         | 1.0 MB    | ########## | 100% 
+
+giflib-5.2.1         | 80 KB     |            |   0% 
+giflib-5.2.1         | 80 KB     | ########## | 100% 
+
+openjpeg-2.3.1       | 475 KB    |            |   0% 
+openjpeg-2.3.1       | 475 KB    | ########## | 100% 
+
+imagecodecs-2020.5.3 | 6.2 MB    |            |   0% 
+imagecodecs-2020.5.3 | 6.2 MB    |            |   0% 
+imagecodecs-2020.5.3 | 6.2 MB    | 1          |   2% 
+imagecodecs-2020.5.3 | 6.2 MB    | 5          |   5% 
+imagecodecs-2020.5.3 | 6.2 MB    | #2         |  13% 
+imagecodecs-2020.5.3 | 6.2 MB    | ##8        |  28% 
+imagecodecs-2020.5.3 | 6.2 MB    | ######     |  61% 
+imagecodecs-2020.5.3 | 6.2 MB    | #########5 |  95% 
+imagecodecs-2020.5.3 | 6.2 MB    | ########## | 100% 
+
+zstd-1.4.4           | 991 KB    |            |   0% 
+zstd-1.4.4           | 991 KB    | ########## | 100% 
+
+cytoolz-0.10.1       | 431 KB    |            |   0% 
+cytoolz-0.10.1       | 431 KB    | 3          |   4% 
+cytoolz-0.10.1       | 431 KB    | ########## | 100% 
+
+python-3.6.10        | 34.1 MB   |            |   0% 
+python-3.6.10        | 34.1 MB   | 8          |   8% 
+python-3.6.10        | 34.1 MB   | #8         |  19% 
+python-3.6.10        | 34.1 MB   | ##9        |  30% 
+python-3.6.10        | 34.1 MB   | ####       |  40% 
+python-3.6.10        | 34.1 MB   | ####9      |  50% 
+python-3.6.10        | 34.1 MB   | ######1    |  61% 
+python-3.6.10        | 34.1 MB   | #######2   |  72% 
+python-3.6.10        | 34.1 MB   | ########5  |  86% 
+python-3.6.10        | 34.1 MB   | ########## | 100% 
+
+nss-3.47             | 1.9 MB    |            |   0% 
+nss-3.47             | 1.9 MB    | ########## | 100% 
+
+xz-5.2.5             | 430 KB    |            |   0% 
+xz-5.2.5             | 430 KB    | ########## | 100% 
+
+olefile-0.46         | 31 KB     |            |   0% 
+olefile-0.46         | 31 KB     | ########## | 100% 
+
+libaec-1.0.4         | 32 KB     |            |   0% 
+libaec-1.0.4         | 32 KB     | #####      |  50% 
+libaec-1.0.4         | 32 KB     | ########## | 100% 
+
+lerc-2.1             | 208 KB    |            |   0% 
+lerc-2.1             | 208 KB    | 7          |   8% 
+lerc-2.1             | 208 KB    | ########## | 100% 
+
+blosc-1.19.0         | 887 KB    |            |   0% 
+blosc-1.19.0         | 887 KB    | 1          |   2% 
+blosc-1.19.0         | 887 KB    | ########## | 100% 
+
+libcblas-3.8.0       | 10 KB     |            |   0% 
+libcblas-3.8.0       | 10 KB     | ########## | 100% 
+
+jxrlib-1.1           | 236 KB    |            |   0% 
+jxrlib-1.1           | 236 KB    | 6          |   7% 
+jxrlib-1.1           | 236 KB    | ########## | 100% 
+
+brunsli-0.1          | 196 KB    |            |   0% 
+brunsli-0.1          | 196 KB    | 8          |   8% 
+brunsli-0.1          | 196 KB    | ########## | 100% 
+
+dbus-1.13.6          | 602 KB    |            |   0% 
+dbus-1.13.6          | 602 KB    | ########## | 100% 
+
+zfp-0.5.5            | 191 KB    |            |   0% 
+zfp-0.5.5            | 191 KB    | 8          |   8% 
+zfp-0.5.5            | 191 KB    | ########## | 100% 
+
+mpi4py-3.0.3         | 636 KB    |            |   0% 
+mpi4py-3.0.3         | 636 KB    | 2          |   3% 
+mpi4py-3.0.3         | 636 KB    | ########## | 100% 
+
+prompt-toolkit-3.0.5 | 232 KB    |            |   0% 
+prompt-toolkit-3.0.5 | 232 KB    | ########## | 100% 
+
+threadpoolctl-2.1.0  | 15 KB     |            |   0% 
+threadpoolctl-2.1.0  | 15 KB     | ########## | 100% 
+
+mpi-1.0              | 4 KB      |            |   0% 
+mpi-1.0              | 4 KB      | ########## | 100% 
+
+libwebp-base-1.1.0   | 845 KB    |            |   0% 
+libwebp-base-1.1.0   | 845 KB    | ########## | 100% 
+
+xorg-libxau-1.0.9    | 13 KB     |            |   0% 
+xorg-libxau-1.0.9    | 13 KB     | ########## | 100% 
+
+networkx-2.4         | 1.2 MB    |            |   0% 
+networkx-2.4         | 1.2 MB    | #########2 |  92% 
+networkx-2.4         | 1.2 MB    | ########## | 100% 
+
+tifffile-2020.7.4    | 111 KB    |            |   0% 
+tifffile-2020.7.4    | 111 KB    | ########## | 100% 
+
+libblas-3.8.0        | 10 KB     |            |   0% 
+libblas-3.8.0        | 10 KB     | ########## | 100% 
+
+qt-5.12.5            | 99.2 MB   |            |   0% 
+qt-5.12.5            | 99.2 MB   |            |   0% 
+qt-5.12.5            | 99.2 MB   | 2          |   3% 
+qt-5.12.5            | 99.2 MB   | 6          |   6% 
+qt-5.12.5            | 99.2 MB   | 9          |   9% 
+qt-5.12.5            | 99.2 MB   | #2         |  13% 
+qt-5.12.5            | 99.2 MB   | #6         |  16% 
+qt-5.12.5            | 99.2 MB   | #9         |  19% 
+qt-5.12.5            | 99.2 MB   | ##2        |  23% 
+qt-5.12.5            | 99.2 MB   | ##6        |  26% 
+qt-5.12.5            | 99.2 MB   | ##9        |  29% 
+qt-5.12.5            | 99.2 MB   | ###2       |  33% 
+qt-5.12.5            | 99.2 MB   | ###5       |  36% 
+qt-5.12.5            | 99.2 MB   | ###9       |  39% 
+qt-5.12.5            | 99.2 MB   | ####2      |  43% 
+qt-5.12.5            | 99.2 MB   | ####5      |  46% 
+qt-5.12.5            | 99.2 MB   | ####9      |  49% 
+qt-5.12.5            | 99.2 MB   | #####2     |  52% 
+qt-5.12.5            | 99.2 MB   | #####5     |  56% 
+qt-5.12.5            | 99.2 MB   | #####9     |  59% 
+qt-5.12.5            | 99.2 MB   | ######3    |  63% 
+qt-5.12.5            | 99.2 MB   | ######6    |  67% 
+qt-5.12.5            | 99.2 MB   | #######    |  70% 
+qt-5.12.5            | 99.2 MB   | #######3   |  74% 
+qt-5.12.5            | 99.2 MB   | #######6   |  77% 
+qt-5.12.5            | 99.2 MB   | ########   |  80% 
+qt-5.12.5            | 99.2 MB   | ########3  |  84% 
+qt-5.12.5            | 99.2 MB   | ########6  |  87% 
+qt-5.12.5            | 99.2 MB   | #########  |  90% 
+qt-5.12.5            | 99.2 MB   | #########3 |  93% 
+qt-5.12.5            | 99.2 MB   | #########6 |  96% 
+qt-5.12.5            | 99.2 MB   | #########9 | 100% 
+qt-5.12.5            | 99.2 MB   | ########## | 100% 
+
+gmp-6.2.0            | 811 KB    |            |   0% 
+gmp-6.2.0            | 811 KB    | ########## | 100% 
+
+libxkbcommon-0.10.0  | 475 KB    |            |   0% 
+libxkbcommon-0.10.0  | 475 KB    | ########## | 100% 
+
+gmpy2-2.1.0b1        | 205 KB    |            |   0% 
+gmpy2-2.1.0b1        | 205 KB    | 7          |   8% 
+gmpy2-2.1.0b1        | 205 KB    | ########## | 100% 
+
+bzip2-1.0.8          | 396 KB    |            |   0% 
+bzip2-1.0.8          | 396 KB    | ########## | 100% 
+
+numpy-1.18.5         | 5.1 MB    |            |   0% 
+numpy-1.18.5         | 5.1 MB    | #8         |  19% 
+numpy-1.18.5         | 5.1 MB    | ########2  |  83% 
+numpy-1.18.5         | 5.1 MB    | ########## | 100% 
+
+gst-plugins-base-1.1 | 6.8 MB    |            |   0% 
+gst-plugins-base-1.1 | 6.8 MB    | ##1        |  22% 
+gst-plugins-base-1.1 | 6.8 MB    | #####2     |  53% 
+gst-plugins-base-1.1 | 6.8 MB    | ########## | 100% 
+
+gettext-0.19.8.1     | 3.6 MB    |            |   0% 
+gettext-0.19.8.1     | 3.6 MB    | ##6        |  26% 
+gettext-0.19.8.1     | 3.6 MB    | ########## | 100% 
+
+fastcache-1.1.0      | 29 KB     |            |   0% 
+fastcache-1.1.0      | 29 KB     | #####4     |  55% 
+fastcache-1.1.0      | 29 KB     | ########## | 100% 
+
+lz4-c-1.9.2          | 226 KB    |            |   0% 
+lz4-c-1.9.2          | 226 KB    | ########## | 100% 
+
+scipy-1.5.0          | 18.6 MB   |            |   0% 
+scipy-1.5.0          | 18.6 MB   | 5          |   5% 
+scipy-1.5.0          | 18.6 MB   | ##3        |  24% 
+scipy-1.5.0          | 18.6 MB   | ###7       |  37% 
+scipy-1.5.0          | 18.6 MB   | #####8     |  59% 
+scipy-1.5.0          | 18.6 MB   | #######8   |  78% 
+scipy-1.5.0          | 18.6 MB   | #########6 |  96% 
+scipy-1.5.0          | 18.6 MB   | ########## | 100% 
+
+libxml2-2.9.10       | 1.3 MB    |            |   0% 
+libxml2-2.9.10       | 1.3 MB    | ########## | 100% 
+
+libzopfli-1.0.3      | 178 KB    |            |   0% 
+libzopfli-1.0.3      | 178 KB    | 8          |   9% 
+libzopfli-1.0.3      | 178 KB    | ########## | 100% 
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+mpfr-4.0.2           | 648 KB    |            |   0% 
+mpfr-4.0.2           | 648 KB    | 2          |   2% 
+mpfr-4.0.2           | 648 KB    | ########## | 100% 
+
+pillow-7.2.0         | 657 KB    |            |   0% 
+pillow-7.2.0         | 657 KB    | ########## | 100% 
+
+joblib-0.16.0        | 203 KB    |            |   0% 
+joblib-0.16.0        | 203 KB    | ########## | 100% 
+
+ipyparallel-6.3.0    | 317 KB    |            |   0% 
+ipyparallel-6.3.0    | 317 KB    | 5          |   5% 
+ipyparallel-6.3.0    | 317 KB    | ########## | 100% 
+
+ipython-7.16.1       | 1.1 MB    |            |   0% 
+ipython-7.16.1       | 1.1 MB    | 1          |   1% 
+ipython-7.16.1       | 1.1 MB    | ####6      |  46% 
+ipython-7.16.1       | 1.1 MB    | ########## | 100% 
+
+jpeg-9d              | 266 KB    |            |   0% 
+jpeg-9d              | 266 KB    | ########## | 100% 
+
+python_abi-3.6       | 4 KB      |            |   0% 
+python_abi-3.6       | 4 KB      | ########## | 100% 
+
+pthread-stubs-0.4    | 5 KB      |            |   0% 
+pthread-stubs-0.4    | 5 KB      | ########## | 100% 
+
+cloudpickle-1.5.0    | 22 KB     |            |   0% 
+cloudpickle-1.5.0    | 22 KB     | ########## | 100% 
+
+toolz-0.10.0         | 46 KB     |            |   0% 
+toolz-0.10.0         | 46 KB     | ########## | 100% 
+
+mpich-3.3.2          | 6.4 MB    |            |   0% 
+mpich-3.3.2          | 6.4 MB    |            |   0% 
+mpich-3.3.2          | 6.4 MB    | 1          |   2% 
+mpich-3.3.2          | 6.4 MB    | 4          |   5% 
+mpich-3.3.2          | 6.4 MB    | #1         |  11% 
+mpich-3.3.2          | 6.4 MB    | ##6        |  26% 
+mpich-3.3.2          | 6.4 MB    | #####6     |  57% 
+mpich-3.3.2          | 6.4 MB    | ########8  |  89% 
+mpich-3.3.2          | 6.4 MB    | ########## | 100% 
+
+pandas-1.0.5         | 10.1 MB   |            |   0% 
+pandas-1.0.5         | 10.1 MB   |            |   0% 
+pandas-1.0.5         | 10.1 MB   | ##5        |  26% 
+pandas-1.0.5         | 10.1 MB   | ####5      |  45% 
+pandas-1.0.5         | 10.1 MB   | ######7    |  68% 
+pandas-1.0.5         | 10.1 MB   | ########6  |  86% 
+pandas-1.0.5         | 10.1 MB   | ########## | 100% 
+
+libopenblas-0.3.7    | 7.6 MB    |            |   0% 
+libopenblas-0.3.7    | 7.6 MB    | #          |  10% 
+libopenblas-0.3.7    | 7.6 MB    | #####      |  50% 
+libopenblas-0.3.7    | 7.6 MB    | ########   |  81% 
+libopenblas-0.3.7    | 7.6 MB    | ########## | 100% 
+
+xorg-libxdmcp-1.1.3  | 18 KB     |            |   0% 
+xorg-libxdmcp-1.1.3  | 18 KB     | ########## | 100% 
+
+scikit-image-0.17.2  | 10.8 MB   |            |   0% 
+scikit-image-0.17.2  | 10.8 MB   |            |   0% 
+scikit-image-0.17.2  | 10.8 MB   | 6          |   6% 
+scikit-image-0.17.2  | 10.8 MB   | #4         |  15% 
+scikit-image-0.17.2  | 10.8 MB   | ##7        |  27% 
+scikit-image-0.17.2  | 10.8 MB   | ####3      |  44% 
+scikit-image-0.17.2  | 10.8 MB   | ######6    |  67% 
+scikit-image-0.17.2  | 10.8 MB   | ########4  |  85% 
+scikit-image-0.17.2  | 10.8 MB   | ########## | 100% 
+
+pywavelets-1.1.1     | 4.4 MB    |            |   0% 
+pywavelets-1.1.1     | 4.4 MB    |            |   0% 
+pywavelets-1.1.1     | 4.4 MB    | ###9       |  40% 
+pywavelets-1.1.1     | 4.4 MB    | #########2 |  92% 
+pywavelets-1.1.1     | 4.4 MB    | ########## | 100% 
+
+cython-0.29.20       | 2.1 MB    |            |   0% 
+cython-0.29.20       | 2.1 MB    |            |   1% 
+cython-0.29.20       | 2.1 MB    | #1         |  11% 
+cython-0.29.20       | 2.1 MB    | ###2       |  32% 
+cython-0.29.20       | 2.1 MB    | #######3   |  74% 
+cython-0.29.20       | 2.1 MB    | #########6 |  97% 
+cython-0.29.20       | 2.1 MB    | ########## | 100% 
+
+libxcb-1.13          | 396 KB    |            |   0% 
+libxcb-1.13          | 396 KB    | ########## | 100% 
+
+lcms2-2.11           | 431 KB    |            |   0% 
+lcms2-2.11           | 431 KB    | ########## | 100% 
+
+imageio-2.8.0        | 3.1 MB    |            |   0% 
+imageio-2.8.0        | 3.1 MB    | ####1      |  42% 
+imageio-2.8.0        | 3.1 MB    | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+icu-64.2             | 12.6 MB   |            |   0% 
+icu-64.2             | 12.6 MB   | 3          |   4% 
+icu-64.2             | 12.6 MB   | ###        |  30% 
+icu-64.2             | 12.6 MB   | #######2   |  72% 
+icu-64.2             | 12.6 MB   | ########## | 100% 
+
+charls-2.1.0         | 151 KB    |            |   0% 
+charls-2.1.0         | 151 KB    | #          |  11% 
+charls-2.1.0         | 151 KB    | ########## | 100% 
+
+libtiff-4.1.0        | 668 KB    |            |   0% 
+libtiff-4.1.0        | 668 KB    | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+libiconv-1.15        | 2.0 MB    |            |   0% 
+libiconv-1.15        | 2.0 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+blosc                     1.19.0               he1b5a44_0    conda-forge
+brotli                    1.0.7             he1b5a44_1002    conda-forge
+brunsli                   0.1                  he1b5a44_0    conda-forge
+bzip2                     1.0.8                h516909a_2    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2020.6.20        py36h9f0ad1d_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.13.2           py36h8022711_0    conda-forge
+chardet                   3.0.4                 py36_1003    conda-forge
+charls                    2.1.0                he1b5a44_2    conda-forge
+cloudpickle               1.5.0                      py_0    conda-forge
+cryptography              2.8              py36h72c5cf5_1    conda-forge
+cycler                    0.10.0                     py_2    conda-forge
+cython                    0.29.20          py36h831f99a_0    conda-forge
+cytoolz                   0.10.1           py36h516909a_0    conda-forge
+dask-core                 2.20.0                     py_0    conda-forge
+dbus                      1.13.6               he372182_0    conda-forge
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+entrypoints               0.3                   py36_1000    conda-forge
+expat                     2.2.9                he1b5a44_2    conda-forge
+fastcache                 1.1.0            py36h8c4c3a4_1    conda-forge
+fontconfig                2.13.1            h86ecdb6_1001    conda-forge
+freetype                  2.10.2               he06d7ca_0    conda-forge
+gettext                   0.19.8.1          hc5be6a0_1002    conda-forge
+giflib                    5.2.1                h516909a_2    conda-forge
+glib                      2.65.0               h6f030ca_0    conda-forge
+gmp                       6.2.0                he1b5a44_2    conda-forge
+gmpy2                     2.1.0b1          py36h04dde30_0    conda-forge
+gst-plugins-base          1.14.5               h0935bb2_2    conda-forge
+gstreamer                 1.14.5               h36ae1b5_2    conda-forge
+icu                       64.2                 he1b5a44_1    conda-forge
+idna                      2.8                   py36_1000    conda-forge
+imagecodecs               2020.5.30        py36hc75b63b_2    conda-forge
+imageio                   2.8.0                      py_0    conda-forge
+importlib_metadata        1.5.0                    py36_0    conda-forge
+inflect                   4.0.0                    py36_1    conda-forge
+ipykernel                 5.1.4            py36h5ca1d4c_0    conda-forge
+ipyparallel               6.3.0            py36h9f0ad1d_0    conda-forge
+ipython                   7.16.1           py36h95af2a2_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0                   py36_0    conda-forge
+jinja2                    2.11.0                     py_0    conda-forge
+joblib                    0.16.0                     py_0    conda-forge
+jpeg                      9d                   h516909a_0    conda-forge
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py36_0    conda-forge
+jupyter_client            5.3.4                    py36_1    conda-forge
+jupyter_core              4.6.1                    py36_0    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py36_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py36_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+jxrlib                    1.1                  h516909a_2    conda-forge
+kiwisolver                1.2.0            py36hdb11119_0    conda-forge
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+lcms2                     2.11                 hbd6801e_0    conda-forge
+ld_impl_linux-64          2.34                 h53a641e_5    conda-forge
+lerc                      2.1                  he1b5a44_0    conda-forge
+libaec                    1.0.4                he1b5a44_1    conda-forge
+libblas                   3.8.0               14_openblas    conda-forge
+libcblas                  3.8.0               14_openblas    conda-forge
+libclang                  9.0.1           default_hde54327_0    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgfortran-ng            7.5.0                hdf63c60_6    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libiconv                  1.15              h516909a_1006    conda-forge
+liblapack                 3.8.0               14_openblas    conda-forge
+libllvm9                  9.0.1                he513fc3_1    conda-forge
+libopenblas               0.3.7                h5ec1e0e_6    conda-forge
+libpng                    1.6.37               hed695b0_1    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+libtiff                   4.1.0                hc7e4089_6    conda-forge
+libuuid                   2.32.1            h14c3975_1000    conda-forge
+libwebp-base              1.1.0                h516909a_3    conda-forge
+libxcb                    1.13              h14c3975_1002    conda-forge
+libxkbcommon              0.10.0               he1b5a44_0    conda-forge
+libxml2                   2.9.10               hee79883_0    conda-forge
+libzopfli                 1.0.3                he1b5a44_0    conda-forge
+lz4-c                     1.9.2                he1b5a44_1    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markupsafe                1.1.1            py36h516909a_0    conda-forge
+matplotlib                3.2.2                         0    conda-forge
+matplotlib-base           3.2.2            py36hb8e4980_0    conda-forge
+mistune                   0.8.4           py36h516909a_1000    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+mpc                       1.1.0             h04dde30_1007    conda-forge
+mpfr                      4.0.2                he80fd80_1    conda-forge
+mpi                       1.0                       mpich    conda-forge
+mpi4py                    3.0.3            py36h094ef99_1    conda-forge
+mpich                     3.3.2                hc856adb_0    conda-forge
+mpmath                    1.1.0                      py_0    conda-forge
+nbconvert                 5.6.1                    py36_0    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+networkx                  2.4                        py_1    conda-forge
+notebook                  6.0.3                    py36_0    conda-forge
+nspr                      4.26                 he1b5a44_0    conda-forge
+nss                       3.47                 he751ad9_0    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+numpy                     1.18.5           py36h7314795_0    conda-forge
+oauthlib                  3.0.1                      py_0    conda-forge
+olefile                   0.46                       py_0    conda-forge
+openjpeg                  2.3.1                h981e76c_3    conda-forge
+openssl                   1.1.1g               h516909a_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandas                    1.0.5            py36h830a2c2_0    conda-forge
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+pcre                      8.44                 he1b5a44_0    conda-forge
+pexpect                   4.8.0                    py36_0    conda-forge
+pickleshare               0.7.5                 py36_1000    conda-forge
+pillow                    7.2.0            py36h8328e55_0    conda-forge
+pip                       20.0.2                   py36_0    conda-forge
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt-toolkit            3.0.5                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+pthread-stubs             0.4               h14c3975_1001    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+pycparser                 2.19                     py36_1    conda-forge
+pycurl                    7.43.0.5         py36h16ce93b_0    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                   py36_0    conda-forge
+pyparsing                 2.4.7              pyh9f0ad1d_0    conda-forge
+pyqt                      5.12.3           py36haa643ae_3    conda-forge
+pyqt5-sip                 4.19.18                  pypi_0    pypi
+pyqtchart                 5.12                     pypi_0    pypi
+pyqtwebengine             5.12.1                   pypi_0    pypi
+pyrsistent                0.15.7           py36h516909a_0    conda-forge
+pysocks                   1.7.1                    py36_0    conda-forge
+python                    3.6.10          h8356626_1011_cpython    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+python_abi                3.6                     1_cp36m    conda-forge
+pytz                      2020.1             pyh9f0ad1d_0    conda-forge
+pywavelets                1.1.1            py36h785e9b2_1    conda-forge
+pyyaml                    5.3.1            py36h8c4c3a4_0    conda-forge
+pyzmq                     18.1.1           py36h1768529_0    conda-forge
+qt                        5.12.5               hd8c4c69_1    conda-forge
+readline                  8.0                  hf8c457e_0    conda-forge
+requests                  2.22.0                   py36_1    conda-forge
+ruamel.yaml               0.16.6           py36h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py36h516909a_0    conda-forge
+scikit-image              0.17.2           py36h830a2c2_1    conda-forge
+scikit-learn              0.23.1           py36h0e1014b_0    conda-forge
+scipy                     1.5.0            py36h2d22cac_0    conda-forge
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                45.1.0                   py36_0    conda-forge
+six                       1.14.0                   py36_0    conda-forge
+snappy                    1.1.8                he1b5a44_3    conda-forge
+sqlalchemy                1.3.13           py36h516909a_0    conda-forge
+sqlite                    3.30.1               hcee41ef_0    conda-forge
+sympy                     1.6.1            py36h9f0ad1d_0    conda-forge
+terminado                 0.8.3                    py36_0    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+threadpoolctl             2.1.0              pyh5ca1d4c_0    conda-forge
+tifffile                  2020.7.4                   py_0    conda-forge
+tk                        8.6.10               hed695b0_0    conda-forge
+toolz                     0.10.0                     py_0    conda-forge
+tornado                   6.0.3            py36h516909a_0    conda-forge
+traitlets                 4.3.3                    py36_0    conda-forge
+urllib3                   1.25.7                   py36_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+wheel                     0.34.1                   py36_0    conda-forge
+widgetsnbextension        3.5.1                    py36_0    conda-forge
+xorg-libxau               1.0.9                h14c3975_0    conda-forge
+xorg-libxdmcp             1.1.3                h516909a_0    conda-forge
+xz                        5.2.5                h516909a_0    conda-forge
+yaml                      0.2.5                h516909a_0    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zfp                       0.5.5                he1b5a44_1    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+zstd                      1.4.4                h6597ccf_3    conda-forge
+Removing intermediate container 1cbabc2560f1
+ ---> 3fab22bbd049
+Step 43/52 : USER root
+ ---> Running in c3d210e52fd3
+Removing intermediate container c3d210e52fd3
+ ---> 31fb01e5bb20
+Step 44/52 : COPY src/ ${REPO_DIR}
+ ---> 3593ca453fff
+Step 45/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in d728c48df061
+Removing intermediate container d728c48df061
+ ---> 75bf11f4f6ad
+Step 46/52 : LABEL repo2docker.ref="None"
+ ---> Running in e3b894972bbe
+Removing intermediate container e3b894972bbe
+ ---> 78e15b595c04
+Step 47/52 : LABEL repo2docker.repo="local"
+ ---> Running in b7a3e6417935
+Removing intermediate container b7a3e6417935
+ ---> e26c729ce4bd
+Step 48/52 : LABEL repo2docker.version="0.11.0"
+ ---> Running in e78b1507dd71
+Removing intermediate container e78b1507dd71
+ ---> 670afdc4343b
+Step 49/52 : USER ${NB_USER}
+ ---> Running in d811efd805a0
+Removing intermediate container d811efd805a0
+ ---> e77723c0edb1
+Step 50/52 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> f3cbefd5141c
+Step 51/52 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in f9634a1924ef
+Removing intermediate container f9634a1924ef
+ ---> a480881ff2ce
+Step 52/52 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in bb04de92da03
+Removing intermediate container bb04de92da03
+ ---> f430193d3cb2
+{"aux": {"ID": "sha256:f430193d3cb2c96c845d8b2a1dc8a29ead6945a53f32480d896a2fe3f95224d0"}}Successfully built f430193d3cb2
+Successfully tagged r2d-test-github.com-ipython-ipython-in-depth:7e5ce96

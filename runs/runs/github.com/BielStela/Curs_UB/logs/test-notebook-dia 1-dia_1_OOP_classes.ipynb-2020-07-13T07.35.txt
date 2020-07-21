@@ -1,0 +1,6 @@
+[I 200713 07:36:21 inrepo:36] Testing notebook dia 1/dia_1_OOP_classes.ipynb
+[I 200713 07:36:21 inrepo:45] Found kernel python3
+[I 200713 07:36:22 execute:404] Executing notebook with kernel: python3
+[I 200713 07:36:22 inrepo:79] Saving exported notebook to /io/notebooks/dia 1/dia_1_OOP_classes.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

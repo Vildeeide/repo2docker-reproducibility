@@ -1,0 +1,6 @@
+[I 200716 13:15:17 inrepo:36] Testing notebook HMM_algorithms/HMM_algorithm_tests.ipynb
+[I 200716 13:15:17 inrepo:45] Found kernel python3
+[I 200716 13:15:18 execute:404] Executing notebook with kernel: python3
+[I 200716 13:15:22 inrepo:79] Saving exported notebook to /io/notebooks/HMM_algorithms/HMM_algorithm_tests.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,89 @@
+[I 200717 12:42:13 inrepo:36] Testing notebook lordbot.ipynb
+[I 200717 12:42:14 inrepo:45] Found kernel python3
+[I 200717 12:42:14 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import json
+import getpass
+import logging
+import os
+import time
+
+from slackclient import SlackClient
+
+logging.basicConfig(level=logging.DEBUG)
+
+__logs__ = logging.getLogger(__name__)
+
+        
+class LordBot(object):
+    """
+    The main core of the bot. Even though this is the core it is meant to be pretty dumb to
+    the rest of application. It's main purpose is to act as a broker between the slack rtm api
+    and the dispatcher.
+    """
+    def __init__(self, token=None):
+        __logs__.info('Lordbot commencing initialization protocols.')
+        self.token = self._get_token()
+        self.sc = SlackClient(self.token)
+        
+    def _get_token(self):
+        """
+        A nice internal utility function for when working in a jupyter notebook ;)
+        """
+        # check the environment for the token if it is not there prompt the user
+        token = os.environ.get('API_TOKEN', None)
+        if token:
+            __logs__.info('Slack token found in the environment.')
+            token = token
+        else:
+            __logs__.info('No slack token detected please enter one into the system now.')
+            token = getpass.getpass(prompt='Please enter your slack token')
+            os.environ['API_TOKEN'] = token
+            return token
+    
+    def run(self):
+        """
+        Run the bot loop
+        """
+        if self.sc.rtm_connect():
+            while True:
+                try:
+                    msg = self.sc.rtm_read()
+                    if msg:
+                        print(msg)
+                        time.sleep(1)
+                except KeyboardInterrupt:
+                    pass
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-2-dbf1289b2d17>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;32mimport[0m [0mtime[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[0;32m----> 7[0;31m [0;32mfrom[0m [0mslackclient[0m [0;32mimport[0m [0mSlackClient[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0;34m[0m[0m
+[1;32m      9[0m [0mlogging[0m[0;34m.[0m[0mbasicConfig[0m[0;34m([0m[0mlevel[0m[0;34m=[0m[0mlogging[0m[0;34m.[0m[0mDEBUG[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'slackclient'
+ModuleNotFoundError: No module named 'slackclient'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

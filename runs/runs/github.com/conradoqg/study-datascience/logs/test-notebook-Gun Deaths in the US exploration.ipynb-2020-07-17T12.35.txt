@@ -1,0 +1,6 @@
+[I 200717 12:35:40 inrepo:36] Testing notebook Gun Deaths in the US exploration.ipynb
+[I 200717 12:35:40 inrepo:45] Found kernel python3
+[I 200717 12:35:41 execute:404] Executing notebook with kernel: python3
+[I 200717 12:35:42 inrepo:79] Saving exported notebook to /io/notebooks/Gun Deaths in the US exploration.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

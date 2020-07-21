@@ -1,0 +1,5 @@
+[I 200706 12:53:00 inrepo:35] Testing notebook example2/1-SimulateTree.ipynb
+[I 200706 12:53:01 execute:404] Executing notebook with kernel: python3
+[I 200706 12:53:10 inrepo:41] Saving exported notebook to /io/notebooks/example2/1-SimulateTree.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

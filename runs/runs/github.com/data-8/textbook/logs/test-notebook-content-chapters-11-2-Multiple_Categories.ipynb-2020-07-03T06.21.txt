@@ -1,0 +1,5 @@
+[I 200703 06:28:16 inrepo:35] Testing notebook content/chapters/11/2/Multiple_Categories.ipynb
+[I 200703 06:28:18 execute:404] Executing notebook with kernel: python3
+[I 200703 06:28:23 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/11/2/Multiple_Categories.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

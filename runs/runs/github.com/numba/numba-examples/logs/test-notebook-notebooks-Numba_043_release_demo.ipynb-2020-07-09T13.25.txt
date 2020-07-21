@@ -1,0 +1,37 @@
+[I 200709 13:34:47 inrepo:36] Testing notebook notebooks/Numba_043_release_demo.ipynb
+[I 200709 13:34:47 inrepo:45] Found kernel python3
+[I 200709 13:34:48 execute:404] Executing notebook with kernel: python3
+[E 200709 13:34:59 execute:509] Kernel died while waiting for execute reply.
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 478, in _poll_for_reply
+    msg = self.kc.shell_channel.get_msg(timeout=timeout)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/blocking/channels.py", line 57, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 438, in preprocess_cell
+    reply, outputs = self.run_cell(cell, cell_index, store_history)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 578, in run_cell
+    exec_reply = self._poll_for_reply(parent_msg_id, cell, timeout)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 483, in _poll_for_reply
+    self._check_alive()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 510, in _check_alive
+    raise DeadKernelError("Kernel died")
+nbconvert.preprocessors.execute.DeadKernelError: Kernel died
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

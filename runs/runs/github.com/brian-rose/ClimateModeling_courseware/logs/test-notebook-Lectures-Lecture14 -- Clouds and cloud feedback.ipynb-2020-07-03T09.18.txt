@@ -1,0 +1,44 @@
+[I 200703 09:19:44 inrepo:35] Testing notebook Lectures/Lecture14 -- Clouds and cloud feedback.ipynb
+[I 200703 09:19:46 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%load_ext version_information
+%version_information numpy, matplotlib, climlab
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/IPython/core/formatters.py[0m in [0;36m__call__[0;34m(self, obj)[0m
+[1;32m    343[0m             [0mmethod[0m [0;34m=[0m [0mget_real_method[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mprint_method[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    344[0m             [0;32mif[0m [0mmethod[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 345[0;31m                 [0;32mreturn[0m [0mmethod[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    346[0m             [0;32mreturn[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    347[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/version_information/version_information.py[0m in [0;36m_repr_html_[0;34m(self)[0m
+[1;32m    126[0m         [0mhtml[0m [0;34m+=[0m [0;34m"<tr><th>Software</th><th>Version</th></tr>"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    127[0m         [0;32mfor[0m [0mname[0m[0;34m,[0m [0mversion[0m [0;32min[0m [0mself[0m[0;34m.[0m[0mpackages[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 128[0;31m             [0m_version[0m [0;34m=[0m [0mcgi[0m[0;34m.[0m[0mescape[0m[0;34m([0m[0mversion[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    129[0m             [0mhtml[0m [0;34m+=[0m [0;34m"<tr><td>%s</td><td>%s</td></tr>"[0m [0;34m%[0m [0;34m([0m[0mname[0m[0;34m,[0m [0m_version[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    130[0m [0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'cgi' has no attribute 'escape'
+AttributeError: module 'cgi' has no attribute 'escape'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

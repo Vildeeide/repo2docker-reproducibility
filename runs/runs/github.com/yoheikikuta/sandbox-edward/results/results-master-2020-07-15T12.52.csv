@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/yoheikikuta/sandbox-edward,master,0a491f5,2019-10-24T15:40:37+09:00,build,build,False,github.com/yoheikikuta/sandbox-edward/logs/build-master-2020-07-15T12.52.txt,2020-07-15T12:52:20.368528,2020-07-15T12.52,0.11.0

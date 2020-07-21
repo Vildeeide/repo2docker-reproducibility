@@ -1,0 +1,5 @@
+[I 200706 08:48:05 inrepo:35] Testing notebook content/ch/02/design_dewey_truman.ipynb
+[I 200706 08:48:06 execute:404] Executing notebook with kernel: python3
+[I 200706 08:48:07 inrepo:41] Saving exported notebook to /io/notebooks/content/ch/02/design_dewey_truman.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,63 @@
+[I 200708 06:53:07 inrepo:36] Testing notebook C6C7_Plotting/Plotting with matplotlib.ipynb
+[I 200708 06:53:08 inrepo:45] Found kernel python3
+[I 200708 06:53:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+fpath = 'CaliforniaHousing/cal_housing.data'
+housing = np.loadtxt(fpath)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-15-20fae19ce685>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mfpath[0m [0;34m=[0m [0;34m'CaliforniaHousing/cal_housing.data'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mhousing[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mloadtxt[0m[0;34m([0m[0mfpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/npyio.py[0m in [0;36mloadtxt[0;34m(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin, encoding, max_rows)[0m
+[1;32m   1157[0m         [0;31m# converting the data[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1158[0m         [0mX[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1159[0;31m         [0;32mfor[0m [0mx[0m [0;32min[0m [0mread_data[0m[0;34m([0m[0m_loadtxt_chunksize[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1160[0m             [0;32mif[0m [0mX[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1161[0m                 [0mX[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0marray[0m[0;34m([0m[0mx[0m[0;34m,[0m [0mdtype[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/npyio.py[0m in [0;36mread_data[0;34m(chunk_size)[0m
+[1;32m   1085[0m [0;34m[0m[0m
+[1;32m   1086[0m             [0;31m# Convert each value according to its column and store[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1087[0;31m             [0mitems[0m [0;34m=[0m [0;34m[[0m[0mconv[0m[0;34m([0m[0mval[0m[0;34m)[0m [0;32mfor[0m [0;34m([0m[0mconv[0m[0;34m,[0m [0mval[0m[0;34m)[0m [0;32min[0m [0mzip[0m[0;34m([0m[0mconverters[0m[0;34m,[0m [0mvals[0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1088[0m [0;34m[0m[0m
+[1;32m   1089[0m             [0;31m# Then pack it according to the dtype's nesting[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/npyio.py[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m   1085[0m [0;34m[0m[0m
+[1;32m   1086[0m             [0;31m# Convert each value according to its column and store[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1087[0;31m             [0mitems[0m [0;34m=[0m [0;34m[[0m[0mconv[0m[0;34m([0m[0mval[0m[0;34m)[0m [0;32mfor[0m [0;34m([0m[0mconv[0m[0;34m,[0m [0mval[0m[0;34m)[0m [0;32min[0m [0mzip[0m[0;34m([0m[0mconverters[0m[0;34m,[0m [0mvals[0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1088[0m [0;34m[0m[0m
+[1;32m   1089[0m             [0;31m# Then pack it according to the dtype's nesting[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/npyio.py[0m in [0;36mfloatconv[0;34m(x)[0m
+[1;32m    792[0m         [0;32mif[0m [0;34m'0x'[0m [0;32min[0m [0mx[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    793[0m             [0;32mreturn[0m [0mfloat[0m[0;34m.[0m[0mfromhex[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 794[0;31m         [0;32mreturn[0m [0mfloat[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    795[0m [0;34m[0m[0m
+[1;32m    796[0m     [0mtyp[0m [0;34m=[0m [0mdtype[0m[0;34m.[0m[0mtype[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: could not convert string to float: '-122.230000,37.880000,41.000000,880.000000,129.000000,322.000000,126.000000,8.325200,452600.000000'
+ValueError: could not convert string to float: '-122.230000,37.880000,41.000000,880.000000,129.000000,322.000000,126.000000,8.325200,452600.000000'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

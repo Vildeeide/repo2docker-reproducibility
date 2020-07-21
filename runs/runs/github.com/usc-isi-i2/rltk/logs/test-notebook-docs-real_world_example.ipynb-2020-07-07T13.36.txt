@@ -1,0 +1,98 @@
+[I 200707 13:37:58 inrepo:36] Testing notebook docs/real_world_example.ipynb
+[W 200707 13:37:58 inrepo:48] No such kernel rltk, falling back on kernel language=python
+[W 200707 13:37:58 inrepo:60] Using kernel python3 to provide language: python
+[I 200707 13:37:59 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def print_stats(fp):
+    print(fp)
+    df_data = pd.read_csv(fp, encoding='latin-1')
+    
+    print('\nfirst 5 rows:')
+    display(df_data.head(5))
+    
+    stat = []
+    for i in range(df_data.shape[1]):
+        stat.append(df_data.shape[0] - df_data.iloc[:,i].isnull().sum())
+    df_stat = pd.DataFrame([stat], columns=df_data.columns.values.tolist())
+    df_stat.rename(index={0: 'total'}, inplace=True)
+    print('\ntotal number of rows:')
+    display(df_stat.head(1))
+    print('\n')
+    
+print_stats('datasets/Abt-Buy/abt.csv')
+print_stats('datasets/Abt-Buy/buy.csv')
+print_stats('datasets/Abt-Buy/abt_buy_perfectMapping.csv')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-2-2e884a5dd0c3>[0m in [0;36m<module>[0;34m[0m
+[1;32m     15[0m     [0mprint[0m[0;34m([0m[0;34m'\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m [0;34m[0m[0m
+[0;32m---> 17[0;31m [0mprint_stats[0m[0;34m([0m[0;34m'datasets/Abt-Buy/abt.csv'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     18[0m [0mprint_stats[0m[0;34m([0m[0;34m'datasets/Abt-Buy/buy.csv'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     19[0m [0mprint_stats[0m[0;34m([0m[0;34m'datasets/Abt-Buy/abt_buy_perfectMapping.csv'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-2-2e884a5dd0c3>[0m in [0;36mprint_stats[0;34m(fp)[0m
+[1;32m      1[0m [0;32mdef[0m [0mprint_stats[0m[0;34m([0m[0mfp[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m     [0mprint[0m[0;34m([0m[0mfp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m     [0mdf_data[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0mfp[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m'latin-1'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m     [0mprint[0m[0;34m([0m[0;34m'\nfirst 5 rows:'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/parsers.py[0m in [0;36mparser_f[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision)[0m
+[1;32m    674[0m         )
+[1;32m    675[0m [0;34m[0m[0m
+[0;32m--> 676[0;31m         [0;32mreturn[0m [0m_read[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m,[0m [0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    677[0m [0;34m[0m[0m
+[1;32m    678[0m     [0mparser_f[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0mname[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/parsers.py[0m in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
+[1;32m    446[0m [0;34m[0m[0m
+[1;32m    447[0m     [0;31m# Create the parser.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 448[0;31m     [0mparser[0m [0;34m=[0m [0mTextFileReader[0m[0;34m([0m[0mfp_or_buf[0m[0;34m,[0m [0;34m**[0m[0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    449[0m [0;34m[0m[0m
+[1;32m    450[0m     [0;32mif[0m [0mchunksize[0m [0;32mor[0m [0miterator[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/parsers.py[0m in [0;36m__init__[0;34m(self, f, engine, **kwds)[0m
+[1;32m    878[0m             [0mself[0m[0;34m.[0m[0moptions[0m[0;34m[[0m[0;34m"has_index_names"[0m[0;34m][0m [0;34m=[0m [0mkwds[0m[0;34m[[0m[0;34m"has_index_names"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m    879[0m [0;34m[0m[0m
+[0;32m--> 880[0;31m         [0mself[0m[0;34m.[0m[0m_make_engine[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mengine[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    881[0m [0;34m[0m[0m
+[1;32m    882[0m     [0;32mdef[0m [0mclose[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/parsers.py[0m in [0;36m_make_engine[0;34m(self, engine)[0m
+[1;32m   1112[0m     [0;32mdef[0m [0m_make_engine[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mengine[0m[0;34m=[0m[0;34m"c"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1113[0m         [0;32mif[0m [0mengine[0m [0;34m==[0m [0;34m"c"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1114[0;31m             [0mself[0m[0;34m.[0m[0m_engine[0m [0;34m=[0m [0mCParserWrapper[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mf[0m[0;34m,[0m [0;34m**[0m[0mself[0m[0;34m.[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1115[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1116[0m             [0;32mif[0m [0mengine[0m [0;34m==[0m [0;34m"python"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/parsers.py[0m in [0;36m__init__[0;34m(self, src, **kwds)[0m
+[1;32m   1872[0m         [0;32mif[0m [0mkwds[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m"compression"[0m[0;34m)[0m [0;32mis[0m [0;32mNone[0m [0;32mand[0m [0mencoding[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1873[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0msrc[0m[0;34m,[0m [0mstr[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1874[0;31m                 [0msrc[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0msrc[0m[0;34m,[0m [0;34m"rb"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1875[0m                 [0mself[0m[0;34m.[0m[0mhandles[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0msrc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1876[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'datasets/Abt-Buy/abt.csv'
+FileNotFoundError: [Errno 2] No such file or directory: 'datasets/Abt-Buy/abt.csv'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,7 @@
+[I 200715 12:20:00 inrepo:36] Testing notebook Books/nborwankar-LearnDataScience-97d8d7d/nborwankar-LearnDataScience-97d8d7d/notebooks/C1. Random Forests - Overview.ipynb
+[W 200715 12:20:00 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 12:20:00 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 12:20:01 execute:404] Executing notebook with kernel: python3
+[I 200715 12:20:01 inrepo:79] Saving exported notebook to /io/notebooks/Books/nborwankar-LearnDataScience-97d8d7d/nborwankar-LearnDataScience-97d8d7d/notebooks/C1. Random Forests - Overview.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

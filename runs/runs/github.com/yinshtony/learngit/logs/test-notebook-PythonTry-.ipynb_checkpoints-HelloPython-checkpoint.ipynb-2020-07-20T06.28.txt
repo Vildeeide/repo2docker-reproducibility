@@ -1,0 +1,6 @@
+[I 200720 06:29:04 inrepo:36] Testing notebook PythonTry/.ipynb_checkpoints/HelloPython-checkpoint.ipynb
+[I 200720 06:29:04 inrepo:45] Found kernel python3
+[I 200720 06:29:05 execute:404] Executing notebook with kernel: python3
+[I 200720 06:29:05 inrepo:79] Saving exported notebook to /io/notebooks/PythonTry/.ipynb_checkpoints/HelloPython-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

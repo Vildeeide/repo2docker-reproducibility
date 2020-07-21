@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ling592b/class_1-2,master,272f1d1,2018-01-27T08:10:41-05:00,build,build,False,github.com/ling592b/class_1-2/logs/build-master-2020-07-20T07.32.txt,2020-07-20T07:32:41.256439,2020-07-20T07.32,0.11.0

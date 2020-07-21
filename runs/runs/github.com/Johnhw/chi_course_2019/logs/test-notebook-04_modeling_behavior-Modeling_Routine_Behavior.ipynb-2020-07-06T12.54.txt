@@ -1,0 +1,5 @@
+[I 200706 12:55:36 inrepo:35] Testing notebook 04_modeling_behavior/Modeling_Routine_Behavior.ipynb
+[I 200706 12:55:37 execute:404] Executing notebook with kernel: python3
+[I 200706 12:55:39 inrepo:41] Saving exported notebook to /io/notebooks/04_modeling_behavior/Modeling_Routine_Behavior.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

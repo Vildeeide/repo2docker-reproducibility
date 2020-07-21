@@ -1,0 +1,5 @@
+[I 200716 09:19:06 inrepo:36] Testing notebook .ipynb_checkpoints/traffic accident-checkpoint.ipynb
+[I 200716 09:19:07 execute:404] Executing notebook with kernel: python
+[I 200716 09:19:07 inrepo:79] Saving exported notebook to /io/notebooks/.ipynb_checkpoints/traffic accident-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

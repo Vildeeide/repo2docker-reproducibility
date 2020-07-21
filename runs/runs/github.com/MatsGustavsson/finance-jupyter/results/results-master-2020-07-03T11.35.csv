@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/MatsGustavsson/finance-jupyter,master,4307ecb,2018-01-11T09:45:16+01:00,build,build,True,github.com/MatsGustavsson/finance-jupyter/logs/build-master-2020-07-03T11.35.txt,2020-07-03T11:35:03.984329,2020-07-03T11.35,0.11.0
+https://github.com/MatsGustavsson/finance-jupyter,master,4307ecb,2018-01-11T09:45:16+01:00,notebook,SequentialStructure_clean.ipynb,True,github.com/MatsGustavsson/finance-jupyter/logs/test-notebook-SequentialStructure_clean.ipynb-2020-07-03T11.35.txt,2020-07-03T11:35:03.984329,2020-07-03T11.35,0.11.0
+https://github.com/MatsGustavsson/finance-jupyter,master,4307ecb,2018-01-11T09:45:16+01:00,notebook,Stock_FX_Returns.ipynb,False,github.com/MatsGustavsson/finance-jupyter/logs/test-notebook-Stock_FX_Returns.ipynb-2020-07-03T11.35.txt,2020-07-03T11:35:03.984329,2020-07-03T11.35,0.11.0

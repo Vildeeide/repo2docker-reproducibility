@@ -1,0 +1,209 @@
+[I 200712 16:03:30 inrepo:36] Testing notebook restricted-boltzmann-machine.ipynb
+[W 200712 16:03:31 inrepo:48] No such kernel ds, falling back on kernel language=python
+[W 200712 16:03:31 inrepo:60] Using kernel python3 to provide language: python
+[I 200712 16:03:31 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import itertools
+
+def get_max_length(names):
+    """
+    Utility method to get the maximum length of all the names.
+    
+    :param names: A dictionary of names. Keys are types and values are arrays of names.
+    :return: The maximum length of a name.
+    """
+    max_length = 0
+    for k, v in names.iteritems():
+        length = max([len(name) for name in v])
+        if length > max_length:
+            max_length = length
+    return max_length
+
+def get_encoding():
+    """
+    Gets the encoding from letter to indices. Note that space is replaced by the hash symbol/character.
+    
+    :return: A dictionary where keys are letters and values are indices.
+    """
+    letters = 'abcdefghijklmnopqrstuvwxyz#'
+    d = {}
+    for i in range(len(letters)):
+        d[letters[i]] = i
+    return d
+
+def get_reverse_encoding():
+    """
+    Gets the encoding from indices to letters. 
+    
+    :return: A dictionary where keys are indices and values are letters.
+    """
+    letters = 'abcdefghijklmnopqrstuvwxyz#'
+    d = {}
+    for i in range(len(letters)):
+        d[i] = letters[i]
+    return d
+
+def encode_letter(letter, encoding=get_encoding()):
+    """
+    One-hot encodes a letter to a vector. The vector is all zero except one in the index
+    corresponding to the letter.
+    
+    :param letter: Letter.
+    :param encoding: The letter-index encoding.
+    :return: One-hot encoded vector representing a letter.
+    """
+    n = len(encoding)
+    ohe = np.zeros(n)
+    idx = encoding[letter]
+    ohe[idx] = 1
+    return ohe
+
+def encode_name(name, max_letters, encoding=get_encoding()):
+    """
+    One-hot encodes a name into a matrix (or tensor). Note that no matter the name,
+    the dimension will always be max_letters x 27. The max_letters is the maximum
+    letters (length) that can be in a name. The 27 is due to 26 alphabets plus 1 for
+    padding. 
+    
+    :param name: A name.
+    :param max_letters: Maximum letters.
+    :param encoding: The letter-index encoding.
+    :return: A tensor representing a one-hot encoding of a name.
+    """
+    name_length = len(name)
+    name_ohe = [encode_letter(name[i], encoding) for i in range(name_length)]
+    padd_ohe = [encode_letter('#', encoding) for _ in range(name_length, max_letters)]
+    
+    ohe = []
+    ohe.extend(name_ohe)
+    ohe.extend(padd_ohe)
+    ohe = np.hstack(ohe)
+    
+    return ohe
+
+def encode_names(names, max_letters, encoding=get_encoding()):
+    """
+    Encodes all names. The names parameter is a dictionary where keys are
+    types (e.g. English, Chinese, Indian) and values are list of names.
+    
+    :param names: A dictionary of types with names.
+    :param max_letters: The maximum letters in a name.
+    :param encoding: The letter-index encoding.
+    :return: A list of tensors, where each tensor represents one-hot encoding of names.
+    """
+    data = []
+    for k, names in names.iteritems():
+        for name in names:
+            ohe = encode_name(name, max_letters, encoding)
+            data.append(ohe)
+    return np.array(data)
+
+def flatten_names(names):
+    """
+    Flatten out the names. The names parameter is a dictionary where keys are
+    types (e.g. English, Chinese, Indian) and values are list of names.
+    
+    :param names: A dictionary of types with names.
+    :return: A list of names.
+    """
+    data = []
+    for k, names in names.iteritems():
+        data.extend(names)
+    return data
+
+def decode_ohe(v, max_letters, encoding=get_reverse_encoding()):
+    """
+    Decodes one-hot encoded vector.
+    
+    :param v: One-hot encoded vector.
+    :param max_letters: The maximum letters in a name.
+    :param encoding: The index-letter encoding.
+    :return: A list of letter sets. e.g. ['ab', 'c', 'defg']
+    """
+    def encode(row, vector, encoding):
+        codes = [encoding[i] for i, c in enumerate(vector[row, :]) if c > 0 and i < 26]
+        out = ''.join(codes).strip()
+        if len(out) == 0:
+            return None
+        else:
+            return out
+    
+    vector = v[0,:]
+    cols = v.shape[1] / max_letters
+    rows = max_letters
+    vector = vector.reshape(rows, cols)
+    d = []
+    for i, row in enumerate(range(rows)):
+        v_activations = encode(row, vector, encoding)
+        if v_activations is not None and len(v_activations) > 0:
+            d.append(v_activations)
+    return d
+
+def get_permutation(decoding):
+    """
+    Gets all permutations of a list of letter sets. For example, if the
+    decoding is ['c', 'a', 'trp'] then the result will be ['cat', 'car' 'cap'].
+    
+    :param decoding: A list of letter sets. e.g. ['c', 'a', 'trp'].
+    :return: All permutations between the letter sets.
+    """
+    return [''.join(t) for t in list(itertools.product(*decoding))]
+    
+names = {
+    'english': [
+        'jack', 'thomas', 'joshua', 'william', 'daniel',
+        'matthew', 'james', 'joseph', 'harry', 'samuel'
+    ],
+    'chinese': [
+        'wei', 'qiang', 'lei', 'jun', 'yong',
+        'jie', 'jin', 'taio', 'de', 'tao'
+    ],
+    'indian': [
+        'mohammed', 'reyansh', 'aarav', 'atharv', 'vivaan',
+        'advik', 'ansh', 'ishann', 'dhruv', 'siddharth'
+    ]
+}
+
+max_letters = get_max_length(names)
+encoding = get_encoding()
+rencoding = get_reverse_encoding()
+raw = encode_names(names, max_letters, encoding)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-13-1d7482819899>[0m in [0;36m<module>[0;34m[0m
+[1;32m    160[0m }
+[1;32m    161[0m [0;34m[0m[0m
+[0;32m--> 162[0;31m [0mmax_letters[0m [0;34m=[0m [0mget_max_length[0m[0;34m([0m[0mnames[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    163[0m [0mencoding[0m [0;34m=[0m [0mget_encoding[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    164[0m [0mrencoding[0m [0;34m=[0m [0mget_reverse_encoding[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-13-1d7482819899>[0m in [0;36mget_max_length[0;34m(names)[0m
+[1;32m      9[0m     """
+[1;32m     10[0m     [0mmax_length[0m [0;34m=[0m [0;36m0[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m     [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mnames[0m[0;34m.[0m[0miteritems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m         [0mlength[0m [0;34m=[0m [0mmax[0m[0;34m([0m[0;34m[[0m[0mlen[0m[0;34m([0m[0mname[0m[0;34m)[0m [0;32mfor[0m [0mname[0m [0;32min[0m [0mv[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m         [0;32mif[0m [0mlength[0m [0;34m>[0m [0mmax_length[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'dict' object has no attribute 'iteritems'
+AttributeError: 'dict' object has no attribute 'iteritems'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

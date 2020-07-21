@@ -1,0 +1,38 @@
+[I 200703 09:26:30 inrepo:35] Testing notebook Lectures/Lecture02 -- Solving the zero-dimensional EBM.ipynb
+[I 200703 09:26:31 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Try a single timestep, assuming we have working functions for ASR and OLR
+T1 = 288.
+T2 = T1 + dt / C * ( ASR(alpha=0.32) - OLR(T1, tau=0.57) )
+print(T2)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-11-e45ef08587df>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Try a single timestep, assuming we have working functions for ASR and OLR[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mT1[0m [0;34m=[0m [0;36m288.[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mT2[0m [0;34m=[0m [0mT1[0m [0;34m+[0m [0mdt[0m [0;34m/[0m [0mC[0m [0;34m*[0m [0;34m([0m [0mASR[0m[0;34m([0m[0malpha[0m[0;34m=[0m[0;36m0.32[0m[0;34m)[0m [0;34m-[0m [0mOLR[0m[0;34m([0m[0mT1[0m[0;34m,[0m [0mtau[0m[0;34m=[0m[0;36m0.57[0m[0;34m)[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0mprint[0m[0;34m([0m[0mT2[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'ASR' is not defined
+NameError: name 'ASR' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

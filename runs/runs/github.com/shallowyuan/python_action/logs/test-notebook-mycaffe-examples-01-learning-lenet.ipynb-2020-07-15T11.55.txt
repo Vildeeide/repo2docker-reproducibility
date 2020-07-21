@@ -1,0 +1,57 @@
+[I 200715 11:55:49 inrepo:36] Testing notebook mycaffe/examples/01-learning-lenet.ipynb
+[W 200715 11:55:49 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 11:55:49 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 11:55:50 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import sys
+sys.path.insert(0, './python')
+import caffe
+
+from pylab import *
+%matplotlib inline
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-2-305d44dfb78e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0msys[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0minsert[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0;34m'./python'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mimport[0m [0mcaffe[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0mpylab[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/mycaffe/python/caffe/__init__.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0;34m.[0m[0mpycaffe[0m [0;32mimport[0m [0mNet[0m[0;34m,[0m [0mSGDSolver[0m[0;34m,[0m [0mNesterovSolver[0m[0;34m,[0m [0mAdaGradSolver[0m[0;34m,[0m [0mRMSPropSolver[0m[0;34m,[0m [0mAdaDeltaSolver[0m[0;34m,[0m [0mAdamSolver[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0;34m.[0m[0m_caffe[0m [0;32mimport[0m [0mset_mode_cpu[0m[0;34m,[0m [0mset_mode_gpu[0m[0;34m,[0m [0mset_device[0m[0;34m,[0m [0mLayer[0m[0;34m,[0m [0mget_solver[0m[0;34m,[0m [0mlayer_type_list[0m[0;34m,[0m [0mset_random_seed[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0;34m.[0m[0m_caffe[0m [0;32mimport[0m [0m__version__[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0;34m.[0m[0mproto[0m[0;34m.[0m[0mcaffe_pb2[0m [0;32mimport[0m [0mTRAIN[0m[0;34m,[0m [0mTEST[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0;34m.[0m[0mclassifier[0m [0;32mimport[0m [0mClassifier[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/mycaffe/python/caffe/pycaffe.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m     [0;32mfrom[0m [0mitertools[0m [0;32mimport[0m [0mzip_longest[0m [0;32mas[0m [0mizip_longest[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m [0;34m[0m[0m
+[1;32m     13[0m [0;32mfrom[0m [0;34m.[0m[0m_caffe[0m [0;32mimport[0m [0mNet[0m[0;34m,[0m [0mSGDSolver[0m[0;34m,[0m [0mNesterovSolver[0m[0;34m,[0m [0mAdaGradSolver[0m[0;34m,[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

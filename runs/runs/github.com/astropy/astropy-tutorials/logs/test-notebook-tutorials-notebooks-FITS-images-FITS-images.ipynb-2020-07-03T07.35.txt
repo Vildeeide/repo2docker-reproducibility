@@ -1,0 +1,5 @@
+[I 200703 07:40:56 inrepo:35] Testing notebook tutorials/notebooks/FITS-images/FITS-images.ipynb
+[I 200703 07:40:57 execute:404] Executing notebook with kernel: python3
+[I 200703 07:41:11 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/notebooks/FITS-images/FITS-images.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

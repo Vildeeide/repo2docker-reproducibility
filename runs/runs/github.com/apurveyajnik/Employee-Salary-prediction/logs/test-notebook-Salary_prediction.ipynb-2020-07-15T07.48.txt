@@ -1,0 +1,65 @@
+[I 200715 07:50:27 inrepo:36] Testing notebook Salary_prediction.ipynb
+[I 200715 07:50:28 inrepo:45] Found kernel python3
+[I 200715 07:50:30 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+df = pd.read_excel('train.xlsx')
+df.reset_index(drop=True, inplace=True)
+df.head(5)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-2-4164540b42be>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_excel[0m[0;34m([0m[0;34m'train.xlsx'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mdf[0m[0;34m.[0m[0mreset_index[0m[0;34m([0m[0mdrop[0m[0;34m=[0m[0;32mTrue[0m[0;34m,[0m [0minplace[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mdf[0m[0;34m.[0m[0mhead[0m[0;34m([0m[0;36m5[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/excel/_base.py[0m in [0;36mread_excel[0;34m(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, **kwds)[0m
+[1;32m    302[0m [0;34m[0m[0m
+[1;32m    303[0m     [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mio[0m[0;34m,[0m [0mExcelFile[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 304[0;31m         [0mio[0m [0;34m=[0m [0mExcelFile[0m[0;34m([0m[0mio[0m[0;34m,[0m [0mengine[0m[0;34m=[0m[0mengine[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    305[0m     [0;32melif[0m [0mengine[0m [0;32mand[0m [0mengine[0m [0;34m!=[0m [0mio[0m[0;34m.[0m[0mengine[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    306[0m         raise ValueError(
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/excel/_base.py[0m in [0;36m__init__[0;34m(self, io, engine)[0m
+[1;32m    822[0m         [0mself[0m[0;34m.[0m[0m_io[0m [0;34m=[0m [0mstringify_path[0m[0;34m([0m[0mio[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    823[0m [0;34m[0m[0m
+[0;32m--> 824[0;31m         [0mself[0m[0;34m.[0m[0m_reader[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_engines[0m[0;34m[[0m[0mengine[0m[0;34m][0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_io[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    825[0m [0;34m[0m[0m
+[1;32m    826[0m     [0;32mdef[0m [0m__fspath__[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/io/excel/_xlrd.py[0m in [0;36m__init__[0;34m(self, filepath_or_buffer)[0m
+[1;32m     18[0m         """
+[1;32m     19[0m         [0merr_msg[0m [0;34m=[0m [0;34m"Install xlrd >= 1.0.0 for Excel support"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 20[0;31m         [0mimport_optional_dependency[0m[0;34m([0m[0;34m"xlrd"[0m[0;34m,[0m [0mextra[0m[0;34m=[0m[0merr_msg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     21[0m         [0msuper[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/compat/_optional.py[0m in [0;36mimport_optional_dependency[0;34m(name, extra, raise_on_missing, on_version)[0m
+[1;32m     90[0m     [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     91[0m         [0;32mif[0m [0mraise_on_missing[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 92[0;31m             [0;32mraise[0m [0mImportError[0m[0;34m([0m[0mmsg[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     93[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     94[0m             [0;32mreturn[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
+ImportError: Missing optional dependency 'xlrd'. Install xlrd >= 1.0.0 for Excel support Use pip or conda to install xlrd.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,19 @@
+[I 200709 13:14:57 inrepo:36] Testing notebook notebooks/simd.ipynb
+[I 200709 13:14:57 inrepo:45] Found kernel python3
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/ipykernel/heartbeat.py", line 93, in run
+    self._bind_socket()
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/ipykernel/heartbeat.py", line 74, in _bind_socket
+    self._try_bind_socket()
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/ipykernel/heartbeat.py", line 61, in _try_bind_socket
+    return self.socket.bind('%s://%s' % (self.transport, self.ip) + c + str(self.port))
+  File "zmq/backend/cython/socket.pyx", line 550, in zmq.backend.cython.socket.Socket.bind
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc
+zmq.error.ZMQError: Address already in use
+[I 200709 13:14:58 execute:404] Executing notebook with kernel: python3
+[I 200709 13:17:10 inrepo:79] Saving exported notebook to /io/notebooks/notebooks/simd.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

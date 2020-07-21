@@ -1,0 +1,7 @@
+[I 200716 12:44:58 inrepo:36] Testing notebook notebooks/10.06-widget-library-exercises.ipynb
+[W 200716 12:44:59 inrepo:48] No such kernel widgets-tutorial, falling back on kernel language=python
+[W 200716 12:44:59 inrepo:60] Using kernel python3 to provide language: python
+[I 200716 12:44:59 execute:404] Executing notebook with kernel: python3
+[I 200716 12:45:00 inrepo:79] Saving exported notebook to /io/notebooks/notebooks/10.06-widget-library-exercises.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,372 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T06.59d1t5myl6/github.com/mdeff/pygsp_tutorial_graphsip.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 7d49b560ac4a
+Step 38/51 : USER root
+ ---> Running in f61ee993e986
+Removing intermediate container f61ee993e986
+ ---> 9e3775d58116
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in b27d20995d4d
+Removing intermediate container b27d20995d4d
+ ---> 4438b449547d
+Step 40/51 : USER ${NB_USER}
+ ---> Running in d254a1a48846
+Removing intermediate container d254a1a48846
+ ---> 1673fa1e9e78
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 145f25ef4a8d
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mRequirement already satisfied: backcall==0.1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (0.1.0)
+Collecting bleach==2.1.4
+  Downloading bleach-2.1.4-py2.py3-none-any.whl (22 kB)
+Collecting cycler==0.10.0
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting decorator==4.3.0
+  Downloading decorator-4.3.0-py2.py3-none-any.whl (9.2 kB)
+Collecting entrypoints==0.2.3
+  Downloading entrypoints-0.2.3-py2.py3-none-any.whl (9.4 kB)
+Collecting html5lib==1.0.1
+  Downloading html5lib-1.0.1-py2.py3-none-any.whl (117 kB)
+Collecting ipykernel==4.9.0
+  Downloading ipykernel-4.9.0-py3-none-any.whl (110 kB)
+Collecting ipython==6.5.0
+  Downloading ipython-6.5.0-py3-none-any.whl (748 kB)
+Requirement already satisfied: ipython-genutils==0.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 9)) (0.2.0)
+Collecting ipywidgets==7.4.1
+  Downloading ipywidgets-7.4.1-py2.py3-none-any.whl (110 kB)
+Collecting jedi==0.12.1
+  Downloading jedi-0.12.1-py2.py3-none-any.whl (174 kB)
+Collecting Jinja2==2.10
+  Downloading Jinja2-2.10-py2.py3-none-any.whl (126 kB)
+Collecting jsonschema==2.6.0
+  Downloading jsonschema-2.6.0-py2.py3-none-any.whl (39 kB)
+Collecting jupyter==1.0.0
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting jupyter-client==5.2.3
+  Downloading jupyter_client-5.2.3-py2.py3-none-any.whl (89 kB)
+Collecting jupyter-console==5.2.0
+  Downloading jupyter_console-5.2.0-py2.py3-none-any.whl (20 kB)
+Collecting jupyter-core==4.4.0
+  Downloading jupyter_core-4.4.0-py2.py3-none-any.whl (126 kB)
+Collecting jupyterlab==0.34.7
+  Downloading jupyterlab-0.34.7-py2.py3-none-any.whl (14.0 MB)
+Collecting jupyterlab-launcher==0.13.1
+  Downloading jupyterlab_launcher-0.13.1-py2.py3-none-any.whl (27 kB)
+Collecting kiwisolver==1.0.1
+  Downloading kiwisolver-1.0.1-cp37-cp37m-manylinux1_x86_64.whl (89 kB)
+Collecting MarkupSafe==1.0
+  Downloading MarkupSafe-1.0.tar.gz (14 kB)
+Collecting matplotlib==2.2.3
+  Downloading matplotlib-2.2.3-cp37-cp37m-manylinux1_x86_64.whl (12.6 MB)
+Collecting mistune==0.8.3
+  Downloading mistune-0.8.3-py2.py3-none-any.whl (16 kB)
+Collecting nbconvert==5.3.1
+  Downloading nbconvert-5.3.1-py2.py3-none-any.whl (387 kB)
+Collecting nbformat==4.4.0
+  Downloading nbformat-4.4.0-py2.py3-none-any.whl (155 kB)
+Collecting networkx==2.1
+  Downloading networkx-2.1.zip (1.6 MB)
+Collecting notebook==5.6.0
+  Downloading notebook-5.6.0-py2.py3-none-any.whl (8.9 MB)
+Collecting numpy==1.15.1
+  Downloading numpy-1.15.1-cp37-cp37m-manylinux1_x86_64.whl (13.8 MB)
+Requirement already satisfied: pandocfilters==1.4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 29)) (1.4.2)
+Collecting parso==0.3.1
+  Downloading parso-0.3.1-py2.py3-none-any.whl (88 kB)
+Collecting pexpect==4.6.0
+  Downloading pexpect-4.6.0-py2.py3-none-any.whl (57 kB)
+Collecting pickleshare==0.7.4
+  Downloading pickleshare-0.7.4-py2.py3-none-any.whl (6.9 kB)
+Collecting prometheus-client==0.3.1
+  Downloading prometheus_client-0.3.1.tar.gz (27 kB)
+Collecting prompt-toolkit==1.0.15
+  Downloading prompt_toolkit-1.0.15-py3-none-any.whl (247 kB)
+Requirement already satisfied: ptyprocess==0.6.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 35)) (0.6.0)
+Collecting Pygments==2.2.0
+  Downloading Pygments-2.2.0-py2.py3-none-any.whl (841 kB)
+Collecting PyGSP==0.5.1
+  Downloading PyGSP-0.5.1-py2.py3-none-any.whl (1.8 MB)
+Collecting pyparsing==2.2.0
+  Downloading pyparsing-2.2.0-py2.py3-none-any.whl (56 kB)
+Collecting python-dateutil==2.7.3
+  Downloading python_dateutil-2.7.3-py2.py3-none-any.whl (211 kB)
+Collecting pytz==2018.5
+  Downloading pytz-2018.5-py2.py3-none-any.whl (510 kB)
+Collecting pyzmq==17.1.2
+  Downloading pyzmq-17.1.2-cp37-cp37m-manylinux1_x86_64.whl (997 kB)
+Collecting qtconsole==4.4.1
+  Downloading qtconsole-4.4.1-py2.py3-none-any.whl (112 kB)
+Collecting scikit-learn==0.19.2
+  Downloading scikit_learn-0.19.2-cp37-cp37m-manylinux1_x86_64.whl (4.9 MB)
+Collecting scipy==1.1.0
+  Downloading scipy-1.1.0-cp37-cp37m-manylinux1_x86_64.whl (31.2 MB)
+Requirement already satisfied: Send2Trash==1.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 45)) (1.5.0)
+Collecting simplegeneric==0.8.1
+  Downloading simplegeneric-0.8.1.zip (12 kB)
+Collecting six==1.11.0
+  Downloading six-1.11.0-py2.py3-none-any.whl (10 kB)
+Collecting terminado==0.8.1
+  Downloading terminado-0.8.1-py2.py3-none-any.whl (33 kB)
+Collecting testpath==0.3.1
+  Downloading testpath-0.3.1-py2.py3-none-any.whl (161 kB)
+Collecting tornado==5.1
+  Downloading tornado-5.1.tar.gz (516 kB)
+Collecting traitlets==4.3.2
+  Downloading traitlets-4.3.2-py2.py3-none-any.whl (74 kB)
+Collecting wcwidth==0.1.7
+  Downloading wcwidth-0.1.7-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: webencodings==0.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 53)) (0.5.1)
+Collecting widgetsnbextension==3.4.1
+  Downloading widgetsnbextension-3.4.1-py2.py3-none-any.whl (2.2 MB)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython==6.5.0->-r requirements.txt (line 8)) (45.1.0.post20200119)
+Building wheels for collected packages: MarkupSafe, networkx, prometheus-client, simplegeneric, tornado
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status 'done'
+  Created wheel for MarkupSafe: filename=MarkupSafe-1.0-cp37-cp37m-linux_x86_64.whl size=30611 sha256=9d2b6745e292db527c2434a5b3a6cce338aeb7abd05fca4462b840d7d75b8715
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b5x1zm4k/wheels/8f/73/61/ad4c803fb36f6f2225882a6557fa2fbf5cf24fbe4be3f20b24
+  Building wheel for networkx (setup.py): started
+  Building wheel for networkx (setup.py): finished with status 'done'
+  Created wheel for networkx: filename=networkx-2.1-py2.py3-none-any.whl size=1447765 sha256=ba61c0b43e11bc7baa06be4fa63f1130d6ee066760ac887f48656a8d6f159cf4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b5x1zm4k/wheels/48/b1/c4/94ca0cdd84961331402e857d562d9822ccfcb0567c3d064bf2
+  Building wheel for prometheus-client (setup.py): started
+  Building wheel for prometheus-client (setup.py): finished with status 'done'
+  Created wheel for prometheus-client: filename=prometheus_client-0.3.1-py3-none-any.whl size=26851 sha256=aee36684ad3f81cfdef3346ea7369c00d8159500245c52d9073efb5094f0c0fd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b5x1zm4k/wheels/ee/ba/ac/8bc1614633f747d369b25a8890b16108179cb6a2cb14f96129
+  Building wheel for simplegeneric (setup.py): started
+  Building wheel for simplegeneric (setup.py): finished with status 'done'
+  Created wheel for simplegeneric: filename=simplegeneric-0.8.1-py3-none-any.whl size=5075 sha256=5d4f1df4d6943b8082b8721ce75103b56945ffa29d77e1624f8b25abfe42e944
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b5x1zm4k/wheels/90/de/df/f1324f4dd966636ab877b82d467acad38a0998b1c42ddb7288
+  Building wheel for tornado (setup.py): started
+  Building wheel for tornado (setup.py): finished with status 'done'
+  Created wheel for tornado: filename=tornado-5.1-cp37-cp37m-linux_x86_64.whl size=462877 sha256=30f9d06c2004bc49b921e9d8a13e7282f34d02fd718980e9d032c2886d26c7de
+  Stored in directory: /tmp/pip-ephem-wheel-cache-b5x1zm4k/wheels/8e/53/de/6a6860ebf6d2958e20a9a8337f25b0369f1666002ade0ce284
+Successfully built MarkupSafe networkx prometheus-client simplegeneric tornado
+[91mERROR: jupyterlab-server 1.0.6 has requirement jsonschema>=3.0.1, but you'll have jsonschema 2.6.0 which is incompatible.
+[0mInstalling collected packages: six, html5lib, bleach, cycler, decorator, entrypoints, tornado, wcwidth, prompt-toolkit, simplegeneric, Pygments, parso, jedi, pickleshare, traitlets, pexpect, ipython, jupyter-core, pyzmq, python-dateutil, jupyter-client, ipykernel, testpath, mistune, jsonschema, nbformat, MarkupSafe, Jinja2, nbconvert, terminado, prometheus-client, notebook, widgetsnbextension, ipywidgets, jupyter-console, qtconsole, jupyter, jupyterlab-launcher, jupyterlab, kiwisolver, pyparsing, numpy, pytz, matplotlib, networkx, scipy, PyGSP, scikit-learn
+  Attempting uninstall: six
+    Found existing installation: six 1.14.0
+    Uninstalling six-1.14.0:
+      Successfully uninstalled six-1.14.0
+  Attempting uninstall: bleach
+    Found existing installation: bleach 3.1.0
+    Uninstalling bleach-3.1.0:
+      Successfully uninstalled bleach-3.1.0
+  Attempting uninstall: decorator
+    Found existing installation: decorator 4.4.1
+    Uninstalling decorator-4.4.1:
+      Successfully uninstalled decorator-4.4.1
+  Attempting uninstall: entrypoints
+    Found existing installation: entrypoints 0.3
+    Uninstalling entrypoints-0.3:
+      Successfully uninstalled entrypoints-0.3
+  Attempting uninstall: tornado
+    Found existing installation: tornado 6.0.3
+    Uninstalling tornado-6.0.3:
+      Successfully uninstalled tornado-6.0.3
+  Attempting uninstall: wcwidth
+    Found existing installation: wcwidth 0.1.8
+    Uninstalling wcwidth-0.1.8:
+      Successfully uninstalled wcwidth-0.1.8
+  Attempting uninstall: prompt-toolkit
+    Found existing installation: prompt-toolkit 3.0.3
+    Uninstalling prompt-toolkit-3.0.3:
+      Successfully uninstalled prompt-toolkit-3.0.3
+  Attempting uninstall: Pygments
+    Found existing installation: Pygments 2.5.2
+    Uninstalling Pygments-2.5.2:
+      Successfully uninstalled Pygments-2.5.2
+  Attempting uninstall: parso
+    Found existing installation: parso 0.6.0
+    Uninstalling parso-0.6.0:
+      Successfully uninstalled parso-0.6.0
+  Attempting uninstall: jedi
+    Found existing installation: jedi 0.16.0
+    Uninstalling jedi-0.16.0:
+      Successfully uninstalled jedi-0.16.0
+  Attempting uninstall: pickleshare
+    Found existing installation: pickleshare 0.7.5
+    Uninstalling pickleshare-0.7.5:
+      Successfully uninstalled pickleshare-0.7.5
+  Attempting uninstall: traitlets
+    Found existing installation: traitlets 4.3.3
+    Uninstalling traitlets-4.3.3:
+      Successfully uninstalled traitlets-4.3.3
+  Attempting uninstall: pexpect
+    Found existing installation: pexpect 4.8.0
+    Uninstalling pexpect-4.8.0:
+      Successfully uninstalled pexpect-4.8.0
+  Attempting uninstall: ipython
+    Found existing installation: ipython 7.11.1
+    Uninstalling ipython-7.11.1:
+      Successfully uninstalled ipython-7.11.1
+  Attempting uninstall: jupyter-core
+    Found existing installation: jupyter-core 4.6.1
+    Uninstalling jupyter-core-4.6.1:
+      Successfully uninstalled jupyter-core-4.6.1
+  Attempting uninstall: pyzmq
+    Found existing installation: pyzmq 18.1.1
+    Uninstalling pyzmq-18.1.1:
+      Successfully uninstalled pyzmq-18.1.1
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.8.1
+    Uninstalling python-dateutil-2.8.1:
+      Successfully uninstalled python-dateutil-2.8.1
+  Attempting uninstall: jupyter-client
+    Found existing installation: jupyter-client 5.3.4
+    Uninstalling jupyter-client-5.3.4:
+      Successfully uninstalled jupyter-client-5.3.4
+  Attempting uninstall: ipykernel
+    Found existing installation: ipykernel 5.1.4
+    Uninstalling ipykernel-5.1.4:
+      Successfully uninstalled ipykernel-5.1.4
+  Attempting uninstall: testpath
+    Found existing installation: testpath 0.4.4
+    Uninstalling testpath-0.4.4:
+      Successfully uninstalled testpath-0.4.4
+  Attempting uninstall: mistune
+    Found existing installation: mistune 0.8.4
+    Uninstalling mistune-0.8.4:
+      Successfully uninstalled mistune-0.8.4
+  Attempting uninstall: jsonschema
+    Found existing installation: jsonschema 3.2.0
+    Uninstalling jsonschema-3.2.0:
+      Successfully uninstalled jsonschema-3.2.0
+  Attempting uninstall: nbformat
+    Found existing installation: nbformat 5.0.4
+    Uninstalling nbformat-5.0.4:
+      Successfully uninstalled nbformat-5.0.4
+  Attempting uninstall: MarkupSafe
+    Found existing installation: MarkupSafe 1.1.1
+    Uninstalling MarkupSafe-1.1.1:
+      Successfully uninstalled MarkupSafe-1.1.1
+  Attempting uninstall: Jinja2
+    Found existing installation: Jinja2 2.11.0
+    Uninstalling Jinja2-2.11.0:
+      Successfully uninstalled Jinja2-2.11.0
+  Attempting uninstall: nbconvert
+    Found existing installation: nbconvert 5.6.1
+    Uninstalling nbconvert-5.6.1:
+      Successfully uninstalled nbconvert-5.6.1
+  Attempting uninstall: terminado
+    Found existing installation: terminado 0.8.3
+[91mERROR: Cannot uninstall 'terminado'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+[0mRemoving intermediate container 145f25ef4a8d
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-mdeff-pygsp_tutorial_graphsip:5f61a25', '/tmp/r2d-test-2020-07-06T06.59d1t5myl6/github.com/mdeff/pygsp_tutorial_graphsip']' returned non-zero exit status 1.

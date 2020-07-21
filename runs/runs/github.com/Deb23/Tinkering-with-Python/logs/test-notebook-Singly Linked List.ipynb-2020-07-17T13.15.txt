@@ -1,0 +1,6 @@
+[I 200717 13:15:37 inrepo:36] Testing notebook Singly Linked List.ipynb
+[I 200717 13:15:37 inrepo:45] Found kernel python3
+[I 200717 13:15:38 execute:404] Executing notebook with kernel: python3
+[I 200717 13:15:38 inrepo:79] Saving exported notebook to /io/notebooks/Singly Linked List.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

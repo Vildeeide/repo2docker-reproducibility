@@ -1,0 +1,5 @@
+[I 200703 06:13:39 inrepo:35] Testing notebook tablet/.ipynb_checkpoints/Juno-Intro-Matplotlib-checkpoint.ipynb
+[I 200703 06:13:41 execute:404] Executing notebook with kernel: python3
+[I 200703 06:14:16 inrepo:41] Saving exported notebook to /io/notebooks/tablet/.ipynb_checkpoints/Juno-Intro-Matplotlib-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

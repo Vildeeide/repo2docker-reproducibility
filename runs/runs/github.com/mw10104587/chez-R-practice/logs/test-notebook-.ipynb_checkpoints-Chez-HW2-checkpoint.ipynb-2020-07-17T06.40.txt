@@ -1,0 +1,5 @@
+[I 200717 06:40:31 inrepo:36] Testing notebook .ipynb_checkpoints/Chez-HW2-checkpoint.ipynb
+[I 200717 06:40:32 execute:404] Executing notebook with kernel: python
+[I 200717 06:40:32 inrepo:79] Saving exported notebook to /io/notebooks/.ipynb_checkpoints/Chez-HW2-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

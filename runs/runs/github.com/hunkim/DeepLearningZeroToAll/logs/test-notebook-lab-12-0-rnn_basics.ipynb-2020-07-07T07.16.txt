@@ -1,0 +1,45 @@
+[I 200707 07:17:39 inrepo:35] Testing notebook lab-12-0-rnn_basics.ipynb
+[I 200707 07:17:40 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/
+# http://learningtensorflow.com/index.html
+# http://suriyadeepan.github.io/2016-12-31-practical-seq2seq/
+
+import tensorflow as tf
+import numpy as np
+from tensorflow.contrib import rnn
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
+sess = tf.InteractiveSession()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-04f768ea93a4>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m [0;32mimport[0m [0mtensorflow[0m [0;32mas[0m [0mtf[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m [0;32mfrom[0m [0mtensorflow[0m[0;34m.[0m[0mcontrib[0m [0;32mimport[0m [0mrnn[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0;32mimport[0m [0mpprint[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0mpp[0m [0;34m=[0m [0mpprint[0m[0;34m.[0m[0mPrettyPrinter[0m[0;34m([0m[0mindent[0m[0;34m=[0m[0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'tensorflow.contrib'
+ModuleNotFoundError: No module named 'tensorflow.contrib'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,234 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T11.56hyo7c57r/github.com/bwohlberg/sporco.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> b592dd658ad2
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 4d452c07daca
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> bcc58ee21dd2
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f486087b36cf
+Removing intermediate container f486087b36cf
+ ---> 9ff593168c66
+Step 41/50 : USER ${NB_USER}
+ ---> Running in e1c07f0a9309
+Removing intermediate container e1c07f0a9309
+ ---> ca2fdf7ec9c2
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 1f0b7ee941ae
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting numpy>=1.12
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy>=0.19.1
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting imageio
+  Downloading imageio-2.8.0-py3-none-any.whl (3.3 MB)
+Collecting matplotlib>=1.3.1
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting pyfftw>=0.10.4
+  Downloading pyFFTW-0.12.0-cp37-cp37m-manylinux1_x86_64.whl (2.6 MB)
+Collecting pytest-runner
+  Downloading pytest_runner-5.2-py2.py3-none-any.whl (6.8 kB)
+Collecting pytest
+  Downloading pytest-5.4.3-py3-none-any.whl (248 kB)
+Collecting pillow
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=1.3.1->-r requirements.txt (line 5)) (2.8.1)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->-r requirements.txt (line 8)) (19.3.0)
+Requirement already satisfied: more-itertools>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->-r requirements.txt (line 8)) (8.2.0)
+Collecting py>=1.5.0
+  Downloading py-1.9.0-py2.py3-none-any.whl (99 kB)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->-r requirements.txt (line 8)) (1.5.0)
+Collecting pluggy<1.0,>=0.12
+  Downloading pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest->-r requirements.txt (line 8)) (0.1.8)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.1->matplotlib>=1.3.1->-r requirements.txt (line 5)) (1.14.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest->-r requirements.txt (line 8)) (2.1.0)
+Building wheels for collected packages: future
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=7ee027f85e45a61a2d8b80d116b71b82b512760f3651c9c885969339faaac7de
+  Stored in directory: /tmp/pip-ephem-wheel-cache-o30om8p9/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+Successfully built future
+Installing collected packages: future, numpy, scipy, pillow, imageio, kiwisolver, pyparsing, cycler, matplotlib, pyfftw, pytest-runner, py, pluggy, packaging, pytest
+Successfully installed cycler-0.10.0 future-0.18.2 imageio-2.8.0 kiwisolver-1.2.0 matplotlib-3.2.2 numpy-1.19.0 packaging-20.4 pillow-7.2.0 pluggy-0.13.1 py-1.9.0 pyfftw-0.12.0 pyparsing-2.4.7 pytest-5.4.3 pytest-runner-5.2 scipy-1.5.1
+Removing intermediate container 1f0b7ee941ae
+ ---> 5c6064ca23fa
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 1b5bac32a395
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: future in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (0.18.2)
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (1.19.0)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (1.5.1)
+Requirement already satisfied: imageio in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (2.8.0)
+Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (3.2.2)
+Requirement already satisfied: pyfftw in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sporco==0.1.13b1) (0.12.0)
+Requirement already satisfied: pillow in /srv/conda/envs/notebook/lib/python3.7/site-packages (from imageio->sporco==0.1.13b1) (7.2.0)
+Requirement already satisfied: cycler>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->sporco==0.1.13b1) (0.10.0)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->sporco==0.1.13b1) (2.8.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->sporco==0.1.13b1) (1.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->sporco==0.1.13b1) (2.4.7)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->sporco==0.1.13b1) (1.14.0)
+Building wheels for collected packages: sporco
+  Building wheel for sporco (setup.py): started
+  Building wheel for sporco (setup.py): finished with status 'done'
+  Created wheel for sporco: filename=sporco-0.1.13b1-py3-none-any.whl size=4431939 sha256=83c1970fd40513f422f628ace9f7b8733895053ae5a191f61a226eb48d12af7e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-3m56ye_i/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built sporco
+Installing collected packages: sporco
+Successfully installed sporco-0.1.13b1
+Removing intermediate container 1b5bac32a395
+ ---> 36aee7ebc214
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in d395403e751d
+Removing intermediate container d395403e751d
+ ---> 281b947d35d9
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 694dd3757112
+Removing intermediate container 694dd3757112
+ ---> afef13760ffd
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 4cb4eea1820e
+Removing intermediate container 4cb4eea1820e
+ ---> 65ba1a7ffefd
+Step 47/50 : USER ${NB_USER}
+ ---> Running in fbf87aa0311f
+Removing intermediate container fbf87aa0311f
+ ---> 76d901568fba
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 913f85eb04ed
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 589d6e3e1d03
+Removing intermediate container 589d6e3e1d03
+ ---> 4d4b1a97ea22
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 3c70d8233004
+Removing intermediate container 3c70d8233004
+ ---> f258bdcc3426
+{"aux": {"ID": "sha256:f258bdcc342667bd1d05054e450151fb114bfd9d11f244fc797fbe9cf99e4f21"}}Successfully built f258bdcc3426
+Successfully tagged r2d-test-github.com-bwohlberg-sporco:9237d7f

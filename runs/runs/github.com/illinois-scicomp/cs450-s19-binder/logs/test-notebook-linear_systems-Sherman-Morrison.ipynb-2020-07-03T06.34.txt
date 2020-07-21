@@ -1,0 +1,5 @@
+[I 200703 06:44:16 inrepo:35] Testing notebook linear_systems/Sherman-Morrison.ipynb
+[I 200703 06:44:17 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:18 inrepo:41] Saving exported notebook to /io/notebooks/linear_systems/Sherman-Morrison.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

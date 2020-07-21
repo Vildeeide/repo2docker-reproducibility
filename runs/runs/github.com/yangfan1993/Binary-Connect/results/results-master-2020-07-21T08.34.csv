@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/yangfan1993/Binary-Connect,master,e44a6c4,2016-06-07T23:02:57-04:00,build,build,True,github.com/yangfan1993/Binary-Connect/logs/build-master-2020-07-21T08.34.txt,2020-07-21T08:34:49.908487,2020-07-21T08.34,0.11.0
+https://github.com/yangfan1993/Binary-Connect,master,e44a6c4,2016-06-07T23:02:57-04:00,notebook,BC_MNIST_final.ipynb,False,github.com/yangfan1993/Binary-Connect/logs/test-notebook-BC_MNIST_final.ipynb-2020-07-21T08.34.txt,2020-07-21T08:34:49.908487,2020-07-21T08.34,0.11.0

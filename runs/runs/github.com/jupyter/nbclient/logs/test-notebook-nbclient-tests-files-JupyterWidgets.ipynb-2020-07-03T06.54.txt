@@ -1,0 +1,5 @@
+[I 200703 06:56:22 inrepo:35] Testing notebook nbclient/tests/files/JupyterWidgets.ipynb
+[I 200703 06:56:25 execute:404] Executing notebook with kernel: python3
+[I 200703 06:56:25 inrepo:41] Saving exported notebook to /io/notebooks/nbclient/tests/files/JupyterWidgets.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

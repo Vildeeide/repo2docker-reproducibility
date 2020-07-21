@@ -1,0 +1,62 @@
+[I 200717 12:26:07 inrepo:36] Testing notebook week_9/attention_need.ipynb
+[W 200717 12:26:07 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200717 12:26:07 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 12:26:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+Image("images/transformer_model.png")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36m_data_and_metadata[0;34m(self, always_both)[0m
+[1;32m   1271[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1272[0;31m             [0mb64_data[0m [0;34m=[0m [0mb2a_base64[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mdata[0m[0;34m)[0m[0;34m.[0m[0mdecode[0m[0;34m([0m[0;34m'ascii'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1273[0m         [0;32mexcept[0m [0mTypeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: a bytes-like object is required, not 'str'
+
+During handling of the above exception, another exception occurred:
+
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/formatters.py[0m in [0;36m__call__[0;34m(self, obj, include, exclude)[0m
+[1;32m    968[0m [0;34m[0m[0m
+[1;32m    969[0m             [0;32mif[0m [0mmethod[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 970[0;31m                 [0;32mreturn[0m [0mmethod[0m[0;34m([0m[0minclude[0m[0;34m=[0m[0minclude[0m[0;34m,[0m [0mexclude[0m[0;34m=[0m[0mexclude[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    971[0m             [0;32mreturn[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    972[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36m_repr_mimebundle_[0;34m(self, include, exclude)[0m
+[1;32m   1260[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0membed[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1261[0m             [0mmimetype[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_mimetype[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1262[0;31m             [0mdata[0m[0;34m,[0m [0mmetadata[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_data_and_metadata[0m[0;34m([0m[0malways_both[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1263[0m             [0;32mif[0m [0mmetadata[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1264[0m                 [0mmetadata[0m [0;34m=[0m [0;34m{[0m[0mmimetype[0m[0;34m:[0m [0mmetadata[0m[0;34m}[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/display.py[0m in [0;36m_data_and_metadata[0;34m(self, always_both)[0m
+[1;32m   1273[0m         [0;32mexcept[0m [0mTypeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1274[0m             raise FileNotFoundError(
+[0;32m-> 1275[0;31m                 "No such file or directory: '%s'" % (self.data))
+[0m[1;32m   1276[0m         [0mmd[0m [0;34m=[0m [0;34m{[0m[0;34m}[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1277[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mmetadata[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: No such file or directory: 'images/transformer_model.png'
+FileNotFoundError: No such file or directory: 'images/transformer_model.png'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200703 06:13:34 inrepo:35] Testing notebook tutorial/06 - Linking and Interactions.ipynb
+[I 200703 06:13:36 execute:404] Executing notebook with kernel: python3
+[I 200703 06:13:37 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/06 - Linking and Interactions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

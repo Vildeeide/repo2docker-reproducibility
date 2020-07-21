@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/martako/AI-SVM-classifier,master,d33f727,2017-05-31T16:20:43+02:00,build,build,False,github.com/martako/AI-SVM-classifier/logs/build-master-2020-07-20T12.59.txt,2020-07-20T12:59:36.027449,2020-07-20T12.59,0.11.0

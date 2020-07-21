@@ -1,0 +1,5 @@
+[I 200703 09:19:36 inrepo:35] Testing notebook Assignments/Assignment06 -- Orbital variations and insolation.ipynb
+[I 200703 09:19:37 execute:404] Executing notebook with kernel: python3
+[I 200703 09:19:37 inrepo:41] Saving exported notebook to /io/notebooks/Assignments/Assignment06 -- Orbital variations and insolation.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

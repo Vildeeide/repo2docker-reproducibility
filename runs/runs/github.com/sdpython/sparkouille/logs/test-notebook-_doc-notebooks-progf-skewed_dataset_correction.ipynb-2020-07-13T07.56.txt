@@ -1,0 +1,6 @@
+[I 200713 07:57:43 inrepo:36] Testing notebook _doc/notebooks/progf/skewed_dataset_correction.ipynb
+[I 200713 07:57:43 inrepo:45] Found kernel python3
+[I 200713 07:57:44 execute:404] Executing notebook with kernel: python3
+[I 200713 07:57:52 inrepo:79] Saving exported notebook to /io/notebooks/_doc/notebooks/progf/skewed_dataset_correction.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

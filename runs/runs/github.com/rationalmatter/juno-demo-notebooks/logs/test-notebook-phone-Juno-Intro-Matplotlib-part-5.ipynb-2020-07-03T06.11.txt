@@ -1,0 +1,5 @@
+[I 200703 06:16:31 inrepo:35] Testing notebook phone/Juno-Intro-Matplotlib-part-5.ipynb
+[I 200703 06:16:32 execute:404] Executing notebook with kernel: python3
+[I 200703 06:16:39 inrepo:41] Saving exported notebook to /io/notebooks/phone/Juno-Intro-Matplotlib-part-5.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

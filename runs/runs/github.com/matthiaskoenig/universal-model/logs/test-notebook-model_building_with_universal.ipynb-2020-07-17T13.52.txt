@@ -1,0 +1,61 @@
+[I 200717 13:53:28 inrepo:36] Testing notebook model_building_with_universal.ipynb
+[I 200717 13:53:28 inrepo:45] Found kernel python3
+[I 200717 13:53:29 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+universal = model_from_dict(resp.json())
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-5-4230f221b04f>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0muniversal[0m [0;34m=[0m [0mmodel_from_dict[0m[0;34m([0m[0mresp[0m[0;34m.[0m[0mjson[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cobra/io/dict.py[0m in [0;36mmodel_from_dict[0;34m(obj)[0m
+[1;32m    212[0m     [0mmodel[0m [0;34m=[0m [0mModel[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    213[0m     model.add_metabolites(
+[0;32m--> 214[0;31m         [0;34m[[0m[0mmetabolite_from_dict[0m[0;34m([0m[0mmetabolite[0m[0;34m)[0m [0;32mfor[0m [0mmetabolite[0m [0;32min[0m [0mobj[0m[0;34m[[0m[0;34m'metabolites'[0m[0;34m][0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    215[0m     )
+[1;32m    216[0m     [0mmodel[0m[0;34m.[0m[0mgenes[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0;34m[[0m[0mgene_from_dict[0m[0;34m([0m[0mgene[0m[0;34m)[0m [0;32mfor[0m [0mgene[0m [0;32min[0m [0mobj[0m[0;34m[[0m[0;34m'genes'[0m[0;34m][0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cobra/io/dict.py[0m in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m    212[0m     [0mmodel[0m [0;34m=[0m [0mModel[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    213[0m     model.add_metabolites(
+[0;32m--> 214[0;31m         [0;34m[[0m[0mmetabolite_from_dict[0m[0;34m([0m[0mmetabolite[0m[0;34m)[0m [0;32mfor[0m [0mmetabolite[0m [0;32min[0m [0mobj[0m[0;34m[[0m[0;34m'metabolites'[0m[0;34m][0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    215[0m     )
+[1;32m    216[0m     [0mmodel[0m[0;34m.[0m[0mgenes[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0;34m[[0m[0mgene_from_dict[0m[0;34m([0m[0mgene[0m[0;34m)[0m [0;32mfor[0m [0mgene[0m [0;32min[0m [0mobj[0m[0;34m[[0m[0;34m'genes'[0m[0;34m][0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cobra/io/dict.py[0m in [0;36mmetabolite_from_dict[0;34m(metabolite)[0m
+[1;32m     98[0m     [0mnew_metabolite[0m [0;34m=[0m [0mMetabolite[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     99[0m     [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0miteritems[0m[0;34m([0m[0mmetabolite[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 100[0;31m         [0msetattr[0m[0;34m([0m[0mnew_metabolite[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    101[0m     [0;32mreturn[0m [0mnew_metabolite[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    102[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/cobra/core/object.py[0m in [0;36mannotation[0;34m(self, annotation)[0m
+[1;32m     48[0m     [0;32mdef[0m [0mannotation[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mannotation[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     49[0m         [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mannotation[0m[0;34m,[0m [0mdict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 50[0;31m             [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0;34m"Annotation must be a dict"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     51[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     52[0m             [0mself[0m[0;34m.[0m[0m_annotation[0m [0;34m=[0m [0mannotation[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: Annotation must be a dict
+TypeError: Annotation must be a dict
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

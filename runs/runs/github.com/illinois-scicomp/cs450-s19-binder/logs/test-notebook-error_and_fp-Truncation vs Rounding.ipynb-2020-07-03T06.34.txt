@@ -1,0 +1,5 @@
+[I 200703 06:41:52 inrepo:35] Testing notebook error_and_fp/Truncation vs Rounding.ipynb
+[I 200703 06:41:54 execute:404] Executing notebook with kernel: python3
+[I 200703 06:41:55 inrepo:41] Saving exported notebook to /io/notebooks/error_and_fp/Truncation vs Rounding.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

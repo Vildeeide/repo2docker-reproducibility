@@ -1,0 +1,52 @@
+[I 200720 13:31:43 inrepo:36] Testing notebook project.ipynb
+[I 200720 13:31:43 inrepo:45] Found kernel python3
+[I 200720 13:31:44 execute:404] Executing notebook with kernel: python3
+2020-07-20 13:31:55.235192: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-07-20 13:31:55.235382: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-07-20 13:31:55.235527: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (86bab2d5d3d6): /proc/driver/nvidia/version does not exist
+2020-07-20 13:31:55.237487: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-20 13:31:55.251085: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2000000000 Hz
+2020-07-20 13:31:55.251983: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f581c000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-20 13:31:55.252038: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+x = tf.placeholder(tf.float32, [epoch_size, size, 2], name='input_placeholder')
+y = tf.placeholder(tf.float32, [epoch_size, 1], name='output_placeholder')
+sigma = tf.placeholder(tf.float32, shape = (), name='sigma_placeholder')
+#init_state = tf.zeros([num_samples, state_size])
+
+with tf.variable_scope('inizialization'):
+    iss = tf.get_variable('iss', [epoch_size, state_size], initializer=tf.constant_initializer(0.0))
+
+rnn_inputs = tf.unstack(x, axis=1)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-5-3e4ab5fbff5d>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mx[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0;34m[[0m[0mepoch_size[0m[0;34m,[0m [0msize[0m[0;34m,[0m [0;36m2[0m[0;34m][0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m'input_placeholder'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0my[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0;34m[[0m[0mepoch_size[0m[0;34m,[0m [0;36m1[0m[0;34m][0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m'output_placeholder'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0msigma[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0mshape[0m [0;34m=[0m [0;34m([0m[0;34m)[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m'sigma_placeholder'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;31m#init_state = tf.zeros([num_samples, state_size])[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'placeholder'
+AttributeError: module 'tensorflow' has no attribute 'placeholder'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

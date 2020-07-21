@@ -1,0 +1,5 @@
+[I 200706 12:53:21 inrepo:35] Testing notebook example2/0-Workflow.ipynb
+[I 200706 12:53:22 execute:404] Executing notebook with kernel: python3
+[I 200706 12:53:24 inrepo:41] Saving exported notebook to /io/notebooks/example2/0-Workflow.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

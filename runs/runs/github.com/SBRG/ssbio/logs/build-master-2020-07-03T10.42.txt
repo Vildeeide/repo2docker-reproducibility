@@ -1,0 +1,1154 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T10.42vpp63xi7/github.com/SBRG/ssbio.
+Using PythonBuildPack builder
+Step 1/54 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/54 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/54 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/54 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/54 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/54 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/54 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/54 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/54 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/54 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/54 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/54 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/54 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/54 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/54 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/54 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/54 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/54 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/54 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/54 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/54 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/54 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/54 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/54 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/54 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/54 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/54 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/54 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/54 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/54 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/54 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/54 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> Using cache
+ ---> 9b03eb37eee2
+Step 38/54 : USER root
+ ---> Using cache
+ ---> e5869e730952
+Step 39/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 31ce79edf28c
+Step 40/54 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends default-jre dssp emboss gfortran && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 543a2ff47d6f
+Step 41/54 : USER ${NB_USER}
+ ---> Using cache
+ ---> 74d58dde91ef
+Step 42/54 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Using cache
+ ---> 17ac3088420e
+Step 43/54 : USER root
+ ---> Using cache
+ ---> 75dafe75b85b
+Step 44/54 : COPY src/ ${REPO_DIR}
+ ---> 4bf1f350dda4
+Step 45/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in cc2d4731725b
+Removing intermediate container cc2d4731725b
+ ---> ba2105f5467d
+Step 46/54 : LABEL repo2docker.ref="None"
+ ---> Running in 8ecdac5850ea
+Removing intermediate container 8ecdac5850ea
+ ---> 4c2093da49a4
+Step 47/54 : LABEL repo2docker.repo="local"
+ ---> Running in 93e8891609fa
+Removing intermediate container 93e8891609fa
+ ---> 5439504d5122
+Step 48/54 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f441fa54ee25
+Removing intermediate container f441fa54ee25
+ ---> 07fb474fe409
+Step 49/54 : USER ${NB_USER}
+ ---> Running in 15f611b19385
+Removing intermediate container 15f611b19385
+ ---> 40b948ae5d71
+Step 50/54 : RUN chmod +x binder/postBuild
+ ---> Running in d821578606a0
+Removing intermediate container d821578606a0
+ ---> db962947a2dc
+Step 51/54 : RUN ./binder/postBuild
+ ---> Running in 68db086d1389
+Found existing installation: pip 20.0.2
+Uninstalling pip-20.0.2:
+  Successfully uninstalled pip-20.0.2
+Found existing installation: setuptools 45.1.0.post20200119
+Uninstalling setuptools-45.1.0.post20200119:
+  Successfully uninstalled setuptools-45.1.0.post20200119
+[91m--2020-07-03 10:43:16--  https://bootstrap.pypa.io/get-pip.py
+[0m[91mResolving bootstrap.pypa.io (bootstrap.pypa.io)... [0m[91m151.101.0.175, 151.101.64.175, 151.101.128.175, ...
+Connecting to bootstrap.pypa.io (bootstrap.pypa.io)|151.101.0.175|:443... [0m[91mconnected.
+[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+Length: 1869136 (1.8M) [text/x-python]
+[0m[91mSaving to: ‘get-pip.py’
+
+     0K .......... ..[0m[91m....[0m[91m.... .........[0m[91m. ...[0m[91m....[0m[91m...[0m[91m ..[0m[91m.......[0m[91m.  2% 2.46M 1s[0m[91m
+    50K .......[0m[91m... ....[0m[91m..[0m[91m....[0m[91m ......[0m[91m..[0m[91m.. ....[0m[91m...[0m[91m... ..[0m[91m.[0m[91m...[0m[91m...[0m[91m.  5% 5.54M 0s
+   100K .........[0m[91m. .......... .[0m[91m...[0m[91m...[0m[91m... .[0m[91m..[0m[91m.......[0m[91m .[0m[91m...[0m[91m...[0m[91m...[0m[91m  8% 11.8M 0s
+   150K .[0m[91m......[0m[91m..[0m[91m. ..[0m[91m.[0m[91m....[0m[91m.[0m[91m.. [0m[91m....[0m[91m..[0m[91m...[0m[91m.[0m[91m ......[0m[91m..[0m[91m.. ..[0m[91m...[0m[91m...[0m[91m.[0m[91m. 10% 9.00M 0s
+   200K .......[0m[91m... .[0m[91m..[0m[91m....... .........[0m[91m. .......... .....[0m[91m..... 13% 11.2M 0s
+   250K .......... .[0m[91m......... .......[0m[91m... .......... ...[0m[91m....... 16% 10.5M 0s
+   300K .........[0m[91m. .......... .....[0m[91m..... .......... .[0m[91m......... 19% 11.5M 0s
+   350K .......[0m[91m... .......... ...[0m[91m....... .........[0m[91m. .......... 21% 12.2M 0s
+   400K .....[0m[91m..... .......... .[0m[91m......[0m[91m... .......... ...[0m[91m....... 24% 9.37M 0s
+   450K .........[0m[91m. .......... .....[0m[91m..... .......... .[0m[91m......... 27% 11.1M 0s
+   500K .......[0m[91m... .......... ...[0m[91m....... .........[0m[91m. .......... 30% 12.6M 0s
+   550K .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... .......... 32% 12.1M 0s
+   600K ...[0m[91m....... .........[0m[91m. .......... .....[0m[91m..... .[0m[91m......... 35% 11.3M 0s
+   650K .......[0m[91m... .......... ...[0m[91m....... .........[0m[91m. .......... 38% 14.4M 0s
+   700K .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... .......... 41% 12.8M 0s
+   750K ...[0m[91m....... .........[0m[91m. .......... .....[0m[91m..... .......... 43% 13.4M 0s
+   800K .[0m[91m......... .......[0m[91m... .......... ...[0m[91m....... .......... 46% 12.1M 0s
+   850K .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... .......... 49% 19.3M 0s
+   900K ...[0m[91m....... ..[0m[91m.......[0m[91m. .........[0m[91m. .....[0m[91m..... .......... 52% 10.7M 0s
+   950K .[0m[91m......... .......[0m[91m... .......... ...[0m[91m....... .........[0m[91m. 54% 11.1M 0s
+  1000K .......... .....[0m[91m..... .......... .[0m[91m......... .......[0m[91m... 57% 13.7M 0s
+  1050K .......... ..........[0m[91m .......... ......[0m[91m.... .......... 60% 23.6M 0s
+  1100K ..[0m[91m........ ........[0m[91m.. .......... ....[0m[91m...... .......... 63% 12.8M 0s[0m[91m
+  1150K .......... ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. 65% 11.2M 0s
+  1200K .......... ....[0m[91m...... ..........[0m[91m .......... ......[0m[91m.... 68% 11.0M 0s
+  1250K ....[0m[91m...... ..[0m[91m........ ........[0m[91m.. ....[0m[91m...... .......... 71% 33.2M 0s[0m[91m
+  1300K .......... ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. 73% 13.0M 0s
+  1350K ......[0m[91m.... ..[0m[91m..[0m[91m...... ..[0m[91m........[0m[91m ........[0m[91m.. ...[0m[91m...[0m[91m.... 76% 19.8M 0s
+  1400K ....[0m[91m...... ..[0m[91m........ ........[0m[91m.. .......... [0m[91m....[0m[91m...... 79% 13.6M 0s
+  1450K ..........[0m[91m .......... ......[0m[91m.... .......... ..[0m[91m......[0m[91m.. 82% 13.7M 0s
+  1500K ......[0m[91m.... ..[0m[91m..[0m[91m...... ..[0m[91m........ [0m[91m.[0m[91m.[0m[91m........ .[0m[91m....[0m[91m.[0m[91m.[0m[91m... 84%[0m[91m 20.0M 0s
+  1550K[0m[91m [0m[91m.[0m[91m....[0m[91m..... [0m[91m.[0m[91m.[0m[91m........ ........[0m[91m.. ......[0m[91m.... ....[0m[91m...... 87% 14.2M 0s
+  1600K ..........[0m[91m .......... ......[0m[91m.... .......... ..[0m[91m........ 90% 21.3M 0s
+  1650K ........[0m[91m.. .......... ....[0m[91m...... ..........[0m[91m .......... 93% 17.5M 0s
+  1700K ......[0m[91m.... .......... ..[0m[91m........ ........[0m[91m.. .......... 95% 14.4M 0s
+  1750K ....[0m[91m...... ..........[0m[91m ........[0m[91m.. ......[0m[91m.... .......... 98% 26.3M 0s
+  1800K ..[0m[91m........ ........[0m[91m.. .....                           100% 15.5M=0.2s
+
+2020-07-03 10:43:17 (11.5 MB/s) - ‘get-pip.py’ saved [1869136/1869136]
+
+[0mCollecting pip
+  Downloading pip-20.1.1-py2.py3-none-any.whl (1.5 MB)
+Collecting setuptools
+  Downloading setuptools-47.3.2-py3-none-any.whl (582 kB)
+Installing collected packages: pip, setuptools
+Successfully installed pip-20.1.1 setuptools-47.3.2
+[91m[I 10:43:26 InstallContribNbextensionsApp] jupyter contrib nbextension install --user
+[0m[91m[I 10:43:26 InstallContribNbextensionsApp] Installing jupyter_contrib_nbextensions nbextension files to jupyter data directory
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/livemdpreview -> livemdpreview
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/livemdpreview/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/livemdpreview/livemdpreview.js -> /home/vildeeide/.local/share/jupyter/nbextensions/livemdpreview/livemdpreview.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/livemdpreview/livemdpreview.yml -> /home/vildeeide/.local/share/jupyter/nbextensions/livemdpreview/livemdpreview.yml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/datestamper -> datestamper
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/datestamper/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/datestamper/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/datestamper/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/datestamper/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/datestamper/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/datestamper/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/datestamper/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/datestamper/main.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/datestamper/main.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown -> python-markdown
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/untrusted.png -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/untrusted.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/python-markdown.png -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/python-markdown.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/trusted.png -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/trusted.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/python-markdown.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/python-markdown.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/python-markdown-pre.png -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/python-markdown-pre.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/main.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/python-markdown/python-markdown-post.png -> /home/vildeeide/.local/share/jupyter/nbextensions/python-markdown/python-markdown-post.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input -> hide_input
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/hide_input/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input/hide-input.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input/hide-input.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/contrib_nbextensions_help_item -> contrib_nbextensions_help_item
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/contrib_nbextensions_help_item/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/contrib_nbextensions_help_item/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/contrib_nbextensions_help_item/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/contrib_nbextensions_help_item/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/contrib_nbextensions_help_item/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/contrib_nbextensions_help_item/contrib_nbextensions_help_item.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/contrib_nbextensions_help_item/contrib_nbextensions_help_item.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter -> highlighter
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/tst_highlights.tex -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/tst_highlights.tex
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/tst_highlights.html -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/tst_highlights.html
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/export_highlights.tex -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/export_highlights.tex
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/demo_highlighter.html -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/demo_highlighter.html
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/export_highlights.html -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/export_highlights.html
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/export_highlights.pdf -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/export_highlights.pdf
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/highlighter.css -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/highlighter.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/demo_highlighter.ipynb -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/demo_highlighter.ipynb
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/tst_highlights.ipynb -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/tst_highlights.ipynb
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/image.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/image.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/highlighter.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/highlighter.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/tst_highlights.pdf -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/tst_highlights.pdf
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/highlighter.js -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/highlighter.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/highlighter/export_highlights.ipynb -> /home/vildeeide/.local/share/jupyter/nbextensions/highlighter/export_highlights.ipynb
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skill -> skill
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/skill/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skill/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/skill/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skill/skill.js -> /home/vildeeide/.local/share/jupyter/nbextensions/skill/skill.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skill/skill.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/skill/skill.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skill/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/skill/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/qtconsole -> qtconsole
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/qtconsole/
+[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/qtconsole/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/qtconsole/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/qtconsole/qtconsole.js -> /home/vildeeide/.local/share/jupyter/nbextensions/qtconsole/qtconsole.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/qtconsole/qtconsole.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/qtconsole/qtconsole.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/navigation-hotkeys -> navigation-hotkeys
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/navigation-hotkeys/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/navigation-hotkeys/hotkeys.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/navigation-hotkeys/hotkeys.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/navigation-hotkeys/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/navigation-hotkeys/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/navigation-hotkeys/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/navigation-hotkeys/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/navigation-hotkeys/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/navigation-hotkeys/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise -> exercise
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/exercise/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/exercise.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/exercise.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/history.md -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/history.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/image.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/image.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/main.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codemirror_mode_extensions -> codemirror_mode_extensions
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/codemirror_mode_extensions/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codemirror_mode_extensions/codemirror_mode_extensions.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/codemirror_mode_extensions/codemirror_mode_extensions.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codemirror_mode_extensions/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/codemirror_mode_extensions/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering -> equation-numbering
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering/button.png -> /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/button.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering/info.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/info.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/equation-numbering/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/equation-numbering/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_font_size -> code_font_size
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/code_font_size/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_font_size/code_font_size.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_font_size/code_font_size.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_font_size/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_font_size/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_font_size/code_font_size.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/code_font_size/code_font_size.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_header -> hide_header
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/hide_header/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_header/hide_header.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_header/hide_header.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_header/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_header/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_header/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_header/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode -> zenmode
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/main.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/zenmode.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/zenmode.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/ipynblogo0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/ipynblogo0.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back3.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back3.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/ipynblogo1.png -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/ipynblogo1.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back21.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back21.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back1.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back1.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back11.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back11.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back22.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back22.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back2.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back2.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/zenmode/images/back12.jpg -> /home/vildeeide/.local/share/jupyter/nbextensions/zenmode/images/back12.jpg
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/move_selected_cells -> move_selected_cells
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/move_selected_cells/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/move_selected_cells/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/move_selected_cells/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/move_selected_cells/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/move_selected_cells/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/move_selected_cells/move_selected_cells.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/move_selected_cells/move_selected_cells.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time -> execute_time
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/execution-timings-menu.png -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/execution-timings-menu.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/execution-timings-box.png -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/execution-timings-box.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/ExecuteTime.js -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/ExecuteTime.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/ExecuteTime.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/ExecuteTime.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/ExecuteTime.css -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/ExecuteTime.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execute_time/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/execute_time/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2 -> exercise2
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/exercise2.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/exercise2.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/image.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/image.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/main.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/exercise2/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/exercise2/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler -> ruler
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/edit.js -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/edit.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/ruler_editor.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/ruler_editor.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler/ruler.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/ruler/ruler.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/ruler -> ruler
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/edit.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/ruler_editor.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/ruler/ruler.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker -> spellchecker
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/screenshot.png -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/screenshot.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/config.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/config.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/download_new_dict.py -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/download_new_dict.py
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/main.css
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/typo
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/typo/typo.js -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/typo/typo.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/typo/LICENSE.txt -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/typo/LICENSE.txt
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/__pycache__
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/spellchecker/__pycache__/download_new_dict.cpython-37.pyc -> /home/vildeeide/.local/share/jupyter/nbextensions/spellchecker/__pycache__/download_new_dict.cpython-37.pyc
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell -> init_cell
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell/cell_toolbar_menu.png -> /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/cell_toolbar_menu.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell/init_cell.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/init_cell.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/init_cell/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/init_cell/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate -> nbTranslate
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/demo2.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/demo2.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/demo1.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/demo1.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/nbTranslate.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/nbTranslate.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/nbTranslate.js -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/nbTranslate.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/languages.js -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/languages.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/mutils.js -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/mutils.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/nbTranslate/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/nbTranslate/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/tree-filter -> tree-filter
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/tree-filter/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/tree-filter/demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/tree-filter/demo.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/tree-filter/index.js -> /home/vildeeide/.local/share/jupyter/nbextensions/tree-filter/index.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/tree-filter/tree-filter.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/tree-filter/tree-filter.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/tree-filter/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/tree-filter/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autosavetime -> autosavetime
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/autosavetime/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autosavetime/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/autosavetime/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autosavetime/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/autosavetime/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autosavetime/autosavetime.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/autosavetime/autosavetime.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autosavetime/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/autosavetime/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toggle_all_line_numbers -> toggle_all_line_numbers
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/toggle_all_line_numbers/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toggle_all_line_numbers/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/toggle_all_line_numbers/icon.png
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toggle_all_line_numbers/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/toggle_all_line_numbers/main.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toggle_all_line_numbers/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/toggle_all_line_numbers/readme.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toggle_all_line_numbers/main.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/toggle_all_line_numbers/main.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hinterland -> hinterland
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/hinterland/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hinterland/hinterland.js -> /home/vildeeide/.local/share/jupyter/nbextensions/hinterland/hinterland.js
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hinterland/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/hinterland/README.md
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hinterland/hinterland.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/hinterland/hinterland.yaml
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools -> runtools
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/runtools/
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/demo.gif
+[0m[91m[I 10:43:27 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/gutter.css -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/gutter.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools_nb.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools_nb.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools_show_hide.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools_show_hide.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools_lock.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools_lock.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/cellstate.js -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/cellstate.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools_marker.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools_marker.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/runtools_execute.png -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/runtools_execute.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/annotations.odg -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/annotations.odg
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/runtools/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/runtools/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding -> codefolding
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/foldgutter.css -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/foldgutter.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_editor.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_editor.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_editor.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_editor.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_firstline_unfolded.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_firstline_unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/firstline-fold.js -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/firstline-fold.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/magic-folded.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-folded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/magic-unfolded.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_firstline_folded.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_firstline_folded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_indent_folded_2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_folded_2.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/edit.js -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/edit.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_indent_unfolded.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/magic-fold.js -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-fold.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding/codefolding_indent_folded_1.png -> /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_folded_1.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/codefolding -> codefolding
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/foldgutter.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_editor.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_editor.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_firstline_unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/firstline-fold.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-folded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_firstline_folded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_folded_2.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/edit.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_unfolded.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/magic-fold.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/codefolding/codefolding_indent_folded_1.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/splitcell -> splitcell
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/splitcell/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/splitcell/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/splitcell/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/splitcell/splitcell.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/splitcell/splitcell.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/splitcell/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/splitcell/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/splitcell/splitcell.js -> /home/vildeeide/.local/share/jupyter/nbextensions/splitcell/splitcell.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/select_keymap -> select_keymap
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/select_keymap/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/select_keymap/select_keymap.png -> /home/vildeeide/.local/share/jupyter/nbextensions/select_keymap/select_keymap.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/select_keymap/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/select_keymap/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/select_keymap/select_keymap.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/select_keymap/select_keymap.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/select_keymap/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/select_keymap/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autoscroll -> autoscroll
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/autoscroll/
+[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autoscroll/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/autoscroll/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autoscroll/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/autoscroll/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autoscroll/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/autoscroll/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/autoscroll/autoscroll.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/autoscroll/autoscroll.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execution_dependencies -> execution_dependencies
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/execution_dependencies/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execution_dependencies/execution_dependencies.yml -> /home/vildeeide/.local/share/jupyter/nbextensions/execution_dependencies/execution_dependencies.yml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execution_dependencies/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/execution_dependencies/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/execution_dependencies/execution_dependencies.js -> /home/vildeeide/.local/share/jupyter/nbextensions/execution_dependencies/execution_dependencies.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor -> keyboard_shortcut_editor
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_shortcut_editor_blank.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_shortcut_editor_blank.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/quickhelp_shim.js -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/quickhelp_shim.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_add_new_link.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_add_new_link.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/keyboard_shortcut_editor.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/keyboard_shortcut_editor.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_add_new_select_action.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_add_new_select_action.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/kse_components.js -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/kse_components.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_menu_item.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_menu_item.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_comma.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_comma.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_reset_disabled.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_reset_disabled.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_shortcut_editor_success.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_shortcut_editor_success.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_conflict.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_conflict.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_dropdown.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_dropdown.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/keyboard_shortcut_editor/readme_undefined_key.png -> /home/vildeeide/.local/share/jupyter/nbextensions/keyboard_shortcut_editor/readme_undefined_key.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad -> scratchpad
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/demo.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/scratchpad.css -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/scratchpad.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/scratchpad.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/scratchpad.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/LICENSE -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/LICENSE
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scratchpad/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/scratchpad/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets -> snippets
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/snippets/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets/snippets.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets/snippets.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets/snippets.json -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets/snippets.json
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets/snippets-demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets/snippets-demo.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/table_beautifier -> table_beautifier
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/table_beautifier/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/table_beautifier/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/table_beautifier/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/table_beautifier/table_beautifier.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/table_beautifier/table_beautifier.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/table_beautifier/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/table_beautifier/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/table_beautifier/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/table_beautifier/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband -> rubberband
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband/rubberband.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/rubberband.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/rubberband/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/rubberband/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback -> skip-traceback
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/skip-traceback.png -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/skip-traceback.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/traceback.png -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/traceback.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/skip-traceback/skip-traceback.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/skip-traceback/skip-traceback.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview -> printview
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/printview/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/printview/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview/printview.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/printview/printview.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview/printview-button.png -> /home/vildeeide/.local/share/jupyter/nbextensions/printview/printview-button.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/printview/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/printview/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/printview/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/comment-uncomment -> comment-uncomment
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/comment-uncomment/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/comment-uncomment/comment-uncomment.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/comment-uncomment/comment-uncomment.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/comment-uncomment/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/comment-uncomment/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/comment-uncomment/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/comment-uncomment/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/comment-uncomment/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/comment-uncomment/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/cell_filter -> cell_filter
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/cell_filter/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/cell_filter/cell_filter.js -> /home/vildeeide/.local/share/jupyter/nbextensions/cell_filter/cell_filter.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/cell_filter/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/cell_filter/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/cell_filter/cell_filter.yml -> /home/vildeeide/.local/share/jupyter/nbextensions/cell_filter/cell_filter.yml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scroll_down -> scroll_down
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/scroll_down/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scroll_down/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/scroll_down/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scroll_down/config.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/scroll_down/config.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scroll_down/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/scroll_down/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/scroll_down/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/scroll_down/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/limit_output -> limit_output
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/limit_output/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/limit_output/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/limit_output/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/limit_output/limit-output.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/limit_output/limit-output.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/limit_output/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/limit_output/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/limit_output/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/limit_output/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all -> hide_input_all
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/hide_input_all.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/hide_input_all.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/hide_input_all_show.png -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/hide_input_all_show.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/hide_input_all_hide.png -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/hide_input_all_hide.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/hide_input_all/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/hide_input_all/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings -> collapsible_headings
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/collapsible_headings.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/collapsible_headings.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/screenshot.png -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/screenshot.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/collapsible_headings/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/collapsible_headings/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/export_embedded -> export_embedded
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/export_embedded/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/export_embedded/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/export_embedded/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/export_embedded/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/export_embedded/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/export_embedded/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/export_embedded/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/export_embedded/export_embedded.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/export_embedded/export_embedded.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel -> help_panel
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/help_panel.js -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/help_panel.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/help_panel.css -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/help_panel.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/help_panel_ext.png -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/help_panel_ext.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/help_panel_ext_fullscreen.png -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/help_panel_ext_fullscreen.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/help_panel.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/help_panel.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/img
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/help_panel/img/handle-v.png -> /home/vildeeide/.local/share/jupyter/nbextensions/help_panel/img/handle-v.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector -> varInspector
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/demo.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/varInspector.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/varInspector.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/var_list.r -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/var_list.r
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/var_list.py -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/var_list.py
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/jquery.tablesorter.min.js -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/jquery.tablesorter.min.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/tablesorter_LICENSE.txt -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/tablesorter_LICENSE.txt
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/__pycache__
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/varInspector/__pycache__/var_list.cpython-37.pyc -> /home/vildeeide/.local/share/jupyter/nbextensions/varInspector/__pycache__/var_list.cpython-37.pyc
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/addbefore -> addbefore
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/addbefore/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/addbefore/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/addbefore/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/addbefore/addbefore.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/addbefore/addbefore.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/addbefore/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/addbefore/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/addbefore/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/addbefore/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/load_tex_macros -> load_tex_macros
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/load_tex_macros/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/load_tex_macros/load_tex_macros.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/load_tex_macros/load_tex_macros.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/load_tex_macros/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/load_tex_macros/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/load_tex_macros/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/load_tex_macros/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/load_tex_macros/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/load_tex_macros/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/freeze -> freeze
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/freeze/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/freeze/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/freeze/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/freeze/config.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/freeze/config.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/freeze/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/freeze/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/freeze/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/freeze/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify -> notify
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/notify/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify/notify.js -> /home/vildeeide/.local/share/jupyter/nbextensions/notify/notify.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify/notification.png -> /home/vildeeide/.local/share/jupyter/nbextensions/notify/notification.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify/notify.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/notify/notify.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify/notify.mp3 -> /home/vildeeide/.local/share/jupyter/nbextensions/notify/notify.mp3
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/notify/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/notify/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2 -> toc2
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/toc2/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/demo.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/demo.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/demo2.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/demo2.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/demo3.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/demo3.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/toc2.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/demo_dark.png -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/demo_dark.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/toc2.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/main.css -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/main.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/toc2/image.png -> /home/vildeeide/.local/share/jupyter/nbextensions/toc2/image.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/gist_it -> gist_it
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/gist_it/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/gist_it/gist_it.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/gist_it/gist_it.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/gist_it/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/gist_it/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/gist_it/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/gist_it/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/gist_it/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/gist_it/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify -> code_prettify
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/
+[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/demo-jv.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-jv.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/kernel_exec_on_cell.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/kernel_exec_on_cell.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/README_2to3.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_2to3.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/demo-R.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-R.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/autopep8.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/demo-py.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-py.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/autopep8.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/isort.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/demo_2to3.gif -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo_2to3.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/code_prettify.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/isort.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/2to3.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/README_code_prettify.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_code_prettify.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/2to3.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/README_autopep8.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_autopep8.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/code_prettify.js -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify/README_isort.md -> /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_isort.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify -> code_prettify
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-jv.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/kernel_exec_on_cell.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_2to3.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-R.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-py.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo_2to3.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_code_prettify.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.yaml
+[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_autopep8.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_isort.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify -> code_prettify
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-jv.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/kernel_exec_on_cell.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_2to3.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-R.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-py.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo_2to3.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_code_prettify.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_autopep8.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_isort.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/code_prettify -> code_prettify
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-jv.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/kernel_exec_on_cell.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_2to3.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-R.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo-py.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/autopep8.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/demo_2to3.gif
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/isort.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_code_prettify.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/2to3.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_autopep8.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/code_prettify.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Up to date: /home/vildeeide/.local/share/jupyter/nbextensions/code_prettify/README_isort.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu -> snippets_menu
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenu_markdown.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenu_markdown.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/config.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/config.yaml
+[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/examples_for_custom.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/examples_for_custom.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/screenshot1.png -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/screenshot1.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/screenshot3.png -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/screenshot3.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_menu.css -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_menu.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/thumbnail.png -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/thumbnail.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/screenshot2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/screenshot2.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenu_python.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenu_python.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/readme.md -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/readme.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/numpy_ufuncs.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/numpy_ufuncs.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/astropy.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/astropy.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/scipy_constants.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/scipy_constants.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/numpy.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/numpy.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/scipy_special.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/scipy_special.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/numpy_polynomial.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/numpy_polynomial.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/python_regex.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/python_regex.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/numba.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/numba.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/sympy_assumptions.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/sympy_assumptions.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/python.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/python.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/h5py.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/h5py.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/scipy.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/scipy.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/sympy.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/sympy.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/pandas.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/pandas.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/sympy_functions.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/sympy_functions.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/snippets_menu/snippets_submenus_python/matplotlib.js -> /home/vildeeide/.local/share/jupyter/nbextensions/snippets_menu/snippets_submenus_python/matplotlib.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_highlight_selected_word/static/highlight_selected_word -> highlight_selected_word
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/highlight_selected_word/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_highlight_selected_word/static/highlight_selected_word/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/highlight_selected_word/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_highlight_selected_word/static/highlight_selected_word/configurator.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/highlight_selected_word/configurator.yaml
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_highlight_selected_word/static/highlight_selected_word/main.js -> /home/vildeeide/.local/share/jupyter/nbextensions/highlight_selected_word/main.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Installing /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static -> latex_envs
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/envsLatex.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/envsLatex.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/initNb.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/initNb.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/icon.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/icon.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/thmsInNb4.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/thmsInNb4.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/README.md
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/bibtex2.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/bibtex2.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/latex_envs.css -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/latex_envs.css
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/envsLatex.json -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/envsLatex.json
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/bibInNb4.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/bibInNb4.js
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/example.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/example.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/configuration_toolbar.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/configuration_toolbar.png
+[0m[91m[I 10:43:28 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/latex_envs.yaml -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/latex_envs.yaml
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/latex_envs.js -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/latex_envs.js
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/main_toolbar.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/main_toolbar.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/example_user_envs.json -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/example_user_envs.json
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/header.tex -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/header.tex
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/documentation.tex -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/documentation.tex
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/README.md -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/README.md
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc.html -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc.html
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/IEEEtran.bst -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/IEEEtran.bst
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/LaTeX_envs_menu.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/LaTeX_envs_menu.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc.tex -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc.tex
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc.ipynb -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc.ipynb
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/biblio_ipython.bib -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/biblio_ipython.bib
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/config_toolbar.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/config_toolbar.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/example.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/example.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/configuration_toolbar.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/configuration_toolbar.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/Toggles.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/Toggles.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/main_toolbar.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/main_toolbar.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/documentation.pdf -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/documentation.pdf
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_24_2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_24_2.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_43_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_43_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_47_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_47_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_52_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_52_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_49_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_49_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_51_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_51_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_44_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_44_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_23_2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_23_2.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_27_2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_27_2.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_26_2.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_26_2.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_50_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_50_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_46_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_46_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_41_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_41_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_45_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_45_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_48_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_48_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/latex_env_doc_files/latex_env_doc_42_0.png -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/latex_env_doc_files/latex_env_doc_42_0.png
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Making directory: /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/.ipynb_checkpoints
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Copying: /srv/conda/envs/notebook/lib/python3.7/site-packages/latex_envs/static/doc/.ipynb_checkpoints/latex_env_doc-checkpoint.ipynb -> /home/vildeeide/.local/share/jupyter/nbextensions/latex_envs/doc/.ipynb_checkpoints/latex_env_doc-checkpoint.ipynb
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] - Validating: [32mOK[0m
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Installing jupyter_contrib_nbextensions items to config in /home/vildeeide/.jupyter
+[0m[91mEnabling: jupyter_nbextensions_configurator
+- Writing config: /home/vildeeide/.jupyter
+[0m[91m    - Validating...
+[0m[91m      jupyter_nbextensions_configurator 0.4.1 [32mOK[0m
+Enabling notebook nbextension nbextensions_configurator/config_menu/main...
+[0m[91mEnabling tree nbextension nbextensions_configurator/tree_tab/main...
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] Enabling notebook extension contrib_nbextensions_help_item/main...
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp]       - Validating: [32mOK[0m
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] - Editing config: /home/vildeeide/.jupyter/jupyter_nbconvert_config.json
+[I 10:43:29 InstallContribNbextensionsApp] --  Configuring nbconvert template path
+[0m[91m[I 10:43:29 InstallContribNbextensionsApp] --  Configuring nbconvert preprocessors
+[I 10:43:29 InstallContribNbextensionsApp] - Writing config: /home/vildeeide/.jupyter/jupyter_nbconvert_config.json
+[I 10:43:29 InstallContribNbextensionsApp] --  Writing updated config file /home/vildeeide/.jupyter/jupyter_nbconvert_config.json
+[0m[91mEnabling notebook extension jupyter-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension jupyter-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension nglview-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91mEnabling notebook extension nglview-js-widgets/extension...
+[0m[91m      - Validating: [32mOK[0m
+[0m[91m--2020-07-03 10:43:33--  http://mgltools.scripps.edu/downloads/tars/releases/MSMSRELEASE/REL2.6.1/msms_i86_64Linux2_2.6.1.tar.gz
+[0m[91mResolving mgltools.scripps.edu (mgltools.scripps.edu)... [0m[91m137.131.108.109
+Connecting to mgltools.scripps.edu (mgltools.scripps.edu)|137.131.108.109|:80... [0m[91mconnected.
+[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+Length: 593147 (579K) [application/x-gzip]
+[0m[91mSaving to: ‘msms_i86_64Linux2_2.6.1.tar.gz’
+[0m[91m
+     0K .[0m[91m...[0m[91m...[0m[91m... ........[0m[91m.. ......[0m[91m.... ........[0m[91m.. ..........  8% 73.3K 7s
+    50K ....[0m[91m...... .......[0m[91m... .......... .......... .[0m[91m......... 17%  293K 4s
+   100K .......[0m[91m... .......... .........[0m[91m. .......... .......... 25%  292K 3s
+   150K .......... ..[0m[91m........ .......... .......... .......... 34%  293K 2s
+   200K ..[0m[91m........ .......... ......[0m[91m.... .......... .......... 43%  293K 2s
+   250K .......... .......[0m[91m... .......... .........[0m[91m. .......... 51%  293K 1s
+   300K .......... .......... .......... .......... .......... 60% 93.3M 1s
+   350K .......... .......... .....[0m[91m..... .......... ....[0m[91m...... 69%  294K 1s
+   400K .......... .......... .......... .......... .......... 77% 87.0M 0s
+   450K .......... .......... .......... .......... .......... 86%  129M 0s
+   500K .......... ....[0m[91m...... .......... ...[0m[91m....... .......... 94%  294K 0s
+   550K .......... .......... .........                [0m[91m       100%  213M=1.9s
+
+2020-07-03 10:43:35 (309 KB/s) - ‘msms_i86_64Linux2_2.6.1.tar.gz’ saved [593147/593147]
+
+[0m[91m--2020-07-03 10:43:36--  http://freesasa.github.io/freesasa-2.0.3.tar.gz
+[0m[91mResolving freesasa.github.io (freesasa.github.io)... [0m[91m185.199.109.153, 185.199.108.153, 185.199.110.153, ...
+Connecting to freesasa.github.io (freesasa.github.io)|185.199.109.153|:80... [0m[91mconnected.
+[0m[91mHTTP request sent, awaiting response... [0m[91m200 OK
+Length: 852096 (832K) [application/gzip]
+[0m[91mSaving to: ‘freesasa-2.0.3.tar.gz’
+
+     0K .......... ...[0m[91m....... .......[0m[91m... ...[0m[91m.....[0m[91m.. .[0m[91m...[0m[91m......  6% 2.65M 0s[0m[91m
+    50K ...[0m[91m....... .[0m[91m.........[0m[91m ..[0m[91m........ .[0m[91m...[0m[91m...... ....[0m[91m....[0m[91m.. 12% 5.49M 0s
+   100K .[0m[91m.....[0m[91m.... ..[0m[91m........[0m[91m .........[0m[91m. .....[0m[91m..... ...[0m[91m......[0m[91m. 18% 13.5M 0s
+   150K .[0m[91m...[0m[91m...... .......... ....[0m[91m......[0m[91m ..........[0m[91m ........[0m[91m.. 24% 7.97M 0s
+   200K .[0m[91m........[0m[91m.[0m[91m ..[0m[91m...[0m[91m..[0m[91m... .........[0m[91m. ......[0m[91m.... ........[0m[91m.. 30% 12.1M 0s
+   250K .........[0m[91m. ..........[0m[91m .......... ..[0m[91m........ ...[0m[91m.[0m[91m...... 36% 9.52M 0s
+   300K .......[0m[91m... ......[0m[91m.... ........[0m[91m.. .......... .[0m[91m....[0m[91m..... 42% 11.9M 0s
+   350K .......[0m[91m... .....[0m[91m...[0m[91m.. .........[0m[91m. .......... .[0m[91m......... 48% 14.2M 0s
+   400K ..[0m[91m.......[0m[91m. ...[0m[91m....... ..[0m[91m........[0m[91m ....[0m[91m...... ..[0m[91m....[0m[91m.[0m[91m... 54% 8.28M 0s
+   450K .....[0m[91m...[0m[91m.. ......[0m[91m.... ...[0m[91m....... .......[0m[91m... .........[0m[91m. 60% 14.5M 0s
+   500K .......... ..[0m[91m......[0m[91m.. ........[0m[91m.. ..[0m[91m........ .......... 66% 13.8M 0s[0m[91m
+   550K ..[0m[91m........ ......[0m[91m.... ...[0m[91m..[0m[91m.....[0m[91m .......... ....[0m[91m...... 72% 10.3M 0s[0m[91m
+   600K .......[0m[91m... ......[0m[91m.... .[0m[91m......... .....[0m[91m..... .........[0m[91m. 78% 10.9M 0s
+   650K .......... ...[0m[91m....... ........[0m[91m.. .....[0m[91m..... ..[0m[91m........ 84% 11.7M 0s
+   700K .....[0m[91m..[0m[91m... ..[0m[91m........ .[0m[91m......[0m[91m.[0m[91m.. .[0m[91m......... ...[0m[91m.....[0m[91m.. 90% 11.3M 0s
+   750K .......... [0m[91m....[0m[91m...... .........[0m[91m. .......... .[0m[91m.[0m[91m........ 96% 12.2M 0s
+   800K ........[0m[91m.. ..........[0m[91m ...[0m[91m....... ..                   100% 21.7M=0.09s
+
+2020-07-03 10:43:36 (9.06 MB/s) - ‘freesasa-2.0.3.tar.gz’ saved [852096/852096]
+
+[0mchecking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking for ranlib... ranlib
+checking for sqrt in -lm... yes
+checking for dlsym in -ldl... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for inttypes.h... (cached) yes
+checking libintl.h usability... yes
+checking libintl.h presence... yes
+checking for libintl.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for strings.h... (cached) yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for inline... inline
+checking for size_t... (cached) yes
+checking for C/C++ restrict keyword... __restrict
+checking for int16_t... yes
+checking for int32_t... yes
+checking for int8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for uint8_t... yes
+checking for gcc option to accept ISO C99... none needed
+checking for inline... (cached) inline
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible realloc... yes
+checking for memset... yes
+checking for mkdir... yes
+checking for sqrt... yes
+checking for strchr... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for strncasecmp... yes
+checking for getopt_long... yes
+checking for getline... yes
+checking for pthread_create in -lpthread... yes
+checking pthread.h usability... yes
+checking pthread.h presence... yes
+checking for pthread.h... yes
+configure: Building without support for XML output.
+configure: Building without support for JSON output.
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/Doxyfile
+config.status: creating doc/man/freesasa.1
+config.status: creating tests/Makefile
+config.status: creating share/Makefile
+config.status: creating tests/test-cli
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3'
+Making all in src
+make[2]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/src'
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT classifier.o -MD -MP -MF .deps/classifier.Tpo -c -o classifier.o classifier.c
+mv -f .deps/classifier.Tpo .deps/classifier.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT classifier_protor.o -MD -MP -MF .deps/classifier_protor.Tpo -c -o classifier_protor.o classifier_protor.c
+mv -f .deps/classifier_protor.Tpo .deps/classifier_protor.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT classifier_oons.o -MD -MP -MF .deps/classifier_oons.Tpo -c -o classifier_oons.o classifier_oons.c
+mv -f .deps/classifier_oons.Tpo .deps/classifier_oons.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT classifier_naccess.o -MD -MP -MF .deps/classifier_naccess.Tpo -c -o classifier_naccess.o classifier_naccess.c
+mv -f .deps/classifier_naccess.Tpo .deps/classifier_naccess.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT coord.o -MD -MP -MF .deps/coord.Tpo -c -o coord.o coord.c
+mv -f .deps/coord.Tpo .deps/coord.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT pdb.o -MD -MP -MF .deps/pdb.Tpo -c -o pdb.o pdb.c
+mv -f .deps/pdb.Tpo .deps/pdb.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT log.o -MD -MP -MF .deps/log.Tpo -c -o log.o log.c
+mv -f .deps/log.Tpo .deps/log.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT sasa_lr.o -MD -MP -MF .deps/sasa_lr.Tpo -c -o sasa_lr.o sasa_lr.c
+mv -f .deps/sasa_lr.Tpo .deps/sasa_lr.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT sasa_sr.o -MD -MP -MF .deps/sasa_sr.Tpo -c -o sasa_sr.o sasa_sr.c
+mv -f .deps/sasa_sr.Tpo .deps/sasa_sr.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT structure.o -MD -MP -MF .deps/structure.Tpo -c -o structure.o structure.c
+mv -f .deps/structure.Tpo .deps/structure.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT node.o -MD -MP -MF .deps/node.Tpo -c -o node.o node.c
+mv -f .deps/node.Tpo .deps/node.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT freesasa.o -MD -MP -MF .deps/freesasa.Tpo -c -o freesasa.o freesasa.c
+mv -f .deps/freesasa.Tpo .deps/freesasa.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT nb.o -MD -MP -MF .deps/nb.Tpo -c -o nb.o nb.c
+mv -f .deps/nb.Tpo .deps/nb.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT util.o -MD -MP -MF .deps/util.Tpo -c -o util.o util.c
+mv -f .deps/util.Tpo .deps/util.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT rsa.o -MD -MP -MF .deps/rsa.Tpo -c -o rsa.o rsa.c
+mv -f .deps/rsa.Tpo .deps/rsa.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT selection.o -MD -MP -MF .deps/selection.Tpo -c -o selection.o selection.c
+mv -f .deps/selection.Tpo .deps/selection.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT lexer.o -MD -MP -MF .deps/lexer.Tpo -c -o lexer.o lexer.c
+mv -f .deps/lexer.Tpo .deps/lexer.Po
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT parser.o -MD -MP -MF .deps/parser.Tpo -c -o parser.o parser.c
+mv -f .deps/parser.Tpo .deps/parser.Po
+rm -f libfreesasa.a
+ar cru libfreesasa.a classifier.o classifier_protor.o classifier_oons.o classifier_naccess.o coord.o pdb.o log.o sasa_lr.o sasa_sr.o structure.o node.o freesasa.o nb.o util.o rsa.o selection.o lexer.o parser.o   
+[91mar: `u' modifier ignored since `D' is the default (see `U')
+[0mranlib libfreesasa.a
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT main.o -MD -MP -MF .deps/main.Tpo -c -o main.o main.c
+mv -f .deps/main.Tpo .deps/main.Po
+gcc   -g -O2   -o freesasa main.o libfreesasa.a   -lpthread -ldl -lm 
+gcc -DHAVE_CONFIG_H -I. -I..      -g -O2 -MT example.o -MD -MP -MF .deps/example.Tpo -c -o example.o example.c
+mv -f .deps/example.Tpo .deps/example.Po
+gcc   -g -O2   -o example example.o libfreesasa.a   -lpthread -ldl -lm 
+make[2]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/src'
+Making all in doc
+make[2]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/doc'
+Making all in tests
+make[2]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/tests'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/tests'
+Making all in share
+make[2]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/share'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3/share'
+make[2]: Entering directory '/home/vildeeide/software/freesasa/freesasa-2.0.3'
+make[2]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3'
+make[1]: Leaving directory '/home/vildeeide/software/freesasa/freesasa-2.0.3'
+Removing intermediate container 68db086d1389
+ ---> f3891af9e75a
+Step 52/54 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 37ee09b15e15
+Step 53/54 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 65821efcd2a4
+Removing intermediate container 65821efcd2a4
+ ---> 4ba1d761d6d5
+Step 54/54 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 8784ab1be0b7
+Removing intermediate container 8784ab1be0b7
+ ---> 9344a06fa2c7
+{"aux": {"ID": "sha256:9344a06fa2c79c4785392bc1442ce51115c81cfd3074fe1c74a51b3e4447afd1"}}Successfully built 9344a06fa2c7
+Successfully tagged r2d-test-github.com-sbrg-ssbio:08c1ce3

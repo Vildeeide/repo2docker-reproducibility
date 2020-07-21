@@ -1,0 +1,6 @@
+[I 200709 11:41:42 inrepo:36] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.1 - Introduction variables et types.ipynb
+[I 200709 11:41:43 inrepo:45] Found kernel octave
+[I 200709 11:41:46 execute:404] Executing notebook with kernel: octave
+[I 200709 11:41:47 inrepo:79] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.1 - Introduction variables et types.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

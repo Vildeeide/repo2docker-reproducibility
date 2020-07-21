@@ -1,0 +1,5 @@
+[I 200703 06:40:07 inrepo:35] Testing notebook quadrature_and_diff/Taking Derivatives with Vandermonde Matrices.ipynb
+[I 200703 06:40:09 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:12 inrepo:41] Saving exported notebook to /io/notebooks/quadrature_and_diff/Taking Derivatives with Vandermonde Matrices.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

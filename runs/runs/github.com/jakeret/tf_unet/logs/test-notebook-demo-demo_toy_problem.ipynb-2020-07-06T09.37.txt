@@ -1,0 +1,39 @@
+[I 200706 09:40:23 inrepo:35] Testing notebook demo/demo_toy_problem.ipynb
+[I 200706 09:40:24 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+net = unet.Unet(channels=generator.channels, n_class=generator.n_class, layers=3, features_root=16)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-7-41bb611c4191>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mnet[0m [0;34m=[0m [0munet[0m[0;34m.[0m[0mUnet[0m[0;34m([0m[0mchannels[0m[0;34m=[0m[0mgenerator[0m[0;34m.[0m[0mchannels[0m[0;34m,[0m [0mn_class[0m[0;34m=[0m[0mgenerator[0m[0;34m.[0m[0mn_class[0m[0;34m,[0m [0mlayers[0m[0;34m=[0m[0;36m3[0m[0;34m,[0m [0mfeatures_root[0m[0;34m=[0m[0;36m16[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/tf_unet/unet.py[0m in [0;36m__init__[0;34m(self, channels, n_class, cost, cost_kwargs, **kwargs)[0m
+[1;32m    187[0m [0;34m[0m[0m
+[1;32m    188[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mchannels[0m[0;34m,[0m [0mn_class[0m[0;34m,[0m [0mcost[0m[0;34m=[0m[0;34m"cross_entropy"[0m[0;34m,[0m [0mcost_kwargs[0m[0;34m=[0m[0;34m{[0m[0;34m}[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 189[0;31m         [0mtf[0m[0;34m.[0m[0mreset_default_graph[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    190[0m [0;34m[0m[0m
+[1;32m    191[0m         [0mself[0m[0;34m.[0m[0mn_class[0m [0;34m=[0m [0mn_class[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'reset_default_graph'
+AttributeError: module 'tensorflow' has no attribute 'reset_default_graph'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

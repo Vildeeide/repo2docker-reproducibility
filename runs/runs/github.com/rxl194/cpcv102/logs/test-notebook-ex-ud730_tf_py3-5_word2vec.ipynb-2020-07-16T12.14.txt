@@ -1,0 +1,45 @@
+[I 200716 12:15:30 inrepo:36] Testing notebook ex/ud730_tf_py3/5_word2vec.ipynb
+[I 200716 12:15:31 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# These are all the modules we'll be using later. Make sure you can import them
+# before proceeding further.
+%matplotlib inline
+from __future__ import print_function
+import collections
+import math
+import numpy as np
+import os
+import random
+import tensorflow as tf
+import zipfile
+from matplotlib import pylab
+from six.moves import range
+from six.moves.urllib.request import urlretrieve
+from sklearn.manifold import TSNE
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-a746ca9ec40d>"[0;36m, line [0;32m7[0m
+[0;31m    import numpy as np[0m
+[0m           ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m from __future__ imports must occur at the beginning of the file
+
+SyntaxError: from __future__ imports must occur at the beginning of the file (<ipython-input-1-a746ca9ec40d>, line 7)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

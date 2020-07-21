@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/root-ua/returns_prediction,master,a8d1ae7,2016-05-09T02:20:44+03:00,build,build,False,github.com/root-ua/returns_prediction/logs/build-master-2020-07-16T07.54.txt,2020-07-16T07:54:38.208599,2020-07-16T07.54,0.11.0

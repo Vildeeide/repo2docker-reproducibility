@@ -1,0 +1,444 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.19i3eb7ymm/github.com/espnet/espnet.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> acc69dbf9c6b
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in b3ccfd653ae0
+Removing intermediate container b3ccfd653ae0
+ ---> 129906888014
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 04f7486b7b8f
+Removing intermediate container 04f7486b7b8f
+ ---> 2eea91abbbea
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in f52ea473455c
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: setuptools>=38.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from espnet==0.8.0) (45.1.0.post20200119)
+Collecting configargparse>=1.2.1
+  Downloading ConfigArgParse-1.2.3.tar.gz (42 kB)
+Collecting typeguard>=2.7.0
+  Downloading typeguard-2.9.1-py3-none-any.whl (16 kB)
+Collecting dataclasses
+  Downloading dataclasses-0.6-py3-none-any.whl (14 kB)
+Collecting humanfriendly
+  Downloading humanfriendly-8.2-py2.py3-none-any.whl (86 kB)
+Collecting scipy>=1.4.1
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting matplotlib>=3.1.0
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting pillow>=6.1.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting editdistance==0.5.2
+  Downloading editdistance-0.5.2-cp37-cp37m-manylinux1_x86_64.whl (174 kB)
+Collecting numba==0.49
+  Downloading numba-0.49.0-cp37-cp37m-manylinux2014_x86_64.whl (3.6 MB)
+Collecting gdown
+  Downloading gdown-3.11.1.tar.gz (8.6 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting chainer==6.0.0
+  Downloading chainer-6.0.0.tar.gz (880 kB)
+Collecting tensorboard>=1.14
+  Downloading tensorboard-2.2.2-py3-none-any.whl (3.0 MB)
+Collecting tensorboardX>=1.8
+  Downloading tensorboardX-2.1-py2.py3-none-any.whl (308 kB)
+Collecting librosa>=0.7.0
+  Downloading librosa-0.7.2.tar.gz (1.6 MB)
+Collecting resampy
+  Downloading resampy-0.2.2.tar.gz (323 kB)
+Collecting pysptk>=0.1.17
+  Downloading pysptk-0.1.18.tar.gz (419 kB)
+Collecting sentencepiece<0.1.90,>=0.1.82
+  Downloading sentencepiece-0.1.86-cp37-cp37m-manylinux1_x86_64.whl (1.0 MB)
+Collecting nltk>=3.4.5
+  Downloading nltk-3.5.zip (1.4 MB)
+Collecting PyYAML>=5.1.2
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting soundfile>=0.10.2
+  Downloading SoundFile-0.10.3.post1-py2.py3-none-any.whl (21 kB)
+Collecting h5py==2.9.0
+  Downloading h5py-2.9.0-cp37-cp37m-manylinux1_x86_64.whl (2.8 MB)
+Collecting kaldiio>=2.15.0
+  Downloading kaldiio-2.15.1.tar.gz (21 kB)
+Requirement already satisfied: inflect>=1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from espnet==0.8.0) (4.0.0)
+Collecting unidecode>=1.0.22
+  Downloading Unidecode-1.1.1-py2.py3-none-any.whl (238 kB)
+Collecting nnmnkwii
+  Downloading nnmnkwii-0.0.20.tar.gz (1.7 MB)
+Collecting espnet_tts_frontend
+  Downloading espnet_tts_frontend-0.0.2-py3-none-any.whl (11 kB)
+Collecting museval>=0.2.1
+  Downloading museval-0.3.0-py2.py3-none-any.whl (21 kB)
+Collecting pystoi>=0.2.2
+  Downloading pystoi-0.3.3.tar.gz (7.0 kB)
+Collecting nara_wpe>=0.0.5
+  Downloading nara_wpe-0.0.7-py3-none-any.whl (30 kB)
+Collecting torch_complex
+  Downloading torch_complex-0.0.3-py3-none-any.whl (7.3 kB)
+Collecting pytorch_wpe
+  Downloading pytorch_wpe-0.0.0-py3-none-any.whl (8.1 kB)
+Collecting numpy>=1.14.5
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=3.1.0->espnet==0.8.0) (2.8.1)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting llvmlite<=0.33.0.dev0,>=0.31.0.dev0
+  Downloading llvmlite-0.32.1-cp37-cp37m-manylinux1_x86_64.whl (20.2 MB)
+Collecting tqdm
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Requirement already satisfied: requests[socks] in /srv/conda/envs/notebook/lib/python3.7/site-packages (from gdown->espnet==0.8.0) (2.22.0)
+Collecting filelock
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from gdown->espnet==0.8.0) (1.14.0)
+Collecting typing
+  Downloading typing-3.7.4.1-py3-none-any.whl (25 kB)
+Collecting typing_extensions
+  Downloading typing_extensions-3.7.4.2-py3-none-any.whl (22 kB)
+Collecting protobuf<3.8.0rc1,>=3.0.0
+  Downloading protobuf-3.7.1-cp37-cp37m-manylinux1_x86_64.whl (1.2 MB)
+Collecting grpcio>=1.24.3
+  Downloading grpcio-1.30.0-cp37-cp37m-manylinux2010_x86_64.whl (3.0 MB)
+Collecting markdown>=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Downloading tensorboard_plugin_wit-1.7.0-py3-none-any.whl (779 kB)
+Requirement already satisfied: wheel>=0.26; python_version >= "3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorboard>=1.14->espnet==0.8.0) (0.34.1)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting google-auth<2,>=1.6.3
+  Downloading google_auth-1.18.0-py2.py3-none-any.whl (90 kB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Downloading google_auth_oauthlib-0.4.1-py2.py3-none-any.whl (18 kB)
+Collecting absl-py>=0.4
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+Collecting audioread>=2.0.0
+  Downloading audioread-2.1.8.tar.gz (21 kB)
+Collecting scikit-learn!=0.19.0,>=0.14.0
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting joblib>=0.12
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Requirement already satisfied: decorator>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from librosa>=0.7.0->espnet==0.8.0) (4.4.1)
+Collecting click
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting regex
+  Downloading regex-2020.6.8-cp37-cp37m-manylinux2010_x86_64.whl (661 kB)
+Requirement already satisfied: cffi>=1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from soundfile>=0.10.2->espnet==0.8.0) (1.13.2)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from inflect>=1.0.0->espnet==0.8.0) (1.5.0)
+Collecting cython>=0.28.0
+  Downloading Cython-0.29.20-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting fastdtw
+  Downloading fastdtw-0.3.4.tar.gz (133 kB)
+Collecting sklearn
+  Downloading sklearn-0.0.tar.gz (1.1 kB)
+Collecting g2p-en
+  Downloading g2p_en-2.1.0-py3-none-any.whl (3.1 MB)
+Collecting underthesea
+  Downloading underthesea-1.1.17-py3-none-any.whl (7.1 MB)
+Collecting pypinyin
+  Downloading pypinyin-0.38.1-py2.py3-none-any.whl (780 kB)
+Collecting jaconv
+  Downloading jaconv-0.2.4.tar.gz (11 kB)
+Collecting pandas>=0.25.0
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting musdb>=0.3.0
+  Downloading musdb-0.3.1-py2.py3-none-any.whl (27 kB)
+Collecting simplejson
+  Downloading simplejson-3.17.0.tar.gz (83 kB)
+Requirement already satisfied: jsonschema in /srv/conda/envs/notebook/lib/python3.7/site-packages (from museval>=0.2.1->espnet==0.8.0) (3.2.0)
+Collecting bottleneck
+  Downloading Bottleneck-1.3.2.tar.gz (88 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests[socks]->gdown->espnet==0.8.0) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests[socks]->gdown->espnet==0.8.0) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests[socks]->gdown->espnet==0.8.0) (2019.11.28)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests[socks]->gdown->espnet==0.8.0) (2.8)
+Requirement already satisfied: PySocks!=1.5.7,>=1.5.6; extra == "socks" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests[socks]->gdown->espnet==0.8.0) (1.7.1)
+Collecting cachetools<5.0,>=2.0.0
+  Downloading cachetools-4.1.1-py3-none-any.whl (10 kB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting rsa<5,>=3.1.4; python_version >= "3"
+  Downloading rsa-4.6-py3-none-any.whl (47 kB)
+Collecting requests-oauthlib>=0.7.0
+  Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi>=1.0->soundfile>=0.10.2->espnet==0.8.0) (2.19)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->inflect>=1.0.0->espnet==0.8.0) (2.1.0)
+Collecting distance>=0.1.3
+  Downloading Distance-0.1.3.tar.gz (180 kB)
+Collecting languageflow==1.1.13a1
+  Downloading languageflow-1.1.13a1-py2.py3-none-any.whl (457 kB)
+Collecting python-crfsuite==0.9.6
+  Downloading python_crfsuite-0.9.6-cp37-cp37m-manylinux1_x86_64.whl (749 kB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting stempeg>=0.1.7
+  Downloading stempeg-0.1.8-py3-none-any.whl (509 kB)
+Collecting pyaml
+  Downloading pyaml-20.4.0-py2.py3-none-any.whl (17 kB)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema->museval>=0.2.1->espnet==0.8.0) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema->museval>=0.2.1->espnet==0.8.0) (19.3.0)
+Collecting pyasn1<0.5.0,>=0.4.6
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Requirement already satisfied: oauthlib>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<0.5,>=0.4.1->tensorboard>=1.14->espnet==0.8.0) (3.0.1)
+Collecting tabulate
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Collecting clint
+  Downloading clint-0.5.1.tar.gz (29 kB)
+Collecting args
+  Downloading args-0.1.0.tar.gz (3.0 kB)
+Building wheels for collected packages: espnet, configargparse, gdown, chainer, librosa, resampy, pysptk, nltk, PyYAML, kaldiio, nnmnkwii, pystoi, absl-py, audioread, fastdtw, sklearn, jaconv, simplejson, bottleneck, distance, clint, args
+  Building wheel for espnet (setup.py): started
+  Building wheel for espnet (setup.py): finished with status 'done'
+  Created wheel for espnet: filename=espnet-0.8.0-py3-none-any.whl size=580960 sha256=4089f84f1b7e8e346164e1f3e84ef492aa372914104d93aee28a0abfa7c478ad
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for configargparse (setup.py): started
+  Building wheel for configargparse (setup.py): finished with status 'done'
+  Created wheel for configargparse: filename=ConfigArgParse-1.2.3-py3-none-any.whl size=19329 sha256=ab6fc56145566122b5f01acdf96265ef28458dea8bfd276987fdc2b6b3dc1215
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/8c/56/a5/1c051b2cca57d199fc048e2516424f24263cefd3ec2059990e
+  Building wheel for gdown (PEP 517): started
+  Building wheel for gdown (PEP 517): finished with status 'done'
+  Created wheel for gdown: filename=gdown-3.11.1-py3-none-any.whl size=9656 sha256=d5dc905031d59f4c5d152aeafabea2097a615c471a5a11f9a741f59aec4bd194
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/ac/0f/65/f8898ba51a103158b41f418d2a37cc928471624397da3af2f4
+  Building wheel for chainer (setup.py): started
+  Building wheel for chainer (setup.py): finished with status 'done'
+  Created wheel for chainer: filename=chainer-6.0.0-py3-none-any.whl size=876775 sha256=5f16e542d4ba9f66bb0663c40c623a776985d0339aae34e1b8deffc33e172772
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/cd/38/53/18c6578a40a10ff120db266e58c5e383c1cb7bdea79b6c418a
+  Building wheel for librosa (setup.py): started
+  Building wheel for librosa (setup.py): finished with status 'done'
+  Created wheel for librosa: filename=librosa-0.7.2-py3-none-any.whl size=1612884 sha256=6a161c534cdc7c78e5602fd22acb51c1e42f72bd4aac7584824b42c7c5268976
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/18/9e/42/3224f85730f92fa2925f0b4fb6ef7f9c5431a64dfc77b95b39
+  Building wheel for resampy (setup.py): started
+  Building wheel for resampy (setup.py): finished with status 'done'
+  Created wheel for resampy: filename=resampy-0.2.2-py3-none-any.whl size=320720 sha256=a96329fc7b011a85ed40f590deb85760b52bf06a03c43dc4097be971a74341ff
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/a0/18/0a/8ad18a597d8333a142c9789338a96a6208f1198d290ece356c
+  Building wheel for pysptk (setup.py): started
+  Building wheel for pysptk (setup.py): still running...
+  Building wheel for pysptk (setup.py): finished with status 'done'
+  Created wheel for pysptk: filename=pysptk-0.1.18-cp37-cp37m-linux_x86_64.whl size=1007504 sha256=7324eac8f74d3c9e365a984b98ee58e97b76a04a0a93a096726100d5b7dd6995
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/44/95/38/580fe995213257289c69bf74f4d122e39cd134c731fe17a5a6
+  Building wheel for nltk (setup.py): started
+  Building wheel for nltk (setup.py): finished with status 'done'
+  Created wheel for nltk: filename=nltk-3.5-py3-none-any.whl size=1434677 sha256=6aab3902560380a31333b9848dd0e0b546c27027c0a1656be1bc7f8673437905
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/45/6c/46/a1865e7ba706b3817f5d1b2ff7ce8996aabdd0d03d47ba0266
+  Building wheel for PyYAML (setup.py): started
+  Building wheel for PyYAML (setup.py): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393736 sha256=54a0f138d4adf531e74679c258837804a8351156123bfa7e3eca40c74e653a8b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for kaldiio (setup.py): started
+  Building wheel for kaldiio (setup.py): finished with status 'done'
+  Created wheel for kaldiio: filename=kaldiio-2.15.1-py3-none-any.whl size=22619 sha256=c371bb29b89954c35609cdac147955eb8f0f92f424e43c579ef8086e50cc1b72
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/46/19/fc/7be15b91e6aa73f374c6b3217ea6c8e58724650bcc7638635f
+  Building wheel for nnmnkwii (setup.py): started
+  Building wheel for nnmnkwii (setup.py): finished with status 'done'
+  Created wheel for nnmnkwii: filename=nnmnkwii-0.0.20-cp37-cp37m-linux_x86_64.whl size=1907444 sha256=4bd339306fba6ad45735343ab71d5346019b463b7284b10ba58db97ed22c18bd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/f8/fa/34/c47446c5f25e565868c9cdeb1729869571fb0ee1092faff86a
+  Building wheel for pystoi (setup.py): started
+  Building wheel for pystoi (setup.py): finished with status 'done'
+  Created wheel for pystoi: filename=pystoi-0.3.3-py2.py3-none-any.whl size=7782 sha256=21a4690372b380d483930539d290564acc6be3206b8a5ffee75b7ad31632f288
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/46/4a/ad/3ab460193ed0535430b4b1575f255aa6bae69df17453628e86
+  Building wheel for absl-py (setup.py): started
+  Building wheel for absl-py (setup.py): finished with status 'done'
+  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121932 sha256=9abadc9b852b229576a9e0b51c472fcfe182b495d5a6865726c3c850d9d47e3b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+  Building wheel for audioread (setup.py): started
+  Building wheel for audioread (setup.py): finished with status 'done'
+  Created wheel for audioread: filename=audioread-2.1.8-py3-none-any.whl size=23091 sha256=8a2c9b6135fd5a65bf5f86427af989412602d23576863a1c9e77459b3942580a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/cd/85/04/704a589ef8773d1ec1393c4b271a023f929d85ef5317b12d8c
+  Building wheel for fastdtw (setup.py): started
+  Building wheel for fastdtw (setup.py): finished with status 'done'
+  Created wheel for fastdtw: filename=fastdtw-0.3.4-py3-none-any.whl size=3588 sha256=61bab93be80eed63357b25d01a54accdbf85a16f310817641436287abc609c55
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/a2/da/8c/2d1b9b233595056f05e59156bb555f7277b88beb385605de16
+  Building wheel for sklearn (setup.py): started
+  Building wheel for sklearn (setup.py): finished with status 'done'
+  Created wheel for sklearn: filename=sklearn-0.0-py2.py3-none-any.whl size=1316 sha256=02f93e434a67f44b2d0fa018cb532ca841171ce124642a4917bde64a1e5a8cb9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/46/ef/c3/157e41f5ee1372d1be90b09f74f82b10e391eaacca8f22d33e
+  Building wheel for jaconv (setup.py): started
+  Building wheel for jaconv (setup.py): finished with status 'done'
+  Created wheel for jaconv: filename=jaconv-0.2.4-py3-none-any.whl size=12284 sha256=96d181528cd27cf45e61344c0c6c96f8da6bc20407227a53aeaa1af5bfd6bf31
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/51/32/9c/507a7d6ae47b5115374d5239f605c23ac02fefedaa0d1b1540
+  Building wheel for simplejson (setup.py): started
+  Building wheel for simplejson (setup.py): finished with status 'done'
+  Created wheel for simplejson: filename=simplejson-3.17.0-cp37-cp37m-linux_x86_64.whl size=124754 sha256=0557bb47c75d118dc0ca7581e2c23303a9b70d780629cb34dca3addf0526f15f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/8a/2d/bb/65cfe3f590a9cbb199f2011a6e4ccecd858844fb04e0dee2e9
+  Building wheel for bottleneck (PEP 517): started
+  Building wheel for bottleneck (PEP 517): finished with status 'done'
+  Created wheel for bottleneck: filename=Bottleneck-1.3.2-cp37-cp37m-linux_x86_64.whl size=334897 sha256=a9e6a6fb6d54b761b582b5006af42d8a5b9df28ecc370434ad400a3139610aef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/87/85/9c/a325c89ff0498660ef8a335fb4b3912939c273ea4f094af29f
+  Building wheel for distance (setup.py): started
+  Building wheel for distance (setup.py): finished with status 'done'
+  Created wheel for distance: filename=Distance-0.1.3-py3-none-any.whl size=16260 sha256=0b450bd8915a6762430e5feabb325f77fc310101c991a9e3ba4bb53eac825fef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/b2/10/1b/96fca621a1be378e2fe104cfb0d160bb6cdf3d04a3d35266cc
+  Building wheel for clint (setup.py): started
+  Building wheel for clint (setup.py): finished with status 'done'
+  Created wheel for clint: filename=clint-0.5.1-py3-none-any.whl size=34448 sha256=598df724ab411286ae05596c80df99e0d5ae3ef0e023e22644f0a3499427a694
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/29/97/84/72d17bd67a52abe83c647807c3d77dc4d7c1d7709d7077a5f3
+  Building wheel for args (setup.py): started
+  Building wheel for args (setup.py): finished with status 'done'
+  Created wheel for args: filename=args-0.1.0-py3-none-any.whl size=3318 sha256=4e794565388011dd717774ddc7949744505ea535d7033bd8dce48571e6adb6c6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xwfs8ed5/wheels/6c/9c/cb/445bf22cb64c8cf6a84de63d48ba885470cdf08e77416b6e7a
+Successfully built espnet configargparse gdown chainer librosa resampy pysptk nltk PyYAML kaldiio nnmnkwii pystoi absl-py audioread fastdtw sklearn jaconv simplejson bottleneck distance clint args
+[91mERROR: tensorboardx 2.1 has requirement protobuf>=3.8.0, but you'll have protobuf 3.7.1 which is incompatible.
+ERROR: languageflow 1.1.13a1 has requirement joblib==0.13.2, but you'll have joblib 0.16.0 which is incompatible.
+ERROR: languageflow 1.1.13a1 has requirement scikit-learn==0.20.3, but you'll have scikit-learn 0.23.1 which is incompatible.
+ERROR: underthesea 1.1.17 has requirement nltk<3.5,>=3.4, but you'll have nltk 3.5 which is incompatible.
+[0mInstalling collected packages: configargparse, typeguard, dataclasses, humanfriendly, numpy, scipy, cycler, pyparsing, kiwisolver, matplotlib, pillow, editdistance, llvmlite, numba, tqdm, filelock, gdown, typing, typing-extensions, protobuf, chainer, grpcio, markdown, tensorboard-plugin-wit, werkzeug, cachetools, pyasn1, pyasn1-modules, rsa, google-auth, requests-oauthlib, google-auth-oauthlib, absl-py, tensorboard, tensorboardX, audioread, threadpoolctl, joblib, scikit-learn, resampy, soundfile, librosa, pysptk, sentencepiece, click, regex, nltk, PyYAML, h5py, kaldiio, unidecode, cython, fastdtw, sklearn, nnmnkwii, distance, g2p-en, tabulate, args, clint, languageflow, python-crfsuite, underthesea, pypinyin, jaconv, espnet-tts-frontend, pytz, pandas, stempeg, pyaml, musdb, simplejson, museval, pystoi, bottleneck, nara-wpe, torch-complex, pytorch-wpe, espnet
+Successfully installed PyYAML-5.3.1 absl-py-0.9.0 args-0.1.0 audioread-2.1.8 bottleneck-1.3.2 cachetools-4.1.1 chainer-6.0.0 click-7.1.2 clint-0.5.1 configargparse-1.2.3 cycler-0.10.0 cython-0.29.20 dataclasses-0.6 distance-0.1.3 editdistance-0.5.2 espnet-0.8.0 espnet-tts-frontend-0.0.2 fastdtw-0.3.4 filelock-3.0.12 g2p-en-2.1.0 gdown-3.11.1 google-auth-1.18.0 google-auth-oauthlib-0.4.1 grpcio-1.30.0 h5py-2.9.0 humanfriendly-8.2 jaconv-0.2.4 joblib-0.16.0 kaldiio-2.15.1 kiwisolver-1.2.0 languageflow-1.1.13a1 librosa-0.7.2 llvmlite-0.32.1 markdown-3.2.2 matplotlib-3.2.2 musdb-0.3.1 museval-0.3.0 nara-wpe-0.0.7 nltk-3.5 nnmnkwii-0.0.20 numba-0.49.0 numpy-1.19.0 pandas-1.0.5 pillow-7.2.0 protobuf-3.7.1 pyaml-20.4.0 pyasn1-0.4.8 pyasn1-modules-0.2.8 pyparsing-2.4.7 pypinyin-0.38.1 pysptk-0.1.18 pystoi-0.3.3 python-crfsuite-0.9.6 pytorch-wpe-0.0.0 pytz-2020.1 regex-2020.6.8 requests-oauthlib-1.3.0 resampy-0.2.2 rsa-4.6 scikit-learn-0.23.1 scipy-1.5.1 sentencepiece-0.1.86 simplejson-3.17.0 sklearn-0.0 soundfile-0.10.3.post1 stempeg-0.1.8 tabulate-0.8.7 tensorboard-2.2.2 tensorboard-plugin-wit-1.7.0 tensorboardX-2.1 threadpoolctl-2.1.0 torch-complex-0.0.3 tqdm-4.47.0 typeguard-2.9.1 typing-3.7.4.1 typing-extensions-3.7.4.2 underthesea-1.1.17 unidecode-1.1.1 werkzeug-1.0.1
+Removing intermediate container f52ea473455c
+ ---> e271c9e41e21
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 702f5d3f2970
+Removing intermediate container 702f5d3f2970
+ ---> 3d5eed63ae8f
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in 79d5a1fd62d3
+Removing intermediate container 79d5a1fd62d3
+ ---> 5a183e7a0a6f
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in cde4b47d7cec
+Removing intermediate container cde4b47d7cec
+ ---> 1db24b0a3d42
+Step 45/48 : USER ${NB_USER}
+ ---> Running in 1c8fad7c20af
+Removing intermediate container 1c8fad7c20af
+ ---> 48edf7c90653
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 9841be974f2b
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 76a535df8aa3
+Removing intermediate container 76a535df8aa3
+ ---> 035e5a56322e
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 34d434d3e67b
+Removing intermediate container 34d434d3e67b
+ ---> b61e98735b90
+{"aux": {"ID": "sha256:b61e98735b90a7bc0cc9723a5173be2f4633b57006d3da9fc3f5a79a10aeb1e9"}}Successfully built b61e98735b90
+Successfully tagged r2d-test-github.com-espnet-espnet:652be4c

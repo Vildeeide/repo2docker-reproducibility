@@ -1,0 +1,5 @@
+[I 200703 06:31:08 inrepo:35] Testing notebook tutorials/nasa_apps_oct_2019/answers/1 - Numba basics.ipynb
+[I 200703 06:31:09 execute:404] Executing notebook with kernel: python3
+[I 200703 06:33:09 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/nasa_apps_oct_2019/answers/1 - Numba basics.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,56 @@
+[I 200708 08:02:57 inrepo:36] Testing notebook research/fir_fr.ipynb
+[W 200708 08:02:57 inrepo:48] No such kernel ai-lab, falling back on kernel language=python
+[W 200708 08:02:57 inrepo:60] Using kernel python3 to provide language: python
+[I 200708 08:02:58 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%load_ext autoreload
+%autoreload 2
+import os
+import sys
+from pathlib import Path
+ROOT_DIR = os.path.abspath(os.path.join(Path().absolute(), os.pardir))
+sys.path.insert(1, ROOT_DIR)
+from time import time
+import numpy as np
+import scipy
+import matplotlib.pyplot as plt
+import soundfile as sf
+from frequency_response import FrequencyResponse
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m<ipython-input-1-90ea4309ec17>[0m in [0;36m<module>[0;34m[0m
+[1;32m     10[0m [0;32mimport[0m [0mscipy[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 12[0;31m [0;32mimport[0m [0msoundfile[0m [0;32mas[0m [0msf[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     13[0m [0;32mfrom[0m [0mfrequency_response[0m [0;32mimport[0m [0mFrequencyResponse[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/soundfile.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    140[0m     [0m_libname[0m [0;34m=[0m [0m_find_library[0m[0;34m([0m[0;34m'sndfile'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m     [0;32mif[0m [0m_libname[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 142[0;31m         [0;32mraise[0m [0mOSError[0m[0;34m([0m[0;34m'sndfile library not found'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    143[0m     [0m_snd[0m [0;34m=[0m [0m_ffi[0m[0;34m.[0m[0mdlopen[0m[0;34m([0m[0m_libname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    144[0m [0;32mexcept[0m [0mOSError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mOSError[0m: sndfile library not found
+OSError: sndfile library not found
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

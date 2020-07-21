@@ -1,0 +1,5 @@
+[I 200703 06:36:35 inrepo:35] Testing notebook pdes/Jacobi vs Conjugate Gradient.ipynb
+[I 200703 06:36:36 execute:404] Executing notebook with kernel: python3
+[I 200703 06:36:44 inrepo:41] Saving exported notebook to /io/notebooks/pdes/Jacobi vs Conjugate Gradient.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

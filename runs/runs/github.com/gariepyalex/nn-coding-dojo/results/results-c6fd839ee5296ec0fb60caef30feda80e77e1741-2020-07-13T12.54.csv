@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/gariepyalex/nn-coding-dojo,c6fd839ee5296ec0fb60caef30feda80e77e1741,c6fd839,2017-01-21T08:43:49-05:00,build,build,False,github.com/gariepyalex/nn-coding-dojo/logs/build-c6fd839ee5296ec0fb60caef30feda80e77e1741-2020-07-13T12.54.txt,2020-07-13T12:54:52.005066,2020-07-13T12.54,0.11.0

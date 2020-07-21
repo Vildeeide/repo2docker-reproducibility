@@ -1,0 +1,5 @@
+[I 200706 08:31:42 inrepo:35] Testing notebook examples/temp_do_not_use.ipynb
+[I 200706 08:31:46 execute:404] Executing notebook with kernel: python3
+[I 200706 08:32:18 inrepo:41] Saving exported notebook to /io/notebooks/examples/temp_do_not_use.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

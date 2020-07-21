@@ -1,0 +1,5 @@
+[I 200707 06:15:33 inrepo:35] Testing notebook notebooks/05-LineCharts.ipynb
+[I 200707 06:15:34 execute:404] Executing notebook with kernel: python3
+[I 200707 06:15:36 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/05-LineCharts.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

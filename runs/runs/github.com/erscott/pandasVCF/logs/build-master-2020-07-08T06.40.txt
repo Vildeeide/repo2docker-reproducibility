@@ -1,0 +1,303 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T06.40hoptw5tk/github.com/erscott/pandasVCF.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> e19cd6b0def2
+Step 38/50 : USER root
+ ---> Using cache
+ ---> aed16196a99e
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 57623d04f437
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 3800f3b44356
+Removing intermediate container 3800f3b44356
+ ---> e5206a5f00e3
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 13c83191f539
+Removing intermediate container 13c83191f539
+ ---> cb074718337d
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in f14ee3a1567e
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting fastparquet==0.2.1
+  Downloading fastparquet-0.2.1.tar.gz (147 kB)
+Collecting numpy==1.15.4
+  Downloading numpy-1.15.4-cp37-cp37m-manylinux1_x86_64.whl (13.8 MB)
+Collecting pandas==0.23.4
+  Downloading pandas-0.23.4-cp37-cp37m-manylinux1_x86_64.whl (8.8 MB)
+Collecting pyarrow==0.11.1
+  Downloading pyarrow-0.11.1-cp37-cp37m-manylinux1_x86_64.whl (11.6 MB)
+Collecting pyfaidx==0.5.5.2
+  Downloading pyfaidx-0.5.5.2.tar.gz (27 kB)
+Collecting numba>=0.28
+  Downloading numba-0.50.1-cp37-cp37m-manylinux2014_x86_64.whl (3.6 MB)
+Collecting thrift>=0.11.0
+  Downloading thrift-0.13.0.tar.gz (59 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fastparquet==0.2.1->-r requirements.txt (line 1)) (1.14.0)
+Collecting pytest-runner
+  Downloading pytest_runner-5.2-py2.py3-none-any.whl (6.8 kB)
+Collecting pytz>=2011k
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: python-dateutil>=2.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas==0.23.4->-r requirements.txt (line 3)) (2.8.1)
+Requirement already satisfied: setuptools>=0.7 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyfaidx==0.5.5.2->-r requirements.txt (line 5)) (45.1.0.post20200119)
+Collecting llvmlite<0.34,>=0.33.0.dev0
+  Downloading llvmlite-0.33.0-cp37-cp37m-manylinux1_x86_64.whl (18.3 MB)
+Building wheels for collected packages: fastparquet, pyfaidx, thrift
+  Building wheel for fastparquet (setup.py): started
+  Building wheel for fastparquet (setup.py): finished with status 'error'
+  Running setup.py clean for fastparquet
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-10oiyigm/fastparquet/setup.py'"'"'; __file__='"'"'/tmp/pip-install-10oiyigm/fastparquet/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-2t_pehub
+       cwd: /tmp/pip-install-10oiyigm/fastparquet/
+  Complete output (79 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/converted_types.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/encoding.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/__init__.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/writer.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/util.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/core.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/api.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/compression.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/thrift_structures.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/schema.py -> build/lib.linux-x86_64-3.7/fastparquet
+  copying fastparquet/dataframe.py -> build/lib.linux-x86_64-3.7/fastparquet
+  running egg_info
+  writing fastparquet.egg-info/PKG-INFO
+  writing dependency_links to fastparquet.egg-info/dependency_links.txt
+  writing requirements to fastparquet.egg-info/requires.txt
+  writing top-level names to fastparquet.egg-info/top_level.txt
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/tmp/pip-install-10oiyigm/fastparquet/setup.py", line 102, in <module>
+      **extra
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/__init__.py", line 145, in setup
+      return distutils.core.setup(**attrs)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/core.py", line 148, in setup
+      dist.run_commands()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 966, in run_commands
+      self.run_command(cmd)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/wheel/bdist_wheel.py", line 223, in run
+      self.run_command('build')
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/build.py", line 135, in run
+      self.run_command(cmd_name)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/build_py.py", line 53, in run
+      self.build_package_data()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/build_py.py", line 118, in build_package_data
+      for package, src_dir, build_dir, filenames in self.data_files:
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/build_py.py", line 66, in __getattr__
+      self.data_files = self._get_data_files()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/build_py.py", line 82, in _get_data_files
+      self.analyze_manifest()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/build_py.py", line 138, in analyze_manifest
+      self.run_command('egg_info')
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/egg_info.py", line 296, in run
+      self.find_sources()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/egg_info.py", line 303, in find_sources
+      mm.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/egg_info.py", line 534, in run
+      self.add_defaults()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/egg_info.py", line 570, in add_defaults
+      sdist.add_defaults(self)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/sdist.py", line 228, in add_defaults
+      self._add_defaults_ext()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/sdist.py", line 311, in _add_defaults_ext
+      build_ext = self.get_finalized_command('build_ext')
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 299, in get_finalized_command
+      cmd_obj.ensure_finalized()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 107, in ensure_finalized
+      self.finalize_options()
+    File "/tmp/pip-install-10oiyigm/fastparquet/setup.py", line 22, in finalize_options
+      import numpy
+  ModuleNotFoundError: No module named 'numpy'
+  ----------------------------------------
+  ERROR: Failed building wheel for fastparquet
+[0m  Building wheel for pyfaidx (setup.py): started
+  Building wheel for pyfaidx (setup.py): finished with status 'done'
+  Created wheel for pyfaidx: filename=pyfaidx-0.5.5.2-py3-none-any.whl size=24644 sha256=ae138c5f82fc0750db1c1ac787e161c165d44c281e09cea18bef7f3a42a8f5d0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-uwtyxr73/wheels/06/2f/5b/93b165c6ba4f10243323a38cdf3b4a26fefc22ff244516c30d
+  Building wheel for thrift (setup.py): started
+  Building wheel for thrift (setup.py): finished with status 'done'
+  Created wheel for thrift: filename=thrift-0.13.0-cp37-cp37m-linux_x86_64.whl size=409471 sha256=c0fa81c3a6846ea336ab006b32bb9ef10ea29af012cd204f3b47cc0860eb64b6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-uwtyxr73/wheels/79/35/5a/19f5dadf91f62bd783aaa8385f700de9bc14772e09ab0f006a
+Successfully built pyfaidx thrift
+Failed to build fastparquet
+Installing collected packages: pytz, numpy, pandas, llvmlite, numba, thrift, pytest-runner, fastparquet, pyarrow, pyfaidx
+    Running setup.py install for fastparquet: started
+    Running setup.py install for fastparquet: finished with status 'done'
+Successfully installed fastparquet-0.2.1 llvmlite-0.33.0 numba-0.50.1 numpy-1.15.4 pandas-0.23.4 pyarrow-0.11.1 pyfaidx-0.5.5.2 pytest-runner-5.2 pytz-2020.1 thrift-0.13.0
+Removing intermediate container f14ee3a1567e
+ ---> 5c5c11cc511f
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in ab6a8ccb1388
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Building wheels for collected packages: pandasvcf
+  Building wheel for pandasvcf (setup.py): started
+  Building wheel for pandasvcf (setup.py): finished with status 'done'
+  Created wheel for pandasvcf: filename=pandasvcf-0.5.1-py3-none-any.whl size=5137 sha256=458d2b27fa9fa0841db89be923d34c0f24216bbf719a1bc91871b27e9ddcddba
+  Stored in directory: /tmp/pip-ephem-wheel-cache-255r7kd1/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built pandasvcf
+Installing collected packages: pandasvcf
+Successfully installed pandasvcf-0.5.1
+Removing intermediate container ab6a8ccb1388
+ ---> d2233e5d574e
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 053efc289314
+Removing intermediate container 053efc289314
+ ---> 8b1ea858caa9
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in c04d6e7757a1
+Removing intermediate container c04d6e7757a1
+ ---> 4657949c65cc
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in af5094edde30
+Removing intermediate container af5094edde30
+ ---> e89fcebfc812
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 80cbb50f6c29
+Removing intermediate container 80cbb50f6c29
+ ---> 6c823525fcd4
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> b36dd317f997
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in e826fb442f9c
+Removing intermediate container e826fb442f9c
+ ---> 61968db01658
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 5aecda66dc0e
+Removing intermediate container 5aecda66dc0e
+ ---> 0f154e54227e
+{"aux": {"ID": "sha256:0f154e54227e0a566f7dddec6cb9b7aab3f4ad0c889643d542f0d0b75ad0cceb"}}Successfully built 0f154e54227e
+Successfully tagged r2d-test-github.com-erscott-pandasvcf:5e3de3e

@@ -1,0 +1,45 @@
+[I 200708 08:10:56 inrepo:36] Testing notebook Tutorial_4.ipynb
+[I 200708 08:10:56 inrepo:45] Found kernel python3
+[I 200708 08:10:57 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# run this cell
+plt.plot( x, u, 'o-',  label='x+1',           color='salmon',          linewidth=3 )
+plt.plot( x, v, 'x--', label='x**2',          color='darkolivegreen',  linewidth=2 )
+plt.plot( x, w, '*:',  label='sqrt((x*2)+1)', color='slategrey',       linewidth=4 )
+plt.xlabel( 'x' )
+plt.ylabel( 'y' )
+plt.title( 'Too many options can lead to ugly graphs' )
+plt.legend()
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-e5aac11924bd>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# run this cell[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m [0mx[0m[0;34m,[0m [0mu[0m[0;34m,[0m [0;34m'o-'[0m[0;34m,[0m  [0mlabel[0m[0;34m=[0m[0;34m'x+1'[0m[0;34m,[0m           [0mcolor[0m[0;34m=[0m[0;34m'salmon'[0m[0;34m,[0m          [0mlinewidth[0m[0;34m=[0m[0;36m3[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m [0mx[0m[0;34m,[0m [0mv[0m[0;34m,[0m [0;34m'x--'[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'x**2'[0m[0;34m,[0m          [0mcolor[0m[0;34m=[0m[0;34m'darkolivegreen'[0m[0;34m,[0m  [0mlinewidth[0m[0;34m=[0m[0;36m2[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mplt[0m[0;34m.[0m[0mplot[0m[0;34m([0m [0mx[0m[0;34m,[0m [0mw[0m[0;34m,[0m [0;34m'*:'[0m[0;34m,[0m  [0mlabel[0m[0;34m=[0m[0;34m'sqrt((x*2)+1)'[0m[0;34m,[0m [0mcolor[0m[0;34m=[0m[0;34m'slategrey'[0m[0;34m,[0m       [0mlinewidth[0m[0;34m=[0m[0;36m4[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mplt[0m[0;34m.[0m[0mxlabel[0m[0;34m([0m [0;34m'x'[0m [0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'plt' is not defined
+NameError: name 'plt' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,43 @@
+[I 200706 08:25:02 inrepo:35] Testing notebook docs/tutorials/overview.ipynb
+[I 200706 08:25:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+
+path = os.path.expandvars("$GAMMAPY_DATA")
+
+if not os.path.exists(path):
+    raise Exception("gammapy-data repository not found!")
+else:
+    print("Great your setup is correct!")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mException[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-984bb8e204fc>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;32mif[0m [0;32mnot[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mexists[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m     [0;32mraise[0m [0mException[0m[0;34m([0m[0;34m"gammapy-data repository not found!"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m     [0mprint[0m[0;34m([0m[0;34m"Great your setup is correct!"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mException[0m: gammapy-data repository not found!
+Exception: gammapy-data repository not found!
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

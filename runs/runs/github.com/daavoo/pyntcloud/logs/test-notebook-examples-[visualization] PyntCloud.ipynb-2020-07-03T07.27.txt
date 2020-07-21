@@ -1,0 +1,5 @@
+[I 200703 07:28:33 inrepo:35] Testing notebook examples/[visualization] PyntCloud.ipynb
+[I 200703 07:28:34 execute:404] Executing notebook with kernel: python3
+[I 200703 07:28:39 inrepo:41] Saving exported notebook to /io/notebooks/examples/[visualization] PyntCloud.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

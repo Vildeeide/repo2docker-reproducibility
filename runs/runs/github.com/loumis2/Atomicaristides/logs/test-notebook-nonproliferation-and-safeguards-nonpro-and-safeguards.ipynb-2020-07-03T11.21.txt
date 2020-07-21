@@ -1,0 +1,5 @@
+[I 200703 11:21:49 inrepo:35] Testing notebook nonproliferation-and-safeguards/nonpro-and-safeguards.ipynb
+[I 200703 11:21:50 execute:404] Executing notebook with kernel: python3
+[I 200703 11:21:50 inrepo:41] Saving exported notebook to /io/notebooks/nonproliferation-and-safeguards/nonpro-and-safeguards.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

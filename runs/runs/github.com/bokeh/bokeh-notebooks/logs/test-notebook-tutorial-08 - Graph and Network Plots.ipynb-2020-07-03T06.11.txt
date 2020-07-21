@@ -1,0 +1,5 @@
+[I 200703 06:14:25 inrepo:35] Testing notebook tutorial/08 - Graph and Network Plots.ipynb
+[I 200703 06:14:27 execute:404] Executing notebook with kernel: python3
+[I 200703 06:14:30 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/08 - Graph and Network Plots.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

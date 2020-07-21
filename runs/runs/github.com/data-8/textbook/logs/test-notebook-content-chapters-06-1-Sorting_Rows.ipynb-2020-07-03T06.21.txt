@@ -1,0 +1,5 @@
+[I 200703 06:30:50 inrepo:35] Testing notebook content/chapters/06/1/Sorting_Rows.ipynb
+[I 200703 06:30:52 execute:404] Executing notebook with kernel: python3
+[I 200703 06:30:55 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/06/1/Sorting_Rows.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

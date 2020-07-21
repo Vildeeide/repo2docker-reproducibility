@@ -1,0 +1,70 @@
+[I 200720 08:18:40 inrepo:36] Testing notebook Wikipedia-Data-Collection.ipynb
+[I 200720 08:18:40 inrepo:45] Found kernel python3
+[I 200720 08:18:41 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# the dependencies we need for processing wikipedia data
+import multiprocessing
+from gensim.corpora.wikicorpus import WikiCorpus
+from gensim.models.word2vec import Word2Vec
+
+wiki_infile = 'data/enwiki-latest-pages-articles1.xml-p10p30302.bz2'
+wiki_outfile = 'data/wiki.en.txt'
+
+def store_wiki_dump(infile, outfile):
+    '''
+    Accepts a wikipedia dump file as 'wiki_infile', processes the wiki data,
+    and stores raw text to 'wiki_outfile'.
+    '''
+    
+    # Using gensim.corpora.wikicorpus, we can process a wiki dump file
+    wiki = WikiCorpus(infile, lemmatize=False, dictionary={})
+
+    # Save the processed XML wiki dump as raw text in file
+    # Depending on the size of the dump (usually quite large), this could take hours
+    with open(wiki_outfile, 'w') as outfile:
+        i = 0
+        for text in wiki.get_texts():
+            outfile.write(bytes(' '.join(text), 'utf-8').decode('utf-8') + '\n')
+            i = i + 1
+            if (i % 2000 == 0):
+                print('Processed ' + str(i) + ' articles')
+        print('Done processing wiki data.')
+        
+store_wiki_dump(wiki_infile, wiki_outfile)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-1-06156570070e>[0m in [0;36m<module>[0;34m[0m
+[1;32m     27[0m         [0mprint[0m[0;34m([0m[0;34m'Done processing wiki data.'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     28[0m [0;34m[0m[0m
+[0;32m---> 29[0;31m [0mstore_wiki_dump[0m[0;34m([0m[0mwiki_infile[0m[0;34m,[0m [0mwiki_outfile[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-1-06156570070e>[0m in [0;36mstore_wiki_dump[0;34m(infile, outfile)[0m
+[1;32m     18[0m     [0;31m# Save the processed XML wiki dump as raw text in file[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     19[0m     [0;31m# Depending on the size of the dump (usually quite large), this could take hours[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 20[0;31m     [0;32mwith[0m [0mopen[0m[0;34m([0m[0mwiki_outfile[0m[0;34m,[0m [0;34m'w'[0m[0;34m)[0m [0;32mas[0m [0moutfile[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     21[0m         [0mi[0m [0;34m=[0m [0;36m0[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m         [0;32mfor[0m [0mtext[0m [0;32min[0m [0mwiki[0m[0;34m.[0m[0mget_texts[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'data/wiki.en.txt'
+FileNotFoundError: [Errno 2] No such file or directory: 'data/wiki.en.txt'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

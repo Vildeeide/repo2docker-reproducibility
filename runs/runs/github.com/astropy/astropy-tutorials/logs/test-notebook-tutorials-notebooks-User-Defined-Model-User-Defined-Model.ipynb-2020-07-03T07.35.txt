@@ -1,0 +1,5 @@
+[I 200703 07:41:37 inrepo:35] Testing notebook tutorials/notebooks/User-Defined-Model/User-Defined-Model.ipynb
+[I 200703 07:41:38 execute:404] Executing notebook with kernel: python3
+[I 200703 07:41:57 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/notebooks/User-Defined-Model/User-Defined-Model.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

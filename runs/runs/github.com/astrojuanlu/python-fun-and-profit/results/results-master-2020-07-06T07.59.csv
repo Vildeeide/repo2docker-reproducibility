@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/astrojuanlu/python-fun-and-profit,master,ac9be81,2016-05-13T11:47:05+02:00,build,build,False,github.com/astrojuanlu/python-fun-and-profit/logs/build-master-2020-07-06T07.59.txt,2020-07-06T07:59:15.839987,2020-07-06T07.59,0.11.0

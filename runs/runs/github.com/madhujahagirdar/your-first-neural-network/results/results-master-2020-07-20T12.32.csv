@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/madhujahagirdar/your-first-neural-network,master,198a5af,2019-01-29T06:13:34+00:00,build,build,False,github.com/madhujahagirdar/your-first-neural-network/logs/build-master-2020-07-20T12.32.txt,2020-07-20T12:32:06.543409,2020-07-20T12.32,0.11.0

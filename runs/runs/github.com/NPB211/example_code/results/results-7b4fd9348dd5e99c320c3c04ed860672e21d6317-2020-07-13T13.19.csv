@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/NPB211/example_code,7b4fd9348dd5e99c320c3c04ed860672e21d6317,7b4fd93,2017-05-26T16:01:55-07:00,build,build,False,github.com/NPB211/example_code/logs/build-7b4fd9348dd5e99c320c3c04ed860672e21d6317-2020-07-13T13.19.txt,2020-07-13T13:19:59.767682,2020-07-13T13.19,0.11.0

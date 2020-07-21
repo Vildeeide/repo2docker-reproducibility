@@ -1,0 +1,5 @@
+[I 200703 06:56:32 inrepo:35] Testing notebook nbclient/tests/files/Factorials.ipynb
+[I 200703 06:56:34 execute:404] Executing notebook with kernel: python
+[I 200703 06:56:34 inrepo:41] Saving exported notebook to /io/notebooks/nbclient/tests/files/Factorials.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

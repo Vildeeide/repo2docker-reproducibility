@@ -1,0 +1,51 @@
+[I 200707 07:17:58 inrepo:35] Testing notebook lab-01-basics.ipynb
+[I 200707 07:17:59 execute:404] Executing notebook with kernel: python3
+2020-07-07 07:18:01.758639: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-07-07 07:18:01.758689: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-07-07 07:18:01.758757: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (e83d825e2fb4): /proc/driver/nvidia/version does not exist
+2020-07-07 07:18:01.813533: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-07 07:18:02.080564: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2000000000 Hz
+2020-07-07 07:18:02.081624: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f0694000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-07 07:18:02.081682: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Create a constant op
+# This op is added as a node to the default graph
+hello = tf.constant("Hello, TensorFlow!")
+
+# start a TF session
+sess = tf.Session()
+
+# run the op and get result
+print(sess.run(hello))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-2-bda83f88a53e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;31m# start a TF session[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m [0msess[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mSession[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;34m[0m[0m
+[1;32m      8[0m [0;31m# run the op and get result[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'Session'
+AttributeError: module 'tensorflow' has no attribute 'Session'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,6 @@
+[I 200717 12:19:04 inrepo:36] Testing notebook Extract-Glassdoor-Data.ipynb
+[I 200717 12:19:04 inrepo:45] Found kernel python3
+[I 200717 12:19:05 execute:404] Executing notebook with kernel: python3
+[I 200717 12:19:06 inrepo:79] Saving exported notebook to /io/notebooks/Extract-Glassdoor-Data.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

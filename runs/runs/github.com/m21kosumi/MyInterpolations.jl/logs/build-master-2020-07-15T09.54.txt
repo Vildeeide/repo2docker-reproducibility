@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-m21kosumi-myinterpolations.jl:10e977d', '/tmp/r2d-test-2020-07-15T09.54syinxuss/github.com/m21kosumi/MyInterpolations.jl']' returned non-zero exit status 1.

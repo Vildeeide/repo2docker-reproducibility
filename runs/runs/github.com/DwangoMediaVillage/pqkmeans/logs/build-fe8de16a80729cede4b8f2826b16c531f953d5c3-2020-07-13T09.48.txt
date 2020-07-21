@@ -1,0 +1,370 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T09.48xwzmypb6/github.com/DwangoMediaVillage/pqkmeans.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 3fe975c90586
+Step 38/50 : USER root
+ ---> Running in 977b3e154633
+Removing intermediate container 977b3e154633
+ ---> 446e9a7989a3
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> cc44c184eefa
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 715bd35dba8a
+Removing intermediate container 715bd35dba8a
+ ---> 5573af7f03ec
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 98b3051f16a2
+Removing intermediate container 98b3051f16a2
+ ---> 5cef43ae8646
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in dc4c64e5dd93
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting pipe
+  Downloading pipe-1.6.0-py2.py3-none-any.whl (6.8 kB)
+Collecting scipy
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting typing
+  Downloading typing-3.7.4.1-py3-none-any.whl (25 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 6)) (1.14.0)
+Collecting texmex_python==1.0.0
+  Downloading texmex_python-1.0.0.tar.gz (2.5 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting lshash3
+  Downloading lshash3-0.0.8.tar.gz (9.4 kB)
+Collecting bitarray
+  Downloading bitarray-1.4.0.tar.gz (51 kB)
+Building wheels for collected packages: texmex-python, lshash3, bitarray
+  Building wheel for texmex-python (setup.py): started
+  Building wheel for texmex-python (setup.py): finished with status 'done'
+  Created wheel for texmex-python: filename=texmex_python-1.0.0-py3-none-any.whl size=3194 sha256=2897e6698b22d45727345cd9087694180bfc8e9a3f2a5ca4cfa1226851f4fdea
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ts0jfhnn/wheels/c5/fb/c9/3481af4413e0bcfc8cc9f76308f43ff526377927babbdfd01c
+  Building wheel for lshash3 (setup.py): started
+  Building wheel for lshash3 (setup.py): finished with status 'done'
+  Created wheel for lshash3: filename=lshash3-0.0.8-py2.py3-none-any.whl size=10137 sha256=da7d069a0dc95247dfb0db9cca7d8612c44c2fffce823f0de94bb78ea2048a51
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ts0jfhnn/wheels/65/72/01/dd1b56064187746f99aa560bbc491048575621ce6bb37cd05a
+  Building wheel for bitarray (setup.py): started
+  Building wheel for bitarray (setup.py): finished with status 'done'
+  Created wheel for bitarray: filename=bitarray-1.4.0-cp37-cp37m-linux_x86_64.whl size=163620 sha256=cde4dc93367feb7cc8fed934cfb6d4ef52c2939a2ac2f5cc3eda90fe6ebd67e1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ts0jfhnn/wheels/37/5c/88/d71e9c8caccb0d972329615cafc603f224f8c9b0c6088ce5f9
+Successfully built texmex-python lshash3 bitarray
+Installing collected packages: numpy, threadpoolctl, scipy, joblib, scikit-learn, pipe, typing, bitarray, lshash3, texmex-python
+Successfully installed bitarray-1.4.0 joblib-0.16.0 lshash3-0.0.8 numpy-1.19.0 pipe-1.6.0 scikit-learn-0.23.1 scipy-1.5.1 texmex-python-1.0.0 threadpoolctl-2.1.0 typing-3.7.4.1
+Removing intermediate container dc4c64e5dd93
+ ---> c3d3009fef7c
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in d057b78718c1
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (1.19.0)
+Requirement already satisfied: scikit-learn in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (0.23.1)
+Requirement already satisfied: pipe in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (1.6.0)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (1.5.1)
+Requirement already satisfied: typing in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (3.7.4.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (1.14.0)
+Requirement already satisfied: texmex_python==1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pqkmeans==1.0.1) (1.0.0)
+Requirement already satisfied: joblib>=0.11 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->pqkmeans==1.0.1) (0.16.0)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->pqkmeans==1.0.1) (2.1.0)
+Requirement already satisfied: lshash3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from texmex_python==1.0.0->pqkmeans==1.0.1) (0.0.8)
+Requirement already satisfied: bitarray in /srv/conda/envs/notebook/lib/python3.7/site-packages (from lshash3->texmex_python==1.0.0->pqkmeans==1.0.1) (1.4.0)
+Building wheels for collected packages: pqkmeans
+  Building wheel for pqkmeans (setup.py): started
+  Building wheel for pqkmeans (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-76jfkbqk
+       cwd: /tmp/pip-req-build-b4227awj/
+  Complete output (76 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/test
+  copying test/__init__.py -> build/lib.linux-x86_64-3.7/test
+  creating build/lib.linux-x86_64-3.7/pqkmeans
+  copying pqkmeans/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans
+  copying pqkmeans/evaluation.py -> build/lib.linux-x86_64-3.7/pqkmeans
+  creating build/lib.linux-x86_64-3.7/test/clustering
+  copying test/clustering/test_pure_python_clustering_sample.py -> build/lib.linux-x86_64-3.7/test/clustering
+  copying test/clustering/__init__.py -> build/lib.linux-x86_64-3.7/test/clustering
+  copying test/clustering/test_bkmeans.py -> build/lib.linux-x86_64-3.7/test/clustering
+  copying test/clustering/test_pqkmeans.py -> build/lib.linux-x86_64-3.7/test/clustering
+  copying test/clustering/test_cpp_implemented_clustering_sample.py -> build/lib.linux-x86_64-3.7/test/clustering
+  creating build/lib.linux-x86_64-3.7/test/encoder
+  copying test/encoder/__init__.py -> build/lib.linux-x86_64-3.7/test/encoder
+  copying test/encoder/test_encoder_sample.py -> build/lib.linux-x86_64-3.7/test/encoder
+  copying test/encoder/test_itq_encoder.py -> build/lib.linux-x86_64-3.7/test/encoder
+  copying test/encoder/test_pq_encoder.py -> build/lib.linux-x86_64-3.7/test/encoder
+  creating build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  copying pqkmeans/clustering/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  copying pqkmeans/clustering/pqkmeans.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  copying pqkmeans/clustering/bkmeans.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  copying pqkmeans/clustering/cpp_implemented_clustering_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  copying pqkmeans/clustering/pure_python_clustering_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+  creating build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  copying pqkmeans/encoder/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  copying pqkmeans/encoder/itq_encoder.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  copying pqkmeans/encoder/pq_encoder.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  copying pqkmeans/encoder/encoder_base.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  copying pqkmeans/encoder/encoder_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+  running build_ext
+  Traceback (most recent call last):
+    File "/tmp/pip-req-build-b4227awj/setup.py", line 37, in run
+      out = subprocess.check_output(['cmake', '--version'])
+    File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 411, in check_output
+      **kwargs).stdout
+    File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 488, in run
+      with Popen(*popenargs, **kwargs) as process:
+    File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 800, in __init__
+      restore_signals, start_new_session)
+    File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 1551, in _execute_child
+      raise child_exception_type(errno_num, err_msg, err_filename)
+  FileNotFoundError: [Errno 2] No such file or directory: 'cmake': 'cmake'
+  
+  During handling of the above exception, another exception occurred:
+  
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/tmp/pip-req-build-b4227awj/setup.py", line 94, in <module>
+      zip_safe=False,
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/__init__.py", line 145, in setup
+      return distutils.core.setup(**attrs)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/core.py", line 148, in setup
+      dist.run_commands()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 966, in run_commands
+      self.run_command(cmd)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/site-packages/wheel/bdist_wheel.py", line 223, in run
+      self.run_command('build')
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/build.py", line 135, in run
+      self.run_command(cmd_name)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+      self.distribution.run_command(command)
+    File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+      cmd_obj.run()
+    File "/tmp/pip-req-build-b4227awj/setup.py", line 40, in run
+      ", ".join(e.name for e in self.extensions))
+  RuntimeError: CMake must be installed to build the following extensions: _pqkmeans
+  ----------------------------------------
+  ERROR: Failed building wheel for pqkmeans
+[0m  Running setup.py clean for pqkmeans
+Failed to build pqkmeans
+Installing collected packages: pqkmeans
+    Running setup.py install for pqkmeans: started
+    Running setup.py install for pqkmeans: finished with status 'error'
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-0ipd1uw4/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/pqkmeans
+         cwd: /tmp/pip-req-build-b4227awj/
+    Complete output (78 lines):
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-x86_64-3.7
+    creating build/lib.linux-x86_64-3.7/test
+    copying test/__init__.py -> build/lib.linux-x86_64-3.7/test
+    creating build/lib.linux-x86_64-3.7/pqkmeans
+    copying pqkmeans/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans
+    copying pqkmeans/evaluation.py -> build/lib.linux-x86_64-3.7/pqkmeans
+    creating build/lib.linux-x86_64-3.7/test/clustering
+    copying test/clustering/test_pure_python_clustering_sample.py -> build/lib.linux-x86_64-3.7/test/clustering
+    copying test/clustering/__init__.py -> build/lib.linux-x86_64-3.7/test/clustering
+    copying test/clustering/test_bkmeans.py -> build/lib.linux-x86_64-3.7/test/clustering
+    copying test/clustering/test_pqkmeans.py -> build/lib.linux-x86_64-3.7/test/clustering
+    copying test/clustering/test_cpp_implemented_clustering_sample.py -> build/lib.linux-x86_64-3.7/test/clustering
+    creating build/lib.linux-x86_64-3.7/test/encoder
+    copying test/encoder/__init__.py -> build/lib.linux-x86_64-3.7/test/encoder
+    copying test/encoder/test_encoder_sample.py -> build/lib.linux-x86_64-3.7/test/encoder
+    copying test/encoder/test_itq_encoder.py -> build/lib.linux-x86_64-3.7/test/encoder
+    copying test/encoder/test_pq_encoder.py -> build/lib.linux-x86_64-3.7/test/encoder
+    creating build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    copying pqkmeans/clustering/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    copying pqkmeans/clustering/pqkmeans.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    copying pqkmeans/clustering/bkmeans.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    copying pqkmeans/clustering/cpp_implemented_clustering_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    copying pqkmeans/clustering/pure_python_clustering_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/clustering
+    creating build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    copying pqkmeans/encoder/__init__.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    copying pqkmeans/encoder/itq_encoder.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    copying pqkmeans/encoder/pq_encoder.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    copying pqkmeans/encoder/encoder_base.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    copying pqkmeans/encoder/encoder_sample.py -> build/lib.linux-x86_64-3.7/pqkmeans/encoder
+    running build_ext
+    Traceback (most recent call last):
+      File "/tmp/pip-req-build-b4227awj/setup.py", line 37, in run
+        out = subprocess.check_output(['cmake', '--version'])
+      File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 411, in check_output
+        **kwargs).stdout
+      File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 488, in run
+        with Popen(*popenargs, **kwargs) as process:
+      File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 800, in __init__
+        restore_signals, start_new_session)
+      File "/srv/conda/envs/notebook/lib/python3.7/subprocess.py", line 1551, in _execute_child
+        raise child_exception_type(errno_num, err_msg, err_filename)
+    FileNotFoundError: [Errno 2] No such file or directory: 'cmake': 'cmake'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/tmp/pip-req-build-b4227awj/setup.py", line 94, in <module>
+        zip_safe=False,
+      File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/__init__.py", line 145, in setup
+        return distutils.core.setup(**attrs)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/core.py", line 148, in setup
+        dist.run_commands()
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 966, in run_commands
+        self.run_command(cmd)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+        cmd_obj.run()
+      File "/srv/conda/envs/notebook/lib/python3.7/site-packages/setuptools/command/install.py", line 61, in run
+        return orig.install.run(self)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/install.py", line 545, in run
+        self.run_command('build')
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+        self.distribution.run_command(command)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+        cmd_obj.run()
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/command/build.py", line 135, in run
+        self.run_command(cmd_name)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/cmd.py", line 313, in run_command
+        self.distribution.run_command(command)
+      File "/srv/conda/envs/notebook/lib/python3.7/distutils/dist.py", line 985, in run_command
+        cmd_obj.run()
+      File "/tmp/pip-req-build-b4227awj/setup.py", line 40, in run
+        ", ".join(e.name for e in self.extensions))
+    RuntimeError: CMake must be installed to build the following extensions: _pqkmeans
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-b4227awj/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-0ipd1uw4/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/pqkmeans Check the logs for full command output.
+[0mRemoving intermediate container d057b78718c1
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-dwangomediavillage-pqkmeans:fe8de16', '/tmp/r2d-test-2020-07-13T09.48xwzmypb6/github.com/DwangoMediaVillage/pqkmeans']' returned non-zero exit status 1.

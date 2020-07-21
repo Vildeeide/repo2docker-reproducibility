@@ -1,0 +1,101 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T12.52q3qc8ys9/github.com/ppham27/cse547.
+Using DockerBuildPack builder
+Step 1/32 : FROM floydhub/tensorflow:1.8.0-py3_aws.28
+ ---> 8629da33f8d2
+Step 2/32 : MAINTAINER Floyd Labs "support@floydhub.com"
+ ---> Using cache
+ ---> adfd10053f3d
+Step 3/32 : RUN pip --no-cache-dir install --upgrade http://download.pytorch.org/whl/cu91/torch-0.4.0-cp36-cp36m-linux_x86_64.whl torchvision==0.2.1
+ ---> Using cache
+ ---> 25e6326828ba
+Step 4/32 : RUN pip --no-cache-dir install --upgrade tensorboardX==1.2
+ ---> Using cache
+ ---> d49f12607fe4
+Step 5/32 : RUN pip --no-cache-dir install --upgrade awscli
+ ---> Using cache
+ ---> 92867dc63d67
+Step 6/32 : RUN pip --no-cache-dir install --upgrade boto3
+ ---> Using cache
+ ---> ed22031b78dc
+Step 7/32 : RUN pip --no-cache-dir install --upgrade joblib
+ ---> Using cache
+ ---> 12e5e9c4716a
+Step 8/32 : RUN pip --no-cache-dir install --upgrade mypy
+ ---> Using cache
+ ---> 04ee3ed0870f
+Step 9/32 : RUN git clone https://github.com/cocodataset/cocoapi.git
+ ---> Using cache
+ ---> fdc467ab0bd6
+Step 10/32 : WORKDIR /cocoapi/PythonAPI
+ ---> Using cache
+ ---> c1281957c990
+Step 11/32 : RUN make
+ ---> Using cache
+ ---> 141a9f6de11e
+Step 12/32 : RUN make install
+ ---> Using cache
+ ---> 2d27a178d91b
+Step 13/32 : WORKDIR /
+ ---> Using cache
+ ---> 52763d238f92
+Step 14/32 : ADD cse547 /tmp/cse547/
+ ---> Using cache
+ ---> ffc5ae9442f1
+Step 15/32 : ADD setup.py /tmp/
+ ---> Using cache
+ ---> ffced76daf57
+Step 16/32 : WORKDIR tmp
+ ---> Using cache
+ ---> 2c9cac84aa1a
+Step 17/32 : RUN pip --no-cache-dir install --upgrade .
+ ---> Using cache
+ ---> 15fb32bdd08f
+Step 18/32 : WORKDIR /
+ ---> Using cache
+ ---> 375da9ecdd1f
+Step 19/32 : RUN rm -rf /tmp/cse547
+ ---> Using cache
+ ---> e70e6f0f3bd8
+Step 20/32 : RUN rm -rf /tmp/setup.py
+ ---> Using cache
+ ---> aaff93ec77b3
+Step 21/32 : ADD hw1/run.py /hw1/
+ ---> Using cache
+ ---> 4e973b8b079d
+Step 22/32 : RUN chmod +x /hw1/run.py
+ ---> Using cache
+ ---> da555cd2bab4
+Step 23/32 : ADD hw2/run.py /hw2/
+ ---> Using cache
+ ---> 4460a804825b
+Step 24/32 : RUN chmod +x /hw2/run.py
+ ---> Using cache
+ ---> 24d9c58f9048
+Step 25/32 : ADD hw3/run.py /hw3/
+ ---> Using cache
+ ---> 0dc12d8a7a24
+Step 26/32 : RUN chmod +x /hw3/run.py
+ ---> Using cache
+ ---> 26e361822b67
+Step 27/32 : ADD hw3/generate_examples.py /hw3/
+ ---> Using cache
+ ---> 1032434e8baf
+Step 28/32 : RUN chmod +x /hw3/generate_examples.py
+ ---> Using cache
+ ---> 4503c6b733ea
+Step 29/32 : ADD project/embed.py /project/
+ ---> Using cache
+ ---> e172c3f4c577
+Step 30/32 : ADD project/run.py /project/
+ ---> Using cache
+ ---> 2c9a00f1b869
+Step 31/32 : RUN chmod +x /project/embed.py
+ ---> Using cache
+ ---> 92ba46d3c7a7
+Step 32/32 : RUN chmod +x /project/run.py
+ ---> Using cache
+ ---> a162b550ab97
+{"aux": {"ID": "sha256:a162b550ab9701357d8624ff713679fc09fc0c12c4ed6f0e6189ace8c3df7ccb"}}[Warning] One or more build-args [NB_USER NB_UID] were not consumed
+Successfully built a162b550ab97
+Successfully tagged r2d-test-github.com-ppham27-cse547:bb21068

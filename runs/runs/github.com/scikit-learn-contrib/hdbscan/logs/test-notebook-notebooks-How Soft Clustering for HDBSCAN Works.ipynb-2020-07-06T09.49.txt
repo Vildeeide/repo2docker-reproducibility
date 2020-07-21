@@ -1,0 +1,5 @@
+[I 200706 09:49:43 inrepo:35] Testing notebook notebooks/How Soft Clustering for HDBSCAN Works.ipynb
+[I 200706 09:49:44 execute:404] Executing notebook with kernel: python3
+[I 200706 09:50:04 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/How Soft Clustering for HDBSCAN Works.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,3 @@
+[I 200710 07:31:06 inrepo:36] Testing notebook Notebook/A toy regression model with missing values.ipynb
+[I 200710 07:31:07 inrepo:45] Found kernel python3
+[I 200710 07:31:08 execute:404] Executing notebook with kernel: python3

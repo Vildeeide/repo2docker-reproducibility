@@ -1,0 +1,43 @@
+[I 200713 09:43:38 inrepo:36] Testing notebook data_scrape/.ipynb_checkpoints/showlist_scrape_events-checkpoint.ipynb
+[I 200713 09:43:39 inrepo:45] Found kernel python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 403, in preprocess
+    with self.setup_preprocessor(nb, resources, km=km):
+  File "/srv/conda/envs/notebook/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 345, in setup_preprocessor
+    self.km, self.kc = self.start_new_kernel(**kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 288, in start_new_kernel
+    config=self.config)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 958, in __new__
+    inst.setup_instance(*args, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 986, in setup_instance
+    super(HasTraits, self).setup_instance(*args, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 977, in setup_instance
+    value.instance_init(self)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 1691, in instance_init
+    self._resolve_classes()
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 1696, in _resolve_classes
+    self.klass = self._resolve_string(self.klass)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/traitlets.py", line 1507, in _resolve_string
+    return import_item(string)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/traitlets/utils/importstring.py", line 34, in import_item
+    module = __import__(package, fromlist=[obj])
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/jupyter_client/session.py", line 61, in <module>
+    from jupyter_client.jsonutil import extract_dates, squash_dates, date_default
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/jupyter_client/jsonutil.py", line 11, in <module>
+    from dateutil.parser import parse as _dateutil_parse
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/dateutil/parser.py", line 158
+    l.append("%s=%s" % (attr, `value`))
+                              ^
+SyntaxError: invalid syntax
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200706 09:56:23 inrepo:35] Testing notebook docs/source/examples/Predefined Metrics in Symbolic Module.ipynb
+[I 200706 09:56:25 execute:404] Executing notebook with kernel: python3
+[I 200706 09:56:35 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Predefined Metrics in Symbolic Module.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

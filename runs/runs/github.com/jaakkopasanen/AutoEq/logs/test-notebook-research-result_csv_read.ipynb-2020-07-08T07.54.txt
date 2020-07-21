@@ -1,0 +1,7 @@
+[I 200708 08:02:47 inrepo:36] Testing notebook research/result_csv_read.ipynb
+[W 200708 08:02:48 inrepo:48] No such kernel autoeq, falling back on kernel language=python
+[W 200708 08:02:48 inrepo:60] Using kernel python3 to provide language: python
+[I 200708 08:02:48 execute:404] Executing notebook with kernel: python3
+[I 200708 08:02:50 inrepo:77] Saving exported notebook to /io/notebooks/research/result_csv_read.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,121 @@
+[I 200716 08:18:38 inrepo:36] Testing notebook Untitled1.ipynb
+[I 200716 08:18:38 inrepo:45] Found kernel python3
+[I 200716 08:18:39 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from persephone.statistic import Statistics
+import pandas as pd
+from cytoolz.dicttoolz import valmap
+from pathlib import Path
+
+
+class Node:
+
+    nodes = dict()
+
+    def __new__(cls, name):
+        if name not in cls.nodes:
+            instance = super(Node, cls).__new__(cls)
+            instance.neighbours = []
+            cls.nodes[name] = instance
+        return cls.nodes[name]
+
+    def __init__(self, name):
+        self.name = name
+        self.value = None
+
+    def __hash__(self):
+        return hash(self.name)
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def link(self, other):
+        self.neighbours.append(other)
+
+
+class CovariateNode(Node):
+
+    def __init__(self, name):
+        super().__init__(name)
+
+    def receive(self, x):
+        for neighbour in self.neighbours:
+            neighbour.receive(x)
+
+
+class VariateNode(Node):
+
+    def __init__(self, name):
+        super().__init__(name)
+        self.statistic = Statistics(lambda x : x['score'])
+
+    def receive(self, x):
+        self.statistic.push(x)
+
+    def mean(self):
+        return self.statistic.mean
+
+
+class BipartieGraph:
+
+    def __init__(self, xys):
+        self.vnodes = dict()
+        self.cnodes = dict()
+        for (outcome, dimension) in xys:
+            covariate = CovariateNode(dimension)
+            variate = VariateNode(outcome)
+            self.cnodes[dimension] = covariate
+            self.vnodes[outcome] = variate
+            covariate.link(variate)
+
+    def clear(self):
+        for _, node in self.vnodes.items():
+            node.statistic.clear()
+
+    def transform(self, covariate_dict):
+        for covariate, value in covariate_dict.items():
+            self.cnodes[covariate].receive({'name':covariate, 'score':value})
+
+        return valmap(lambda x: {'score':x.statistic.mean, 
+                                 'traits':x.statistic.factors}, 
+                      self.vnodes)
+
+
+
+mapping_path = "../persephone/persephone/data/mapping.csv"
+df = pd.read_csv(mapping_path, header=None)
+df[0] = df[0].str.lower().str.replace(r'\s|-', '_')
+df[1] = df[1].str.lower().str.replace(r'\s|-', '_')
+graph = BipartieGraph(df.itertuples(index=False))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-dbcd0153dfc6>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mpersephone[0m[0;34m.[0m[0mstatistic[0m [0;32mimport[0m [0mStatistics[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0mcytoolz[0m[0;34m.[0m[0mdicttoolz[0m [0;32mimport[0m [0mvalmap[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mfrom[0m [0mpathlib[0m [0;32mimport[0m [0mPath[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'persephone'
+ModuleNotFoundError: No module named 'persephone'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

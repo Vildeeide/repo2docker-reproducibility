@@ -1,0 +1,152 @@
+[I 200714 13:53:08 inrepo:36] Testing notebook FINA2390/Project 5. Web Crawling/[5][Selenium][osx]QS-Copy1.ipynb
+[W 200714 13:53:09 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200714 13:53:09 inrepo:60] Using kernel python3 to provide language: python
+[I 200714 13:53:10 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from pyvirtualdisplay import Display
+import csv
+import pandas as pd
+import os
+import time
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+START_PAGE = 20
+END_PAGE = 22
+PROJECT_ABBR = "QS"
+PROJECT_NAME = "Project 5"
+URL = "https://www.topuniversities.com/university-rankings/world-university-rankings/2018"
+
+driver =webdriver.Firefox()
+driver.get(URL)
+
+"""display = Display(visible=0, size=(800, 600))
+display.start()"""
+
+df_columns = ['Ranking',
+              'University Name',
+              'Country',
+              'Source',
+              'No. of Students',
+              'Public/Private University',
+              'Focus']
+
+df_etf = pd.DataFrame(columns=df_columns)
+
+def go_to_page(page):
+    if page != 1:
+        for i in range(page-1):
+            next_page()
+    else:
+        return
+
+def set_result_per_page():
+
+    """select = Select(driver.find_element_by_xpath("//select[@name='qs-rankings_length']"))
+    select.select_by_visible_text("200")
+    for option in select.find_elements_by_tag_name('option'):
+        if option.text == '200':
+            option.click() # select() in earlier versions of webdriver
+            break"""
+    driver.find_element_by_xpath("//select[@name='qs-rankings_length']").send_keys('100')
+    time.sleep(3)
+    
+def next_page():
+    #click next page
+    driver.find_element_by_xpath('//*[@id="qs-rankings_next"]').click()
+    time.sleep(2)
+    
+def dig(link, row_index):
+    #open a new window
+    driver2 = webdriver.Firefox()
+    driver2.get(link.get_attribute('href'))
+    time.sleep(2)
+    
+    #find fields on the new driver
+    df_etf.loc[row_index, 'No. of Students'] = driver2.find_element_by_xpath('//*[@id="uni-info"]/li[1]/h4/span').text
+    df_etf.loc[row_index, 'Public/Private University'] = driver2.find_element_by_xpath('//*[@id="uni-info"]/li[3]/div/h4/span').text
+    df_etf.loc[row_index, 'Focus'] = driver2.find_element_by_xpath('//*[@id="uni-info"]/li[5]/div/h4/span').text
+    
+    #close the driver
+    driver2.quit()
+
+def main():
+    #set_result_per_page()
+    
+    go_to_page(START_PAGE)
+    time.sleep(3)
+    print 'Start at PAGE'+ str(START_PAGE)
+    
+    n = 1
+    for CURRENT_PAGE in range(START_PAGE,END_PAGE+1):
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' START--------------------'
+        START_TIMESTAMP = time.time()
+        for row in driver.find_elements_by_xpath('//*[@id="qs-rankings"]/tbody/tr'):
+            df_etf.loc[n, 'Ranking']         = row.find_element_by_xpath('td[1]/div/div/span[2]').text
+            df_etf.loc[n, 'University Name'] = row.find_element_by_xpath('td[2]/div/a').text
+            df_etf.loc[n, 'Country']         = row.find_element_by_xpath('td[3]/div/img').get_attribute('alt')
+            
+            #get the link for the university page
+            link = row.find_element_by_xpath('td[2]/div/a')
+            #open the page to get other fields
+            dig(link, n)
+            n = n + 1
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' FINISH--------------------'
+        END_TIMESTAMP = time.time()
+        print '-TIME USED:' + str(START_TIMESTAMP-END_TIMESTAMP) + '-'
+        
+        #store every first 5,10,15... pages to CSV for backup purpose
+        if (CURRENT_PAGE % 1) == 0:
+            filename = '['+ PROJECT_ABBR +'][Intrim Backup][' + str(CURRENT_PAGE) + ']' + PROJECT_NAME + ' PAGE ' + str(START_PAGE) + ' to PAGE ' + str(CURRENT_PAGE) + ' Records.csv'
+            df_etf.to_csv(filename, index=False,  encoding='utf-8')
+            print '[Intrim Backup]Saved First '+ str(CURRENT_PAGE) + 'Pages Records to CSV'
+        
+        #turn to next page
+        next_page()
+    
+    #set Source as QS for every row as this is crawl from QS
+    df_etf['Source'] = PROJECT_ABBR
+    
+    #export the file to CSV
+    filename = '['+ PROJECT_ABBR +']'+ PROJECT_NAME +' PAGE ' + str(START_PAGE) + 'to PAGE ' + str(END_PAGE) + 'Records.csv'
+    df_etf.to_csv(filename, index=False, encoding='utf-8')
+    print 'Exported to csv'
+    
+    #close the driver
+    driver.quit()
+if __name__ == "__main__":
+    main()
+
+
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-5e3d3173ecf3>"[0;36m, line [0;32m78[0m
+[0;31m    print 'Start at PAGE'+ str(START_PAGE)[0m
+[0m                        ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-5e3d3173ecf3>, line 78)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

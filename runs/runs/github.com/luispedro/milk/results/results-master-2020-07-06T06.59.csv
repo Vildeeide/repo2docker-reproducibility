@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/luispedro/milk,master,abc2a28,2015-05-11T11:55:46+02:00,build,build,False,github.com/luispedro/milk/logs/build-master-2020-07-06T06.59.txt,2020-07-06T06:59:40.366608,2020-07-06T06.59,0.11.0

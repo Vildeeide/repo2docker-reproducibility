@@ -1,0 +1,5 @@
+[I 200703 06:38:41 inrepo:35] Testing notebook eigenvalue/Arnoldi Iteration with Complex Eigenvalues.ipynb
+[I 200703 06:38:42 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:44 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Arnoldi Iteration with Complex Eigenvalues.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200703 09:19:16 inrepo:35] Testing notebook Assignments/Assignment04 -- Radiative forcing in a grey radiation atmosphere.ipynb
+[I 200703 09:19:17 execute:404] Executing notebook with kernel: python3
+[I 200703 09:19:18 inrepo:41] Saving exported notebook to /io/notebooks/Assignments/Assignment04 -- Radiative forcing in a grey radiation atmosphere.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/nassarhuda/JuliaTutorials,master,7e23c22,2020-01-14T14:51:39-08:00,build,build,True,github.com/nassarhuda/JuliaTutorials/logs/build-master-2020-07-16T08.23.txt,2020-07-16T08:23:33.209783,2020-07-16T08.23,0.11.0
+https://github.com/nassarhuda/JuliaTutorials,master,7e23c22,2020-01-14T14:51:39-08:00,notebook,plotting.ipynb,False,github.com/nassarhuda/JuliaTutorials/logs/test-notebook-plotting.ipynb-2020-07-16T08.23.txt,2020-07-16T08:23:33.209783,2020-07-16T08.23,0.11.0
+https://github.com/nassarhuda/JuliaTutorials,master,7e23c22,2020-01-14T14:51:39-08:00,notebook,Performance Tips for Julia.ipynb,False,github.com/nassarhuda/JuliaTutorials/logs/test-notebook-Performance Tips for Julia.ipynb-2020-07-16T08.23.txt,2020-07-16T08:23:33.209783,2020-07-16T08.23,0.11.0
+https://github.com/nassarhuda/JuliaTutorials,master,7e23c22,2020-01-14T14:51:39-08:00,notebook,TSNE/TSNE.ipynb,False,github.com/nassarhuda/JuliaTutorials/logs/test-notebook-TSNE-TSNE.ipynb-2020-07-16T08.23.txt,2020-07-16T08:23:33.209783,2020-07-16T08.23,0.11.0

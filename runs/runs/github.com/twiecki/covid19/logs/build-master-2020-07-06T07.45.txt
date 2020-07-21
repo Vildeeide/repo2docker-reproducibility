@@ -1,0 +1,392 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.45grtmz8na/github.com/twiecki/covid19.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> af2a72919a49
+Step 38/51 : USER root
+ ---> Using cache
+ ---> 4b8a28fef74c
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> fd7f9d358c2f
+Step 40/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 1497ec996e02
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 5732125cabcc
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting git+https://github.com/aseyboldt/sunode (from -r requirements.txt (line 11))
+  Cloning https://github.com/aseyboldt/sunode to /tmp/pip-req-build-tgktvche
+[91m  Running command git clone -q https://github.com/aseyboldt/sunode /tmp/pip-req-build-tgktvche
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting seaborn
+  Downloading seaborn-0.10.1-py3-none-any.whl (215 kB)
+Collecting arviz
+  Downloading arviz-0.9.0-py3-none-any.whl (1.5 MB)
+Collecting pymc3
+  Downloading pymc3-3.9.2-py3-none-any.whl (1.9 MB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 7)) (2.22.0)
+Collecting jupyter
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting altair
+  Downloading altair-4.1.0-py3-none-any.whl (727 kB)
+Collecting typing-extensions
+  Downloading typing_extensions-3.7.4.2-py3-none-any.whl (22 kB)
+Requirement already satisfied: cffi>=1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sunode==0.1.1->-r requirements.txt (line 11)) (1.13.2)
+Collecting sympy
+  Downloading sympy-1.6.1-py3-none-any.whl (5.8 MB)
+Collecting numba
+  Downloading numba-0.50.1-cp37-cp37m-manylinux2014_x86_64.whl (3.6 MB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 2)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting scipy>=1.0.1
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting netcdf4
+  Downloading netCDF4-1.5.3-cp37-cp37m-manylinux1_x86_64.whl (4.1 MB)
+Collecting xarray>=0.11
+  Downloading xarray-0.15.1-py3-none-any.whl (668 kB)
+Collecting h5py>=2.7.0
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting theano>=1.0.4
+  Downloading Theano-1.0.4.tar.gz (2.8 MB)
+Collecting fastprogress>=0.2.0
+  Downloading fastprogress-0.2.3-py3-none-any.whl (12 kB)
+Collecting patsy>=0.5.1
+  Downloading patsy-0.5.1-py2.py3-none-any.whl (231 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2019.11.28)
+Collecting qtconsole
+  Downloading qtconsole-4.7.5-py2.py3-none-any.whl (118 kB)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 8)) (5.1.4)
+Requirement already satisfied: notebook in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 8)) (6.0.3)
+Requirement already satisfied: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 8)) (7.5.1)
+Collecting jupyter-console
+  Downloading jupyter_console-6.1.0-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 8)) (5.6.1)
+Collecting toolz
+  Downloading toolz-0.10.0.tar.gz (49 kB)
+Requirement already satisfied: jsonschema in /srv/conda/envs/notebook/lib/python3.7/site-packages (from altair->-r requirements.txt (line 9)) (3.2.0)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from altair->-r requirements.txt (line 9)) (2.11.0)
+Requirement already satisfied: entrypoints in /srv/conda/envs/notebook/lib/python3.7/site-packages (from altair->-r requirements.txt (line 9)) (0.3)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi>=1.0.0->sunode==0.1.1->-r requirements.txt (line 11)) (2.19)
+Collecting mpmath>=0.19
+  Downloading mpmath-1.1.0.tar.gz (512 kB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from numba->sunode==0.1.1->-r requirements.txt (line 11)) (45.1.0.post20200119)
+Collecting llvmlite<0.34,>=0.33.0.dev0
+  Downloading llvmlite-0.33.0-cp37-cp37m-manylinux1_x86_64.whl (18.3 MB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->-r requirements.txt (line 2)) (1.14.0)
+Collecting cftime
+  Downloading cftime-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (281 kB)
+Collecting qtpy
+  Downloading QtPy-1.9.0-py2.py3-none-any.whl (54 kB)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (4.6.1)
+Requirement already satisfied: jupyter-client>=4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (5.3.4)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (2.5.2)
+Requirement already satisfied: traitlets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (4.3.3)
+Requirement already satisfied: pyzmq>=17.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (18.1.1)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 8)) (0.2.0)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel->jupyter->-r requirements.txt (line 8)) (6.0.3)
+Requirement already satisfied: ipython>=5.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel->jupyter->-r requirements.txt (line 8)) (7.11.1)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 8)) (0.8.3)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 8)) (1.5.0)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 8)) (5.0.4)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 8)) (0.7.1)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->jupyter->-r requirements.txt (line 8)) (3.5.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-console->jupyter->-r requirements.txt (line 8)) (3.0.3)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 8)) (0.4.4)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 8)) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 8)) (0.8.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 8)) (0.6.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 8)) (1.4.2)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema->altair->-r requirements.txt (line 9)) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema->altair->-r requirements.txt (line 9)) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema->altair->-r requirements.txt (line 9)) (1.5.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->altair->-r requirements.txt (line 9)) (1.1.1)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets->qtconsole->jupyter->-r requirements.txt (line 8)) (4.4.1)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (0.1.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (4.8.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (0.7.5)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (0.16.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->jupyter-console->jupyter->-r requirements.txt (line 8)) (0.1.8)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->jupyter->-r requirements.txt (line 8)) (0.5.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema->altair->-r requirements.txt (line 9)) (2.1.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (0.6.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.0.0->ipykernel->jupyter->-r requirements.txt (line 8)) (0.6.0)
+Building wheels for collected packages: sunode, theano, toolz, mpmath
+  Building wheel for sunode (setup.py): started
+  Building wheel for sunode (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-q84y8f6e
+       cwd: /tmp/pip-req-build-tgktvche/
+  Complete output (55 lines):
+  sunode/../include/common/01_sun_types.h
+  sunode/../include/common/02_sundials_nvector.h
+  sunode/../include/common/03_sundials_nvector_serial.h
+  sunode/../include/common/04_sundials_matrix.h
+  sunode/../include/common/05_sundials_sunmatrix_dense.h
+  sunode/../include/common/06_sundials_sunmatrix_sparse.h
+  sunode/../include/common/07_sundials_sunmatrix_band.h
+  sunode/../include/common/08_sundials_iterative.h
+  sunode/../include/common/09_sundials_linearsolver.h
+  sunode/../include/common/10_sundials_nonlinearsolver.h
+  sunode/../include/sunlinsol/13_sunlinsol_lapackdense.h
+  sunode/../include/sunlinsol/14_sunlinsol_dense.h
+  sunode/../include/sunlinsol/15_sunlinsol_band.h
+  sunode/../include/sunlinsol/16_sunlinsol_klu.h
+  sunode/../include/sunlinsol/17_sunlinsol_spgmr.h
+  sunode/../include/cvodes/15_cvodes_ls.h
+  sunode/../include/cvodes/16_cvodes.h
+  sunode/../include/cvodes/17_cvodes_diag.h
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/sunode
+  copying sunode/solver.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/__init__.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/nonlinear_solver.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/build_cvodes.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/basic.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/problem.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/vector.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/dtypesubset.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/test_basic.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/linear_solver_wrapper.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/dtypes.py -> build/lib.linux-x86_64-3.7/sunode
+  copying sunode/matrix.py -> build/lib.linux-x86_64-3.7/sunode
+  creating build/lib.linux-x86_64-3.7/sunode/symode
+  copying sunode/symode/__init__.py -> build/lib.linux-x86_64-3.7/sunode/symode
+  copying sunode/symode/problem.py -> build/lib.linux-x86_64-3.7/sunode/symode
+  copying sunode/symode/lambdify.py -> build/lib.linux-x86_64-3.7/sunode/symode
+  creating build/lib.linux-x86_64-3.7/sunode/wrappers
+  copying sunode/wrappers/__init__.py -> build/lib.linux-x86_64-3.7/sunode/wrappers
+  copying sunode/wrappers/as_theano.py -> build/lib.linux-x86_64-3.7/sunode/wrappers
+  running build_ext
+  generating cffi module 'build/temp.linux-x86_64-3.7/_sundials_cvodes.c'
+  creating build/temp.linux-x86_64-3.7
+  building '_sundials_cvodes' extension
+  creating build/temp.linux-x86_64-3.7/build
+  creating build/temp.linux-x86_64-3.7/build/temp.linux-x86_64-3.7
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include/suitesparse/ -I/srv/conda/envs/notebook/include/python3.7m -c build/temp.linux-x86_64-3.7/_sundials_cvodes.c -o build/temp.linux-x86_64-3.7/build/temp.linux-x86_64-3.7/_sundials_cvodes.o
+  build/temp.linux-x86_64-3.7/_sundials_cvodes.c:492:10: fatal error: sundials/sundials_types.h: No such file or directory
+   #include "sundials/sundials_types.h"
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  compilation terminated.
+  error: command 'gcc' failed with exit status 1
+  ----------------------------------------
+[0m[91m  ERROR: Failed building wheel for sunode
+[0m  Running setup.py clean for sunode
+  Building wheel for theano (setup.py): started
+  Building wheel for theano (setup.py): finished with status 'done'
+  Created wheel for theano: filename=Theano-1.0.4-py3-none-any.whl size=2667178 sha256=b1a8883ee639860b2c2a324029312830e1f4fa93458eb307fbee1b148cfd34a5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-a3062cfx/wheels/33/e0/86/12647586a15bd29c062c9996231380908fb2dcf6a5df1c6f84
+  Building wheel for toolz (setup.py): started
+  Building wheel for toolz (setup.py): finished with status 'done'
+  Created wheel for toolz: filename=toolz-0.10.0-py3-none-any.whl size=55574 sha256=e840d001add9910fe4dfc810df08340bf674062e02f8a90171f93670d2e28987
+  Stored in directory: /tmp/pip-ephem-wheel-cache-a3062cfx/wheels/e2/83/7c/248063997a4f9ff6bf145822e620e8c37117a6b4c765584077
+  Building wheel for mpmath (setup.py): started
+  Building wheel for mpmath (setup.py): finished with status 'done'
+  Created wheel for mpmath: filename=mpmath-1.1.0-py3-none-any.whl size=532238 sha256=0042f2f6da0f74c2c40b5d19e255fb3b314242218aa4249fa3b8cab2adad7aa9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-a3062cfx/wheels/e2/46/78/e78f76c356bca9277368f1f97a31b37a8cb937176d9511af31
+Successfully built theano toolz mpmath
+Failed to build sunode
+Installing collected packages: numpy, pyparsing, cycler, kiwisolver, matplotlib, pytz, pandas, scipy, seaborn, packaging, cftime, netcdf4, xarray, arviz, h5py, typing-extensions, theano, fastprogress, patsy, pymc3, qtpy, qtconsole, jupyter-console, jupyter, toolz, altair, mpmath, sympy, llvmlite, numba, sunode
+    Running setup.py install for sunode: started
+    Running setup.py install for sunode: finished with status 'error'
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-yqseg5up/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/sunode
+         cwd: /tmp/pip-req-build-tgktvche/
+    Complete output (55 lines):
+    sunode/../include/common/01_sun_types.h
+    sunode/../include/common/02_sundials_nvector.h
+    sunode/../include/common/03_sundials_nvector_serial.h
+    sunode/../include/common/04_sundials_matrix.h
+    sunode/../include/common/05_sundials_sunmatrix_dense.h
+    sunode/../include/common/06_sundials_sunmatrix_sparse.h
+    sunode/../include/common/07_sundials_sunmatrix_band.h
+    sunode/../include/common/08_sundials_iterative.h
+    sunode/../include/common/09_sundials_linearsolver.h
+    sunode/../include/common/10_sundials_nonlinearsolver.h
+    sunode/../include/sunlinsol/13_sunlinsol_lapackdense.h
+    sunode/../include/sunlinsol/14_sunlinsol_dense.h
+    sunode/../include/sunlinsol/15_sunlinsol_band.h
+    sunode/../include/sunlinsol/16_sunlinsol_klu.h
+    sunode/../include/sunlinsol/17_sunlinsol_spgmr.h
+    sunode/../include/cvodes/15_cvodes_ls.h
+    sunode/../include/cvodes/16_cvodes.h
+    sunode/../include/cvodes/17_cvodes_diag.h
+    running install
+    running build
+    running build_py
+    creating build
+    creating build/lib.linux-x86_64-3.7
+    creating build/lib.linux-x86_64-3.7/sunode
+    copying sunode/solver.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/__init__.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/nonlinear_solver.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/build_cvodes.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/basic.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/problem.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/vector.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/dtypesubset.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/test_basic.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/linear_solver_wrapper.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/dtypes.py -> build/lib.linux-x86_64-3.7/sunode
+    copying sunode/matrix.py -> build/lib.linux-x86_64-3.7/sunode
+    creating build/lib.linux-x86_64-3.7/sunode/symode
+    copying sunode/symode/__init__.py -> build/lib.linux-x86_64-3.7/sunode/symode
+    copying sunode/symode/problem.py -> build/lib.linux-x86_64-3.7/sunode/symode
+    copying sunode/symode/lambdify.py -> build/lib.linux-x86_64-3.7/sunode/symode
+    creating build/lib.linux-x86_64-3.7/sunode/wrappers
+    copying sunode/wrappers/__init__.py -> build/lib.linux-x86_64-3.7/sunode/wrappers
+    copying sunode/wrappers/as_theano.py -> build/lib.linux-x86_64-3.7/sunode/wrappers
+    running build_ext
+    generating cffi module 'build/temp.linux-x86_64-3.7/_sundials_cvodes.c'
+    creating build/temp.linux-x86_64-3.7
+    building '_sundials_cvodes' extension
+    creating build/temp.linux-x86_64-3.7/build
+    creating build/temp.linux-x86_64-3.7/build/temp.linux-x86_64-3.7
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include/suitesparse/ -I/srv/conda/envs/notebook/include/python3.7m -c build/temp.linux-x86_64-3.7/_sundials_cvodes.c -o build/temp.linux-x86_64-3.7/build/temp.linux-x86_64-3.7/_sundials_cvodes.o
+    build/temp.linux-x86_64-3.7/_sundials_cvodes.c:492:10: fatal error: sundials/sundials_types.h: No such file or directory
+     #include "sundials/sundials_types.h"
+              ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+    compilation terminated.
+    error: command 'gcc' failed with exit status 1
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-tgktvche/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-yqseg5up/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/sunode Check the logs for full command output.
+[0mRemoving intermediate container 5732125cabcc
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-twiecki-covid19:69b0a5e', '/tmp/r2d-test-2020-07-06T07.45grtmz8na/github.com/twiecki/covid19']' returned non-zero exit status 1.

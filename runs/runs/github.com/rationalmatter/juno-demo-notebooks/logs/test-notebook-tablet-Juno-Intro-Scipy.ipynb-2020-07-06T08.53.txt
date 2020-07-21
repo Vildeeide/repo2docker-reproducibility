@@ -1,0 +1,5 @@
+[I 200706 08:53:52 inrepo:35] Testing notebook tablet/Juno-Intro-Scipy.ipynb
+[I 200706 08:53:56 execute:404] Executing notebook with kernel: python3
+[I 200706 08:54:08 inrepo:41] Saving exported notebook to /io/notebooks/tablet/Juno-Intro-Scipy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

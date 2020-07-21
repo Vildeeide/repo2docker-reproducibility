@@ -1,0 +1,5 @@
+[I 200706 09:47:45 inrepo:35] Testing notebook example/jupyter_pivottablejs_example.ipynb
+[I 200706 09:47:46 execute:404] Executing notebook with kernel: python3
+[I 200706 09:47:49 inrepo:41] Saving exported notebook to /io/notebooks/example/jupyter_pivottablejs_example.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

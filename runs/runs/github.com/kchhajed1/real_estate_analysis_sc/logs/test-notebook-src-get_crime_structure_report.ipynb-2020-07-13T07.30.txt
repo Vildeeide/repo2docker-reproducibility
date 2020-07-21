@@ -1,0 +1,55 @@
+[I 200713 07:31:05 inrepo:36] Testing notebook src/get_crime_structure_report.ipynb
+[W 200713 07:31:06 inrepo:48] No such kernel conda-env-pythondata-py, falling back on kernel language=python
+[W 200713 07:31:06 inrepo:60] Using kernel python3 to provide language: python
+[I 200713 07:31:06 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#!/usr/local/bin/python
+
+# this application is to conver unstructured raw crime data into csv structured format
+# import dependencies here
+
+
+"""
+Format of unstructured crime report:
+
+Zip29003:Crime rates in Bamberg, SC:Total185Violent Crime19Murder & Manslaughter0Forcible Rape1Robbery3Aggravated Assault15Property Crime166Burglary37Larceny & Theft123Motor Vehicle Theft6Arson5
+Zip29006:Crime rates in Batesburg-Leesville, SC:Total390Violent Crime67Murder & Manslaughter0Forcible Rape3Robbery3Aggravated Assault61Property Crime323Burglary55Larceny & Theft239Motor Vehicle Theft29Arson1
+Zip29009:Crime rates in Bethune, SC:Total5Violent Crime0Murder & Manslaughter0Forcible Rape0Robbery0Aggravated Assault0Property Crime5Burglary2Larceny & Theft2Motor Vehicle Theft1Arson0
+Zip29010:Crime rates in Bishopville, SC:Total311Violent Crime23Murder & Manslaughter0Forcible Rape0Robbery5Aggravated Assault18Property Crime288Burglary60Larceny & Theft213Motor Vehicle Theft15Arson1
+Zip29018:Crime rates in Bowman, SC:Total35Violent Crime10Murder & Manslaughter1Forcible Rape0Robbery0Aggravated Assault9Property Crime25Burglary11Larceny & Theft11Motor Vehicle Theft3Arson0
+"""
+
+import re
+from pprint import pprint
+import pandas as pd
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-6e391a5df4b3>[0m in [0;36m<module>[0;34m[0m
+[1;32m     17[0m [0;32mimport[0m [0mre[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m [0;32mfrom[0m [0mpprint[0m [0;32mimport[0m [0mpprint[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 19[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

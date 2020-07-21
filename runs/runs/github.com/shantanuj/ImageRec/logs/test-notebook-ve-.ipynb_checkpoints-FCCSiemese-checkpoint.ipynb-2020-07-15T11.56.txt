@@ -1,0 +1,126 @@
+[I 200715 11:56:46 inrepo:36] Testing notebook ve/.ipynb_checkpoints/FCCSiemese-checkpoint.ipynb
+[I 200715 11:56:46 inrepo:45] Found kernel python3
+[I 200715 11:56:47 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+
+from __future__ import absolute_import
+from __future__ import print_function
+import numpy as np
+
+import random
+from keras.datasets import mnist
+from keras.models import Sequential, Model
+from keras.layers import Dense, Dropout, Input, Lambda, Convolution2D, MaxPooling2D
+from keras.optimizers import RMSprop
+from keras import backend as K
+from matplotlib import pyplot as plt
+from sklearn.datasets import fetch_lfw_pairs
+from sklearn.datasets import fetch_lfw_people
+
+def euclidean_distance(vects):
+    x, y = vects
+    return K.sqrt(K.maximum(K.sum(K.square(x - y), axis=1, keepdims=True), K.epsilon()))
+
+
+def eucl_dist_output_shape(shapes):
+    shape1, shape2 = shapes
+    print ("HELLO 1") 
+    print (shapes)
+    print(shape1[0],1)
+    return (shape1[0], 1)
+
+
+def contrastive_loss(y_true, y_pred):
+    margin = 1
+    return K.mean(y_true * K.square(y_pred) +
+                  (1 - y_true) * K.square(K.maximum(margin - y_pred, 0)))
+
+
+def create_pairs(x, digit_indices):
+    '''Positive and negative pair creation.
+    Alternates between positive and negative pairs.
+    '''
+    pairs = []
+    labels = []
+    n = min([len(digit_indices[d]) for d in range(10)]) - 1
+    for d in range(10):
+        for i in range(n):
+            z1, z2 = digit_indices[d][i], digit_indices[d][i + 1]
+            pairs += [[x[z1], x[z2]]]
+            inc = random.randrange(1, 10)
+            dn = (d + inc) % 10
+            z1, z2 = digit_indices[d][i], digit_indices[dn][i]
+            pairs += [[x[z1], x[z2]]]
+            labels += [1, 0]
+    return np.array(pairs), np.array(labels)
+
+
+def create_base_network(input_dim):
+    '''Base network to be shared (eq. to feature extraction).
+    '''
+    seq = Sequential()
+    seq.add(Dense(16,activation='relu',input_shape=(input_dim,)))
+    seq.add(Dropout(0.1))
+    seq.add(Dense(16,activation='relu',input_shape=(input_dim,)))
+
+    
+    #seq.add(Dense(4,activation='relu',input_shape=(input_dim,)))
+    #seq.add(Dense(2,activation='relu'))
+    
+    #seq.add(Dropout(0.1))
+    #seq.add(Dense(2,activation='relu',input_shape=(input_dim,)))
+
+    #seq.add(Dense(2,activation='relu',input_shape=(input_dim,)))
+    #seq.add(Convolution2D(32,3,3,activation="relu",input_shape=(input_dim,)))
+    #seq.add(Dropout(0.1))
+    #seq.add(Dense(1,activation='relu'))
+    #seq.add(Convolution2D(32,3,3,activation="relu"))
+    #seq.add(MaxPooling2D(pool_size=(2,2)))
+    #seq.add(Dense(1,activation='relu'))
+    #seq.add(Dropout(0.1))
+    #seq.add
+    #seq.add(Dense(128, activation='relu'))
+    return seq
+
+
+def compute_accuracy(predictions, labels):
+    '''Compute classification accuracy with a fixed threshold on distances.
+    '''
+    print ("HELLO 2")
+    print (labels[predictions.ravel() < 0.5])
+    return labels[predictions.ravel() < 0.5].mean()
+
+
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-34c47eb58f26>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0m__future__[0m [0;32mimport[0m [0mabsolute_import[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;32mfrom[0m [0m__future__[0m [0;32mimport[0m [0mprint_function[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mrandom[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

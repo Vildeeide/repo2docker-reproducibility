@@ -1,0 +1,6 @@
+[I 200717 11:01:13 inrepo:36] Testing notebook Showcase - pyTrigger.ipynb
+[I 200717 11:01:13 inrepo:45] Found kernel python3
+[I 200717 11:01:14 execute:404] Executing notebook with kernel: python3
+[I 200717 11:01:16 inrepo:79] Saving exported notebook to /io/notebooks/Showcase - pyTrigger.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

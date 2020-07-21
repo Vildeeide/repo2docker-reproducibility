@@ -1,0 +1,32 @@
+[I 200714 11:42:17 inrepo:36] Testing notebook netflix.ipynb
+[W 200714 11:42:17 inrepo:48] No such kernel ride, falling back on kernel language=R
+[W 200714 11:42:17 inrepo:66] Found no matching kernel for name={kernel_name}, language={kernel_language}
+[W 200714 11:42:17 inrepo:72] Found kernel specs: name=python3, language=python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 403, in preprocess
+    with self.setup_preprocessor(nb, resources, km=km):
+  File "/srv/conda/envs/notebook/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 345, in setup_preprocessor
+    self.km, self.kc = self.start_new_kernel(**kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 291, in start_new_kernel
+    km.start_kernel(extra_arguments=self.extra_arguments, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/manager.py", line 246, in start_kernel
+    kernel_cmd = self.format_kernel_cmd(extra_arguments=extra_arguments)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/manager.py", line 170, in format_kernel_cmd
+    cmd = self.kernel_spec.argv + extra_arguments
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/manager.py", line 82, in kernel_spec
+    self._kernel_spec = self.kernel_spec_manager.get_kernel_spec(self.kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/kernelspec.py", line 236, in get_kernel_spec
+    raise NoSuchKernel(kernel_name)
+jupyter_client.kernelspec.NoSuchKernel: No such kernel named ride
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

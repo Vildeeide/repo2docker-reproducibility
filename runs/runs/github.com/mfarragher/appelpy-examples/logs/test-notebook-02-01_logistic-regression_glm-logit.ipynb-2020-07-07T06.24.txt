@@ -1,0 +1,5 @@
+[I 200707 06:25:19 inrepo:35] Testing notebook 02-01_logistic-regression_glm-logit.ipynb
+[I 200707 06:25:20 execute:404] Executing notebook with kernel: python3
+[I 200707 06:25:24 inrepo:41] Saving exported notebook to /io/notebooks/02-01_logistic-regression_glm-logit.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

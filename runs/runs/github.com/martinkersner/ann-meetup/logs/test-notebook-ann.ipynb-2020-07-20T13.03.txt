@@ -1,0 +1,50 @@
+[I 200720 13:05:35 inrepo:36] Testing notebook ann.ipynb
+[W 200720 13:05:37 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200720 13:05:37 inrepo:60] Using kernel python3 to provide language: python
+[I 200720 13:05:38 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import mnist_loader
+training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
+
+print("number of training examples: {0:1d}".format(len(training_data)))
+print("number of validation examples: {0:1d}".format(len(validation_data)))
+print("number of test examples: {0:1d}".format(len(test_data)))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-15-29574d19e62d>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mmnist_loader[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mtraining_data[0m[0;34m,[0m [0mvalidation_data[0m[0;34m,[0m [0mtest_data[0m [0;34m=[0m [0mmnist_loader[0m[0;34m.[0m[0mload_data_wrapper[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mprint[0m[0;34m([0m[0;34m"number of training examples: {0:1d}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mtraining_data[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mprint[0m[0;34m([0m[0;34m"number of validation examples: {0:1d}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mvalidation_data[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/mnist_loader.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     11[0m [0;31m#### Libraries[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;31m# Standard library[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m [0;32mimport[0m [0mcPickle[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m [0;32mimport[0m [0mgzip[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'cPickle'
+ModuleNotFoundError: No module named 'cPickle'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

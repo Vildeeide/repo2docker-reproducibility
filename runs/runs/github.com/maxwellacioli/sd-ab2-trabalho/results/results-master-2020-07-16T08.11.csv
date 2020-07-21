@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/maxwellacioli/sd-ab2-trabalho,master,5154855,2017-11-18T12:50:57-03:00,build,build,True,github.com/maxwellacioli/sd-ab2-trabalho/logs/build-master-2020-07-16T08.11.txt,2020-07-16T08:11:40.280268,2020-07-16T08.11,0.11.0
+https://github.com/maxwellacioli/sd-ab2-trabalho,master,5154855,2017-11-18T12:50:57-03:00,notebook,multicast_maxwell.ipynb,False,github.com/maxwellacioli/sd-ab2-trabalho/logs/test-notebook-multicast_maxwell.ipynb-2020-07-16T08.11.txt,2020-07-16T08:11:40.280268,2020-07-16T08.11,0.11.0

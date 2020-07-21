@@ -1,0 +1,69 @@
+[I 200710 13:42:13 inrepo:36] Testing notebook notebooks/Raw_EEG.ipynb
+[W 200710 13:42:15 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200710 13:42:15 inrepo:60] Using kernel python3 to provide language: python
+[I 200710 13:42:16 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+muses = list_muses()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-2-a2cdfa661c6c>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mmuses[0m [0;34m=[0m [0mlist_muses[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/muselsl/stream.py[0m in [0;36mlist_muses[0;34m(backend, interface)[0m
+[1;32m     28[0m         [0madapter[0m [0;34m=[0m [0mpygatt[0m[0;34m.[0m[0mBGAPIBackend[0m[0;34m([0m[0mserial_port[0m[0;34m=[0m[0minterface[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     29[0m [0;34m[0m[0m
+[0;32m---> 30[0;31m     [0madapter[0m[0;34m.[0m[0mstart[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     31[0m     [0mprint[0m[0;34m([0m[0;34m'Searching for Muses, this may take up to 10 seconds...'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     32[0m     [0mdevices[0m [0;34m=[0m [0madapter[0m[0;34m.[0m[0mscan[0m[0;34m([0m[0mtimeout[0m[0;34m=[0m[0mMUSE_SCAN_TIMEOUT[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pygatt/backends/gatttool/gatttool.py[0m in [0;36mstart[0;34m(self, reset_on_start, initialization_timeout)[0m
+[1;32m    262[0m             [0;31m# Without restarting, sometimes when trying to bond with the[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    263[0m             [0;31m# GATTTool backend, the entire computer will lock up.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 264[0;31m             [0mself[0m[0;34m.[0m[0mreset[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    265[0m [0;34m[0m[0m
+[1;32m    266[0m         [0;31m# Start gatttool interactive session for device[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pygatt/backends/gatttool/gatttool.py[0m in [0;36mreset[0;34m(self)[0m
+[1;32m    629[0m [0;34m[0m[0m
+[1;32m    630[0m     [0;32mdef[0m [0mreset[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 631[0;31m         [0msubprocess[0m[0;34m.[0m[0mPopen[0m[0;34m([0m[0;34m[[0m[0;34m"sudo"[0m[0;34m,[0m [0;34m"systemctl"[0m[0;34m,[0m [0;34m"restart"[0m[0;34m,[0m [0;34m"bluetooth"[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0mwait[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    632[0m         subprocess.Popen([
+[1;32m    633[0m             "sudo", "hciconfig", self._hci_device, "reset"]).wait()
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/subprocess.py[0m in [0;36m__init__[0;34m(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)[0m
+[1;32m    798[0m                                 [0mc2pread[0m[0;34m,[0m [0mc2pwrite[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    799[0m                                 [0merrread[0m[0;34m,[0m [0merrwrite[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 800[0;31m                                 restore_signals, start_new_session)
+[0m[1;32m    801[0m         [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    802[0m             [0;31m# Cleanup if the child failed starting.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/subprocess.py[0m in [0;36m_execute_child[0;34m(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)[0m
+[1;32m   1549[0m                         [0;32mif[0m [0merrno_num[0m [0;34m==[0m [0merrno[0m[0;34m.[0m[0mENOENT[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1550[0m                             [0merr_msg[0m [0;34m+=[0m [0;34m': '[0m [0;34m+[0m [0mrepr[0m[0;34m([0m[0merr_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1551[0;31m                     [0;32mraise[0m [0mchild_exception_type[0m[0;34m([0m[0merrno_num[0m[0;34m,[0m [0merr_msg[0m[0;34m,[0m [0merr_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1552[0m                 [0;32mraise[0m [0mchild_exception_type[0m[0;34m([0m[0merr_msg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1553[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'sudo': 'sudo'
+FileNotFoundError: [Errno 2] No such file or directory: 'sudo': 'sudo'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

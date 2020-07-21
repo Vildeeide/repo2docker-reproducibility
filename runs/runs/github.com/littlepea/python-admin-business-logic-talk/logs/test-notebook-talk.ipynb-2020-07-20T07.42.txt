@@ -1,0 +1,92 @@
+[I 200720 07:43:23 inrepo:36] Testing notebook talk.ipynb
+[W 200720 07:43:24 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200720 07:43:24 inrepo:60] Using kernel python3 to provide language: python
+[I 200720 07:43:25 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Main code of the application
+
+import urllib2
+import json
+
+def main(city):
+    print('\nChecking air quality for {}...\n'.format(city))
+
+    # Check cache
+    stations = CACHE.get(city)
+
+    if not stations:
+        try:
+            # Call the API
+            url = '{}?city={}'.format(API_BASE, city)
+            response = urllib2.urlopen(url)
+            results = json.load(response)
+            stations = results['results']
+
+            # Write to cache
+            CACHE[city] = stations
+        except urllib2.HTTPError, e:
+            print('Could not retrieve results from the server: {}'.format(e))
+            return
+
+    if not stations:
+        print('No stations found in {}'.format(city))
+        return
+
+    # Get PM2.5 values from all stations
+    pm25 = [
+        measurement['value']
+        for station in stations
+        for measurement in station['measurements']
+        if measurement['parameter'] == 'pm25'
+    ]
+
+    # Calculate average PM2.5
+    average_pm25 = sum(pm25, 0.0) / len(pm25)
+
+    # Find the right AQI level
+    aqi = None
+    for ceiling, level in AQI_LEVELS.items():
+        if average_pm25 < ceiling:
+            aqi = level
+            break
+
+    # Display the AQI level to the user
+    print('The air in {} is {} ({})'.format(
+        city,
+        aqi['level'],
+        average_pm25
+    ))
+
+    if aqi.get('indoors'):
+        print('Please, stay indoors with purified air.')
+    elif aqi.get('mask'):
+        print('Please, wear a mask if going out.')
+    else:
+        print('Feel free to go out!')
+------------------
+
+[0;36m  File [0;32m"<ipython-input-2-d30320b46e66>"[0;36m, line [0;32m22[0m
+[0;31m    except urllib2.HTTPError, e:[0m
+[0m                            ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-2-d30320b46e66>, line 22)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

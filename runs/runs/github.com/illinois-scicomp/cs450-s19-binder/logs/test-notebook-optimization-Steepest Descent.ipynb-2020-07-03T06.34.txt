@@ -1,0 +1,5 @@
+[I 200703 06:43:06 inrepo:35] Testing notebook optimization/Steepest Descent.ipynb
+[I 200703 06:43:07 execute:404] Executing notebook with kernel: python3
+[I 200703 06:43:12 inrepo:41] Saving exported notebook to /io/notebooks/optimization/Steepest Descent.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,109 @@
+[I 200706 13:40:33 inrepo:35] Testing notebook MattLavin.ipynb
+[I 200706 13:40:35 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def powerLaw(y, x):
+    """
+    'When the frequency of an event varies as power of some attribute of that
+    event the frequency is said to follow a power law.' (wikipedia)
+    This is represented by the following equation, where c and alpha are
+    constants:
+    y = c . x ^ alpha
+    Args
+    --------
+    y: array with frequency of events >0
+    x: numpy array with attribute of events >0
+    Output
+    --------
+    (c, alpha)
+    c: the maximum frequency of any event
+    alpha: defined by (Newman, 2005 for details):
+        alpha = 1 + n * sum(ln( xi / xmin )) ^ -1
+    """
+    c = 0
+    alpha = .0
+
+    if len(y) and len(y)==len(x):
+        c = max(y)
+        xmin = float(min(x))
+        alpha = 1 + len(x) * pow(sum(np.log(x/xmin)),-1)
+
+    return (c, alpha)
+
+
+import matplotlib.pyplot as plt
+
+def plotPowerLaws(y, x, c=[], alpha=[]):
+    """
+    Plots the relationship between x and y and a fitted power law on LogLog
+    scale.
+    Args
+    --------
+    y: array with frequency of events >0
+    x: array with attribute of events >0
+    c: array of cs for various power laws
+    alpha: array of alphas for various power laws
+    """
+    plt.figure()
+    plt.loglog()
+    plt.plot(x,
+             y,
+             'r+')
+    for _c, _alpha in zip(c,alpha):
+        plt.plot( (1, max(x)),
+                  (_c, _c * pow(max(x), _alpha)),
+                  label='~x^%.2f' % _alpha)
+        plt.legend()
+    plt.show()
+
+"""
+Checking against Zipfs law, where the frequency and rank of a word follow a specific power law
+"""
+
+y = [i[1] for i in ing_counts.most_common()]
+
+x = np.array(range(1,len(y)+1))
+
+#y is a list of counts
+#x is an np array of ranks
+
+c, alpha = powerLaw(y, x)
+print('According to Zipf\'s law, the alpha value (%.2f) should be close to 1.' % alpha)
+plotPowerLaws(y, x, [c,c], [-1,-alpha])
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-4-dc68ace30e28>[0m in [0;36m<module>[0;34m[0m
+[1;32m     66[0m [0mc[0m[0;34m,[0m [0malpha[0m [0;34m=[0m [0mpowerLaw[0m[0;34m([0m[0my[0m[0;34m,[0m [0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     67[0m [0mprint[0m[0;34m([0m[0;34m'According to Zipf\'s law, the alpha value (%.2f) should be close to 1.'[0m [0;34m%[0m [0malpha[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 68[0;31m [0mplotPowerLaws[0m[0;34m([0m[0my[0m[0;34m,[0m [0mx[0m[0;34m,[0m [0;34m[[0m[0mc[0m[0;34m,[0m[0mc[0m[0;34m][0m[0;34m,[0m [0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m,[0m[0;34m-[0m[0malpha[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-4-dc68ace30e28>[0m in [0;36mplotPowerLaws[0;34m(y, x, c, alpha)[0m
+[1;32m     48[0m     [0;32mfor[0m [0m_c[0m[0;34m,[0m [0m_alpha[0m [0;32min[0m [0mzip[0m[0;34m([0m[0mc[0m[0;34m,[0m[0malpha[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     49[0m         plt.plot( (1, max(x)),
+[0;32m---> 50[0;31m                   [0;34m([0m[0m_c[0m[0;34m,[0m [0m_c[0m [0;34m*[0m [0mpow[0m[0;34m([0m[0mmax[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m,[0m [0m_alpha[0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     51[0m                   label='~x^%.2f' % _alpha)
+[1;32m     52[0m         [0mplt[0m[0;34m.[0m[0mlegend[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: Integers to negative integer powers are not allowed.
+ValueError: Integers to negative integer powers are not allowed.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

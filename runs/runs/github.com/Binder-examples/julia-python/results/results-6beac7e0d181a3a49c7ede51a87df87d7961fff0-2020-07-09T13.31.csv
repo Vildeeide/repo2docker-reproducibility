@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Binder-examples/julia-python,6beac7e0d181a3a49c7ede51a87df87d7961fff0,6beac7e,2017-06-30T23:28:26-07:00,build,build,True,github.com/Binder-examples/julia-python/logs/build-6beac7e0d181a3a49c7ede51a87df87d7961fff0-2020-07-09T13.31.txt,2020-07-09T13:31:55.771804,2020-07-09T13.31,0.11.0
+https://github.com/Binder-examples/julia-python,6beac7e0d181a3a49c7ede51a87df87d7961fff0,6beac7e,2017-06-30T23:28:26-07:00,notebook,simplejl.ipynb,False,github.com/Binder-examples/julia-python/logs/test-notebook-simplejl.ipynb-2020-07-09T13.31.txt,2020-07-09T13:31:55.771804,2020-07-09T13.31,0.11.0

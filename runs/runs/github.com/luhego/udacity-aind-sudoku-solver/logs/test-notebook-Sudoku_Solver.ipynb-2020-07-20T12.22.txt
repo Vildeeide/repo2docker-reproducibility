@@ -1,0 +1,7 @@
+[I 200720 12:22:51 inrepo:36] Testing notebook Sudoku_Solver.ipynb
+[W 200720 12:22:52 inrepo:48] No such kernel kaggle, falling back on kernel language=python
+[W 200720 12:22:52 inrepo:60] Using kernel python3 to provide language: python
+[I 200720 12:22:52 execute:404] Executing notebook with kernel: python3
+[I 200720 12:22:53 inrepo:79] Saving exported notebook to /io/notebooks/Sudoku_Solver.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

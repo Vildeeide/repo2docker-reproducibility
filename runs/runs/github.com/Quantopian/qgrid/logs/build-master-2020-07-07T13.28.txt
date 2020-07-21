@@ -1,0 +1,274 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T13.28h_9_i_z3/github.com/Quantopian/qgrid.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 78c4b7a62055
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 62007af61c87
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 58a00e67ee84
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 2eabe4a6a536
+Removing intermediate container 2eabe4a6a536
+ ---> 5d842059bd95
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 64fa9e6eec49
+Removing intermediate container 64fa9e6eec49
+ ---> 13e491075271
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 1d4f6611f2b4
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mRequirement already satisfied: notebook>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (6.0.3)
+Collecting pandas>=0.18.0
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Requirement already satisfied: ipywidgets>=7.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 3)) (7.5.1)
+Requirement already satisfied: traitlets>=4.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (4.3.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (0.7.1)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (0.2.0)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (18.1.1)
+Requirement already satisfied: jupyter-core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (4.6.1)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (2.11.0)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (6.0.3)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (5.1.4)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (5.3.4)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (5.0.4)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (5.6.1)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->-r requirements.txt (line 1)) (0.8.3)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.18.0->-r requirements.txt (line 2)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting numpy>=1.13.3
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->-r requirements.txt (line 3)) (3.5.1)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->-r requirements.txt (line 3)) (7.11.1)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=4.0.0->-r requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=4.0.0->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=4.0.0->-r requirements.txt (line 1)) (1.1.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook>=4.0.0->-r requirements.txt (line 1)) (3.2.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (0.8.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (1.4.2)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (2.5.2)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (0.4.4)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (0.3)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (3.0.3)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.1.0)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.16.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (4.8.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.7.5)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (45.1.0.post20200119)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->-r requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->-r requirements.txt (line 1)) (0.15.7)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.0.0->-r requirements.txt (line 1)) (0.5.1)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.1.8)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->-r requirements.txt (line 3)) (0.6.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->-r requirements.txt (line 1)) (2.1.0)
+Installing collected packages: pytz, numpy, pandas
+Successfully installed numpy-1.19.0 pandas-1.0.5 pytz-2020.1
+Removing intermediate container 1d4f6611f2b4
+ ---> 4679539829d2
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 408f81b9bedb
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: notebook>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qgrid==1.3.1) (6.0.3)
+Requirement already satisfied: pandas>=0.18.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qgrid==1.3.1) (1.0.5)
+Requirement already satisfied: ipywidgets>=7.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qgrid==1.3.1) (7.5.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (1.5.0)
+Requirement already satisfied: jupyter-core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (4.6.1)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (0.2.0)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (18.1.1)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (0.7.1)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (6.0.3)
+Requirement already satisfied: traitlets>=4.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (4.3.3)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (5.0.4)
+Requirement already satisfied: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (5.3.4)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (5.6.1)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (2.11.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (0.8.3)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.0.0->qgrid==1.3.1) (5.1.4)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.18.0->qgrid==1.3.1) (2020.1)
+Requirement already satisfied: numpy>=1.13.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.18.0->qgrid==1.3.1) (1.19.0)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.18.0->qgrid==1.3.1) (2.8.1)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->qgrid==1.3.1) (7.11.1)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->qgrid==1.3.1) (3.5.1)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=4.0.0->qgrid==1.3.1) (4.4.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook>=4.0.0->qgrid==1.3.1) (1.14.0)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook>=4.0.0->qgrid==1.3.1) (3.2.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (0.8.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (1.4.2)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (0.6.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (3.1.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (0.4.4)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (2.5.2)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.0.0->qgrid==1.3.1) (0.3)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=4.0.0->qgrid==1.3.1) (1.1.1)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.7.5)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (45.1.0.post20200119)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.16.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (3.0.3)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (4.8.0)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.1.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->qgrid==1.3.1) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->qgrid==1.3.1) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->qgrid==1.3.1) (1.5.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.0.0->qgrid==1.3.1) (0.5.1)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.1.8)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.0.0->qgrid==1.3.1) (0.6.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->notebook>=4.0.0->qgrid==1.3.1) (2.1.0)
+Building wheels for collected packages: qgrid
+  Building wheel for qgrid (setup.py): started
+  Building wheel for qgrid (setup.py): finished with status 'done'
+  Created wheel for qgrid: filename=qgrid-1.3.1-py2.py3-none-any.whl size=1807366 sha256=a870d4780b19feea24a2a4c14d51ba57e22c088373b81f08e10a7b15e6cf2d6f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xoucig5i/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built qgrid
+Installing collected packages: qgrid
+Successfully installed qgrid-1.3.1
+Removing intermediate container 408f81b9bedb
+ ---> 8817f3fd511b
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 8ec1c7e3fda0
+Removing intermediate container 8ec1c7e3fda0
+ ---> c4b2109c4f7a
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 2cf3fea02064
+Removing intermediate container 2cf3fea02064
+ ---> 2225e6dded8e
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in d0ecbd116f38
+Removing intermediate container d0ecbd116f38
+ ---> 4bc62379ba65
+Step 47/50 : USER ${NB_USER}
+ ---> Running in ffb96070421c
+Removing intermediate container ffb96070421c
+ ---> 248f1446284f
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 2aaccd9409fc
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 1ddf1652d772
+Removing intermediate container 1ddf1652d772
+ ---> 219ed8f8f306
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 78fdbf78f281
+Removing intermediate container 78fdbf78f281
+ ---> a11d7e64cff9
+{"aux": {"ID": "sha256:a11d7e64cff9026c3210a854c9933b55493cb759f67e88252a4ad0ff93495422"}}Successfully built a11d7e64cff9
+Successfully tagged r2d-test-github.com-quantopian-qgrid:877b420

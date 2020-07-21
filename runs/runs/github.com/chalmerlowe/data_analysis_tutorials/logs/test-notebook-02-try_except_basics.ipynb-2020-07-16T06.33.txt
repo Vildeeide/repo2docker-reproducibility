@@ -1,0 +1,58 @@
+[I 200716 06:33:35 inrepo:36] Testing notebook 02/try_except_basics.ipynb
+[I 200716 06:33:35 inrepo:45] Found kernel python3
+[I 200716 06:33:36 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# To see this in action, let's set up a scenario:
+
+dob = 1990
+year1 = 2009
+year2 = '2010'
+
+if year1 - dob >= 21:
+    print('Customer is adult age')
+
+elif year2 - dob >= 21:
+    print('Customer is adult age')  
+    
+else:
+    print("Customer age unknown")
+    
+# The error message is somewhat complicated to read, but starting at the bottom, we see...
+#     Python returned a TypeError. We tried to do something and the 
+#     Type of object we used was the wrong object.
+#     The error message indicates that we tried to use the wrong type 
+#     of operands for the minus (-) operator
+#     namely we tried to subtract an integer from a string
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-1-19cfc76ef825>[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m     [0mprint[0m[0;34m([0m[0;34m'Customer is adult age'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;34m[0m[0m
+[0;32m---> 10[0;31m [0;32melif[0m [0myear2[0m [0;34m-[0m [0mdob[0m [0;34m>=[0m [0;36m21[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m     [0mprint[0m[0;34m([0m[0;34m'Customer is adult age'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;34m[0m[0m
+
+[0;31mTypeError[0m: unsupported operand type(s) for -: 'str' and 'int'
+TypeError: unsupported operand type(s) for -: 'str' and 'int'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

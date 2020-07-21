@@ -1,0 +1,5 @@
+[I 200703 06:38:37 inrepo:35] Testing notebook eigenvalue/Householder Similarity Transforms.ipynb
+[I 200703 06:38:38 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:39 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Householder Similarity Transforms.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

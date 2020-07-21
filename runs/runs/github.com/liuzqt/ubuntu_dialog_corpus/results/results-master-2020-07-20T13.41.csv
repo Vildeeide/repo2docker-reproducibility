@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/liuzqt/ubuntu_dialog_corpus,master,a554580,2017-11-12T15:32:18-05:00,build,build,False,github.com/liuzqt/ubuntu_dialog_corpus/logs/build-master-2020-07-20T13.41.txt,2020-07-20T13:41:02.026250,2020-07-20T13.41,0.11.0

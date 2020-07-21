@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/dnouri/nolearn,master,8f44731,2019-11-05T09:36:00+01:00,build,build,False,github.com/dnouri/nolearn/logs/build-master-2020-07-06T07.17.txt,2020-07-06T07:17:28.794128,2020-07-06T07.17,0.11.0

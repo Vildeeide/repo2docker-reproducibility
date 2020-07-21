@@ -1,0 +1,5 @@
+[I 200703 11:32:41 inrepo:35] Testing notebook notebooks/fig_4_frequency_dependence_on_external_field.ipynb
+[I 200703 11:32:42 execute:404] Executing notebook with kernel: python3
+[I 200703 11:32:47 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/fig_4_frequency_dependence_on_external_field.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

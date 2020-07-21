@@ -1,0 +1,6 @@
+[I 200707 10:15:56 inrepo:36] Testing notebook Assignments/Assignment03 -- Energy budget in CESM.ipynb
+[I 200707 10:15:57 inrepo:45] Found kernel python3
+[I 200707 10:15:57 execute:404] Executing notebook with kernel: python3
+[I 200707 10:16:07 inrepo:77] Saving exported notebook to /io/notebooks/Assignments/Assignment03 -- Energy budget in CESM.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

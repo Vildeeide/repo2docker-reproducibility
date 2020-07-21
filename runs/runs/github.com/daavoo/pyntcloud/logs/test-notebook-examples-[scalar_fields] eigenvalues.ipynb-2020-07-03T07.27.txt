@@ -1,0 +1,5 @@
+[I 200703 07:28:00 inrepo:35] Testing notebook examples/[scalar_fields] eigenvalues.ipynb
+[I 200703 07:28:01 execute:404] Executing notebook with kernel: python3
+[I 200703 07:28:12 inrepo:41] Saving exported notebook to /io/notebooks/examples/[scalar_fields] eigenvalues.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

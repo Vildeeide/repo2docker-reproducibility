@@ -1,0 +1,5 @@
+[I 200706 09:21:44 inrepo:35] Testing notebook misc/An Introduction to Sympy.ipynb
+[I 200706 09:21:45 execute:404] Executing notebook with kernel: python3
+[I 200706 09:21:49 inrepo:41] Saving exported notebook to /io/notebooks/misc/An Introduction to Sympy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

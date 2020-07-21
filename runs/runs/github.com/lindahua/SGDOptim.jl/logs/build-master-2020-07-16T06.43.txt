@@ -1,0 +1,34 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-16T06.43muajt777/github.com/lindahua/SGDOptim.jl.
+Traceback (most recent call last):
+  File "/usr/local/bin/jupyter-repo2docker", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/__main__.py", line 348, in main
+    r2d.start()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 743, in start
+    self.build()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 698, in build
+    picked_buildpack.render(), extra=dict(phase="building")
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/base.py", line 538, in render
+    for user, script in self.get_preassemble_scripts():
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/python/__init__.py", line 108, in get_preassemble_scripts
+    scripts = super().get_preassemble_scripts()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/conda/__init__.py", line 332, in get_preassemble_scripts
+    scripts.extend(self.get_env_scripts())
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/conda/__init__.py", line 273, in get_env_scripts
+    env_prefix = "${KERNEL_PYTHON_PREFIX}" if self.py2 else "${NB_PYTHON_PREFIX}"
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/conda/__init__.py", line 253, in py2
+    return self.python_version and self.python_version.split(".")[0] == "2"
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/julia/julia_require.py", line 22, in python_version
+    if V(self.julia_version) < V("0.7"):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/julia/julia_require.py", line 50, in julia_version
+    julia_version = self.minor_julias[".".join(julia_version_info)]
+KeyError: '0.3'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-lindahua-sgdoptim.jl:8be3085', '/tmp/r2d-test-2020-07-16T06.43muajt777/github.com/lindahua/SGDOptim.jl']' returned non-zero exit status 1.

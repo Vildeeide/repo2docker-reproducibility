@@ -1,0 +1,24 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-16T12.01ee7la374/github.com/zakiali/binder_firstcal.
+The legacy buildpack was removed in January 2020.
+Please see https://repo2docker.readthedocs.io/en/latest/configuration/index.html for alternative ways of configuring your repository.
+Traceback (most recent call last):
+  File "/usr/local/bin/jupyter-repo2docker", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/__main__.py", line 348, in main
+    r2d.start()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 743, in start
+    self.build()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 681, in build
+    if bp.detect():
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/legacy/__init__.py", line 35, in detect
+    raise RuntimeError("The legacy buildpack has been removed.")
+RuntimeError: The legacy buildpack has been removed.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-zakiali-binder_firstcal:035a412', '/tmp/r2d-test-2020-07-16T12.01ee7la374/github.com/zakiali/binder_firstcal']' returned non-zero exit status 1.

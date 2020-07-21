@@ -1,0 +1,3 @@
+[I 200715 09:25:48 inrepo:36] Testing notebook Bayes_chap_05/HMC_Gamma-for_Publish.ipynb
+[W 200715 09:25:49 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 09:25:49 inrepo:60] Using kernel python3 to provide language: python

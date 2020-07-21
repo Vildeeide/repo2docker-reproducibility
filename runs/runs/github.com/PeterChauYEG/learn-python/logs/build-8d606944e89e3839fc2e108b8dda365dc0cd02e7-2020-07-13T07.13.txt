@@ -1,0 +1,2639 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T07.13ro2elpjv/github.com/PeterChauYEG/learn-python.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> 9a8a0322e803
+Step 38/51 : USER root
+ ---> Running in 19fb5dde8438
+Removing intermediate container 19fb5dde8438
+ ---> 4e5748de3825
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in dc0e9418dc18
+Removing intermediate container dc0e9418dc18
+ ---> b511f87175b3
+Step 40/51 : USER ${NB_USER}
+ ---> Running in f95926f8a4d7
+Removing intermediate container f95926f8a4d7
+ ---> 097507c7bec7
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Running in 0448e93586eb
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy==1.7
+  Downloading numpy-1.7.0.tar.gz (2.8 MB)
+Collecting matplotlib==2.1
+  Downloading matplotlib-2.1.0.tar.gz (35.7 MB)
+Requirement already satisfied: six>=1.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib==2.1->-r binder/requirements.txt (line 2)) (1.14.0)
+Requirement already satisfied: python-dateutil>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib==2.1->-r binder/requirements.txt (line 2)) (2.8.1)
+Collecting pytz
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Building wheels for collected packages: numpy, matplotlib
+  Building wheel for numpy (setup.py): started
+  Building wheel for numpy (setup.py): still running...
+  Building wheel for numpy (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-zokbnf3o/numpy/setup.py'"'"'; __file__='"'"'/tmp/pip-install-zokbnf3o/numpy/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-pt_zjbjx
+       cwd: /tmp/pip-install-zokbnf3o/numpy/
+  Complete output (1260 lines):
+  Converting to Python3 via 2to3...
+  Running from numpy source directory.
+  Warning: 'classifiers' should be a list, got type 'filter'
+  non-existing path in 'numpy/distutils': 'site.cfg'
+  F2PY Version 2
+  blas_opt_info:
+  blas_mkl_info:
+    libraries mkl,vml,guide not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+  atlas_blas_threads_info:
+  Setting PTATLAS=ATLAS
+    libraries ptf77blas,ptcblas,atlas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+  atlas_blas_info:
+    libraries f77blas,cblas,atlas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1494: UserWarning:
+      Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [atlas]) or by setting
+      the ATLAS environment variable.
+    warnings.warn(AtlasNotFoundError.__doc__)
+  blas_info:
+    libraries blas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1503: UserWarning:
+      Blas (http://www.netlib.org/blas/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [blas]) or by setting
+      the BLAS environment variable.
+    warnings.warn(BlasNotFoundError.__doc__)
+  blas_src_info:
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1506: UserWarning:
+      Blas (http://www.netlib.org/blas/) sources not found.
+      Directories to search for the sources can be specified in the
+      numpy/distutils/site.cfg file (section [blas_src]) or by setting
+      the BLAS_SRC environment variable.
+    warnings.warn(BlasSrcNotFoundError.__doc__)
+    NOT AVAILABLE
+  
+  non-existing path in 'numpy/lib': 'benchmarks'
+  lapack_opt_info:
+  lapack_mkl_info:
+  mkl_info:
+    libraries mkl,vml,guide not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+    NOT AVAILABLE
+  
+  atlas_threads_info:
+  Setting PTATLAS=ATLAS
+    libraries ptf77blas,ptcblas,atlas not found in /srv/conda/envs/notebook/lib
+    libraries lapack_atlas not found in /srv/conda/envs/notebook/lib
+    libraries ptf77blas,ptcblas,atlas not found in /usr/local/lib
+    libraries lapack_atlas not found in /usr/local/lib
+    libraries ptf77blas,ptcblas,atlas not found in /usr/lib
+    libraries lapack_atlas not found in /usr/lib
+    libraries ptf77blas,ptcblas,atlas not found in /usr/lib/x86_64-linux-gnu
+    libraries lapack_atlas not found in /usr/lib/x86_64-linux-gnu
+  <class 'numpy.distutils.system_info.atlas_threads_info'>
+    NOT AVAILABLE
+  
+  atlas_info:
+    libraries f77blas,cblas,atlas not found in /srv/conda/envs/notebook/lib
+    libraries lapack_atlas not found in /srv/conda/envs/notebook/lib
+    libraries f77blas,cblas,atlas not found in /usr/local/lib
+    libraries lapack_atlas not found in /usr/local/lib
+    libraries f77blas,cblas,atlas not found in /usr/lib
+    libraries lapack_atlas not found in /usr/lib
+    libraries f77blas,cblas,atlas not found in /usr/lib/x86_64-linux-gnu
+    libraries lapack_atlas not found in /usr/lib/x86_64-linux-gnu
+  <class 'numpy.distutils.system_info.atlas_info'>
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1408: UserWarning:
+      Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [atlas]) or by setting
+      the ATLAS environment variable.
+    warnings.warn(AtlasNotFoundError.__doc__)
+  lapack_info:
+    libraries lapack not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1419: UserWarning:
+      Lapack (http://www.netlib.org/lapack/) libraries not found.
+      Directories to search for the libraries can be specified in the
+      numpy/distutils/site.cfg file (section [lapack]) or by setting
+      the LAPACK environment variable.
+    warnings.warn(LapackNotFoundError.__doc__)
+  lapack_src_info:
+    NOT AVAILABLE
+  
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1422: UserWarning:
+      Lapack (http://www.netlib.org/lapack/) sources not found.
+      Directories to search for the sources can be specified in the
+      numpy/distutils/site.cfg file (section [lapack_src]) or by setting
+      the LAPACK_SRC environment variable.
+    warnings.warn(LapackSrcNotFoundError.__doc__)
+    NOT AVAILABLE
+  
+  Warning: 'classifiers' should be a list, got type 'filter'
+  running bdist_wheel
+  running build
+  running config_cc
+  unifing config_cc, config, build_clib, build_ext, build commands --compiler options
+  running config_fc
+  unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
+  running build_src
+  build_src
+  building py_modules sources
+  building library "npymath" sources
+  customize Gnu95FCompiler
+  Could not locate executable gfortran
+  Could not locate executable f95
+  customize IntelFCompiler
+  Could not locate executable ifort
+  Could not locate executable ifc
+  customize LaheyFCompiler
+  Could not locate executable lf95
+  customize PGroupFCompiler
+  Could not locate executable pgfortran
+  customize AbsoftFCompiler
+  Could not locate executable f90
+  Could not locate executable f77
+  customize NAGFCompiler
+  customize VastFCompiler
+  customize CompaqFCompiler
+  Could not locate executable fort
+  customize IntelItaniumFCompiler
+  Could not locate executable efort
+  Could not locate executable efc
+  customize IntelEM64TFCompiler
+  customize GnuFCompiler
+  Could not locate executable g77
+  customize G95FCompiler
+  Could not locate executable g95
+  customize PathScaleFCompiler
+  Could not locate executable pathf95
+  don't know how to compile Fortran code on platform 'posix'
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+  gcc: _configtest.c
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+  success!
+  removing: _configtest.c _configtest.o _configtest
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+  gcc: _configtest.c
+  _configtest.c:1:5: warning: conflicting types for built-in function ‘exp’ [-Wbuiltin-declaration-mismatch]
+   int exp (void);
+       ^~~
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+  /srv/conda/envs/notebook/compiler_compat/ld: _configtest.o: in function `main':
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/_configtest.c:6: undefined reference to `exp'
+  collect2: error: ld returned 1 exit status
+  /srv/conda/envs/notebook/compiler_compat/ld: _configtest.o: in function `main':
+  /tmp/pip-install-zokbnf3o/numpy/build/py3k/_configtest.c:6: undefined reference to `exp'
+  collect2: error: ld returned 1 exit status
+  failure.
+  removing: _configtest.c _configtest.o
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+  gcc: _configtest.c
+  _configtest.c:1:5: warning: conflicting types for built-in function ‘exp’ [-Wbuiltin-declaration-mismatch]
+   int exp (void);
+       ^~~
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -lm -o _configtest
+  success!
+  removing: _configtest.c _configtest.o _configtest
+  building library "npysort" sources
+  building extension "numpy.core._dummy" sources
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+  executing numpy/core/code_generators/generate_numpy_api.py
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+  numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h']
+  building extension "numpy.core.multiarray" sources
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+  executing numpy/core/code_generators/generate_numpy_api.py
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+  numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h']
+  building extension "numpy.core.umath" sources
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+  executing numpy/core/code_generators/generate_ufunc_api.py
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h' to sources.
+    adding 'build/src.linux-x86_64-3.7/numpy/core/src/umath' to include_dirs.
+  numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/src/umath/funcs.inc', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h']
+  building extension "numpy.core.scalarmath" sources
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+  executing numpy/core/code_generators/generate_numpy_api.py
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+  executing numpy/core/code_generators/generate_ufunc_api.py
+    adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h' to sources.
+  numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h']
+  building extension "numpy.core._dotblas" sources
+  building extension "numpy.core.umath_tests" sources
+  building extension "numpy.core.multiarray_tests" sources
+  building extension "numpy.lib._compiled_base" sources
+  building extension "numpy.numarray._capi" sources
+  building extension "numpy.fft.fftpack_lite" sources
+  building extension "numpy.linalg.lapack_lite" sources
+  ### Warning:  Using unoptimized lapack ###
+    adding 'numpy/linalg/lapack_litemodule.c' to sources.
+    adding 'numpy/linalg/python_xerbla.c' to sources.
+    adding 'numpy/linalg/zlapack_lite.c' to sources.
+    adding 'numpy/linalg/dlapack_lite.c' to sources.
+    adding 'numpy/linalg/blas_lite.c' to sources.
+    adding 'numpy/linalg/dlamch.c' to sources.
+    adding 'numpy/linalg/f2c_lite.c' to sources.
+  building extension "numpy.random.mtrand" sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+  gcc: _configtest.c
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+  _configtest
+  failure.
+  removing: _configtest.c _configtest.o _configtest
+  building data_files sources
+  build_src: building npy-pkg config files
+  running build_py
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/numpy
+  copying numpy/add_newdocs.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/__init__.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/dual.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/setup.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/ctypeslib.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/matlib.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/setupscons.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/_import_tools.py -> build/lib.linux-x86_64-3.7/numpy
+  copying numpy/version.py -> build/lib.linux-x86_64-3.7/numpy
+  copying build/src.linux-x86_64-3.7/numpy/__config__.py -> build/lib.linux-x86_64-3.7/numpy
+  creating build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/unixccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/line_endings.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/info.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/mingw32ccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/log.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/numpy_distribution.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/npy_pkg_config.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/environment.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/compat.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/from_template.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/cpuinfo.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/core.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/setup.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/intelccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/system_info.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/pathccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/__version__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/extension.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/conv_template.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/lib2def.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/misc_util.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/exec_command.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/interactive.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying numpy/distutils/ccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  copying build/src.linux-x86_64-3.7/numpy/distutils/__config__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+  creating build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/install.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build_clib.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build_scripts.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build_py.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/install_clib.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/scons.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/install_data.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/install_headers.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/autodist.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/egg_info.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/sdist.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/config_compiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/develop.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/config.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/bdist_rpm.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build_ext.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build_src.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  copying numpy/distutils/command/build.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+  creating build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/intel.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/absoft.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/vast.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/pg.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/gnu.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/none.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/ibm.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/hpux.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/lahey.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/nag.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/compaq.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/sun.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/pathf95.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/g95.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  copying numpy/distutils/fcompiler/mips.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+  creating build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/__init__.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/nulltester.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/print_coercion_tables.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/utils.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/setup.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/numpytest.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/noseclasses.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/nosetester.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  copying numpy/testing/decorators.py -> build/lib.linux-x86_64-3.7/numpy/testing
+  creating build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/info.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/__init__.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/common_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/f2py_testing.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/setup.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/diagnose.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/__version__.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/auxfuncs.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/cfuncs.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/cb_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/f2py2e.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/capi_maps.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/f90mod_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/func2subr.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/crackfortran.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  copying numpy/f2py/use_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+  creating build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/setup_common.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/records.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/defchararray.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/info.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/__init__.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/shape_base.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/setup.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/getlimits.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/_internal.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/fromnumeric.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/_methods.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/numerictypes.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/arrayprint.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/scons_support.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/machar.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/function_base.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/memmap.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/numeric.py -> build/lib.linux-x86_64-3.7/numpy/core
+  copying numpy/core/code_generators/generate_numpy_api.py -> build/lib.linux-x86_64-3.7/numpy/core
+  creating build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/stride_tricks.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/info.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/__init__.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/user_array.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/recfunctions.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/shape_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/utils.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/index_tricks.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/type_check.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/_iotools.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/setup.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/format.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/financial.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/scimath.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/twodim_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/_datasource.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/polynomial.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/arraypad.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/ufunclike.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/arrayterator.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/npyio.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/function_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  copying numpy/lib/arraysetops.py -> build/lib.linux-x86_64-3.7/numpy/lib
+  creating build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/misc.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/array_printer.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/__init__.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/user_array.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/fft.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/linear_algebra.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/compat.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/arrayfns.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/random_array.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/alter_code2.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/mlab.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/ma.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/functions.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/setup.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/rng_stats.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/rng.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/precision.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/fix_default_axis.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/typeconv.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/alter_code1.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  copying numpy/oldnumeric/matrix.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+  creating build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/nd_image.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/__init__.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/fft.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/linear_algebra.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/convolve.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/compat.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/random_array.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/util.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/alter_code2.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/mlab.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/ma.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/functions.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/setup.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/numerictypes.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/session.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/image.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/alter_code1.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  copying numpy/numarray/matrix.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+  creating build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/fftpack.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/info.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/__init__.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/helper.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/setup.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  copying numpy/fft/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/fft
+  creating build/lib.linux-x86_64-3.7/numpy/linalg
+  copying numpy/linalg/info.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+  copying numpy/linalg/__init__.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+  copying numpy/linalg/setup.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+  copying numpy/linalg/linalg.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+  copying numpy/linalg/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+  creating build/lib.linux-x86_64-3.7/numpy/random
+  copying numpy/random/info.py -> build/lib.linux-x86_64-3.7/numpy/random
+  copying numpy/random/__init__.py -> build/lib.linux-x86_64-3.7/numpy/random
+  copying numpy/random/setup.py -> build/lib.linux-x86_64-3.7/numpy/random
+  copying numpy/random/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/random
+  creating build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/__init__.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/timer_comparison.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/core.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/bench.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/setup.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/extras.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/mrecords.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/testutils.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  copying numpy/ma/version.py -> build/lib.linux-x86_64-3.7/numpy/ma
+  creating build/lib.linux-x86_64-3.7/numpy/matrixlib
+  copying numpy/matrixlib/__init__.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+  copying numpy/matrixlib/setup.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+  copying numpy/matrixlib/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+  copying numpy/matrixlib/defmatrix.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+  creating build/lib.linux-x86_64-3.7/numpy/compat
+  copying numpy/compat/__init__.py -> build/lib.linux-x86_64-3.7/numpy/compat
+  copying numpy/compat/_inspect.py -> build/lib.linux-x86_64-3.7/numpy/compat
+  copying numpy/compat/setup.py -> build/lib.linux-x86_64-3.7/numpy/compat
+  copyi[0m[91mng numpy/compat/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/compat
+  copying numpy/compat/py3k.py -> build/lib.linux-x86_64-3.7/numpy/compat
+  creating build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/__init__.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/polyutils.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/laguerre.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/hermite.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/legendre.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/setup.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/chebyshev.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/polynomial.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/polytemplate.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  copying numpy/polynomial/hermite_e.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+  creating build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/misc.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/__init__.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/broadcasting.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/creation.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/performance.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/jargon.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/howtofind.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/io.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/internals.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/glossary.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/methods_vs_functions.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/subclassing.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/indexing.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/basics.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/constants.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/byteswapping.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  copying numpy/doc/structured_arrays.py -> build/lib.linux-x86_64-3.7/numpy/doc
+  running build_clib
+  customize UnixCCompiler
+  customize UnixCCompiler using build_clib
+  building 'npymath' library
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7
+  creating build/temp.linux-x86_64-3.7/build
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/npymath
+  creating build/temp.linux-x86_64-3.7/numpy
+  creating build/temp.linux-x86_64-3.7/numpy/core
+  creating build/temp.linux-x86_64-3.7/numpy/core/src
+  creating build/temp.linux-x86_64-3.7/numpy/core/src/npymath
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/npy_math.c
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/ieee754.c
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/npy_math_complex.c
+  gcc: numpy/core/src/npymath/halffloat.c
+  ar: adding 4 object files to build/temp.linux-x86_64-3.7/libnpymath.a
+  building 'npysort' library
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/npysort
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/quicksort.c
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/mergesort.c
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/heapsort.c
+  ar: adding 3 object files to build/temp.linux-x86_64-3.7/libnpysort.a
+  running build_ext
+  customize UnixCCompiler
+  customize UnixCCompiler using build_ext
+  building 'numpy.core._dummy' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/core/src/dummymodule.c
+  In file included from numpy/core/include/numpy/ndarrayobject.h:26:0,
+                   from numpy/core/include/numpy/npy_3kcompat.h:23,
+                   from numpy/core/src/private/npy_pycompat.h:4,
+                   from numpy/core/src/dummymodule.c:12:
+  build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h:1594:1: warning: ‘_import_array’ defined but not used [-Wunused-function]
+   _import_array(void)
+   ^~~~~~~~~~~~~
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/dummymodule.o -Lbuild/temp.linux-x86_64-3.7 -lm -o build/lib.linux-x86_64-3.7/numpy/core/_dummy.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.core.multiarray' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/core/src/multiarray
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/core/src/multiarray/multiarraymodule_onefile.c
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:0:
+  numpy/core/src/multiarray/common.c: In function ‘_IsWriteable’:
+  numpy/core/src/multiarray/common.c:676:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyObject_AsWriteBuffer(base, &dummy, &n) < 0) {
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/scalartypes.c.src:25:0,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:
+  numpy/core/src/multiarray/_datetime.h: At top level:
+  numpy/core/src/multiarray/_datetime.h:13:1: warning: function declaration isn’t a prototype [-Wstrict-prototypes]
+   numpy_pydatetime_import();
+   ^~~~~~~~~~~~~~~~~~~~~~~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:91:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  numpy/core/src/multiarray/scalartypes.c.src: In function ‘gentype_alloc’:
+  /srv/conda/envs/notebook/include/python3.7m/objimpl.h:144:66: warning: right-hand operand of comma expression has no effect [-Wunused-value]
+       ( Py_TYPE(op) = (typeobj), _Py_NewReference((PyObject *)(op)), (op) )
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+  numpy/core/src/multiarray/scalartypes.c.src:119:9: note: in expansion of macro ‘PyObject_INIT’
+           PyObject_INIT(obj, type);
+           ^~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+  numpy/core/src/multiarray/scalartypes.c.src: In function ‘gentype_reduce’:
+  numpy/core/src/multiarray/scalartypes.c.src:1703:5: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyObject_AsReadBuffer(self, (const void **)&buffer, &buflen)<0) {
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+  numpy/core/src/multiarray/scalartypes.c.src: In function ‘datetime_arrtype_new’:
+  numpy/core/src/multiarray/scalartypes.c.src:2657:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (ret->obmeta.base == -1) {
+                                ^~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+  numpy/core/src/multiarray/scalartypes.c.src: In function ‘timedelta_arrtype_new’:
+  numpy/core/src/multiarray/scalartypes.c.src:2657:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (ret->obmeta.base == -1) {
+                                ^~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:13:0:
+  numpy/core/src/multiarray/datetime.c: In function ‘parse_datetime_extended_unit_from_string’:
+  numpy/core/src/multiarray/datetime.c:781:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (out_meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c: In function ‘get_datetime_units_factor’:
+  numpy/core/src/multiarray/datetime.c:1076:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       while (littlebase > unit) {
+                         ^
+  numpy/core/src/multiarray/datetime.c: In function ‘convert_datetime_metadata_tuple_to_datetime_metadata’:
+  numpy/core/src/multiarray/datetime.c:1849:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (out_meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobject_to_datetime’:
+  numpy/core/src/multiarray/datetime.c:2386:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2400:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1 || meta->base == NPY_FR_GENERIC) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2413:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2452:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2484:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+               if (meta->base == -1) {
+                              ^~
+  numpy/core/src/multiarray/datetime.c:2511:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobject_to_timedelta’:
+  numpy/core/src/multiarray/datetime.c:2586:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+               if (meta->base == -1) {
+                              ^~
+  numpy/core/src/multiarray/datetime.c:2597:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2610:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2649:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2718:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c:2772:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (meta->base == -1) {
+                          ^~
+  numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobjects_to_datetimes’:
+  numpy/core/src/multiarray/datetime.c:3108:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (inout_meta->base == -1) {
+                            ^~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:14:0:
+  numpy/core/src/multiarray/datetime_strings.c: In function ‘parse_iso_8601_datetime’:
+  numpy/core/src/multiarray/datetime_strings.c:476:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                    ^~
+  numpy/core/src/multiarray/datetime_strings.c:519:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                    ^~
+  numpy/core/src/multiarray/datetime_strings.c:924:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                ^~
+  numpy/core/src/multiarray/datetime_strings.c: In function ‘get_datetime_iso_8601_strlen’:
+  numpy/core/src/multiarray/datetime_strings.c:955:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (base == -1) {
+                ^~
+  numpy/core/src/multiarray/datetime_strings.c: In function ‘make_iso_8601_datetime’:
+  numpy/core/src/multiarray/datetime_strings.c:1119:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+       if (base == -1) {
+                ^~
+  numpy/core/src/multiarray/datetime_strings.c: In function ‘array_datetime_as_string’:
+  numpy/core/src/multiarray/datetime_strings.c:1600:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+               if (unit == -1) {
+                        ^~
+  numpy/core/src/multiarray/datetime_strings.c:1607:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (unit != -1 && !can_cast_datetime64_units(meta->base, unit, casting)) {
+                    ^~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:17:0:
+  numpy/core/src/multiarray/arraytypes.c.src: In function ‘VOID_setitem’:
+  numpy/core/src/multiarray/arraytypes.c.src:741:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+           res = PyObject_AsReadBuffer(op, &buffer, &buflen);
+           ^~~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+  numpy/core/src/multiarray/ctors.c: In function ‘PyArray_FromInterface’:
+  numpy/core/src/multiarray/ctors.c:2126:9: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+           res = PyObject_AsWriteBuffer(base, (void **)&data, &buffer_len);
+           ^~~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+  numpy/core/src/multiarray/ctors.c:2129:13: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+               res = PyObject_AsReadBuffer(
+               ^~~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+  numpy/core/src/multiarray/ctors.c: In function ‘PyArray_FromBuffer’:
+  numpy/core/src/multiarray/ctors.c:3269:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyObject_AsWriteBuffer(buf, (void *)&data, &ts) == -1) {
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+  numpy/core/src/multiarray/ctors.c:3272:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+           if (PyObject_AsReadBuffer(buf, (void *)&data, &ts) == -1) {
+           ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:26:0:
+  numpy/core/src/multiarray/mapping.c: In function ‘array_ass_sub’:
+  numpy/core/src/multiarray/mapping.c:1294:20: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+               op_arr = op;
+                      ^
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+  numpy/core/src/multiarray/getset.c: In function ‘array_strides_set’:
+  numpy/core/src/multiarray/getset.c:131:5: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyArray_BASE(new) && PyObject_AsReadBuffer(PyArray_BASE(new),
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+  numpy/core/src/multiarray/getset.c: In function ‘array_data_set’:
+  numpy/core/src/multiarray/getset.c:332:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyObject_AsWriteBuffer(op, &buf, &buf_len) < 0) {
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+  numpy/core/src/multiarray/getset.c:334:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+           if (PyObject_AsReadBuffer(op, (const void **)&buf, &buf_len) < 0) {
+           ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:38:0:
+  numpy/core/src/multiarray/conversion_utils.c: In function ‘PyArray_BufferConverter’:
+  numpy/core/src/multiarray/conversion_utils.c:152:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+       if (PyObject_AsWriteBuffer(obj, &(buf->ptr), &buflen) < 0) {
+       ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:38:0:
+  numpy/core/src/multiarray/conversion_utils.c:155:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+           if (PyObject_AsReadBuffer(obj, (const void **)&(buf->ptr),
+           ^~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:41:0:
+  numpy/core/src/multiarray/nditer_constr.c: In function ‘npyiter_prepare_one_operand’:
+  numpy/core/src/multiarray/nditer_constr.c:1017:20: warning: unused variable ‘tmp’ [-Wunused-variable]
+           npy_uint32 tmp;
+                      ^~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:42:0:
+  numpy/core/src/multiarray/nditer_api.c: In function ‘npyiter_copy_from_buffers’:
+  numpy/core/src/multiarray/nditer_api.c:1837:12: warning: unused variable ‘ptrs’ [-Wunused-variable]
+       char **ptrs = NBF_PTRS(bufferdata), **ad_ptrs = NAD_PTRS(axisdata);
+              ^~~~
+  numpy/core/src/multiarray/nditer_api.c:1833:17: warning: unused variable ‘buffersize’ [-Wunused-variable]
+                   buffersize = NBF_BUFFERSIZE(bufferdata);
+                   ^~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:44:0:
+  numpy/core/src/multiarray/nditer_pywrap.c: In function ‘npyiter_subscript’:
+  numpy/core/src/multiarray/nditer_pywrap.c:2254:32: warning: passing argument 1 of ‘PySlice_GetIndices’ from incompatible pointer type [-Wincompatible-pointer-types]
+           if (PySlice_GetIndices((PySliceObject *)op,
+                                  ^
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:120:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/sliceobject.h:41:17: note: expected ‘PyObject * {aka struct _object *}’ but argument is of type ‘PySliceObject * {aka struct <anonymous> *}’
+   PyAPI_FUNC(int) PySlice_GetIndices(PyObject *r, Py_ssize_t length,
+                   ^~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:44:0:
+  numpy/core/src/multiarray/nditer_pywrap.c: In function ‘npyiter_ass_subscript’:
+  numpy/core/src/multiarray/nditer_pywrap.c:2304:32: warning: passing argument 1 of ‘PySlice_GetIndices’ from incompatible pointer type [-Wincompatible-pointer-types]
+           if (PySlice_GetIndices((PySliceObject *)op,
+                                  ^
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:120:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/sliceobject.h:41:17: note: expected ‘PyObject * {aka struct _object *}’ but argument is of type ‘PySliceObject * {aka struct <anonymous> *}’
+   PyAPI_FUNC(int) PySlice_GetIndices(PyObject *r, Py_ssize_t length,
+                   ^~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:49:0:
+  numpy/core/src/multiarray/array_assign_scalar.c: In function ‘PyArray_AssignRawScalar’:
+  numpy/core/src/multiarray/array_assign_scalar.c:232:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+           if (sizeof(scalarbuffer) >= PyArray_DESCR(dst)->elsize) {
+                                    ^~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:50:0:
+  numpy/core/src/multiarray/array_assign_array.c: In function ‘PyArray_AssignArray’:
+  numpy/core/src/multiarray/array_assign_array.c:384:1: warning: label ‘finish’ defined but not used [-Wunused-label]
+   finish:
+   ^~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:51:0:
+  numpy/core/src/multiarray/ucsnarrow.c: In function ‘PyUnicode_FromUCS4’:
+  numpy/core/src/multiarray/ucsnarrow.c:138:56: warning: pointer targets in passing argument 1 of ‘PyUnicode_FromUnicode’ differ in signedness [-Wpointer-sign]
+           ret = (PyUnicodeObject *)PyUnicode_FromUnicode(buf, (Py_ssize_t) ucs4len);
+                                                          ^~~
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:99:0,
+                   from numpy/core/src/multiarray/common.c:2,
+                   from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+  /srv/conda/envs/notebook/include/python3.7m/unicodeobject.h:688:23: note: expected ‘const Py_UNICODE * {aka const int *}’ but argument is of type ‘npy_ucs4 * {aka unsigned int *}’
+   PyAPI_FUNC(PyObject*) PyUnicode_FromUnicode(
+                         ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:57:0:
+  numpy/core/src/multiarray/multiarraymodule.c: In function ‘PyArray_ConcatenateArrays’:
+  numpy/core/src/multiarray/multiarraymodule.c:341:14: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+       if (ndim == 1 & axis != 0) {
+           ~~~~~^~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:51:0:
+  At top level:
+  numpy/core/src/multiarray/ucsnarrow.c:65:1: warning: ‘PyUCS2Buffer_AsUCS4’ defined but not used [-Wunused-function]
+   PyUCS2Buffer_AsUCS4(Py_UNICODE *ucs2, npy_ucs4 *ucs4, int ucs2len, int ucs4len)
+   ^~~~~~~~~~~~~~~~~~~
+  numpy/core/src/multiarray/ucsnarrow.c:33:1: warning: ‘PyUCS2Buffer_FromUCS4’ defined but not used [-Wunused-function]
+   PyUCS2Buffer_FromUCS4(Py_UNICODE *ucs2, npy_ucs4 *ucs4, int ucs4length)
+   ^~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:32:0:
+  numpy/core/src/multiarray/convert.c:474:1: warning: ‘PyArray_AssignOne’ defined but not used [-Wunused-function]
+   PyArray_AssignOne(PyArrayObject *dst,
+   ^~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:26:0:
+  numpy/core/src/multiarray/mapping.c:90:1: warning: ‘_array_ass_item’ defined but not used [-Wunused-function]
+   _array_ass_item(PyArrayObject *self, Py_ssize_t i, PyObject *v)
+   ^~~~~~~~~~~~~~~
+  In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:34:0:
+  numpy/core/src/multiarray/item_selection.c: In function ‘PyArray_Sort’:
+  numpy/core/src/multiarray/item_selection.c:941:12: warning: ‘orign’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+           if (axis != orign) { \
+              ^
+  numpy/core/src/multiarray/item_selection.c:957:26: note: ‘orign’ was declared here
+       int i, n, m, elsize, orign;
+                            ^~~~~
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/multiarray/multiarraymodule_onefile.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lnpysort -lm -o build/lib.linux-x86_64-3.7/numpy/core/multiarray.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.core.umath' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/core/src/umath
+  compile options: '-Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/core/src/umath/umathmodule_onefile.c
+  In file included from numpy/core/src/umath/umathmodule_onefile.c:3:0:
+  numpy/core/src/umath/ufunc_object.c: In function ‘get_ufunc_arguments’:
+  numpy/core/src/umath/ufunc_object.c:717:37: warning: unused variable ‘nout’ [-Wunused-variable]
+       int i, nargs, nin = ufunc->nin, nout = ufunc->nout;
+                                       ^~~~
+  In file included from numpy/core/src/umath/umathmodule_onefile.c:4:0:
+  num[0m[91mpy/core/src/umath/ufunc_type_resolution.c: In function ‘type_tuple_type_resolver’:
+  numpy/core/src/umath/ufunc_type_resolution.c:1979:63: warning: comparison of constant ‘0’ with boolean expression is always false [-Wbool-compare]
+           if (!PyBytes_AsStringAndSize(type_tup, &str, &length) < 0) {
+                                                                 ^
+  numpy/core/src/umath/ufunc_type_resolution.c:1979:63: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+  numpy/core/src/umath/ufunc_type_resolution.c:1979:13: note: add parentheses around left hand side expression to silence this warning
+           if (!PyBytes_AsStringAndSize(type_tup, &str, &length) < 0) {
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               (                                                )
+  In file included from numpy/core/src/umath/ufunc_object.c:42:0,
+                   from numpy/core/src/umath/umathmodule_onefile.c:3:
+  numpy/core/src/umath/umathmodule_onefile.c: At top level:
+  numpy/core/src/private/lowlevel_strided_loops.h:82:1: warning: ‘PyArray_GetStridedCopyFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetStridedCopyFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:97:1: warning: ‘PyArray_GetStridedCopySwapFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetStridedCopySwapFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:112:1: warning: ‘PyArray_GetStridedCopySwapPairFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetStridedCopySwapPairFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:127:1: warning: ‘PyArray_GetStridedZeroPadCopyFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetStridedZeroPadCopyFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:140:1: warning: ‘PyArray_GetStridedNumericCastFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetStridedNumericCastFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:151:1: warning: ‘PyArray_GetDTypeCopySwapFn’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetDTypeCopySwapFn(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:203:1: warning: ‘PyArray_GetDTypeTransferFunction’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetDTypeTransferFunction(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:227:1: warning: ‘PyArray_GetMaskedDTypeTransferFunction’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_GetMaskedDTypeTransferFunction(int aligned,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:247:1: warning: ‘PyArray_CastRawArrays’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_CastRawArrays(npy_intp count,
+   ^~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:296:1: warning: ‘PyArray_TransferNDimToStrided’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_TransferNDimToStrided(npy_intp ndim,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:306:1: warning: ‘PyArray_TransferStridedToNDim’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_TransferStridedToNDim(npy_intp ndim,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:316:1: warning: ‘PyArray_TransferMaskedStridedToNDim’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_TransferMaskedStridedToNDim(npy_intp ndim,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:343:1: warning: ‘PyArray_PrepareOneRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_PrepareOneRawArrayIter(int ndim, npy_intp *shape,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:365:1: warning: ‘PyArray_PrepareTwoRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_PrepareTwoRawArrayIter(int ndim, npy_intp *shape,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  numpy/core/src/private/lowlevel_strided_loops.h:389:1: warning: ‘PyArray_PrepareThreeRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+   PyArray_PrepareThreeRawArrayIter(int ndim, npy_intp *shape,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  In file included from numpy/core/src/umath/umathmodule_onefile.c:1:0:
+  numpy/core/src/umath/loops.c.src: In function ‘OBJECT_sign’:
+  numpy/core/src/umath/loops.c.src:2257:13: warning: ‘v’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+           int v;
+               ^
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/umath/umathmodule_onefile.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lm -o build/lib.linux-x86_64-3.7/numpy/core/umath.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.core.scalarmath' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/scalarmathmodule.c
+  numpy/core/src/scalarmathmodule.c.src:1376:1: warning: function declaration isn’t a prototype [-Wstrict-prototypes]
+   emit_complexwarning()
+   ^~~~~~~~~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘clongdouble_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘cdouble_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘cfloat_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘longdouble_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘double_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘float_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘half_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ulonglong_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘longlong_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ulong_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘long_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘uint_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘int_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ushort_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘short_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ubyte_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~~
+  numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘byte_long’ defined but not used [-Wunused-function]
+   @name@_@which@(PyObject *obj)
+   ^~~~~~~~~
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/scalarmathmodule.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lm -o build/lib.linux-x86_64-3.7/numpy/core/scalarmath.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.core.umath_tests' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/umath
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/umath/umath_tests.c
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/umath/umath_tests.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/core/umath_tests.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.core.multiarray_tests' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/multiarray
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: build/src.linux-x86_64-3.7/numpy/core/src/multiarray/multiarray_tests.c
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/multiarray/multiarray_tests.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/core/multiarray_tests.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.lib._compiled_base' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/lib
+  creating build/temp.linux-x86_64-3.7/numpy/lib/src
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/lib/src/_compiled_base.c
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/lib/src/_compiled_base.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/lib/_compiled_base.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.numarray._capi' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/numarray
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/numarray/_capi.c
+  numpy/numarray/_capi.c: In function ‘NA_OutputArray’:
+  numpy/numarray/_capi.c:1104:42: warning: passing argument 2 of ‘(int (*)(PyArrayObject *, PyArrayObject *))*(PyArray_API + 2296)’ from incompatible pointer type [-Wincompatible-pointer-types]
+       if (PyArray_SetUpdateIfCopyBase(ret, a) < 0) {
+                                            ^
+  numpy/numarray/_capi.c:1104:42: note: expected ‘PyArrayObject * {aka struct tagPyArrayObject *}’ but argument is of type ‘PyObject * {aka struct _object *}’
+  numpy/numarray/_capi.c: In function ‘NA_IeeeMask32’:
+  numpy/numarray/_capi.c:3073:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+       UInt32 v = *(UInt32 *) &f;
+       ^~~~~~
+  numpy/numarray/_capi.c: In function ‘NA_IeeeMask64’:
+  numpy/numarray/_capi.c:3117:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+       UInt64 v = *(UInt64 *) &f;
+       ^~~~~~
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/numarray/_capi.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/numarray/_capi.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.fft.fftpack_lite' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/fft
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/fft/fftpack_litemodule.c
+  numpy/fft/fftpack_litemodule.c:310:13: warning: ‘fftpack_module_documentation’ defined but not used [-Wunused-variable]
+   static char fftpack_module_documentation[] = "" ;
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  gcc: numpy/fft/fftpack.c
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/fft/fftpack_litemodule.o build/temp.linux-x86_64-3.7/numpy/fft/fftpack.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/fft/fftpack_lite.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.linalg.lapack_lite' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/linalg
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/linalg/lapack_litemodule.c
+  numpy/linalg/lapack_litemodule.c:831:13: warning: ‘lapack_lite_module_documentation’ defined but not used [-Wunused-variable]
+   static char lapack_lite_module_documentation[] = "";
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  gcc: numpy/linalg/python_xerbla.c
+  gcc: numpy/linalg/zlapack_lite.c
+  numpy/linalg/zlapack_lite.c: In function ‘zlaed7_’:
+  numpy/linalg/zlapack_lite.c:9998:59: warning: variable ‘ind2’ set but not used [-Wunused-but-set-variable]
+       static integer i__, k, n1, n2, iq, iw, iz, ptr, ind1, ind2, indx, curr,
+                                                             ^~~~
+  numpy/linalg/zlapack_lite.c:9998:53: warning: variable ‘ind1’ set but not used [-Wunused-but-set-variable]
+       static integer i__, k, n1, n2, iq, iw, iz, ptr, ind1, ind2, indx, curr,
+                                                       ^~~~
+  gcc: numpy/linalg/dlapack_lite.c
+  numpy/linalg/dlapack_lite.c: In function ‘dbdsqr_’:
+  numpy/linalg/dlapack_lite.c:590:23: warning: variable ‘sminlo’ set but not used [-Wunused-but-set-variable]
+       static doublereal sminlo, tolmul;
+                         ^~~~~~
+  gcc: numpy/linalg/blas_lite.c
+  numpy/linalg/blas_lite.c: In function ‘dgemm_’:
+  numpy/linalg/blas_lite.c:325:20: warning: variable ‘ncola’ set but not used [-Wunused-but-set-variable]
+       static integer ncola;
+                      ^~~~~
+  numpy/linalg/blas_lite.c: In function ‘zgemm_’:
+  numpy/linalg/blas_lite.c:4747:20: warning: variable ‘ncola’ set but not used [-Wunused-but-set-variable]
+       static integer ncola;
+                      ^~~~~
+  gcc: numpy/linalg/dlamch.c
+  numpy/linalg/dlamch.c: In function ‘dlamc4_’:
+  numpy/linalg/dlamch.c:720:13: warning: variable ‘i__1’ set but not used [-Wunused-but-set-variable]
+       integer i__1;
+               ^~~~
+  numpy/linalg/dlamch.c: In function ‘dlamc5_’:
+  numpy/linalg/dlamch.c:834:13: warning: variable ‘i__1’ set but not used [-Wunused-but-set-variable]
+       integer i__1;
+               ^~~~
+  gcc: numpy/linalg/f2c_lite.c
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/linalg/lapack_litemodule.o build/temp.linux-x86_64-3.7/numpy/linalg/python_xerbla.o build/temp.linux-x86_64-3.7/numpy/linalg/zlapack_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/dlapack_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/blas_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/dlamch.o build/temp.linux-x86_64-3.7/numpy/linalg/f2c_lite.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/linalg/lapack_lite.cpython-37m-x86_64-linux-gnu.so
+  building 'numpy.random.mtrand' extension
+  compiling C sources
+  C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+  
+  creating build/temp.linux-x86_64-3.7/numpy/random
+  creating build/temp.linux-x86_64-3.7/numpy/random/mtrand
+  compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+  gcc: numpy/random/mtrand/mtrand.c
+  numpy/random/mtrand/mtrand.c: In function ‘__Pyx_GetException’:
+  numpy/random/mtrand/mtrand.c:24524:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  numpy/random/mtrand/mtrand.c:24525:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  numpy/random/mtrand/mtrand.c:24526:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  numpy/random/mtrand/mtrand.c:24527:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tstate->exc_type = local_type;
+               ^~~~~~~~
+               curexc_type
+  numpy/random/mtrand/mtrand.c:24528:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tstate->exc_value = local_value;
+               ^~~~~~~~~
+               curexc_value
+  numpy/random/mtrand/mtrand.c:24529:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tstate->exc_traceback = local_tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  numpy/random/mtrand/mtrand.c: In function ‘__Pyx_ExceptionSave’:
+  numpy/random/mtrand/mtrand.c:24603:21: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       *type = tstate->exc_type;
+                       ^~~~~~~~
+                       curexc_type
+  numpy/random/mtrand/mtrand.c:24604:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       *value = tstate->exc_value;
+                        ^~~~~~~~~
+                        curexc_value
+  numpy/random/mtrand/mtrand.c:24605:19: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       *tb = tstate->exc_traceback;
+                     ^~~~~~~~~~~~~
+                     curexc_traceback
+  numpy/random/mtrand/mtrand.c: In function ‘__Pyx_ExceptionReset’:
+  numpy/random/mtrand/mtrand.c:24617:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  numpy/random/mtrand/mtrand.c:24618:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  numpy/random/mtrand/mtrand.c:24619:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  numpy/random/mtrand/mtrand.c:24620:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+       tstate->exc_type = type;
+               ^~~~~~~~
+               curexc_type
+  numpy/random/mtrand/mtrand.c:24621:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+       tstate->exc_value = value;
+               ^~~~~~~~~
+               curexc_value
+  numpy/random/mtrand/mtrand.c:24622:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+       tstate->exc_traceback = tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  numpy/random/mtrand/mtrand.c: In function â__Pyx_GetExceptionâ:
+  numpy/random/mtrand/mtrand.c:24524:24: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  numpy/random/mtrand/mtrand.c:24525:25: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  numpy/random/mtrand/mtrand.c:24526:22: error: âPyThreadState {aka struct _ts}â has no member named âexc_tracebackâ; did you mean âcurexc_tracebackâ?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  numpy/random/mtrand/mtrand.c:24527:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+       tstate->exc_type = local_type;
+               ^~~~~~~~
+               curexc_type
+  numpy/random/mtrand/mtrand.c:24528:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+       tstate->exc_value = local_value;
+               ^~~~~~~~~
+               curexc_value
+  numpy/random/mtrand/mtrand.c:24529:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_tracebackâ; did you mean âcurexc_tracebackâ?
+       tstate->exc_traceback = local_tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  numpy/random/mtrand/mtrand.c: In function â__Pyx_ExceptionSaveâ:
+  numpy/random/mtrand/mtrand.c:24603:21: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+       *type = tstate->exc_type;
+                       ^~~~~~~~
+                       curexc_type
+  numpy/random/mtrand/mtrand.c:24604:22: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+       *value = tstate->exc_value;
+                        ^~~~~~~~~
+                        curexc_value
+  numpy/random/mtrand/mtrand.c:24605:19: error: âPyThreadState {aka struct _ts}â has no member named âexc_tracebackâ; did you mean âcurexc_tracebackâ?
+       *tb = tstate->exc_traceback;
+                     ^~~~~~~~~~~~~
+                     curexc_traceback
+  numpy/random/mtrand/mtrand.c: In function â__Pyx_ExceptionResetâ:
+  numpy/random/mtrand/mtrand.c:24617:24: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+       tmp_type = tstate->exc_type;
+                          ^~~~~~~~
+                          curexc_type
+  numpy/random/mtrand/mtrand.c:24618:25: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+       tmp_value = tstate->exc_value;
+                           ^~~~~~~~~
+                           curexc_value
+  numpy/random/mtrand/mtrand.c:24619:22: error: âPyThreadState {aka struct _ts}â has no member named âexc_tracebackâ; did you mean âcurexc_tracebackâ?
+       tmp_tb = tstate->exc_traceback;
+                        ^~~~~~~~~~~~~
+                        curexc_traceback
+  numpy/random/mtrand/mtrand.c:24620:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+       tstate->exc_type = type;
+               ^~~~~~~~
+               curexc_type
+  numpy/random/mtrand/mtrand.c:24621:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+       tstate->exc_value = value;
+               ^~~~~~~~~
+               curexc_value
+  numpy/random/mtrand/mtrand.c:24622:13: error: âPyThreadState {aka struct _ts}â has no member named âexc_tracebackâ; did you mean âcurexc_tracebackâ?
+       tstate->exc_traceback = tb;
+               ^~~~~~~~~~~~~
+               curexc_traceback
+  error: Command "gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c numpy/random/mtrand/mtrand.c -o build/temp.linux-x86_64-3.7/numpy/random/mtrand/mtrand.o" failed with exit status 1
+  ----------------------------------------
+  ERROR: Failed building wheel for numpy
+[0m  Running setup.py clean for numpy
+  Building wheel for matplotlib (setup.py): started
+  Building wheel for matplotlib (setup.py): still running...
+  Building wheel for matplotlib (setup.py): finished with status 'done'
+  Created wheel for matplotlib: filename=matplotlib-2.1.0-cp37-cp37m-linux_x86_64.whl size=10843330 sha256=c67cb9bf85fd0ec298208c678ef5c820b089acd610036ff1114d463aa777af5a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-13s9ziy6/wheels/73/91/90/82e0effbb1a7e87eede54caf035471f9dc061eac46c14a5152
+Successfully built matplotlib
+Failed to build numpy
+[91mERROR: matplotlib 2.1.0 has requirement numpy>=1.7.1, but you'll have numpy 1.7.0 which is incompatible.
+[0mInstalling collected packages: numpy, pytz, cycler, pyparsing, matplotlib
+    Running setup.py install for numpy: started
+    Running setup.py install for numpy: still running...
+    Running setup.py install for numpy: still running...
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-zokbnf3o/numpy/setup.py'"'"'; __file__='"'"'/tmp/pip-install-zokbnf3o/numpy/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-k1vwb6yi/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.7m/numpy
+         cwd: /tmp/pip-install-zokbnf3o/numpy/
+    Complete output (1260 lines):
+    Converting to Python3 via 2to3...
+    Running from numpy source directory.
+    Warning: 'classifiers' should be a list, got type 'filter'
+    non-existing path in 'numpy/distutils': 'site.cfg'
+    F2PY Version 2
+    blas_opt_info:
+    blas_mkl_info:
+      libraries mkl,vml,guide not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+    atlas_blas_threads_info:
+    Setting PTATLAS=ATLAS
+      libraries ptf77blas,ptcblas,atlas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+    atlas_blas_info:
+      libraries f77blas,cblas,atlas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1494: UserWarning:
+        Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+        Directories to search for the libraries can be specified in the
+        numpy/distutils/site.cfg file (section [atlas]) or by setting
+        the ATLAS environment variable.
+      warnings.warn(AtlasNotFoundError.__doc__)
+    blas_info:
+      libraries blas not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1503: UserWarning:
+        Blas (http://www.netlib.org/blas/) libraries not found.
+        Directories to search for the libraries can be specified in the
+        numpy/distutils/site.cfg file (section [blas]) or by setting
+        the BLAS environment variable.
+      warnings.warn(BlasNotFoundError.__doc__)
+    blas_src_info:
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1506: UserWarning:
+        Blas (http://www.netlib.org/blas/) sources not found.
+        Directories to search for the sources can be specified in the
+        numpy/distutils/site.cfg file (section [blas_src]) or by setting
+        the BLAS_SRC environment variable.
+      warnings.warn(BlasSrcNotFoundError.__doc__)
+      NOT AVAILABLE
+    
+    non-existing path in 'numpy/lib': 'benchmarks'
+    lapack_opt_info:
+    lapack_mkl_info:
+    mkl_info:
+      libraries mkl,vml,guide not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+      NOT AVAILABLE
+    
+    atlas_threads_info:
+    Setting PTATLAS=ATLAS
+      libraries ptf77blas,ptcblas,atlas not found in /srv/conda/envs/notebook/lib
+      libraries lapack_atlas not found in /srv/conda/envs/notebook/lib
+      libraries ptf77blas,ptcblas,atlas not found in /usr/local/lib
+      libraries lapack_atlas not found in /usr/local/lib
+      libraries ptf77blas,ptcblas,atlas not found in /usr/lib
+      libraries lapack_atlas not found in /usr/lib
+      libraries ptf77blas,ptcblas,atlas not found in /usr/lib/x86_64-linux-gnu
+      libraries lapack_atlas not found in /usr/lib/x86_64-linux-gnu
+    <class 'numpy.distutils.system_info.atlas_threads_info'>
+      NOT AVAILABLE
+    
+    atlas_info:
+      libraries f77blas,cblas,atlas not found in /srv/conda/envs/notebook/lib
+      libraries lapack_atlas not found in /srv/conda/envs/notebook/lib
+      libraries f77blas,cblas,atlas not found in /usr/local/lib
+      libraries lapack_atlas not found in /usr/local/lib
+      libraries f77blas,cblas,atlas not found in /usr/lib
+      libraries lapack_atlas not found in /usr/lib
+      libraries f77blas,cblas,atlas not found in /usr/lib/x86_64-linux-gnu
+      libraries lapack_atlas not found in /usr/lib/x86_64-linux-gnu
+    <class 'numpy.distutils.system_info.atlas_info'>
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1408: UserWarning:
+        Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+        Directories to search for the libraries can be specified in the
+        numpy/distutils/site.cfg file (section [atlas]) or by setting
+        the ATLAS environment variable.
+      warnings.warn(AtlasNotFoundError.__doc__)
+    lapack_info:
+      libraries lapack not found in ['/srv/conda/envs/notebook/lib', '/usr/local/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu']
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1419: UserWarning:
+        Lapack (http://www.netlib.org/lapack/) libraries not found.
+        Directories to search for the libraries can be specified in the
+        numpy/distutils/site.cfg file (section [lapack]) or by setting
+        the LAPACK environment variable.
+      warnings.warn(LapackNotFoundError.__doc__)
+    lapack_src_info:
+      NOT AVAILABLE
+    
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/numpy/distutils/system_info.py:1422: UserWarning:
+        Lapack (http://www.netlib.org/lapack/) sources not found.
+        Directories to search for the sources can be specified in the
+        numpy/distutils/site.cfg file (section [lapack_src]) or by setting
+        the LAPACK_SRC environment variable.
+      warnings.warn(LapackSrcNotFoundError.__doc__)
+      NOT AVAILABLE
+    
+    Warning: 'classifiers' should be a list, got type 'filter'
+    running install
+    running build
+    running config_cc
+    unifing config_cc, config, build_clib, build_ext, build commands --compiler options
+    running config_fc
+    unifing config_fc, config, build_clib, build_ext, build commands --fcompiler options
+    running build_src
+    build_src
+    building py_modules sources
+    building library "npymath" sources
+    customize Gnu95FCompiler
+    Could not locate executable gfortran
+    Could not locate executable f95
+    customize IntelFCompiler
+    Could not locate executable ifort
+    Could not locate executable ifc
+    customize LaheyFCompiler
+    Could not locate executable lf95
+    customize PGroupFCompiler
+    Could not locate executable pgfortran
+    customize AbsoftFCompiler
+    Could not locate executable f90
+    Could not locate executable f77
+    customize NAGFCompiler
+    customize VastFCompiler
+    customize CompaqFCompiler
+    Could not locate executable fort
+    customize IntelItaniumFCompiler
+    Could not locate executable efort
+    Could not locate executable efc
+    customize IntelEM64TFCompiler
+    customize GnuFCompiler
+    Could not locate executable g77
+    customize G95FCompiler
+    Could not locate executable g95
+    customize PathScaleFCompiler
+    Could not locate executable pathf95
+    don't know how to compile Fortran code on platform 'posix'
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+    gcc: _configtest.c
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+    success!
+    removing: _configtest.c _configtest.o _configtest
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+    gcc: _configtest.c
+    _configtest.c:1:5: warning: conflicting types for built-in function ‘exp’ [-Wbuiltin-declaration-mismatch]
+     int exp (void);
+         ^~~
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+    /srv/conda/envs/notebook/compiler_compat/ld: _configtest.o: in function `main':
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/_configtest.c:6: undefined reference to `exp'
+    collect2: error: ld returned 1 exit status
+    /srv/conda/envs/notebook/compiler_compat/ld: _configtest.o: in function `main':
+    /tmp/pip-install-zokbnf3o/numpy/build/py3k/_configtest.c:6: undefined reference to `exp'
+    collect2: error: ld returned 1 exit status
+    failure.
+    removing: _configtest.c _configtest.o
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+    gcc: _configtest.c
+    _configtest.c:1:5: warning: conflicting types for built-in function ‘exp’ [-Wbuiltin-declaration-mismatch]
+     int exp (void);
+         ^~~
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -lm -o _configtest
+    success!
+    removing: _configtest.c _configtest.o _configtest
+    building library "npysort" sources
+    building extension "numpy.core._dummy" sources
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+    executing numpy/core/code_generators/generate_numpy_api.py
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+    numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h']
+    building extension "numpy.core.multiarray" sources
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+    executing numpy/core/code_generators/generate_numpy_api.py
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+    numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h']
+    building extension "numpy.core.umath" sources
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+    executing numpy/core/code_generators/generate_ufunc_api.py
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h' to sources.
+      adding 'build/src.linux-x86_64-3.7/numpy/core/src/umath' to include_dirs.
+    numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/src/umath/funcs.inc', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h']
+    building extension "numpy.core.scalarmath" sources
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h' to sources.
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h' to sources.
+    executing numpy/core/code_generators/generate_numpy_api.py
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h' to sources.
+    executing numpy/core/code_generators/generate_ufunc_api.py
+      adding 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h' to sources.
+    numpy.core - nothing done with h_files = ['build/src.linux-x86_64-3.7/numpy/core/include/numpy/config.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/_numpyconfig.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h', 'build/src.linux-x86_64-3.7/numpy/core/include/numpy/__ufunc_api.h']
+    building extension "numpy.core._dotblas" sources
+    building extension "numpy.core.umath_tests" sources
+    building extension "numpy.core.multiarray_tests" sources
+    building extension "numpy.lib._compiled_base" sources
+    building extension "numpy.numarray._capi" sources
+    building extension "numpy.fft.fftpack_lite" sources
+    building extension "numpy.linalg.lapack_lite" sources
+    ### Warning:  Using unoptimized lapack ###
+      adding 'numpy/linalg/lapack_litemodule.c' to sources.
+      adding 'numpy/linalg/python_xerbla.c' to sources.
+      adding 'numpy/linalg/zlapack_lite.c' to sources.
+      adding 'numpy/linalg/dlapack_lite.c' to sources.
+      adding 'numpy/linalg/blas_lite.c' to sources.
+      adding 'numpy/linalg/dlamch.c' to sources.
+      adding 'numpy/linalg/f2c_lite.c' to sources.
+    building extension "numpy.random.mtrand" sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -c'
+    gcc: _configtest.c
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ _configtest.o -o _configtest
+    _configtest
+    failure.
+    removing: _configtest.c _configtest.o _configtest
+    building data_files sources
+    build_src: building npy-pkg config files
+    running build_py
+    creating build/lib.linux-x86_64-3.7
+    creating build/lib.linux-x86_64-3.7/numpy
+    copying numpy/add_newdocs.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/__init__.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/dual.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/setup.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/ctypeslib.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/matlib.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/setupscons.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/_import_tools.py -> build/lib.linux-x86_64-3.7/numpy
+    copying numpy/version.py -> build/lib.linux-x86_64-3.7/numpy
+    copying build/src.linux-x86_64-3.7/numpy/__config__.py -> build/lib.linux-x86_64-3.7/numpy
+    creating build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/unixccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/line_endings.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/info.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/mingw32ccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/log.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/numpy_distribution.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/npy_pkg_config.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/environment.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/compat.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/from_template.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/cpuinfo.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/core.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/setup.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/intelccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/system_info.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/pathccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/__version__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/extension.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/conv_template.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/lib2def.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/misc_util.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/exec_command.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/interactive.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying numpy/distutils/ccompiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    copying build/src.linux-x86_64-3.7/numpy/distutils/__config__.py -> build/lib.linux-x86_64-3.7/numpy/distutils
+    creating build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/install.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build_clib.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build_scripts.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build_py.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/install_clib.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/scons.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/install_data.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/install_headers.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/autodist.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/egg_info.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/sdist.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/config_compiler.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/develop.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/config.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/bdist_rpm.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build_ext.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build_src.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    copying numpy/distutils/command/build.py -> build/lib.linux-x86_64-3.7/numpy/distutils/command
+    creating build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/intel.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/absoft.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/__init__.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/vast.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/pg.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/gnu.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/none.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/ibm.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/hpux.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/lahey.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/nag.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/compaq.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/sun.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/pathf95.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/g95.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    copying numpy/distutils/fcompiler/mips.py -> build/lib.linux-x86_64-3.7/numpy/distutils/fcompiler
+    creating build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/__init__.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/nulltester.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/print_coercion_tables.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/utils.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/setup.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/numpytest.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/noseclasses.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/nosetester.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    copying numpy/testing/decorators.py -> build/lib.linux-x86_64-3.7/numpy/testing
+    creating build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/info.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/__init__.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/common_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/f2py_testing.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/setup.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/diagnose.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/__version__.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/auxfuncs.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/cfuncs.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/cb_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/f2py2e.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/capi_maps.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/f90mod_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/func2subr.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/crackfortran.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    copying numpy/f2py/use_rules.py -> build/lib.linux-x86_64-3.7/numpy/f2py
+    creating build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/setup_common.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/records.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/defchararray.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/info.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/__init__.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/shape_base.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/setup.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/getlimits.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/_internal.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/fromnumeric.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/_methods.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/numerictypes.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/arrayprint.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/scons_support.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/machar.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/function_base.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/memmap.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/numeric.py -> build/lib.linux-x86_64-3.7/numpy/core
+    copying numpy/core/code_generators/generate_numpy_api.py -> build/lib.linux-x86_64-3.7/numpy/core
+    creating build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/stride_tricks.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/info.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/__init__.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/user_array.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/recfunctions.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/shape_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/utils.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/index_tricks.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/type_check.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/_iotools.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/setup.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/format.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/financial.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/scimath.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/twodim_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/_datasource.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/polynomial.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/arraypad.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/ufunclike.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/arrayterator.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/npyio.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/function_base.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    copying numpy/lib/arraysetops.py -> build/lib.linux-x86_64-3.7/numpy/lib
+    creating build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/misc.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/array_printer.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/__init__.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/user_array.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/fft.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/linear_algebra.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/compat.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/arrayfns.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/random_array.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/alter_code2.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/mlab.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/ma.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/functions.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/setup.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/rng_stats.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/rng.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/precision.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/fix_default_axis.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/typeconv.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/alter_code1.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    copying numpy/oldnumeric/matrix.py -> build/lib.linux-x86_64-3.7/numpy/oldnumeric
+    creating build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/nd_image.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/__init__.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/fft.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/linear_algebra.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/convolve.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/compat.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/random_array.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/util.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/alter_code2.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/mlab.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/ma.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/functions.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/setup.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/numerictypes.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/session.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/image.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/alter_code1.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    copying numpy/numarray/matrix.py -> build/lib.linux-x86_64-3.7/numpy/numarray
+    creating build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/fftpack.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/info.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/__init__.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/helper.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/setup.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    copying numpy/fft/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/fft
+    creating build/lib.linux-x86_64-3.7/numpy/linalg
+    copying numpy/linalg/info.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+    copying numpy/linalg/__init__.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+    copying numpy/linalg/setup.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+    copying numpy/linalg/linalg.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+    copying numpy/linalg/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/linalg
+    creating build/lib.linux-x86_64-3.7/numpy/random
+    copying numpy/random/info.py -> build/lib.linux-x86_64-3.7/numpy/random
+    copying numpy/random/__init__.py -> build/lib.linux-x86_64-3.7/numpy/random
+    copying numpy/random/setup.py -> build/lib.linux-x86_64-3.7/numpy/random
+    copying numpy/random/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/random
+    creating build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/__init__.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/timer_comparison.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/core.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/bench.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/setup.py -> build/lib.lin[0m[91mux-x86_64-3.7/numpy/ma
+    copying numpy/ma/extras.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/mrecords.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/testutils.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    copying numpy/ma/version.py -> build/lib.linux-x86_64-3.7/numpy/ma
+    creating build/lib.linux-x86_64-3.7/numpy/matrixlib
+    copying numpy/matrixlib/__init__.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+    copying numpy/matrixlib/setup.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+    copying numpy/matrixlib/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+    copying numpy/matrixlib/defmatrix.py -> build/lib.linux-x86_64-3.7/numpy/matrixlib
+    creating build/lib.linux-x86_64-3.7/numpy/compat
+    copying numpy/compat/__init__.py -> build/lib.linux-x86_64-3.7/numpy/compat
+    copying numpy/compat/_inspect.py -> build/lib.linux-x86_64-3.7/numpy/compat
+    copying numpy/compat/setup.py -> build/lib.linux-x86_64-3.7/numpy/compat
+    copying numpy/compat/setupscons.py -> build/lib.linux-x86_64-3.7/numpy/compat
+    copying numpy/compat/py3k.py -> build/lib.linux-x86_64-3.7/numpy/compat
+    creating build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/__init__.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/polyutils.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/laguerre.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/hermite.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/legendre.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/setup.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/chebyshev.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/polynomial.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/polytemplate.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    copying numpy/polynomial/hermite_e.py -> build/lib.linux-x86_64-3.7/numpy/polynomial
+    creating build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/misc.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/__init__.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/broadcasting.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/creation.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/performance.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/jargon.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/howtofind.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/io.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/internals.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/ufuncs.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/glossary.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/methods_vs_functions.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/subclassing.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/indexing.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/basics.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/constants.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/byteswapping.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    copying numpy/doc/structured_arrays.py -> build/lib.linux-x86_64-3.7/numpy/doc
+    running build_clib
+    customize UnixCCompiler
+    customize UnixCCompiler using build_clib
+    building 'npymath' library
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7
+    creating build/temp.linux-x86_64-3.7/build
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/npymath
+    creating build/temp.linux-x86_64-3.7/numpy
+    creating build/temp.linux-x86_64-3.7/numpy/core
+    creating build/temp.linux-x86_64-3.7/numpy/core/src
+    creating build/temp.linux-x86_64-3.7/numpy/core/src/npymath
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/npy_math.c
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/ieee754.c
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npymath/npy_math_complex.c
+    gcc: numpy/core/src/npymath/halffloat.c
+    ar: adding 4 object files to build/temp.linux-x86_64-3.7/libnpymath.a
+    building 'npysort' library
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/npysort
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/quicksort.c
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/mergesort.c
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/npysort/heapsort.c
+    ar: adding 3 object files to build/temp.linux-x86_64-3.7/libnpysort.a
+    running build_ext
+    customize UnixCCompiler
+    customize UnixCCompiler using build_ext
+    building 'numpy.core._dummy' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/core/src/dummymodule.c
+    In file included from numpy/core/include/numpy/ndarrayobject.h:26:0,
+                     from numpy/core/include/numpy/npy_3kcompat.h:23,
+                     from numpy/core/src/private/npy_pycompat.h:4,
+                     from numpy/core/src/dummymodule.c:12:
+    build/src.linux-x86_64-3.7/numpy/core/include/numpy/__multiarray_api.h:1594:1: warning: ‘_import_array’ defined but not used [-Wunused-function]
+     _import_array(void)
+     ^~~~~~~~~~~~~
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/dummymodule.o -Lbuild/temp.linux-x86_64-3.7 -lm -o build/lib.linux-x86_64-3.7/numpy/core/_dummy.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.core.multiarray' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/core/src/multiarray
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/core/src/multiarray/multiarraymodule_onefile.c
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:0:
+    numpy/core/src/multiarray/common.c: In function ‘_IsWriteable’:
+    numpy/core/src/multiarray/common.c:676:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyObject_AsWriteBuffer(base, &dummy, &n) < 0) {
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/scalartypes.c.src:25:0,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:
+    numpy/core/src/multiarray/_datetime.h: At top level:
+    numpy/core/src/multiarray/_datetime.h:13:1: warning: function declaration isn’t a prototype [-Wstrict-prototypes]
+     numpy_pydatetime_import();
+     ^~~~~~~~~~~~~~~~~~~~~~~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:91:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    numpy/core/src/multiarray/scalartypes.c.src: In function ‘gentype_alloc’:
+    /srv/conda/envs/notebook/include/python3.7m/objimpl.h:144:66: warning: right-hand operand of comma expression has no effect [-Wunused-value]
+         ( Py_TYPE(op) = (typeobj), _Py_NewReference((PyObject *)(op)), (op) )
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+    numpy/core/src/multiarray/scalartypes.c.src:119:9: note: in expansion of macro ‘PyObject_INIT’
+             PyObject_INIT(obj, type);
+             ^~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+    numpy/core/src/multiarray/scalartypes.c.src: In function ‘gentype_reduce’:
+    numpy/core/src/multiarray/scalartypes.c.src:1703:5: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyObject_AsReadBuffer(self, (const void **)&buffer, &buflen)<0) {
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+    numpy/core/src/multiarray/scalartypes.c.src: In function ‘datetime_arrtype_new’:
+    numpy/core/src/multiarray/scalartypes.c.src:2657:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (ret->obmeta.base == -1) {
+                                  ^~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:10:0:
+    numpy/core/src/multiarray/scalartypes.c.src: In function ‘timedelta_arrtype_new’:
+    numpy/core/src/multiarray/scalartypes.c.src:2657:30: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (ret->obmeta.base == -1) {
+                                  ^~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:13:0:
+    numpy/core/src/multiarray/datetime.c: In function ‘parse_datetime_extended_unit_from_string’:
+    numpy/core/src/multiarray/datetime.c:781:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (out_meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c: In function ‘get_datetime_units_factor’:
+    numpy/core/src/multiarray/datetime.c:1076:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         while (littlebase > unit) {
+                           ^
+    numpy/core/src/multiarray/datetime.c: In function ‘convert_datetime_metadata_tuple_to_datetime_metadata’:
+    numpy/core/src/multiarray/datetime.c:1849:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (out_meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobject_to_datetime’:
+    numpy/core/src/multiarray/datetime.c:2386:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2400:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1 || meta->base == NPY_FR_GENERIC) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2413:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2452:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2484:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                 if (meta->base == -1) {
+                                ^~
+    numpy/core/src/multiarray/datetime.c:2511:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobject_to_timedelta’:
+    numpy/core/src/multiarray/datetime.c:2586:28: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                 if (meta->base == -1) {
+                                ^~
+    numpy/core/src/multiarray/datetime.c:2597:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2610:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2649:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2718:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c:2772:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (meta->base == -1) {
+                            ^~
+    numpy/core/src/multiarray/datetime.c: In function ‘convert_pyobjects_to_datetimes’:
+    numpy/core/src/multiarray/datetime.c:3108:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (inout_meta->base == -1) {
+                              ^~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:14:0:
+    numpy/core/src/multiarray/datetime_strings.c: In function ‘parse_iso_8601_datetime’:
+    numpy/core/src/multiarray/datetime_strings.c:476:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                      ^~
+    numpy/core/src/multiarray/datetime_strings.c:519:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                      ^~
+    numpy/core/src/multiarray/datetime_strings.c:924:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (unit != -1 && !can_cast_datetime64_units(bestunit, unit,
+                  ^~
+    numpy/core/src/multiarray/datetime_strings.c: In function ‘get_datetime_iso_8601_strlen’:
+    numpy/core/src/multiarray/datetime_strings.c:955:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (base == -1) {
+                  ^~
+    numpy/core/src/multiarray/datetime_strings.c: In function ‘make_iso_8601_datetime’:
+    numpy/core/src/multiarray/datetime_strings.c:1119:14: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (base == -1) {
+                  ^~
+    numpy/core/src/multiarray/datetime_strings.c: In function ‘array_datetime_as_string’:
+    numpy/core/src/multiarray/datetime_strings.c:1600:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                 if (unit == -1) {
+                          ^~
+    numpy/core/src/multiarray/datetime_strings.c:1607:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (unit != -1 && !can_cast_datetime64_units(meta->base, unit, casting)) {
+                      ^~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:17:0:
+    numpy/core/src/multiarray/arraytypes.c.src: In function ‘VOID_setitem’:
+    numpy/core/src/multiarray/arraytypes.c.src:741:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+             res = PyObject_AsReadBuffer(op, &buffer, &buflen);
+             ^~~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+    numpy/core/src/multiarray/ctors.c: In function ‘PyArray_FromInterface’:
+    numpy/core/src/multiarray/ctors.c:2126:9: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+             res = PyObject_AsWriteBuffer(base, (void **)&data, &buffer_len);
+             ^~~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+    numpy/core/src/multiarray/ctors.c:2129:13: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+                 res = PyObject_AsReadBuffer(
+                 ^~~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+    numpy/core/src/multiarray/ctors.c: In function ‘PyArray_FromBuffer’:
+    numpy/core/src/multiarray/ctors.c:3269:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyObject_AsWriteBuffer(buf, (void *)&data, &ts) == -1) {
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:24:0:
+    numpy/core/src/multiarray/ctors.c:3272:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+             if (PyObject_AsReadBuffer(buf, (void *)&data, &ts) == -1) {
+             ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:26:0:
+    numpy/core/src/multiarray/mapping.c: In function ‘array_ass_sub’:
+    numpy/core/src/multiarray/mapping.c:1294:20: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+                 op_arr = op;
+                        ^
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+    numpy/core/src/multiarray/getset.c: In function ‘array_strides_set’:
+    numpy/core/src/multiarray/getset.c:131:5: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyArray_BASE(new) && PyObject_AsReadBuffer(PyArray_BASE(new),
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+    numpy/core/src/multiarray/getset.c: In function ‘array_data_set’:
+    numpy/core/src/multiarray/getset.c:332:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyObject_AsWriteBuffer(op, &buf, &buf_len) < 0) {
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:28:0:
+    numpy/core/src/multiarray/getset.c:334:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+             if (PyObject_AsReadBuffer(op, (const void **)&buf, &buf_len) < 0) {
+             ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:38:0:
+    numpy/core/src/multiarray/conversion_utils.c: In function ‘PyArray_BufferConverter’:
+    numpy/core/src/multiarray/conversion_utils.c:152:5: warning: ‘PyObject_AsWriteBuffer’ is deprecated [-Wdeprecated-declarations]
+         if (PyObject_AsWriteBuffer(obj, &(buf->ptr), &buflen) < 0) {
+         ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:500:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsWriteBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:38:0:
+    numpy/core/src/multiarray/conversion_utils.c:155:9: warning: ‘PyObject_AsReadBuffer’ is deprecated [-Wdeprecated-declarations]
+             if (PyObject_AsReadBuffer(obj, (const void **)&(buf->ptr),
+             ^~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+     PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:41:0:
+    numpy/core/src/multiarray/nditer_constr.c: In function ‘npyiter_prepare_one_operand’:
+    numpy/core/src/multiarray/nditer_constr.c:1017:20: warning: unused variable ‘tmp’ [-Wunused-variable]
+             npy_uint32 tmp;
+                        ^~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:42:0:
+    numpy/core/src/multiarray/nditer_api.c: In function ‘npyiter_copy_from_buffers’:
+    numpy/core/src/multiarray/nditer_api.c:1837:12: warning: unused variable ‘ptrs’ [-Wunused-variable]
+         char **ptrs = NBF_PTRS(bufferdata), **ad_ptrs = NAD_PTRS(axisdata);
+                ^~~~
+    numpy/core/src/multiarray/nditer_api.c:1833:17: warning: unused variable ‘buffersize’ [-Wunused-variable]
+                     buffersize = NBF_BUFFERSIZE(bufferdata);
+                     ^~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:44:0:
+    numpy/core/src/multiarray/nditer_pywrap.c: In function ‘npyiter_subscript’:
+    numpy/core/src/multiarray/nditer_pywrap.c:2254:32: warning: passing argument 1 of ‘PySlice_GetIndices’ from incompatible pointer type [-Wincompatible-pointer-types]
+             if (PySlice_GetIndices((PySliceObject *)op,
+                                    ^
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:120:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/sliceobject.h:41:17: note: expected ‘PyObject * {aka struct _object *}’ but argument is of type ‘PySliceObject * {aka struct <anonymous> *}’
+     PyAPI_FUNC(int) PySlice_GetIndices(PyObject *r, Py_ssize_t length,
+                     ^~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:44:0:
+    numpy/core/src/multiarray/nditer_pywrap.c: In function ‘npyiter_ass_subscript’:
+    numpy/core/src/multiarray/nditer_pywrap.c:2304:32: warning: passing argument 1 of ‘PySlice_GetIndices’ from incompatible pointer type [-Wincompatible-pointer-types]
+             if (PySlice_GetIndices((PySliceObject *)op,
+                                    ^
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:120:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/sliceobject.h:41:17: note: expected ‘PyObject * {aka struct _object *}’ but argument is of type ‘PySliceObject * {aka struct <anonymous> *}’
+     PyAPI_FUNC(int) PySlice_GetIndices(PyObject *r, Py_ssize_t length,
+                     ^~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:49:0:
+    numpy/core/src/multiarray/array_assign_scalar.c: In function ‘PyArray_AssignRawScalar’:
+    numpy/core/src/multiarray/array_assign_scalar.c:232:34: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             if (sizeof(scalarbuffer) >= PyArray_DESCR(dst)->elsize) {
+                                      ^~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:50:0:
+    numpy/core/src/multiarray/array_assign_array.c: In function ‘PyArray_AssignArray’:
+    numpy/core/src/multiarray/array_assign_array.c:384:1: warning: label ‘finish’ defined but not used [-Wunused-label]
+     finish:
+     ^~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:51:0:
+    numpy/core/src/multiarray/ucsnarrow.c: In function ‘PyUnicode_FromUCS4’:
+    numpy/core/src/multiarray/ucsnarrow.c:138:56: warning: pointer targets in passing argument 1 of ‘PyUnicode_FromUnicode’ differ in signedness [-Wpointer-sign]
+             ret = (PyUnicodeObject *)PyUnicode_FromUnicode(buf, (Py_ssize_t) ucs4len);
+                                                            ^~~
+    In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:99:0,
+                     from numpy/core/src/multiarray/common.c:2,
+                     from numpy/core/src/multiarray/multiarraymodule_onefile.c:8:
+    /srv/conda/envs/notebook/include/python3.7m/unicodeobject.h:688:23: note: expected ‘const Py_UNICODE * {aka const int *}’ but argument is of type ‘npy_ucs4 * {aka unsigned int *}’
+     PyAPI_FUNC(PyObject*) PyUnicode_FromUnicode(
+                           ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:57:0:
+    numpy/core/src/multiarray/multiarraymodule.c: In function ‘PyArray_ConcatenateArrays’:
+    numpy/core/src/multiarray/multiarraymodule.c:341:14: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+         if (ndim == 1 & axis != 0) {
+             ~~~~~^~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:51:0:
+    At top level:
+    numpy/core/src/multiarray/ucsnarrow.c:65:1: warning: ‘PyUCS2Buffer_AsUCS4’ defined but not used [-Wunused-function]
+     PyUCS2Buffer_AsUCS4(Py_UNICODE *ucs2, npy_ucs4 *ucs4, int ucs2len, int ucs4len)
+     ^~~~~~~~~~~~~~~~~~~
+    numpy/core/src/multiarray/ucsnarrow.c:33:1: warning: ‘PyUCS2Buffer_FromUCS4’ defined but not used [-Wunused-function]
+     PyUCS2Buffer_FromUCS4(Py_UNICODE *ucs2, npy_ucs4 *ucs4, int ucs4length)
+     ^~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:32:0:
+    numpy/core/src/multiarray/convert.c:474:1: warning: ‘PyArray_AssignOne’ defined but not used [-Wunused-function]
+     PyArray_AssignOne(PyArrayObject *dst,
+     ^~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:26:0:
+    numpy/core/src/multiarray/mapping.c:90:1: warning: ‘_array_ass_item’ defined but not used [-Wunused-function]
+     _array_ass_item(PyArrayObject *self, Py_ssize_t i, PyObject *v)
+     ^~~~~~~~~~~~~~~
+    In file included from numpy/core/src/multiarray/multiarraymodule_onefile.c:34:0:
+    numpy/core/src/multiarray/item_selection.c: In function ‘PyArray_Sort’:
+    numpy/core/src/multiarray/item_selection.c:941:12: warning: ‘orign’ may be us[0m    Running setup.py install for numpy: finished with status 'error'
+[91med uninitialized in this function [-Wmaybe-uninitialized]
+             if (axis != orign) { \
+                ^
+    numpy/core/src/multiarray/item_selection.c:957:26: note: ‘orign’ was declared here
+         int i, n, m, elsize, orign;
+                              ^~~~~
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/multiarray/multiarraymodule_onefile.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lnpysort -lm -o build/lib.linux-x86_64-3.7/numpy/core/multiarray.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.core.umath' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/core/src/umath
+    compile options: '-Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/core/src/umath/umathmodule_onefile.c
+    In file included from numpy/core/src/umath/umathmodule_onefile.c:3:0:
+    numpy/core/src/umath/ufunc_object.c: In function ‘get_ufunc_arguments’:
+    numpy/core/src/umath/ufunc_object.c:717:37: warning: unused variable ‘nout’ [-Wunused-variable]
+         int i, nargs, nin = ufunc->nin, nout = ufunc->nout;
+                                         ^~~~
+    In file included from numpy/core/src/umath/umathmodule_onefile.c:4:0:
+    numpy/core/src/umath/ufunc_type_resolution.c: In function ‘type_tuple_type_resolver’:
+    numpy/core/src/umath/ufunc_type_resolution.c:1979:63: warning: comparison of constant ‘0’ with boolean expression is always false [-Wbool-compare]
+             if (!PyBytes_AsStringAndSize(type_tup, &str, &length) < 0) {
+                                                                   ^
+    numpy/core/src/umath/ufunc_type_resolution.c:1979:63: warning: logical not is only applied to the left hand side of comparison [-Wlogical-not-parentheses]
+    numpy/core/src/umath/ufunc_type_resolution.c:1979:13: note: add parentheses around left hand side expression to silence this warning
+             if (!PyBytes_AsStringAndSize(type_tup, &str, &length) < 0) {
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 (                                                )
+    In file included from numpy/core/src/umath/ufunc_object.c:42:0,
+                     from numpy/core/src/umath/umathmodule_onefile.c:3:
+    numpy/core/src/umath/umathmodule_onefile.c: At top level:
+    numpy/core/src/private/lowlevel_strided_loops.h:82:1: warning: ‘PyArray_GetStridedCopyFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetStridedCopyFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:97:1: warning: ‘PyArray_GetStridedCopySwapFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetStridedCopySwapFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:112:1: warning: ‘PyArray_GetStridedCopySwapPairFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetStridedCopySwapPairFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:127:1: warning: ‘PyArray_GetStridedZeroPadCopyFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetStridedZeroPadCopyFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:140:1: warning: ‘PyArray_GetStridedNumericCastFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetStridedNumericCastFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:151:1: warning: ‘PyArray_GetDTypeCopySwapFn’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetDTypeCopySwapFn(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:203:1: warning: ‘PyArray_GetDTypeTransferFunction’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetDTypeTransferFunction(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:227:1: warning: ‘PyArray_GetMaskedDTypeTransferFunction’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_GetMaskedDTypeTransferFunction(int aligned,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:247:1: warning: ‘PyArray_CastRawArrays’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_CastRawArrays(npy_intp count,
+     ^~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:296:1: warning: ‘PyArray_TransferNDimToStrided’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_TransferNDimToStrided(npy_intp ndim,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:306:1: warning: ‘PyArray_TransferStridedToNDim’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_TransferStridedToNDim(npy_intp ndim,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:316:1: warning: ‘PyArray_TransferMaskedStridedToNDim’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_TransferMaskedStridedToNDim(npy_intp ndim,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:343:1: warning: ‘PyArray_PrepareOneRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_PrepareOneRawArrayIter(int ndim, npy_intp *shape,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:365:1: warning: ‘PyArray_PrepareTwoRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_PrepareTwoRawArrayIter(int ndim, npy_intp *shape,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    numpy/core/src/private/lowlevel_strided_loops.h:389:1: warning: ‘PyArray_PrepareThreeRawArrayIter’ declared ‘static’ but never defined [-Wunused-function]
+     PyArray_PrepareThreeRawArrayIter(int ndim, npy_intp *shape,
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    In file included from numpy/core/src/umath/umathmodule_onefile.c:1:0:
+    numpy/core/src/umath/loops.c.src: In function ‘OBJECT_sign’:
+    numpy/core/src/umath/loops.c.src:2257:13: warning: ‘v’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+             int v;
+                 ^
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/core/src/umath/umathmodule_onefile.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lm -o build/lib.linux-x86_64-3.7/numpy/core/umath.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.core.scalarmath' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/scalarmathmodule.c
+    numpy/core/src/scalarmathmodule.c.src:1376:1: warning: function declaration isn’t a prototype [-Wstrict-prototypes]
+     emit_complexwarning()
+     ^~~~~~~~~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘clongdouble_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘cdouble_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘cfloat_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘longdouble_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘double_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘float_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘half_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ulonglong_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘longlong_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ulong_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘long_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘uint_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘int_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ushort_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘short_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘ubyte_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~~
+    numpy/core/src/scalarmathmodule.c.src:1469:1: warning: ‘byte_long’ defined but not used [-Wunused-function]
+     @name@_@which@(PyObject *obj)
+     ^~~~~~~~~
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/scalarmathmodule.o -Lbuild/temp.linux-x86_64-3.7 -lnpymath -lm -o build/lib.linux-x86_64-3.7/numpy/core/scalarmath.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.core.umath_tests' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/umath
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/umath/umath_tests.c
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/umath/umath_tests.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/core/umath_tests.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.core.multiarray_tests' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/multiarray
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: build/src.linux-x86_64-3.7/numpy/core/src/multiarray/multiarray_tests.c
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/build/src.linux-x86_64-3.7/numpy/core/src/multiarray/multiarray_tests.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/core/multiarray_tests.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.lib._compiled_base' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/lib
+    creating build/temp.linux-x86_64-3.7/numpy/lib/src
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/lib/src/_compiled_base.c
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/lib/src/_compiled_base.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/lib/_compiled_base.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.numarray._capi' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/numarray
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/numarray/_capi.c
+    numpy/numarray/_capi.c: In function ‘NA_OutputArray’:
+    numpy/numarray/_capi.c:1104:42: warning: passing argument 2 of ‘(int (*)(PyArrayObject *, PyArrayObject *))*(PyArray_API + 2296)’ from incompatible pointer type [-Wincompatible-pointer-types]
+         if (PyArray_SetUpdateIfCopyBase(ret, a) < 0) {
+                                              ^
+    numpy/numarray/_capi.c:1104:42: note: expected ‘PyArrayObject * {aka struct tagPyArrayObject *}’ but argument is of type ‘PyObject * {aka struct _object *}’
+    numpy/numarray/_capi.c: In function ‘NA_IeeeMask32’:
+    numpy/numarray/_capi.c:3073:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+         UInt32 v = *(UInt32 *) &f;
+         ^~~~~~
+    numpy/numarray/_capi.c: In function ‘NA_IeeeMask64’:
+    numpy/numarray/_capi.c:3117:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+         UInt64 v = *(UInt64 *) &f;
+         ^~~~~~
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/numarray/_capi.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/numarray/_capi.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.fft.fftpack_lite' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/fft
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/fft/fftpack_litemodule.c
+    numpy/fft/fftpack_litemodule.c:310:13: warning: ‘fftpack_module_documentation’ defined but not used [-Wunused-variable]
+     static char fftpack_module_documentation[] = "" ;
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    gcc: numpy/fft/fftpack.c
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/fft/fftpack_litemodule.o build/temp.linux-x86_64-3.7/numpy/fft/fftpack.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/fft/fftpack_lite.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.linalg.lapack_lite' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/linalg
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/linalg/lapack_litemodule.c
+    numpy/linalg/lapack_litemodule.c:831:13: warning: ‘lapack_lite_module_documentation’ defined but not used [-Wunused-variable]
+     static char lapack_lite_module_documentation[] = "";
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    gcc: numpy/linalg/python_xerbla.c
+    gcc: numpy/linalg/zlapack_lite.c
+    numpy/linalg/zlapack_lite.c: In function ‘zlaed7_’:
+    numpy/linalg/zlapack_lite.c:9998:59: warning: variable ‘ind2’ set but not used [-Wunused-but-set-variable]
+         static integer i__, k, n1, n2, iq, iw, iz, ptr, ind1, ind2, indx, curr,
+                                                               ^~~~
+    numpy/linalg/zlapack_lite.c:9998:53: warning: variable ‘ind1’ set but not used [-Wunused-but-set-variable]
+         static integer i__, k, n1, n2, iq, iw, iz, ptr, ind1, ind2, indx, curr,
+                                                         ^~~~
+    gcc: numpy/linalg/dlapack_lite.c
+    numpy/linalg/dlapack_lite.c: In function ‘dbdsqr_’:
+    numpy/linalg/dlapack_lite.c:590:23: warning: variable ‘sminlo’ set but not used [-Wunused-but-set-variable]
+         static doublereal sminlo, tolmul;
+                           ^~~~~~
+    gcc: numpy/linalg/blas_lite.c
+    numpy/linalg/blas_lite.c: In function ‘dgemm_’:
+    numpy/linalg/blas_lite.c:325:20: warning: variable ‘ncola’ set but not used [-Wunused-but-set-variable]
+         static integer ncola;
+                        ^~~~~
+    numpy/linalg/blas_lite.c: In function ‘zgemm_’:
+    numpy/linalg/blas_lite.c:4747:20: warning: variable ‘ncola’ set but not used [-Wunused-but-set-variable]
+         static integer ncola;
+                        ^~~~~
+    gcc: numpy/linalg/dlamch.c
+    numpy/linalg/dlamch.c: In function ‘dlamc4_’:
+    numpy/linalg/dlamch.c:720:13: warning: variable ‘i__1’ set but not used [-Wunused-but-set-variable]
+         integer i__1;
+                 ^~~~
+    numpy/linalg/dlamch.c: In function ‘dlamc5_’:
+    numpy/linalg/dlamch.c:834:13: warning: variable ‘i__1’ set but not used [-Wunused-but-set-variable]
+         integer i__1;
+                 ^~~~
+    gcc: numpy/linalg/f2c_lite.c
+    gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/numpy/linalg/lapack_litemodule.o build/temp.linux-x86_64-3.7/numpy/linalg/python_xerbla.o build/temp.linux-x86_64-3.7/numpy/linalg/zlapack_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/dlapack_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/blas_lite.o build/temp.linux-x86_64-3.7/numpy/linalg/dlamch.o build/temp.linux-x86_64-3.7/numpy/linalg/f2c_lite.o -Lbuild/temp.linux-x86_64-3.7 -o build/lib.linux-x86_64-3.7/numpy/linalg/lapack_lite.cpython-37m-x86_64-linux-gnu.so
+    building 'numpy.random.mtrand' extension
+    compiling C sources
+    C compiler: gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC
+    
+    creating build/temp.linux-x86_64-3.7/numpy/random
+    creating build/temp.linux-x86_64-3.7/numpy/random/mtrand
+    compile options: '-Inumpy/core/include -Ibuild/src.linux-x86_64-3.7/numpy/core/include/numpy -Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath -Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -Inumpy/core/include -I/srv/conda/envs/notebook/include/python3.7m -Ibuild/src.linux-x86_64-3.7/numpy/core/src/multiarray -Ibuild/src.linux-x86_64-3.7/numpy/core/src/umath -c'
+    gcc: numpy/random/mtrand/mtrand.c
+    numpy/random/mtrand/mtrand.c: In function ‘__Pyx_GetException’:
+    numpy/random/mtrand/mtrand.c:24524:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tmp_type = tstate->exc_type;
+                            ^~~~~~~~
+                            curexc_type
+    numpy/random/mtrand/mtrand.c:24525:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tmp_value = tstate->exc_value;
+                             ^~~~~~~~~
+                             curexc_value
+    numpy/random/mtrand/mtrand.c:24526:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tmp_tb = tstate->exc_traceback;
+                          ^~~~~~~~~~~~~
+                          curexc_traceback
+    numpy/random/mtrand/mtrand.c:24527:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tstate->exc_type = local_type;
+                 ^~~~~~~~
+                 curexc_type
+    numpy/random/mtrand/mtrand.c:24528:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tstate->exc_value = local_value;
+                 ^~~~~~~~~
+                 curexc_value
+    numpy/random/mtrand/mtrand.c:24529:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tstate->exc_traceback = local_tb;
+                 ^~~~~~~~~~~~~
+                 curexc_traceback
+    numpy/random/mtrand/mtrand.c: In function ‘__Pyx_ExceptionSave’:
+    numpy/random/mtrand/mtrand.c:24603:21: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         *type = tstate->exc_type;
+                         ^~~~~~~~
+                         curexc_type
+    numpy/random/mtrand/mtrand.c:24604:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         *value = tstate->exc_value;
+                          ^~~~~~~~~
+                          curexc_value
+    numpy/random/mtrand/mtrand.c:24605:19: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         *tb = tstate->exc_traceback;
+                       ^~~~~~~~~~~~~
+                       curexc_traceback
+    numpy/random/mtrand/mtrand.c: In function ‘__Pyx_ExceptionReset’:
+    numpy/random/mtrand/mtrand.c:24617:24: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tmp_type = tstate->exc_type;
+                            ^~~~~~~~
+                            curexc_type
+    numpy/random/mtrand/mtrand.c:24618:25: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tmp_value = tstate->exc_value;
+                             ^~~~~~~~~
+                             curexc_value
+    numpy/random/mtrand/mtrand.c:24619:22: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tmp_tb = tstate->exc_traceback;
+                          ^~~~~~~~~~~~~
+                          curexc_traceback
+    numpy/random/mtrand/mtrand.c:24620:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_type’; did you mean ‘curexc_type’?
+         tstate->exc_type = type;
+                 ^~~~~~~~
+                 curexc_type
+    numpy/random/mtrand/mtrand.c:24621:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_value’; did you mean ‘curexc_value’?
+         tstate->exc_value = value;
+                 ^~~~~~~~~
+                 curexc_value
+    numpy/random/mtrand/mtrand.c:24622:13: error: ‘PyThreadState {aka struct _ts}’ has no member named ‘exc_traceback’; did you mean ‘curexc_traceback’?
+         tstate->exc_traceback = tb;
+                 ^~~~~~~~~~~~~
+                 curexc_traceback
+    numpy/random/mtrand/mtrand.c: In function â__Pyx_GetExceptionâ:
+    numpy/random/mtrand/mtrand.c:24524:24: error: âPyThreadState {aka struct _ts}â has no member named âexc_typeâ; did you mean âcurexc_typeâ?
+         tmp_type = tstate->exc_type;
+                            ^~~~~~~~
+                            curexc_type
+    numpy/random/mtrand/mtrand.c:24525:25: error: âPyThreadState {aka struct _ts}â has no member named âexc_valueâ; did you mean âcurexc_valueâ?
+         tmp_value = tstate->exc_valuTraceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-peterchauyeg-learn-python:8d60694', '/tmp/r2d-test-2020-07-13T07.13ro2elpjv/github.com/PeterChauYEG/learn-python']' returned non-zero exit status 1.

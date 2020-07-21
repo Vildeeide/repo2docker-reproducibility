@@ -1,0 +1,342 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T06.1761kj5srq/github.com/tomchristie/django-rest-framework.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 0426b94a0e51
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 83b45feab117
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 8b248669c457
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 4e19447f43aa
+Removing intermediate container 4e19447f43aa
+ ---> 29450a0eddee
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 470ff8addb2b
+Removing intermediate container 470ff8addb2b
+ ---> 265804518ab6
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 653842cebc7f
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting psycopg2-binary<2.9,>=2.8.5
+  Downloading psycopg2_binary-2.8.5-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting markdown==3.1.1
+  Downloading Markdown-3.1.1-py2.py3-none-any.whl (87 kB)
+Collecting pygments==2.4.2
+  Downloading Pygments-2.4.2-py2.py3-none-any.whl (883 kB)
+Collecting django-guardian==2.2.0
+  Downloading django_guardian-2.2.0-py3-none-any.whl (104 kB)
+Collecting django-filter<2.3,>=2.2.0
+  Downloading django_filter-2.2.0-py3-none-any.whl (69 kB)
+Collecting coreapi==2.3.1
+  Downloading coreapi-2.3.1-py2.py3-none-any.whl (110 kB)
+Collecting coreschema==0.0.4
+  Downloading coreschema-0.0.4.tar.gz (10 kB)
+Collecting pyyaml>=5.1
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting pytest<5.5,>=5.4.1
+  Downloading pytest-5.4.3-py3-none-any.whl (248 kB)
+Collecting pytest-django<3.10,>=3.9.0
+  Downloading pytest_django-3.9.0-py2.py3-none-any.whl (19 kB)
+Collecting pytest-cov>=2.7.1
+  Downloading pytest_cov-2.10.0-py2.py3-none-any.whl (19 kB)
+Collecting mkdocs==1.1
+  Downloading mkdocs-1.1-py2.py3-none-any.whl (6.4 MB)
+Collecting flake8==3.7.9
+  Downloading flake8-3.7.9-py2.py3-none-any.whl (69 kB)
+Collecting flake8-tidy-imports==4.1.0
+  Downloading flake8_tidy_imports-4.1.0-py3-none-any.whl (9.3 kB)
+Collecting pycodestyle==2.5.0
+  Downloading pycodestyle-2.5.0-py2.py3-none-any.whl (51 kB)
+Collecting isort==4.3.21
+  Downloading isort-4.3.21-py2.py3-none-any.whl (42 kB)
+Collecting wheel==0.34.2
+  Downloading wheel-0.34.2-py2.py3-none-any.whl (26 kB)
+Collecting twine==3.1.1
+  Downloading twine-3.1.1-py3-none-any.whl (36 kB)
+Collecting transifex-client==0.13.9
+  Downloading transifex-client-0.13.9.tar.gz (197 kB)
+Requirement already satisfied: setuptools>=36 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from markdown==3.1.1->-r requirements/requirements-optionals.txt (line 3)) (45.1.0.post20200119)
+Collecting Django>=2.1
+  Downloading Django-3.0.8-py3-none-any.whl (7.5 MB)
+Collecting itypes
+  Downloading itypes-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting uritemplate
+  Downloading uritemplate-3.0.1-py2.py3-none-any.whl (15 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from coreapi==2.3.1->-r requirements/requirements-optionals.txt (line 7)) (2.22.0)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from coreschema==0.0.4->-r requirements/requirements-optionals.txt (line 8)) (2.11.0)
+Requirement already satisfied: importlib-metadata>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest<5.5,>=5.4.1->-r requirements/requirements-testing.txt (line 2)) (1.5.0)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: more-itertools>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest<5.5,>=5.4.1->-r requirements/requirements-testing.txt (line 2)) (8.2.0)
+Collecting py>=1.5.0
+  Downloading py-1.9.0-py2.py3-none-any.whl (99 kB)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest<5.5,>=5.4.1->-r requirements/requirements-testing.txt (line 2)) (0.1.8)
+Collecting pluggy<1.0,>=0.12
+  Downloading pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pytest<5.5,>=5.4.1->-r requirements/requirements-testing.txt (line 2)) (19.3.0)
+Collecting coverage>=4.4
+  Downloading coverage-5.2-cp37-cp37m-manylinux1_x86_64.whl (229 kB)
+Collecting lunr[languages]==0.5.6
+  Downloading lunr-0.5.6-py2.py3-none-any.whl (36 kB)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mkdocs==1.1->-r requirements/requirements-documentation.txt (line 2)) (6.0.3)
+Collecting click>=3.3
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting livereload>=2.5.1
+  Downloading livereload-2.6.2.tar.gz (25 kB)
+Collecting mccabe<0.7.0,>=0.6.0
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting pyflakes<2.2.0,>=2.1.0
+  Downloading pyflakes-2.1.1-py2.py3-none-any.whl (59 kB)
+Requirement already satisfied: entrypoints<0.4.0,>=0.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from flake8==3.7.9->-r requirements/requirements-codestyle.txt (line 2)) (0.3)
+Collecting readme-renderer>=21.0
+  Downloading readme_renderer-26.0-py2.py3-none-any.whl (15 kB)
+Collecting requests-toolbelt!=0.9.0,>=0.8.0
+  Downloading requests_toolbelt-0.9.1-py2.py3-none-any.whl (54 kB)
+Collecting keyring>=15.1
+  Downloading keyring-21.2.1-py3-none-any.whl (31 kB)
+Collecting pkginfo>=1.4.2
+  Downloading pkginfo-1.5.0.1-py2.py3-none-any.whl (25 kB)
+Collecting tqdm>=4.14
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Requirement already satisfied: urllib3<2.0.0,>=1.24.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from transifex-client==0.13.9->-r requirements/requirements-packaging.txt (line 8)) (1.25.7)
+Requirement already satisfied: six<2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from transifex-client==0.13.9->-r requirements/requirements-packaging.txt (line 8)) (1.14.0)
+Collecting python-slugify<2.0.0
+  Downloading python-slugify-1.2.6.tar.gz (6.8 kB)
+Collecting pytz
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting sqlparse>=0.2.2
+  Downloading sqlparse-0.3.1-py2.py3-none-any.whl (40 kB)
+Collecting asgiref~=3.2
+  Downloading asgiref-3.2.10-py3-none-any.whl (19 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->coreapi==2.3.1->-r requirements/requirements-optionals.txt (line 7)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->coreapi==2.3.1->-r requirements/requirements-optionals.txt (line 7)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->coreapi==2.3.1->-r requirements/requirements-optionals.txt (line 7)) (2019.11.28)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->coreschema==0.0.4->-r requirements/requirements-optionals.txt (line 8)) (1.1.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata>=0.12; python_version < "3.8"->pytest<5.5,>=5.4.1->-r requirements/requirements-testing.txt (line 2)) (2.1.0)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting future>=0.16.0
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting nltk>=3.2.5; extra == "languages"
+  Downloading nltk-3.5.zip (1.4 MB)
+Collecting docutils>=0.13.1
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Requirement already satisfied: bleach>=2.1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from readme-renderer>=21.0->twine==3.1.1->-r requirements/requirements-packaging.txt (line 5)) (3.1.0)
+Collecting jeepney>=0.4.2; sys_platform == "linux"
+  Downloading jeepney-0.4.3-py3-none-any.whl (21 kB)
+Collecting SecretStorage>=3; sys_platform == "linux"
+  Downloading SecretStorage-3.1.2-py3-none-any.whl (14 kB)
+Collecting Unidecode>=0.04.16
+  Downloading Unidecode-1.1.1-py2.py3-none-any.whl (238 kB)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting regex
+  Downloading regex-2020.6.8-cp37-cp37m-manylinux2010_x86_64.whl (661 kB)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach>=2.1.0->readme-renderer>=21.0->twine==3.1.1->-r requirements/requirements-packaging.txt (line 5)) (0.5.1)
+Requirement already satisfied: cryptography in /srv/conda/envs/notebook/lib/python3.7/site-packages (from SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine==3.1.1->-r requirements/requirements-packaging.txt (line 5)) (2.8)
+Requirement already satisfied: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine==3.1.1->-r requirements/requirements-packaging.txt (line 5)) (1.13.2)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine==3.1.1->-r requirements/requirements-packaging.txt (line 5)) (2.19)
+Building wheels for collected packages: coreschema, pyyaml, transifex-client, livereload, python-slugify, future, nltk
+  Building wheel for coreschema (setup.py): started
+  Building wheel for coreschema (setup.py): finished with status 'done'
+  Created wheel for coreschema: filename=coreschema-0.0.4-py3-none-any.whl size=15032 sha256=2283e2428155d6b8f4bc2ee1048c0f3c70bcd0cfb7b4da7bce7223b21595dc8f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/29/28/77/73539fe0ce161da7a571cd8278a9296adbda257406bb6f100d
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393760 sha256=aa720f8c474215472527388d1dc3be26fa5440bcd1b746d1a8f51b03e72fdd1a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for transifex-client (setup.py): started
+  Building wheel for transifex-client (setup.py): finished with status 'done'
+  Created wheel for transifex-client: filename=transifex_client-0.13.9-py3-none-any.whl size=187923 sha256=28d8c8ca6063347528dcd591c471485c1fd444a49d78bb2ac0b852f0e93c3d02
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/ab/f7/4e/f930ed1b697b2ebf2001159c410c51c10ea00b3294cd3f3f90
+  Building wheel for livereload (setup.py): started
+  Building wheel for livereload (setup.py): finished with status 'done'
+  Created wheel for livereload: filename=livereload-2.6.2-py2.py3-none-any.whl size=24607 sha256=0cbc15a3a57cfd19b239d7e062948efc2f6441ba566a43895c4e86e9e40a1250
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/db/00/73/083ab5635568b9d2edb1aeabea12161189faccee338b746191
+  Building wheel for python-slugify (setup.py): started
+  Building wheel for python-slugify (setup.py): finished with status 'done'
+  Created wheel for python-slugify: filename=python_slugify-1.2.6-py2.py3-none-any.whl size=4594 sha256=33ab1498764d53f3a957945a95a7c3c96ed1cb5a5f499ad436a5fac958cbdac8
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/c5/02/83/9904a9436aa0205c8daa9127109e9ed50d3eab25a5ea2fcb9f
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=98f601d499c74fea65ad0537ecb6b98a81e21972a729175eae0bec82c20deefe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+  Building wheel for nltk (setup.py): started
+  Building wheel for nltk (setup.py): finished with status 'done'
+  Created wheel for nltk: filename=nltk-3.5-py3-none-any.whl size=1434680 sha256=ed5b18b1d2bfcfa03811c99001f7b57b1d0c3b75cf7aa704b0c863170ff31f25
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_mjerslk/wheels/45/6c/46/a1865e7ba706b3817f5d1b2ff7ce8996aabdd0d03d47ba0266
+Successfully built coreschema pyyaml transifex-client livereload python-slugify future nltk
+[91mERROR: mkdocs 1.1 has requirement Markdown>=3.2.1, but you'll have markdown 3.1.1 which is incompatible.
+[0m[91mERROR: readme-renderer 26.0 has requirement Pygments>=2.5.1, but you'll have pygments 2.4.2 which is incompatible.
+[0mInstalling collected packages: psycopg2-binary, markdown, pygments, pytz, sqlparse, asgiref, Django, django-guardian, django-filter, coreschema, itypes, uritemplate, coreapi, pyyaml, pyparsing, packaging, py, pluggy, pytest, pytest-django, coverage, pytest-cov, future, click, joblib, regex, tqdm, nltk, lunr, livereload, mkdocs, pycodestyle, mccabe, pyflakes, flake8, flake8-tidy-imports, isort, wheel, docutils, readme-renderer, requests-toolbelt, jeepney, SecretStorage, keyring, pkginfo, twine, Unidecode, python-slugify, transifex-client
+  Attempting uninstall: pygments
+    Found existing installation: Pygments 2.5.2
+    Uninstalling Pygments-2.5.2:
+      Successfully uninstalled Pygments-2.5.2
+  Attempting uninstall: wheel
+    Found existing installation: wheel 0.34.1
+    Uninstalling wheel-0.34.1:
+      Successfully uninstalled wheel-0.34.1
+Successfully installed Django-3.0.8 SecretStorage-3.1.2 Unidecode-1.1.1 asgiref-3.2.10 click-7.1.2 coreapi-2.3.1 coreschema-0.0.4 coverage-5.2 django-filter-2.2.0 django-guardian-2.2.0 docutils-0.16 flake8-3.7.9 flake8-tidy-imports-4.1.0 future-0.18.2 isort-4.3.21 itypes-1.2.0 jeepney-0.4.3 joblib-0.16.0 keyring-21.2.1 livereload-2.6.2 lunr-0.5.6 markdown-3.1.1 mccabe-0.6.1 mkdocs-1.1 nltk-3.5 packaging-20.4 pkginfo-1.5.0.1 pluggy-0.13.1 psycopg2-binary-2.8.5 py-1.9.0 pycodestyle-2.5.0 pyflakes-2.1.1 pygments-2.4.2 pyparsing-2.4.7 pytest-5.4.3 pytest-cov-2.10.0 pytest-django-3.9.0 python-slugify-1.2.6 pytz-2020.1 pyyaml-5.3.1 readme-renderer-26.0 regex-2020.6.8 requests-toolbelt-0.9.1 sqlparse-0.3.1 tqdm-4.47.0 transifex-client-0.13.9 twine-3.1.1 uritemplate-3.0.1 wheel-0.34.2
+Removing intermediate container 653842cebc7f
+ ---> 26d19858d917
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 853f0b4d89ee
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: django>=2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from djangorestframework==3.11.0) (3.0.8)
+Requirement already satisfied: pytz in /srv/conda/envs/notebook/lib/python3.7/site-packages (from django>=2.2->djangorestframework==3.11.0) (2020.1)
+Requirement already satisfied: asgiref~=3.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from django>=2.2->djangorestframework==3.11.0) (3.2.10)
+Requirement already satisfied: sqlparse>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from django>=2.2->djangorestframework==3.11.0) (0.3.1)
+Building wheels for collected packages: djangorestframework
+  Building wheel for djangorestframework (setup.py): started
+  Building wheel for djangorestframework (setup.py): finished with status 'done'
+  Created wheel for djangorestframework: filename=djangorestframework-3.11.0-py3-none-any.whl size=914310 sha256=2c2e91cd71dfef765a0c277eeb123dbc42ce2b8366bdc6b221f6350d1f5051ea
+  Stored in directory: /tmp/pip-ephem-wheel-cache-nh2uk0uw/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built djangorestframework
+Installing collected packages: djangorestframework
+Successfully installed djangorestframework-3.11.0
+Removing intermediate container 853f0b4d89ee
+ ---> dc8f789a34d0
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in bd95ec023b3f
+Removing intermediate container bd95ec023b3f
+ ---> 513f9f5fc08c
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in c337d822bb20
+Removing intermediate container c337d822bb20
+ ---> 8518d188c6dd
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 051b4238ebf8
+Removing intermediate container 051b4238ebf8
+ ---> 502e243523e5
+Step 47/50 : USER ${NB_USER}
+ ---> Running in dd98c0c906c5
+Removing intermediate container dd98c0c906c5
+ ---> a84803b92aba
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> cb8bd94430fd
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 5ba6ce8520e7
+Removing intermediate container 5ba6ce8520e7
+ ---> 19a548740dd1
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 261883bb85ba
+Removing intermediate container 261883bb85ba
+ ---> 3f307120f694
+{"aux": {"ID": "sha256:3f307120f694e19753a98e7f449b8de55fb603273dc933248549858e5550126f"}}Successfully built 3f307120f694
+Successfully tagged r2d-test-github.com-tomchristie-django-rest-framework:7623243

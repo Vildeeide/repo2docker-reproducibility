@@ -1,0 +1,6 @@
+[I 200708 06:55:04 inrepo:36] Testing notebook Index.ipynb
+[I 200708 06:55:04 inrepo:45] Found kernel python3
+[I 200708 06:55:05 execute:404] Executing notebook with kernel: python3
+[I 200708 06:55:05 inrepo:77] Saving exported notebook to /io/notebooks/Index.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

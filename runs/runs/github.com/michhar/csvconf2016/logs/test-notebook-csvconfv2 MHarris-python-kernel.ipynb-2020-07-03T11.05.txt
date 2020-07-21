@@ -1,0 +1,52 @@
+[I 200703 11:05:34 inrepo:35] Testing notebook csvconfv2 MHarris-python-kernel.ipynb
+[I 200703 11:05:35 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Data from workspace in Azure Machine Learning Studio: https://studio.azureml.net (a free service)
+# from azureml import Workspace
+
+# ws = Workspace()
+# ds = ws.datasets['paho-who-cases-reported-2016-03-02.csv']
+# frame = ds.to_dataframe()
+# frame.head(20)
+
+
+# OR
+
+
+# The notebook is local and the file is too
+
+import pandas as pd
+frame = pd.read_csv('paho-who-cases-reported-2016-03-02.csv')
+frame.head(20)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-5-f73af669efa1>[0m in [0;36m<module>[0;34m[0m
+[1;32m     13[0m [0;31m# The notebook is local and the file is too[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     14[0m [0;34m[0m[0m
+[0;32m---> 15[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     16[0m [0mframe[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m'paho-who-cases-reported-2016-03-02.csv'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m [0mframe[0m[0;34m.[0m[0mhead[0m[0;34m([0m[0;36m20[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

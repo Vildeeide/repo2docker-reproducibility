@@ -1,0 +1,5 @@
+[I 200703 06:44:35 inrepo:35] Testing notebook interpolation/Interpolation Error.ipynb
+[I 200703 06:44:36 execute:404] Executing notebook with kernel: python3
+[I 200703 06:44:37 inrepo:41] Saving exported notebook to /io/notebooks/interpolation/Interpolation Error.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

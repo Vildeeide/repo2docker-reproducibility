@@ -1,0 +1,5 @@
+[I 200703 11:51:48 inrepo:35] Testing notebook 02-Image-Manipulation.ipynb
+[I 200703 11:51:49 execute:404] Executing notebook with kernel: python3
+[I 200703 11:51:51 inrepo:41] Saving exported notebook to /io/notebooks/02-Image-Manipulation.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

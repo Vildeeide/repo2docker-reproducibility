@@ -1,0 +1,139 @@
+[I 200714 13:53:12 inrepo:36] Testing notebook FINA2390/Project 5. Web Crawling/5.18/hkta.ipynb
+[W 200714 13:53:13 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200714 13:53:13 inrepo:60] Using kernel python3 to provide language: python
+[I 200714 13:53:14 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import csv
+import pandas as pd
+import os
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium.webdriver.common.by import By 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+############################################################################################
+#Initial variables
+#This part of the code is used to set the inital parameters for the web crawler
+############################################################################################
+START_PAGE = 1
+END_PAGE = 1
+PROJECT_ABBR = "hkta"
+PROJECT_NAME = "Project 5"
+URL = "https://www.hkta.edu.hk/"
+
+#Main window
+driver =webdriver.Firefox(executable_path=r'D:\git\FINA2390-Programs\geckodriver.exe')
+driver.get(URL)
+
+df_columns = ['Date',
+              'Year of Study',
+              'Subject',
+              'Sex',
+              'Location',
+              'Time',
+              'Salary',
+              'Remarks']
+
+
+df_etf = pd.DataFrame(columns=df_columns)
+
+
+def save_file(state, CURRENT_PAGE):
+    if state == 'backup':
+        filename = '['+ PROJECT_ABBR +'][Intrim Backup][' + str(CURRENT_PAGE) + ']' + PROJECT_NAME + ' PAGE ' + str(START_PAGE) + ' to PAGE ' + str(CURRENT_PAGE) + ' Records.csv'
+        df_etf.to_csv(filename, index=False,  encoding='utf_8_sig')
+        print '[Intrim Backup]Saved First '+ str(CURRENT_PAGE) + 'Pages Records to CSV'
+    elif state == 'all':
+        filename = '['+ PROJECT_ABBR +']'+ PROJECT_NAME +' PAGE ' + str(START_PAGE) + 'to PAGE ' + str(END_PAGE) + 'Records.csv'
+        df_etf.to_csv(filename, index=False, encoding='utf_8_sig')
+        print 'Exported to csv'
+        
+                                                
+
+############################################################################################
+#Main
+#This part is the main function of the program
+############################################################################################
+def main():
+    time.sleep(2)
+    
+    go_to_page(START_PAGE)
+    time.sleep(1)
+    print 'Start at PAGE'+ str(START_PAGE)
+    
+    n = 1
+    for CURRENT_PAGE in range(START_PAGE,END_PAGE+1):
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' START--------------------'
+        START_TIMESTAMP = time.time()
+        
+        
+        for row in driver.find_elements_by_xpath('//*[@id="menu-canvas"]/div/div/div/div/div/div[1]/div[3]/div[1]/div'):
+            df_etf.loc[n, 'Location']         = row.find_element_by_xpath('a/div/ul/li[4]').text.split(u'：')[1]
+            #df_etf.loc[n, 'Date']             = row.find_element_by_xpath('span[4]/span').text.split('-')[0]
+            df_etf.loc[n, 'Sex']              = row.find_element_by_xpath('a/div/ul/li[2]').text.split(u'：')[1]
+            df_etf.loc[n, 'Time']             = row.find_element_by_xpath('a/div/ul/li[3]').text.split(u'：')[1]
+            df_etf.loc[n, 'Salary']           = row.find_element_by_xpath('a/div/ul/li[5]').text.split(u'：')[1]
+            
+            if(len(row.find_element_by_xpath('a/div/ul/li[6]').text.split(u'：')[1])!= 0):
+                df_etf.loc[n, 'Remarks']     = row.find_element_by_xpath('a/div/ul/li[6]').text.split(u'：')[1]
+            
+            sub_yof = row.find_element_by_xpath('a/div/ul/li[1]').text.split(',')
+            df_etf.loc[n, 'Year of Study']   = sub_yof[0]
+            df_etf.loc[n, 'Subject']         = sub_yof[1]
+            
+            print '--------------------ROW ' + str(n) +' FINISHED--------------------'
+            n = n + 1
+            
+        print '--------------------PAGE ' + str(CURRENT_PAGE) +' FINISH--------------------'
+        END_TIMESTAMP = time.time()
+        print '-TIME USED:' + str(START_TIMESTAMP-END_TIMESTAMP) + '-'
+        
+        #store every first 5,10,15... pages to CSV for backup purpose
+        if(CURRENT_PAGE % 5) == 0:
+            save_file('backup', CURRENT_PAGE)
+        
+    #set Source as QS for every row as this is crawl from QS
+    
+    #export the file to CSV
+    save_file('all', CURRENT_PAGE)
+    
+    #close the driver
+    driver.quit()
+    
+if __name__ == "__main__":
+    main()
+
+
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-c51693de2a9d>"[0;36m, line [0;32m46[0m
+[0;31m    print '[Intrim Backup]Saved First '+ str(CURRENT_PAGE) + 'Pages Records to CSV'[0m
+[0m                                      ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-c51693de2a9d>, line 46)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

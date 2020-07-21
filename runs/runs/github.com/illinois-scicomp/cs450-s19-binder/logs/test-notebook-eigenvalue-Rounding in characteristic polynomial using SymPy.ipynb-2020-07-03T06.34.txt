@@ -1,0 +1,5 @@
+[I 200703 06:38:46 inrepo:35] Testing notebook eigenvalue/Rounding in characteristic polynomial using SymPy.ipynb
+[I 200703 06:38:48 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:51 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Rounding in characteristic polynomial using SymPy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

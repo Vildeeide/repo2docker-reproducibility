@@ -1,0 +1,27 @@
+[I 200703 09:21:06 inrepo:35] Testing notebook Lectures/Lecture12 -- CESM climate sensitivity.ipynb
+[I 200703 09:21:08 execute:404] Executing notebook with kernel: python3
+[E 200703 09:22:09 execute:498] Timeout waiting for execute reply (30s).
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 438, in preprocess_cell
+    reply, outputs = self.run_cell(cell, cell_index, store_history)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 571, in run_cell
+    if self._passed_deadline(deadline):
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 541, in _passed_deadline
+    self._handle_timeout()
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 504, in _handle_timeout
+    raise TimeoutError("Cell execution timed out")
+TimeoutError: Cell execution timed out
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

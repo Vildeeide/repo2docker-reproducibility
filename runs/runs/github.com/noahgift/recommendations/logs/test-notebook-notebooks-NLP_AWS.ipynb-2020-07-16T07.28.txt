@@ -1,0 +1,117 @@
+[I 200716 07:39:13 inrepo:36] Testing notebook notebooks/NLP_AWS.ipynb
+[I 200716 07:39:14 inrepo:45] Found kernel python3
+[I 200716 07:39:14 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+comprehend = boto3.client(service_name='comprehend')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNoRegionError[0m                             Traceback (most recent call last)
+[0;32m<ipython-input-2-b3b280bf459c>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mcomprehend[0m [0;34m=[0m [0mboto3[0m[0;34m.[0m[0mclient[0m[0;34m([0m[0mservice_name[0m[0;34m=[0m[0;34m'comprehend'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/boto3/__init__.py[0m in [0;36mclient[0;34m(*args, **kwargs)[0m
+[1;32m     89[0m     [0mSee[0m [0;34m:[0m[0mpy[0m[0;34m:[0m[0mmeth[0m[0;34m:[0m[0;31m`[0m[0mboto3[0m[0;34m.[0m[0msession[0m[0;34m.[0m[0mSession[0m[0;34m.[0m[0mclient[0m[0;31m`[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     90[0m     """
+[0;32m---> 91[0;31m     [0;32mreturn[0m [0m_get_default_session[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mclient[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     92[0m [0;34m[0m[0m
+[1;32m     93[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/boto3/session.py[0m in [0;36mclient[0;34m(self, service_name, region_name, api_version, use_ssl, verify, endpoint_url, aws_access_key_id, aws_secret_access_key, aws_session_token, config)[0m
+[1;32m    261[0m             [0maws_access_key_id[0m[0;34m=[0m[0maws_access_key_id[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    262[0m             [0maws_secret_access_key[0m[0;34m=[0m[0maws_secret_access_key[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 263[0;31m             aws_session_token=aws_session_token, config=config)
+[0m[1;32m    264[0m [0;34m[0m[0m
+[1;32m    265[0m     def resource(self, service_name, region_name=None, api_version=None,
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/session.py[0m in [0;36mcreate_client[0;34m(self, service_name, region_name, api_version, use_ssl, verify, endpoint_url, aws_access_key_id, aws_secret_access_key, aws_session_token, config)[0m
+[1;32m    833[0m             [0mis_secure[0m[0;34m=[0m[0muse_ssl[0m[0;34m,[0m [0mendpoint_url[0m[0;34m=[0m[0mendpoint_url[0m[0;34m,[0m [0mverify[0m[0;34m=[0m[0mverify[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    834[0m             [0mcredentials[0m[0;34m=[0m[0mcredentials[0m[0;34m,[0m [0mscoped_config[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mget_scoped_config[0m[0;34m([0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 835[0;31m             client_config=config, api_version=api_version)
+[0m[1;32m    836[0m         [0mmonitor[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_get_internal_component[0m[0;34m([0m[0;34m'monitor'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    837[0m         [0;32mif[0m [0mmonitor[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/client.py[0m in [0;36mcreate_client[0;34m(self, service_name, region_name, is_secure, endpoint_url, verify, credentials, scoped_config, api_version, client_config)[0m
+[1;32m     83[0m         client_args = self._get_client_args(
+[1;32m     84[0m             [0mservice_model[0m[0;34m,[0m [0mregion_name[0m[0;34m,[0m [0mis_secure[0m[0;34m,[0m [0mendpoint_url[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 85[0;31m             verify, credentials, scoped_config, client_config, endpoint_bridge)
+[0m[1;32m     86[0m         [0mservice_client[0m [0;34m=[0m [0mcls[0m[0;34m([0m[0;34m**[0m[0mclient_args[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     87[0m         [0mself[0m[0;34m.[0m[0m_register_retries[0m[0;34m([0m[0mservice_client[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/client.py[0m in [0;36m_get_client_args[0;34m(self, service_model, region_name, is_secure, endpoint_url, verify, credentials, scoped_config, client_config, endpoint_bridge)[0m
+[1;32m    285[0m         return args_creator.get_client_args(
+[1;32m    286[0m             [0mservice_model[0m[0;34m,[0m [0mregion_name[0m[0;34m,[0m [0mis_secure[0m[0;34m,[0m [0mendpoint_url[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 287[0;31m             verify, credentials, scoped_config, client_config, endpoint_bridge)
+[0m[1;32m    288[0m [0;34m[0m[0m
+[1;32m    289[0m     [0;32mdef[0m [0m_create_methods[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mservice_model[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/args.py[0m in [0;36mget_client_args[0;34m(self, service_model, region_name, is_secure, endpoint_url, verify, credentials, scoped_config, client_config, endpoint_bridge)[0m
+[1;32m     71[0m         final_args = self.compute_client_args(
+[1;32m     72[0m             [0mservice_model[0m[0;34m,[0m [0mclient_config[0m[0;34m,[0m [0mendpoint_bridge[0m[0;34m,[0m [0mregion_name[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 73[0;31m             endpoint_url, is_secure, scoped_config)
+[0m[1;32m     74[0m [0;34m[0m[0m
+[1;32m     75[0m         [0mservice_name[0m [0;34m=[0m [0mfinal_args[0m[0;34m[[0m[0;34m'service_name'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/args.py[0m in [0;36mcompute_client_args[0;34m(self, service_model, client_config, endpoint_bridge, region_name, endpoint_url, is_secure, scoped_config)[0m
+[1;32m    151[0m             [0mis_secure[0m[0;34m=[0m[0mis_secure[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    152[0m             [0mendpoint_bridge[0m[0;34m=[0m[0mendpoint_bridge[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 153[0;31m             [0ms3_config[0m[0;34m=[0m[0ms3_config[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    154[0m         )
+[1;32m    155[0m         [0;31m# Create a new client config to be passed to the client based[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/args.py[0m in [0;36m_compute_endpoint_config[0;34m(self, service_name, region_name, endpoint_url, is_secure, endpoint_bridge, s3_config)[0m
+[1;32m    216[0m         [0;32mif[0m [0mservice_name[0m [0;34m==[0m [0;34m'sts'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    217[0m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_compute_sts_endpoint_config[0m[0;34m([0m[0;34m**[0m[0mresolve_endpoint_kwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 218[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_resolve_endpoint[0m[0;34m([0m[0;34m**[0m[0mresolve_endpoint_kwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    219[0m [0;34m[0m[0m
+[1;32m    220[0m     def _compute_s3_endpoint_config(self, s3_config,
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/args.py[0m in [0;36m_resolve_endpoint[0;34m(self, service_name, region_name, endpoint_url, is_secure, endpoint_bridge)[0m
+[1;32m    299[0m                           endpoint_url, is_secure, endpoint_bridge):
+[1;32m    300[0m         return endpoint_bridge.resolve(
+[0;32m--> 301[0;31m             service_name, region_name, endpoint_url, is_secure)
+[0m[1;32m    302[0m [0;34m[0m[0m
+[1;32m    303[0m     [0;32mdef[0m [0m_compute_socket_options[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mscoped_config[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/client.py[0m in [0;36mresolve[0;34m(self, service_name, region_name, endpoint_url, is_secure)[0m
+[1;32m    359[0m         [0mregion_name[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_check_default_region[0m[0;34m([0m[0mservice_name[0m[0;34m,[0m [0mregion_name[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    360[0m         resolved = self.endpoint_resolver.construct_endpoint(
+[0;32m--> 361[0;31m             service_name, region_name)
+[0m[1;32m    362[0m [0;34m[0m[0m
+[1;32m    363[0m         [0;31m# If we can't resolve the region, we'll attempt to get a global[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/regions.py[0m in [0;36mconstruct_endpoint[0;34m(self, service_name, region_name, partition_name)[0m
+[1;32m    132[0m         [0;32mfor[0m [0mpartition[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_endpoint_data[0m[0;34m[[0m[0;34m'partitions'[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    133[0m             result = self._endpoint_for_partition(
+[0;32m--> 134[0;31m                 partition, service_name, region_name)
+[0m[1;32m    135[0m             [0;32mif[0m [0mresult[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    136[0m                 [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/botocore/regions.py[0m in [0;36m_endpoint_for_partition[0;34m(self, partition, service_name, region_name, force_partition)[0m
+[1;32m    146[0m                 [0mregion_name[0m [0;34m=[0m [0mservice_data[0m[0;34m[[0m[0;34m'partitionEndpoint'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m    147[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 148[0;31m                 [0;32mraise[0m [0mNoRegionError[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    149[0m         [0;31m# Attempt to resolve the exact region for this partition.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    150[0m         [0;32mif[0m [0mregion_name[0m [0;32min[0m [0mservice_data[0m[0;34m[[0m[0;34m'endpoints'[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNoRegionError[0m: You must specify a region.
+NoRegionError: You must specify a region.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200706 12:35:39 inrepo:35] Testing notebook .ipynb_checkpoints/HorizontalStresses_Widget-checkpoint.ipynb
+[I 200706 12:35:40 execute:404] Executing notebook with kernel: python3
+[I 200706 12:35:42 inrepo:41] Saving exported notebook to /io/notebooks/.ipynb_checkpoints/HorizontalStresses_Widget-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

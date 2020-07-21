@@ -1,0 +1,6 @@
+[I 200710 07:07:14 inrepo:36] Testing notebook content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+[I 200710 07:07:15 inrepo:45] Found kernel python3
+[I 200710 07:07:16 execute:404] Executing notebook with kernel: python3
+[I 200710 07:07:55 inrepo:79] Saving exported notebook to /io/notebooks/content/chapters/10/3/Empirical_Distribution_of_a_Statistic.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,11 @@
+[I 200703 08:28:56 inrepo:35] Testing notebook docs/examples/vibesystem_notebook-damper.ipynb
+[E 200703 08:28:56 __init__:79] Notebook JSON is invalid: {'model_id': '0d16306bfedf4708ad18a4a84235b9d9'} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][17]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '0d16306bfedf4708ad18a4a84235b9d9'}
+[I 200703 08:28:57 execute:404] Executing notebook with kernel: python3
+[I 200703 08:28:59 inrepo:41] Saving exported notebook to /io/notebooks/docs/examples/vibesystem_notebook-damper.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

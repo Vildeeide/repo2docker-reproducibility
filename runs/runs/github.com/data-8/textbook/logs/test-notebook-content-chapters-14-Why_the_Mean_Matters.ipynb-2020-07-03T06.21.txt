@@ -1,0 +1,5 @@
+[I 200703 06:23:55 inrepo:35] Testing notebook content/chapters/14/Why_the_Mean_Matters.ipynb
+[I 200703 06:23:56 execute:404] Executing notebook with kernel: python3
+[I 200703 06:23:57 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/14/Why_the_Mean_Matters.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

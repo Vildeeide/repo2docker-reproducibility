@@ -1,0 +1,5 @@
+[I 200703 11:51:22 inrepo:35] Testing notebook 00-Introduction-To-Jupyter-And-BinderHub.ipynb
+[I 200703 11:51:25 execute:404] Executing notebook with kernel: python3
+[I 200703 11:51:25 inrepo:41] Saving exported notebook to /io/notebooks/00-Introduction-To-Jupyter-And-BinderHub.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

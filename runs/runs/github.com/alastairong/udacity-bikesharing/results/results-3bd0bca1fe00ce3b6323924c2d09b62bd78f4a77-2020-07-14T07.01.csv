@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/alastairong/udacity-bikesharing,3bd0bca1fe00ce3b6323924c2d09b62bd78f4a77,3bd0bca,2017-12-08T11:18:58-08:00,build,build,False,github.com/alastairong/udacity-bikesharing/logs/build-3bd0bca1fe00ce3b6323924c2d09b62bd78f4a77-2020-07-14T07.01.txt,2020-07-14T07:01:33.899913,2020-07-14T07.01,0.11.0

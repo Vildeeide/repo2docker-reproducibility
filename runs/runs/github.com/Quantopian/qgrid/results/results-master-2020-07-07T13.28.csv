@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Quantopian/qgrid,master,877b420,2020-04-07T20:56:49+02:00,build,build,True,github.com/Quantopian/qgrid/logs/build-master-2020-07-07T13.28.txt,2020-07-07T13:28:59.488898,2020-07-07T13.28,0.11.0

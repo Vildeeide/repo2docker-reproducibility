@@ -1,0 +1,200 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-15T12.132hcjczx4/github.com/andlay/binder-test.
+Using PythonBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${CONDA_DIR}/envs/kernel
+ ---> Using cache
+ ---> d02eeac85c53
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${KERNEL_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> 6f0f9264e9b8
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 94b11c12a020
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> 837c948b4854
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d2-2e7-2efrozen-2eyml-379f74 /tmp/kernel-environment.yml
+ ---> Using cache
+ ---> 34bb82896423
+Step 27/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 77ce9857cea0
+Step 28/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 4569f9280b08
+Step 29/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 4955cce20e9a
+Step 30/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 45c6e4d929f4
+Step 31/52 : USER root
+ ---> Using cache
+ ---> 9523e61984af
+Step 32/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> f8fcfe6c372e
+Step 33/52 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> b572ecda404b
+Step 34/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> d9f4a864c0ad
+Step 35/52 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 9dd615a29832
+Step 36/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 91b8186d472b
+Step 37/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 685a83c45c09
+Step 38/52 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 5965cfe6f265
+Step 39/52 : USER root
+ ---> Running in 55d7b7c5d242
+Removing intermediate container 55d7b7c5d242
+ ---> b87b603ed446
+Step 40/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e7933885a78e
+Removing intermediate container e7933885a78e
+ ---> 525322578c88
+Step 41/52 : USER ${NB_USER}
+ ---> Running in 7712f9e07a38
+Removing intermediate container 7712f9e07a38
+ ---> 92f66adbbf81
+Step 42/52 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in e3f972547dd7
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0m[91mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+[0mCollecting numpy
+  Downloading numpy-1.16.6-cp27-cp27mu-manylinux1_x86_64.whl (17.0 MB)
+Collecting pandas
+  Downloading pandas-0.24.2-cp27-cp27mu-manylinux1_x86_64.whl (10.1 MB)
+Collecting matplotlib
+  Downloading matplotlib-2.2.5-cp27-cp27mu-manylinux1_x86_64.whl (12.8 MB)
+Collecting seaborn
+  Downloading seaborn-0.9.1-py2.py3-none-any.whl (216 kB)
+Requirement already satisfied: python-dateutil>=2.5.0 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from pandas->-r requirements.txt (line 2)) (2.8.1)
+Collecting pytz>=2011k
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.1.0-cp27-cp27mu-manylinux1_x86_64.whl (93 kB)
+Requirement already satisfied: six>=1.10 in /srv/conda/envs/kernel/lib/python2.7/site-packages (from matplotlib->-r requirements.txt (line 3)) (1.14.0)
+Collecting subprocess32
+  Downloading subprocess32-3.5.4-cp27-cp27mu-manylinux2014_x86_64.whl (69 kB)
+Collecting backports.functools-lru-cache
+  Downloading backports.functools_lru_cache-1.6.1-py2.py3-none-any.whl (5.7 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting scipy>=0.17.1
+  Downloading scipy-1.2.3-cp27-cp27mu-manylinux1_x86_64.whl (24.8 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/kernel/lib/python2.7/site-packages (from kiwisolver>=1.0.1->matplotlib->-r requirements.txt (line 3)) (44.0.0.post20200102)
+Installing collected packages: numpy, pytz, pandas, cycler, kiwisolver, subprocess32, backports.functools-lru-cache, pyparsing, matplotlib, scipy, seaborn
+Successfully installed backports.functools-lru-cache-1.6.1 cycler-0.10.0 kiwisolver-1.1.0 matplotlib-2.2.5 numpy-1.16.6 pandas-0.24.2 pyparsing-2.4.7 pytz-2020.1 scipy-1.2.3 seaborn-0.9.1 subprocess32-3.5.4
+Removing intermediate container e3f972547dd7
+ ---> 0b15a6ea92a8
+Step 43/52 : USER root
+ ---> Running in 8860627b3928
+Removing intermediate container 8860627b3928
+ ---> ae591cee49ab
+Step 44/52 : COPY src/ ${REPO_DIR}
+ ---> cf34dbc3ada3
+Step 45/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 663c6cf5c542
+Removing intermediate container 663c6cf5c542
+ ---> 667bc91c122b
+Step 46/52 : LABEL repo2docker.ref="None"
+ ---> Running in f2565d484f59
+Removing intermediate container f2565d484f59
+ ---> 262cebdec87b
+Step 47/52 : LABEL repo2docker.repo="local"
+ ---> Running in fe04d8437d89
+Removing intermediate container fe04d8437d89
+ ---> 6ca3d2848d18
+Step 48/52 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 104e436ae401
+Removing intermediate container 104e436ae401
+ ---> dae887c8ef07
+Step 49/52 : USER ${NB_USER}
+ ---> Running in a3111540f210
+Removing intermediate container a3111540f210
+ ---> 10ada734001c
+Step 50/52 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 7477e619c67a
+Step 51/52 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 6e92b841121a
+Removing intermediate container 6e92b841121a
+ ---> 8ffda6a2fb1b
+Step 52/52 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 71213f8044ec
+Removing intermediate container 71213f8044ec
+ ---> 7be3992580d6
+{"aux": {"ID": "sha256:7be3992580d618a7a650000b1eedfaec96e152e47ed34e6df06a90e02744c59c"}}Successfully built 7be3992580d6
+Successfully tagged r2d-test-github.com-andlay-binder-test:ac02a51

@@ -1,0 +1,4 @@
+[I 200715 08:48:32 inrepo:36] Testing notebook code_examples/julia/Julia_Demo.ipynb
+[W 200715 08:48:32 inrepo:48] No such kernel julia-0.4, falling back on kernel language=julia
+[W 200715 08:48:32 inrepo:60] Using kernel julia-1.4 to provide language: julia
+Starting kernel event loops.

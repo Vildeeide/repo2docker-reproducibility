@@ -1,0 +1,5 @@
+[I 200703 06:57:17 inrepo:35] Testing notebook convolutional-neural-networks/conv-visualization/custom_filters.ipynb
+[I 200703 06:57:19 execute:404] Executing notebook with kernel: python3
+[I 200703 06:57:22 inrepo:41] Saving exported notebook to /io/notebooks/convolutional-neural-networks/conv-visualization/custom_filters.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

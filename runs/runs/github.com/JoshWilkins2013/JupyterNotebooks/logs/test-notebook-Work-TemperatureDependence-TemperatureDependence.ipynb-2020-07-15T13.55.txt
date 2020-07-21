@@ -1,0 +1,6 @@
+[I 200715 14:02:07 inrepo:36] Testing notebook Work/TemperatureDependence/TemperatureDependence.ipynb
+[I 200715 14:02:08 inrepo:45] Found kernel python2
+[I 200715 14:02:11 execute:404] Executing notebook with kernel: python2
+[I 200715 14:02:24 inrepo:79] Saving exported notebook to /io/notebooks/Work/TemperatureDependence/TemperatureDependence.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

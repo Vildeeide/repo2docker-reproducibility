@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/alaakh42/Sentiment_Model_Template,master,a11b170,2018-04-21T09:56:24+02:00,build,build,False,github.com/alaakh42/Sentiment_Model_Template/logs/build-master-2020-07-14T12.00.txt,2020-07-14T12:00:57.704855,2020-07-14T12.00,0.11.0

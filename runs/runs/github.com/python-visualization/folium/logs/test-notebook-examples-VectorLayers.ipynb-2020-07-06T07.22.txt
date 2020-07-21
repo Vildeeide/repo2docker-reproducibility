@@ -1,0 +1,5 @@
+[I 200706 08:44:29 inrepo:35] Testing notebook examples/VectorLayers.ipynb
+[I 200706 08:44:30 execute:404] Executing notebook with kernel: python3
+[I 200706 08:44:32 inrepo:41] Saving exported notebook to /io/notebooks/examples/VectorLayers.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

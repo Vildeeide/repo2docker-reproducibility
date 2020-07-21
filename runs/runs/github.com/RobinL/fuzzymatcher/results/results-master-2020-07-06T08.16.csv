@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/RobinL/fuzzymatcher,master,8927fb3,2019-12-19T16:02:36+00:00,build,build,False,github.com/RobinL/fuzzymatcher/logs/build-master-2020-07-06T08.16.txt,2020-07-06T08:16:31.768130,2020-07-06T08.16,0.11.0

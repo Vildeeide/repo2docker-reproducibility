@@ -1,0 +1,89 @@
+[I 200714 18:16:28 inrepo:36] Testing notebook tcga/data-viz.ipynb
+[I 200714 18:16:28 inrepo:45] Found kernel python3
+[I 200714 18:16:28 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%reset -f
+%matplotlib inline
+%load_ext rpy2.ipython
+import sys
+sys.path.append('../')
+import seaborn.apionly as sns
+import matplotlib
+import pandas as pd
+import numpy as np
+import pylab as pl
+from sklearn.preprocessing import MinMaxScaler
+from matplotlib import rc
+rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+rc('text', usetex=True)
+import warnings
+warnings.filterwarnings('ignore')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-2cce72371326>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'reset'[0m[0;34m,[0m [0;34m'-f'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'matplotlib'[0m[0;34m,[0m [0;34m'inline'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_line_magic[0m[0;34m([0m[0;34m'load_ext'[0m[0;34m,[0m [0;34m'rpy2.ipython'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0msys[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0;34m'../'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_line_magic[0;34m(self, magic_name, line, _stack_depth)[0m
+[1;32m   2305[0m                 [0mkwargs[0m[0;34m[[0m[0;34m'local_ns'[0m[0;34m][0m [0;34m=[0m [0msys[0m[0;34m.[0m[0m_getframe[0m[0;34m([0m[0mstack_depth[0m[0;34m)[0m[0;34m.[0m[0mf_locals[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2306[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2307[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2308[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2309[0m [0;34m[0m[0m
+
+[0;32m</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-108>[0m in [0;36mmatplotlib[0;34m(self, line)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magics/pylab.py[0m in [0;36mmatplotlib[0;34m(self, line)[0m
+[1;32m     97[0m             [0mprint[0m[0;34m([0m[0;34m"Available matplotlib backends: %s"[0m [0;34m%[0m [0mbackends_list[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     98[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 99[0;31m             [0mgui[0m[0;34m,[0m [0mbackend[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mshell[0m[0;34m.[0m[0menable_matplotlib[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m.[0m[0mlower[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0misinstance[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m,[0m [0mstr[0m[0;34m)[0m [0;32melse[0m [0margs[0m[0;34m.[0m[0mgui[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    100[0m             [0mself[0m[0;34m.[0m[0m_show_matplotlib_backend[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mgui[0m[0;34m,[0m [0mbackend[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    101[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36menable_matplotlib[0;34m(self, gui)[0m
+[1;32m   3393[0m         """
+[1;32m   3394[0m         [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mcore[0m [0;32mimport[0m [0mpylabtools[0m [0;32mas[0m [0mpt[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3395[0;31m         [0mgui[0m[0;34m,[0m [0mbackend[0m [0;34m=[0m [0mpt[0m[0;34m.[0m[0mfind_gui_and_backend[0m[0;34m([0m[0mgui[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mpylab_gui_select[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3396[0m [0;34m[0m[0m
+[1;32m   3397[0m         [0;32mif[0m [0mgui[0m [0;34m!=[0m [0;34m'inline'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/pylabtools.py[0m in [0;36mfind_gui_and_backend[0;34m(gui, gui_select)[0m
+[1;32m    274[0m     """
+[1;32m    275[0m [0;34m[0m[0m
+[0;32m--> 276[0;31m     [0;32mimport[0m [0mmatplotlib[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    277[0m [0;34m[0m[0m
+[1;32m    278[0m     [0;32mif[0m [0mgui[0m [0;32mand[0m [0mgui[0m [0;34m!=[0m [0;34m'auto'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

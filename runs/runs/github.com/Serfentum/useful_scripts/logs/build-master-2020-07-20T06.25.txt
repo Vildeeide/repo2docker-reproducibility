@@ -1,0 +1,147 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-20T06.251ybcr9gw/github.com/Serfentum/useful_scripts.
+Using PythonBuildPack builder
+Step 1/46 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/46 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/46 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/46 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/46 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/46 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/46 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/46 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/46 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/46 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/46 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/46 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/46 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/46 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/46 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/46 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/46 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/46 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/46 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/46 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/46 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/46 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/46 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/46 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/46 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/46 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/46 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/46 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/46 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/46 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/46 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/46 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/46 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/46 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/46 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/46 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/46 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/46 : COPY src/ ${REPO_DIR}
+ ---> 2f03ff9386de
+Step 39/46 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 7637983c768b
+Removing intermediate container 7637983c768b
+ ---> b3c00b910f49
+Step 40/46 : LABEL repo2docker.ref="None"
+ ---> Running in 8115d81b31d2
+Removing intermediate container 8115d81b31d2
+ ---> ba5afa0e3bb1
+Step 41/46 : LABEL repo2docker.repo="local"
+ ---> Running in 20613faaac3b
+Removing intermediate container 20613faaac3b
+ ---> 3dab4ef5c7ee
+Step 42/46 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 1a1b8154644c
+Removing intermediate container 1a1b8154644c
+ ---> a3cad98baaa0
+Step 43/46 : USER ${NB_USER}
+ ---> Running in 9770c8bd4c73
+Removing intermediate container 9770c8bd4c73
+ ---> eb863596b59d
+Step 44/46 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 2837507c31e9
+Step 45/46 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in ac0d1d60da6c
+Removing intermediate container ac0d1d60da6c
+ ---> 434d801dca46
+Step 46/46 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 53d1ebe0e42a
+Removing intermediate container 53d1ebe0e42a
+ ---> 0d6de519780d
+{"aux": {"ID": "sha256:0d6de519780dc3ea90121df73aa2abe1054ead6a0e324bec1072dc92da06c458"}}Successfully built 0d6de519780d
+Successfully tagged r2d-test-github.com-serfentum-useful_scripts:e5465f9

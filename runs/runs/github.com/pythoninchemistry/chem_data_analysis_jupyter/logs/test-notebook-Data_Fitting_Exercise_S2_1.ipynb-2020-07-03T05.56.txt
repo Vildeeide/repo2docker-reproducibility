@@ -1,0 +1,5 @@
+[I 200703 05:57:26 inrepo:35] Testing notebook Data_Fitting_Exercise_S2_1.ipynb
+[I 200703 05:57:27 execute:404] Executing notebook with kernel: python3
+[I 200703 05:57:28 inrepo:41] Saving exported notebook to /io/notebooks/Data_Fitting_Exercise_S2_1.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

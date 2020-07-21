@@ -1,0 +1,5 @@
+[I 200703 06:37:52 inrepo:35] Testing notebook linear_least_squares/Polynomial fitting with the normal equations.ipynb
+[I 200703 06:37:53 execute:404] Executing notebook with kernel: python3
+[I 200703 06:37:55 inrepo:41] Saving exported notebook to /io/notebooks/linear_least_squares/Polynomial fitting with the normal equations.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

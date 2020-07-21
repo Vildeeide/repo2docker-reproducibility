@@ -1,0 +1,5 @@
+[I 200703 06:35:17 inrepo:35] Testing notebook legacy/notebooks/LinearRegr.ipynb
+[I 200703 06:35:19 execute:404] Executing notebook with kernel: python3
+[I 200703 06:35:23 inrepo:41] Saving exported notebook to /io/notebooks/legacy/notebooks/LinearRegr.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

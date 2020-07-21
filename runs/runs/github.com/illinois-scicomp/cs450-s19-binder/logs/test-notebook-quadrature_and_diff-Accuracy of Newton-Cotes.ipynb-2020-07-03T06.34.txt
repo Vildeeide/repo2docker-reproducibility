@@ -1,0 +1,5 @@
+[I 200703 06:40:01 inrepo:35] Testing notebook quadrature_and_diff/Accuracy of Newton-Cotes.ipynb
+[I 200703 06:40:02 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:05 inrepo:41] Saving exported notebook to /io/notebooks/quadrature_and_diff/Accuracy of Newton-Cotes.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

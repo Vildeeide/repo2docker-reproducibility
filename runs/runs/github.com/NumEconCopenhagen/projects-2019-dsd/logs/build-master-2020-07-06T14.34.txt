@@ -1,0 +1,178 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T14.344_5jjpbo/github.com/NumEconCopenhagen/projects-2019-dsd.
+Using CondaBuildPack builder
+Step 1/53 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/53 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/53 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/53 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/53 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/53 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/53 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/53 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/53 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/53 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/53 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/53 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/53 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/53 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/53 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/53 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/53 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/53 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/53 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/53 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/53 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/53 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/53 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/53 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/53 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/53 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/53 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/53 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/53 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/53 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/53 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> Using cache
+ ---> b8954e48231b
+Step 38/53 : USER root
+ ---> Using cache
+ ---> 70321436c43a
+Step 39/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 5519f6c54310
+Step 40/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> 206daa89b27d
+Step 41/53 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 29ef01329c19
+Step 42/53 : USER root
+ ---> Using cache
+ ---> 36199d2b1729
+Step 43/53 : COPY src/ ${REPO_DIR}
+ ---> ac345c9c19d4
+Step 44/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 07bf23344854
+Removing intermediate container 07bf23344854
+ ---> 79a9e1a30b40
+Step 45/53 : LABEL repo2docker.ref="None"
+ ---> Running in c6ddfb34d3ef
+Removing intermediate container c6ddfb34d3ef
+ ---> 1ddad15ed959
+Step 46/53 : LABEL repo2docker.repo="local"
+ ---> Running in 6be922e48274
+Removing intermediate container 6be922e48274
+ ---> 66324fdb35d1
+Step 47/53 : LABEL repo2docker.version="0.11.0"
+ ---> Running in e46ab29266bb
+Removing intermediate container e46ab29266bb
+ ---> 0712191024c5
+Step 48/53 : USER ${NB_USER}
+ ---> Running in b0f738f7f6db
+Removing intermediate container b0f738f7f6db
+ ---> 43666a1f4245
+Step 49/53 : RUN chmod +x binder/postBuild
+ ---> Running in 78535a827a98
+Removing intermediate container 78535a827a98
+ ---> 3fa54a3df989
+Step 50/53 : RUN ./binder/postBuild
+ ---> Running in 4456b2f1a13c
+-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|-\|/-\|/-\|-\|/-\|/-\-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/An error occured.
+ValueError: "@jupyterlab/statusbar" is not a valid extension:
+No `jupyterlab` key
+See the log file for details:  /tmp/jupyterlab-debug-my3n6vbn.log
+[91mEnabling: jupyterlab_code_formatter
+- Writing config: /home/vildeeide/.jupyter
+[0m[91m    - Validating...
+[0m[91m      jupyterlab_code_formatter  [32mOK[0m
+[0mRemoving intermediate container 4456b2f1a13c
+ ---> b1b925acb19d
+Step 51/53 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 50a704c9cb4c
+Step 52/53 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 44ce1368b6c3
+Removing intermediate container 44ce1368b6c3
+ ---> 48fa1aa2bda6
+Step 53/53 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in f6e7d253e0eb
+Removing intermediate container f6e7d253e0eb
+ ---> 88ea0a019bad
+{"aux": {"ID": "sha256:88ea0a019bad2efef8ef6fa947951091c72e1614b40c72cb42857da4966f25a2"}}Successfully built 88ea0a019bad
+Successfully tagged r2d-test-github.com-numeconcopenhagen-projects-2019-dsd:50078e5

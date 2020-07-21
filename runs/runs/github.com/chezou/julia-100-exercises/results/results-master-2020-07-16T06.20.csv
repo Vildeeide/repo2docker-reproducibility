@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/chezou/julia-100-exercises,master,59c7b9e,2017-05-25T00:07:30+09:00,build,build,True,github.com/chezou/julia-100-exercises/logs/build-master-2020-07-16T06.20.txt,2020-07-16T06:20:16.405305,2020-07-16T06.20,0.11.0
+https://github.com/chezou/julia-100-exercises,master,59c7b9e,2017-05-25T00:07:30+09:00,notebook,julia-100-exercises.ipynb,False,github.com/chezou/julia-100-exercises/logs/test-notebook-julia-100-exercises.ipynb-2020-07-16T06.20.txt,2020-07-16T06:20:16.405305,2020-07-16T06.20,0.11.0

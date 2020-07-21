@@ -1,0 +1,5 @@
+[I 200703 06:43:18 inrepo:35] Testing notebook optimization/Nelder-Mead Method.ipynb
+[I 200703 06:43:19 execute:404] Executing notebook with kernel: python
+[I 200703 06:43:19 inrepo:41] Saving exported notebook to /io/notebooks/optimization/Nelder-Mead Method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,62 @@
+[I 200707 11:53:28 inrepo:36] Testing notebook 05. Clustering.ipynb
+[W 200707 11:53:33 inrepo:48] No such kernel julia-1.4, falling back on kernel language=julia
+[W 200707 11:53:33 inrepo:60] Using kernel julia-1.3 to provide language: julia
+[ Info: Precompiling IJulia [7073ff75-c697-5162-941a-fcdaad2a7d2a]
+Starting kernel event loops.
+[I 200707 11:53:54 execute:404] Executing notebook with kernel: julia-1.3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+bucketprice = Int.(div.(houses[!,:median_house_value],50000))
+insertcols!(houses,3,:cprice=bucketprice)
+
+@vlplot(width=500, height=300) +
+@vlplot(
+    mark={
+        :geoshape,
+        fill=:black,
+        stroke=:white
+    },
+    data={
+        values=VV,
+        format={
+            type=:topojson,
+            feature=:cb_2015_california_county_20m
+        }
+    },
+    projection={type=:albersUsa},
+)+
+@vlplot(
+    :circle,
+    data=houses,
+    projection={type=:albersUsa},
+    longitude="longitude:q",
+    latitude="latitude:q",
+    size={value=12},
+    color="cprice:n"
+                    
+)
+------------------
+
+syntax: invalid keyword argument name ":cprice"
+
+Stacktrace:
+ [1] top-level scope at /srv/julia/pkg/packages/IJulia/DrVMH/src/kernel.jl:52
+ErrorException: syntax: invalid keyword argument name ":cprice"
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

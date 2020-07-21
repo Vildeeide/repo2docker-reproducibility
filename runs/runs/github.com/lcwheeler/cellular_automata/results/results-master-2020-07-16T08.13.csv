@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lcwheeler/cellular_automata,master,dfd050c,2018-02-20T12:45:16-07:00,build,build,True,github.com/lcwheeler/cellular_automata/logs/build-master-2020-07-16T08.13.txt,2020-07-16T08:13:22.420221,2020-07-16T08.13,0.11.0
+https://github.com/lcwheeler/cellular_automata,master,dfd050c,2018-02-20T12:45:16-07:00,notebook,CGOL_convolution.ipynb,False,github.com/lcwheeler/cellular_automata/logs/test-notebook-CGOL_convolution.ipynb-2020-07-16T08.13.txt,2020-07-16T08:13:22.420221,2020-07-16T08.13,0.11.0
+https://github.com/lcwheeler/cellular_automata,master,dfd050c,2018-02-20T12:45:16-07:00,notebook,COGL_julia.ipynb,False,github.com/lcwheeler/cellular_automata/logs/test-notebook-COGL_julia.ipynb-2020-07-16T08.13.txt,2020-07-16T08:13:22.420221,2020-07-16T08.13,0.11.0

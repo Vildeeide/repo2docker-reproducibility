@@ -1,0 +1,983 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.32pq6643gx/github.com/yzhao062/pyod.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> d67f71f1bb3a
+Step 38/51 : USER root
+ ---> Running in 643d2f3672c2
+Removing intermediate container 643d2f3672c2
+ ---> 4473c8ef9858
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in fa9a397f334b
+Removing intermediate container fa9a397f334b
+ ---> a67813430a18
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 777cf0d30a40
+Removing intermediate container 777cf0d30a40
+ ---> aa841d0c20f3
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 024e3449cfc6
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+libxml2-2.9.10       | 1.3 MB    |            |   0% 
+libxml2-2.9.10       | 1.3 MB    | 1          |   1% 
+libxml2-2.9.10       | 1.3 MB    | ########## | 100% 
+
+gstreamer-1.14.5     | 4.5 MB    |            |   0% 
+gstreamer-1.14.5     | 4.5 MB    | 4          |   5% 
+gstreamer-1.14.5     | 4.5 MB    | ####6      |  46% 
+gstreamer-1.14.5     | 4.5 MB    | ########2  |  82% 
+gstreamer-1.14.5     | 4.5 MB    | ########## | 100% 
+
+tensorboard-1.13.1   | 3.3 MB    |            |   0% 
+tensorboard-1.13.1   | 3.3 MB    |            |   0% 
+tensorboard-1.13.1   | 3.3 MB    | 4          |   4% 
+tensorboard-1.13.1   | 3.3 MB    | #3         |  13% 
+tensorboard-1.13.1   | 3.3 MB    | ###2       |  32% 
+tensorboard-1.13.1   | 3.3 MB    | ######6    |  66% 
+tensorboard-1.13.1   | 3.3 MB    | ########## | 100% 
+
+libllvm9-9.0.1       | 25.1 MB   |            |   0% 
+libllvm9-9.0.1       | 25.1 MB   | 6          |   6% 
+libllvm9-9.0.1       | 25.1 MB   | #1         |  11% 
+libllvm9-9.0.1       | 25.1 MB   | #7         |  18% 
+libllvm9-9.0.1       | 25.1 MB   | ##2        |  22% 
+libllvm9-9.0.1       | 25.1 MB   | ##8        |  28% 
+libllvm9-9.0.1       | 25.1 MB   | ###4       |  35% 
+libllvm9-9.0.1       | 25.1 MB   | ####       |  41% 
+libllvm9-9.0.1       | 25.1 MB   | ####5      |  46% 
+libllvm9-9.0.1       | 25.1 MB   | #####1     |  51% 
+libllvm9-9.0.1       | 25.1 MB   | #####6     |  57% 
+libllvm9-9.0.1       | 25.1 MB   | ######2    |  62% 
+libllvm9-9.0.1       | 25.1 MB   | ######7    |  67% 
+libllvm9-9.0.1       | 25.1 MB   | #######2   |  73% 
+libllvm9-9.0.1       | 25.1 MB   | #######8   |  78% 
+libllvm9-9.0.1       | 25.1 MB   | ########3  |  84% 
+libllvm9-9.0.1       | 25.1 MB   | ########9  |  90% 
+libllvm9-9.0.1       | 25.1 MB   | #########5 |  95% 
+libllvm9-9.0.1       | 25.1 MB   | ########## | 100% 
+
+threadpoolctl-2.1.0  | 15 KB     |            |   0% 
+threadpoolctl-2.1.0  | 15 KB     | ########## | 100% 
+
+glib-2.65.0          | 3.5 MB    |            |   0% 
+glib-2.65.0          | 3.5 MB    | ##2        |  22% 
+glib-2.65.0          | 3.5 MB    | #####4     |  55% 
+glib-2.65.0          | 3.5 MB    | #########5 |  95% 
+glib-2.65.0          | 3.5 MB    | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+
+libiconv-1.15        | 2.0 MB    |            |   0% 
+libiconv-1.15        | 2.0 MB    | 4          |   5% 
+libiconv-1.15        | 2.0 MB    | ########## | 100% 
+
+libxgboost-1.1.1     | 2.9 MB    |            |   0% 
+libxgboost-1.1.1     | 2.9 MB    |            |   1% 
+libxgboost-1.1.1     | 2.9 MB    | ####8      |  48% 
+libxgboost-1.1.1     | 2.9 MB    | #########  |  91% 
+libxgboost-1.1.1     | 2.9 MB    | ########## | 100% 
+
+toolchain_c_linux-64 | 13 KB     |            |   0% 
+toolchain_c_linux-64 | 13 KB     | ########## | 100% 
+
+liblapack-3.8.0      | 10 KB     |            |   0% 
+liblapack-3.8.0      | 10 KB     | ########## | 100% 
+
+xorg-libxdmcp-1.1.3  | 18 KB     |            |   0% 
+xorg-libxdmcp-1.1.3  | 18 KB     | ########## | 100% 
+
+numba-0.50.1         | 3.5 MB    |            |   0% 
+numba-0.50.1         | 3.5 MB    |            |   0% 
+numba-0.50.1         | 3.5 MB    | ###2       |  32% 
+numba-0.50.1         | 3.5 MB    | ######4    |  65% 
+numba-0.50.1         | 3.5 MB    | ########## | 100% 
+
+_py-xgboost-mutex-2. | 8 KB      |            |   0% 
+_py-xgboost-mutex-2. | 8 KB      | ########## | 100% 
+
+mock-4.0.2           | 51 KB     |            |   0% 
+mock-4.0.2           | 51 KB     | ########## | 100% 
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+grpcio-1.27.2        | 1.3 MB    |            |   0% 
+grpcio-1.27.2        | 1.3 MB    | 1          |   1% 
+grpcio-1.27.2        | 1.3 MB    | #####2     |  52% 
+grpcio-1.27.2        | 1.3 MB    | ########## | 100% 
+
+libxkbcommon-0.10.0  | 475 KB    |            |   0% 
+libxkbcommon-0.10.0  | 475 KB    | ########4  |  84% 
+libxkbcommon-0.10.0  | 475 KB    | ########## | 100% 
+
+tensorflow-1.13.1    | 22 KB     |            |   0% 
+tensorflow-1.13.1    | 22 KB     | #######2   |  73% 
+tensorflow-1.13.1    | 22 KB     | ########## | 100% 
+
+dbus-1.13.6          | 602 KB    |            |   0% 
+dbus-1.13.6          | 602 KB    | 2          |   3% 
+dbus-1.13.6          | 602 KB    | ########## | 100% 
+
+fontconfig-2.13.1    | 340 KB    |            |   0% 
+fontconfig-2.13.1    | 340 KB    | ########## | 100% 
+
+pthread-stubs-0.4    | 5 KB      |            |   0% 
+pthread-stubs-0.4    | 5 KB      | ########## | 100% 
+
+theano-1.0.3         | 3.6 MB    |            |   0% 
+theano-1.0.3         | 3.6 MB    |            |   0% 
+theano-1.0.3         | 3.6 MB    | ###        |  31% 
+theano-1.0.3         | 3.6 MB    | #####8     |  59% 
+theano-1.0.3         | 3.6 MB    | #########8 |  99% 
+theano-1.0.3         | 3.6 MB    | ########## | 100% 
+
+numpy-1.18.5         | 5.1 MB    |            |   0% 
+numpy-1.18.5         | 5.1 MB    | ##2        |  23% 
+numpy-1.18.5         | 5.1 MB    | #####6     |  57% 
+numpy-1.18.5         | 5.1 MB    | ########7  |  87% 
+numpy-1.18.5         | 5.1 MB    | ########## | 100% 
+
+nose-1.3.7           | 212 KB    |            |   0% 
+nose-1.3.7           | 212 KB    | ########## | 100% 
+
+libuuid-2.32.1       | 26 KB     |            |   0% 
+libuuid-2.32.1       | 26 KB     | ########## | 100% 
+
+gettext-0.19.8.1     | 3.6 MB    |            |   0% 
+gettext-0.19.8.1     | 3.6 MB    | 6          |   6% 
+gettext-0.19.8.1     | 3.6 MB    | #####8     |  58% 
+gettext-0.19.8.1     | 3.6 MB    | ########## | 100% 
+
+yaml-0.2.5           | 82 KB     |            |   0% 
+yaml-0.2.5           | 82 KB     | ########## | 100% 
+
+h5py-2.10.0          | 1.1 MB    |            |   0% 
+h5py-2.10.0          | 1.1 MB    | ####9      |  49% 
+h5py-2.10.0          | 1.1 MB    | ########## | 100% 
+
+libclang-9.0.1       | 22.3 MB   |            |   0% 
+libclang-9.0.1       | 22.3 MB   | 5          |   5% 
+libclang-9.0.1       | 22.3 MB   | #          |  10% 
+libclang-9.0.1       | 22.3 MB   | #7         |  17% 
+libclang-9.0.1       | 22.3 MB   | ##5        |  25% 
+libclang-9.0.1       | 22.3 MB   | ###        |  31% 
+libclang-9.0.1       | 22.3 MB   | ###6       |  36% 
+libclang-9.0.1       | 22.3 MB   | ####2      |  42% 
+libclang-9.0.1       | 22.3 MB   | ####8      |  48% 
+libclang-9.0.1       | 22.3 MB   | #####4     |  55% 
+libclang-9.0.1       | 22.3 MB   | ######1    |  62% 
+libclang-9.0.1       | 22.3 MB   | ######7    |  67% 
+libclang-9.0.1       | 22.3 MB   | #######3   |  74% 
+libclang-9.0.1       | 22.3 MB   | #######9   |  80% 
+libclang-9.0.1       | 22.3 MB   | ########5  |  86% 
+libclang-9.0.1       | 22.3 MB   | #########2 |  93% 
+libclang-9.0.1       | 22.3 MB   | #########9 | 100% 
+libclang-9.0.1       | 22.3 MB   | ########## | 100% 
+
+keras-applications-1 | 30 KB     |            |   0% 
+keras-applications-1 | 30 KB     | ########## | 100% 
+
+hdf5-1.10.6          | 3.0 MB    |            |   0% 
+hdf5-1.10.6          | 3.0 MB    | #5         |  15% 
+hdf5-1.10.6          | 3.0 MB    | #####1     |  52% 
+hdf5-1.10.6          | 3.0 MB    | ########3  |  84% 
+hdf5-1.10.6          | 3.0 MB    | ########## | 100% 
+
+jpeg-9d              | 266 KB    |            |   0% 
+jpeg-9d              | 266 KB    | ########## | 100% 
+
+libcblas-3.8.0       | 10 KB     |            |   0% 
+libcblas-3.8.0       | 10 KB     | ########## | 100% 
+
+icu-64.2             | 12.6 MB   |            |   0% 
+icu-64.2             | 12.6 MB   | 1          |   1% 
+icu-64.2             | 12.6 MB   | 6          |   7% 
+icu-64.2             | 12.6 MB   | #3         |  14% 
+icu-64.2             | 12.6 MB   | ##3        |  23% 
+icu-64.2             | 12.6 MB   | ###5       |  35% 
+icu-64.2             | 12.6 MB   | ####2      |  42% 
+icu-64.2             | 12.6 MB   | #####2     |  52% 
+icu-64.2             | 12.6 MB   | ######1    |  62% 
+icu-64.2             | 12.6 MB   | #######    |  71% 
+icu-64.2             | 12.6 MB   | ########   |  81% 
+icu-64.2             | 12.6 MB   | #########  |  91% 
+icu-64.2             | 12.6 MB   | ########## | 100% 
+
+pyyaml-5.3.1         | 185 KB    |            |   0% 
+pyyaml-5.3.1         | 185 KB    | ########## | 100% 
+
+markdown-3.2.2       | 61 KB     |            |   0% 
+markdown-3.2.2       | 61 KB     | ########## | 100% 
+
+llvm-tools-9.0.1     | 4.9 MB    |            |   0% 
+llvm-tools-9.0.1     | 4.9 MB    |            |   0% 
+llvm-tools-9.0.1     | 4.9 MB    | ##6        |  27% 
+llvm-tools-9.0.1     | 4.9 MB    | #####1     |  51% 
+llvm-tools-9.0.1     | 4.9 MB    | ########4  |  84% 
+llvm-tools-9.0.1     | 4.9 MB    | ########## | 100% 
+
+llvmdev-9.0.1        | 38.0 MB   |            |   0% 
+llvmdev-9.0.1        | 38.0 MB   |            |   0% 
+llvmdev-9.0.1        | 38.0 MB   | 3          |   3% 
+llvmdev-9.0.1        | 38.0 MB   | 6          |   6% 
+llvmdev-9.0.1        | 38.0 MB   | 9          |   9% 
+llvmdev-9.0.1        | 38.0 MB   | #2         |  13% 
+llvmdev-9.0.1        | 38.0 MB   | #5         |  16% 
+llvmdev-9.0.1        | 38.0 MB   | #8         |  19% 
+llvmdev-9.0.1        | 38.0 MB   | ##2        |  23% 
+llvmdev-9.0.1        | 38.0 MB   | ##5        |  26% 
+llvmdev-9.0.1        | 38.0 MB   | ##9        |  30% 
+llvmdev-9.0.1        | 38.0 MB   | ###5       |  35% 
+llvmdev-9.0.1        | 38.0 MB   | ###8       |  39% 
+llvmdev-9.0.1        | 38.0 MB   | ####2      |  43% 
+llvmdev-9.0.1        | 38.0 MB   | ####5      |  46% 
+llvmdev-9.0.1        | 38.0 MB   | ####9      |  50% 
+llvmdev-9.0.1        | 38.0 MB   | #####3     |  53% 
+llvmdev-9.0.1        | 38.0 MB   | #####6     |  57% 
+llvmdev-9.0.1        | 38.0 MB   | ######     |  60% 
+llvmdev-9.0.1        | 38.0 MB   | ######4    |  65% 
+llvmdev-9.0.1        | 38.0 MB   | ######9    |  69% 
+llvmdev-9.0.1        | 38.0 MB   | #######3   |  74% 
+llvmdev-9.0.1        | 38.0 MB   | #######8   |  78% 
+llvmdev-9.0.1        | 38.0 MB   | ########2  |  82% 
+llvmdev-9.0.1        | 38.0 MB   | ########5  |  86% 
+llvmdev-9.0.1        | 38.0 MB   | ########9  |  90% 
+llvmdev-9.0.1        | 38.0 MB   | #########3 |  93% 
+llvmdev-9.0.1        | 38.0 MB   | #########7 |  98% 
+llvmdev-9.0.1        | 38.0 MB   | ########## | 100% 
+
+matplotlib-3.2.2     | 6 KB      |            |   0% 
+matplotlib-3.2.2     | 6 KB      | ########## | 100% 
+
+libgfortran-ng-7.5.0 | 1.7 MB    |            |   0% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ##8        |  28% 
+libgfortran-ng-7.5.0 | 1.7 MB    | #########7 |  97% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########## | 100% 
+
+xgboost-1.1.1        | 11 KB     |            |   0% 
+xgboost-1.1.1        | 11 KB     | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+qt-5.12.5            | 99.2 MB   |            |   0% 
+qt-5.12.5            | 99.2 MB   |            |   0% 
+qt-5.12.5            | 99.2 MB   | 1          |   1% 
+qt-5.12.5            | 99.2 MB   | 2          |   2% 
+qt-5.12.5            | 99.2 MB   | 4          |   4% 
+qt-5.12.5            | 99.2 MB   | 5          |   6% 
+qt-5.12.5            | 99.2 MB   | 7          |   7% 
+qt-5.12.5            | 99.2 MB   | 8          |   8% 
+qt-5.12.5            | 99.2 MB   | 9          |   9% 
+qt-5.12.5            | 99.2 MB   | #          |  11% 
+qt-5.12.5            | 99.2 MB   | #2         |  12% 
+qt-5.12.5            | 99.2 MB   | #3         |  13% 
+qt-5.12.5            | 99.2 MB   | #4         |  15% 
+qt-5.12.5            | 99.2 MB   | #5         |  16% 
+qt-5.12.5            | 99.2 MB   | #7         |  17% 
+qt-5.12.5            | 99.2 MB   | #8         |  18% 
+qt-5.12.5            | 99.2 MB   | #9         |  20% 
+qt-5.12.5            | 99.2 MB   | ##1        |  21% 
+qt-5.12.5            | 99.2 MB   | ##2        |  23% 
+qt-5.12.5            | 99.2 MB   | ##4        |  25% 
+qt-5.12.5            | 99.2 MB   | ##6        |  26% 
+qt-5.12.5            | 99.2 MB   | ##7        |  28% 
+qt-5.12.5            | 99.2 MB   | ##9        |  29% 
+qt-5.12.5            | 99.2 MB   | ###        |  31% 
+qt-5.12.5            | 99.2 MB   | ###2       |  32% 
+qt-5.12.5            | 99.2 MB   | ###4       |  34% 
+qt-5.12.5            | 99.2 MB   | ###5       |  36% 
+qt-5.12.5            | 99.2 MB   | ###7       |  37% 
+qt-5.12.5            | 99.2 MB   | ###8       |  38% 
+qt-5.12.5            | 99.2 MB   | ###9       |  40% 
+qt-5.12.5            | 99.2 MB   | ####1      |  41% 
+qt-5.12.5            | 99.2 MB   | ####2      |  42% 
+qt-5.12.5            | 99.2 MB   | ####3      |  43% 
+qt-5.12.5            | 99.2 MB   | ####4      |  45% 
+qt-5.12.5            | 99.2 MB   | ####6      |  46% 
+qt-5.12.5            | 99.2 MB   | ####7      |  48% 
+qt-5.12.5            | 99.2 MB   | ####8      |  49% 
+qt-5.12.5            | 99.2 MB   | #####      |  51% 
+qt-5.12.5            | 99.2 MB   | #####2     |  52% 
+qt-5.12.5            | 99.2 MB   | #####3     |  54% 
+qt-5.12.5            | 99.2 MB   | #####5     |  55% 
+qt-5.12.5            | 99.2 MB   | #####6     |  57% 
+qt-5.12.5            | 99.2 MB   | #####8     |  58% 
+qt-5.12.5            | 99.2 MB   | #####9     |  60% 
+qt-5.12.5            | 99.2 MB   | ######1    |  61% 
+qt-5.12.5            | 99.2 MB   | ######2    |  63% 
+qt-5.12.5            | 99.2 MB   | ######4    |  64% 
+qt-5.12.5            | 99.2 MB   | ######5    |  66% 
+qt-5.12.5            | 99.2 MB   | ######6    |  67% 
+qt-5.12.5            | 99.2 MB   | ######8    |  68% 
+qt-5.12.5            | 99.2 MB   | ######9    |  70% 
+qt-5.12.5            | 99.2 MB   | #######1   |  71% 
+qt-5.12.5            | 99.2 MB   | #######2   |  72% 
+qt-5.12.5            | 99.2 MB   | #######3   |  74% 
+qt-5.12.5            | 99.2 MB   | #######5   |  75% 
+qt-5.12.5            | 99.2 MB   | #######6   |  77% 
+qt-5.12.5            | 99.2 MB   | #######8   |  78% 
+qt-5.12.5            | 99.2 MB   | ########   |  80% 
+qt-5.12.5            | 99.2 MB   | ########1  |  82% 
+qt-5.12.5            | 99.2 MB   | ########3  |  83% 
+qt-5.12.5            | 99.2 MB   | ########4  |  85% 
+qt-5.12.5            | 99.2 MB   | ########6  |  86% 
+qt-5.12.5            | 99.2 MB   | ########7  |  88% 
+qt-5.12.5            | 99.2 MB   | ########9  |  90% 
+qt-5.12.5            | 99.2 MB   | #########  |  91% 
+qt-5.12.5            | 99.2 MB   | #########2 |  92% 
+qt-5.12.5            | 99.2 MB   | #########3 |  94% 
+qt-5.12.5            | 99.2 MB   | #########4 |  95% 
+qt-5.12.5            | 99.2 MB   | #########6 |  96% 
+qt-5.12.5            | 99.2 MB   | #########7 |  97% 
+qt-5.12.5            | 99.2 MB   | #########8 |  99% 
+qt-5.12.5            | 99.2 MB   | #########9 | 100% 
+qt-5.12.5            | 99.2 MB   | ########## | 100% 
+
+libblas-3.8.0        | 10 KB     |            |   0% 
+libblas-3.8.0        | 10 KB     | ########## | 100% 
+
+toolchain-2.4.0      | 14 KB     |            |   0% 
+toolchain-2.4.0      | 14 KB     | ########## | 100% 
+
+libprotobuf-3.8.0    | 4.7 MB    |            |   0% 
+libprotobuf-3.8.0    | 4.7 MB    |            |   0% 
+libprotobuf-3.8.0    | 4.7 MB    | 7          |   7% 
+libprotobuf-3.8.0    | 4.7 MB    | ##         |  21% 
+libprotobuf-3.8.0    | 4.7 MB    | ####2      |  43% 
+libprotobuf-3.8.0    | 4.7 MB    | ######4    |  65% 
+libprotobuf-3.8.0    | 4.7 MB    | ########## | 100% 
+
+matplotlib-base-3.2. | 7.1 MB    |            |   0% 
+matplotlib-base-3.2. | 7.1 MB    | #7         |  18% 
+matplotlib-base-3.2. | 7.1 MB    | ###9       |  39% 
+matplotlib-base-3.2. | 7.1 MB    | ######3    |  63% 
+matplotlib-base-3.2. | 7.1 MB    | #########  |  91% 
+matplotlib-base-3.2. | 7.1 MB    | ########## | 100% 
+
+keras-2.3.1          | 591 KB    |            |   0% 
+keras-2.3.1          | 591 KB    | 2          |   3% 
+keras-2.3.1          | 591 KB    | ##7        |  27% 
+keras-2.3.1          | 591 KB    | ########6  |  87% 
+keras-2.3.1          | 591 KB    | ########## | 100% 
+
+absl-py-0.9.0        | 162 KB    |            |   0% 
+absl-py-0.9.0        | 162 KB    | ########## | 100% 
+
+nss-3.47             | 1.9 MB    |            |   0% 
+nss-3.47             | 1.9 MB    |            |   1% 
+nss-3.47             | 1.9 MB    | ###4       |  34% 
+nss-3.47             | 1.9 MB    | #########1 |  92% 
+nss-3.47             | 1.9 MB    | ########## | 100% 
+
+gst-plugins-base-1.1 | 6.8 MB    |            |   0% 
+gst-plugins-base-1.1 | 6.8 MB    | ##6        |  26% 
+gst-plugins-base-1.1 | 6.8 MB    | #####9     |  60% 
+gst-plugins-base-1.1 | 6.8 MB    | ########9  |  89% 
+gst-plugins-base-1.1 | 6.8 MB    | ########## | 100% 
+
+werkzeug-1.0.1       | 239 KB    |            |   0% 
+werkzeug-1.0.1       | 239 KB    | ########## | 100% 
+
+libopenblas-0.3.7    | 7.6 MB    |            |   0% 
+libopenblas-0.3.7    | 7.6 MB    | 7          |   8% 
+libopenblas-0.3.7    | 7.6 MB    | ##5        |  25% 
+libopenblas-0.3.7    | 7.6 MB    | ####6      |  46% 
+libopenblas-0.3.7    | 7.6 MB    | ######7    |  67% 
+libopenblas-0.3.7    | 7.6 MB    | ########5  |  85% 
+libopenblas-0.3.7    | 7.6 MB    | ########## | 100% 
+
+nspr-4.26            | 1.6 MB    |            |   0% 
+nspr-4.26            | 1.6 MB    | #########9 | 100% 
+nspr-4.26            | 1.6 MB    | ########## | 100% 
+
+c-ares-1.15.0        | 100 KB    |            |   0% 
+c-ares-1.15.0        | 100 KB    | ########## | 100% 
+
+termcolor-1.1.0      | 6 KB      |            |   0% 
+termcolor-1.1.0      | 6 KB      | ########## | 100% 
+
+keras-preprocessing- | 33 KB     |            |   0% 
+keras-preprocessing- | 33 KB     | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+tensorflow-base-1.13 | 74.0 MB   |            |   0% 
+tensorflow-base-1.13 | 74.0 MB   |            |   0% 
+tensorflow-base-1.13 | 74.0 MB   | 1          |   2% 
+tensorflow-base-1.13 | 74.0 MB   | 2          |   2% 
+tensorflow-base-1.13 | 74.0 MB   | 3          |   4% 
+tensorflow-base-1.13 | 74.0 MB   | 5          |   6% 
+tensorflow-base-1.13 | 74.0 MB   | 7          |   8% 
+tensorflow-base-1.13 | 74.0 MB   | 9          |   9% 
+tensorflow-base-1.13 | 74.0 MB   | #1         |  12% 
+tensorflow-base-1.13 | 74.0 MB   | #3         |  13% 
+tensorflow-base-1.13 | 74.0 MB   | #5         |  15% 
+tensorflow-base-1.13 | 74.0 MB   | #7         |  17% 
+tensorflow-base-1.13 | 74.0 MB   | #8         |  19% 
+tensorflow-base-1.13 | 74.0 MB   | ##         |  21% 
+tensorflow-base-1.13 | 74.0 MB   | ##2        |  22% 
+tensorflow-base-1.13 | 74.0 MB   | ##4        |  24% 
+tensorflow-base-1.13 | 74.0 MB   | ##6        |  27% 
+tensorflow-base-1.13 | 74.0 MB   | ##8        |  29% 
+tensorflow-base-1.13 | 74.0 MB   | ###        |  31% 
+tensorflow-base-1.13 | 74.0 MB   | ###3       |  33% 
+tensorflow-base-1.13 | 74.0 MB   | ###5       |  35% 
+tensorflow-base-1.13 | 74.0 MB   | ###7       |  37% 
+tensorflow-base-1.13 | 74.0 MB   | ###9       |  39% 
+tensorflow-base-1.13 | 74.0 MB   | ####1      |  41% 
+tensorflow-base-1.13 | 74.0 MB   | ####3      |  43% 
+tensorflow-base-1.13 | 74.0 MB   | ####5      |  45% 
+tensorflow-base-1.13 | 74.0 MB   | ####6      |  47% 
+tensorflow-base-1.13 | 74.0 MB   | ####8      |  49% 
+tensorflow-base-1.13 | 74.0 MB   | #####      |  51% 
+tensorflow-base-1.13 | 74.0 MB   | #####2     |  53% 
+tensorflow-base-1.13 | 74.0 MB   | #####4     |  55% 
+tensorflow-base-1.13 | 74.0 MB   | #####6     |  57% 
+tensorflow-base-1.13 | 74.0 MB   | #####8     |  59% 
+tensorflow-base-1.13 | 74.0 MB   | ######     |  61% 
+tensorflow-base-1.13 | 74.0 MB   | ######2    |  63% 
+tensorflow-base-1.13 | 74.0 MB   | ######4    |  65% 
+tensorflow-base-1.13 | 74.0 MB   | ######6    |  67% 
+tensorflow-base-1.13 | 74.0 MB   | ######8    |  69% 
+tensorflow-base-1.13 | 74.0 MB   | #######1   |  71% 
+tensorflow-base-1.13 | 74.0 MB   | #######3   |  73% 
+tensorflow-base-1.13 | 74.0 MB   | #######5   |  76% 
+tensorflow-base-1.13 | 74.0 MB   | #######7   |  78% 
+tensorflow-base-1.13 | 74.0 MB   | ########   |  80% 
+tensorflow-base-1.13 | 74.0 MB   | ########2  |  82% 
+tensorflow-base-1.13 | 74.0 MB   | ########4  |  84% 
+tensorflow-base-1.13 | 74.0 MB   | ########6  |  86% 
+tensorflow-base-1.13 | 74.0 MB   | ########8  |  88% 
+tensorflow-base-1.13 | 74.0 MB   | #########  |  90% 
+tensorflow-base-1.13 | 74.0 MB   | #########2 |  92% 
+tensorflow-base-1.13 | 74.0 MB   | #########4 |  95% 
+tensorflow-base-1.13 | 74.0 MB   | #########7 |  97% 
+tensorflow-base-1.13 | 74.0 MB   | #########9 | 100% 
+tensorflow-base-1.13 | 74.0 MB   | ########## | 100% 
+
+libgpuarray-0.7.6    | 263 KB    |            |   0% 
+libgpuarray-0.7.6    | 263 KB    | 6          |   6% 
+libgpuarray-0.7.6    | 263 KB    | ########## | 100% 
+
+joblib-0.16.0        | 203 KB    |            |   0% 
+joblib-0.16.0        | 203 KB    | ########## | 100% 
+
+scipy-1.5.0          | 18.6 MB   |            |   0% 
+scipy-1.5.0          | 18.6 MB   | 4          |   4% 
+scipy-1.5.0          | 18.6 MB   | #2         |  12% 
+scipy-1.5.0          | 18.6 MB   | ##3        |  23% 
+scipy-1.5.0          | 18.6 MB   | ###3       |  34% 
+scipy-1.5.0          | 18.6 MB   | ####3      |  43% 
+scipy-1.5.0          | 18.6 MB   | #####2     |  53% 
+scipy-1.5.0          | 18.6 MB   | ######2    |  62% 
+scipy-1.5.0          | 18.6 MB   | #######1   |  72% 
+scipy-1.5.0          | 18.6 MB   | ########1  |  82% 
+scipy-1.5.0          | 18.6 MB   | #########3 |  93% 
+scipy-1.5.0          | 18.6 MB   | ########## | 100% 
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    | ###1       |  32% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+astor-0.8.1          | 25 KB     |            |   0% 
+astor-0.8.1          | 25 KB     | ########## | 100% 
+
+pyqt-5.12.3          | 6.5 MB    |            |   0% 
+pyqt-5.12.3          | 6.5 MB    | #          |  10% 
+pyqt-5.12.3          | 6.5 MB    | ###6       |  37% 
+pyqt-5.12.3          | 6.5 MB    | ######2    |  63% 
+pyqt-5.12.3          | 6.5 MB    | #########2 |  92% 
+pyqt-5.12.3          | 6.5 MB    | ########## | 100% 
+
+python_abi-3.7       | 4 KB      |            |   0% 
+python_abi-3.7       | 4 KB      | ########## | 100% 
+
+libxcb-1.13          | 396 KB    |            |   0% 
+libxcb-1.13          | 396 KB    | ########## | 100% 
+
+pandas-1.0.5         | 10.1 MB   |            |   0% 
+pandas-1.0.5         | 10.1 MB   | 9          |  10% 
+pandas-1.0.5         | 10.1 MB   | ##3        |  23% 
+pandas-1.0.5         | 10.1 MB   | ###8       |  38% 
+pandas-1.0.5         | 10.1 MB   | #####5     |  55% 
+pandas-1.0.5         | 10.1 MB   | #######2   |  72% 
+pandas-1.0.5         | 10.1 MB   | #########  |  90% 
+pandas-1.0.5         | 10.1 MB   | ########## | 100% 
+
+pip-20.1.1           | 1.1 MB    |            |   0% 
+pip-20.1.1           | 1.1 MB    | ########## | 100% 
+
+pygpu-0.7.6          | 629 KB    |            |   0% 
+pygpu-0.7.6          | 629 KB    | 2          |   3% 
+pygpu-0.7.6          | 629 KB    | ########## | 100% 
+
+importlib-metadata-1 | 44 KB     |            |   0% 
+importlib-metadata-1 | 44 KB     | ########## | 100% 
+
+pcre-8.44            | 261 KB    |            |   0% 
+pcre-8.44            | 261 KB    | ########## | 100% 
+
+pytz-2020.1          | 227 KB    |            |   0% 
+pytz-2020.1          | 227 KB    | ########## | 100% 
+
+toolchain_cxx_linux- | 13 KB     |            |   0% 
+toolchain_cxx_linux- | 13 KB     | ########## | 100% 
+
+py-xgboost-1.1.1     | 1.6 MB    |            |   0% 
+py-xgboost-1.1.1     | 1.6 MB    |            |   1% 
+py-xgboost-1.1.1     | 1.6 MB    | #####5     |  56% 
+py-xgboost-1.1.1     | 1.6 MB    | ########## | 100% 
+
+scikit-learn-0.23.1  | 6.8 MB    |            |   0% 
+scikit-learn-0.23.1  | 6.8 MB    | 6          |   7% 
+scikit-learn-0.23.1  | 6.8 MB    | #7         |  18% 
+scikit-learn-0.23.1  | 6.8 MB    | ###2       |  33% 
+scikit-learn-0.23.1  | 6.8 MB    | ####5      |  46% 
+scikit-learn-0.23.1  | 6.8 MB    | #####8     |  59% 
+scikit-learn-0.23.1  | 6.8 MB    | #######1   |  72% 
+scikit-learn-0.23.1  | 6.8 MB    | ########3  |  84% 
+scikit-learn-0.23.1  | 6.8 MB    | #########9 |  99% 
+scikit-learn-0.23.1  | 6.8 MB    | ########## | 100% 
+
+protobuf-3.8.0       | 679 KB    |            |   0% 
+protobuf-3.8.0       | 679 KB    | 2          |   2% 
+protobuf-3.8.0       | 679 KB    | ########## | 100% 
+
+llvmlite-0.33.0      | 330 KB    |            |   0% 
+llvmlite-0.33.0      | 330 KB    | 4          |   5% 
+llvmlite-0.33.0      | 330 KB    | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+xorg-libxau-1.0.9    | 13 KB     |            |   0% 
+xorg-libxau-1.0.9    | 13 KB     | ########## | 100% 
+
+tensorflow-estimator | 181 KB    |            |   0% 
+tensorflow-estimator | 181 KB    | ######1    |  62% 
+tensorflow-estimator | 181 KB    | #########7 |  97% 
+tensorflow-estimator | 181 KB    | ########## | 100% 
+
+kiwisolver-1.2.0     | 87 KB     |            |   0% 
+kiwisolver-1.2.0     | 87 KB     | ########## | 100% 
+
+expat-2.2.9          | 191 KB    |            |   0% 
+expat-2.2.9          | 191 KB    | ########## | 100% 
+
+gast-0.3.3           | 12 KB     |            |   0% 
+gast-0.3.3           | 12 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0mRan pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv._xa2hv71.requirements.txt']
+Pip subprocess output:
+Collecting suod
+  Downloading suod-0.0.4.tar.gz (2.1 MB)
+Collecting combo
+  Downloading combo-0.1.1.tar.gz (37 kB)
+Requirement already satisfied, skipping upgrade: joblib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied, skipping upgrade: matplotlib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (3.2.2)
+Requirement already satisfied, skipping upgrade: numpy>=1.13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (1.18.5)
+Requirement already satisfied, skipping upgrade: scipy>=0.19.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied, skipping upgrade: scikit_learn>=0.19.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (0.23.1)
+Collecting pyod>=0.7.5
+  Downloading pyod-0.8.1.tar.gz (93 kB)
+Requirement already satisfied, skipping upgrade: numba>=0.35 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from combo->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 2)) (0.50.1)
+Requirement already satisfied, skipping upgrade: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (2.4.7)
+Requirement already satisfied, skipping upgrade: kiwisolver>=1.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (1.2.0)
+Requirement already satisfied, skipping upgrade: cycler>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (0.10.0)
+Requirement already satisfied, skipping upgrade: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (2.8.1)
+Requirement already satisfied, skipping upgrade: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit_learn>=0.19.1->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied, skipping upgrade: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyod>=0.7.5->suod->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied, skipping upgrade: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from numba>=0.35->combo->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 2)) (45.1.0.post20200119)
+Requirement already satisfied, skipping upgrade: llvmlite<0.34,>=0.33.0.dev0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from numba>=0.35->combo->-r /home/vildeeide/condaenv._xa2hv71.requirements.txt (line 2)) (0.33.0)
+Building wheels for collected packages: suod, combo, pyod
+  Building wheel for suod (setup.py): started
+  Building wheel for suod (setup.py): finished with status 'done'
+  Created wheel for suod: filename=suod-0.0.4-py3-none-any.whl size=2167157 sha256=617cb2308c776fe030f832e4fbbe10c7b22f8df819c4cfd77e885980a464cc07
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/dc/ae/aa/3b8cc857617f3ba6cb9e6b804c79c69d0ed60a08e022e9a4f3
+  Building wheel for combo (setup.py): started
+  Building wheel for combo (setup.py): finished with status 'done'
+  Created wheel for combo: filename=combo-0.1.1-py3-none-any.whl size=42114 sha256=fe14d297e5a865b5308497e31bb49859db6d0fd2ffb547ef7b84626fac1bc34e
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/3e/e1/f8/08f19ba48f75d3dbbb549cec4b86cc0392c14b2b6bb81f4e1f
+  Building wheel for pyod (setup.py): started
+  Building wheel for pyod (setup.py): finished with status 'done'
+  Created wheel for pyod: filename=pyod-0.8.1-py3-none-any.whl size=105651 sha256=8d82fc0650760517e32cde36f6f46f53a4f3dec9ab4761dd8029d6c04f645f04
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/d6/f2/24/2c050361bd259bee34bbef8047bbcd3f08085f2a8a5ed1fc85
+Successfully built suod combo pyod
+Installing collected packages: combo, pyod, suod
+Successfully installed combo-0.1.1 pyod-0.8.1 suod-0.0.4
+
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+_py-xgboost-mutex         2.0                       cpu_0    conda-forge
+absl-py                   0.9.0            py37hc8dfbb8_1    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+astor                     0.8.1              pyh9f0ad1d_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+c-ares                    1.15.0            h516909a_1001    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2020.6.20        py37hc8dfbb8_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.13.2           py37h8022711_0    conda-forge
+chardet                   3.0.4                 py37_1003    conda-forge
+combo                     0.1.1                    pypi_0    pypi
+cryptography              2.8              py37h72c5cf5_1    conda-forge
+cycler                    0.10.0                     py_2    conda-forge
+dbus                      1.13.6               he372182_0    conda-forge
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+entrypoints               0.3                   py37_1000    conda-forge
+expat                     2.2.9                he1b5a44_2    conda-forge
+fontconfig                2.13.1            h86ecdb6_1001    conda-forge
+freetype                  2.10.2               he06d7ca_0    conda-forge
+gast                      0.3.3                      py_0    conda-forge
+gettext                   0.19.8.1          hc5be6a0_1002    conda-forge
+glib                      2.65.0               h6f030ca_0    conda-forge
+grpcio                    1.27.2           py37hb0870dc_0    conda-forge
+gst-plugins-base          1.14.5               h0935bb2_2    conda-forge
+gstreamer                 1.14.5               h36ae1b5_2    conda-forge
+h5py                      2.10.0          nompi_py37h90cd8ad_103    conda-forge
+hdf5                      1.10.6          nompi_h3c11f04_100    conda-forge
+icu                       64.2                 he1b5a44_1    conda-forge
+idna                      2.8                   py37_1000    conda-forge
+importlib-metadata        1.7.0            py37hc8dfbb8_0    conda-forge
+importlib_metadata        1.5.0                    py37_0    conda-forge
+inflect                   4.0.0                    py37_1    conda-forge
+ipykernel                 5.1.4            py37h5ca1d4c_0    conda-forge
+ipython                   7.11.1           py37h5ca1d4c_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0                   py37_0    conda-forge
+jinja2                    2.11.0                     py_0    conda-forge
+joblib                    0.16.0                     py_0    conda-forge
+jpeg                      9d                   h516909a_0    conda-forge
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py37_0    conda-forge
+jupyter_client            5.3.4                    py37_1    conda-forge
+jupyter_core              4.6.1                    py37_0    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py37_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py37_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+keras                     2.3.1                    py37_0    conda-forge
+keras-applications        1.0.8                      py_1    conda-forge
+keras-preprocessing       1.1.0                      py_0    conda-forge
+kiwisolver                1.2.0            py37h99015e2_0    conda-forge
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+ld_impl_linux-64          2.33.1               h53a641e_8    conda-forge
+libblas                   3.8.0               14_openblas    conda-forge
+libcblas                  3.8.0               14_openblas    conda-forge
+libclang                  9.0.1           default_hde54327_0    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgfortran-ng            7.5.0                hdf63c60_6    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libgpuarray               0.7.6             h14c3975_1003    conda-forge
+libiconv                  1.15              h516909a_1006    conda-forge
+liblapack                 3.8.0               14_openblas    conda-forge
+libllvm9                  9.0.1                he513fc3_1    conda-forge
+libopenblas               0.3.7                h5ec1e0e_6    conda-forge
+libpng                    1.6.37               hed695b0_1    conda-forge
+libprotobuf               3.8.0                h8b12597_0    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+libuuid                   2.32.1            h14c3975_1000    conda-forge
+libxcb                    1.13              h14c3975_1002    conda-forge
+libxgboost                1.1.1                he1b5a44_0    conda-forge
+libxkbcommon              0.10.0               he1b5a44_0    conda-forge
+libxml2                   2.9.10               hee79883_0    conda-forge
+llvm-tools                9.0.1                he513fc3_1    conda-forge
+llvmdev                   9.0.1                he513fc3_1    conda-forge
+llvmlite                  0.33.0           py37h5202443_0    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markdown                  3.2.2                      py_0    conda-forge
+markupsafe                1.1.1            py37h516909a_0    conda-forge
+matplotlib                3.2.2                         0    conda-forge
+matplotlib-base           3.2.2            py37h30547a4_0    conda-forge
+mistune                   0.8.4           py37h516909a_1000    conda-forge
+mock                      4.0.2            py37hc8dfbb8_0    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+nbconvert                 5.6.1                    py37_0    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+nose                      1.3.7           py37hc8dfbb8_1004    conda-forge
+notebook                  6.0.3                    py37_0    conda-forge
+nspr                      4.26                 he1b5a44_0    conda-forge
+nss                       3.47                 he751ad9_0    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+numba                     0.50.1           py37h0da4684_0    conda-forge
+numpy                     1.18.5           py37h8960a57_0    conda-forge
+oauthlib                  3.0.1                      py_0    conda-forge
+openssl                   1.1.1g               h516909a_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandas                    1.0.5            py37h0da4684_0    conda-forge
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+pcre                      8.44                 he1b5a44_0    conda-forge
+pexpect                   4.8.0                    py37_0    conda-forge
+pickleshare               0.7.5                 py37_1000    conda-forge
+pip                       20.1.1                     py_1    conda-forge
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+protobuf                  3.8.0            py37he1b5a44_2    conda-forge
+pthread-stubs             0.4               h14c3975_1001    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+py-xgboost                1.1.1            py37hc8dfbb8_0    conda-forge
+pycparser                 2.19                     py37_1    conda-forge
+pycurl                    7.43.0.5         py37h16ce93b_0    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pygpu                     0.7.6           py37h03ebfcd_1001    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyod                      0.8.1                    pypi_0    pypi
+pyopenssl                 19.1.0                   py37_0    conda-forge
+pyparsing                 2.4.7              pyh9f0ad1d_0    conda-forge
+pyqt                      5.12.3           py37h8685d9f_3    conda-forge
+pyqt5-sip                 4.19.18                  pypi_0    pypi
+pyqtchart                 5.12                     pypi_0    pypi
+pyqtwebengine             5.12.1                   pypi_0    pypi
+pyrsistent                0.15.7           py37h516909a_0    conda-forge
+pysocks                   1.7.1                    py37_0    conda-forge
+python                    3.7.6                h357f687_2    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+python_abi                3.7                     1_cp37m    conda-forge
+pytz                      2020.1             pyh9f0ad1d_0    conda-forge
+pyyaml                    5.3.1            py37h8f50634_0    conda-forge
+pyzmq                     18.1.1           py37h1768529_0    conda-forge
+qt                        5.12.5               hd8c4c69_1    conda-forge
+readline                  8.0                  hf8c457e_0    conda-forge
+requests                  2.22.0                   py37_1    conda-forge
+ruamel.yaml               0.16.6           py37h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py37h516909a_0    conda-forge
+scikit-learn              0.23.1           py37h8a51577_0    conda-forge
+scipy                     1.5.0            py37ha3d9a3c_0    conda-forge
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                45.1.0                   py37_0    conda-forge
+six                       1.14.0                   py37_0    conda-forge
+sqlalchemy                1.3.13           py37h516909a_0    conda-forge
+sqlite                    3.30.1               hcee41ef_0    conda-forge
+suod                      0.0.4                    pypi_0    pypi
+tensorboard               1.13.1                   py37_0    conda-forge
+tensorflow                1.13.1               h5ece82f_5    conda-forge
+tensorflow-base           1.13.1           py37h5ece82f_5    conda-forge
+tensorflow-estimator      1.13.0                     py_0    defaults
+termcolor                 1.1.0                      py_2    conda-forge
+terminado                 0.8.3                    py37_0    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+theano                    1.0.3            py37hfc679d8_1    conda-forge
+threadpoolctl             2.1.0              pyh5ca1d4c_0    conda-forge
+tk                        8.6.10               hed695b0_0    conda-forge
+toolchain                 2.4.0                         0    defaults
+toolchain_c_linux-64      2.4.0                         0    defaults
+toolchain_cxx_linux-64    2.4.0                         0    defaults
+tornado                   6.0.3            py37h516909a_0    conda-forge
+traitlets                 4.3.3                    py37_0    conda-forge
+urllib3                   1.25.7                   py37_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+werkzeug                  1.0.1              pyh9f0ad1d_0    conda-forge
+wheel                     0.34.1                   py37_0    conda-forge
+widgetsnbextension        3.5.1                    py37_0    conda-forge
+xgboost                   1.1.1            py37h3340039_0    conda-forge
+xorg-libxau               1.0.9                h14c3975_0    conda-forge
+xorg-libxdmcp             1.1.3                h516909a_0    conda-forge
+xz                        5.2.4             h14c3975_1001    conda-forge
+yaml                      0.2.5                h516909a_0    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+Removing intermediate container 024e3449cfc6
+ ---> 05bf963fe778
+Step 42/51 : USER root
+ ---> Running in 0744139e2544
+Removing intermediate container 0744139e2544
+ ---> 39da8652b976
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 20b5cd9e6ef2
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 6b33807edcd9
+Removing intermediate container 6b33807edcd9
+ ---> baf38d37a336
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in ba2a70a298b5
+Removing intermediate container ba2a70a298b5
+ ---> 826962314ee1
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in 452208bb628e
+Removing intermediate container 452208bb628e
+ ---> 29f46362bba1
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 5812617c0e9a
+Removing intermediate container 5812617c0e9a
+ ---> 533b1a2539d9
+Step 48/51 : USER ${NB_USER}
+ ---> Running in db40179d18e9
+Removing intermediate container db40179d18e9
+ ---> e9de5847c666
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 633ba804aee3
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 1b4dc17c5cf6
+Removing intermediate container 1b4dc17c5cf6
+ ---> 5d6427b41b65
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 46ddc930462e
+Removing intermediate container 46ddc930462e
+ ---> 3dfa79c1339b
+{"aux": {"ID": "sha256:3dfa79c1339b8c2749c5bfe4a34b6d23a7309e0c6f72fb634e45065ce8324d7a"}}Successfully built 3dfa79c1339b
+Successfully tagged r2d-test-github.com-yzhao062-pyod:bd1835d

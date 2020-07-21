@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/wyy0920/Newsmood,master,963bd62,2018-03-22T18:31:39-07:00,build,build,True,github.com/wyy0920/Newsmood/logs/build-master-2020-07-16T12.32.txt,2020-07-16T12:32:12.700942,2020-07-16T12.32,0.11.0
+https://github.com/wyy0920/Newsmood,master,963bd62,2018-03-22T18:31:39-07:00,notebook,Newsmood.ipynb,False,github.com/wyy0920/Newsmood/logs/test-notebook-Newsmood.ipynb-2020-07-16T12.32.txt,2020-07-16T12:32:12.700942,2020-07-16T12.32,0.11.0
+https://github.com/wyy0920/Newsmood,master,963bd62,2018-03-22T18:31:39-07:00,notebook,.ipynb_checkpoints/Newsmood-checkpoint.ipynb,False,github.com/wyy0920/Newsmood/logs/test-notebook-.ipynb_checkpoints-Newsmood-checkpoint.ipynb-2020-07-16T12.32.txt,2020-07-16T12:32:12.700942,2020-07-16T12.32,0.11.0

@@ -1,0 +1,81 @@
+[I 200716 08:07:15 inrepo:36] Testing notebook benchmarks/benchmarks.ipynb
+[I 200716 08:07:16 inrepo:45] Found kernel python3
+[I 200716 08:07:16 execute:404] Executing notebook with kernel: python3
+/bin/sh: 1: ./expand2: not found
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+'''
+Instructions to run the benchmarks:
+
+Use Python 3 to run this script
+For SymEngine benchmarks compile with -DWITH_TCMALLOC=yes -DWITH_FLINT=yes -DINTEGER_CLASS=flint
+For GiNaC benchmarks compile with the same CXX flags as SymEngine
+Move (or symlink) all the benchmarks from symengine/symengine repo and symengine/symengine.py repo to this folder
+'''
+
+from subprocess import Popen, PIPE, TimeoutExpired
+import json
+import os
+import signal
+
+test1 = ["expand2", list(range(4, 50, 2))]
+test2 = ["expand6", list(range(100, 1100, 100))]
+test4 = ["expand6b", list(range(100, 1100, 100))]
+test3 = ["expand7", list(range(10, 50, 3))]
+test5 = ["symengine_bench", list(range(10, 41, 2))]
+
+tests = [test1, test2, test3, test4, test5]
+for test in tests:
+    name = test[0]
+    param = test[1][:]
+    for b in range(6):
+        lib = ["./%s %s","./%s_ginac %s", "./%s.m %s", "./%s.py %s", "maple -q %s.mpl -D n=%s", "./%s_piranha %s"][b]
+        time = [float('inf')] * len(test[1])
+        for i in range(len(param)):
+            test_name = lib % (name, param[i])
+            command = 'LD_PRELOAD=/usr/lib/libtcmalloc.so '+test_name
+            with Popen(command, shell=True, stdout=PIPE, preexec_fn=os.setsid) as process:
+                try:
+                    output = process.communicate(timeout=120)[0]
+                    #print(output, command)
+                    time[i] = float(output.splitlines()[0].decode('utf-8').replace("ms", "").strip())
+                    time[i] = max(0.01, time[i])
+                except TimeoutExpired:
+                    os.killpg(process.pid, signal.SIGINT) # send signal to the process group
+                    break
+            #print(test_name, time[i])
+        test.append(time)
+        print(time)
+with open('data.json', 'w') as f:
+    f.write(json.dumps(tests, indent=2))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mIndexError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-1-7faf33e78352>[0m in [0;36m<module>[0;34m[0m
+[1;32m     33[0m                     [0moutput[0m [0;34m=[0m [0mprocess[0m[0;34m.[0m[0mcommunicate[0m[0;34m([0m[0mtimeout[0m[0;34m=[0m[0;36m120[0m[0;34m)[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     34[0m                     [0;31m#print(output, command)[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 35[0;31m                     [0mtime[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mfloat[0m[0;34m([0m[0moutput[0m[0;34m.[0m[0msplitlines[0m[0;34m([0m[0;34m)[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mdecode[0m[0;34m([0m[0;34m'utf-8'[0m[0;34m)[0m[0;34m.[0m[0mreplace[0m[0;34m([0m[0;34m"ms"[0m[0;34m,[0m [0;34m""[0m[0;34m)[0m[0;34m.[0m[0mstrip[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     36[0m                     [0mtime[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mmax[0m[0;34m([0m[0;36m0.01[0m[0;34m,[0m [0mtime[0m[0;34m[[0m[0mi[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     37[0m                 [0;32mexcept[0m [0mTimeoutExpired[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mIndexError[0m: list index out of range
+IndexError: list index out of range
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

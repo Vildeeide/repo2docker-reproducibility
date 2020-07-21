@@ -1,0 +1,65 @@
+[I 200713 07:10:49 inrepo:36] Testing notebook notebook/TEST EDR DOMAIN.ipynb
+[W 200713 07:10:49 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200713 07:10:49 inrepo:60] Using kernel python3 to provide language: python
+[I 200713 07:10:50 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import sys
+import logging
+import numpy as np
+import pandas as pd
+import urlparse
+import requests
+import pprint
+import urllib
+import os
+
+os.sys.path.append("/home/sparrow/sparrow/malicious_url_cluster")
+from logger import logger 
+from config import cfg
+import preprocess
+import vectorize
+import clustering
+import regex_url
+import urlnormalize
+import regex_domain
+import validate
+
+def get_malware_edr_data(file_list):
+    root_path = "/home/sparrow/sparrow/data/sangfor/18"
+    df_list = []
+    for i in file_list:
+        local_path = root_path + i
+        filepath = os.path.join(local_path ,'dumped_result.edr.csv')
+        df_list.append( pd.read_csv(filepath))
+        print local_path
+        
+    df = pd.concat(df_list, axis = 0)
+    return df
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-6643af1fb11b>"[0;36m, line [0;32m30[0m
+[0;31m    print local_path[0m
+[0m                   ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print(local_path)?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(local_path)? (<ipython-input-1-6643af1fb11b>, line 30)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

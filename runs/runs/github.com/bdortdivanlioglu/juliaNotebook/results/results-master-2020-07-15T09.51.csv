@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bdortdivanlioglu/juliaNotebook,master,9125f2f,2017-12-01T01:29:38-08:00,build,build,True,github.com/bdortdivanlioglu/juliaNotebook/logs/build-master-2020-07-15T09.51.txt,2020-07-15T09:51:50.125312,2020-07-15T09.51,0.11.0
+https://github.com/bdortdivanlioglu/juliaNotebook,master,9125f2f,2017-12-01T01:29:38-08:00,notebook,bifur_perturbed.ipynb,False,github.com/bdortdivanlioglu/juliaNotebook/logs/test-notebook-bifur_perturbed.ipynb-2020-07-15T09.51.txt,2020-07-15T09:51:50.125312,2020-07-15T09.51,0.11.0

@@ -1,0 +1,80 @@
+[I 200716 09:11:22 inrepo:36] Testing notebook Assignment_1_Python.ipynb
+[I 200716 09:11:22 inrepo:45] Found kernel python3
+[I 200716 09:11:23 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+file = pd.read_csv("C:/Users/priya/Desktop/ClassData.csv")
+file
+
+#min gpa
+print("Min GPA is :",file["GPA"].min())
+
+#min years of exp
+print("Min Number of Years of work ex :", file["Years of work experience"].min())
+
+#max gpa
+print("Max GPA is :",file["GPA"].max())
+
+#max years of exp
+print("Max Number of Years of work ex :", file["Years of work experience"].max())
+
+#avg gpa
+print("Average GPA is :",file["GPA"].mean().round(2))
+
+#min years of exp
+print("Average Number of Years of work ex :", file["Years of work experience"].mean().round(2))
+
+#median gpa
+print("Median GPA is :",file["GPA"].median())
+
+#median years of exp
+print("Median Number of Years of work ex :", file["Years of work experience"].median())
+
+#mode Salary
+print("Mode of Salary :",file["Latest salary (per year)"].mode()[0])
+
+#percentage having coop                                        
+print("Percentage of students having Coop is",(len(file.groupby(file["Coops/Internships (YN)"]).groups["Y"])/file["Coops/Internships (YN)"].count()*100).round(2))                                           
+
+#percentage not having                                        
+print("Percentage of students not having Coop is",(len(file.groupby(file["Coops/Internships (YN)"]).groups["N"])/file["Coops/Internships (YN)"].count()*100).round(2))                                           
+
+#number of students having linked contacts greater than 500
+print("Number of Students having linkedin contacts > 500 :",file["Number of contacts on Linkedin"][file["Number of contacts on Linkedin"]>500].count())
+     
+#IQR of  expected salary
+q1 = file["Expected Salary after graduation"].quantile(0.25)
+q3 = file["Expected Salary after graduation"].quantile(0.75)
+print("Inter Quartile Range for Expected salary after graduation:", q3-q1)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-dadee7e22200>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mfile[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m"C:/Users/priya/Desktop/ClassData.csv"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mfile[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;31m#min gpa[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pandas'
+ModuleNotFoundError: No module named 'pandas'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

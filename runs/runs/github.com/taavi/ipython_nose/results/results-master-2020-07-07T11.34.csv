@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/taavi/ipython_nose,master,14161dc,2013-10-09T19:51:51-07:00,build,build,True,github.com/taavi/ipython_nose/logs/build-master-2020-07-07T11.34.txt,2020-07-07T11:34:25.841078,2020-07-07T11.34,0.11.0
+https://github.com/taavi/ipython_nose,master,14161dc,2013-10-09T19:51:51-07:00,notebook,nose experiment.ipynb,False,github.com/taavi/ipython_nose/logs/test-notebook-nose experiment.ipynb-2020-07-07T11.34.txt,2020-07-07T11:34:25.841078,2020-07-07T11.34,0.11.0
+https://github.com/taavi/ipython_nose,master,14161dc,2013-10-09T19:51:51-07:00,notebook,Example Usage.ipynb,False,github.com/taavi/ipython_nose/logs/test-notebook-Example Usage.ipynb-2020-07-07T11.34.txt,2020-07-07T11:34:25.841078,2020-07-07T11.34,0.11.0

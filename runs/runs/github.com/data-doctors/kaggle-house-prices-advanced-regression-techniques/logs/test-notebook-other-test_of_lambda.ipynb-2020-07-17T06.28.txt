@@ -1,0 +1,7 @@
+[I 200717 06:29:06 inrepo:36] Testing notebook other/test_of_lambda.ipynb
+[W 200717 06:29:07 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200717 06:29:07 inrepo:60] Using kernel python3 to provide language: python
+[I 200717 06:29:07 execute:404] Executing notebook with kernel: python3
+[I 200717 06:29:08 inrepo:79] Saving exported notebook to /io/notebooks/other/test_of_lambda.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

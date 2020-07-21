@@ -1,0 +1,6 @@
+[I 200717 13:01:57 inrepo:36] Testing notebook Autocomplete.ipynb
+[I 200717 13:01:57 inrepo:45] Found kernel python3
+[I 200717 13:01:58 execute:404] Executing notebook with kernel: python3
+[I 200717 13:01:58 inrepo:79] Saving exported notebook to /io/notebooks/Autocomplete.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

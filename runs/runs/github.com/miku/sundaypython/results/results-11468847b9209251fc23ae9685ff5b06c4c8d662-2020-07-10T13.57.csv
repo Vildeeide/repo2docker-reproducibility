@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/miku/sundaypython,11468847b9209251fc23ae9685ff5b06c4c8d662,1146884,2018-05-05T11:57:45+02:00,build,build,False,github.com/miku/sundaypython/logs/build-11468847b9209251fc23ae9685ff5b06c4c8d662-2020-07-10T13.57.txt,2020-07-10T13:57:48.620711,2020-07-10T13.57,0.11.0

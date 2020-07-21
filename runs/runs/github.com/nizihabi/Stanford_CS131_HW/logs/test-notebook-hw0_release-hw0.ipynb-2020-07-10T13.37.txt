@@ -1,0 +1,68 @@
+[I 200710 13:38:29 inrepo:36] Testing notebook hw0_release/hw0.ipynb
+[I 200710 13:38:29 inrepo:45] Found kernel python3
+[I 200710 13:38:30 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#Imports the print function from newer versions of python
+from __future__ import print_function
+
+#Setup
+
+# The Random module for implements pseudo-random number generators
+import random 
+
+# Numpy is the main package for scientific computing with Python. 
+# This will be one of our most used libraries in this class
+import numpy as np
+
+
+#Imports all the methods in each of the files: linalg.py and imageManip.py
+from linalg import *
+from imageManip import *
+
+
+#Matplotlib is a useful plotting library for python 
+import matplotlib.pyplot as plt
+# This code is to make matplotlib figures appear inline in the
+# notebook rather than in a new window.
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (10.0, 8.0) # set default size of plots
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+
+# Some more magic so that the notebook will reload external python modules;
+# see http://stackoverflow.com/questions/1907993/autoreload-of-modules-in-ipython
+%load_ext autoreload
+%autoreload 2
+%reload_ext autoreload
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-3ae30c8b1585>[0m in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [0;31m# Numpy is the main package for scientific computing with Python.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;31m# This will be one of our most used libraries in this class[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m [0;34m[0m[0m
+[1;32m     13[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

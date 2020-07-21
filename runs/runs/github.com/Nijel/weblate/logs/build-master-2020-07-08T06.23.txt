@@ -1,0 +1,585 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T06.2382rq4w36/github.com/Nijel/weblate.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 09d89e791877
+Step 38/50 : USER root
+ ---> Running in 4064ce3cc8c5
+Removing intermediate container 4064ce3cc8c5
+ ---> 25d230e649cc
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 2aec7917c5c3
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 12f91d086855
+Removing intermediate container 12f91d086855
+ ---> 38c085631df1
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 8a33ecd560ee
+Removing intermediate container 8a33ecd560ee
+ ---> 5bd7d9b8a40d
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 73ad0803b597
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting bleach<3.2.0,>=3.1.1
+  Downloading bleach-3.1.5-py2.py3-none-any.whl (151 kB)
+Collecting borgbackup<1.2.0,>=1.1.9
+  Downloading borgbackup-1.1.13.tar.gz (3.8 MB)
+Collecting celery[redis]<4.5,>=4.4.2
+  Downloading celery-4.4.6-py2.py3-none-any.whl (426 kB)
+Collecting Cython<0.30,>=0.29.14
+  Downloading Cython-0.29.20-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting diff-match-patch==20181111
+  Downloading diff-match-patch-20181111.tar.gz (58 kB)
+Collecting Django<3.1,>=3.0.5
+  Downloading Django-3.0.8-py3-none-any.whl (7.5 MB)
+Collecting django-appconf<1.1,>=1.0.0
+  Downloading django_appconf-1.0.4-py2.py3-none-any.whl (6.3 kB)
+Collecting django-compressor<2.5,>=2.4
+  Downloading django_compressor-2.4-py2.py3-none-any.whl (126 kB)
+Collecting django-crispy-forms<1.10.0,>=1.9.0
+  Downloading django_crispy_forms-1.9.1-py2.py3-none-any.whl (108 kB)
+Collecting django-filter<2.4.0,>=2.2.0
+  Downloading django_filter-2.3.0-py3-none-any.whl (73 kB)
+Collecting django-redis<4.13.0,>=4.11.0
+  Downloading django_redis-4.12.1-py3-none-any.whl (19 kB)
+Collecting djangorestframework<3.12.0,>=3.11.0
+  Downloading djangorestframework-3.11.0-py3-none-any.whl (911 kB)
+Collecting filelock<3.1.0,>=3.0.0
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Collecting future<0.19.0,>=0.18.0
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting GitPython<3.2.0,>=2.1.15
+  Downloading GitPython-3.1.3-py3-none-any.whl (451 kB)
+Collecting hiredis<1.1.0,>=1.0.1
+  Downloading hiredis-1.0.1-cp37-cp37m-manylinux2010_x86_64.whl (60 kB)
+Collecting html2text<2020.1.17,>=2019.8.11
+  Downloading html2text-2020.1.16-py3-none-any.whl (32 kB)
+Collecting jellyfish<0.9.0,>=0.7.2
+  Downloading jellyfish-0.8.2-cp37-cp37m-manylinux2014_x86_64.whl (90 kB)
+Requirement already satisfied: jsonschema<3.3.0,>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 20)) (3.2.0)
+Collecting lxml<4.6.0,>=4.4.0
+  Downloading lxml-4.5.1-cp37-cp37m-manylinux1_x86_64.whl (5.5 MB)
+Collecting methodtools<0.5,>=0.4.2
+  Downloading methodtools-0.4.2.tar.gz (3.0 kB)
+Collecting misaka<2.2.0,>=2.1.0
+  Downloading misaka-2.1.1.tar.gz (125 kB)
+Collecting openpyxl!=3.0.2,<3.1,>=2.6.0
+  Downloading openpyxl-3.0.4-py2.py3-none-any.whl (241 kB)
+Collecting Pillow<7.3.0,>=6.0.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting pycairo>=1.15.3
+  Downloading pycairo-1.19.1.tar.gz (205 kB)
+Collecting pygobject>=3.27.0
+  Downloading PyGObject-3.36.1.tar.gz (716 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+    Preparing wheel metadata: started
+    Preparing wheel metadata: finished with status 'done'
+Collecting pyparsing<2.5.0,>=2.4.0
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: python-dateutil>=2.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 29)) (2.8.1)
+Collecting python-redis-lock<3.6.0,>=3.4.0
+  Downloading python_redis_lock-3.5.0-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: requests<2.25.0,>=2.20.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 31)) (2.22.0)
+Collecting sentry_sdk<0.17.0,>=0.13.0
+  Downloading sentry_sdk-0.16.0-py2.py3-none-any.whl (107 kB)
+Requirement already satisfied: setuptools>=36.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 33)) (45.1.0.post20200119)
+Collecting siphashc<2.0,>=1.2
+  Downloading siphashc-1.3.tar.gz (6.6 kB)
+Collecting social-auth-app-django==4.0.0
+  Downloading social_auth_app_django-4.0.0-py3-none-any.whl (24 kB)
+Collecting social-auth-core==3.3.3
+  Downloading social_auth_core-3.3.3-py3-none-any.whl (326 kB)
+Collecting translate-toolkit<3.1.0,>=3.0.0
+  Downloading translate-toolkit-3.0.0.tar.gz (6.1 MB)
+Collecting translation-finder==2.1
+  Downloading translation_finder-2.1-py3-none-any.whl (38 kB)
+Collecting user-agents<2.2,>=2.0
+  Downloading user-agents-2.1.tar.gz (9.5 kB)
+Collecting weblate-schemas==0.3
+  Downloading weblate_schemas-0.3-py3-none-any.whl (6.0 kB)
+Collecting Whoosh==2.7.4
+  Downloading Whoosh-2.7.4-py2.py3-none-any.whl (468 kB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: six>=1.9.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach<3.2.0,>=3.1.1->-r requirements.txt (line 1)) (1.14.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach<3.2.0,>=3.1.1->-r requirements.txt (line 1)) (0.5.1)
+Collecting pytz>dev
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting billiard<4.0,>=3.6.3.0
+  Downloading billiard-3.6.3.0-py3-none-any.whl (89 kB)
+Collecting kombu<4.7,>=4.6.10
+  Downloading kombu-4.6.11-py2.py3-none-any.whl (184 kB)
+Collecting vine==1.3.0
+  Downloading vine-1.3.0-py2.py3-none-any.whl (14 kB)
+Collecting redis>=3.2.0; extra == "redis"
+  Downloading redis-3.5.3-py2.py3-none-any.whl (72 kB)
+Collecting asgiref~=3.2
+  Downloading asgiref-3.2.10-py3-none-any.whl (19 kB)
+Collecting sqlparse>=0.2.2
+  Downloading sqlparse-0.3.1-py2.py3-none-any.whl (40 kB)
+Collecting rjsmin==1.1.0
+  Downloading rjsmin-1.1.0-cp37-cp37m-manylinux1_x86_64.whl (24 kB)
+Collecting rcssmin==1.0.6
+  Downloading rcssmin-1.0.6.tar.gz (582 kB)
+Collecting gitdb<5,>=4.0.1
+  Downloading gitdb-4.0.5-py3-none-any.whl (63 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema<3.3.0,>=3.0.0->-r requirements.txt (line 20)) (1.5.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema<3.3.0,>=3.0.0->-r requirements.txt (line 20)) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema<3.3.0,>=3.0.0->-r requirements.txt (line 20)) (19.3.0)
+Collecting wirerope>=0.4.2
+  Downloading wirerope-0.4.2.tar.gz (8.4 kB)
+Requirement already satisfied: cffi>=1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from misaka<2.2.0,>=2.1.0->-r requirements.txt (line 23)) (1.13.2)
+Collecting et-xmlfile
+  Downloading et_xmlfile-1.0.1.tar.gz (8.4 kB)
+Collecting jdcal
+  Downloading jdcal-1.4.1-py2.py3-none-any.whl (9.5 kB)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<2.25.0,>=2.20.0->-r requirements.txt (line 31)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<2.25.0,>=2.20.0->-r requirements.txt (line 31)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<2.25.0,>=2.20.0->-r requirements.txt (line 31)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests<2.25.0,>=2.20.0->-r requirements.txt (line 31)) (2019.11.28)
+Requirement already satisfied: cryptography>=1.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from social-auth-core==3.3.3->-r requirements.txt (line 36)) (2.8)
+Collecting requests-oauthlib>=0.6.1
+  Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+Collecting python3-openid>=3.0.10; python_version >= "3.0"
+  Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+Requirement already satisfied: oauthlib>=1.0.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from social-auth-core==3.3.3->-r requirements.txt (line 36)) (3.0.1)
+Requirement already satisfied: PyJWT>=1.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from social-auth-core==3.3.3->-r requirements.txt (line 36)) (1.7.1)
+Requirement already satisfied: defusedxml>=0.5.0rc1; python_version >= "3.0" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from social-auth-core==3.3.3->-r requirements.txt (line 36)) (0.6.0)
+Requirement already satisfied: ruamel.yaml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from translation-finder==2.1->-r requirements.txt (line 38)) (0.16.6)
+Collecting ua-parser>=0.9.0
+  Downloading ua_parser-0.10.0-py2.py3-none-any.whl (35 kB)
+Collecting amqp<2.7,>=2.6.0
+  Downloading amqp-2.6.0-py2.py3-none-any.whl (47 kB)
+Collecting smmap<4,>=3.0.1
+  Downloading smmap-3.0.4-py2.py3-none-any.whl (25 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema<3.3.0,>=3.0.0->-r requirements.txt (line 20)) (2.1.0)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi>=1.0.0->misaka<2.2.0,>=2.1.0->-r requirements.txt (line 23)) (2.19)
+Requirement already satisfied: ruamel.yaml.clib>=0.1.2; platform_python_implementation == "CPython" and python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ruamel.yaml->translation-finder==2.1->-r requirements.txt (line 38)) (0.2.0)
+Building wheels for collected packages: borgbackup, diff-match-patch, future, methodtools, misaka, pycairo, pygobject, siphashc, translate-toolkit, user-agents, rcssmin, wirerope, et-xmlfile
+  Building wheel for borgbackup (setup.py): started
+  Building wheel for borgbackup (setup.py): still running...
+  Building wheel for borgbackup (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-rc6jzn_g/borgbackup/setup.py'"'"'; __file__='"'"'/tmp/pip-install-rc6jzn_g/borgbackup/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-h4x0q33s
+       cwd: /tmp/pip-install-rc6jzn_g/borgbackup/
+  Complete output (196 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/borg
+  copying src/borg/__init__.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/nanorst.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/lrucache.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/xattr.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/patterns.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/remote.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/__main__.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/repository.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/cache.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/archive.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/shellpattern.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/logger.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/helpers.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/upgrader.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/archiver.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/selftest.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/constants.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/fuse.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/version.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/locking.py -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/_version.py -> build/lib.linux-x86_64-3.7/borg
+  creating build/lib.linux-x86_64-3.7/borg/crypto
+  copying src/borg/crypto/__init__.py -> build/lib.linux-x86_64-3.7/borg/crypto
+  copying src/borg/crypto/file_integrity.py -> build/lib.linux-x86_64-3.7/borg/crypto
+  copying src/borg/crypto/nonces.py -> build/lib.linux-x86_64-3.7/borg/crypto
+  copying src/borg/crypto/key.py -> build/lib.linux-x86_64-3.7/borg/crypto
+  copying src/borg/crypto/keymanager.py -> build/lib.linux-x86_64-3.7/borg/crypto
+  creating build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/__init__.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/platform.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/nanorst.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/file_integrity.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/chunker.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/lrucache.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/xattr.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/patterns.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/remote.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/nonces.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/repository.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/cache.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/archive.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/benchmark.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/item.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/shellpattern.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/hashindex.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/logger.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/helpers.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/upgrader.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/checksums.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/archiver.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/compress.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/key.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/crypto.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/version.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/testsuite/locking.py -> build/lib.linux-x86_64-3.7/borg/testsuite
+  creating build/lib.linux-x86_64-3.7/borg/platform
+  copying src/borg/platform/__init__.py -> build/lib.linux-x86_64-3.7/borg/platform
+  copying src/borg/platform/base.py -> build/lib.linux-x86_64-3.7/borg/platform
+  creating build/lib.linux-x86_64-3.7/borg/algorithms
+  copying src/borg/algorithms/__init__.py -> build/lib.linux-x86_64-3.7/borg/algorithms
+  creating build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  copying src/borg/algorithms/msgpack/__init__.py -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  copying src/borg/algorithms/msgpack/fallback.py -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  copying src/borg/algorithms/msgpack/exceptions.py -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  copying src/borg/algorithms/msgpack/_version.py -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  running egg_info
+  writing src/borgbackup.egg-info/PKG-INFO
+  writing dependency_links to src/borgbackup.egg-info/dependency_links.txt
+  writing entry points to src/borgbackup.egg-info/entry_points.txt
+  writing requirements to src/borgbackup.egg-info/requires.txt
+  writing top-level names to src/borgbackup.egg-info/top_level.txt
+  reading manifest file 'src/borgbackup.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no previously-included files found matching '.coafile'
+  warning: no previously-included files found matching '.editorconfig'
+  warning: no previously-included files found matching '.gitattributes'
+  warning: no previously-included files found matching '.gitignore'
+  warning: no previously-included files found matching '.mailmap'
+  warning: no previously-included files found matching '.travis.yml'
+  warning: no previously-included files found matching 'Vagrantfile'
+  no previously-included directories found matching '.travis'
+  no previously-included directories found matching '.github'
+  writing manifest file 'src/borgbackup.egg-info/SOURCES.txt'
+  copying src/borg/paperkey.html -> build/lib.linux-x86_64-3.7/borg
+  copying src/borg/testsuite/attic.tar.gz -> build/lib.linux-x86_64-3.7/borg/testsuite
+  copying src/borg/algorithms/msgpack/_packer.cpp -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  copying src/borg/algorithms/msgpack/_unpacker.cpp -> build/lib.linux-x86_64-3.7/borg/algorithms/msgpack
+  running build_ext
+  building 'borg.algorithms.msgpack._packer' extension
+  creating build/temp.linux-x86_64-3.7
+  creating build/temp.linux-x86_64-3.7/src
+  creating build/temp.linux-x86_64-3.7/src/borg
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/msgpack
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -D__LITTLE_ENDIAN__=1 -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/msgpack/_packer.cpp -o build/temp.linux-x86_64-3.7/src/borg/algorithms/msgpack/_packer.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  g++ -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/algorithms/msgpack/_packer.o -L/usr/lib -o build/lib.linux-x86_64-3.7/borg/algorithms/msgpack/_packer.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.algorithms.msgpack._unpacker' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -D__LITTLE_ENDIAN__=1 -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/msgpack/_unpacker.cpp -o build/temp.linux-x86_64-3.7/src/borg/algorithms/msgpack/_unpacker.o
+  cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++
+  src/borg/algorithms/msgpack/_unpacker.cpp: In function ‘int __pyx_f_4borg_10algorithms_7msgpack_9_unpacker_get_data_from_buffer(PyObject*, Py_buffer*, char**, Py_ssize_t*, int*)’:
+  src/borg/algorithms/msgpack/_unpacker.cpp:2321:100: warning: ‘int PyObject_AsReadBuffer(PyObject*, const void**, Py_ssize_t*)’ is deprecated [-Wdeprecated-declarations]
+       __pyx_t_2 = PyObject_AsReadBuffer(__pyx_v_obj, ((void const **)__pyx_v_buf), __pyx_v_buffer_len); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 152, __pyx_L1_error)
+                                                                                                      ^
+  In file included from /srv/conda/envs/notebook/include/python3.7m/Python.h:147:0,
+                   from src/borg/algorithms/msgpack/_unpacker.cpp:4:
+  /srv/conda/envs/notebook/include/python3.7m/abstract.h:489:17: note: declared here
+   PyAPI_FUNC(int) PyObject_AsReadBuffer(PyObject *obj,
+                   ^~~~~~~~~~~~~~~~~~~~~
+  g++ -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/algorithms/msgpack/_unpacker.o -L/usr/lib -o build/lib.linux-x86_64-3.7/borg/algorithms/msgpack/_unpacker.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.compress' extension
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/lz4
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/lz4/lib
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/compress.c -o build/temp.linux-x86_64-3.7/src/borg/compress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/lz4/lib/lz4.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/lz4/lib/lz4.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/debug.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/debug.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/entropy_common.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/entropy_common.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/error_private.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/error_private.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/fse_decompress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/fse_decompress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/pool.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/pool.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/threading.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/threading.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/xxhash.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/xxhash.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/common/zstd_common.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/zstd_common.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/fse_compress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/fse_compress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/hist.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/hist.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/huf_compress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/huf_compress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_compress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_compress_literals.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_literals.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_compress_sequences.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_sequences.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_compress_superblock.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_superblock.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_double_fast.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_double_fast.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_fast.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_fast.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_lazy.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_lazy.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_ldm.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_ldm.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstd_opt.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_opt.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/compress/zstdmt_compress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstdmt_compress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/decompress/huf_decompress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/huf_decompress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/decompress/zstd_ddict.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_ddict.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/decompress/zstd_decompress.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_decompress.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/decompress/zstd_decompress_block.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_decompress_block.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/dictBuilder/cover.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/cover.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/dictBuilder/divsufsort.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/divsufsort.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/dictBuilder/fastcover.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/fastcover.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/zstd/lib/dictBuilder/zdict.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/zdict.o -DZSTDLIB_VISIBILITY= -DZDICTLIB_VISIBILITY= -DZSTDERRORLIB_VISIBILITY=
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/compress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/lz4/lib/lz4.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/debug.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/entropy_common.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/error_private.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/fse_decompress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd[0m[91m/lib/common/pool.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/threading.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/xxhash.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/common/zstd_common.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/fse_compress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/hist.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/huf_compress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_literals.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_sequences.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_compress_superblock.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_double_fast.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_fast.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_lazy.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_ldm.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstd_opt.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/compress/zstdmt_compress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/huf_decompress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_ddict.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_decompress.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/decompress/zstd_decompress_block.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/cover.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/divsufsort.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/fastcover.o build/temp.linux-x86_64-3.7/src/borg/algorithms/zstd/lib/dictBuilder/zdict.o -L/usr/lib -o build/lib.linux-x86_64-3.7/borg/compress.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.crypto.low_level' extension
+  creating build/temp.linux-x86_64-3.7/src/borg/crypto
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/blake2
+  creating build/temp.linux-x86_64-3.7/src/borg/algorithms/blake2/ref
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/crypto/low_level.c -o build/temp.linux-x86_64-3.7/src/borg/crypto/low_level.o
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/usr/include -Isrc/borg/algorithms/lz4/lib -Isrc/borg/algorithms/zstd/lib -Isrc/borg/algorithms/zstd/lib/common -Isrc/borg/algorithms/zstd/lib/compress -Isrc/borg/algorithms/zstd/lib/decompress -Isrc/borg/algorithms/zstd/lib/dictBuilder -Isrc/borg/algorithms/blake2/ref -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/blake2/ref/blake2b-ref.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/blake2/ref/blake2b-ref.o
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/crypto/low_level.o build/temp.linux-x86_64-3.7/src/borg/algorithms/blake2/ref/blake2b-ref.o -L/usr/lib -lcrypto -o build/lib.linux-x86_64-3.7/borg/crypto/low_level.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.hashindex' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/hashindex.c -o build/temp.linux-x86_64-3.7/src/borg/hashindex.o
+  In file included from src/borg/hashindex.c:601:0:
+  src/borg/_hashindex.c: In function ‘hashindex_set’:
+  src/borg/_hashindex.c:74:58: warning: ‘idx’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   #define BUCKET_ADDR(index, idx) (index->buckets + ((idx) * index->bucket_size))
+                                                            ^
+  In file included from src/borg/hashindex.c:601:0:
+  src/borg/_hashindex.c:541:9: note: ‘idx’ was declared here
+       int idx = hashindex_lookup(index, key, &start_idx);
+           ^~~
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/hashindex.o -o build/lib.linux-x86_64-3.7/borg/hashindex.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.item' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/item.c -o build/temp.linux-x86_64-3.7/src/borg/item.o
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/item.o -o build/lib.linux-x86_64-3.7/borg/item.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.chunker' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/chunker.c -o build/temp.linux-x86_64-3.7/src/borg/chunker.o
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/chunker.o -o build/lib.linux-x86_64-3.7/borg/chunker.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.algorithms.checksums' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/algorithms/checksums.c -o build/temp.linux-x86_64-3.7/src/borg/algorithms/checksums.o
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/algorithms/checksums.o -o build/lib.linux-x86_64-3.7/borg/algorithms/checksums.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.platform.posix' extension
+  creating build/temp.linux-x86_64-3.7/src/borg/platform
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/platform/posix.c -o build/temp.linux-x86_64-3.7/src/borg/platform/posix.o
+  gcc -pthread -shared -B /srv/conda/envs/notebook/compiler_compat -L/srv/conda/envs/notebook/lib -Wl,-rpath=/srv/conda/envs/notebook/lib -Wl,--no-as-needed -Wl,--sysroot=/ build/temp.linux-x86_64-3.7/src/borg/platform/posix.o -o build/lib.linux-x86_64-3.7/borg/platform/posix.cpython-37m-x86_64-linux-gnu.so
+  building 'borg.platform.linux' extension
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/srv/conda/envs/notebook/include/python3.7m -c src/borg/platform/linux.c -o build/temp.linux-x86_64-3.7/src/borg/platform/linux.o
+  src/borg/platform/linux.c:600:10: fatal error: sys/acl.h: No such file or directory
+   #include "sys/acl.h"
+            ^~~~~~~~~~~
+  compilation terminated.
+  error: command 'gcc' failed with exit status 1
+  ----------------------------------------
+[0m[91m  ERROR: Failed building wheel for borgbackup
+[0m  Running setup.py clean for borgbackup
+  Building wheel for diff-match-patch (setup.py): started
+  Building wheel for diff-match-patch (setup.py): finished with status 'done'
+  Created wheel for diff-match-patch: filename=diff_match_patch-20181111-py3-none-any.whl size=58507 sha256=db9dd34b1a1c8c5ca12243335ed14322819257832544725bb5238c44bc88e843
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/4e/c0/05/b3b0802fcee352294ae0cf3cf91cdcce4752b29b988492d05f
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=0f9e86838d39e3dda7235a7f3c30eda3d1b577dff6fe2103de20c65374f4011d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+  Building wheel for methodtools (setup.py): started
+  Building wheel for methodtools (setup.py): finished with status 'done'
+  Created wheel for methodtools: filename=methodtools-0.4.2-py3-none-any.whl size=2984 sha256=71e095137ef6cd457dfcac811a74f1be5a6c604d11e5076ae8979be9348768cc
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/a1/4b/47/96ec59507e50086dd9008ea7267c4692b80f4b299675684bcc
+  Building wheel for misaka (setup.py): started
+  Building wheel for misaka (setup.py): finished with status 'done'
+  Created wheel for misaka: filename=misaka-2.1.1-cp37-cp37m-linux_x86_64.whl size=143164 sha256=4478e75fa42b4397053faee576b1bc8acc5a2c9058dd29f0d51942941f476d84
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/5d/fe/d1/98a38e1766871f07e924cea8372fa0c1087b8260f4b5231162
+  Building wheel for pycairo (setup.py): started
+  Building wheel for pycairo (setup.py): finished with status 'done'
+  Created wheel for pycairo: filename=pycairo-1.19.1-cp37-cp37m-linux_x86_64.whl size=260251 sha256=661ff96ed95fd27e5eede97236505af633e6a7140966117146947d42d76bc018
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/82/aa/e4/b6c8ba84a111a5485e7a426b030f03b77765cdc2567927ea96
+  Building wheel for pygobject (PEP 517): started
+  Building wheel for pygobject (PEP 517): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python /srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_vendor/pep517/_in_process.py build_wheel /tmp/tmpdmwi3zxb
+       cwd: /tmp/pip-install-rc6jzn_g/pygobject
+  Complete output (45 lines):
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib.linux-x86_64-3.7
+  creating build/lib.linux-x86_64-3.7/pygtkcompat
+  copying pygtkcompat/__init__.py -> build/lib.linux-x86_64-3.7/pygtkcompat
+  copying pygtkcompat/generictreemodel.py -> build/lib.linux-x86_64-3.7/pygtkcompat
+  copying pygtkcompat/pygtkcompat.py -> build/lib.linux-x86_64-3.7/pygtkcompat
+  creating build/lib.linux-x86_64-3.7/gi
+  copying gi/importer.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/__init__.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_ossighelper.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_signalhelper.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/pygtkcompat.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_constants.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_gtktemplate.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_option.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/module.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/docstring.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_error.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/types.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_propertyhelper.py -> build/lib.linux-x86_64-3.7/gi
+  copying gi/_compat.py -> build/lib.linux-x86_64-3.7/gi
+  creating build/lib.linux-x86_64-3.7/gi/repository
+  copying gi/repository/__init__.py -> build/lib.linux-x86_64-3.7/gi/repository
+  creating build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/Gtk.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/__init__.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/GdkPixbuf.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/Gio.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/Gdk.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/GObject.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/GIMarshallingTests.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/Pango.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/GLib.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  copying gi/overrides/keysyms.py -> build/lib.linux-x86_64-3.7/gi/overrides
+  running build_ext
+  Package gobject-introspection-1.0 was not found in the pkg-config search path.
+  Perhaps you should add the directory containing `gobject-introspection-1.0.pc'
+  to the PKG_CONFIG_PATH environment variable
+  No package 'gobject-introspection-1.0' found
+  Command '('pkg-config', '--print-errors', '--exists', 'gobject-introspection-1.0 >= 1.46.0')' returned non-zero exit status 1.
+  
+  Try installing it with: 'sudo apt install libgirepository1.0-dev'
+  ----------------------------------------
+[0m[91m  ERROR: Failed building wheel for pygobject
+[0m  Building wheel for siphashc (setup.py): started
+  Building wheel for siphashc (setup.py): finished with status 'done'
+  Created wheel for siphashc: filename=siphashc-1.3-cp37-cp37m-linux_x86_64.whl size=17542 sha256=8448e7cb6c1f70bdef383467b43157fc3b23d83602e63d9a580c9b6d8e174af0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/6d/9a/a3/b0da08904b8d88a13a274f337de806f5b17f49a80bd1c5b313
+  Building wheel for translate-toolkit (setup.py): started
+  Building wheel for translate-toolkit (setup.py): finished with status 'done'
+  Created wheel for translate-toolkit: filename=translate_toolkit-3.0.0-py3-none-any.whl size=6824417 sha256=6f97b5c4dde7b874c1c38e7f92923436c8c1115904b6d65fa1fffb3b2844720c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/65/55/15/6362d6d3ffbfcb86b86457d39cd74f8bb0b353f48ed9738511
+  Building wheel for user-agents (setup.py): started
+  Building wheel for user-agents (setup.py): finished with status 'done'
+  Created wheel for user-agents: filename=user_agents-2.1-py3-none-any.whl size=10329 sha256=535766cc3a8ab02c3ec09f2866abb6879da59ed06f963d494d41e3d230909be4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/73/52/ad/fecaff74bdfe2efe5971241aa079ec4babf82b86472752261b
+  Building wheel for rcssmin (setup.py): started
+  Building wheel for rcssmin (setup.py): finished with status 'done'
+  Created wheel for rcssmin: filename=rcssmin-1.0.6-cp37-cp37m-linux_x86_64.whl size=83113 sha256=175172afd8f097d44a6a9f1f79a0a9e8b1d9fd954a30d3f1723b6fe7d1d1c6a2
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/81/5e/ee/962fbe8f1e4337fe101bdfd986397a392b91f10f6d638b52fb
+  Building wheel for wirerope (setup.py): started
+  Building wheel for wirerope (setup.py): finished with status 'done'
+  Created wheel for wirerope: filename=wirerope-0.4.2-py3-none-any.whl size=8749 sha256=526717907f59fae7fb8f49b43901835898d447cd5be9f5f84e0d17674c839894
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/28/4d/41/f46cfc95fd99222498957ab3e71dae518b15d934223d46bb7a
+  Building wheel for et-xmlfile (setup.py): started
+  Building wheel for et-xmlfile (setup.py): finished with status 'done'
+  Created wheel for et-xmlfile: filename=et_xmlfile-1.0.1-py3-none-any.whl size=8915 sha256=ef92ee38efd61670d1aa79e28c58257a07296a4340868c3ee7d08f3ccf3db282
+  Stored in directory: /tmp/pip-ephem-wheel-cache-evv8u7vp/wheels/e2/bd/55/048b4fd505716c4c298f42ee02dffd9496bb6d212b266c7f31
+Successfully built diff-match-patch future methodtools misaka pycairo siphashc translate-toolkit user-agents rcssmin wirerope et-xmlfile
+Failed to build borgbackup pygobject
+[91mERROR: Could not build wheels for pygobject which use PEP 517 and cannot be installed directly
+[0mRemoving intermediate container 73ad0803b597
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-nijel-weblate:ebcafd2', '/tmp/r2d-test-2020-07-08T06.2382rq4w36/github.com/Nijel/weblate']' returned non-zero exit status 1.

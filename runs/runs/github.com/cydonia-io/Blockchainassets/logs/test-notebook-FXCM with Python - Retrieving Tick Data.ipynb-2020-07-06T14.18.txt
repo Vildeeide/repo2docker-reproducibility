@@ -1,0 +1,5 @@
+[I 200706 14:18:56 inrepo:35] Testing notebook FXCM with Python - Retrieving Tick Data.ipynb
+[I 200706 14:18:58 execute:404] Executing notebook with kernel: python3
+[I 200706 14:19:16 inrepo:41] Saving exported notebook to /io/notebooks/FXCM with Python - Retrieving Tick Data.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

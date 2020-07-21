@@ -1,0 +1,5 @@
+[I 200703 07:58:54 inrepo:35] Testing notebook docs/source/examples/Visualizing Precession in Schwarzschild Spacetime.ipynb
+[I 200703 07:58:55 execute:404] Executing notebook with kernel: python3
+[I 200703 07:59:04 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Visualizing Precession in Schwarzschild Spacetime.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

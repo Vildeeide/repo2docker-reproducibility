@@ -1,0 +1,7 @@
+[I 200712 16:03:35 inrepo:36] Testing notebook psuedo-r-squared-logistic-regression.ipynb
+[W 200712 16:03:36 inrepo:48] No such kernel ds, falling back on kernel language=python
+[W 200712 16:03:36 inrepo:60] Using kernel python3 to provide language: python
+[I 200712 16:03:36 execute:404] Executing notebook with kernel: python3
+[I 200712 16:03:39 inrepo:79] Saving exported notebook to /io/notebooks/psuedo-r-squared-logistic-regression.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

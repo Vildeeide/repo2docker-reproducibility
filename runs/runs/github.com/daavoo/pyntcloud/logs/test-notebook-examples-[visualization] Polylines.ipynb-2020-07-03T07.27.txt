@@ -1,0 +1,5 @@
+[I 200703 07:27:43 inrepo:35] Testing notebook examples/[visualization] Polylines.ipynb
+[I 200703 07:27:46 execute:404] Executing notebook with kernel: python3
+[I 200703 07:27:59 inrepo:41] Saving exported notebook to /io/notebooks/examples/[visualization] Polylines.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

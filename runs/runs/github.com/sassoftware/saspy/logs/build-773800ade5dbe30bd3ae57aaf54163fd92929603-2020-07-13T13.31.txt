@@ -1,0 +1,208 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T13.31kvqkmsl_/github.com/sassoftware/saspy.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> 9686408e3803
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 0b10d0f35de5
+Removing intermediate container 0b10d0f35de5
+ ---> ff96da5b847d
+Step 40/48 : USER ${NB_USER}
+ ---> Running in ea31e15a77c1
+Removing intermediate container ea31e15a77c1
+ ---> e4c65b5713d6
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 68eb602cddc5
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from saspy==2.1.5) (2.5.2)
+Requirement already satisfied: ipython>=4.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from saspy==2.1.5) (7.11.1)
+Collecting pre-commit
+  Downloading pre_commit-2.6.0-py2.py3-none-any.whl (171 kB)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (0.1.0)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (0.16.0)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (4.4.1)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (45.1.0.post20200119)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (3.0.3)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (0.7.5)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (4.3.3)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0->saspy==2.1.5) (4.8.0)
+Collecting pyyaml>=5.1
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting toml
+  Downloading toml-0.10.1-py2.py3-none-any.whl (19 kB)
+Collecting identify>=1.0.0
+  Downloading identify-1.4.23-py2.py3-none-any.whl (97 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pre-commit->saspy==2.1.5) (1.5.0)
+Collecting cfgv>=2.0.0
+  Downloading cfgv-3.1.0-py2.py3-none-any.whl (7.3 kB)
+Collecting virtualenv>=20.0.8
+  Downloading virtualenv-20.0.26-py2.py3-none-any.whl (4.9 MB)
+Collecting nodeenv>=0.11.1
+  Downloading nodeenv-1.4.0-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0->saspy==2.1.5) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0->saspy==2.1.5) (0.1.8)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=4.0.0->saspy==2.1.5) (1.14.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=4.0.0->saspy==2.1.5) (0.2.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0->saspy==2.1.5) (0.6.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->pre-commit->saspy==2.1.5) (2.1.0)
+Collecting filelock<4,>=3.0.0
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Collecting appdirs<2,>=1.4.3
+  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Collecting distlib<1,>=0.3.1
+  Downloading distlib-0.3.1-py2.py3-none-any.whl (335 kB)
+Building wheels for collected packages: saspy, pyyaml
+  Building wheel for saspy (setup.py): started
+  Building wheel for saspy (setup.py): finished with status 'done'
+  Created wheel for saspy: filename=saspy-2.1.5-py3-none-any.whl size=89307 sha256=b0e3431cbb6deda37ad522a69df94da25d5380d7881eb8ccddf7e2a2875c167b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-u857b6h9/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393734 sha256=61f525e042c4ded3199484878ae7b887562faa530dd51106341602cb5c71c1d4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-u857b6h9/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+Successfully built saspy pyyaml
+Installing collected packages: pyyaml, toml, identify, cfgv, filelock, appdirs, distlib, virtualenv, nodeenv, pre-commit, saspy
+Successfully installed appdirs-1.4.4 cfgv-3.1.0 distlib-0.3.1 filelock-3.0.12 identify-1.4.23 nodeenv-1.4.0 pre-commit-2.6.0 pyyaml-5.3.1 saspy-2.1.5 toml-0.10.1 virtualenv-20.0.26
+Removing intermediate container 68eb602cddc5
+ ---> 7fa28591b271
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in de00f7ac1028
+Removing intermediate container de00f7ac1028
+ ---> 8bb4304bd0fb
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in b8bde2ecc798
+Removing intermediate container b8bde2ecc798
+ ---> 4ac0f2b271be
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 5c02701ba646
+Removing intermediate container 5c02701ba646
+ ---> eb19bff9e3ce
+Step 45/48 : USER ${NB_USER}
+ ---> Running in d603c4b482c5
+Removing intermediate container d603c4b482c5
+ ---> 29379387a43b
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> abe852d688f4
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 02a52c4caee9
+Removing intermediate container 02a52c4caee9
+ ---> 8bc2e20286e5
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 8fb157b11ecc
+Removing intermediate container 8fb157b11ecc
+ ---> d5191a3b9ac2
+{"aux": {"ID": "sha256:d5191a3b9ac2448e5def601db190dd1b01f9fc86bb6f1746b47774092fdd1b16"}}Successfully built d5191a3b9ac2
+Successfully tagged r2d-test-github.com-sassoftware-saspy:773800a

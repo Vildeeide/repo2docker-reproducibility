@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lethe2211/kaggle,master,bb9abe5,2016-10-09T12:52:25+09:00,build,build,True,github.com/lethe2211/kaggle/logs/build-master-2020-07-17T12.58.txt,2020-07-17T12:58:10.941281,2020-07-17T12.58,0.11.0
+https://github.com/lethe2211/kaggle,master,bb9abe5,2016-10-09T12:52:25+09:00,notebook,titanic/titanic.ipynb,False,github.com/lethe2211/kaggle/logs/test-notebook-titanic-titanic.ipynb-2020-07-17T12.58.txt,2020-07-17T12:58:10.941281,2020-07-17T12.58,0.11.0

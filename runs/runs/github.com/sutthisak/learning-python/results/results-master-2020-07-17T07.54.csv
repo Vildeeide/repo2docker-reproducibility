@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/sutthisak/learning-python,master,eed3b1a,2018-06-23T16:57:00+07:00,build,build,False,github.com/sutthisak/learning-python/logs/build-master-2020-07-17T07.54.txt,2020-07-17T07:54:39.060077,2020-07-17T07.54,0.11.0

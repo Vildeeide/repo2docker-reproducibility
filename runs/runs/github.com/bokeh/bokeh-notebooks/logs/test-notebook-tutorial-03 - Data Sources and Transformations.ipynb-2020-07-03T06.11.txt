@@ -1,0 +1,5 @@
+[I 200703 06:12:25 inrepo:35] Testing notebook tutorial/03 - Data Sources and Transformations.ipynb
+[I 200703 06:12:26 execute:404] Executing notebook with kernel: python3
+[I 200703 06:12:28 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/03 - Data Sources and Transformations.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/NeuromatchAcademy/course-content,master,3ab72d7,2020-07-03T01:14:18+08:00,build,build,False,github.com/NeuromatchAcademy/course-content/logs/build-master-2020-07-03T07.26.txt,2020-07-03T07:26:50.195381,2020-07-03T07.26,0.11.0

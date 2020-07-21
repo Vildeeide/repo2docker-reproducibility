@@ -1,0 +1,5 @@
+[I 200703 06:15:22 inrepo:35] Testing notebook phone/Juno-Intro-Jupyter-part-3.ipynb
+[I 200703 06:15:23 execute:404] Executing notebook with kernel: python3
+[I 200703 06:15:24 inrepo:41] Saving exported notebook to /io/notebooks/phone/Juno-Intro-Jupyter-part-3.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

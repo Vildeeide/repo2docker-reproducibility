@@ -1,0 +1,71 @@
+[I 200703 06:57:09 inrepo:35] Testing notebook convolutional-neural-networks/conv-visualization/maxpooling_visualization.ipynb
+[I 200703 06:57:11 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+    
+# define a neural network with a convolutional layer with four filters
+# AND a pooling layer of size (2, 2)
+class Net(nn.Module):
+    
+    def __init__(self, weight):
+        super(Net, self).__init__()
+        # initializes the weights of the convolutional layer to be the weights of the 4 defined filters
+        k_height, k_width = weight.shape[2:]
+        # assumes there are 4 grayscale filters
+        self.conv = nn.Conv2d(1, 4, kernel_size=(k_height, k_width), bias=False)
+        self.conv.weight = torch.nn.Parameter(weight)
+        # define a pooling layer
+        self.pool = nn.MaxPool2d(2, 2)
+
+    def forward(self, x):
+        # calculates the output of a convolutional layer
+        # pre- and post-activation
+        conv_x = self.conv(x)
+        activated_x = F.relu(conv_x)
+        
+        # applies pooling layer
+        pooled_x = self.pool(activated_x)
+        
+        # returns all layers
+        return conv_x, activated_x, pooled_x
+    
+# instantiate the model and set the weights
+weight = torch.from_numpy(filters).unsqueeze(1).type(torch.FloatTensor)
+model = Net(weight)
+
+# print out the layer in the network
+print(model)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-4-520cd7e2e0bd>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mtorch[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mtorch[0m[0;34m.[0m[0mnn[0m [0;32mas[0m [0mnn[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mimport[0m [0mtorch[0m[0;34m.[0m[0mnn[0m[0;34m.[0m[0mfunctional[0m [0;32mas[0m [0mF[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;31m# define a neural network with a convolutional layer with four filters[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'torch'
+ModuleNotFoundError: No module named 'torch'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,79 @@
+[I 200717 07:01:00 inrepo:36] Testing notebook QC_basic.ipynb
+[I 200717 07:01:03 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%%bash
+
+nprocs=20
+maxee=1
+
+tmpdir1=`mktemp -d`
+trap "rm -r $tmpdir1" 1 2 3 15
+split -d -l 2000000 /var/seq_data/FungalSIP/pear_merged_raw-2014-04-24.assembled.dmult.fastq $tmpdir1/Block
+
+tmpdir2=`mktemp -d`
+trap "rm -r $tmpdir2" 1 2 3 15
+ls $tmpdir1/Block?? | parallel --gnu -j $nprocs -k "usearch -fastq_filter {} \
+-fastq_maxee $maxee \
+-fastaout $tmpdir2/{#}.fasta >/dev/null 2>&1 && cat $tmpdir2/{#}.fasta" > data/tmp/maxee$maxee.fasta
+rm -r $tmpdir2 $tmpdir1
+
+grep -c ">" data/tmp/maxee$maxee.fasta
+head -n 8 data/tmp/maxee$maxee.fasta
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCalledProcessError[0m                        Traceback (most recent call last)
+[0;32m<ipython-input-1-7e6000bf02fc>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_cell_magic[0m[0;34m([0m[0;34m'bash'[0m[0;34m,[0m [0;34m''[0m[0;34m,[0m [0;34m'\nnprocs=20\nmaxee=1\n\ntmpdir1=`mktemp -d`\ntrap "rm -r $tmpdir1" 1 2 3 15\nsplit -d -l 2000000 /var/seq_data/FungalSIP/pear_merged_raw-2014-04-24.assembled.dmult.fastq $tmpdir1/Block\n\ntmpdir2=`mktemp -d`\ntrap "rm -r $tmpdir2" 1 2 3 15\nls $tmpdir1/Block?? | parallel --gnu -j $nprocs -k "usearch -fastq_filter {} \\\n-fastq_maxee $maxee \\\n-fastaout $tmpdir2/{#}.fasta >/dev/null 2>&1 && cat $tmpdir2/{#}.fasta" > data/tmp/maxee$maxee.fasta\nrm -r $tmpdir2 $tmpdir1\n\ngrep -c ">" data/tmp/maxee$maxee.fasta\nhead -n 8 data/tmp/maxee$maxee.fasta\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_cell_magic[0;34m(self, magic_name, line, cell)[0m
+[1;32m   2350[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2351[0m                 [0margs[0m [0;34m=[0m [0;34m([0m[0mmagic_arg_s[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2352[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2353[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2354[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magics/script.py[0m in [0;36mnamed_script_magic[0;34m(line, cell)[0m
+[1;32m    140[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    141[0m                 [0mline[0m [0;34m=[0m [0mscript[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 142[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mshebang[0m[0;34m([0m[0mline[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    143[0m [0;34m[0m[0m
+[1;32m    144[0m         [0;31m# write a basic docstring:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-110>[0m in [0;36mshebang[0;34m(self, line, cell)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magics/script.py[0m in [0;36mshebang[0;34m(self, line, cell)[0m
+[1;32m    243[0m             [0msys[0m[0;34m.[0m[0mstderr[0m[0;34m.[0m[0mflush[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    244[0m         [0;32mif[0m [0margs[0m[0;34m.[0m[0mraise_error[0m [0;32mand[0m [0mp[0m[0;34m.[0m[0mreturncode[0m[0;34m!=[0m[0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 245[0;31m             [0;32mraise[0m [0mCalledProcessError[0m[0;34m([0m[0mp[0m[0;34m.[0m[0mreturncode[0m[0;34m,[0m [0mcell[0m[0;34m,[0m [0moutput[0m[0;34m=[0m[0mout[0m[0;34m,[0m [0mstderr[0m[0;34m=[0m[0merr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    246[0m [0;34m[0m[0m
+[1;32m    247[0m     [0;32mdef[0m [0m_run_script[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mp[0m[0;34m,[0m [0mcell[0m[0;34m,[0m [0mto_close[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mCalledProcessError[0m: Command 'b'\nnprocs=20\nmaxee=1\n\ntmpdir1=`mktemp -d`\ntrap "rm -r $tmpdir1" 1 2 3 15\nsplit -d -l 2000000 /var/seq_data/FungalSIP/pear_merged_raw-2014-04-24.assembled.dmult.fastq $tmpdir1/Block\n\ntmpdir2=`mktemp -d`\ntrap "rm -r $tmpdir2" 1 2 3 15\nls $tmpdir1/Block?? | parallel --gnu -j $nprocs -k "usearch -fastq_filter {} \\\n-fastq_maxee $maxee \\\n-fastaout $tmpdir2/{#}.fasta >/dev/null 2>&1 && cat $tmpdir2/{#}.fasta" > data/tmp/maxee$maxee.fasta\nrm -r $tmpdir2 $tmpdir1\n\ngrep -c ">" data/tmp/maxee$maxee.fasta\nhead -n 8 data/tmp/maxee$maxee.fasta\n'' returned non-zero exit status 1.
+CalledProcessError: Command 'b'\nnprocs=20\nmaxee=1\n\ntmpdir1=`mktemp -d`\ntrap "rm -r $tmpdir1" 1 2 3 15\nsplit -d -l 2000000 /var/seq_data/FungalSIP/pear_merged_raw-2014-04-24.assembled.dmult.fastq $tmpdir1/Block\n\ntmpdir2=`mktemp -d`\ntrap "rm -r $tmpdir2" 1 2 3 15\nls $tmpdir1/Block?? | parallel --gnu -j $nprocs -k "usearch -fastq_filter {} \\\n-fastq_maxee $maxee \\\n-fastaout $tmpdir2/{#}.fasta >/dev/null 2>&1 && cat $tmpdir2/{#}.fasta" > data/tmp/maxee$maxee.fasta\nrm -r $tmpdir2 $tmpdir1\n\ngrep -c ">" data/tmp/maxee$maxee.fasta\nhead -n 8 data/tmp/maxee$maxee.fasta\n'' returned non-zero exit status 1.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

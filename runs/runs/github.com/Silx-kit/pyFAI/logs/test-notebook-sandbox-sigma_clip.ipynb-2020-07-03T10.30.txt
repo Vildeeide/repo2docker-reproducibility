@@ -1,0 +1,55 @@
+[I 200703 10:31:36 inrepo:35] Testing notebook sandbox/sigma_clip.ipynb
+[I 200703 10:31:37 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pyopencl,numpy
+from pyopencl import array
+shape=1024,1024
+ctx=pyopencl.create_some_context()
+queue=pyopencl.CommandQueue(ctx, properties=pyopencl.command_queue_properties.PROFILING_ENABLE)
+data=numpy.exp(20*numpy.random.random(shape)**2)
+x = numpy.random.randint(0, shape[1], size=10*shape[1])
+y = numpy.random.randint(0, shape[0], size=10*shape[0])
+data[y,x] = numpy.NaN
+datag=array.to_device(queue, data.astype("float32"))
+prg=pyopencl.Program(ctx, open("../pyFAI/resources/openCL/sigma_clip.cl").read()).build();
+m=array.empty(queue,1024,"float32");
+d=array.empty(queue,1024,"float32");
+ws=shape[0]//8;
+local_mem = pyopencl.LocalMemory(ws * 20);
+print(abs(numpy.nanmean(data, dtype="float32",axis=0)-numpy.nanmean(data, dtype="float64",axis=0)).max(),
+      abs(numpy.nanmean(data, dtype="float32",axis=-1)-numpy.nanmean(data, dtype="float64",axis=-1)).max(),
+      abs(numpy.nanstd(data, dtype="float32",axis=0)-numpy.nanstd(data, dtype="float64",axis=0)).max(), 
+      abs(numpy.nanstd(data, dtype="float32",axis=-1)-numpy.nanstd(data, dtype="float64",axis=-1)).max())
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-3-4ae661b8f79e>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mpyopencl[0m[0;34m,[0m[0mnumpy[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0mpyopencl[0m [0;32mimport[0m [0marray[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mshape[0m[0;34m=[0m[0;36m1024[0m[0;34m,[0m[0;36m1024[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mctx[0m[0;34m=[0m[0mpyopencl[0m[0;34m.[0m[0mcreate_some_context[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mqueue[0m[0;34m=[0m[0mpyopencl[0m[0;34m.[0m[0mCommandQueue[0m[0;34m([0m[0mctx[0m[0;34m,[0m [0mproperties[0m[0;34m=[0m[0mpyopencl[0m[0;34m.[0m[0mcommand_queue_properties[0m[0;34m.[0m[0mPROFILING_ENABLE[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'pyopencl'
+ModuleNotFoundError: No module named 'pyopencl'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

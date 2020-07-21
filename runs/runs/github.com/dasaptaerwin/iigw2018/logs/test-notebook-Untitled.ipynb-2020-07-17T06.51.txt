@@ -1,0 +1,5 @@
+[I 200717 06:51:25 inrepo:36] Testing notebook Untitled.ipynb
+[I 200717 06:51:26 execute:404] Executing notebook with kernel: python
+[I 200717 06:51:26 inrepo:79] Saving exported notebook to /io/notebooks/Untitled.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

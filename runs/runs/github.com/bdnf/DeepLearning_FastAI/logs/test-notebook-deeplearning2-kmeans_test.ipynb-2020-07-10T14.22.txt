@@ -1,0 +1,40 @@
+[I 200710 14:22:50 inrepo:36] Testing notebook deeplearning2/kmeans_test.ipynb
+[I 200710 14:22:50 inrepo:45] Found kernel python3
+[I 200710 14:22:51 execute:404] Executing notebook with kernel: python3
+2020-07-10 14:22:54.291479: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-07-10 14:22:54.291527: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: UNKNOWN ERROR (303)
+2020-07-10 14:22:54.291621: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (dbe5e8bbdf86): /proc/driver/nvidia/version does not exist
+2020-07-10 14:22:54.292138: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 AVX512F FMA
+2020-07-10 14:22:54.300974: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 2000000000 Hz
+2020-07-10 14:22:54.301637: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f1390000b20 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-10 14:22:54.301775: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+sess = tf.InteractiveSession()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-7-6fa0ae8f41e8>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0msess[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mInteractiveSession[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'InteractiveSession'
+AttributeError: module 'tensorflow' has no attribute 'InteractiveSession'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

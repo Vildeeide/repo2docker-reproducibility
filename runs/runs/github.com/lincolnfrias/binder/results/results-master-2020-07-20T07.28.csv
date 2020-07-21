@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/lincolnfrias/binder,master,d81b834,2018-02-06T08:14:42-02:00,build,build,False,github.com/lincolnfrias/binder/logs/build-master-2020-07-20T07.28.txt,2020-07-20T07:28:42.616496,2020-07-20T07.28,0.11.0

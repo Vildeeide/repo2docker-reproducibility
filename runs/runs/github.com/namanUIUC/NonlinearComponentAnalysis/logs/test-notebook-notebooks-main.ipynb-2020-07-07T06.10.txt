@@ -1,0 +1,79 @@
+[I 200707 06:10:57 inrepo:35] Testing notebook notebooks/main.ipynb
+[I 200707 06:10:59 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Load data
+train = genfromtxt('/Users/macbookpro/Desktop/Train.csv', delimiter=',')
+test = genfromtxt('/Users/macbookpro/Desktop/Test.csv', delimiter=',')
+
+
+# Shuffle the training/test set
+np.random.shuffle(train)
+np.random.shuffle(test)
+
+
+# Extract labels from training/test set
+label_train = np.array([int(1+train[i][0]) for i in range(train.shape[0])])
+label_test = np.array([int(1+test[i][0]) for i in range(test.shape[0])])
+
+
+# Reshape training/test dataset
+train = train[:,1:257]
+test = test[:,1:257]
+
+
+# Show the dimension of training/test set
+print ("Dimension of Training set: " + str(train.shape[0]) + " x " + str(train.shape[1]))
+print ("Dimension of Test set : " + str(test.shape[0]) + " x " + str(test.shape[1]))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOSError[0m                                   Traceback (most recent call last)
+[0;32m<ipython-input-3-0b54416c049b>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Load data[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mtrain[0m [0;34m=[0m [0mgenfromtxt[0m[0;34m([0m[0;34m'/Users/macbookpro/Desktop/Train.csv'[0m[0;34m,[0m [0mdelimiter[0m[0;34m=[0m[0;34m','[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mtest[0m [0;34m=[0m [0mgenfromtxt[0m[0;34m([0m[0;34m'/Users/macbookpro/Desktop/Test.csv'[0m[0;34m,[0m [0mdelimiter[0m[0;34m=[0m[0;34m','[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/npyio.py[0m in [0;36mgenfromtxt[0;34m(fname, dtype, comments, delimiter, skip_header, skip_footer, converters, missing_values, filling_values, usecols, names, excludelist, deletechars, replace_space, autostrip, case_sensitive, defaultfmt, unpack, usemask, loose, invalid_raise, max_rows, encoding)[0m
+[1;32m   1747[0m             [0mfname[0m [0;34m=[0m [0mos_fspath[0m[0;34m([0m[0mfname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1748[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0mstr[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1749[0;31m             [0mfid[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mlib[0m[0;34m.[0m[0m_datasource[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0;34m'rt'[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0mencoding[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1750[0m             [0mfid_ctx[0m [0;34m=[0m [0mcontextlib[0m[0;34m.[0m[0mclosing[0m[0;34m([0m[0mfid[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1751[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/_datasource.py[0m in [0;36mopen[0;34m(path, mode, destpath, encoding, newline)[0m
+[1;32m    193[0m [0;34m[0m[0m
+[1;32m    194[0m     [0mds[0m [0;34m=[0m [0mDataSource[0m[0;34m([0m[0mdestpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 195[0;31m     [0;32mreturn[0m [0mds[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0mmode[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0mencoding[0m[0;34m,[0m [0mnewline[0m[0;34m=[0m[0mnewline[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    196[0m [0;34m[0m[0m
+[1;32m    197[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/numpy/lib/_datasource.py[0m in [0;36mopen[0;34m(self, path, mode, encoding, newline)[0m
+[1;32m    533[0m                                       encoding=encoding, newline=newline)
+[1;32m    534[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 535[0;31m             [0;32mraise[0m [0mIOError[0m[0;34m([0m[0;34m"%s not found."[0m [0;34m%[0m [0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    536[0m [0;34m[0m[0m
+[1;32m    537[0m [0;34m[0m[0m
+
+[0;31mOSError[0m: /Users/macbookpro/Desktop/Train.csv not found.
+OSError: /Users/macbookpro/Desktop/Train.csv not found.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

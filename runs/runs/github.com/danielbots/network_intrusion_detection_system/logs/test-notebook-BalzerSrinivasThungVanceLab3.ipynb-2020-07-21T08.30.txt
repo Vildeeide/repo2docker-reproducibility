@@ -1,0 +1,77 @@
+[I 200721 08:30:29 inrepo:36] Testing notebook BalzerSrinivasThungVanceLab3.ipynb
+[W 200721 08:30:30 inrepo:48] No such kernel conda-root-py, falling back on kernel language=python
+[W 200721 08:30:30 inrepo:60] Using kernel python3 to provide language: python
+[I 200721 08:30:30 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Imports
+# Python Version 2.7.12
+from matplotlib import pyplot as plt
+from sklearn.model_selection import cross_val_score
+from sklearn.cross_validation import ShuffleSplit
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.cross_validation import StratifiedKFold
+from sklearn.grid_search import GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import roc_curve, auc
+from sklearn import metrics as mt
+from sklearn.svm import SVC
+
+from sklearn.pipeline import FeatureUnion
+from sklearn.feature_selection import SelectKBest
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import StratifiedKFold
+
+from sklearn import cross_validation
+from sklearn.ensemble import RandomForestClassifier
+
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.decomposition import RandomizedPCA 
+from sklearn.decomposition import PCA
+from sklearn import preprocessing
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+
+from sklearn.pipeline import Pipeline
+from sklearn import metrics as mt
+
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+from sklearn.cluster import Birch, MiniBatchKMeans
+
+%matplotlib inline
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-514b3974b212>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Imports[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;31m# Python Version 2.7.12[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmodel_selection[0m [0;32mimport[0m [0mcross_val_score[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mcross_validation[0m [0;32mimport[0m [0mShuffleSplit[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
+ModuleNotFoundError: No module named 'matplotlib'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

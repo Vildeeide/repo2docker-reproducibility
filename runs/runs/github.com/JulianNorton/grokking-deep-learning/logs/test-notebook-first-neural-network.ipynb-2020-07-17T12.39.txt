@@ -1,0 +1,6 @@
+[I 200717 12:39:52 inrepo:36] Testing notebook first-neural-network.ipynb
+[I 200717 12:39:53 inrepo:45] Found kernel python3
+[I 200717 12:39:53 execute:404] Executing notebook with kernel: python3
+[I 200717 12:39:55 inrepo:79] Saving exported notebook to /io/notebooks/first-neural-network.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

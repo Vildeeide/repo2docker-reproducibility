@@ -1,0 +1,234 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T09.572moslfe4/github.com/lsst-sims/smtn-003.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 4503965d0437
+Step 38/51 : USER root
+ ---> Running in b72d094d2927
+Removing intermediate container b72d094d2927
+ ---> ae276d08c6a3
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 1fb37109981a
+Removing intermediate container 1fb37109981a
+ ---> 3227c875f357
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 44092f856c05
+Removing intermediate container 44092f856c05
+ ---> 04887854f406
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 89b9e0432f45
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting documenteer[technote]<0.3,>=0.2.1
+  Downloading documenteer-0.2.8-py3-none-any.whl (25 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (2.22.0)
+Collecting PyYAML
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting sphinx-prompt
+  Downloading sphinx_prompt-1.2.0-py3-none-any.whl (3.8 kB)
+Collecting GitPython
+  Downloading GitPython-3.1.7-py3-none-any.whl (158 kB)
+Collecting Sphinx<1.6.0,>=1.5.0
+  Downloading Sphinx-1.5.6-py2.py3-none-any.whl (1.6 MB)
+Collecting docutils==0.13.1
+  Downloading docutils-0.13.1-py3-none-any.whl (536 kB)
+Collecting lsst-dd-rtd-theme==0.2.1; extra == "technote"
+  Downloading lsst_dd_rtd_theme-0.2.1.tar.gz (699 kB)
+Collecting sphinxcontrib-bibtex; extra == "technote"
+  Downloading sphinxcontrib_bibtex-1.0.0-py3-none-any.whl (14 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (1.25.7)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (2019.11.28)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx-prompt->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (2.5.2)
+Collecting gitdb<5,>=4.0.1
+  Downloading gitdb-4.0.5-py3-none-any.whl (63 kB)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting babel!=2.0,>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: Jinja2>=2.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Sphinx<1.6.0,>=1.5.0->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (2.11.0)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Sphinx<1.6.0,>=1.5.0->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (1.14.0)
+Collecting oset>=0.1.3
+  Downloading oset-0.1.3.tar.gz (7.3 kB)
+Collecting pybtex>=0.20
+  Downloading pybtex-0.22.2-py2.py3-none-any.whl (279 kB)
+Collecting pybtex-docutils>=0.2.0
+  Downloading pybtex_docutils-0.2.2-py2.py3-none-any.whl (4.6 kB)
+Collecting smmap<4,>=3.0.1
+  Downloading smmap-3.0.4-py2.py3-none-any.whl (25 kB)
+Collecting pytz>=2015.7
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.3->Sphinx<1.6.0,>=1.5.0->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (1.1.1)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from oset>=0.1.3->sphinxcontrib-bibtex; extra == "technote"->documenteer[technote]<0.3,>=0.2.1->-r requirements.txt (line 1)) (45.1.0.post20200119)
+Collecting latexcodec>=1.0.4
+  Downloading latexcodec-2.0.1-py2.py3-none-any.whl (18 kB)
+Building wheels for collected packages: PyYAML, lsst-dd-rtd-theme, oset
+  Building wheel for PyYAML (setup.py): started
+  Building wheel for PyYAML (setup.py): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393761 sha256=0331c0297d60c6da4da265a05ff423dc87946207690acf13de09d685b25aef6d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-rww6sedo/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for lsst-dd-rtd-theme (setup.py): started
+  Building wheel for lsst-dd-rtd-theme (setup.py): finished with status 'done'
+  Created wheel for lsst-dd-rtd-theme: filename=lsst_dd_rtd_theme-0.2.1-py3-none-any.whl size=695065 sha256=934ccd7b8ce30c01686ec9c3b448501443f8327262e6404b38c5f2a6e686557a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-rww6sedo/wheels/1a/c0/e2/5bdf0cf3c46e4216bbf540128580021efb6c9b669fd69162ed
+  Building wheel for oset (setup.py): started
+  Building wheel for oset (setup.py): finished with status 'done'
+  Created wheel for oset: filename=oset-0.1.3-py3-none-any.whl size=9661 sha256=699e4e0cb49c94a7a5ba4f5fc34772a89c70796a03d2d09dd64852ed5fe9b766
+  Stored in directory: /tmp/pip-ephem-wheel-cache-rww6sedo/wheels/d3/97/cf/cfafe0bedac445a9492baca15b27f8afb4693182b00a975ac7
+Successfully built PyYAML lsst-dd-rtd-theme oset
+[91mERROR: sphinxcontrib-bibtex 1.0.0 has requirement Sphinx>=2.0, but you'll have sphinx 1.5.6 which is incompatible.
+[0mInstalling collected packages: PyYAML, docutils, imagesize, pytz, babel, snowballstemmer, alabaster, Sphinx, sphinx-prompt, smmap, gitdb, GitPython, lsst-dd-rtd-theme, oset, latexcodec, pybtex, pybtex-docutils, sphinxcontrib-bibtex, documenteer
+Successfully installed GitPython-3.1.7 PyYAML-5.3.1 Sphinx-1.5.6 alabaster-0.7.12 babel-2.8.0 documenteer-0.2.8 docutils-0.13.1 gitdb-4.0.5 imagesize-1.2.0 latexcodec-2.0.1 lsst-dd-rtd-theme-0.2.1 oset-0.1.3 pybtex-0.22.2 pybtex-docutils-0.2.2 pytz-2020.1 smmap-3.0.4 snowballstemmer-2.0.0 sphinx-prompt-1.2.0 sphinxcontrib-bibtex-1.0.0
+Removing intermediate container 89b9e0432f45
+ ---> e8c407778d92
+Step 42/51 : USER root
+ ---> Running in c835e376db6e
+Removing intermediate container c835e376db6e
+ ---> c4895f2352aa
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 40668fb45a13
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 3c2091b2e51d
+Removing intermediate container 3c2091b2e51d
+ ---> 6bf03197f83f
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in e9ece90e68ca
+Removing intermediate container e9ece90e68ca
+ ---> 409e66c15e58
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in 75f1632ada51
+Removing intermediate container 75f1632ada51
+ ---> 00c62a3ee5ee
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 32b8d6cda89e
+Removing intermediate container 32b8d6cda89e
+ ---> 527f10bab76c
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 36006c414f95
+Removing intermediate container 36006c414f95
+ ---> f7f7a312138b
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> f8d55b5fa51d
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in e605031f48de
+Removing intermediate container e605031f48de
+ ---> 3721000f91b1
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in e4bccc358a1c
+Removing intermediate container e4bccc358a1c
+ ---> dd4ab915113c
+{"aux": {"ID": "sha256:dd4ab915113cb8f00b1c234a251780b6dcaec38b5c7dc01f6e1d8a0882ed01e8"}}Successfully built dd4ab915113c
+Successfully tagged r2d-test-github.com-lsst-sims-smtn-003:958f5b3

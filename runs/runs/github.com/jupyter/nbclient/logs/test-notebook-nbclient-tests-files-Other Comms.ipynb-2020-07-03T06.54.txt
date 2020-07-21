@@ -1,0 +1,5 @@
+[I 200703 06:54:37 inrepo:35] Testing notebook nbclient/tests/files/Other Comms.ipynb
+[I 200703 06:54:39 execute:404] Executing notebook with kernel: python3
+[I 200703 06:54:39 inrepo:41] Saving exported notebook to /io/notebooks/nbclient/tests/files/Other Comms.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

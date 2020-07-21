@@ -1,0 +1,472 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-09T13.02d53ohf4w/github.com/RasaHQ/rasa_core.
+Using PythonBuildPack builder
+Step 1/49 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/49 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/49 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/49 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/49 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/49 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/49 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/49 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/49 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/49 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/49 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/49 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/49 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/49 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/49 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/49 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/49 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/49 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/49 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/49 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/49 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/49 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/49 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/49 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/49 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/49 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/49 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/49 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/49 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/49 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/49 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/49 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> 8ede66d2bec8
+Step 38/49 : USER root
+ ---> Running in 77c94dddc139
+Removing intermediate container 77c94dddc139
+ ---> 20419b896d64
+Step 39/49 : COPY src/ ${REPO_DIR}
+ ---> a6427ebbbeee
+Step 40/49 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in cfdc23391201
+Removing intermediate container cfdc23391201
+ ---> 0ec07b6c54ab
+Step 41/49 : USER ${NB_USER}
+ ---> Running in 4cfc3f02d8ee
+Removing intermediate container 4cfc3f02d8ee
+ ---> 0c5d9f11bc6d
+Step 42/49 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Running in 2c42ad0fcfe1
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting attrs==18.1.0
+  Downloading attrs-18.1.0-py2.py3-none-any.whl (28 kB)
+Collecting jsonpickle==1.0.0
+  Downloading jsonpickle-1.0-py2.py3-none-any.whl (32 kB)
+Collecting redis==2.10.6
+  Downloading redis-2.10.6-py2.py3-none-any.whl (64 kB)
+Collecting fakeredis==0.10.3
+  Downloading fakeredis-0.10.3-py2.py3-none-any.whl (27 kB)
+Collecting numpy==1.16.0
+  Downloading numpy-1.16.0-cp37-cp37m-manylinux1_x86_64.whl (17.3 MB)
+Collecting scipy==1.2.0
+  Downloading scipy-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (26.6 MB)
+Collecting typing==3.6.6
+  Downloading typing-3.6.6-py3-none-any.whl (25 kB)
+Collecting ruamel.yaml==0.15.85
+  Downloading ruamel.yaml-0.15.85-cp37-cp37m-manylinux1_x86_64.whl (659 kB)
+Collecting tensorflow==1.13.1
+  Downloading tensorflow-1.13.1-cp37-cp37m-manylinux1_x86_64.whl (92.6 MB)
+Collecting apscheduler==3.5.3
+  Downloading APScheduler-3.5.3-py2.py3-none-any.whl (57 kB)
+Collecting tqdm==4.29.1
+  Downloading tqdm-4.29.1-py2.py3-none-any.whl (46 kB)
+Collecting networkx==2.2
+  Downloading networkx-2.2.zip (1.7 MB)
+Collecting fbmessenger==5.3.2
+  Downloading fbmessenger-5.3.2-py2.py3-none-any.whl (10 kB)
+Collecting pykwalify==1.7.0
+  Downloading pykwalify-1.7.0-py2.py3-none-any.whl (40 kB)
+Collecting coloredlogs==10.0
+  Downloading coloredlogs-10.0-py2.py3-none-any.whl (47 kB)
+Collecting sanic==18.12.0
+  Downloading sanic-18.12.0-py3-none-any.whl (52 kB)
+Collecting sanic-cors==0.9.7
+  Downloading Sanic_Cors-0.9.7-py2.py3-none-any.whl (16 kB)
+Collecting sanic-jwt==1.2.1
+  Downloading sanic_jwt-1.2.1-py3-none-any.whl (20 kB)
+Collecting aiohttp==3.5.4
+  Downloading aiohttp-3.5.4-cp37-cp37m-manylinux1_x86_64.whl (1.2 MB)
+Collecting scikit-learn==0.20.2
+  Downloading scikit_learn-0.20.2-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting rasa_nlu~=0.15.0
+  Downloading rasa_nlu-0.15.1-py3-none-any.whl (147 kB)
+Collecting slackclient==1.3.0
+  Downloading slackclient-1.3.0-py2.py3-none-any.whl (18 kB)
+Collecting python-telegram-bot==11.1.0
+  Downloading python_telegram_bot-11.1.0-py2.py3-none-any.whl (326 kB)
+Collecting twilio==6.23.0
+  Downloading twilio-6.23.0-py2.py3-none-any.whl (935 kB)
+Collecting webexteamssdk==1.1.1
+  Downloading webexteamssdk-1.1.1.tar.gz (48 kB)
+Collecting mattermostwrapper==2.1
+  Downloading mattermostwrapper-2.1-py2.py3-none-any.whl (4.4 kB)
+Collecting colorhash==1.0.2
+  Downloading colorhash-1.0.2-py2.py3-none-any.whl (6.0 kB)
+Collecting pika==0.12.0
+  Downloading pika-0.12.0-py2.py3-none-any.whl (108 kB)
+Collecting jsonschema==2.6.0
+  Downloading jsonschema-2.6.0-py2.py3-none-any.whl (39 kB)
+Collecting packaging==18.0
+  Downloading packaging-18.0-py2.py3-none-any.whl (21 kB)
+Collecting gevent==1.4.0
+  Downloading gevent-1.4.0-cp37-cp37m-manylinux1_x86_64.whl (5.4 MB)
+Collecting pytz==2018.9
+  Downloading pytz-2018.9-py2.py3-none-any.whl (510 kB)
+Collecting rasa_core_sdk~=0.14.0
+  Downloading rasa_core_sdk-0.14.0-py2.py3-none-any.whl (20 kB)
+Collecting pymongo==3.7.2
+  Downloading pymongo-3.7.2-cp37-cp37m-manylinux1_x86_64.whl (406 kB)
+Collecting python-dateutil==2.7.5
+  Downloading python_dateutil-2.7.5-py2.py3-none-any.whl (225 kB)
+Collecting rocketchat_API==0.6.25
+  Downloading rocketchat_API-0.6.25-py3-none-any.whl (8.9 kB)
+Collecting colorclass==2.2.0
+  Downloading colorclass-2.2.0.tar.gz (17 kB)
+Collecting terminaltables==3.1.0
+  Downloading terminaltables-3.1.0.tar.gz (12 kB)
+Collecting questionary==1.0.2
+  Downloading questionary-1.0.2-py3-none-any.whl (25 kB)
+Requirement already satisfied: async_generator==1.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r binder/../requirements.txt (line 41)) (1.10)
+Collecting python-socketio==3.1.1
+  Downloading python_socketio-3.1.1-py2.py3-none-any.whl (44 kB)
+Collecting pydot==1.4.1
+  Downloading pydot-1.4.1-py2.py3-none-any.whl (19 kB)
+Collecting sqlalchemy~=1.2.17
+  Downloading SQLAlchemy-1.2.19.tar.gz (5.7 MB)
+Collecting kafka-python==1.4.4
+  Downloading kafka_python-1.4.4-py2.py3-none-any.whl (255 kB)
+Collecting sklearn-crfsuite==0.3.6
+  Downloading sklearn_crfsuite-0.3.6-py2.py3-none-any.whl (12 kB)
+Collecting service_identity==18.1.0
+  Downloading service_identity-18.1.0-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: six>=1.10.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow==1.13.1->-r binder/../requirements.txt (line 10)) (1.14.0)
+Collecting tensorboard<1.14.0,>=1.13.0
+  Downloading tensorboard-1.13.1-py3-none-any.whl (3.2 MB)
+Collecting grpcio>=1.8.6
+  Downloading grpcio-1.30.0-cp37-cp37m-manylinux2010_x86_64.whl (3.0 MB)
+Collecting tensorflow-estimator<1.14.0rc0,>=1.13.0
+  Downloading tensorflow_estimator-1.13.0-py2.py3-none-any.whl (367 kB)
+Collecting protobuf>=3.6.1
+  Downloading protobuf-3.12.2-cp37-cp37m-manylinux1_x86_64.whl (1.3 MB)
+Collecting keras-applications>=1.0.6
+  Downloading Keras_Applications-1.0.8-py3-none-any.whl (50 kB)
+Collecting absl-py>=0.1.6
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+Requirement already satisfied: wheel>=0.26 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow==1.13.1->-r binder/../requirements.txt (line 10)) (0.34.1)
+Collecting astor>=0.6.0
+  Downloading astor-0.8.1-py2.py3-none-any.whl (27 kB)
+Collecting keras-preprocessing>=1.0.5
+  Downloading Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+Collecting gast>=0.2.0
+  Downloading gast-0.3.3-py2.py3-none-any.whl (9.7 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Requirement already satisfied: setuptools>=0.7 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from apscheduler==3.5.3->-r binder/../requirements.txt (line 11)) (45.1.0.post20200119)
+Collecting tzlocal>=1.2
+  Downloading tzlocal-2.1-py2.py3-none-any.whl (16 kB)
+Requirement already satisfied: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx==2.2->-r binder/../requirements.txt (line 13)) (4.4.1)
+Requirement already satisfied: requests>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fbmessenger==5.3.2->-r binder/../requirements.txt (line 14)) (2.22.0)
+Collecting PyYAML>=3.11
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting docopt>=0.6.2
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+Collecting humanfriendly>=4.7
+  Downloading humanfriendly-8.2-py2.py3-none-any.whl (86 kB)
+Collecting aiofiles>=0.3.0
+  Downloading aiofiles-0.5.0-py3-none-any.whl (11 kB)
+Collecting uvloop>=0.5.3; sys_platform != "win32" and implementation_name == "cpython"
+  Downloading uvloop-0.14.0-cp37-cp37m-manylinux2010_x86_64.whl (3.8 MB)
+Collecting websockets<7.0,>=6.0
+  Downloading websockets-6.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting multidict<5.0,>=4.0
+  Downloading multidict-4.7.6-cp37-cp37m-manylinux1_x86_64.whl (149 kB)
+Collecting ujson>=1.35; sys_platform != "win32" and implementation_name == "cpython"
+  Downloading ujson-3.0.0-cp37-cp37m-manylinux1_x86_64.whl (176 kB)
+Collecting httptools>=0.0.10
+  Downloading httptools-0.1.1-cp37-cp37m-manylinux1_x86_64.whl (217 kB)
+Collecting sanic-plugins-framework>=0.6.4.dev20181101
+  Downloading Sanic_Plugins_Framework-0.9.2-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: pyjwt in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sanic-jwt==1.2.1->-r binder/../requirements.txt (line 19)) (1.7.1)
+Collecting async-timeout<4.0,>=3.0
+  Downloading async_timeout-3.0.1-py3-none-any.whl (8.2 kB)
+Requirement already satisfied: chardet<4.0,>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from aiohttp==3.5.4->-r binder/../requirements.txt (line 20)) (3.0.4)
+Collecting yarl<2.0,>=1.0
+  Downloading yarl-1.4.2-cp37-cp37m-manylinux1_x86_64.whl (256 kB)
+Collecting cloudpickle~=0.6.1
+  Downloading cloudpickle-0.6.1-py2.py3-none-any.whl (14 kB)
+Collecting boto3~=1.9
+  Downloading boto3-1.14.19-py2.py3-none-any.whl (128 kB)
+Collecting future~=0.17.1
+  Downloading future-0.17.1.tar.gz (829 kB)
+Collecting matplotlib~=2.2
+  Downloading matplotlib-2.2.5-cp37-cp37m-manylinux1_x86_64.whl (12.8 MB)
+Collecting klein~=17.10
+  Downloading klein-17.10.0-py2.py3-none-any.whl (30 kB)
+Collecting simplejson~=3.13
+  Downloading simplejson-3.17.0.tar.gz (83 kB)
+Collecting websocket-client<1.0a0,>=0.35
+  Downloading websocket_client-0.57.0-py2.py3-none-any.whl (200 kB)
+Requirement already satisfied: certifi in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-telegram-bot==11.1.0->-r binder/../requirements.txt (line 24)) (2019.11.28)
+Requirement already satisfied: cryptography in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-telegram-bot==11.1.0->-r binder/../requirements.txt (line 24)) (2.8)
+Requirement already satisfied: pysocks; python_version >= "3.0" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from twilio==6.23.0->-r binder/../requirements.txt (line 25)) (1.7.1)
+Collecting requests-toolbelt
+  Downloading requests_toolbelt-0.9.1-py2.py3-none-any.whl (54 kB)
+Collecting pyparsing>=2.0.2
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting greenlet>=0.4.14; platform_python_implementation == "CPython"
+  Downloading greenlet-0.4.16-cp37-cp37m-manylinux1_x86_64.whl (45 kB)
+Collecting ConfigArgParse~=0.13.0
+  Downloading ConfigArgParse-0.13.0.tar.gz (31 kB)
+Collecting flask~=1.0
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting flask-cors~=3.0
+  Downloading Flask_Cors-3.0.8-py2.py3-none-any.whl (14 kB)
+Collecting prompt-toolkit~=2.0
+  Downloading prompt_toolkit-2.0.10-py3-none-any.whl (340 kB)
+Collecting python-engineio>=3.2.0
+  Downloading python_engineio-3.13.1-py2.py3-none-any.whl (49 kB)
+Collecting python-crfsuite>=0.8.3
+  Downloading python_crfsuite-0.9.7-cp37-cp37m-manylinux1_x86_64.whl (743 kB)
+Collecting tabulate
+  Downloading tabulate-0.8.7-py3-none-any.whl (24 kB)
+Collecting pyasn1
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Collecting pyasn1-modules
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting markdown>=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+Collecting mock>=2.0.0
+  Downloading mock-4.0.2-py3-none-any.whl (28 kB)
+Collecting h5py
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.0->fbmessenger==5.3.2->-r binder/../requirements.txt (line 14)) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.0->fbmessenger==5.3.2->-r binder/../requirements.txt (line 14)) (2.8)
+Collecting botocore<1.18.0,>=1.17.19
+  Downloading botocore-1.17.19-py2.py3-none-any.whl (6.3 MB)
+Collecting s3transfer<0.4.0,>=0.3.0
+  Downloading s3transfer-0.3.3-py2.py3-none-any.whl (69 kB)
+Collecting jmespath<1.0.0,>=0.7.1
+  Downloading jmespath-0.10.0-py2.py3-none-any.whl (24 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting incremental
+  Downloading incremental-17.5.0-py2.py3-none-any.whl (16 kB)
+Collecting Twisted>=15.5
+  Downloading Twisted-20.3.0-cp37-cp37m-manylinux1_x86_64.whl (3.1 MB)
+Requirement already satisfied: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography->python-telegram-bot==11.1.0->-r binder/../requirements.txt (line 24)) (1.13.2)
+Collecting click>=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Requirement already satisfied: Jinja2>=2.10.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from flask~=1.0->rasa_core_sdk~=0.14.0->-r binder/../requirements.txt (line 34)) (2.11.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit~=2.0->questionary==1.0.2->-r binder/../requirements.txt (line 40)) (0.1.8)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from markdown>=2.6.8->tensorboard<1.14.0,>=1.13.0->tensorflow==1.13.1->-r binder/../requirements.txt (line 10)) (1.5.0)
+Collecting docutils<0.16,>=0.10
+  Downloading docutils-0.15.2-py3-none-any.whl (547 kB)
+Collecting constantly>=15.1
+  Downloading constantly-15.1.0-py2.py3-none-any.whl (7.9 kB)
+Collecting zope.interface>=4.4.2
+  Downloading zope.interface-5.1.0-cp37-cp37m-manylinux2010_x86_64.whl (235 kB)
+Collecting PyHamcrest!=1.10.0,>=1.9.0
+  Downloading PyHamcrest-2.0.2-py3-none-any.whl (52 kB)
+Collecting hyperlink>=17.1.1
+  Downloading hyperlink-19.0.0-py2.py3-none-any.whl (38 kB)
+Collecting Automat>=0.3.0
+  Downloading Automat-20.2.0-py2.py3-none-any.whl (31 kB)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography->python-telegram-bot==11.1.0->-r binder/../requirements.txt (line 24)) (2.19)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.10.1->flask~=1.0->rasa_core_sdk~=0.14.0->-r binder/../requirements.txt (line 34)) (1.1.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->markdown>=2.6.8->tensorboard<1.14.0,>=1.13.0->tensorflow==1.13.1->-r binder/../requirements.txt (line 10)) (2.1.0)
+Building wheels for collected packages: networkx, webexteamssdk, colorclass, terminaltables, sqlalchemy, absl-py, termcolor, PyYAML, docopt, future, simplejson, ConfigArgParse
+  Building wheel for networkx (setup.py): started
+  Building wheel for networkx (setup.py): finished with status 'done'
+  Created wheel for networkx: filename=networkx-2.2-py2.py3-none-any.whl size=1527322 sha256=6f785d8d0ecc7be71481b313af7d03ebd241abdc631dfb9398f83a97ab52e6fe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/49/fb/7f/02c31ca537b34e1073844b733832e4c3a94071d8edda2c0faa
+  Building wheel for webexteamssdk (setup.py): started
+  Building wheel for webexteamssdk (setup.py): finished with status 'done'
+  Created wheel for webexteamssdk: filename=webexteamssdk-1.1.1-py3-none-any.whl size=77163 sha256=63b56827ec66e67826cef80e3d1c4ca5ed30192937dc6bcea5a3e2aa609e3eef
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/d1/c4/5b/6f2ebc3f0371c940b8c914f168157de444163d62d9b656347b
+  Building wheel for colorclass (setup.py): started
+  Building wheel for colorclass (setup.py): finished with status 'done'
+  Created wheel for colorclass: filename=colorclass-2.2.0-py3-none-any.whl size=19397 sha256=59eecc8420183c1ca29a05f82debf8fe620c8a3584b2da41d13846b6bf84ecc1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/fe/96/67/750617a6039bb687b993830c5852beba03d777e2d5b0b06938
+  Building wheel for terminaltables (setup.py): started
+  Building wheel for terminaltables (setup.py): finished with status 'done'
+  Created wheel for terminaltables: filename=terminaltables-3.1.0-py3-none-any.whl size=15356 sha256=0af7dc251fab900d14ceb93243a8b4cbf4ce302dc4068914f4b5e6780584899a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/ba/ad/c8/2d98360791161cd3db6daf6b5e730f34021fc9367d5879f497
+  Building wheel for sqlalchemy (setup.py): started
+  Building wheel for sqlalchemy (setup.py): finished with status 'done'
+  Created wheel for sqlalchemy: filename=SQLAlchemy-1.2.19-cp37-cp37m-linux_x86_64.whl size=1155912 sha256=503633e20924add73238f6c454d592ffe72325bd18d7c677ae89a58bdbe83c67
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/26/f5/25/6f2227c446ba93eef8dc8544d76a51a67a10c66066ec216d5d
+  Building wheel for absl-py (setup.py): started
+  Building wheel for absl-py (setup.py): finished with status 'done'
+  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121932 sha256=2a9e73a3553386a7de8b0dc573b5b2aeb09fa03dcab15de552725b58f57e12a1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=a0c4c45e4cfc1c21262fdc03d4a0b881b97f9a79f903a30e2facd989c8c6f922
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+  Building wheel for PyYAML (setup.py): started
+  Building wheel for PyYAML (setup.py): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393727 sha256=a9d6aa6fd8e38d6aca928972db72c4690a4af57f07fc6702d0c193fb727a11bd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13703 sha256=0a94c6ad34e0a49319671f74d00e202ec65a1de3f58e21720998de81375fb0f4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/72/b0/3f/1d95f96ff986c7dfffe46ce2be4062f38ebd04b506c77c81b9
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.17.1-py3-none-any.whl size=488729 sha256=6abbb98dd5ba33ecac8819f9890d07fe631884264bfde860b5c90ac94572f6f4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/16/4c/84/8a6161d44282ede60ed233d090156c6109a7ab865e49c1c9f6
+  Building wheel for simplejson (setup.py): started
+  Building wheel for simplejson (setup.py): finished with status 'done'
+  Created wheel for simplejson: filename=simplejson-3.17.0-cp37-cp37m-linux_x86_64.whl size=124748 sha256=88feb9c058f15b2424b9f3932235e7f23d25d4238b414c5c7906e8d21359932e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/8a/2d/bb/65cfe3f590a9cbb199f2011a6e4ccecd858844fb04e0dee2e9
+  Building wheel for ConfigArgParse (setup.py): started
+  Building wheel for ConfigArgParse (setup.py): finished with status 'done'
+  Created wheel for ConfigArgParse: filename=ConfigArgParse-0.13.0-py3-none-any.whl size=17570 sha256=aa283017f437835366571fd78ee5959f636aae39037f5f2e602c5b0ae67f8c17
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ruivyhgu/wheels/5b/99/57/8c6abae4405d50bce0fe75a0f3b12df717957be71578f9f0ce
+Successfully built networkx webexteamssdk colorclass terminaltables sqlalchemy absl-py termcolor PyYAML docopt future simplejson ConfigArgParse
+[91mERROR: jupyterlab-server 1.0.6 has requirement jsonschema>=3.0.1, but you'll have jsonschema 2.6.0 which is incompatible.
+[0m[91mERROR: automat 20.2.0 has requirement attrs>=19.2.0, but you'll have attrs 18.1.0 which is incompatible.
+[0m[91mERROR: twisted 20.3.0 has requirement attrs>=19.2.0, but you'll have attrs 18.1.0 which is incompatible.
+[0mInstalling collected packages: attrs, jsonpickle, redis, fakeredis, numpy, scipy, typing, ruamel.yaml, werkzeug, markdown, grpcio, protobuf, absl-py, tensorboard, mock, tensorflow-estimator, h5py, keras-applications, astor, keras-preprocessing, gast, termcolor, tensorflow, pytz, tzlocal, apscheduler, tqdm, networkx, fbmessenger, PyYAML, python-dateutil, docopt, pykwalify, humanfriendly, coloredlogs, aiofiles, uvloop, websockets, multidict, ujson, httptools, sanic, sanic-plugins-framework, sanic-cors, sanic-jwt, async-timeout, yarl, aiohttp, scikit-learn, jsonschema, cloudpickle, jmespath, docutils, botocore, s3transfer, boto3, future, pyparsing, kiwisolver, cycler, matplotlib, incremental, constantly, zope.interface, PyHamcrest, hyperlink, Automat, Twisted, klein, greenlet, gevent, simplejson, packaging, rasa-nlu, websocket-client, slackclient, python-telegram-bot, twilio, requests-toolbelt, webexteamssdk, mattermostwrapper, colorhash, pika, ConfigArgParse, click, itsdangerous, flask, flask-cors, rasa-core-sdk, pymongo, rocketchat-API, colorclass, terminaltables, prompt-toolkit, questionary, python-engineio, python-socketio, pydot, sqlalchemy, kafka-python, python-crfsuite, tabulate, sklearn-crfsuite, pyasn1, pyasn1-modules, service-identity
+  Attempting uninstall: attrs
+    Found existing installation: attrs 19.3.0
+    Uninstalling attrs-19.3.0:
+      Successfully uninstalled attrs-19.3.0
+  Attempting uninstall: ruamel.yaml
+    Found existing installation: ruamel.yaml 0.16.6
+    Uninstalling ruamel.yaml-0.16.6:
+      Successfully uninstalled ruamel.yaml-0.16.6
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.8.1
+    Uninstalling python-dateutil-2.8.1:
+      Successfully uninstalled python-dateutil-2.8.1
+  Attempting uninstall: jsonschema
+    Found existing installation: jsonschema 3.2.0
+    Uninstalling jsonschema-3.2.0:
+      Successfully uninstalled jsonschema-3.2.0
+  Attempting uninstall: prompt-toolkit
+    Found existing installation: prompt-toolkit 3.0.3
+    Uninstalling prompt-toolkit-3.0.3:
+      Successfully uninstalled prompt-toolkit-3.0.3
+  Attempting uninstall: sqlalchemy
+    Found existing installation: SQLAlchemy 1.3.13
+    Uninstalling SQLAlchemy-1.3.13:
+      Successfully uninstalled SQLAlchemy-1.3.13
+Successfully installed Automat-20.2.0 ConfigArgParse-0.13.0 PyHamcrest-2.0.2 PyYAML-5.3.1 Twisted-20.3.0 absl-py-0.9.0 aiofiles-0.5.0 aiohttp-3.5.4 apscheduler-3.5.3 astor-0.8.1 async-timeout-3.0.1 attrs-18.1.0 boto3-1.14.19 botocore-1.17.19 click-7.1.2 cloudpickle-0.6.1 colorclass-2.2.0 coloredlogs-10.0 colorhash-1.0.2 constantly-15.1.0 cycler-0.10.0 docopt-0.6.2 docutils-0.15.2 fakeredis-0.10.3 fbmessenger-5.3.2 flask-1.1.2 flask-cors-3.0.8 future-0.17.1 gast-0.3.3 gevent-1.4.0 greenlet-0.4.16 grpcio-1.30.0 h5py-2.10.0 httptools-0.1.1 humanfriendly-8.2 hyperlink-19.0.0 incremental-17.5.0 itsdangerous-1.1.0 jmespath-0.10.0 jsonpickle-1.0 jsonschema-2.6.0 kafka-python-1.4.4 keras-applications-1.0.8 keras-preprocessing-1.1.2 kiwisolver-1.2.0 klein-17.10.0 markdown-3.2.2 matplotlib-2.2.5 mattermostwrapper-2.1 mock-4.0.2 multidict-4.7.6 networkx-2.2 numpy-1.16.0 packaging-18.0 pika-0.12.0 prompt-toolkit-2.0.10 protobuf-3.12.2 pyasn1-0.4.8 pyasn1-modules-0.2.8 pydot-1.4.1 pykwalify-1.7.0 pymongo-3.7.2 pyparsing-2.4.7 python-crfsuite-0.9.7 python-dateutil-2.7.5 python-engineio-3.13.1 python-socketio-3.1.1 python-telegram-bot-11.1.0 pytz-2018.9 questionary-1.0.2 rasa-core-sdk-0.14.0 rasa-nlu-0.15.1 redis-2.10.6 requests-toolbelt-0.9.1 rocketchat-API-0.6.25 ruamel.yaml-0.15.85 s3transfer-0.3.3 sanic-18.12.0 sanic-cors-0.9.7 sanic-jwt-1.2.1 sanic-plugins-framework-0.9.2 scikit-learn-0.20.2 scipy-1.2.0 service-identity-18.1.0 simplejson-3.17.0 sklearn-crfsuite-0.3.6 slackclient-1.3.0 sqlalchemy-1.2.19 tabulate-0.8.7 tensorboard-1.13.1 tensorflow-1.13.1 tensorflow-estimator-1.13.0 termcolor-1.1.0 terminaltables-3.1.0 tqdm-4.29.1 twilio-6.23.0 typing-3.6.6 tzlocal-2.1 ujson-3.0.0 uvloop-0.14.0 webexteamssdk-1.1.1 websocket-client-0.57.0 websockets-6.0 werkzeug-1.0.1 yarl-1.4.2 zope.interface-5.1.0
+Removing intermediate container 2c42ad0fcfe1
+ ---> d0a51fb1d6ca
+Step 43/49 : LABEL repo2docker.ref="None"
+ ---> Running in 1b5977945be2
+Removing intermediate container 1b5977945be2
+ ---> fe851b44adae
+Step 44/49 : LABEL repo2docker.repo="local"
+ ---> Running in a46d13ead32b
+Removing intermediate container a46d13ead32b
+ ---> b44eae6f2b1a
+Step 45/49 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 9a1838ed0a0b
+Removing intermediate container 9a1838ed0a0b
+ ---> c9c481026e5c
+Step 46/49 : USER ${NB_USER}
+ ---> Running in 54f759f95a9d
+Removing intermediate container 54f759f95a9d
+ ---> 99fe766c2bd1
+Step 47/49 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> ab6aa441e348
+Step 48/49 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 7a85c8d701a1
+Removing intermediate container 7a85c8d701a1
+ ---> 469d370e54e2
+Step 49/49 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 7c049709ef9d
+Removing intermediate container 7c049709ef9d
+ ---> bc8f944fb40a
+{"aux": {"ID": "sha256:bc8f944fb40a819761e49948bc6bf85020a3428c9d32372196fc102546367e0d"}}Successfully built bc8f944fb40a
+Successfully tagged r2d-test-github.com-rasahq-rasa_core:48cb1cf

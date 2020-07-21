@@ -1,0 +1,5 @@
+[I 200703 06:44:10 inrepo:35] Testing notebook linear_systems/LU with Partial Pivoting.ipynb
+[I 200703 06:44:11 execute:404] Executing notebook with kernel: python
+[I 200703 06:44:12 inrepo:41] Saving exported notebook to /io/notebooks/linear_systems/LU with Partial Pivoting.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

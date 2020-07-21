@@ -1,0 +1,5 @@
+[I 200703 06:40:06 inrepo:35] Testing notebook content/chapters/04/2/1/String_Methods.ipynb
+[I 200703 06:40:08 execute:404] Executing notebook with kernel: python3
+[I 200703 06:40:08 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/04/2/1/String_Methods.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

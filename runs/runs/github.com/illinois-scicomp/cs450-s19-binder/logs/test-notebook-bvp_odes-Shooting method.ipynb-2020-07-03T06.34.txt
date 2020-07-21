@@ -1,0 +1,5 @@
+[I 200703 06:38:09 inrepo:35] Testing notebook bvp_odes/Shooting method.ipynb
+[I 200703 06:38:11 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:13 inrepo:41] Saving exported notebook to /io/notebooks/bvp_odes/Shooting method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

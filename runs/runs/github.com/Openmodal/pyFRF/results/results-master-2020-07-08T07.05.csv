@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/openmodal/pyFRF,master,d60bdb4,2019-04-24T21:59:38+02:00,build,build,True,github.com/openmodal/pyFRF/logs/build-master-2020-07-08T07.05.txt,2020-07-08T07:05:14.577928,2020-07-08T07.05,0.11.0
+https://github.com/openmodal/pyFRF,master,d60bdb4,2019-04-24T21:59:38+02:00,notebook,Showcase pyFRF.ipynb,False,github.com/openmodal/pyFRF/logs/test-notebook-Showcase pyFRF.ipynb-2020-07-08T07.05.txt,2020-07-08T07:05:14.577928,2020-07-08T07.05,0.11.0

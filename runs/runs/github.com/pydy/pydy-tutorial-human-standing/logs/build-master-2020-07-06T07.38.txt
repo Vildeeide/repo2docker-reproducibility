@@ -1,0 +1,606 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.389b684foh/github.com/pydy/pydy-tutorial-human-standing.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> 021b45000814
+Step 38/51 : USER root
+ ---> Running in 4c9e671b7cf1
+Removing intermediate container 4c9e671b7cf1
+ ---> 6343f940e6ac
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 2e73d96b40ba
+Removing intermediate container 2e73d96b40ba
+ ---> 9e4bf550a142
+Step 40/51 : USER ${NB_USER}
+ ---> Running in ec95dfa0398a
+Removing intermediate container ec95dfa0398a
+ ---> 8d38f53f4bb8
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in a0c79d1f396b
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... [91m
+Finding conflicts:   0%|          | 0/203 [00:00<?, ?it/s][0m[91m
+Examining matplotlib-base:   0%|          | 0/203 [00:00<?, ?it/s][0m[91m
+Examining mkl_random:   0%|          | 1/203 [00:00<00:00, 1275.25it/s][0m[91m
+Examining libgomp:   1%|          | 2/203 [00:00<00:00, 1412.46it/s]   [0m[91m
+Examining html5lib:   1%|▏         | 3/203 [00:00<00:00, 1476.52it/s][0m[91m
+Examining importlib_metadata:   2%|▏         | 4/203 [00:00<00:00, 1553.73it/s][0m[91m
+Examining pydy-optional:   2%|▏         | 5/203 [00:00<00:00, 1614.44it/s]     [0m[91m
+Examining scipy:   3%|▎         | 6/203 [00:00<00:00, 1675.71it/s]        [0m[91m
+Examining isl:   3%|▎         | 7/203 [00:00<00:00, 1268.97it/s]  [0m[91m
+Examining qt:   4%|▍         | 8/203 [00:00<00:00, 1320.78it/s] [0m[91m
+Examining pango:   4%|▍         | 9/203 [00:00<00:00, 1366.67it/s][0m[91m
+Examining pthread-stubs:   5%|▍         | 10/203 [00:00<00:00, 828.28it/s][0m[91m
+Examining pygments:   5%|▌         | 11/203 [00:00<00:00, 868.24it/s]     [0m[91m
+Examining pyparsing:   6%|▌         | 12/203 [00:00<00:00, 910.39it/s][0m[91m
+Examining expat:   6%|▋         | 13/203 [00:00<00:00, 791.56it/s]    [0m[91m
+Examining xorg-libsm:   7%|▋         | 14/203 [00:00<00:00, 823.37it/s][0m[91m
+Examining nbformat:   7%|▋         | 15/203 [00:00<00:00, 856.19it/s]  [0m[91m
+Examining libgcc:   8%|▊         | 16/203 [00:00<00:00, 690.89it/s]  [0m[91m
+Examining xorg-kbproto:   8%|▊         | 17/203 [00:00<00:00, 717.30it/s][0m[91m
+Examining markupsafe:   9%|▉         | 18/203 [00:00<00:00, 742.62it/s]  [0m[91m
+Examining webencodings:   9%|▉         | 19/203 [00:00<00:00, 767.90it/s][0m[91m
+Examining mpmath:  10%|▉         | 20/203 [00:00<00:00, 712.80it/s]      [0m[91m
+Examining clangdev:  10%|█         | 21/203 [00:00<00:00, 734.43it/s][0m[91m
+Examining backports:  11%|█         | 22/203 [00:00<00:00, 754.72it/s][0m[91m
+Examining matplotlib:  11%|█▏        | 23/203 [00:00<00:00, 776.30it/s][0m[91m
+Examining xorg-libxrender:  12%|█▏        | 24/203 [00:00<00:00, 796.54it/s][0m[91m
+Examining libiconv:  12%|█▏        | 25/203 [00:00<00:00, 797.04it/s]       [0m[91m
+Examining certifi:  13%|█▎        | 26/203 [00:00<00:00, 815.31it/s] [0m[91m
+[0m[91m
+Comparing specs that have this dependency:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/4 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi:   0%|          | 0/4 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi[version='>=2016.9.26']:  25%|██▌       | 1/4 [00:03<00:10,  3.59s/it][A[A
+
+
+Finding shortest conflict path for certifi[version='>=2016.9.26']:  50%|█████     | 2/4 [00:03<00:03,  1.80s/it][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi[version='>=2016.09']:  50%|█████     | 2/4 [00:08<00:03,  1.80s/it]  [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi[version='>=2016.09']:  75%|███████▌  | 3/4 [00:08<00:02,  2.85s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ca-certificates:  75%|███████▌  | 3/4 [00:19<00:02,  2.85s/it]             [0m[91m[A[A
+
+
+Finding shortest conflict path for ca-certificates: 100%|██████████| 4/4 [00:19<00:00,  5.11s/it][A[A[0m[91m
+
+[0m[91m
+                                                                                                 [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  50%|█████     | 1/2 [00:20<00:20, 20.85s/it][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/3 [00:00<?, ?it/s][A[A[0m[91m
+
+
+Finding shortest conflict path for certifi[version='>=2016.9.26']:   0%|          | 0/3 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi[version='>=2016.09']:  33%|███▎      | 1/3 [00:02<00:05,  2.83s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for certifi[version='>=2016.09']:  67%|██████▋   | 2/3 [00:02<00:01,  1.42s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ca-certificates:  67%|██████▋   | 2/3 [00:05<00:01,  1.42s/it]             [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ca-certificates: 100%|██████████| 3/3 [00:05<00:00,  1.79s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+                                                                                                 [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency: 100%|██████████| 2/2 [00:26<00:00, 13.44s/it][0m[91m[A[0m[91m
+[0m[91m
+                                                                                        [0m[91m[A[0m[91m
+Examining contextlib2:  13%|█▎        | 27/203 [00:26<02:55,  1.00it/s][0m[91m
+Examining contextlib2:  14%|█▍        | 28/203 [00:26<02:48,  1.04it/s][0m[91m
+Examining xorg-renderproto:  14%|█▍        | 28/203 [00:26<02:48,  1.04it/s][0m[91m
+Examining mkl-service:  14%|█▍        | 29/203 [00:26<02:47,  1.04it/s]     [0m[91m
+Examining freetype:  15%|█▍        | 30/203 [00:26<02:46,  1.04it/s]   [0m[91m
+Examining pyqt:  15%|█▌        | 31/203 [00:26<02:45,  1.04it/s]    [0m[91m
+Examining python:  16%|█▌        | 32/203 [00:26<02:44,  1.04it/s][0m[91m
+[0m[91m
+Comparing specs that have this dependency:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/14 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for python_abi=2.7[build=*_cp27mu]:   0%|          | 0/14 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python:   7%|▋         | 1/14 [00:00<00:02,  4.71it/s]                [A[A
+
+
+Finding shortest conflict path for python:  14%|█▍        | 2/14 [00:00<00:01,  9.41it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=2.7,<2.8.0a0']:  14%|█▍        | 2/14 [00:00<00:01,  9.41it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  21%|██▏       | 3/14 [00:00<00:01,  9.41it/s]                      [0m[91m[A[A
+
+
+Finding shortest conflict path for python=3.7:  29%|██▊       | 4/14 [00:00<00:00, 10.91it/s][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython[version='>=4.0.0']:  29%|██▊       | 4/14 [15:09<00:00, 10.91it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython[version='>=4.0.0']:  36%|███▌      | 5/14 [15:09<40:54, 272.69s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython:  36%|███▌      | 5/14 [15:09<40:54, 272.69s/it]                   [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython:  43%|████▎     | 6/14 [15:09<25:27, 190.99s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='<3']:  43%|████▎     | 6/14 [15:19<25:27, 190.99s/it][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='<3']:  50%|█████     | 7/14 [15:19<15:56, 136.68s/it][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python-dateutil[version='>=2.1']:  50%|█████     | 7/14 [15:25<15:56, 136.68s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python-dateutil[version='>=2.1']:  57%|█████▋    | 8/14 [15:25<09:45, 97.64s/it] [A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=:  57%|█████▋    | 8/14 [15:58<09:45, 97.64s/it]                         [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=:  64%|██████▍   | 9/14 [15:58<06:30, 78.07s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython_genutils:  64%|██████▍   | 9/14 [24:25<06:30, 78.07s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython_genutils:  71%|███████▏  | 10/14 [24:25<13:46, 206.74s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython[version='>=4.0']:  71%|███████▏  | 10/14 [24:26<13:46, 206.74s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for ipython[version='>=4.0']:  79%|███████▊  | 11/14 [24:26<07:15, 145.01s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python-dateutil:  79%|███████▊  | 11/14 [24:33<07:15, 145.01s/it]         [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python-dateutil:  86%|████████▌ | 12/14 [24:33<03:27, 103.78s/it][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=2.7:  86%|████████▌ | 12/14 [24:34<03:27, 103.78s/it]     [A[A
+
+
+Finding shortest conflict path for python=2.7:  93%|█████████▎| 13/14 [24:34<01:12, 72.82s/it] [A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=2.7']:  93%|█████████▎| 13/14 [24:34<01:12, 72.82s/it][A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=2.7']: 100%|██████████| 14/14 [24:34<00:00, 51.01s/it][A[A[0m[91m
+
+[0m[91m
+                                                                                                           [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency:  50%|█████     | 1/2 [31:05<31:05, 1865.29s/it][A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/6 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python:   0%|          | 0/6 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  17%|█▋        | 1/6 [00:00<00:00, 951.31it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3']:  33%|███▎      | 2/6 [00:00<00:00, 202.56it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python_abi=3.7[build=*_cp37m]:  50%|█████     | 3/6 [00:00<00:00, 285.04it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  67%|██████▋   | 4/6 [00:02<00:01,  1.37it/s]                    [0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python=3.7:  83%|████████▎ | 5/6 [00:02<00:00,  1.71it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for python[version='>=3.7,<3.8.0a0']:  83%|████████▎ | 5/6 [00:02<00:00,  1.71it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+                                                                                                                  [0m[91m[A[A[0m[91m
+[0m[91m
+Comparing specs that have this dependency: 100%|██████████| 2/2 [31:08<00:00, 934.13s/it] [0m[91m[A[0m[91m
+[0m[91m
+                                                                                         [0m[91m[A[0m[91m
+Examining cython:  16%|█▋        | 33/203 [31:35<02:43,  1.04it/s][0m[91m
+Examining cython:  17%|█▋        | 34/203 [31:35<4:25:00, 94.09s/it][0m[91m
+Examining gobject-introspection:  17%|█▋        | 34/203 [31:35<4:25:00, 94.09s/it][0m[91m
+Examining jsonschema:  17%|█▋        | 35/203 [31:35<4:23:26, 94.09s/it]           [0m[91m
+Examining zstd:  18%|█▊        | 36/203 [31:35<4:21:52, 94.09s/it]      [0m[91m
+Examining testpath:  18%|█▊        | 37/203 [31:35<4:20:18, 94.09s/it][0m[91m
+Examining fribidi:  19%|█▊        | 38/203 [31:35<4:18:44, 94.09s/it] [0m[91m
+Examining numpy:  19%|█▉        | 39/203 [31:35<4:17:10, 94.09s/it]  [0m[91m
+Examining ncurses:  20%|█▉        | 40/203 [31:35<4:15:36, 94.09s/it][0m[91m
+Examining sqlite:  20%|██        | 41/203 [31:35<4:14:01, 94.09s/it] [0m[91m
+Examining xorg-libx11:  21%|██        | 42/203 [31:35<4:12:27, 94.09s/it][0m[91m
+Examining bleach:  21%|██        | 43/203 [31:35<4:10:53, 94.09s/it]     [0m[91m
+Examining notebook:  22%|██▏       | 44/203 [31:35<4:09:19, 94.09s/it][0m[91m
+Examining pandocfilters:  22%|██▏       | 45/203 [31:35<4:07:45, 94.09s/it][0m[91m
+Examining graphite2:  23%|██▎       | 46/203 [31:35<4:06:11, 94.09s/it]    [0m[91m
+Examining readline:  23%|██▎       | 47/203 [31:35<4:04:37, 94.09s/it] [0m[91m
+Examining libgfortran-ng:  24%|██▎       | 48/203 [31:35<4:03:03, 94.09s/it][0m[91m
+Examining gstreamer:  24%|██▍       | 49/203 [31:35<4:01:29, 94.09s/it]     [0m[91m
+Examining llvm-tools:  25%|██▍       | 50/203 [31:35<3:59:55, 94.09s/it][0m[91m
+Examining mako:  25%|██▌       | 51/203 [31:35<3:58:21, 94.09s/it]      [0m[91m
+Examining subprocess32:  26%|██▌       | 52/203 [31:35<3:56:47, 94.09s/it][0m[91m
+Examining setuptools:  26%|██▌       | 53/203 [31:35<3:55:12, 94.09s/it]  [0m[91m
+[0m[91m
+Comparing specs that have this dependency:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[0m[91m
+
+[0m[91m
+Finding conflict paths:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools:   0%|          | 0/2 [00:00<?, ?it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools[version='>=20.7.0']:  50%|█████     | 1/2 [00:00<00:00,  5.74it/s][0m[91m[A[A[0m[91m
+
+[0m[91m
+Finding shortest conflict path for setuptools[version='>=20.7.0']: 100%|██████████| 2/2 [00:00<00:00, 11.37it/s][0m[91m[A[A[0m[91m
+
+
+                                                                                                                [A[A
+
+Comparing specs that have this dependency:  50%|█████     | 1/2 [00:08<00:08,  8.56s/it][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for setuptools:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                    [A[A
+
+Comparing specs that have this dependency: 100%|██████████| 2/2 [00:10<00:00,  5.04s/it][A
+
+                                                                                        [A
+Examining fontconfig:  27%|██▋       | 54/203 [31:45<3:53:38, 94.09s/it]
+Examining fontconfig:  27%|██▋       | 55/203 [31:45<2:42:48, 66.00s/it]
+Examining mpfr:  27%|██▋       | 55/203 [31:45<2:42:48, 66.00s/it]      
+Examining libffi:  28%|██▊       | 56/203 [31:45<2:41:42, 66.00s/it]
+Examining entrypoints:  28%|██▊       | 57/203 [31:45<2:40:36, 66.00s/it]
+Examining pyrsistent:  29%|██▊       | 58/203 [31:45<2:39:30, 66.00s/it] 
+Examining atk:  29%|██▉       | 59/203 [31:45<2:38:24, 66.00s/it]       
+Examining xorg-xproto:  30%|██▉       | 60/203 [31:45<2:37:18, 66.00s/it]
+Examining python_abi:  30%|███       | 61/203 [31:45<2:36:12, 66.00s/it] 
+
+Comparing specs that have this dependency:   0%|          | 0/2 [00:00<?, ?it/s][A[0m[91m
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for python_abi=2.7[build=*_cp27mu]:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+
+                                                                                                        [A[A
+
+Comparing specs that have this dependency:  50%|█████     | 1/2 [00:00<00:00,  2.24it/s][A
+
+
+Finding conflict paths:   0%|          | 0/1 [00:00<?, ?it/s][A[A
+
+
+Finding shortest conflict path for python_abi=3.7[build=*_cp37m]:   0%|          | 0/1 [00:00<?, ?it/s][A[A[0m[91m
+
+[0m[91m
+                                                                                                       [A[A
+
+Comparing specs that have this dependency: 100%|██████████| 2/2 [00:04<00:00,  2.43s/it][A
+
+                                                                                        [A
+Examining binutils_linux-64:  31%|███       | 62/203 [31:50<2:35:06, 66.00s/it]
+Examining binutils_linux-64:  31%|███       | 63/203 [31:50<1:48:14, 46.39s/it]
+Examining wheel:  31%|███       | 63/203 [31:50<1:48:14, 46.39s/it]            
+Examining dbus:  32%|███▏      | 64/203 [31:50<1:47:27, 46.39s/it] 
+Examining mpc:  32%|███▏      | 65/203 [31:50<1:46:41, 46.39s/it] [0m[91m
+Examining libgcc-ng:  33%|███▎      | 66/203 [31:50<1:45:54, 46.39s/it]
+Examining pickleshare:  33%|███▎      | 67/203 [31:50<1:45:08, 46.39s/it]
+Examining functools32:  33%|███▎      | 68/203 [31:50<1:44:22, 46.39s/it]
+Examining bzip2:  34%|███▍      | 69/203 [31:50<1:43:35, 46.39s/it]      
+Examining singledispatch:  34%|███▍      | 70/203 [31:50<1:42:49, 46.39s/it]
+Examining antlr-python-runtime:  35%|███▍      | 71/203 [31:50<1:42:02, 46.39s/it]
+Examining intel-openmp:  35%|███▌      | 72/203 [31:50<1:41:16, 46.39s/it]        
+Examining fastcache:  36%|███▌      | 73/203 [31:50<1:40:30, 46.39s/it]   
+Examining pytz:  36%|███▋      | 74/203 [31:50<1:39:43, 46.39s/it]     
+Examining libllvm10:  37%|███▋      | 75/203 [31:50<1:38:57, 46.39s/it]
+Examining jupyter_client:  37%|███▋      | 76/203 [31:50<1:38:11, 46.39s/it]
+Examining backports_abc:  38%|███▊      | 77/203 [31:50<1:37:24, 46.39s/it] 
+Examining xorg-libpthread-stubs:  38%|███▊      | 78/203 [31:50<1:36:38, 46.39s/it]
+Examining toolchain:  39%|███▉      | 79/203 [31:50<1:35:51, 46.39s/it]            
+Examining libwebp:  39%|███▉      | 80/203 [31:50<1:35:05, 46.39s/it]  
+Examining libwebp-base:  40%|███▉      | 81/203 [31:50<1:34:19, 46.39s/it]
+Examining openssl:  40%|████      | 82/203 [31:50<1:33:32, 46.39s/it]     
+Examining cloog:  41%|████      | 83/203 [31:50<1:32:46, 46.39s/it]  
+Examining tk:  41%|████▏     | 84/203 [31:50<1:31:59, 46.39s/it]   
+Examining libxml2:  42%|████▏     | 85/203 [31:50<1:31:13, 46.39s/it]
+Examining llvm:  42%|████▏     | 86/203 [31:50<1:30:27, 46.39s/it]   
+Examining xorg-libice:  43%|████▎     | 87/203 [31:50<1:29:40, 46.39s/it]
+Examining atk-1.0:  43%|████▎     | 88/203 [31:50<1:28:54, 46.39s/it]    
+Examining six:  44%|████▍     | 89/203 [31:50<1:28:08, 46.39s/it]    
+Examining pathlib2:  44%|████▍     | 90/203 [31:50<1:27:21, 46.39s/it]
+Examining ipython:  45%|████▍     | 91/203 [31:50<1:26:35, 46.39s/it] 
+Examining jupyter_core:  45%|████▌     | 92/203 [31:50<1:25:48, 46.39s/it]
+Examining gxx_linux-64:  46%|████▌     | 93/203 [31:50<1:25:02, 46.39s/it]
+Examining defusedxml:  46%|████▋     | 94/203 [31:50<1:24:16, 46.39s/it]  
+Examining importlib-metadata:  47%|████▋     | 95/203 [31:50<1:23:29, 46.39s/it]
+Examining python-dateutil:  47%|████▋     | 96/203 [31:50<1:22:43, 46.39s/it]   
+Examining mistune:  48%|████▊     | 97/203 [31:50<1:21:56, 46.39s/it]        [0m[91m
+Examining libcblas:  48%|████▊     | 98/203 [31:50<1:21:10, 46.39s/it]
+Examining liblapacke:  49%|████▉     | 99/203 [31:50<1:20:24, 46.39s/it]
+Examining gxx_impl_linux-64:  49%|████▉     | 100/203 [31:50<1:19:37, 46.39s/it][0m[91m
+Examining xorg-xextproto:  50%|████▉     | 101/203 [31:50<1:18:51, 46.39s/it]   [0m[91m
+Examining libtiff:  50%|█████     | 102/203 [31:50<1:18:04, 46.39s/it]       [0m[91m
+Examining libxkbcommon:  51%|█████     | 103/203 [31:50<1:17:18, 46.39s/it]
+Examining libpng:  51%|█████     | 104/203 [31:50<1:16:32, 46.39s/it]      [0m[91m
+Examining giflib:  52%|█████▏    | 105/203 [31:50<1:15:45, 46.39s/it]
+Examining binutils_impl_linux-64:  52%|█████▏    | 106/203 [31:50<1:14:59, 46.39s/it][0m[91m
+Examining gettext:  53%|█████▎    | 107/203 [31:50<1:14:13, 46.39s/it]               [0m[91m
+Examining decorator:  53%|█████▎    | 108/203 [31:50<1:13:26, 46.39s/it]
+Examining xorg-libxau:  54%|█████▎    | 109/203 [31:50<1:12:40, 46.39s/it][0m[91m
+Examining mkl:  54%|█████▍    | 110/203 [31:50<1:11:53, 46.39s/it]        
+Examining openblas-devel:  55%|█████▍    | 111/203 [31:50<1:11:07, 46.39s/it]
+Examining sip:  55%|█████▌    | 112/203 [31:50<1:10:21, 46.39s/it]           
+Examining xorg-libxdmcp:  56%|█████▌    | 113/203 [31:50<1:09:34, 46.39s/it]
+Examining jinja2:  56%|█████▌    | 114/203 [31:50<1:08:48, 46.39s/it]       
+Examining lz4:  57%|█████▋    | 115/203 [31:50<1:08:01, 46.39s/it]   
+Examining xz:  57%|█████▋    | 116/203 [31:50<1:07:15, 46.39s/it] 
+Examining futures:  58%|█████▊    | 117/203 [31:50<1:06:29, 46.39s/it]
+Examining pandoc:  58%|█████▊    | 118/203 [31:50<1:05:42, 46.39s/it] 
+Examining xorg-libxext:  59%|█████▊    | 119/203 [31:50<1:04:56, 46.39s/it][0m[91m
+Examining wcwidth:  59%|█████▉    | 120/203 [31:50<1:04:10, 46.39s/it]     [0m[91m
+Examining gcc_impl_linux-64:  60%|█████▉    | 121/203 [31:50<1:03:23, 46.39s/it]
+Examining cycler:  60%|██████    | 122/203 [31:50<1:02:37, 46.39s/it]           
+Examining blas:  61%|██████    | 123/203 [31:50<1:01:50, 46.39s/it]  
+Examining llvm-openmp:  61%|██████    | 124/203 [31:50<1:01:04, 46.39s/it]
+Examining libstdcxx-ng:  62%|██████▏   | 125/203 [31:50<1:00:18, 46.39s/it]
+Examining pip:  62%|██████▏   | 126/203 [31:50<59:31, 46.39s/it]           
+Examining toolchain_cxx_linux-64:  63%|██████▎   | 127/203 [31:50<58:45, 46.39s/it]
+Examining ssl_match_hostname:  63%|██████▎   | 128/203 [31:50<57:58, 46.39s/it]    
+Examining ipywidgets:  64%|██████▎   | 129/203 [31:50<57:12, 46.39s/it]        
+Examining toolchain_c_linux-64:  64%|██████▍   | 130/203 [31:50<56:26, 46.39s/it]
+Examining gmp:  65%|██████▍   | 131/203 [31:50<55:39, 46.39s/it]                 
+Examining configparser:  65%|██████▌   | 132/203 [31:50<54:53, 46.39s/it]
+Examining pydy:  66%|██████▌   | 133/203 [31:50<54:07, 46.39s/it]        
+Examining prompt_toolkit:  66%|██████▌   | 134/203 [31:50<53:20, 46.39s/it]
+Examining clang:  67%|██████▋   | 135/203 [31:50<52:34, 46.39s/it]         
+Examining attrs:  67%|██████▋   | 136/203 [31:50<51:47, 46.39s/it]
+Examining xorg-libxt:  67%|██████▋   | 137/203 [31:50<51:01, 46.39s/it]
+Examining icu:  68%|██████▊   | 138/203 [31:50<50:15, 46.39s/it]       
+Examining backports.shutil_get_terminal_size:  68%|██████▊   | 139/203 [31:50<49:28, 46.39s/it][0m[91m
+Examining libllvm9:  69%|██████▉   | 140/203 [31:50<48:42, 46.39s/it]                          
+Examining zeromq:  69%|██████▉   | 141/203 [31:50<47:55, 46.39s/it]  
+Examining liblapack:  70%|██████▉   | 142/203 [31:50<47:09, 46.39s/it]
+Examining scandir:  70%|███████   | 143/203 [31:50<46:23, 46.39s/it]  
+Examining ca-certificates:  71%|███████   | 144/203 [31:50<45:36, 46.39s/it]
+Examining mkl_fft:  71%|███████▏  | 145/203 [31:50<44:50, 46.39s/it]        
+Examining sympy:  72%|███████▏  | 146/203 [31:50<44:04, 46.39s/it]  
+Examining openblas:  72%|███████▏  | 147/203 [31:50<43:17, 46.39s/it]
+Examining ld_impl_linux-64:  73%|███████▎  | 148/203 [31:50<42:31, 46.39s/it]
+Examining lz4-c:  73%|███████▎  | 149/203 [31:50<41:44, 46.39s/it]           
+Examining glib:  74%|███████▍  | 150/203 [31:50<40:58, 46.39s/it] 
+Examining traitlets:  74%|███████▍  | 151/203 [31:50<40:12, 46.39s/it][0m[91m
+Examining libgpuarray:  75%|███████▍  | 152/203 [31:50<39:25, 46.39s/it]
+Examining ptyprocess:  75%|███████▌  | 153/203 [31:50<38:39, 46.39s/it] 
+Examining gtk2:  76%|███████▌  | 154/203 [31:50<37:52, 46.39s/it]      
+Examining ipykernel:  76%|███████▋  | 155/203 [31:50<37:06, 46.39s/it]
+Examining nss:  77%|███████▋  | 156/203 [31:50<36:20, 46.39s/it]      
+Examining libedit:  77%|███████▋  | 157/203 [31:50<35:33, 46.39s/it]
+Examining _libgcc_mutex:  78%|███████▊  | 158/203 [31:50<34:47, 46.39s/it]
+Examining tbb4py:  78%|███████▊  | 159/203 [31:50<34:00, 46.39s/it]       
+Examining llvmdev:  79%|███████▉  | 160/203 [31:50<33:14, 46.39s/it]
+Examining backports.functools_lru_cache:  79%|███████▉  | 161/203 [31:50<32:28, 46.39s/it]
+Examining more-itertools:  80%|███████▉  | 162/203 [31:50<31:41, 46.39s/it]               
+Examining theano:  80%|████████  | 163/203 [31:50<30:55, 46.39s/it]        
+Examining enum34:  81%|████████  | 164/203 [31:50<30:09, 46.39s/it]
+Examining gst-plugins-base:  81%|████████▏ | 165/203 [31:50<29:22, 46.39s/it]
+Examining libuuid:  82%|████████▏ | 166/203 [31:50<28:36, 46.39s/it]         
+Examining clangxx:  82%|████████▏ | 167/203 [31:50<27:49, 46.39s/it]
+Examining _openmp_mutex:  83%|████████▎ | 168/203 [31:50<27:03, 46.39s/it]
+Examining version_information:  83%|████████▎ | 169/203 [31:50<26:17, 46.39s/it]
+Examining libsodium:  84%|████████▎ | 170/203 [31:50<25:30, 46.39s/it]          
+Examining pexpect:  84%|████████▍ | 171/203 [31:50<24:44, 46.39s/it]  
+Examining pixman:  85%|████████▍ | 172/203 [31:50<23:57, 46.39s/it] 
+Examining libxcb:  85%|████████▌ | 173/203 [31:50<23:11, 46.39s/it]
+Examining blis:  86%|████████▌ | 174/203 [31:50<22:25, 46.39s/it]  
+Examining pyzmq:  86%|████████▌ | 175/203 [31:50<21:38, 46.39s/it]
+Examining zipp:  87%|████████▋ | 176/203 [31:50<20:52, 46.39s/it] 
+Examining simplegeneric:  87%|████████▋ | 177/203 [31:50<20:06, 46.39s/it]
+Examining xorg-libxcb:  88%|████████▊ | 178/203 [31:50<19:19, 46.39s/it]  
+Examining jpeg:  88%|████████▊ | 179/203 [31:50<18:33, 46.39s/it]       
+Examining nbconvert:  89%|████████▊ | 180/203 [31:50<17:46, 46.39s/it]
+Examining cairo:  89%|████████▉ | 181/203 [31:50<17:00, 46.39s/it]    
+Examining numpy-base:  90%|████████▉ | 182/203 [31:50<16:14, 46.39s/it]
+Examining clang-tools:  90%|█████████ | 183/203 [31:50<15:27, 46.39s/it]
+Examining libblas:  91%|█████████ | 184/203 [31:50<14:41, 46.39s/it]    
+Examining terminado:  91%|█████████ | 185/203 [31:50<13:54, 46.39s/it]
+Examining nomkl:  92%|█████████▏| 186/203 [31:50<13:08, 46.39s/it]    
+Examining zlib:  92%|█████████▏| 187/203 [31:50<12:22, 46.39s/it] 
+Examining libclang:  93%|█████████▎| 188/203 [31:50<11:35, 46.39s/it]
+Examining gdk-pixbuf:  93%|█████████▎| 189/203 [31:50<10:49, 46.39s/it]
+Examining packaging:  94%|█████████▎| 190/203 [31:50<10:03, 46.39s/it] 
+Examining kiwisolver:  94%|█████████▍| 191/203 [31:50<09:16, 46.39s/it]
+Examining gmpy2:  95%|█████████▍| 192/203 [31:50<08:30, 46.39s/it]     
+Examining pcre:  95%|█████████▌| 193/203 [31:50<07:43, 46.39s/it] 
+Examining tornado:  96%|█████████▌| 194/203 [31:50<06:57, 46.39s/it]
+Examining libopenblas:  96%|█████████▌| 195/203 [31:50<06:11, 46.39s/it]
+Examining gcc_linux-64:  97%|█████████▋| 196/203 [31:50<05:24, 46.39s/it]
+Examining ipython_genutils:  97%|█████████▋| 197/203 [31:50<04:38, 46.39s/it]
+Examining libgfortran:  98%|█████████▊| 198/203 [31:50<03:51, 46.39s/it]     
+Examining harfbuzz:  98%|█████████▊| 199/203 [31:50<03:05, 46.39s/it]   
+Examining nspr:  99%|█████████▊| 200/203 [31:50<02:19, 46.39s/it]    
+Examining tbb:  99%|█████████▉| 201/203 [31:50<01:32, 46.39s/it] 
+Examining pygpu: 100%|█████████▉| 202/203 [31:50<00:46, 46.39s/it][0m[91m
+                                                                  [0m
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+failed
+[91m
+UnsatisfiableError: The following specifications were found to be incompatible with each other:
+
+
+
+Package ipython conflicts for:
+pydy-optional -> cython[version='>=0.23.4'] -> ipython[version='>=4.0.0']
+pydy-optional -> matplotlib[version='>=1.5.1'] -> functools32 -> ipython[version='>=4.0']
+Package python conflicts for:
+python=3.7
+python=3.7
+Package certifi conflicts for:
+python=3.7 -> pip -> setuptools -> certifi[version='>=2016.09|>=2016.9.26']
+pydy-optional -> cython[version='>=0.23.4'] -> setuptools -> certifi[version='>=2016.09|>=2016.9.26']
+Package python_abi conflicts for:
+pydy-optional -> cython[version='>=0.23.4'] -> python_abi=2.7[build=*_cp27mu]
+python=3.7 -> pip -> setuptools -> python_abi=3.7[build=*_cp37m]
+Package ca-certificates conflicts for:
+python=3.7 -> openssl[version='>=1.1.1a,<1.1.2a'] -> ca-certificates
+pydy-optional -> tornado[version='<5'] -> ca-certificates
+Package setuptools conflicts for:
+pydy-optional -> cython[version='>=0.23.4'] -> setuptools[version='>=20.7.0']
+python=3.7 -> pip -> setuptools
+
+[0mRemoving intermediate container a0c79d1f396b
+The command '/bin/sh -c conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-pydy-pydy-tutorial-human-standing:72b1d85', '/tmp/r2d-test-2020-07-06T07.389b684foh/github.com/pydy/pydy-tutorial-human-standing']' returned non-zero exit status 1.

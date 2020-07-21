@@ -1,0 +1,51 @@
+[I 200713 13:15:10 inrepo:36] Testing notebook degradation_modes/correlating_modes_analysis.ipynb
+[W 200713 13:15:10 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200713 13:15:10 inrepo:60] Using kernel python3 to provide language: python
+[I 200713 13:15:11 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os, sys
+
+# Import Pandas
+import pandas as pd
+
+# Import Plotly and Cufflinks
+# Plotly username and API key should be set in environment variables
+import plotly
+plotly.tools.set_credentials_file(username=os.environ['PLOTLY_USERNAME'], api_key=os.environ['PLOTLY_KEY'])
+import plotly.graph_objs as go
+import cufflinks as cf
+
+# Import numpy
+import numpy as np
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-1-9ba0ce6b7b9e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      7[0m [0;31m# Plotly username and API key should be set in environment variables[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m [0;32mimport[0m [0mplotly[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 9[0;31m [0mplotly[0m[0;34m.[0m[0mtools[0m[0;34m.[0m[0mset_credentials_file[0m[0;34m([0m[0musername[0m[0;34m=[0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'PLOTLY_USERNAME'[0m[0;34m][0m[0;34m,[0m [0mapi_key[0m[0;34m=[0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'PLOTLY_KEY'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     10[0m [0;32mimport[0m [0mplotly[0m[0;34m.[0m[0mgraph_objs[0m [0;32mas[0m [0mgo[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     11[0m [0;32mimport[0m [0mcufflinks[0m [0;32mas[0m [0mcf[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'plotly.tools' has no attribute 'set_credentials_file'
+AttributeError: module 'plotly.tools' has no attribute 'set_credentials_file'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

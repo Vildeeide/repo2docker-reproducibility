@@ -1,0 +1,165 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T08.03a16w4rkr/github.com/Atcold/pytorch-Deep-Learning.
+Using CondaBuildPack builder
+Step 1/52 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/52 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/52 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/52 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/52 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/52 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/52 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/52 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/52 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/52 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/52 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/52 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/52 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/52 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/52 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/52 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/52 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/52 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/52 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/52 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/52 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/52 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e8-2efrozen-2eyml-000b8d /tmp/environment.yml
+ ---> Using cache
+ ---> 709c8a4bb016
+Step 26/52 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 65a81c3564dd
+Step 27/52 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0c40bd1d0162
+Step 28/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 69f10c2d1af2
+Step 29/52 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 02cacbf732ff
+Step 30/52 : USER root
+ ---> Using cache
+ ---> 8ecee196d53b
+Step 31/52 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> c8994614013d
+Step 32/52 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> b38174197bb8
+Step 33/52 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 28ebf7e88e36
+Step 34/52 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> a21d0e0437d2
+Step 35/52 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 3dd32beb11af
+Step 36/52 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> e7778ff089ed
+Step 37/52 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> Using cache
+ ---> 86a5a1266d41
+Step 38/52 : USER root
+ ---> Using cache
+ ---> 7dce7103b0da
+Step 39/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> e7a2549a1fe2
+Step 40/52 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends libgl1-mesa-glx && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 553400f5198b
+Step 41/52 : USER ${NB_USER}
+ ---> Using cache
+ ---> 9202f3d36f45
+Step 42/52 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 87edabaef73b
+Step 43/52 : USER root
+ ---> Using cache
+ ---> 30c42127b686
+Step 44/52 : COPY src/ ${REPO_DIR}
+ ---> 28908c5c0a0b
+Step 45/52 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in eb63ffa98cc7
+Removing intermediate container eb63ffa98cc7
+ ---> 2c78e4f5a8f8
+Step 46/52 : LABEL repo2docker.ref="None"
+ ---> Running in 3fdbeca05af6
+Removing intermediate container 3fdbeca05af6
+ ---> a59d6eaa7c5c
+Step 47/52 : LABEL repo2docker.repo="local"
+ ---> Running in 41abc2fc5ac6
+Removing intermediate container 41abc2fc5ac6
+ ---> cff90d4544a4
+Step 48/52 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 2a44ef45b253
+Removing intermediate container 2a44ef45b253
+ ---> 3291fac37228
+Step 49/52 : USER ${NB_USER}
+ ---> Running in be588a3ddaae
+Removing intermediate container be588a3ddaae
+ ---> 39721d743eb5
+Step 50/52 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> e67db85a3b05
+Step 51/52 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 4c56dd4f13ba
+Removing intermediate container 4c56dd4f13ba
+ ---> cdb0a05b43bd
+Step 52/52 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 1328cf577e9f
+Removing intermediate container 1328cf577e9f
+ ---> edc861713eac
+{"aux": {"ID": "sha256:edc861713eac8844094f543ecd3ac2511ab96624e2fb9fdd0524e4853c4e7651"}}Successfully built edc861713eac
+Successfully tagged r2d-test-github.com-atcold-pytorch-deep-learning:79208c0

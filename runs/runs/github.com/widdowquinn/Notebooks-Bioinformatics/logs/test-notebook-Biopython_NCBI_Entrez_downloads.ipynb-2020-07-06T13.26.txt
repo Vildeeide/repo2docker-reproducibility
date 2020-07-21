@@ -1,0 +1,5 @@
+[I 200706 13:28:51 inrepo:35] Testing notebook Biopython_NCBI_Entrez_downloads.ipynb
+[I 200706 13:28:52 execute:404] Executing notebook with kernel: python3
+[I 200706 13:29:18 inrepo:41] Saving exported notebook to /io/notebooks/Biopython_NCBI_Entrez_downloads.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

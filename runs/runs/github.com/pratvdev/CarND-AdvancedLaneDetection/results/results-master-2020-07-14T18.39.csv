@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/pratvdev/CarND-AdvancedLaneDetection,master,c95e112,2017-05-17T00:30:56-04:00,build,build,True,github.com/pratvdev/CarND-AdvancedLaneDetection/logs/build-master-2020-07-14T18.39.txt,2020-07-14T18:39:40.983482,2020-07-14T18.39,0.11.0
+https://github.com/pratvdev/CarND-AdvancedLaneDetection,master,c95e112,2017-05-17T00:30:56-04:00,notebook,Project4.ipynb,False,github.com/pratvdev/CarND-AdvancedLaneDetection/logs/test-notebook-Project4.ipynb-2020-07-14T18.39.txt,2020-07-14T18:39:40.983482,2020-07-14T18.39,0.11.0
+https://github.com/pratvdev/CarND-AdvancedLaneDetection,master,c95e112,2017-05-17T00:30:56-04:00,notebook,.ipynb_checkpoints/Project4-checkpoint.ipynb,False,github.com/pratvdev/CarND-AdvancedLaneDetection/logs/test-notebook-.ipynb_checkpoints-Project4-checkpoint.ipynb-2020-07-14T18.39.txt,2020-07-14T18:39:40.983482,2020-07-14T18.39,0.11.0

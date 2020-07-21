@@ -1,0 +1,82 @@
+[I 200717 08:04:03 inrepo:36] Testing notebook Dataset Conversion.ipynb
+[I 200717 08:04:03 inrepo:45] Found kernel python3
+[I 200717 08:04:04 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%load_ext autoreload
+%autoreload 2
+#import autosklearn.classification
+import sklearn.model_selection
+import sklearn.datasets
+import sklearn.metrics
+from keras.datasets import mnist
+from keras.datasets import cifar10
+from __future__ import print_function
+import keras
+from keras.layers import Dense, Conv2D, BatchNormalization, Activation
+from keras.layers import AveragePooling2D, Input, Flatten
+from keras.optimizers import Adam
+from keras.callbacks import ModelCheckpoint, LearningRateScheduler
+from keras.callbacks import ReduceLROnPlateau
+from keras.preprocessing.image import ImageDataGenerator
+from keras.regularizers import l2
+from keras import backend as K
+from keras.datasets import cifar10
+import numpy as np
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, Reshape, Input, merge
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
+import openml as oml
+from keras.optimizers import SGD, RMSprop
+from keras.models import load_model
+from keras.layers.core import Activation
+from keras.layers.core import Flatten
+from keras.layers.core import Dense
+from keras.layers.convolutional import Convolution2D
+from keras.layers.convolutional import MaxPooling2D
+from keras.layers.convolutional import ZeroPadding2D, AveragePooling2D
+from keras.models import Model
+from keras.layers.advanced_activations import LeakyReLU
+from keras.wrappers.scikit_learn import KerasClassifier
+from keras.utils import np_utils
+from scipy.io import loadmat
+from sklearn.decomposition import PCA
+
+oml.config.apikey = 'b15b073c6fea6dc55b08f051f5e1abf9'
+from scipy.io import loadmat
+import scipy
+from scipy import stats
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import inspect
+from sklearn import datasets
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-6e755f7e92df>"[0;36m, line [0;32m12[0m
+[0;31m    from keras.layers import AveragePooling2D, Input, Flatten[0m
+[0m           ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m from __future__ imports must occur at the beginning of the file
+
+SyntaxError: from __future__ imports must occur at the beginning of the file (<ipython-input-1-6e755f7e92df>, line 12)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

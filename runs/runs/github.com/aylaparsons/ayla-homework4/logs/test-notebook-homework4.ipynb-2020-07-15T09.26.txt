@@ -1,0 +1,2 @@
+[I 200715 09:27:54 inrepo:36] Testing notebook homework4.ipynb
+[I 200715 09:27:55 inrepo:45] Found kernel python3

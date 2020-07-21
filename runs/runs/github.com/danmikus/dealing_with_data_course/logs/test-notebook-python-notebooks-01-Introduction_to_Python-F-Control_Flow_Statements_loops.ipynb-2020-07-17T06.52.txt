@@ -1,0 +1,6 @@
+[I 200717 06:52:31 inrepo:36] Testing notebook python-notebooks/01-Introduction_to_Python/F-Control_Flow_Statements_loops.ipynb
+[I 200717 06:52:31 inrepo:45] Found kernel python3
+[I 200717 06:52:32 execute:404] Executing notebook with kernel: python3
+[I 200717 06:52:40 inrepo:79] Saving exported notebook to /io/notebooks/python-notebooks/01-Introduction_to_Python/F-Control_Flow_Statements_loops.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

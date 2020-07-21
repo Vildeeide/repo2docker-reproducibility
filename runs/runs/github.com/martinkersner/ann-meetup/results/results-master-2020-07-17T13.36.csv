@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/martinkersner/ann-meetup,master,fe1237b,2017-06-25T15:56:10+09:00,build,build,False,github.com/martinkersner/ann-meetup/logs/build-master-2020-07-17T13.36.txt,2020-07-17T13:36:09.291577,2020-07-17T13.36,0.11.0

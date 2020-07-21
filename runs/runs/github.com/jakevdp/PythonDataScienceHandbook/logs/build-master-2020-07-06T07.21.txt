@@ -1,0 +1,345 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.213tk9wxxv/github.com/jakevdp/PythonDataScienceHandbook.
+Using CondaBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e5-2efrozen-2eyml-a89ca4 /tmp/environment.yml
+ ---> Using cache
+ ---> 3dc550673510
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> dbc3fa3137da
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> d4adcad7a80c
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> 400b70471ff5
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> 4573cf84f9f1
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 2ab865877882
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> c1e59dbb34c2
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 575da23b5107
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2a1639b72259
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> c484446217a0
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 81c89c370767
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 02a5115f2c56
+Step 37/48 : USER root
+ ---> Running in ebd217d1d0ca
+Removing intermediate container ebd217d1d0ca
+ ---> 3cfaef19fb1a
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> b706d155b256
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f137255b37ef
+Removing intermediate container f137255b37ef
+ ---> 3ee2db2ab404
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 30dc49a58992
+Removing intermediate container 30dc49a58992
+ ---> b316d3810f1d
+Step 41/48 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in d322d7d35220
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... 
+The environment is inconsistent, please check the package plan carefully
+The following packages are causing the inconsistency:
+
+  - conda-forge/linux-64::widgetsnbextension==3.2.1=py35_1
+  - conda-forge/noarch::jupyterlab_launcher==0.13.1=py_2
+  - conda-forge/linux-64::ipywidgets==7.2.1=py35_1
+  - conda-forge/linux-64::jupyterlab==0.34.9=py35_0
+done
+
+Downloading and Extracting Packages
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | #1         |  11% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+notebook-5.7.0       | 7.3 MB    |            |   0% 
+notebook-5.7.0       | 7.3 MB    | #8         |  18% 
+notebook-5.7.0       | 7.3 MB    | #####      |  50% 
+notebook-5.7.0       | 7.3 MB    | ########6  |  87% 
+notebook-5.7.0       | 7.3 MB    | ########## | 100% 
+
+openssl-1.0.2u       | 3.2 MB    |            |   0% 
+openssl-1.0.2u       | 3.2 MB    | ###6       |  37% 
+openssl-1.0.2u       | 3.2 MB    | ########## | 100% 
+
+pip-20.1.1           | 1.1 MB    |            |   0% 
+pip-20.1.1           | 1.1 MB    | ########## | 100% 
+
+libgcc-ng-9.2.0      | 8.6 MB    |            |   0% 
+libgcc-ng-9.2.0      | 8.6 MB    | 9          |   9% 
+libgcc-ng-9.2.0      | 8.6 MB    | ####8      |  49% 
+libgcc-ng-9.2.0      | 8.6 MB    | ########7  |  87% 
+libgcc-ng-9.2.0      | 8.6 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Pip subprocess error:
+    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-95gap3ed/matplotlib/setup.py'"'"'; __file__='"'"'/tmp/pip-install-95gap3ed/matplotlib/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-pip-egg-info-4jvwtj0p
+         cwd: /tmp/pip-install-95gap3ed/matplotlib/
+    Complete output (131 lines):
+    ============================================================================
+    Edit setup.cfg to change the build options
+    
+    BUILDING MATPLOTLIB
+                matplotlib: yes [1.5.1]
+                    python: yes [3.5.5 | packaged by conda-forge | (default, Jul
+                            23 2018, 23:45:43)  [GCC 4.8.2 20140120 (Red Hat
+                            4.8.2-15)]]
+                  platform: yes [linux]
+    
+    REQUIRED DEPENDENCIES AND EXTENSIONS
+                     numpy: yes [not found. pip may install it below.]
+                  dateutil: yes [using dateutil version 2.7.5]
+                      pytz: yes [pytz was not found. pip will attempt to install
+                            it after matplotlib.]
+                    cycler: yes [cycler was not found. pip will attempt to
+                            install it after matplotlib.]
+                   tornado: yes [using tornado version 5.1.1]
+                 pyparsing: yes [pyparsing was not found. It is required for
+                            mathtext support. pip/easy_install may attempt to
+                            install it after matplotlib.]
+                    libagg: yes [pkg-config information for 'libagg' could not
+                            be found. Using local copy.]
+                  freetype: yes [version 2.8.1]
+                       png: yes [version 1.6.34]
+                     qhull: yes [pkg-config information for 'qhull' could not be
+                            found. Using local copy.]
+    
+    OPTIONAL SUBPACKAGES
+               sample_data: yes [installing]
+                  toolkits: yes [installing]
+                     tests: yes [nose 0.11.1 or later is required to run the
+                            matplotlib test suite. Please install it with pip or
+                            your preferred tool to run the test suite / using
+                            unittest.mock]
+            toolkits_tests: yes [nose 0.11.1 or later is required to run the
+                            matplotlib test suite. Please install it with pip or
+                            your preferred tool to run the test suite / using
+                            unittest.mock]
+    
+    OPTIONAL BACKEND EXTENSIONS
+                    macosx: no  [Mac OS-X only]
+                    qt5agg: no  [PyQt5 not found]
+                    qt4agg: no  [PySide not found; PyQt4 not found]
+                   gtk3agg: no  [Requires pygobject to be installed.]
+    Traceback (most recent call last):
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 154, in save_modules
+        yield saved
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 195, in setup_context
+        yield
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 250, in run_setup
+        _execfile(setup_script, ns)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 45, in _execfile
+        exec(code, globals, locals)
+      File "/tmp/easy_install-in_9agso/numpy-1.19.0/setup.py", line 30, in <module>
+        os.remove('MANIFEST')
+    RuntimeError: Python version >= 3.6 required.
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/tmp/pip-install-95gap3ed/matplotlib/setup.py", line 277, in <module>
+        **extra_args
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/__init__.py", line 139, in setup
+        _install_setup_requires(attrs)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/__init__.py", line 134, in _install_setup_requires
+        dist.fetch_build_eggs(dist.setup_requires)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/dist.py", line 514, in fetch_build_eggs
+        replace_conflicting=True,
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/pkg_resources/__init__.py", line 777, in resolve
+        replace_conflicting=replace_conflicting
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/pkg_resources/__init__.py", line 1060, in best_match
+        return self.obtain(req, installer)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/pkg_resources/__init__.py", line 1072, in obtain
+        return installer(requirement)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/dist.py", line 581, in fetch_build_egg
+        return cmd.easy_install(req)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/command/easy_install.py", line 676, in easy_install
+        return self.install_item(spec, dist.location, tmpdir, deps)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/command/easy_install.py", line 702, in install_item
+        dists = self.install_eggs(spec, download, tmpdir)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/command/easy_install.py", line 887, in install_eggs
+        return self.build_and_install(setup_script, setup_base)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/command/easy_install.py", line 1155, in build_and_install
+        self.run_setup(setup_script, setup_base, args)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/command/easy_install.py", line 1141, in run_setup
+        run_setup(setup_script, args)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 253, in run_setup
+        raise
+      File "/srv/conda/envs/notebook/lib/python3.5/contextlib.py", line 77, in __exit__
+        self.gen.throw(type, value, traceback)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 195, in setup_context
+        yield
+      File "/srv/conda/envs/notebook/lib/python3.5/contextlib.py", line 77, in __exit__
+        self.gen.throw(type, value, traceback)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 166, in save_modules
+        saved_exc.resume()
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 141, in resume
+        six.reraise(type, exc, self._tb)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/_vendor/six.py", line 685, in reraise
+        raise value.with_traceback(tb)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 154, in save_modules
+        yield saved
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 195, in setup_context
+        yield
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 250, in run_setup
+        _execfile(setup_script, ns)
+      File "/srv/conda/envs/notebook/lib/python3.5/site-packages/setuptools/sandbox.py", line 45, in _execfile
+        exec(code, globals, locals)
+      File "/tmp/easy_install-in_9agso/numpy-1.19.0/setup.py", line 30, in <module>
+        os.remove('MANIFEST')
+    RuntimeError: Python version >= 3.6 required.
+                 gtk3cairo: no  [Requires cairocffi or pycairo to be installed.]
+                    gtkagg: no  [Requires pygtk]
+                     tkagg: yes [installing, version not identified]
+                     wxagg: no  [requires wxPython]
+                       gtk: no  [Requires pygtk]
+                       agg: yes [installing]
+                     cairo: no  [cairocffi or pycairo not found]
+                 windowing: no  [Microsoft Windows only]
+    
+    OPTIONAL LATEX DEPENDENCIES
+                    dvipng: no
+               ghostscript: no
+                     latex: no
+                   pdftops: no
+    
+    OPTIONAL PACKAGE DATA
+                      dlls: no  [skipping due to configuration]
+    
+    ----------------------------------------
+ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+[0mRan pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.7_3cdbs7.requirements.txt']
+Pip subprocess output:
+Collecting numpy==1.11.1
+  Downloading numpy-1.11.1-cp35-cp35m-manylinux1_x86_64.whl (15.6 MB)
+Collecting pandas==0.18.1
+  Downloading pandas-0.18.1-cp35-cp35m-manylinux1_x86_64.whl (15.1 MB)
+Collecting scipy==0.17.1
+  Downloading scipy-0.17.1-cp35-cp35m-manylinux1_x86_64.whl (41.1 MB)
+Collecting scikit-learn==0.17.1
+  Downloading scikit_learn-0.17.1-cp35-cp35m-manylinux1_x86_64.whl (17.5 MB)
+Collecting scikit-image==0.12.3
+  Downloading scikit_image-0.12.3-1-cp35-cp35m-manylinux1_x86_64.whl (28.2 MB)
+Collecting pillow==3.4.2
+  Downloading Pillow-3.4.2-cp35-cp35m-manylinux1_x86_64.whl (5.6 MB)
+Collecting matplotlib==1.5.1
+  Downloading matplotlib-1.5.1.tar.gz (54.0 MB)
+
+[91m
+
+CondaEnvException: Pip failed
+
+[0mRemoving intermediate container d322d7d35220
+The command '/bin/sh -c conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-jakevdp-pythondatasciencehandbook:8a34a4f', '/tmp/r2d-test-2020-07-06T07.213tk9wxxv/github.com/jakevdp/PythonDataScienceHandbook']' returned non-zero exit status 1.

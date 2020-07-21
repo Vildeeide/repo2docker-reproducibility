@@ -1,0 +1,75 @@
+[I 200707 13:18:44 inrepo:36] Testing notebook notebooks/02_model/rbm_deep_dive.ipynb
+[W 200707 13:18:44 inrepo:48] No such kernel reco_full, falling back on kernel language=python
+[W 200707 13:18:44 inrepo:60] Using kernel python3 to provide language: python
+[I 200707 13:18:45 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from __future__ import print_function
+from __future__ import absolute_import
+from __future__ import division
+
+# set the environment path to find Recommenders
+import sys
+sys.path.append("../../")
+
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+import papermill 
+
+#RBM 
+from reco_utils.recommender.rbm.rbm import RBM
+from reco_utils.dataset.python_splitters import numpy_stratified_split
+from reco_utils.dataset.sparse import AffinityMatrix
+
+#Evaluation libraries
+from reco_utils.dataset import movielens 
+
+from reco_utils.evaluation.python_evaluation import (
+    map_at_k,
+    ndcg_at_k,
+    precision_at_k,
+    recall_at_k,
+)
+
+from reco_utils.tuning.parameter_sweep import generate_param_grid
+#For interactive mode only
+%load_ext autoreload
+%autoreload 2
+
+print("System version: {}".format(sys.version))
+print("Pandas version: {}".format(pd.__version__))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-829b8516bffe>[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0;34m[0m[0m
+[1;32m      9[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

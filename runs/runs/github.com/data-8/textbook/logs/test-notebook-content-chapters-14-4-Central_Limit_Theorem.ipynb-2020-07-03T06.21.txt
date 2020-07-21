@@ -1,0 +1,5 @@
+[I 200703 06:23:59 inrepo:35] Testing notebook content/chapters/14/4/Central_Limit_Theorem.ipynb
+[I 200703 06:24:00 execute:404] Executing notebook with kernel: python3
+[I 200703 06:24:40 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/14/4/Central_Limit_Theorem.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

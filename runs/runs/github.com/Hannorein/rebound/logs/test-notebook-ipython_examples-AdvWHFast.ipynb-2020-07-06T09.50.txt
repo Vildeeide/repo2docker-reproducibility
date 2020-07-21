@@ -1,0 +1,5 @@
+[I 200706 09:51:16 inrepo:35] Testing notebook ipython_examples/AdvWHFast.ipynb
+[I 200706 09:51:17 execute:404] Executing notebook with kernel: python3
+[I 200706 09:51:21 inrepo:41] Saving exported notebook to /io/notebooks/ipython_examples/AdvWHFast.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

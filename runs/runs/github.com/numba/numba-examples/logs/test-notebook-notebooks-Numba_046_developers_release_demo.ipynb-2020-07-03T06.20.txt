@@ -1,0 +1,119 @@
+[I 200703 06:28:46 inrepo:35] Testing notebook notebooks/Numba_046_developers_release_demo.ipynb
+[I 200703 06:28:48 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from numba import njit, ir
+import numba
+
+# enable printing of the IR post legalization, i.e. just before it is lowered
+numba.config.DEBUG_PRINT_AFTER="ir_legalization"
+
+
+@njit(inline='never')
+def never_inline():
+    return 100
+
+
+@njit(inline='always')
+def always_inline():
+    return 200
+
+
+def sentinel_cost_model(expr, caller_info, callee_info):
+    # this cost model will return True (i.e. do inlining) if either:
+    # a) the callee IR contains an `ir.Const(37)`
+    # b) the caller IR contains an `ir.Const(13)` logically prior to the call
+    #    site
+
+    # check the callee
+    for blk in callee_info.blocks.values():
+        for stmt in blk.body:
+            if isinstance(stmt, ir.Assign):
+                if isinstance(stmt.value, ir.Const):
+                    if stmt.value.value == 37:
+                        return True
+
+    # check the caller
+    before_expr = True
+    for blk in caller_info.blocks.values():
+        for stmt in blk.body:
+            if isinstance(stmt, ir.Assign):
+                if isinstance(stmt.value, ir.Expr):
+                    if stmt.value == expr:
+                        before_expr = False
+                if isinstance(stmt.value, ir.Const):
+                    if stmt.value.value == 13:
+                        return True & before_expr
+    return False
+
+
+@njit(inline=sentinel_cost_model)
+def maybe_inline1():
+    # Will not inline based on the callee IR with the declared cost model
+    # The following is ir.Const(300).
+    return 300
+
+
+@njit(inline=sentinel_cost_model)
+def maybe_inline2():
+    # Will inline based on the callee IR with the declared cost model
+    # The following is ir.Const(37).
+    return 37
+
+
+@njit
+def foo():
+    a = never_inline()  # will never inline
+    b = always_inline()  # will always inline
+
+    # will not inline as the function does not contain a magic constant known to
+    # the cost model, and the IR up to the call site does not contain a magic
+    # constant either
+    d = maybe_inline1()
+
+    # declare this magic constant to trigger inlining of maybe_inline1 in a
+    # subsequent call
+    magic_const = 13
+
+    # will inline due to above constant declaration
+    e = maybe_inline1()
+
+    # will inline as the maybe_inline2 function contains a magic constant known
+    # to the cost model
+    c = maybe_inline2()
+
+    return a + b + c + d + e + magic_const
+
+
+foo()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-5-0bc6cba9c493>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mnumba[0m [0;32mimport[0m [0mnjit[0m[0;34m,[0m [0mir[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mnumba[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;31m# enable printing of the IR post legalization, i.e. just before it is lowered[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mnumba[0m[0;34m.[0m[0mconfig[0m[0;34m.[0m[0mDEBUG_PRINT_AFTER[0m[0;34m=[0m[0;34m"ir_legalization"[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: cannot import name 'ir' from 'numba' (/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/__init__.py)
+ImportError: cannot import name 'ir' from 'numba' (/srv/conda/envs/notebook/lib/python3.8/site-packages/numba/__init__.py)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

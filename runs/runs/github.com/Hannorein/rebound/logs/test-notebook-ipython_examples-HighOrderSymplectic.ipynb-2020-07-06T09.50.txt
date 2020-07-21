@@ -1,0 +1,5 @@
+[I 200706 09:52:04 inrepo:35] Testing notebook ipython_examples/HighOrderSymplectic.ipynb
+[I 200706 09:52:05 execute:404] Executing notebook with kernel: python3
+[I 200706 09:52:40 inrepo:41] Saving exported notebook to /io/notebooks/ipython_examples/HighOrderSymplectic.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

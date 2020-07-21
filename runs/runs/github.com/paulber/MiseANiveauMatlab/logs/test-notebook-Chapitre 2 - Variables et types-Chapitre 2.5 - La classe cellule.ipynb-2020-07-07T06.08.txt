@@ -1,0 +1,5 @@
+[I 200707 06:09:39 inrepo:35] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.5 - La classe cellule.ipynb
+[I 200707 06:09:42 execute:404] Executing notebook with kernel: octave
+[I 200707 06:09:43 inrepo:41] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.5 - La classe cellule.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

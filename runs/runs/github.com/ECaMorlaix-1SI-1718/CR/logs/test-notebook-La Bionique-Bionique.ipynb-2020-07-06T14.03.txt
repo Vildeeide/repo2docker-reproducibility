@@ -1,0 +1,5 @@
+[I 200706 14:03:41 inrepo:35] Testing notebook La Bionique/Bionique.ipynb
+[I 200706 14:03:43 execute:404] Executing notebook with kernel: python3
+[I 200706 14:03:43 inrepo:41] Saving exported notebook to /io/notebooks/La Bionique/Bionique.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

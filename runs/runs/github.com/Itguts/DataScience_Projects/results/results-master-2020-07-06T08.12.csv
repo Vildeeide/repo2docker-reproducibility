@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Itguts/DataScience_Projects,master,1c33a66,2019-08-20T06:57:43+05:30,build,build,False,github.com/Itguts/DataScience_Projects/logs/build-master-2020-07-06T08.12.txt,2020-07-06T08:12:11.861201,2020-07-06T08.12,0.11.0

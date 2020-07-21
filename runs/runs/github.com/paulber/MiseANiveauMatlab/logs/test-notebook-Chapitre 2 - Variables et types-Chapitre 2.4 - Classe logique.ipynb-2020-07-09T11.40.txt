@@ -1,0 +1,6 @@
+[I 200709 11:41:37 inrepo:36] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.4 - Classe logique.ipynb
+[I 200709 11:41:37 inrepo:45] Found kernel octave
+[I 200709 11:41:39 execute:404] Executing notebook with kernel: octave
+[I 200709 11:41:40 inrepo:79] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.4 - Classe logique.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

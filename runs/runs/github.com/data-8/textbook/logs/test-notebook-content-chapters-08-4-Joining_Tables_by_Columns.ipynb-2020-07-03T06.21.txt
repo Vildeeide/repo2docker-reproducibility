@@ -1,0 +1,5 @@
+[I 200703 06:35:37 inrepo:35] Testing notebook content/chapters/08/4/Joining_Tables_by_Columns.ipynb
+[I 200703 06:35:39 execute:404] Executing notebook with kernel: python3
+[I 200703 06:35:43 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/08/4/Joining_Tables_by_Columns.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

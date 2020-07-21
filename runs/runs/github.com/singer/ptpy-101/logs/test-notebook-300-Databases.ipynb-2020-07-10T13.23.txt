@@ -1,0 +1,6 @@
+[I 200710 13:23:26 inrepo:36] Testing notebook 300-Databases.ipynb
+[I 200710 13:23:27 inrepo:45] Found kernel python3
+[I 200710 13:23:27 execute:404] Executing notebook with kernel: python3
+[I 200710 13:23:28 inrepo:79] Saving exported notebook to /io/notebooks/300-Databases.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

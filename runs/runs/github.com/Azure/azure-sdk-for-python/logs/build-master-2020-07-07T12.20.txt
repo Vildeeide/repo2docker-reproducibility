@@ -1,0 +1,182 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-07T12.20yi924pf9/github.com/Azure/azure-sdk-for-python.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> c954a77fc149
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 32d143d8c10d
+Removing intermediate container 32d143d8c10d
+ ---> ae1dba3385ac
+Step 40/48 : USER ${NB_USER}
+ ---> Running in 3fb5289b18f5
+Removing intermediate container 3fb5289b18f5
+ ---> 47fd851b93e7
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in a6fa22ea9c6a
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting azure-core<2.0.0,>=1.7.0
+  Downloading azure_core-1.7.0-py2.py3-none-any.whl (121 kB)
+Requirement already satisfied: requests>=2.18.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (2.22.0)
+Requirement already satisfied: six>=1.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (1.14.0)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.18.4->azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (2.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.18.4->azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.18.4->azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.18.4->azure-core<2.0.0,>=1.7.0->azure-mgmt-core==1.2.0) (2019.11.28)
+Building wheels for collected packages: azure-mgmt-core
+  Building wheel for azure-mgmt-core (setup.py): started
+  Building wheel for azure-mgmt-core (setup.py): finished with status 'done'
+[91m  WARNING: Legacy build of wheel for 'azure-mgmt-core' created more than one file.
+  Filenames (choosing first): ['azure_ai_formrecognizer-1.0.0b4-py2.py3-none-any.whl', 'azure_ai_nspkg-1.0.0-py3-none-any.whl', 'azure_ai_textanalytics-1.0.1-py2.py3-none-any.whl', 'azure_appconfiguration-1.0.0-py2.py3-none-any.whl', 'azure_applicationinsights-0.1.0-py2.py3-none-any.whl', 'azure_batch-9.0.1-py2.py3-none-any.whl', 'azure_cognitiveservices_anomalydetector-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_formrecognizer-0.1.0-py2.py3-none-any.whl', 'azure_cognitiveservices_knowledge_nspkg-3.0.0-py3-none-any.whl', 'azure_cognitiveservices_knowledge_qnamaker-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_language_luis-0.7.0-py2.py3-none-any.whl', 'azure_cognitiveservices_language_nspkg-3.0.1-py3-none-any.whl', 'azure_cognitiveservices_language_spellcheck-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_language_textanalytics-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_nspkg-3.0.1-py3-none-any.whl', 'azure_cognitiveservices_personalizer-0.1.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_autosuggest-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_customimagesearch-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_customsearch-0.3.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_entitysearch-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_imagesearch-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_newssearch-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_nspkg-3.0.1-py3-none-any.whl', 'azure_cognitiveservices_search_videosearch-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_visualsearch-0.2.0-py2.py3-none-any.whl', 'azure_cognitiveservices_search_websearch-2.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_vision_computervision-0.6.0-py2.py3-none-any.whl', 'azure_cognitiveservices_vision_contentmoderator-1.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_vision_customvision-3.0.0-py2.py3-none-any.whl', 'azure_cognitiveservices_vision_face-0.4.1-py2.py3-none-any.whl', 'azure_cognitiveservices_vision_nspkg-3.0.1-py3-none-any.whl', 'azure_common-1.1.26-py2.py3-none-any.whl', 'azure_core-1.7.1-py2.py3-none-any.whl', 'azure_core_tracing_opencensus-1.0.0b7-py2.py3-none-any.whl', 'azure_core_tracing_opentelemetry-1.0.0b7-py2.py3-none-any.whl', 'azure_cosmos-4.0.1-py2.py3-none-any.whl', 'azure_eventgrid-1.3.0-py2.py3-none-any.whl', 'azure_eventhub-5.2.0b1-py2.py3-none-any.whl', 'azure_eventhub_checkpointstoreblob-1.1.1-py2.py3-none-any.whl', 'azure_eventhub_checkpointstoreblob_aio-1.1.1-py3-none-any.whl', 'azure_graphrbac-0.61.1-py2.py3-none-any.whl', 'azure_identity-1.4.0b6-py2.py3-none-any.whl', 'azure_keyvault_certificates-4.2.0b2-py2.py3-none-any.whl', 'azure_keyvault_keys-4.2.0b2-py2.py3-none-any.whl', 'azure_keyvault_nspkg-1.0.0-py2.py3-none-any.whl', 'azure_keyvault_secrets-4.2.0b2-py2.py3-none-any.whl', 'azure_loganalytics-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_advisor-4.0.0-py2.py3-none-any.whl', 'azure_mgmt_alertsmanagement-0.2.0rc2-py2.py3-none-any.whl', 'azure_mgmt_apimanagement-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_appconfiguration-1.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_applicationinsights-0.3.1-py2.py3-none-any.whl', 'azure_mgmt_appplatform-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_attestation-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_authorization-0.60.0-py2.py3-none-any.whl', 'azure_mgmt_automation-0.1.1-py2.py3-none-any.whl', 'azure_mgmt_azurestack-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_batch-9.0.0-py2.py3-none-any.whl', 'azure_mgmt_billing-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_botservice-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_cdn-4.1.0rc1-py2.py3-none-any.whl', 'azure_mgmt_cognitiveservices-6.2.0-py2.py3-none-any.whl', 'azure_mgmt_commerce-1.0.1-py2.py3-none-any.whl', 'azure_mgmt_compute-17.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_consumption-3.0.0-py2.py3-none-any.whl', 'azure_mgmt_containerinstance-1.5.0-py2.py3-none-any.whl', 'azure_mgmt_containerregistry-3.0.0rc13-py2.py3-none-any.whl', 'azure_mgmt_containerservice-9.0.1-py2.py3-none-any.whl', 'azure_mgmt_core-1.2.0-py2.py3-none-any.whl', 'azure_mgmt_cosmosdb-0.14.0-py2.py3-none-any.whl', 'azure_mgmt_costmanagement-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_customproviders-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_databox-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_databoxedge-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_databricks-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_datafactory-0.10.0-py2.py3-none-any.whl', 'azure_mgmt_datalake_analytics-0.6.0-py2.py3-none-any.whl', 'azure_mgmt_datalake_nspkg-3.0.1-py3-none-any.whl', 'azure_mgmt_datalake_store-0.5.0-py2.py3-none-any.whl', 'azure_mgmt_datamigration-4.0.0-py2.py3-none-any.whl', 'azure_mgmt_datashare-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_deploymentmanager-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_devspaces-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_devtestlabs-4.0.0-py2.py3-none-any.whl', 'azure_mgmt_digitaltwins-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_dns-3.0.0-py2.py3-none-any.whl', 'azure_mgmt_documentdb-0.1.3-py2.py3-none-any.whl', 'azure_mgmt_edgegateway-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_eventgrid-3.0.0rc7-py2.py3-none-any.whl', 'azure_mgmt_eventhub-8.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_frontdoor-0.3.0-py2.py3-none-any.whl', 'azure_mgmt_hanaonazure-0.14.0-py2.py3-none-any.whl', 'azure_mgmt_hdinsight-1.4.0-py2.py3-none-any.whl', 'azure_mgmt_healthcareapis-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_hybridcompute-0.1.1-py2.py3-none-any.whl', 'azure_mgmt_hybridkubernetes-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_imagebuilder-0.4.0-py2.py3-none-any.whl', 'azure_mgmt_iotcentral-3.0.0-py2.py3-none-any.whl', 'azure_mgmt_iothub-0.12.0-py2.py3-none-any.whl', 'azure_mgmt_iothubprovisioningservices-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_keyvault-7.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_kubernetesconfiguration-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_kusto-0.7.0-py2.py3-none-any.whl', 'azure_mgmt_labservices-0.1.1-py2.py3-none-any.whl', 'azure_mgmt_loganalytics-0.6.0-py2.py3-none-any.whl', 'azure_mgmt_logic-4.0.0rc2-py2.py3-none-any.whl', 'azure_mgmt_machinelearningcompute-0.4.1-py2.py3-none-any.whl', 'azure_mgmt_machinelearningservices-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_maintenance-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_managedservices-1.0.0-py2.py3-none-any.whl', 'azure_mgmt_managementgroups-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_managementpartner-0.1.1-py2.py3-none-any.whl', 'azure_mgmt_maps-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_marketplaceordering-0.2.1-py2.py3-none-any.whl', 'azure_mgmt_media-2.2.0-py2.py3-none-any.whl', 'azure_mgmt_mixedreality-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_monitor-1.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_msi-1.0.0-py2.py3-none-any.whl', 'azure_mgmt_netapp-0.10.0-py2.py3-none-any.whl', 'azure_mgmt_network-16.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_notificationhubs-2.1.0-py2.py3-none-any.whl', 'azure_mgmt_nspkg-3.0.2-py3-none-any.whl', 'azure_mgmt_operationsmanagement-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_peering-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_policyinsights-0.5.0-py2.py3-none-any.whl', 'azure_mgmt_powerbidedicated-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_powerbiembedded-2.0.0-py2.py3-none-any.whl', 'azure_mgmt_privatedns-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_rdbms-2.2.0-py2.py3-none-any.whl', 'azure_mgmt_recoveryservices-0.5.0-py2.py3-none-any.whl', 'azure_mgmt_recoveryservicesbackup-0.7.0-py2.py3-none-any.whl', 'azure_mgmt_redhatopenshift-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_redis-7.0.0rc1-py2.py3-none-any.whl', 'azure_mgmt_relay-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_reservations-0.7.0-py2.py3-none-any.whl', 'azure_mgmt_resource-15.0.0b1-py2.py3-none-any.whl', 'azure_mgmt_resourcegraph-2.1.0-py2.py3-none-any.whl', 'azure_mgmt_scheduler-2.0.0-py2.py3-none-any.whl', 'azure_mgmt_search-2.1.0-py2.py3-none-any.whl', 'azure_mgmt_security-0.3.0-py2.py3-none-any.whl', 'azure_mgmt_serialconsole-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_servermanager-2.0.0-py2.py3-none-any.whl', 'azure_mgmt_servicebus-0.6.0-py2.py3-none-any.whl', 'azure_mgmt_servicefabric-0.4.0-py2.py3-none-any.whl', 'azure_mgmt_signalr-0.4.0-py2.py3-none-any.whl', 'azure_mgmt_sql-0.18.0-py2.py3-none-any.whl', 'azure_mgmt_sqlvirtualmachine-0.5.0-py2.py3-none-any.whl', 'azure_mgmt_storage-16.0.0b2-py2.py3-none-any.whl', 'azure_mgmt_storagecache-0.3.0-py2.py3-none-any.whl', 'azure_mgmt_storageimportexport-0.1.0-py2.py3-none-any.whl', 'azure_mgmt_storagesync-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_subscription-0.5.0-py2.py3-none-any.whl', 'azure_mgmt_support-1.0.0-py2.py3-none-any.whl', 'azure_mgmt_synapse-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_timeseriesinsights-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_trafficmanager-0.51.0-py2.py3-none-any.whl', 'azure_mgmt_vmwarecloudsimple-0.2.0-py2.py3-none-any.whl', 'azure_mgmt_web-0.46.0-py2.py3-none-any.whl', 'azure_nspkg-3.0.2-py3-none-any.whl', 'azure_search_documents-11.0.0-py2.py3-none-any.whl', 'azure_search_nspkg-1.0.0-py3-none-any.whl', 'azure_servicebus-7.0.0b4-py2.py3-none-any.whl', 'azure_servicefabric-7.1.0.45-py2.py3-none-any.whl', 'azure_servicemanagement_legacy-0.20.7-py2.py3-none-any.whl', 'azure_storage_blob-12.3.3-py2.py3-none-any.whl', 'azure_storage_file_datalake-12.0.3-py2.py3-none-any.whl', 'azure_storage_file_share-12.1.3-py2.py3-none-any.whl', 'azure_storage_nspkg-3.1.0-py2.py3-none-any.whl', 'azure_storage_queue-12.1.3-py2.py3-none-any.whl', 'azure_synapse-0.1.0-py2.py3-none-any.whl', 'azure_synapse_accesscontrol-0.2.0-py2.py3-none-any.whl', 'azure_synapse_artifacts-0.2.0-py2.py3-none-any.whl', 'azure_synapse_nspkg-1.0.0-py2.py3-none-any.whl', 'azure_synapse_spark-0.2.0-py2.py3-none-any.whl', 'azure_template-0.0.7-py2.py3-none-any.whl']
+  Command arguments: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-s3cu8679/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-s3cu8679/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-afabc0sf
+  Command output: [use --verbose to show]
+[0m  Created wheel for azure-mgmt-core: filename=azure_ai_formrecognizer-1.0.0b4-py2.py3-none-any.whl size=71034 sha256=5254e09cb72fc58abedbd8e9f3d1a21649a21ddc0d1ef20571a3ff69c47b9666
+  Stored in directory: /tmp/pip-ephem-wheel-cache-7k11sluz/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built azure-mgmt-core
+[91mERROR: Error checking for conflicts.
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/utils/wheel.py", line 103, in parse_wheel
+    info_dir = wheel_dist_info_dir(wheel_zip, name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/utils/wheel.py", line 145, in wheel_dist_info_dir
+    info_dir, canonical_name
+pip._internal.exceptions.UnsupportedWheel: .dist-info directory 'azure_ai_formrecognizer-1.0.0b4.dist-info' does not start with 'azure-mgmt-core'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/commands/install.py", line 517, in _warn_about_conflicts
+    package_set, _dep_info = check_install_conflicts(to_install)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/operations/check.py", line 116, in check_install_conflicts
+    would_be_installed = _simulate_installation_of(to_install, package_set)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/operations/check.py", line 140, in _simulate_installation_of
+    dist = abstract_dist.get_pkg_resources_distribution()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/distributions/wheel.py", line 31, in get_pkg_resources_distribution
+    z, self.req.name, self.req.local_file_path
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/utils/wheel.py", line 64, in pkg_resources_distribution_for_wheel
+    info_dir, _ = parse_wheel(wheel_zip, name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/pip/_internal/utils/wheel.py", line 108, in parse_wheel
+    "{} has an invalid wheel, {}".format(name, str(e))
+pip._internal.exceptions.UnsupportedWheel: azure-mgmt-core has an invalid wheel, .dist-info directory 'azure_ai_formrecognizer-1.0.0b4.dist-info' does not start with 'azure-mgmt-core'
+[0mInstalling collected packages: azure-core, azure-mgmt-core
+[91mERROR: azure-mgmt-core has an invalid wheel, .dist-info directory 'azure_ai_formrecognizer-1.0.0b4.dist-info' does not start with 'azure-mgmt-core'
+[0mRemoving intermediate container a6fa22ea9c6a
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-azure-azure-sdk-for-python:7cd31ac', '/tmp/r2d-test-2020-07-07T12.20yi924pf9/github.com/Azure/azure-sdk-for-python']' returned non-zero exit status 1.

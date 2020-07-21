@@ -1,0 +1,79 @@
+[I 200714 13:48:11 inrepo:36] Testing notebook simple-two-layer-nn.ipynb
+[I 200714 13:48:11 inrepo:45] Found kernel python3
+[I 200714 13:48:12 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def train_and_predict(batch_size=1, num_steps=NUM_OPT_STEPS, 
+                      opt=torch.optim.SGD, learning_rate=1e-3,
+                      show_loss=True, show_curve=True):
+    """
+    Train the model 
+    Args:
+        batch_size: batch_size of traiing data in each training step, default=1;
+        num_steps: number of training times, defult=5000;
+        opt: optimizer, default is SGD;
+        lr: learning rate, default=0.001;
+        show_loss: if print the loss during training;
+        show_curve: if plot the training/validation accuracy curve at the end;
+    """
+    optimizer = opt(model.parameters(), lr=learning_rate)
+    
+    train_accs, val_accs = [], [] # clear the previous results
+    for i in range(num_steps):
+        train(batch_size)
+        if i % 100 == 0:
+            train_accs.append(approx_train_accuracy())
+            val_accs.append(val_accuracy())
+            if show_loss:
+                print("%6d %5.2f %5.2f" % (i, train_accs[-1], val_accs[-1]))
+    if show_curve:
+        plotResult(train_accs, val_accs)
+    return train_accs, val_accs
+    
+# Train this network for 5,000 steps using a batch size of 1, 
+# using Adam as the optimizer with a learning rate of 0.001.
+_, _ = train_and_predict(batch_size=1, num_steps=5000, opt=torch.optim.Adam, 
+                  learning_rate=0.001, show_loss=True, show_curve=True)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-9-c73f5d0ca684>[0m in [0;36m<module>[0;34m[0m
+[1;32m     29[0m [0;31m# using Adam as the optimizer with a learning rate of 0.001.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     30[0m _, _ = train_and_predict(batch_size=1, num_steps=5000, opt=torch.optim.Adam, 
+[0;32m---> 31[0;31m                   learning_rate=0.001, show_loss=True, show_curve=True)
+[0m
+[0;32m<ipython-input-9-c73f5d0ca684>[0m in [0;36mtrain_and_predict[0;34m(batch_size, num_steps, opt, learning_rate, show_loss, show_curve)[0m
+[1;32m     16[0m     [0mtrain_accs[0m[0;34m,[0m [0mval_accs[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m,[0m [0;34m[[0m[0;34m][0m [0;31m# clear the previous results[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     17[0m     [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mnum_steps[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 18[0;31m         [0mtrain[0m[0;34m([0m[0mbatch_size[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     19[0m         [0;32mif[0m [0mi[0m [0;34m%[0m [0;36m100[0m [0;34m==[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m             [0mtrain_accs[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mapprox_train_accuracy[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-4-c90163913e89>[0m in [0;36mtrain[0;34m(batch_size)[0m
+[1;32m     14[0m     [0mx[0m [0;34m=[0m [0mautograd[0m[0;34m.[0m[0mVariable[0m[0;34m([0m[0mtorch[0m[0;34m.[0m[0mfrom_numpy[0m[0;34m([0m[0mtrain_X[0m[0;34m[[0m[0mi[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m     [0my[0m [0;34m=[0m [0mautograd[0m[0;34m.[0m[0mVariable[0m[0;34m([0m[0mtorch[0m[0;34m.[0m[0mfrom_numpy[0m[0;34m([0m[0mtrain_Y[0m[0;34m[[0m[0mi[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 16[0;31m     [0moptimizer[0m[0;34m.[0m[0mzero_grad[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     17[0m     [0my_hat_[0m [0;34m=[0m [0mmodel[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m     [0mloss[0m [0;34m=[0m [0mF[0m[0;34m.[0m[0mcross_entropy[0m[0;34m([0m[0my_hat_[0m[0;34m,[0m [0my[0m[0;34m)[0m [0;31m#.cross_entropy(input, target, weight=None, size_average=True,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'optimizer' is not defined
+NameError: name 'optimizer' is not defined
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

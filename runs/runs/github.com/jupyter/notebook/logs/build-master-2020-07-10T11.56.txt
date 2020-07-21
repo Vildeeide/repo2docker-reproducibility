@@ -1,0 +1,216 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T11.56_34ao9tu/github.com/jupyter/notebook.
+Using PythonBuildPack builder
+Step 1/48 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/48 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/48 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/48 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/48 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/48 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/48 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/48 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/48 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/48 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/48 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/48 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/48 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/48 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/48 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/48 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/48 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/48 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/48 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/48 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/48 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/48 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/48 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/48 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/48 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/48 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/48 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/48 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/48 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/48 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/48 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/48 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/48 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/48 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/48 : COPY src/ ${REPO_DIR}
+ ---> b0bb11261fc3
+Step 39/48 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e3287f68456e
+Removing intermediate container e3287f68456e
+ ---> eb6d75ec410f
+Step 40/48 : USER ${NB_USER}
+ ---> Running in c4511a090236
+Removing intermediate container c4511a090236
+ ---> bc6d21067363
+Step 41/48 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 379eec30e159
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (2.11.0)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (6.0.3)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (18.1.1)
+Collecting argon2-cffi
+  Downloading argon2_cffi-20.1.0-cp35-abi3-manylinux1_x86_64.whl (97 kB)
+Requirement already satisfied: ipython_genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (0.2.0)
+Requirement already satisfied: traitlets>=4.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (4.3.3)
+Requirement already satisfied: jupyter_core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (4.6.1)
+Requirement already satisfied: jupyter_client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (5.3.4)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (5.0.4)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (5.6.1)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (5.1.4)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (1.5.0)
+Requirement already satisfied: terminado>=0.8.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (0.8.3)
+Requirement already satisfied: prometheus_client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook==7.0.0.dev0) (0.7.1)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook==7.0.0.dev0) (1.1.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from argon2-cffi->notebook==7.0.0.dev0) (1.14.0)
+Requirement already satisfied: cffi>=1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from argon2-cffi->notebook==7.0.0.dev0) (1.13.2)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2.1->notebook==7.0.0.dev0) (4.4.1)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter_client>=5.3.4->notebook==7.0.0.dev0) (2.8.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook==7.0.0.dev0) (3.2.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (1.4.2)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (0.8.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (0.6.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (2.5.2)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (0.4.4)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook==7.0.0.dev0) (3.1.0)
+Requirement already satisfied: ipython>=5.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel->notebook==7.0.0.dev0) (7.11.1)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi>=1.0.0->argon2-cffi->notebook==7.0.0.dev0) (2.19)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook==7.0.0.dev0) (19.3.0)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook==7.0.0.dev0) (45.1.0.post20200119)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook==7.0.0.dev0) (0.15.7)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook==7.0.0.dev0) (1.5.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook==7.0.0.dev0) (0.5.1)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.16.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.7.5)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.1.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (4.8.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (3.0.3)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->notebook==7.0.0.dev0) (2.1.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=5.0.0->ipykernel->notebook==7.0.0.dev0) (0.1.8)
+Building wheels for collected packages: notebook
+  Building wheel for notebook (setup.py): started
+  Building wheel for notebook (setup.py): still running...
+  Building wheel for notebook (setup.py): finished with status 'done'
+  Created wheel for notebook: filename=notebook-7.0.0.dev0-py3-none-any.whl size=9248970 sha256=60fa552c709563e931470af7b9535691202e050016697142e564eb2b3e095cdc
+  Stored in directory: /tmp/pip-ephem-wheel-cache-g1l5kkj9/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built notebook
+Installing collected packages: argon2-cffi, notebook
+  Attempting uninstall: notebook
+    Found existing installation: notebook 6.0.3
+    Uninstalling notebook-6.0.3:
+      Successfully uninstalled notebook-6.0.3
+Successfully installed argon2-cffi-20.1.0 notebook-7.0.0.dev0
+Removing intermediate container 379eec30e159
+ ---> f89995c26783
+Step 42/48 : LABEL repo2docker.ref="None"
+ ---> Running in 631e0bc0a50a
+Removing intermediate container 631e0bc0a50a
+ ---> dd83d9838741
+Step 43/48 : LABEL repo2docker.repo="local"
+ ---> Running in b21c8da33251
+Removing intermediate container b21c8da33251
+ ---> f7c742c95998
+Step 44/48 : LABEL repo2docker.version="0.11.0"
+ ---> Running in f09ec8a27d51
+Removing intermediate container f09ec8a27d51
+ ---> 8fc335bba975
+Step 45/48 : USER ${NB_USER}
+ ---> Running in b3031ac8306c
+Removing intermediate container b3031ac8306c
+ ---> 96dc9b6a2e63
+Step 46/48 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 95eb0263d601
+Step 47/48 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in d64d46a5fb79
+Removing intermediate container d64d46a5fb79
+ ---> 69314323fbc8
+Step 48/48 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in c6c9058cb005
+Removing intermediate container c6c9058cb005
+ ---> 8d3a3c35a008
+{"aux": {"ID": "sha256:8d3a3c35a008d1fb35cd60a56e5eea195006b27571260960ce16e0033445ce1e"}}Successfully built 8d3a3c35a008
+Successfully tagged r2d-test-github.com-jupyter-notebook:617f746

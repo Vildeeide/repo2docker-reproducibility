@@ -1,0 +1,7 @@
+Saved workspace: /home/vildeeide/.jupyter/lab/workspaces/lab-a511.jupyterlab-workspace
+[I 200707 13:06:21 inrepo:36] Testing notebook Multi-dimensional Coordinates.ipynb
+[I 200707 13:06:21 inrepo:45] Found kernel python3
+[I 200707 13:06:22 execute:404] Executing notebook with kernel: python3
+[I 200707 13:07:02 inrepo:77] Saving exported notebook to /io/notebooks/Multi-dimensional Coordinates.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

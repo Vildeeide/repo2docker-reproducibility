@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bisraelsen/iJulia_share,17a0aa7fea76999ae1b851f082b145781807e0b4,17a0aa7,2017-01-12T10:39:52-07:00,build,build,True,github.com/bisraelsen/iJulia_share/logs/build-17a0aa7fea76999ae1b851f082b145781807e0b4-2020-07-14T10.34.txt,2020-07-14T10:34:14.284560,2020-07-14T10.34,0.11.0
+https://github.com/bisraelsen/iJulia_share,17a0aa7fea76999ae1b851f082b145781807e0b4,17a0aa7,2017-01-12T10:39:52-07:00,notebook,log-likelihood_exploration.ipynb,False,github.com/bisraelsen/iJulia_share/logs/test-notebook-log-likelihood_exploration.ipynb-2020-07-14T10.34.txt,2020-07-14T10:34:14.284560,2020-07-14T10.34,0.11.0

@@ -1,0 +1,5 @@
+[I 200706 09:46:27 inrepo:35] Testing notebook Problem-set-2/2-Model-calibration.ipynb
+[I 200706 09:46:28 execute:404] Executing notebook with kernel: python3
+[I 200706 09:46:29 inrepo:41] Saving exported notebook to /io/notebooks/Problem-set-2/2-Model-calibration.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

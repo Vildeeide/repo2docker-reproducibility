@@ -1,0 +1,83 @@
+[I 200713 12:36:15 inrepo:36] Testing notebook Untitled.ipynb
+[I 200713 12:36:16 inrepo:45] Found kernel python3
+[I 200713 12:36:16 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+## Import os component to do the file handling
+from os import listdir, walk
+from os.path import isfile, isdir, join
+
+## Import OpenCV to do the image reading
+import cv2
+
+
+## Import numpy to convert images to numpy arrays
+import numpy as np
+
+veh_dir = '/user_storage/meng/data/vehicles'
+#veh_dir = "C:/Users/Marc Engeler/PycharmProjects/car_tracking_training/vehicles"
+vehicle_folders = [join(veh_dir, name) for name in listdir(veh_dir) if isdir(join(veh_dir, name))]
+
+nveh_dir = '/user_storage/meng/data/non-vehicles'
+#nveh_dir = "C:/Users/Marc Engeler/PycharmProjects/car_tracking_training/non-vehicles"
+non_vehicle_folders = [join(nveh_dir, name) for name in listdir(nveh_dir) if isdir(join(nveh_dir, name))]
+
+
+train_files = []
+for vehicle_folder in vehicle_folders:
+    new_files = [join(vehicle_folder, f) for f in listdir(vehicle_folder) if isfile(join(vehicle_folder, f))]
+    for file in new_files:
+        train_files.append(file)
+        
+for vehicle_folder in non_vehicle_folders:
+    new_files = [join(vehicle_folder, f) for f in listdir(vehicle_folder) if isfile(join(vehicle_folder, f))]
+    for file in new_files:
+        train_files.append(file)
+
+y_train = []
+x_train = []
+for train_file in train_files:
+    if 'non-vehicle' in train_file:
+        y_train.append(0)
+    else:
+        y_train.append(1)
+    image = cv2.imread(train_file)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    x_train.append(np.uint8(image))
+    
+x_train = np.asarray(x_train)
+y_train = np.asarray(y_train)
+
+print(x_train.shape)
+print(y_train.shape)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-2e6b43cc9f69>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;31m## Import OpenCV to do the image reading[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mimport[0m [0mcv2[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m [0;34m[0m[0m
+[1;32m      8[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'cv2'
+ModuleNotFoundError: No module named 'cv2'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,155 @@
+[I 200717 08:15:47 inrepo:36] Testing notebook notebooks/model-pane-test.ipynb
+[I 200717 08:15:47 inrepo:45] Found kernel python3
+[I 200717 08:15:48 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import itk
+import vtk
+from vtk import vtkCommand
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+IF3         = itk.Image[itk.F, 3]
+IUC3        = itk.Image[itk.UC, 3]
+IRGBUC3     = itk.Image[itk.RGBPixel[itk.UC], 3]
+LMLOUL3     = itk.LabelMap[itk.StatisticsLabelObject[itk.UL, 3]]
+
+class SliceViewInteractorStyle(vtk.vtkInteractorStyleUser):
+    def __init__(self, parent=None, imageViewer=None):
+        self.AddObserver(vtkCommand.MouseWheelForwardEvent, self.mouseWheelForwardEvent)        
+        self.AddObserver(vtkCommand.MouseWheelBackwardEvent, self.mouseWheelBackwardEvent)
+        if imageViewer:
+            self.imageViewer = imageViewer
+            self.minSlice = imageViewer.GetSliceMin()
+            self.maxSlice = imageViewer.GetSliceMax()
+            self.slice = round((self.minSlice + self.maxSlice) / 2)
+            print(self.minSlice, self.maxSlice)
+        
+    def nextSlice(self):
+        if self.imageViewer and self.slice < self.maxSlice:
+            self.slice = self.slice + 1
+            self.imageViewer.SetSlice(self.slice)
+            self.imageViewer.GetRenderer().Render()
+
+    def previousSlice(self):
+        if self.imageViewer and self.slice > self.minSlice:
+            self.slice = self.slice - 1
+            self.imageViewer.SetSlice(self.slice)
+            self.imageViewer.GetRenderer().Render()
+    
+    def mouseWheelForwardEvent(self, obj, event):
+        self.nextSlice()
+        return
+    
+    def mouseWheelBackwardEvent(self, obj, event):
+        self.previousSlice()
+        return
+
+class DicomSeries():
+  
+  def __init__(self, fileNames):
+    self.fileNames = fileNames
+    self.type = IUC3
+    self.generatePipeline(fileNames)
+
+  def generatePipeline(self, fileNames):
+    # itk.ImageFileReader -> itk.ImageSeriesReader -> 
+    # RescaleIntensityImageFilter -> CastImageFilter -> 
+    # itk.ImageToVTKImageFilter -> vtkImageViewer2
+    imageSeriesReader = itk.ImageSeriesReader[IF3].New()
+    imageSeriesReader.SetFileNames(fileNames)
+    imageSeriesReader.Update()
+    rescaler = itk.RescaleIntensityImageFilter[IF3, IF3].New()
+    rescaler.SetInput(imageSeriesReader.GetOutput())
+    rescaler.SetOutputMaximum(255)
+    rescaler.SetOutputMinimum(0)
+    rescaler.Update()
+    self.caster = itk.CastImageFilter[IF3, IUC3].New()
+    self.caster.SetInput(rescaler.GetOutput())
+    self.caster.Update()
+
+  def GetOutput(self):
+    return self.caster.GetOutput()
+
+class LabelMap():
+  
+  def __init__(self, referenceImage, niiPath=None, numpyLabelMap=None):
+    self.niiPath = niiPath
+    self.numpyLabelMap = numpyLabelMap
+    self.type = IUC3
+    self.referenceImage = referenceImage
+    if niiPath:
+      self.generatePipeline(referenceImage, niiPath=niiPath)
+    elif numpyLabelMap:
+      self.generatePipeline(referenceImage, numpyLabelMap=numpyLabelMap)
+
+  def generatePipeline(self, referenceImage, niiPath=None, numpyLabelMap=None):
+    if niiPath:
+      # itk.ResampleImageFilter -> itk.LabelImageToLabelMapFilter -> itk.LabelMapOverlayImageFilter
+      niiReader = itk.ImageFileReader[IUC3].New()
+      niiReader.SetFileName(niiPath)
+      niiReader.Update()
+
+      multFilter = itk.MultiplyImageFilter[IUC3, IUC3, IUC3].New()
+      multFilter.SetInput(niiReader.GetOutput())
+      multFilter.SetConstant(100)
+
+        
+      self.resampleImageFilter = itk.ResampleImageFilter[IUC3, IUC3].New()
+      self.resampleImageFilter.SetInput(multFilter.GetOutput())
+      self.resampleImageFilter.SetTransform(itk.IdentityTransform[itk.D, 3].New())
+      self.resampleImageFilter.SetInterpolator(itk.NearestNeighborInterpolateImageFunction[IUC3, itk.D].New())
+      self.resampleImageFilter.UseReferenceImageOn()
+      self.resampleImageFilter.SetReferenceImage(referenceImage)
+      self.resampleImageFilter.Update()
+
+    elif numpyLabelMap:
+      # Itk.changeInformationImageFilter -> itk.ResampleImageFilter -> itk.LabelImageToLabelMapFilter -> itk.LabelMapOverlayImageFilter
+      changeInformationImageFilter = itk.ChangeInformationImageFilter[IUC3].New()
+      changeInformationImageFilter.SetInput(numpyLabelMap)
+      changeInformationImageFilter.UseReferenceImageOn()
+      changeInformationImageFilter.ChangeDirectionOn()
+      changeInformationImageFilter.ChangeSpacingOn()
+      changeInformationImageFilter.ChangeOriginOn()
+      changeInformationImageFilter.SetReferenceImage(caster.GetOutput())
+      self.resampleImageFilter = itk.ResampleImageFilter[IUC3, IUC3].New()
+      self.resampleImageFilter.SetInput(changeInformationImageFilter.GetOutput())
+      self.resampleImageFilter.SetTransform(itk.IdentityTransform[itk.D, 3].New())
+      self.resampleImageFilter.SetInterpolator(itk.NearestNeighborInterpolateImageFunction[IUC3, itk.D].New())
+      self.resampleImageFilter.UseReferenceImageOn()
+      self.resampleImageFilter.SetReferenceImage(referenceImage)
+
+  def GetOutput(self):
+    return self.resampleImageFilter.GetOutput()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-4e1696944b29>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mitk[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mimport[0m [0mvtk[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;32mfrom[0m [0mvtk[0m [0;32mimport[0m [0mvtkCommand[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'itk'
+ModuleNotFoundError: No module named 'itk'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

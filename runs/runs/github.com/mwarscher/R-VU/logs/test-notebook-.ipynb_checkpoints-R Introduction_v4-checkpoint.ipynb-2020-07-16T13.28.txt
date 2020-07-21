@@ -1,0 +1,32 @@
+[I 200716 13:32:24 inrepo:36] Testing notebook .ipynb_checkpoints/R Introduction_v4-checkpoint.ipynb
+[I 200716 13:32:24 inrepo:45] Found kernel ir
+[I 200716 13:32:25 execute:404] Executing notebook with kernel: ir
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+library(lubridate)
+------------------
+
+Error in library(lubridate): there is no package called ‘lubridate’
+Traceback:
+
+1. library(lubridate)
+ERROR: Error in library(lubridate): there is no package called ‘lubridate’
+
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

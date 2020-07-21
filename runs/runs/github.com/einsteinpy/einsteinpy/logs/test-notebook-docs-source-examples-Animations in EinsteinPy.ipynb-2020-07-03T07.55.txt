@@ -1,0 +1,26 @@
+[I 200703 07:59:05 inrepo:35] Testing notebook docs/source/examples/Animations in EinsteinPy.ipynb
+[I 200703 07:59:06 execute:404] Executing notebook with kernel: python3
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/logging/__init__.py", line 2033, in shutdown
+    h.flush()
+  File "/srv/conda/envs/notebook/lib/python3.7/logging/__init__.py", line 1009, in flush
+    self.stream.flush()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 356, in flush
+    self._flush()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 382, in _flush
+    parent=self.parent_header, ident=self.topic)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/session.py", line 748, in send
+    stream.send_multipart(to_send, copy=copy)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 214, in send_multipart
+    self.schedule(lambda : self._really_send(*args, **kwargs))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 207, in schedule
+    f()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 214, in <lambda>
+    self.schedule(lambda : self._really_send(*args, **kwargs))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/iostream.py", line 222, in _really_send
+    self.socket.send_multipart(msg, *args, **kwargs)
+AttributeError: 'NoneType' object has no attribute 'send_multipart'
+[I 200703 07:59:15 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Animations in EinsteinPy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

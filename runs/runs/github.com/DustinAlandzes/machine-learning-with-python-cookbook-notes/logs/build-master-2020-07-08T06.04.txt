@@ -1,0 +1,197 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T06.04wqjdlta7/github.com/DustinAlandzes/machine-learning-with-python-cookbook-notes.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e6-2efrozen-2eyml-7faaa9 /tmp/environment.yml
+ ---> Using cache
+ ---> 8bf90b0af9a4
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> d94262206d7f
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> a0d9a2009de8
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> d346cab5791b
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> d9689a512ce1
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 0698c74eac04
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 923c36d4009c
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> be7951594e5a
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> dd36de80f9ae
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 147d1c57f768
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> ee1cce3f64fc
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> f42b790c0d6f
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> Using cache
+ ---> 6c6da62fb6f0
+Step 38/51 : USER root
+ ---> Using cache
+ ---> dcb5619e815e
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> e1d76a982f08
+Step 40/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 56ee8b84a171
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in c475fb6b9e0c
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed
+[91m
+ResolvePackageNotFound: 
+  - grpcio==1.12.1=py36hd9629dc_0
+  - readline==7.0=hc1231fa_4
+  - pygments==2.2.0=py36h240cd3f_0
+  - libpng==1.6.34=he12f830_0
+  - numpy-base==1.15.0=py36h8a80b8c_0
+  - prompt_toolkit==1.0.15=py36haeda067_0
+  - zope.interface==4.5.0=py36h1de35cc_0
+  - yaml==0.1.7=hc338f04_2
+  - zeromq==4.2.5=h0a44026_0
+  - pickleshare==0.7.4=py36hf512f8e_0
+  - numpy==1.15.0=py36h648b28d_0
+  - tornado==5.1=py36h1de35cc_0
+  - pyzmq==17.1.2=py36h1de35cc_0
+  - appnope==0.1.0=py36hf537a9a_0
+  - mkl_fft==1.0.4=py36h5d10147_1
+  - xz==5.2.4=h1de35cc_4
+  - kiwisolver==1.0.1=py36h0a44026_0
+  - scikit-learn==0.19.1=py36hf9f1f73_0
+  - tensorflow==1.10.0=eigen_py36h0906837_0
+  - cffi==1.11.5=py36h342bebf_0
+  - openssl==1.0.2p=h1de35cc_0
+  - twisted==17.5.0=py36_0
+  - nbformat==4.4.0=py36h827af21_0
+  - freetype==2.9.1=hb4e5f40_0
+  - tensorboard==1.10.0=py36hdc36e2c_0
+  - sqlalchemy==1.2.11=py36h1de35cc_0
+  - traitlets==4.3.2=py36h65bd3ce_0
+  - zlib==1.2.11=hf3cbc9b_2
+  - libcxx==4.0.1=h579ed51_0
+  - mkl_random==1.0.1=py36h5d10147_1
+  - hdf5==1.10.2=hfa1e0ec_1
+  - wcwidth==0.1.7=py36h8c6ec74_0
+  - libgfortran==3.0.1=h93005f0_2
+  - h5py==2.8.0=py36h3c9e6ae_0
+  - pyyaml==3.13=py36h1de35cc_0
+  - pandas==0.23.4=py36h6440ff4_0
+  - statsmodels==0.9.0=py36h1d22016_0
+  - libsodium==1.0.16=h3efe00b_0
+  - protobuf==3.6.0=py36h0a44026_0
+  - cycler==0.10.0=py36hfc81398_0
+  - libcxxabi==4.0.1=hebd6815_0
+  - sqlite==3.24.0=ha441bb4_0
+  - scipy==1.1.0=py36hf1f7d93_0
+  - libedit==3.1.20170329=hb402a30_2
+  - cryptography==2.3.1=py36hdbc3d79_0
+  - tk==8.6.7=h35a86e2_3
+  - jsonschema==2.6.0=py36hb385e00_0
+  - pandoc==2.2.1=h1a437c5_0
+  - libffi==3.2.1=h475c297_4
+  - tensorflow-base==1.10.0=eigen_py36h4f0eeca_0
+  - mistune==0.8.3=py36h1de35cc_1
+  - ncurses==6.1=h0a44026_0
+  - markupsafe==1.0=py36h1de35cc_1
+  - _nb_ext_conf==0.4.0=py36_1
+  - matplotlib==2.2.3=py36h54f8f79_0
+  - libprotobuf==3.6.0=hd9629dc_0
+  - ipython_genutils==0.2.0=py36h241746c_0
+  - testpath==0.3.1=py36h625a49b_0
+  - python==3.6.6=hc167b69_0
+
+[0mRemoving intermediate container c475fb6b9e0c
+The command '/bin/sh -c conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-dustinalandzes-machine-learning-with-python-cookbook-notes:be3b6e8', '/tmp/r2d-test-2020-07-08T06.04wqjdlta7/github.com/DustinAlandzes/machine-learning-with-python-cookbook-notes']' returned non-zero exit status 1.

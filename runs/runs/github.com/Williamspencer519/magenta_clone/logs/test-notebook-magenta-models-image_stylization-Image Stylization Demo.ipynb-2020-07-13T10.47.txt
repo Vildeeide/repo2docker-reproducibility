@@ -1,0 +1,111 @@
+[I 200713 10:47:31 inrepo:36] Testing notebook magenta/models/image_stylization/Image Stylization Demo.ipynb
+[W 200713 10:47:31 inrepo:48] No such kernel Python [Root], falling back on kernel language=python
+[W 200713 10:47:31 inrepo:60] Using kernel python3 to provide language: python
+[I 200713 10:47:32 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+"""
+A small Jupyter demo of the fast image stylization. To use, install jupyter and from this
+directory run 'jupyter notebook'
+"""
+from __future__ import absolute_import
+from __future__ import division
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+import ast
+import os
+import numpy as np
+import random
+import tensorflow as tf
+import urllib2
+
+from magenta.models.image_stylization import image_utils
+from magenta.models.image_stylization import model
+
+def DownloadCheckpointFiles(checkpoint_dir='checkpoints'):
+    """Download checkpoint files if necessary."""
+    url_prefix = 'http://download.magenta.tensorflow.org/models/' 
+    checkpoints = ['multistyle-pastiche-generator-monet.ckpt', 'multistyle-pastiche-generator-varied.ckpt']
+    for checkpoint in checkpoints:
+        full_checkpoint = os.path.join(checkpoint_dir, checkpoint)
+        if not os.path.exists(full_checkpoint):
+            print 'Downloading', full_checkpoint
+            response = urllib2.urlopen(url_prefix + checkpoint)
+            data = response.read()
+            with open(full_checkpoint, 'wb') as fh:
+                fh.write(data)
+
+# Select an image (any jpg or png).
+input_image = 'evaluation_images/guerrillero_heroico.jpg'
+
+# Select a demo ('varied' or 'monet')
+demo = 'varied'
+
+DownloadCheckpointFiles()
+image = np.expand_dims(image_utils.load_np_image(
+          os.path.expanduser(input_image)), 0)
+if demo == 'monet':
+    checkpoint = 'checkpoints/multistyle-pastiche-generator-monet.ckpt'
+    num_styles = 10  # Number of images in checkpoint file. Do not change.
+elif demo == 'varied':
+    checkpoint = 'checkpoints/multistyle-pastiche-generator-varied.ckpt'
+    num_styles = 32  # Number of images in checkpoint file. Do not change.
+    
+# Styles from checkpoint file to render. They are done in batch, so the more 
+# rendered, the longer it will take and the more memory will be used.
+# These can be modified as you like. Here we randomly select six styles.
+styles = range(num_styles)
+random.shuffle(styles)
+which_styles = styles[0:6]
+num_rendered = len(which_styles)  
+
+with tf.Graph().as_default(), tf.Session() as sess:
+    stylized_images = model.transform(
+        tf.concat([image for _ in range(len(which_styles))], 0),
+        normalizer_params={
+            'labels': tf.constant(which_styles),
+            'num_categories': num_styles,
+            'center': True,
+            'scale': True})
+    model_saver = tf.train.Saver(tf.global_variables())
+    model_saver.restore(sess, checkpoint)
+    stylized_images = stylized_images.eval()
+    
+    # Plot the images.
+    counter = 0
+    num_cols = 3
+    f, axarr = plt.subplots(num_rendered // num_cols, num_cols, figsize=(25, 25))
+    for col in range(num_cols):
+        for row in range( num_rendered // num_cols):
+            axarr[row, col].imshow(stylized_images[counter])
+            axarr[row, col].set_xlabel('Style %i' % which_styles[counter])
+            counter += 1
+        
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-69a31fd41983>"[0;36m, line [0;32m28[0m
+[0;31m    print 'Downloading', full_checkpoint[0m
+[0m                      ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print('Downloading', full_checkpoint)?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print('Downloading', full_checkpoint)? (<ipython-input-1-69a31fd41983>, line 28)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,327 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T11.18l26rg84d/github.com/tonyfast/notebookism-chicago.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 63034f1b6eef
+Step 38/50 : USER root
+ ---> Using cache
+ ---> a11f44781645
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 230f4cbe554e
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 18ac88f22b29
+Removing intermediate container 18ac88f22b29
+ ---> 8a6ccea5fb54
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 969a8ceae48d
+Removing intermediate container 969a8ceae48d
+ ---> 8666218a85b3
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 1bb9edeaa046
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting lxml
+  Downloading lxml-4.5.1-cp37-cp37m-manylinux1_x86_64.whl (5.5 MB)
+Collecting whatever-forever
+  Downloading whatever-forever-0.1.4.tar.gz (6.1 kB)
+Collecting sklearn
+  Downloading sklearn-0.0.tar.gz (1.1 kB)
+Collecting cython
+  Downloading Cython-0.29.20-cp37-cp37m-manylinux1_x86_64.whl (2.0 MB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting scipy
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 7)) (2.22.0)
+Collecting envoy
+  Downloading envoy-0.0.3-py2.py3-none-any.whl (5.0 kB)
+Requirement already satisfied: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 9)) (7.5.1)
+Collecting toolz
+  Downloading toolz-0.10.0.tar.gz (49 kB)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 5)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting numpy>=1.13.3
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->-r requirements.txt (line 7)) (2019.11.28)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->-r requirements.txt (line 9)) (5.0.4)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->-r requirements.txt (line 9)) (5.1.4)
+Requirement already satisfied: traitlets>=4.3.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->-r requirements.txt (line 9)) (4.3.3)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->-r requirements.txt (line 9)) (7.11.1)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->-r requirements.txt (line 9)) (3.5.1)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas->-r requirements.txt (line 5)) (1.14.0)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (3.2.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (0.2.0)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (4.6.1)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->-r requirements.txt (line 9)) (5.3.4)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->-r requirements.txt (line 9)) (6.0.3)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.1->ipywidgets->-r requirements.txt (line 9)) (4.4.1)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.1.0)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.16.0)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (45.1.0.post20200119)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (4.8.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (3.0.3)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.7.5)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (2.5.2)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (6.0.3)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (1.5.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (0.15.7)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets->-r requirements.txt (line 9)) (18.1.1)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->-r requirements.txt (line 9)) (0.1.8)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (2.11.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.7.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (1.5.0)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (5.6.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->-r requirements.txt (line 9)) (2.1.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (1.1.1)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.6.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.4.4)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (1.4.2)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.8.4)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->-r requirements.txt (line 9)) (0.5.1)
+Building wheels for collected packages: whatever-forever, sklearn, toolz
+  Building wheel for whatever-forever (setup.py): started
+  Building wheel for whatever-forever (setup.py): finished with status 'done'
+  Created wheel for whatever-forever: filename=whatever_forever-0.1.4-py2.py3-none-any.whl size=6820 sha256=9a8031e60e835ec6e610461aa3f0aeb9aa4f63c94850a0f48ed25e1a20aabb73
+  Stored in directory: /tmp/pip-ephem-wheel-cache-oczzd0za/wheels/21/d5/7b/a7b414dee60b4c7f67317e6f3dc1cf25cbb93d6b0474715330
+  Building wheel for sklearn (setup.py): started
+  Building wheel for sklearn (setup.py): finished with status 'done'
+  Created wheel for sklearn: filename=sklearn-0.0-py2.py3-none-any.whl size=1316 sha256=bfc15ba0c46686ca8de7148a2238ec4cb57c0bd7aea585e9a009cff46292a1c5
+  Stored in directory: /tmp/pip-ephem-wheel-cache-oczzd0za/wheels/46/ef/c3/157e41f5ee1372d1be90b09f74f82b10e391eaacca8f22d33e
+  Building wheel for toolz (setup.py): started
+  Building wheel for toolz (setup.py): finished with status 'done'
+  Created wheel for toolz: filename=toolz-0.10.0-py3-none-any.whl size=55574 sha256=1f8636df65485373ebd97f61831b2e8ef740f13b583073b492ae5a4894c4999a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-oczzd0za/wheels/e2/83/7c/248063997a4f9ff6bf145822e620e8c37117a6b4c765584077
+Successfully built whatever-forever sklearn toolz
+Installing collected packages: lxml, toolz, joblib, whatever-forever, numpy, scipy, threadpoolctl, scikit-learn, sklearn, cython, pytz, pandas, envoy
+Successfully installed cython-0.29.20 envoy-0.0.3 joblib-0.16.0 lxml-4.5.1 numpy-1.19.0 pandas-1.0.5 pytz-2020.1 scikit-learn-0.23.1 scipy-1.5.0 sklearn-0.0 threadpoolctl-2.1.0 toolz-0.10.0 whatever-forever-0.1.4
+Removing intermediate container 1bb9edeaa046
+ ---> cb8ec94ac16d
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in bd38bccc2059
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: envoy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (0.0.3)
+Requirement already satisfied: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (7.5.1)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (2.22.0)
+Requirement already satisfied: cython in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (0.29.20)
+Requirement already satisfied: jinja2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (2.11.0)
+Requirement already satisfied: sklearn in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (0.0)
+Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (1.0.5)
+Requirement already satisfied: whatever-forever in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebookism-chicago==0.2.1) (0.1.4)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->notebookism-chicago==0.2.1) (5.1.4)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->notebookism-chicago==0.2.1) (7.11.1)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->notebookism-chicago==0.2.1) (3.5.1)
+Requirement already satisfied: traitlets>=4.3.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->notebookism-chicago==0.2.1) (4.3.3)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->notebookism-chicago==0.2.1) (5.0.4)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->notebookism-chicago==0.2.1) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->notebookism-chicago==0.2.1) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->notebookism-chicago==0.2.1) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->notebookism-chicago==0.2.1) (2.8)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2->notebookism-chicago==0.2.1) (1.1.1)
+Requirement already satisfied: scikit-learn in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sklearn->notebookism-chicago==0.2.1) (0.23.1)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->notebookism-chicago==0.2.1) (2.8.1)
+Requirement already satisfied: numpy>=1.13.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->notebookism-chicago==0.2.1) (1.19.0)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->notebookism-chicago==0.2.1) (2020.1)
+Requirement already satisfied: toolz in /srv/conda/envs/notebook/lib/python3.7/site-packages (from whatever-forever->notebookism-chicago==0.2.1) (0.10.0)
+Requirement already satisfied: joblib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from whatever-forever->notebookism-chicago==0.2.1) (0.16.0)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->notebookism-chicago==0.2.1) (5.3.4)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets->notebookism-chicago==0.2.1) (6.0.3)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (4.4.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (3.0.3)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (45.1.0.post20200119)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.7.5)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (4.8.0)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.1.0)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.16.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (2.5.2)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (6.0.3)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.1->ipywidgets->notebookism-chicago==0.2.1) (1.14.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.1->ipywidgets->notebookism-chicago==0.2.1) (0.2.0)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (4.6.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (3.2.0)
+Requirement already satisfied: scipy>=0.19.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->sklearn->notebookism-chicago==0.2.1) (1.5.0)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->sklearn->notebookism-chicago==0.2.1) (2.1.0)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets->notebookism-chicago==0.2.1) (18.1.1)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.1.8)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.6.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets->notebookism-chicago==0.2.1) (0.6.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.8.3)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (1.5.0)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.7.1)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (5.6.1)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (1.5.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.3)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.4.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (1.4.2)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.6.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.8.4)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->notebookism-chicago==0.2.1) (2.1.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets->notebookism-chicago==0.2.1) (0.5.1)
+Building wheels for collected packages: notebookism-chicago
+  Building wheel for notebookism-chicago (setup.py): started
+  Building wheel for notebookism-chicago (setup.py): finished with status 'done'
+  Created wheel for notebookism-chicago: filename=notebookism_chicago-0.2.1-py2.py3-none-any.whl size=14372 sha256=b845a4495ce0589c8798b19e3b16c0775768a2eb0dab4908e38ea00036e92895
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ki3ekrbn/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built notebookism-chicago
+Installing collected packages: notebookism-chicago
+Successfully installed notebookism-chicago-0.2.1
+Removing intermediate container bd38bccc2059
+ ---> d35d7c08f90f
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 392eafb97768
+Removing intermediate container 392eafb97768
+ ---> 59a0afa3e475
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in fd49546c1555
+Removing intermediate container fd49546c1555
+ ---> abb7b41cdf8f
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in ef136edacf7c
+Removing intermediate container ef136edacf7c
+ ---> 5ea90dad0602
+Step 47/50 : USER ${NB_USER}
+ ---> Running in d035787931ac
+Removing intermediate container d035787931ac
+ ---> 58f8162e1e6d
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 72e596e9ea0d
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in ac86e0844ce1
+Removing intermediate container ac86e0844ce1
+ ---> fa06b9383de7
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 1a02a6489188
+Removing intermediate container 1a02a6489188
+ ---> cb2b7bf6bee6
+{"aux": {"ID": "sha256:cb2b7bf6bee650620a779f29115f2217b3c34471e95698452da8ccb1a5a252c6"}}Successfully built cb2b7bf6bee6
+Successfully tagged r2d-test-github.com-tonyfast-notebookism-chicago:669337e

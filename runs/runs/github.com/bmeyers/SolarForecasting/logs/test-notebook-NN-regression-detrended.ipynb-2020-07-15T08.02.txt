@@ -1,0 +1,60 @@
+[I 200715 08:03:17 inrepo:36] Testing notebook NN-regression-detrended.ipynb
+[I 200715 08:03:18 inrepo:45] Found kernel python3
+[I 200715 08:03:19 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import core.preprocessing as pp
+from core.neural_net_forecaster import NeuralNetForecaster
+
+# Train on the large, but test on the small
+dm = pp.DataManager()
+
+dm.load_all_and_split(kind='all', reindex=True)
+dftrain = dm.detrended_train
+
+dm.load_all_and_split(kind='small', reindex=True)
+dfdev = dm.detrended_dev
+
+# RUN PARAMETERS
+batchsize = 500
+niter = 6 * 150000 // batchsize 
+
+problem = NeuralNetForecaster(dftrain, dfdev, arch='FC1', logdir='./tmp/debug/FC1-detrend',
+                              niter=niter, batchsize=batchsize,
+                              learningrate=0.01, sampling="rand")
+
+problem.make_forecasts()
+------------------
+
+Traceback [0;36m(most recent call last)[0m:
+
+  File [1;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py"[0m, line [1;32m3319[0m, in [1;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+[0;36m  File [0;32m"<ipython-input-1-38e3ac4c0db5>"[0;36m, line [0;32m1[0;36m, in [0;35m<module>[0;36m[0m
+[0;31m    import core.preprocessing as pp[0m
+
+[0;36m  File [0;32m"/home/vildeeide/core/preprocessing.py"[0;36m, line [0;32m462[0m
+[0;31m    print 'Please load detrended data'[0m
+[0m                                     ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print('Please load detrended data')?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print('Please load detrended data')? (preprocessing.py, line 462)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

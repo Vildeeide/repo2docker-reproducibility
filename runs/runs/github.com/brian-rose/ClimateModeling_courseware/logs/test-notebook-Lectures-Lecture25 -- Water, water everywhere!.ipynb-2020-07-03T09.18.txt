@@ -1,0 +1,3 @@
+[I 200703 09:28:33 inrepo:35] Testing notebook Lectures/Lecture25 -- Water, water everywhere!.ipynb
+[I 200703 09:28:34 execute:404] Executing notebook with kernel: python3
+[E 200703 09:29:27 execute:498] Timeout waiting for execute reply (30s).

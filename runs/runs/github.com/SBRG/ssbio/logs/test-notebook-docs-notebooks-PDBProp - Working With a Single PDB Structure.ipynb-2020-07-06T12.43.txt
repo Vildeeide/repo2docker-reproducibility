@@ -1,0 +1,13 @@
+[I 200706 12:43:36 inrepo:35] Testing notebook docs/notebooks/PDBProp - Working With a Single PDB Structure.ipynb
+[I 200706 12:43:37 execute:404] Executing notebook with kernel: python3
+[I 200706 12:43:58 inrepo:41] Saving exported notebook to /io/notebooks/docs/notebooks/PDBProp - Working With a Single PDB Structure.ipynb
+[E 200706 12:43:58 __init__:109] Notebook JSON is invalid: {'version_major': 2, 'version_minor': 0, 'model_id': '1436e222e2a24b76bb7255cac564ed68'} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][23]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '1436e222e2a24b76bb7255cac564ed68',
+     'version_major': 2,
+     'version_minor': 0}
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200706 09:45:21 inrepo:35] Testing notebook tutorials/notebooks/Models-Quick-Fit/Models-Quick-Fit.ipynb
+[I 200706 09:45:22 execute:404] Executing notebook with kernel: python3
+[I 200706 09:45:31 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/notebooks/Models-Quick-Fit/Models-Quick-Fit.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

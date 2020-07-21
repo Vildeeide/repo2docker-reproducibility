@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/clips/pattern,master,d25511f,2020-04-25T14:40:40+02:00,build,build,True,github.com/clips/pattern/logs/build-master-2020-07-03T06.45.txt,2020-07-03T06:45:21.304243,2020-07-03T06.45,0.11.0

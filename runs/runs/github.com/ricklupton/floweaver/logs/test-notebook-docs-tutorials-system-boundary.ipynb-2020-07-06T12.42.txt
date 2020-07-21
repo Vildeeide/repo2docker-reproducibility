@@ -1,0 +1,5 @@
+[I 200706 12:42:41 inrepo:35] Testing notebook docs/tutorials/system-boundary.ipynb
+[I 200706 12:42:42 execute:404] Executing notebook with kernel: python3
+[I 200706 12:42:44 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorials/system-boundary.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

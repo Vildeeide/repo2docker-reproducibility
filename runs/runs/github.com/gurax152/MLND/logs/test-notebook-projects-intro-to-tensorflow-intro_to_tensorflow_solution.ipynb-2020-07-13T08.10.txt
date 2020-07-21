@@ -1,0 +1,5 @@
+[I 200713 08:10:29 inrepo:36] Testing notebook projects/intro-to-tensorflow/intro_to_tensorflow_solution.ipynb
+[I 200713 08:10:30 inrepo:45] Found kernel python3
+[I 200713 08:10:30 execute:404] Executing notebook with kernel: python3
+
+Container exited with status: {'Error': None, 'StatusCode': 137}

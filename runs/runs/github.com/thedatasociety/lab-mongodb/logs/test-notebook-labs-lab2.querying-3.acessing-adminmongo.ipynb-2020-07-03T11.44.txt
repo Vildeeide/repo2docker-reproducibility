@@ -1,0 +1,78 @@
+Cloning into 'adminMongo'...
+2020-07-03T11:46:31.885+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2020-07-03T11:46:31.889+0000 I CONTROL  [initandlisten] MongoDB starting : pid=21 port=27017 dbpath=/home/vildeeide/resources/local/mongodb-4.0.11/data/db 64-bit host=ce17fee07edd
+2020-07-03T11:46:31.889+0000 I CONTROL  [initandlisten] db version v4.0.11
+2020-07-03T11:46:31.889+0000 I CONTROL  [initandlisten] git version: 417d1a712e9f040d54beca8e4943edce218e9a8c
+2020-07-03T11:46:31.889+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1  11 Sep 2018
+2020-07-03T11:46:31.889+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten] modules: none
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten] build environment:
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten]     distmod: ubuntu1804
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2020-07-03T11:46:31.890+0000 I CONTROL  [initandlisten] options: { storage: { dbPath: "/home/vildeeide/resources/local/mongodb-4.0.11/data/db" } }
+2020-07-03T11:46:31.890+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7494M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+[I 200703 11:46:32 inrepo:35] Testing notebook labs/lab2.querying/3.acessing-adminmongo.ipynb
+2020-07-03T11:46:32.502+0000 I STORAGE  [initandlisten] WiredTiger message [1593776792:502915][21:0x7f848daeba40], txn-recover: Set global recovery timestamp: 0
+2020-07-03T11:46:32.515+0000 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2020-07-03T11:46:32.532+0000 I CONTROL  [initandlisten] 
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] 
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2020-07-03T11:46:32.533+0000 I CONTROL  [initandlisten] 
+2020-07-03T11:46:32.533+0000 I STORAGE  [initandlisten] createCollection: admin.system.version with provided UUID: d89b271a-d512-4fad-a183-213e1582d2d6
+2020-07-03T11:46:32.547+0000 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 4.0
+2020-07-03T11:46:32.552+0000 I STORAGE  [initandlisten] createCollection: local.startup_log with generated UUID: 9a449792-6358-4f8b-b212-51884ee90148
+2020-07-03T11:46:32.564+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/home/vildeeide/resources/local/mongodb-4.0.11/data/db/diagnostic.data'
+2020-07-03T11:46:32.568+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2020-07-03T11:46:32.569+0000 I STORAGE  [LogicalSessionCacheRefresh] createCollection: config.system.sessions with generated UUID: e72dcaad-41fd-47b7-a4c7-4dcbcf5992f1
+2020-07-03T11:46:32.592+0000 I INDEX    [LogicalSessionCacheRefresh] build index on: config.system.sessions properties: { v: 2, key: { lastUse: 1 }, name: "lsidTTLIndex", ns: "config.system.sessions", expireAfterSeconds: 1800 }
+2020-07-03T11:46:32.592+0000 I INDEX    [LogicalSessionCacheRefresh] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2020-07-03T11:46:32.593+0000 I INDEX    [LogicalSessionCacheRefresh] build index done.  scanned 0 total records. 0 secs
+[I 200703 11:46:36 execute:404] Executing notebook with kernel: python3
+npm WARN deprecated electron-prebuilt@1.4.13: electron-prebuilt has been renamed to electron. For more details, see http://electron.atom.io/blog/2016/08/16/npm-install-electron
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+url_message='<b>AdminMongo interface is available at:</b> <a href="http://{0}{1}{2}" target="_blank"> http://{0}{1}{2}</a>'
+display(HTML(url_message.format(os.environ['SERVER_URL'],os.environ['JUPYTERHUB_SERVICE_PREFIX'],os.environ['PROXY_SUBURL'])))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m<ipython-input-3-42443cbc7838>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0murl_message[0m[0;34m=[0m[0;34m'<b>AdminMongo interface is available at:</b> <a href="http://{0}{1}{2}" target="_blank"> http://{0}{1}{2}</a>'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mdisplay[0m[0;34m([0m[0mHTML[0m[0;34m([0m[0murl_message[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'SERVER_URL'[0m[0;34m][0m[0;34m,[0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'JUPYTERHUB_SERVICE_PREFIX'[0m[0;34m][0m[0;34m,[0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'PROXY_SUBURL'[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/os.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
+[1;32m    677[0m         [0;32mexcept[0m [0mKeyError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    678[0m             [0;31m# raise KeyError with the original key value[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 679[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    680[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdecodevalue[0m[0;34m([0m[0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    681[0m [0;34m[0m[0m
+
+[0;31mKeyError[0m: 'JUPYTERHUB_SERVICE_PREFIX'
+KeyError: 'JUPYTERHUB_SERVICE_PREFIX'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

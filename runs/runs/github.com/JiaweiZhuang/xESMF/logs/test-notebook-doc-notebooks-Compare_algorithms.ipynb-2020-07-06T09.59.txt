@@ -1,0 +1,5 @@
+[I 200706 10:00:45 inrepo:35] Testing notebook doc/notebooks/Compare_algorithms.ipynb
+[I 200706 10:00:46 execute:404] Executing notebook with kernel: python3
+[I 200706 10:00:52 inrepo:41] Saving exported notebook to /io/notebooks/doc/notebooks/Compare_algorithms.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

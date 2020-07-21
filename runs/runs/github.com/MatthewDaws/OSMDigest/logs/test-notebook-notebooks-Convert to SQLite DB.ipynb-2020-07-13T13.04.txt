@@ -1,0 +1,85 @@
+[I 200713 13:05:27 inrepo:36] Testing notebook notebooks/Convert to SQLite DB.ipynb
+[I 200713 13:05:27 inrepo:45] Found kernel python3
+[I 200713 13:05:28 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+start = datetime.datetime.now()
+sq.convert(filename, "demo.db")
+
+print(datetime.datetime.now() - start)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-6-2409115aba22>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mstart[0m [0;34m=[0m [0mdatetime[0m[0;34m.[0m[0mdatetime[0m[0;34m.[0m[0mnow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0msq[0m[0;34m.[0m[0mconvert[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0;34m"demo.db"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mprint[0m[0;34m([0m[0mdatetime[0m[0;34m.[0m[0mdatetime[0m[0;34m.[0m[0mnow[0m[0;34m([0m[0;34m)[0m [0;34m-[0m [0mstart[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/osmdigest/sqlite.py[0m in [0;36mconvert[0;34m(xml_file, db_filename)[0m
+[1;32m    530[0m     [0;34m:[0m[0mparam[0m [0mdb_filename[0m[0;34m:[0m [0mFilename[0m [0mto[0m [0;32mpass[0m [0mto[0m [0mthe[0m[0;31m [0m[0;31m`[0m[0msqlite3[0m[0;31m`[0m [0mmodule[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    531[0m     """
+[0;32m--> 532[0;31m     [0;32mfor[0m [0mx[0m [0;32min[0m [0mconvert_gen[0m[0;34m([0m[0mxml_file[0m[0;34m,[0m [0mdb_filename[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    533[0m         [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/osmdigest/sqlite.py[0m in [0;36mconvert_gen[0;34m(xml_file, db_filename)[0m
+[1;32m    521[0m     """
+[1;32m    522[0m     [0mgen[0m [0;34m=[0m [0m_digest[0m[0;34m.[0m[0mparse[0m[0;34m([0m[0mxml_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 523[0;31m     [0;32myield[0m [0;32mfrom[0m [0m_convert_gen_from_any_source[0m[0;34m([0m[0mgen[0m[0;34m,[0m [0mdb_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    524[0m [0;34m[0m[0m
+[1;32m    525[0m [0;32mdef[0m [0mconvert[0m[0;34m([0m[0mxml_file[0m[0;34m,[0m [0mdb_filename[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/osmdigest/sqlite.py[0m in [0;36m_convert_gen_from_any_source[0;34m(gen, db_filename)[0m
+[1;32m    492[0m         [0m_schema_db[0m[0;34m([0m[0mconnection[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    493[0m         [0;32mwith[0m [0mconnection[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 494[0;31m             [0m_write_osm[0m[0;34m([0m[0mconnection[0m[0;34m,[0m [0mnext[0m[0;34m([0m[0mgen[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    495[0m             [0m_write_bounds[0m[0;34m([0m[0mconnection[0m[0;34m,[0m [0mnext[0m[0;34m([0m[0mgen[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    496[0m [0;34m[0m[0m
+
+[0;32m~/osmdigest/digest.py[0m in [0;36mparse[0;34m(file)[0m
+[1;32m    367[0m       extensions) or a file-like object.
+[1;32m    368[0m     """
+[0;32m--> 369[0;31m     [0;32myield[0m [0;32mfrom[0m [0m_parse[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0m_parse_file_etree[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/osmdigest/digest.py[0m in [0;36m_parse[0;34m(file, parse_func)[0m
+[1;32m    285[0m             [0mfile[0m [0;34m=[0m [0m_lzma[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0;34m"rt"[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    286[0m         [0;32melif[0m [0mfile[0m[0;34m[[0m[0;34m-[0m[0;36m4[0m[0;34m:[0m[0;34m][0m [0;34m==[0m [0;34m".bz2"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 287[0;31m             [0mfile[0m [0;34m=[0m [0m_bz2[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0;34m"rt"[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    288[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    289[0m             [0mfile[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/bz2.py[0m in [0;36mopen[0;34m(filename, mode, compresslevel, encoding, errors, newline)[0m
+[1;32m    316[0m [0;34m[0m[0m
+[1;32m    317[0m     [0mbz_mode[0m [0;34m=[0m [0mmode[0m[0;34m.[0m[0mreplace[0m[0;34m([0m[0;34m"t"[0m[0;34m,[0m [0;34m""[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 318[0;31m     [0mbinary_file[0m [0;34m=[0m [0mBZ2File[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mbz_mode[0m[0;34m,[0m [0mcompresslevel[0m[0;34m=[0m[0mcompresslevel[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    319[0m [0;34m[0m[0m
+[1;32m    320[0m     [0;32mif[0m [0;34m"t"[0m [0;32min[0m [0mmode[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/bz2.py[0m in [0;36m__init__[0;34m(self, filename, mode, buffering, compresslevel)[0m
+[1;32m     90[0m [0;34m[0m[0m
+[1;32m     91[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0;34m([0m[0mstr[0m[0;34m,[0m [0mbytes[0m[0;34m,[0m [0mos[0m[0;34m.[0m[0mPathLike[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 92[0;31m             [0mself[0m[0;34m.[0m[0m_fp[0m [0;34m=[0m [0m_builtin_open[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mmode[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     93[0m             [0mself[0m[0;34m.[0m[0m_closefp[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     94[0m             [0mself[0m[0;34m.[0m[0m_mode[0m [0;34m=[0m [0mmode_code[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '//media/disk/OSM_Data/isle-of-man-latest.osm.bz2'
+FileNotFoundError: [Errno 2] No such file or directory: '//media/disk/OSM_Data/isle-of-man-latest.osm.bz2'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

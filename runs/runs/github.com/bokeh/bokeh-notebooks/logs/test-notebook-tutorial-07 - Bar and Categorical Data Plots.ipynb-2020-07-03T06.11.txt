@@ -1,0 +1,5 @@
+[I 200703 06:13:52 inrepo:35] Testing notebook tutorial/07 - Bar and Categorical Data Plots.ipynb
+[I 200703 06:13:53 execute:404] Executing notebook with kernel: python3
+[I 200703 06:13:59 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/07 - Bar and Categorical Data Plots.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

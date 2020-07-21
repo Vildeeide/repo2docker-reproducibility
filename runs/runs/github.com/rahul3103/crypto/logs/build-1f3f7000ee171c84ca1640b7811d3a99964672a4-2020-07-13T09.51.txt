@@ -1,0 +1,515 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T09.51i7oz2e01/github.com/rahul3103/crypto.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e6-2efrozen-2eyml-7faaa9 /tmp/environment.yml
+ ---> Using cache
+ ---> 8bf90b0af9a4
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> d94262206d7f
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> a0d9a2009de8
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> d346cab5791b
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> d9689a512ce1
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 0698c74eac04
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 923c36d4009c
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> be7951594e5a
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> dd36de80f9ae
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 147d1c57f768
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> ee1cce3f64fc
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> f42b790c0d6f
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> c8e71b65a791
+Step 38/51 : USER root
+ ---> Running in 39d346c53ad6
+Removing intermediate container 39d346c53ad6
+ ---> 1c1ea513f9ae
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in db773c40fd1d
+Removing intermediate container db773c40fd1d
+ ---> f642ea8acc25
+Step 40/51 : USER ${NB_USER}
+ ---> Running in 36e41b521154
+Removing intermediate container 36e41b521154
+ ---> 871da1bfea13
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in f33d7861dd87
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting flask
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting uwsgi
+  Downloading uWSGI-2.0.19.1.tar.gz (803 kB)
+Collecting flask_cors
+  Downloading Flask_Cors-3.0.8-py2.py3-none-any.whl (14 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.6/site-packages (from -r requirements.txt (line 4)) (2.22.0)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting click>=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Requirement already satisfied: Jinja2>=2.10.1 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from flask->-r requirements.txt (line 1)) (2.11.0)
+Requirement already satisfied: Six in /srv/conda/envs/notebook/lib/python3.6/site-packages (from flask_cors->-r requirements.txt (line 3)) (1.14.0)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from requests->-r requirements.txt (line 4)) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from requests->-r requirements.txt (line 4)) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from requests->-r requirements.txt (line 4)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from requests->-r requirements.txt (line 4)) (2019.11.28)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from Jinja2>=2.10.1->flask->-r requirements.txt (line 1)) (1.1.1)
+Building wheels for collected packages: uwsgi
+  Building wheel for uwsgi (setup.py): started
+  Building wheel for uwsgi (setup.py): finished with status 'error'
+[91m  ERROR: Command errored out with exit status 1:
+   command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"'; __file__='"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' bdist_wheel -d /tmp/pip-wheel-aapfixyo
+       cwd: /tmp/pip-install-pm_sci50/uwsgi/
+  Complete output (172 lines):
+  /srv/conda/envs/notebook/lib/python3.6/distutils/dist.py:261: UserWarning: Unknown distribution option: 'descriptions'
+    warnings.warn(msg)
+  running bdist_wheel
+  running build
+  running build_py
+  creating build
+  creating build/lib
+  copying uwsgidecorators.py -> build/lib
+  installing to build/bdist.linux-x86_64/wheel
+  running install
+  using profile: buildconf/default.ini
+  detected include path: ['/usr/lib/gcc/x86_64-linux-gnu/7/include', '/usr/local/include', '/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed', '/usr/include/x86_64-linux-gnu', '/usr/include']
+  Patching "bin_name" to properly install_scripts dir
+  detected CPU cores: 2
+  configured CFLAGS: -O2 -I. -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -DUWSGI_HAS_IFADDRS -DUWSGI_ZLIB -DUWSGI_LOCK_USE_MUTEX -DUWSGI_EVENT_USE_EPOLL -DUWSGI_EVENT_TIMER_USE_TIMERFD -DUWSGI_EVENT_FILEMONITOR_USE_INOTIFY  -DUWSGI_PCRE -DUWSGI_ROUTING -DUWSGI_VERSION="\"2.0.19.1\"" -DUWSGI_VERSION_BASE="2" -DUWSGI_VERSION_MAJOR="0" -DUWSGI_VERSION_MINOR="19" -DUWSGI_VERSION_REVISION="1" -DUWSGI_VERSION_CUSTOM="\"\"" -DUWSGI_YAML -DUWSGI_SSL -I/usr/include/libxml2 -DUWSGI_XML -DUWSGI_XML_LIBXML2 -DUWSGI_PLUGIN_DIR="\".\"" -DUWSGI_DECLARE_EMBEDDED_PLUGINS="UDEP(python);UDEP(gevent);UDEP(ping);UDEP(cache);UDEP(nagios);UDEP(rrdtool);UDEP(carbon);UDEP(rpc);UDEP(corerouter);UDEP(fastrouter);UDEP(http);UDEP(ugreen);UDEP(signal);UDEP(syslog);UDEP(rsyslog);UDEP(logsocket);UDEP(router_uwsgi);UDEP(router_redirect);UDEP(router_basicauth);UDEP(zergpool);UDEP(redislog);UDEP(mongodblog);UDEP(router_rewrite);UDEP(router_http);UDEP(logfile);UDEP(router_cache);UDEP(rawrouter);UDEP(router_static);UDEP(sslrouter);UDEP(spooler);UDEP(cheaper_busyness);UDEP(symcall);UDEP(transformation_tofile);UDEP(transformation_gzip);UDEP(transformation_chunked);UDEP(transformation_offload);UDEP(router_memcached);UDEP(router_redis);UDEP(router_hash);UDEP(router_expires);UDEP(router_metrics);UDEP(transformation_template);UDEP(stats_pusher_socket);" -DUWSGI_LOAD_EMBEDDED_PLUGINS="ULEP(python);ULEP(gevent);ULEP(ping);ULEP(cache);ULEP(nagios);ULEP(rrdtool);ULEP(carbon);ULEP(rpc);ULEP(corerouter);ULEP(fastrouter);ULEP(http);ULEP(ugreen);ULEP(signal);ULEP(syslog);ULEP(rsyslog);ULEP(logsocket);ULEP(router_uwsgi);ULEP(router_redirect);ULEP(router_basicauth);ULEP(zergpool);ULEP(redislog);ULEP(mongodblog);ULEP(router_rewrite);ULEP(router_http);ULEP(logfile);ULEP(router_cache);ULEP(rawrouter);ULEP(router_static);ULEP(sslrouter);ULEP(spooler);ULEP(cheaper_busyness);ULEP(symcall);ULEP(transformation_tofile);ULEP(transformation_gzip);ULEP(transformation_chunked);ULEP(transformation_offload);ULEP(router_memcached);ULEP(router_redis);ULEP(router_hash);ULEP(router_expires);ULEP(router_metrics);ULEP(transformation_template);ULEP(stats_pusher_socket);"
+  *** uWSGI compiling server core ***
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/utils.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/protocol.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/socket.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/logging.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/master.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/master_utils.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/emperor.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/notify.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/mule.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/subscription.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/stats.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/sendfile.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/async.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/master_checks.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/fifo.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/offload.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/io.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/static.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/websockets.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/spooler.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/snmp.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/exceptions.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/config.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/setup_utils.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/clock.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/init.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/buffer.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/reader.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/writer.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/alarm.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/cron.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/hooks.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/plugins.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/lock.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/cache.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/daemons.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/errors.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/hash.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/master_events.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/chunked.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/queue.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/event.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/signal.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/strings.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/progress.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/timebomb.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/ini.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/fsmon.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/mount.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/metrics.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/plugins_builder.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/sharedarea.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/rpc.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/gateway.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/loop.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/cookie.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/querystring.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/rb_timers.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/transformations.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/uwsgi.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/base.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/uwsgi.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/http.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/fastcgi.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/scgi.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] proto/puwsgi.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] lib/linux_ns.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/zlib.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/regexp.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/routing.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/yaml.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/ssl.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/legion.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/xmlconf.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/dot_h.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/config_py.o
+  *** uWSGI compiling embedded plugins ***
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/python_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/pyutils.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/pyloader.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/wsgi_handlers.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/wsgi_headers.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/wsgi_subhandler.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/web3_subhandler.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/pump_subhandler.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/gil.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/uwsgi_pymodule.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/profiler.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/symimporter.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/tracebacker.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/python/raw.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/gevent/gevent.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/gevent/hooks.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/ping/ping_plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/cache/cache.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/nagios/nagios.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/rrdtool/rrdtool.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/carbon/carbon.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/rpc/rpc_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/corerouter/cr_common.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/corerouter/cr_map.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/corerouter/corerouter.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/fastrouter/fastrouter.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/http/http.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/http/keepalive.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/http/https.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/http/spdy3.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/ugreen/ugreen.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/signal/signal_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/syslog/syslog_plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/rsyslog/rsyslog_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/logsocket/logsocket_plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_uwsgi/router_uwsgi.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_redirect/router_redirect.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_basicauth/router_basicauth.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/zergpool/zergpool.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/redislog/redislog_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/mongodblog/mongodblog_plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_rewrite/router_rewrite.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_http/router_http.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/logfile/logfile.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_cache/router_cache.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/rawrouter/rawrouter.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_static/router_static.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/sslrouter/sslrouter.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/spooler/spooler_plugin.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/cheaper_busyness/cheaper_busyness.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/symcall/symcall_plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/transformation_tofile/tofile.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/transformation_gzip/gzip.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/transformation_chunked/chunked.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/transformation_offload/offload.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_memcached/router_memcached.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_redis/router_redis.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_hash/router_hash.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_expires/expires.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/router_metrics/plugin.o
+  [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/transformation_template/tt.o
+  [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] plugins/stats_pusher_socket/plugin.o
+  *** uWSGI linking ***
+  gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -o build/bdist.linux-x86_64/wheel/uWSGI-2.0.19.1.data/scripts/uwsgi  core/utils.o core/protocol.o core/socket.o core/logging.o core/master.o core/master_utils.o core/emperor.o core/notify.o core/mule.o core/subscription.o core/stats.o core/sendfile.o core/async.o core/master_checks.o core/fifo.o core/offload.o core/io.o core/static.o core/websockets.o core/spooler.o core/snmp.o core/exceptions.o core/config.o core/setup_utils.o core/clock.o core/init.o core/buffer.o core/reader.o core/writer.o core/alarm.o core/cron.o core/hooks.o core/plugins.o core/lock.o core/cache.o core/daemons.o core/errors.o core/hash.o core/master_events.o core/chunked.o core/queue.o core/event.o core/signal.o core/strings.o core/progress.o core/timebomb.o core/ini.o core/fsmon.o core/mount.o core/metrics.o core/plugins_builder.o core/sharedarea.o core/rpc.o core/gateway.o core/loop.o core/cookie.o core/querystring.o core/rb_timers.o core/transformations.o core/uwsgi.o proto/base.o proto/uwsgi.o proto/http.o proto/fastcgi.o proto/scgi.o proto/puwsgi.o lib/linux_ns.o core/zlib.o core/regexp.o core/routing.o core/yaml.o core/ssl.o core/legion.o core/xmlconf.o core/dot_h.o core/config_py.o plugins/python/python_plugin.o plugins/python/pyutils.o plugins/python/pyloader.o plugins/python/wsgi_handlers.o plugins/python/wsgi_headers.o plugins/python/wsgi_subhandler.o plugins/python/web3_subhandler.o plugins/python/pump_subhandler.o plugins/python/gil.o plugins/python/uwsgi_pymodule.o plugins/python/profiler.o plugins/python/symimporter.o plugins/python/tracebacker.o plugins/python/raw.o plugins/gevent/gevent.o plugins/gevent/hooks.o plugins/ping/ping_plugin.o plugins/cache/cache.o plugins/nagios/nagios.o plugins/rrdtool/rrdtool.o plugins/carbon/carbon.o plugins/rpc/rpc_plugin.o plugins/corerouter/cr_common.o plugins/corerouter/cr_map.o plugins/corerouter/corerouter.o plugins/fastrouter/fastrouter.o plugins/http/http.o plugins/http/keepalive.o plugins/http/https.o plugins/http/spdy3.o plugins/ugreen/ugreen.o plugins/signal/signal_plugin.o plugins/syslog/syslog_plugin.o plugins/rsyslog/rsyslog_plugin.o plugins/logsocket/logsocket_plugin.o plugins/router_uwsgi/router_uwsgi.o plugins/router_redirect/router_redirect.o plugins/router_basicauth/router_basicauth.o plugins/zergpool/zergpool.o plugins/redislog/redislog_plugin.o plugins/mongodblog/mongodblog_plugin.o plugins/router_rewrite/router_rewrite.o plugins/router_http/router_http.o plugins/logfile/logfile.o plugins/router_cache/router_cache.o plugins/rawrouter/rawrouter.o plugins/router_static/router_static.o plugins/sslrouter/sslrouter.o plugins/spooler/spooler_plugin.o plugins/cheaper_busyness/cheaper_busyness.o plugins/symcall/symcall_plugin.o plugins/transformation_tofile/tofile.o plugins/transformation_gzip/gzip.o plugins/transformation_chunked/chunked.o plugins/transformation_offload/offload.o plugins/router_memcached/router_memcached.o plugins/router_redis/router_redis.o plugins/router_hash/router_hash.o plugins/router_expires/expires.o plugins/router_metrics/plugin.o plugins/transformation_template/tt.o plugins/stats_pusher_socket/plugin.o -lpthread -lm -rdynamic -ldl -lz -lpcre -lssl -lcrypto -lxml2 -lpthread -ldl -lutil -lrt -lm /srv/conda/envs/notebook/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a -lutil -lcrypt
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/lib/x86_64-linux-gnu" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/lib/../lib" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/x86_64-linux-gnu" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/../lib" is unsafe for cross-compilation
+  /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../.." is unsafe for cross-compilation
+  lto1: fatal error: bytecode stream in file ‘/srv/conda/envs/notebook/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a’ generated with LTO version 6.0 instead of the expected 6.2
+  compilation terminated.
+  lto-wrapper: fatal error: gcc returned 1 exit status
+  compilation terminated.
+  /srv/conda/envs/notebook/compiler_compat/ld: error: lto-wrapper failed
+  collect2: error: ld returned 1 exit status
+  *** error linking uWSGI ***
+  ----------------------------------------
+[0m[91m  ERROR: Failed building wheel for uwsgi
+[0m  Running setup.py clean for uwsgi
+Failed to build uwsgi
+Installing collected packages: Werkzeug, itsdangerous, click, flask, uwsgi, flask-cors
+    Running setup.py install for uwsgi: started
+    Running setup.py install for uwsgi: finished with status 'error'
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"'; __file__='"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-cwmebgbs/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.6m/uwsgi
+         cwd: /tmp/pip-install-pm_sci50/uwsgi/
+    Complete output (165 lines):
+    /srv/conda/envs/notebook/lib/python3.6/distutils/dist.py:261: UserWarning: Unknown distribution option: 'descriptions'
+      warnings.warn(msg)
+    running install
+    using profile: buildconf/default.ini
+    detected include path: ['/usr/lib/gcc/x86_64-linux-gnu/7/include', '/usr/local/include', '/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed', '/usr/include/x86_64-linux-gnu', '/usr/include']
+    Patching "bin_name" to properly install_scripts dir
+    detected CPU cores: 2
+    configured CFLAGS: -O2 -I. -Wall -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -DUWSGI_HAS_IFADDRS -DUWSGI_ZLIB -DUWSGI_LOCK_USE_MUTEX -DUWSGI_EVENT_USE_EPOLL -DUWSGI_EVENT_TIMER_USE_TIMERFD -DUWSGI_EVENT_FILEMONITOR_USE_INOTIFY  -DUWSGI_PCRE -DUWSGI_ROUTING -DUWSGI_VERSION="\"2.0.19.1\"" -DUWSGI_VERSION_BASE="2" -DUWSGI_VERSION_MAJOR="0" -DUWSGI_VERSION_MINOR="19" -DUWSGI_VERSION_REVISION="1" -DUWSGI_VERSION_CUSTOM="\"\"" -DUWSGI_YAML -DUWSGI_SSL -I/usr/include/libxml2 -DUWSGI_XML -DUWSGI_XML_LIBXML2 -DUWSGI_PLUGIN_DIR="\".\"" -DUWSGI_DECLARE_EMBEDDED_PLUGINS="UDEP(python);UDEP(gevent);UDEP(ping);UDEP(cache);UDEP(nagios);UDEP(rrdtool);UDEP(carbon);UDEP(rpc);UDEP(corerouter);UDEP(fastrouter);UDEP(http);UDEP(ugreen);UDEP(signal);UDEP(syslog);UDEP(rsyslog);UDEP(logsocket);UDEP(router_uwsgi);UDEP(router_redirect);UDEP(router_basicauth);UDEP(zergpool);UDEP(redislog);UDEP(mongodblog);UDEP(router_rewrite);UDEP(router_http);UDEP(logfile);UDEP(router_cache);UDEP(rawrouter);UDEP(router_static);UDEP(sslrouter);UDEP(spooler);UDEP(cheaper_busyness);UDEP(symcall);UDEP(transformation_tofile);UDEP(transformation_gzip);UDEP(transformation_chunked);UDEP(transformation_offload);UDEP(router_memcached);UDEP(router_redis);UDEP(router_hash);UDEP(router_expires);UDEP(router_metrics);UDEP(transformation_template);UDEP(stats_pusher_socket);" -DUWSGI_LOAD_EMBEDDED_PLUGINS="ULEP(python);ULEP(gevent);ULEP(ping);ULEP(cache);ULEP(nagios);ULEP(rrdtool);ULEP(carbon);ULEP(rpc);ULEP(corerouter);ULEP(fastrouter);ULEP(http);ULEP(ugreen);ULEP(signal);ULEP(syslog);ULEP(rsyslog);ULEP(logsocket);ULEP(router_uwsgi);ULEP(router_redirect);ULEP(router_basicauth);ULEP(zergpool);ULEP(redislog);ULEP(mongodblog);ULEP(router_rewrite);ULEP(router_http);ULEP(logfile);ULEP(router_cache);ULEP(rawrouter);ULEP(router_static);ULEP(sslrouter);ULEP(spooler);ULEP(cheaper_busyness);ULEP(symcall);ULEP(transformation_tofile);ULEP(transformation_gzip);ULEP(transformation_chunked);ULEP(transformation_offload);ULEP(router_memcached);ULEP(router_redis);ULEP(router_hash);ULEP(router_expires);ULEP(router_metrics);ULEP(transformation_template);ULEP(stats_pusher_socket);"
+    *** uWSGI compiling server core ***
+    core/utils.o is up to date
+    core/protocol.o is up to date
+    core/socket.o is up to date
+    core/logging.o is up to date
+    core/master.o is up to date
+    core/master_utils.o is up to date
+    core/emperor.o is up to date
+    core/notify.o is up to date
+    core/mule.o is up to date
+    core/subscription.o is up to date
+    core/stats.o is up to date
+    core/sendfile.o is up to date
+    core/async.o is up to date
+    core/master_checks.o is up to date
+    core/fifo.o is up to date
+    core/offload.o is up to date
+    core/io.o is up to date
+    core/static.o is up to date
+    core/websockets.o is up to date
+    core/spooler.o is up to date
+    core/snmp.o is up to date
+    core/exceptions.o is up to date
+    core/config.o is up to date
+    core/setup_utils.o is up to date
+    core/clock.o is up to date
+    core/init.o is up to date
+    core/buffer.o is up to date
+    core/reader.o is up to date
+    core/writer.o is up to date
+    core/alarm.o is up to date
+    core/cron.o is up to date
+    core/hooks.o is up to date
+    core/plugins.o is up to date
+    core/lock.o is up to date
+    core/cache.o is up to date
+    core/daemons.o is up to date
+    core/errors.o is up to date
+    core/hash.o is up to date
+    core/master_events.o is up to date
+    core/chunked.o is up to date
+    core/queue.o is up to date
+    core/event.o is up to date
+    core/signal.o is up to date
+    core/strings.o is up to date
+    core/progress.o is up to date
+    core/timebomb.o is up to date
+    core/ini.o is up to date
+    core/fsmon.o is up to date
+    core/mount.o is up to date
+    core/metrics.o is up to date
+    core/plugins_builder.o is up to date
+    core/sharedarea.o is up to date
+    core/rpc.o is up to date
+    core/gateway.o is up to date
+    core/loop.o is up to date
+    core/cookie.o is up to date
+    core/querystring.o is up to date
+    core/rb_timers.o is up to date
+    core/transformations.o is up to date
+    core/uwsgi.o is up to date
+    proto/base.o is up to date
+    proto/uwsgi.o is up to date
+    proto/http.o is up to date
+    proto/fastcgi.o is up to date
+    proto/scgi.o is up to date
+    proto/puwsgi.o is up to date
+    lib/linux_ns.o is up to date
+    core/zlib.o is up to date
+    core/regexp.o is up to date
+    core/routing.o is up to date
+    core/yaml.o is up to date
+    core/ssl.o is up to date
+    core/legion.o is up to date
+    core/xmlconf.o is up to date
+    [thread 1][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/dot_h.o
+    [thread 0][gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/] core/config_py.o
+    plugins/python/python_plugin.o is up to date
+    plugins/python/pyutils.o is up to date
+    plugins/python/pyloader.o is up to date
+    plugins/python/wsgi_handlers.o is up to date
+    plugins/python/wsgi_headers.o is up to date
+    plugins/python/wsgi_subhandler.o is up to date
+    plugins/python/web3_subhandler.o is up to date
+    plugins/python/pump_subhandler.o is up to date
+    plugins/python/gil.o is up to date
+    plugins/python/uwsgi_pymodule.o is up to date
+    plugins/python/profiler.o is up to date
+    plugins/python/symimporter.o is up to date
+    plugins/python/tracebacker.o is up to date
+    plugins/python/raw.o is up to date
+    plugins/gevent/gevent.o is up to date
+    plugins/gevent/hooks.o is up to date
+    plugins/ping/ping_plugin.o is up to date
+    plugins/cache/cache.o is up to date
+    plugins/nagios/nagios.o is up to date
+    plugins/rrdtool/rrdtool.o is up to date
+    plugins/carbon/carbon.o is up to date
+    plugins/rpc/rpc_plugin.o is up to date
+    plugins/corerouter/cr_common.o is up to date
+    plugins/corerouter/cr_map.o is up to date
+    plugins/corerouter/corerouter.o is up to date
+    plugins/fastrouter/fastrouter.o is up to date
+    plugins/http/http.o is up to date
+    plugins/http/keepalive.o is up to date
+    plugins/http/https.o is up to date
+    plugins/http/spdy3.o is up to date
+    plugins/ugreen/ugreen.o is up to date
+    plugins/signal/signal_plugin.o is up to date
+    plugins/syslog/syslog_plugin.o is up to date
+    plugins/rsyslog/rsyslog_plugin.o is up to date
+    plugins/logsocket/logsocket_plugin.o is up to date
+    plugins/router_uwsgi/router_uwsgi.o is up to date
+    plugins/router_redirect/router_redirect.o is up to date
+    plugins/router_basicauth/router_basicauth.o is up to date
+    plugins/zergpool/zergpool.o is up to date
+    plugins/redislog/redislog_plugin.o is up to date
+    plugins/mongodblog/mongodblog_plugin.o is up to date
+    plugins/router_rewrite/router_rewrite.o is up to date
+    plugins/router_http/router_http.o is up to date
+    plugins/logfile/logfile.o is up to date
+    plugins/router_cache/router_cache.o is up to date
+    plugins/rawrouter/rawrouter.o is up to date
+    plugins/router_static/router_static.o is up to date
+    plugins/sslrouter/sslrouter.o is up to date
+    plugins/spooler/spooler_plugin.o is up to date
+    plugins/cheaper_busyness/cheaper_busyness.o is up to date
+    plugins/symcall/symcall_plugin.o is up to date
+    plugins/transformation_tofile/tofile.o is up to date
+    plugins/transformation_gzip/gzip.o is up to date
+    *** uWSGI compiling embedded plugins ***
+    plugins/transformation_chunked/chunked.o is up to date
+    plugins/transformation_offload/offload.o is up to date
+    plugins/router_memcached/router_memcached.o is up to date
+    plugins/router_redis/router_redis.o is up to date
+    plugins/router_hash/router_hash.o is up to date
+    plugins/router_expires/expires.o is up to date
+    plugins/router_metrics/plugin.o is up to date
+    plugins/transformation_template/tt.o is up to date
+    plugins/stats_pusher_socket/plugin.o is up to date
+    *** uWSGI linking ***
+    gcc -pthread -B /srv/conda/envs/notebook/compiler_compat -Wl,--sysroot=/ -o /srv/conda/envs/notebook/bin/uwsgi  core/utils.o core/protocol.o core/socket.o core/logging.o core/master.o core/master_utils.o core/emperor.o core/notify.o core/mule.o core/subscription.o core/stats.o core/sendfile.o core/async.o core/master_checks.o core/fifo.o core/offload.o core/io.o core/static.o core/websockets.o core/spooler.o core/snmp.o core/exceptions.o core/config.o core/setup_utils.o core/clock.o core/init.o core/buffer.o core/reader.o core/writer.o core/alarm.o core/cron.o core/hooks.o core/plugins.o core/lock.o core/cache.o core/daemons.o core/errors.o core/hash.o core/master_events.o core/chunked.o core/queue.o core/event.o core/signal.o core/strings.o core/progress.o core/timebomb.o core/ini.o core/fsmon.o core/mount.o core/metrics.o core/plugins_builder.o core/sharedarea.o core/rpc.o core/gateway.o core/loop.o core/cookie.o core/querystring.o core/rb_timers.o core/transformations.o core/uwsgi.o proto/base.o proto/uwsgi.o proto/http.o proto/fastcgi.o proto/scgi.o proto/puwsgi.o lib/linux_ns.o core/zlib.o core/regexp.o core/routing.o core/yaml.o core/ssl.o core/legion.o core/xmlconf.o core/dot_h.o core/config_py.o plugins/python/python_plugin.o plugins/python/pyutils.o plugins/python/pyloader.o plugins/python/wsgi_handlers.o plugins/python/wsgi_headers.o plugins/python/wsgi_subhandler.o plugins/python/web3_subhandler.o plugins/python/pump_subhandler.o plugins/python/gil.o plugins/python/uwsgi_pymodule.o plugins/python/profiler.o plugins/python/symimporter.o plugins/python/tracebacker.o plugins/python/raw.o plugins/gevent/gevent.o plugins/gevent/hooks.o plugins/ping/ping_plugin.o plugins/cache/cache.o plugins/nagios/nagios.o plugins/rrdtool/rrdtool.o plugins/carbon/carbon.o plugins/rpc/rpc_plugin.o plugins/corerouter/cr_common.o plugins/corerouter/cr_map.o plugins/corerouter/corerouter.o plugins/fastrouter/fastrouter.o plugins/http/http.o plugins/http/keepalive.o plugins/http/https.o plugins/http/spdy3.o plugins/ugreen/ugreen.o plugins/signal/signal_plugin.o plugins/syslog/syslog_plugin.o plugins/rsyslog/rsyslog_plugin.o plugins/logsocket/logsocket_plugin.o plugins/router_uwsgi/router_uwsgi.o plugins/router_redirect/router_redirect.o plugins/router_basicauth/router_basicauth.o plugins/zergpool/zergpool.o plugins/redislog/redislog_plugin.o plugins/mongodblog/mongodblog_plugin.o plugins/router_rewrite/router_rewrite.o plugins/router_http/router_http.o plugins/logfile/logfile.o plugins/router_cache/router_cache.o plugins/rawrouter/rawrouter.o plugins/router_static/router_static.o plugins/sslrouter/sslrouter.o plugins/spooler/spooler_plugin.o plugins/cheaper_busyness/cheaper_busyness.o plugins/symcall/symcall_plugin.o plugins/transformation_tofile/tofile.o plugins/transformation_gzip/gzip.o plugins/transformation_chunked/chunked.o plugins/transformation_offload/offload.o plugins/router_memcached/router_memcached.o plugins/router_redis/router_redis.o plugins/router_hash/router_hash.o plugins/router_expires/expires.o plugins/router_metrics/plugin.o plugins/transformation_template/tt.o plugins/stats_pusher_socket/plugin.o -lpthread -lm -rdynamic -ldl -lz -lpcre -lssl -lcrypto -lxml2 -lpthread -ldl -lutil -lrt -lm /srv/conda/envs/notebook/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a -lutil -lcrypt
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/lib/x86_64-linux-gnu" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/lib/../lib" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/x86_64-linux-gnu" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/../lib" is unsafe for cross-compilation
+    /srv/conda/envs/notebook/compiler_compat/ld: warning: library search path "/usr/lib/gcc/x86_64-linux-gnu/7/../../.." is unsafe for cross-compilation
+    lto1: fatal error: bytecode stream in file ‘/srv/conda/envs/notebook/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a’ generated with LTO version 6.0 instead of the expected 6.2
+    compilation terminated.
+    lto-wrapper: fatal error: gcc returned 1 exit status
+    compilation terminated.
+    /srv/conda/envs/notebook/compiler_compat/ld: error: lto-wrapper failed
+    collect2: error: ld returned 1 exit status
+    *** error linking uWSGI ***
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: /srv/conda/envs/notebook/bin/python -u -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"'; __file__='"'"'/tmp/pip-install-pm_sci50/uwsgi/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' install --record /tmp/pip-record-cwmebgbs/install-record.txt --single-version-externally-managed --compile --install-headers /srv/conda/envs/notebook/include/python3.6m/uwsgi Check the logs for full command output.
+[0mRemoving intermediate container f33d7861dd87
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-rahul3103-crypto:1f3f700', '/tmp/r2d-test-2020-07-13T09.51i7oz2e01/github.com/rahul3103/crypto']' returned non-zero exit status 1.

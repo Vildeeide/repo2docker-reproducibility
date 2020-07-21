@@ -1,0 +1,52 @@
+[I 200703 08:28:50 inrepo:35] Testing notebook docs/examples/vtoolbox Demos.ipynb
+[E 200703 08:28:50 __init__:79] Notebook JSON is invalid: {'model_id': '7afb85b7af304fbcadfca1df7576f26e', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][9]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '7afb85b7af304fbcadfca1df7576f26e',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200703 08:28:51 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+w = interactive(vtb.euler_beam_frf,  xin = (0.0,.4, 0.0005), xout = (0.0,.4, 0.0005))
+display(w)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mIndexError[0m                                Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipywidgets/widgets/interaction.py[0m in [0;36mupdate[0;34m(self, *args)[0m
+[1;32m    254[0m                     [0mvalue[0m [0;34m=[0m [0mwidget[0m[0;34m.[0m[0mget_interact_value[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    255[0m                     [0mself[0m[0;34m.[0m[0mkwargs[0m[0;34m[[0m[0mwidget[0m[0;34m.[0m[0m_kwarg[0m[0;34m][0m [0;34m=[0m [0mvalue[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 256[0;31m                 [0mself[0m[0;34m.[0m[0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mf[0m[0;34m([0m[0;34m**[0m[0mself[0m[0;34m.[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    257[0m                 [0mshow_inline_matplotlib_plots[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    258[0m                 [0;32mif[0m [0mself[0m[0;34m.[0m[0mauto_display[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0mresult[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/vibration_toolbox/continuous_systems.py[0m in [0;36meuler_beam_frf[0;34m(xin, xout, fmin, fmax, zeta, bctype, npoints, beamparams)[0m
+[1;32m    246[0m     """
+[1;32m    247[0m [0;34m[0m[0m
+[0;32m--> 248[0;31m     [0mE[0m [0;34m=[0m [0mbeamparams[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    249[0m     [0mI[0m [0;34m=[0m [0mbeamparams[0m[0;34m[[0m[0;36m1[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m    250[0m     [0mrho[0m [0;34m=[0m [0mbeamparams[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mIndexError[0m: invalid index to scalar variable.
+IndexError: invalid index to scalar variable.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,510 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T09.220tv8z_u3/github.com/scikit-learn/scikit-learn.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/.binder/requirements.txt ${REPO_DIR}/.binder/requirements.txt
+ ---> Using cache
+ ---> 792ff104459e
+Step 38/51 : USER root
+ ---> Using cache
+ ---> e0fda7505cdb
+Step 39/51 : COPY src/ ${REPO_DIR}
+ ---> e452f0eda648
+Step 40/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a038572be54e
+Removing intermediate container a038572be54e
+ ---> 9f90e2f13e4c
+Step 41/51 : USER ${NB_USER}
+ ---> Running in 10297e19bcd1
+Removing intermediate container 10297e19bcd1
+ ---> 64547957afb1
+Step 42/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r ".binder/requirements.txt"
+ ---> Running in c3689c858b88
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mLooking in indexes: https://pypi.org/simple, https://pypi.anaconda.org/scipy-wheels-nightly/simple
+Collecting matplotlib
+  Downloading matplotlib-3.3.0rc1-cp37-cp37m-manylinux1_x86_64.whl (11.5 MB)
+Collecting scikit-image
+  Downloading scikit_image-0.17.2-cp37-cp37m-manylinux1_x86_64.whl (12.5 MB)
+Collecting pandas
+  Downloading https://pypi.anaconda.org/scipy-wheels-nightly/simple/pandas/1.1.0.dev0%2B870.g3df837af6/pandas-1.1.0.dev0%2B870.g3df837af6-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting sphinx-gallery
+  Downloading sphinx-gallery-0.7.0.tar.gz (6.4 MB)
+Collecting scikit-learn
+  Downloading https://pypi.anaconda.org/scipy-wheels-nightly/simple/scikit-learn/0.24.dev0/scikit_learn-0.24.dev0-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting numpy>=1.15
+  Downloading https://pypi.anaconda.org/scipy-wheels-nightly/simple/numpy/1.20.0.dev0%2B4771e3f/numpy-1.20.0.dev0%2B20200705035427_4771e3f-cp37-cp37m-manylinux2010_x86_64.whl (14.7 MB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.3
+  Downloading pyparsing-3.0.0a2-py3-none-any.whl (81 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r .binder/requirements.txt (line 3)) (2.8.1)
+Collecting pillow>=6.2.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting imageio>=2.3.0
+  Downloading imageio-2.8.0-py3-none-any.whl (3.3 MB)
+Collecting networkx>=2.0
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Collecting scipy>=1.0.1
+  Downloading https://pypi.anaconda.org/scipy-wheels-nightly/simple/scipy/1.6.0.dev0%2B655ce1b/scipy-1.6.0.dev0%2B20200624021636_655ce1b-cp37-cp37m-manylinux1_x86_64.whl (26.1 MB)
+Collecting tifffile>=2019.7.26
+  Downloading tifffile-2020.7.4-py3-none-any.whl (138 kB)
+Collecting PyWavelets>=1.1.1
+  Downloading PyWavelets-1.1.1-cp37-cp37m-manylinux1_x86_64.whl (4.4 MB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting sphinx>=1.8.3
+  Downloading Sphinx-3.1.2-py3-none-any.whl (2.9 MB)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.1->matplotlib->-r .binder/requirements.txt (line 3)) (1.14.0)
+Requirement already satisfied: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx>=2.0->scikit-image->-r .binder/requirements.txt (line 4)) (4.4.1)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Requirement already satisfied: requests>=2.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (2.22.0)
+Requirement already satisfied: Jinja2>=2.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (2.11.0)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl (84 kB)
+Collecting docutils>=0.12
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl (121 kB)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (45.1.0.post20200119)
+Requirement already satisfied: Pygments>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (2.5.2)
+Collecting babel>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting sphinxcontrib-serializinghtml
+  Downloading sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl (89 kB)
+Collecting sphinxcontrib-htmlhelp
+  Downloading sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl (96 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl (90 kB)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.5.0->sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.5.0->sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (1.25.7)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.5.0->sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.5.0->sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (2.8)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.3->sphinx>=1.8.3->sphinx-gallery->-r .binder/requirements.txt (line 6)) (1.1.1)
+Building wheels for collected packages: sphinx-gallery
+  Building wheel for sphinx-gallery (setup.py): started
+  Building wheel for sphinx-gallery (setup.py): finished with status 'done'
+  Created wheel for sphinx-gallery: filename=sphinx_gallery-0.7.0-py3-none-any.whl size=113990 sha256=fe144f57e34f3177a9e637219cdefbd0a1b3d39f9f4b3f7348b7533dfaf57c22
+  Stored in directory: /tmp/pip-ephem-wheel-cache-at16t9vw/wheels/29/9c/f2/b89fbd3b8d077989a1c59392a083430027a419687a8a2087b0
+Successfully built sphinx-gallery
+Installing collected packages: kiwisolver, numpy, pyparsing, pillow, cycler, matplotlib, imageio, networkx, scipy, tifffile, PyWavelets, scikit-image, pytz, pandas, imagesize, sphinxcontrib-devhelp, docutils, snowballstemmer, alabaster, sphinxcontrib-applehelp, sphinxcontrib-jsmath, packaging, babel, sphinxcontrib-serializinghtml, sphinxcontrib-htmlhelp, sphinxcontrib-qthelp, sphinx, sphinx-gallery, joblib, threadpoolctl, scikit-learn
+Successfully installed PyWavelets-1.1.1 alabaster-0.7.12 babel-2.8.0 cycler-0.10.0 docutils-0.16 imageio-2.8.0 imagesize-1.2.0 joblib-0.16.0 kiwisolver-1.2.0 matplotlib-3.3.0rc1 networkx-2.4 numpy-1.20.0.dev0+4771e3f packaging-20.4 pandas-1.1.0.dev0+870.g3df837af6 pillow-7.2.0 pyparsing-3.0.0a2 pytz-2020.1 scikit-image-0.17.2 scikit-learn-0.24.dev0 scipy-1.6.0.dev0+655ce1b snowballstemmer-2.0.0 sphinx-3.1.2 sphinx-gallery-0.7.0 sphinxcontrib-applehelp-1.0.2 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-1.0.3 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.4 threadpoolctl-2.1.0 tifffile-2020.7.4
+Removing intermediate container c3689c858b88
+ ---> 619cf35ef721
+Step 43/51 : LABEL repo2docker.ref="None"
+ ---> Running in 1b63df032c26
+Removing intermediate container 1b63df032c26
+ ---> 78d25474076f
+Step 44/51 : LABEL repo2docker.repo="local"
+ ---> Running in c034ee08a7e5
+Removing intermediate container c034ee08a7e5
+ ---> a1a74d9c9398
+Step 45/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 3642d548adfd
+Removing intermediate container 3642d548adfd
+ ---> d2a2fb204a51
+Step 46/51 : USER ${NB_USER}
+ ---> Running in 4d8aff426859
+Removing intermediate container 4d8aff426859
+ ---> a62d168d7068
+Step 47/51 : RUN chmod +x .binder/postBuild
+ ---> Running in 29b6aea59f0c
+Removing intermediate container 29b6aea59f0c
+ ---> 1658ed67f7cd
+Step 48/51 : RUN ./.binder/postBuild
+ ---> Running in 64437d19b139
+Converting .generated-notebooks/mixture/plot_concentration_prior.py
+Converting .generated-notebooks/mixture/plot_gmm.py
+Converting .generated-notebooks/mixture/plot_gmm_selection.py
+Converting .generated-notebooks/mixture/plot_gmm_sin.py
+Converting .generated-notebooks/mixture/plot_gmm_covariances.py
+Converting .generated-notebooks/mixture/plot_gmm_pdf.py
+Converting .generated-notebooks/preprocessing/plot_discretization_strategies.py
+Converting .generated-notebooks/preprocessing/plot_all_scaling.py
+Converting .generated-notebooks/preprocessing/plot_map_data_to_normal.py
+Converting .generated-notebooks/preprocessing/plot_scaling_importance.py
+Converting .generated-notebooks/preprocessing/plot_discretization_classification.py
+Converting .generated-notebooks/preprocessing/plot_discretization.py
+Converting .generated-notebooks/compose/plot_transformed_target.py
+Converting .generated-notebooks/compose/plot_column_transformer.py
+Converting .generated-notebooks/compose/plot_digits_pipe.py
+Converting .generated-notebooks/compose/plot_column_transformer_mixed_types.py
+Converting .generated-notebooks/compose/plot_compare_reduction.py
+Converting .generated-notebooks/compose/plot_feature_union.py
+Converting .generated-notebooks/svm/plot_svm_anova.py
+Converting .generated-notebooks/svm/plot_svm_regression.py
+Converting .generated-notebooks/svm/plot_separating_hyperplane_unbalanced.py
+Converting .generated-notebooks/svm/plot_custom_kernel.py
+Converting .generated-notebooks/svm/plot_oneclass.py
+Converting .generated-notebooks/svm/plot_svm_tie_breaking.py
+Converting .generated-notebooks/svm/plot_svm_nonlinear.py
+Converting .generated-notebooks/svm/plot_iris_svc.py
+Converting .generated-notebooks/svm/plot_svm_kernels.py
+Converting .generated-notebooks/svm/plot_separating_hyperplane.py
+Converting .generated-notebooks/svm/plot_svm_margin.py
+Converting .generated-notebooks/svm/plot_rbf_parameters.py
+Converting .generated-notebooks/svm/plot_svm_scale_c.py
+Converting .generated-notebooks/svm/plot_weighted_samples.py
+Converting .generated-notebooks/svm/plot_linearsvc_support_vectors.py
+Converting .generated-notebooks/linear_model/plot_sparse_logistic_regression_mnist.py
+Converting .generated-notebooks/linear_model/plot_bayesian_ridge.py
+Converting .generated-notebooks/linear_model/plot_logistic_multinomial.py
+Converting .generated-notebooks/linear_model/plot_iris_logistic.py
+Converting .generated-notebooks/linear_model/plot_sparse_logistic_regression_20newsgroups.py
+Converting .generated-notebooks/linear_model/plot_ard.py
+Converting .generated-notebooks/linear_model/plot_ols_ridge_variance.py
+Converting .generated-notebooks/linear_model/plot_multi_task_lasso_support.py
+Converting .generated-notebooks/linear_model/plot_ols.py
+Converting .generated-notebooks/linear_model/plot_omp.py
+Converting .generated-notebooks/linear_model/plot_lasso_dense_vs_sparse_data.py
+Converting .generated-notebooks/linear_model/plot_theilsen.py
+Converting .generated-notebooks/linear_model/plot_sgd_comparison.py
+Converting .generated-notebooks/linear_model/plot_ridge_coeffs.py
+Converting .generated-notebooks/linear_model/plot_logistic_l1_l2_sparsity.py
+Converting .generated-notebooks/linear_model/plot_sgd_early_stopping.py
+Converting .generated-notebooks/linear_model/plot_robust_fit.py
+Converting .generated-notebooks/linear_model/plot_polynomial_interpolation.py
+Converting .generated-notebooks/linear_model/plot_sgd_iris.py
+Converting .generated-notebooks/linear_model/plot_huber_vs_ridge.py
+Converting .generated-notebooks/linear_model/plot_logistic_path.py
+Converting .generated-notebooks/linear_model/plot_poisson_regression_non_normal_loss.py
+Converting .generated-notebooks/linear_model/plot_lasso_lars.py
+Converting .generated-notebooks/linear_model/plot_lasso_model_selection.py
+Converting .generated-notebooks/linear_model/plot_logistic.py
+Converting .generated-notebooks/linear_model/plot_ridge_path.py
+Converting .generated-notebooks/linear_model/plot_sgd_loss_functions.py
+Converting .generated-notebooks/linear_model/plot_lasso_and_elasticnet.py
+Converting .generated-notebooks/linear_model/plot_ransac.py
+Converting .generated-notebooks/linear_model/plot_ols_3d.py
+Converting .generated-notebooks/linear_model/plot_sgd_weighted_samples.py
+Converting .generated-notebooks/linear_model/plot_sgd_separating_hyperplane.py
+Converting .generated-notebooks/linear_model/plot_sgd_penalties.py
+Converting .generated-notebooks/linear_model/plot_bayesian_ridge_curvefit.py
+Converting .generated-notebooks/linear_model/plot_tweedie_regression_insurance_claims.py
+Converting .generated-notebooks/linear_model/plot_lasso_coordinate_descent_path.py
+Converting .generated-notebooks/tree/plot_cost_complexity_pruning.py
+Converting .generated-notebooks/tree/plot_tree_regression.py
+Converting .generated-notebooks/tree/plot_iris_dtc.py
+Converting .generated-notebooks/tree/plot_tree_regression_multioutput.py
+Converting .generated-notebooks/tree/plot_unveil_tree_structure.py
+Converting .generated-notebooks/multioutput/plot_classifier_chain_yeast.py
+Converting .generated-notebooks/decomposition/plot_sparse_coding.py
+Converting .generated-notebooks/decomposition/plot_pca_vs_lda.py
+Converting .generated-notebooks/decomposition/plot_ica_blind_source_separation.py
+Converting .generated-notebooks/decomposition/plot_pca_vs_fa_model_selection.py
+Converting .generated-notebooks/decomposition/plot_incremental_pca.py
+Converting .generated-notebooks/decomposition/plot_ica_vs_pca.py
+Converting .generated-notebooks/decomposition/plot_pca_iris.py
+Converting .generated-notebooks/decomposition/plot_beta_divergence.py
+Converting .generated-notebooks/decomposition/plot_kernel_pca.py
+Converting .generated-notebooks/decomposition/plot_varimax_fa.py
+Converting .generated-notebooks/decomposition/plot_faces_decomposition.py
+Converting .generated-notebooks/decomposition/plot_pca_3d.py
+Converting .generated-notebooks/decomposition/plot_image_denoising.py
+Converting .generated-notebooks/calibration/plot_calibration_multiclass.py
+Converting .generated-notebooks/calibration/plot_calibration_curve.py
+Converting .generated-notebooks/calibration/plot_compare_calibration.py
+Converting .generated-notebooks/calibration/plot_calibration.py
+Converting .generated-notebooks/exercises/plot_cv_diabetes.py
+Converting .generated-notebooks/exercises/plot_cv_digits.py
+Converting .generated-notebooks/exercises/plot_digits_classification_exercise.py
+Converting .generated-notebooks/exercises/plot_iris_exercise.py
+Converting .generated-notebooks/manifold/plot_swissroll.py
+Converting .generated-notebooks/manifold/plot_t_sne_perplexity.py
+Converting .generated-notebooks/manifold/plot_compare_methods.py
+Converting .generated-notebooks/manifold/plot_mds.py
+Converting .generated-notebooks/manifold/plot_manifold_sphere.py
+Converting .generated-notebooks/manifold/plot_lle_digits.py
+Converting .generated-notebooks/datasets/plot_iris_dataset.py
+Converting .generated-notebooks/datasets/plot_random_multilabel_dataset.py
+Converting .generated-notebooks/datasets/plot_digits_last_image.py
+Converting .generated-notebooks/datasets/plot_random_dataset.py
+Converting .generated-notebooks/bicluster/plot_bicluster_newsgroups.py
+Converting .generated-notebooks/bicluster/plot_spectral_biclustering.py
+Converting .generated-notebooks/bicluster/plot_spectral_coclustering.py
+Converting .generated-notebooks/model_selection/plot_roc_crossval.py
+Converting .generated-notebooks/model_selection/plot_nested_cross_validation_iris.py
+Converting .generated-notebooks/model_selection/plot_grid_search_digits.py
+Converting .generated-notebooks/model_selection/plot_randomized_search.py
+Converting .generated-notebooks/model_selection/plot_roc.py
+Converting .generated-notebooks/model_selection/plot_multi_metric_evaluation.py
+Converting .generated-notebooks/model_selection/grid_search_text_feature_extraction.py
+Converting .generated-notebooks/model_selection/plot_confusion_matrix.py
+Converting .generated-notebooks/model_selection/plot_train_error_vs_test_error.py
+Converting .generated-notebooks/model_selection/plot_grid_search_refit_callable.py
+Converting .generated-notebooks/model_selection/plot_cv_predict.py
+Converting .generated-notebooks/model_selection/plot_validation_curve.py
+Converting .generated-notebooks/model_selection/plot_learning_curve.py
+Converting .generated-notebooks/model_selection/plot_cv_indices.py
+Converting .generated-notebooks/model_selection/plot_underfitting_overfitting.py
+Converting .generated-notebooks/model_selection/plot_precision_recall.py
+Converting .generated-notebooks/gaussian_process/plot_gpr_prior_posterior.py
+Converting .generated-notebooks/gaussian_process/plot_gpc_xor.py
+Converting .generated-notebooks/gaussian_process/plot_gpr_noisy.py
+Converting .generated-notebooks/gaussian_process/plot_gpr_noisy_targets.py
+Converting .generated-notebooks/gaussian_process/plot_gpr_on_structured_data.py
+Converting .generated-notebooks/gaussian_process/plot_gpc_iris.py
+Converting .generated-notebooks/gaussian_process/plot_gpc.py
+Converting .generated-notebooks/gaussian_process/plot_compare_gpr_krr.py
+Converting .generated-notebooks/gaussian_process/plot_gpc_isoprobability.py
+Converting .generated-notebooks/gaussian_process/plot_gpr_co2.py
+Converting .generated-notebooks/release_highlights/plot_release_highlights_0_22_0.py
+Converting .generated-notebooks/release_highlights/plot_release_highlights_0_23_0.py
+Converting .generated-notebooks/miscellaneous/plot_kernel_ridge_regression.py
+Converting .generated-notebooks/miscellaneous/plot_display_object_visualization.py
+Converting .generated-notebooks/miscellaneous/plot_multilabel.py
+Converting .generated-notebooks/miscellaneous/plot_roc_curve_visualization_api.py
+Converting .generated-notebooks/miscellaneous/plot_isotonic_regression.py
+Converting .generated-notebooks/miscellaneous/plot_johnson_lindenstrauss_bound.py
+Converting .generated-notebooks/miscellaneous/plot_kernel_approximation.py
+Converting .generated-notebooks/miscellaneous/plot_partial_dependence_visualization_api.py
+Converting .generated-notebooks/miscellaneous/plot_anomaly_comparison.py
+Converting .generated-notebooks/miscellaneous/plot_changed_only_pprint_parameter.py
+Converting .generated-notebooks/miscellaneous/plot_multioutput_face_completion.py
+Converting .generated-notebooks/cross_decomposition/plot_compare_cross_decomposition.py
+Converting .generated-notebooks/covariance/plot_covariance_estimation.py
+Converting .generated-notebooks/covariance/plot_robust_vs_empirical_covariance.py
+Converting .generated-notebooks/covariance/plot_lw_vs_oas.py
+Converting .generated-notebooks/covariance/plot_sparse_cov.py
+Converting .generated-notebooks/covariance/plot_mahalanobis_distances.py
+Converting .generated-notebooks/neural_networks/plot_rbm_logistic_classification.py
+Converting .generated-notebooks/neural_networks/plot_mlp_alpha.py
+Converting .generated-notebooks/neural_networks/plot_mlp_training_curves.py
+Converting .generated-notebooks/neural_networks/plot_mnist_filters.py
+Converting .generated-notebooks/text/plot_hashing_vs_dict_vectorizer.py
+Converting .generated-notebooks/text/plot_document_clustering.py
+Converting .generated-notebooks/text/plot_document_classification_20newsgroups.py
+Converting .generated-notebooks/impute/plot_missing_values.py
+Converting .generated-notebooks/impute/plot_iterative_imputer_variants_comparison.py
+Converting .generated-notebooks/semi_supervised/plot_label_propagation_digits.py
+Converting .generated-notebooks/semi_supervised/plot_label_propagation_versus_svm_iris.py
+Converting .generated-notebooks/semi_supervised/plot_label_propagation_digits_active_learning.py
+Converting .generated-notebooks/semi_supervised/plot_label_propagation_structure.py
+Converting .generated-notebooks/inspection/plot_permutation_importance_multicollinear.py
+Converting .generated-notebooks/inspection/plot_partial_dependence.py
+Converting .generated-notebooks/inspection/plot_linear_model_coefficient_interpretation.py
+Converting .generated-notebooks/inspection/plot_permutation_importance.py
+Converting .generated-notebooks/classification/plot_digits_classification.py
+Converting .generated-notebooks/classification/plot_classification_probability.py
+Converting .generated-notebooks/classification/plot_lda.py
+Converting .generated-notebooks/classification/plot_lda_qda.py
+Converting .generated-notebooks/classification/plot_classifier_comparison.py
+Converting .generated-notebooks/neighbors/plot_nca_illustration.py
+Converting .generated-notebooks/neighbors/plot_lof_outlier_detection.py
+Converting .generated-notebooks/neighbors/plot_digits_kde_sampling.py
+Converting .generated-notebooks/neighbors/plot_caching_nearest_neighbors.py
+Converting .generated-notebooks/neighbors/plot_species_kde.py
+Converting .generated-notebooks/neighbors/plot_nearest_centroid.py
+Converting .generated-notebooks/neighbors/approximate_nearest_neighbors.py
+Converting .generated-notebooks/neighbors/plot_kde_1d.py
+Converting .generated-notebooks/neighbors/plot_regression.py
+Converting .generated-notebooks/neighbors/plot_nca_dim_reduction.py
+Converting .generated-notebooks/neighbors/plot_classification.py
+Converting .generated-notebooks/neighbors/plot_nca_classification.py
+Converting .generated-notebooks/neighbors/plot_lof_novelty_detection.py
+Converting .generated-notebooks/cluster/plot_face_compress.py
+Converting .generated-notebooks/cluster/plot_digits_linkage.py
+Converting .generated-notebooks/cluster/plot_cluster_iris.py
+Converting .generated-notebooks/cluster/plot_affinity_propagation.py
+Converting .generated-notebooks/cluster/plot_agglomerative_dendrogram.py
+Converting .generated-notebooks/cluster/plot_kmeans_stability_low_dim_dense.py
+Converting .generated-notebooks/cluster/plot_agglomerative_clustering.py
+Converting .generated-notebooks/cluster/plot_coin_segmentation.py
+Converting .generated-notebooks/cluster/plot_segmentation_toy.py
+Converting .generated-notebooks/cluster/plot_dict_face_patches.py
+Converting .generated-notebooks/cluster/plot_digits_agglomeration.py
+Converting .generated-notebooks/cluster/plot_ward_structured_vs_unstructured.py
+Converting .generated-notebooks/cluster/plot_mean_shift.py
+Converting .generated-notebooks/cluster/plot_cluster_comparison.py
+Converting .generated-notebooks/cluster/plot_kmeans_digits.py
+Converting .generated-notebooks/cluster/plot_birch_vs_minibatchkmeans.py
+Converting .generated-notebooks/cluster/plot_color_quantization.py
+Converting .generated-notebooks/cluster/plot_dbscan.py
+Converting .generated-notebooks/cluster/plot_kmeans_silhouette_analysis.py
+Converting .generated-notebooks/cluster/plot_agglomerative_clustering_metrics.py
+Converting .generated-notebooks/cluster/plot_linkage_comparison.py
+Converting .generated-notebooks/cluster/plot_coin_ward_segmentation.py
+Converting .generated-notebooks/cluster/plot_kmeans_assumptions.py
+Converting .generated-notebooks/cluster/plot_mini_batch_kmeans.py
+Converting .generated-notebooks/cluster/plot_adjusted_for_chance_measures.py
+Converting .generated-notebooks/cluster/plot_optics.py
+Converting .generated-notebooks/cluster/plot_inductive_clustering.py
+Converting .generated-notebooks/cluster/plot_feature_agglomeration_vs_univariate_selection.py
+Converting .generated-notebooks/applications/plot_face_recognition.py
+Converting .generated-notebooks/applications/plot_out_of_core_classification.py
+Converting .generated-notebooks/applications/wikipedia_principal_eigenvector.py
+Converting .generated-notebooks/applications/plot_outlier_detection_wine.py
+Converting .generated-notebooks/applications/plot_topics_extraction_with_nmf_lda.py
+Converting .generated-notebooks/applications/plot_tomography_l1_reconstruction.py
+Converting .generated-notebooks/applications/plot_model_complexity_influence.py
+Converting .generated-notebooks/applications/plot_prediction_latency.py
+Converting .generated-notebooks/applications/plot_stock_market.py
+Converting .generated-notebooks/applications/plot_species_distribution_modeling.py
+Converting .generated-notebooks/applications/svm_gui.py
+Converting .generated-notebooks/feature_selection/plot_feature_selection.py
+Converting .generated-notebooks/feature_selection/plot_rfe_with_cross_validation.py
+Converting .generated-notebooks/feature_selection/plot_permutation_test_for_classification.py
+Converting .generated-notebooks/feature_selection/plot_feature_selection_pipeline.py
+Converting .generated-notebooks/feature_selection/plot_rfe_digits.py
+Converting .generated-notebooks/feature_selection/plot_select_from_model_diabetes.py
+Converting .generated-notebooks/feature_selection/plot_f_test_vs_mi.py
+Converting .generated-notebooks/ensemble/plot_isolation_forest.py
+Converting .generated-notebooks/ensemble/plot_gradient_boosting_quantile.py
+Converting .generated-notebooks/ensemble/plot_adaboost_multiclass.py
+Converting .generated-notebooks/ensemble/plot_ensemble_oob.py
+Converting .generated-notebooks/ensemble/plot_feature_transformation.py
+Converting .generated-notebooks/ensemble/plot_adaboost_hastie_10_2.py
+Converting .generated-notebooks/ensemble/plot_bias_variance.py
+Converting .generated-notebooks/ensemble/plot_voting_regressor.py
+Converting .generated-notebooks/ensemble/plot_adaboost_twoclass.py
+Converting .generated-notebooks/ensemble/plot_gradient_boosting_regularization.py
+Converting .generated-notebooks/ensemble/plot_forest_iris.py
+Converting .generated-notebooks/ensemble/plot_adaboost_regression.py
+Converting .generated-notebooks/ensemble/plot_forest_importances_faces.py
+Converting .generated-notebooks/ensemble/plot_voting_decision_regions.py
+Converting .generated-notebooks/ensemble/plot_gradient_boosting_regression.py
+Converting .generated-notebooks/ensemble/plot_gradient_boosting_oob.py
+Converting .generated-notebooks/ensemble/plot_gradient_boosting_early_stopping.py
+Converting .generated-notebooks/ensemble/plot_forest_importances.py
+Converting .generated-notebooks/ensemble/plot_monotonic_constraints.py
+Converting .generated-notebooks/ensemble/plot_random_forest_regression_multioutput.py
+Converting .generated-notebooks/ensemble/plot_voting_probas.py
+Converting .generated-notebooks/ensemble/plot_random_forest_embedding.py
+Converting .generated-notebooks/ensemble/plot_stack_predictors.py
+Removing intermediate container 64437d19b139
+ ---> 661a496ee9bf
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 4a4faa386bcb
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 9463d965f5c0
+Removing intermediate container 9463d965f5c0
+ ---> a8a76d30da14
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 100971564f6b
+Removing intermediate container 100971564f6b
+ ---> 6dd96d0fe793
+{"aux": {"ID": "sha256:6dd96d0fe79313eb11c6ecea8a6df8b064c025b272f4bf6a060dea5a04b9f3c8"}}Successfully built 6dd96d0fe793
+Successfully tagged r2d-test-github.com-scikit-learn-scikit-learn:3a49e5f

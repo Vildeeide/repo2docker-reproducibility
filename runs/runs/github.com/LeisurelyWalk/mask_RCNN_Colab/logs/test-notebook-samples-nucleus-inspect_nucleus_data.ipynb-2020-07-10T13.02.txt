@@ -1,0 +1,59 @@
+[I 200710 13:06:06 inrepo:36] Testing notebook samples/nucleus/inspect_nucleus_data.ipynb
+[I 200710 13:06:07 inrepo:45] Found kernel python3
+[I 200710 13:06:07 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Load dataset
+dataset = nucleus.NucleusDataset()
+# The subset is the name of the sub-directory, such as stage1_train,
+# stage1_test, ...etc. You can also use these special values:
+#     train: loads stage1_train but excludes validation images
+#     val: loads validation images from stage1_train. For a list
+#          of validation images see nucleus.py
+dataset.load_nucleus(DATASET_DIR, subset="train")
+
+# Must call before using the dataset
+dataset.prepare()
+
+print("Image Count: {}".format(len(dataset.image_ids)))
+print("Class Count: {}".format(dataset.num_classes))
+for i, info in enumerate(dataset.class_info):
+    print("{:3}. {:50}".format(i, info['name']))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStopIteration[0m                             Traceback (most recent call last)
+[0;32m<ipython-input-5-4ca81612874e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;31m#     val: loads validation images from stage1_train. For a list[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;31m#          of validation images see nucleus.py[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0mdataset[0m[0;34m.[0m[0mload_nucleus[0m[0;34m([0m[0mDATASET_DIR[0m[0;34m,[0m [0msubset[0m[0;34m=[0m[0;34m"train"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;34m[0m[0m
+[1;32m     10[0m [0;31m# Must call before using the dataset[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/samples/nucleus/nucleus.py[0m in [0;36mload_nucleus[0;34m(self, dataset_dir, subset)[0m
+[1;32m    207[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    208[0m             [0;31m# Get image ids from directory names[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 209[0;31m             [0mimage_ids[0m [0;34m=[0m [0mnext[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mwalk[0m[0;34m([0m[0mdataset_dir[0m[0;34m)[0m[0;34m)[0m[0;34m[[0m[0;36m1[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    210[0m             [0;32mif[0m [0msubset[0m [0;34m==[0m [0;34m"train"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    211[0m                 [0mimage_ids[0m [0;34m=[0m [0mlist[0m[0;34m([0m[0mset[0m[0;34m([0m[0mimage_ids[0m[0;34m)[0m [0;34m-[0m [0mset[0m[0;34m([0m[0mVAL_IMAGE_IDS[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mStopIteration[0m: 
+StopIteration: 
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kouohhashi/udacity-ai-vui,3c96b27f9f90d08e7c0287e062e13714c63085e3,3c96b27,2017-09-11T17:30:49-07:00,build,build,False,github.com/kouohhashi/udacity-ai-vui/logs/build-3c96b27f9f90d08e7c0287e062e13714c63085e3-2020-07-13T13.32.txt,2020-07-13T13:32:39.692201,2020-07-13T13.32,0.11.0

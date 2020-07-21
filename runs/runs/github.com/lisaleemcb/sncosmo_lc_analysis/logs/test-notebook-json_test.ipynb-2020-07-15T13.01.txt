@@ -1,0 +1,64 @@
+[I 200715 13:02:54 inrepo:36] Testing notebook json_test.ipynb
+[I 200715 13:02:55 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+bandPassList = ['u', 'g', 'r', 'i', 'z', 'y']
+banddir = os.path.join(os.getenv('THROUGHPUTS_DIR'), 'baseline')
+# lsstbands = list()
+# lsstbp = dict()
+
+for band in bandPassList:
+
+    # setup sncosmo bandpasses
+    bandfname = banddir + "/total_" + band + '.dat'
+
+
+    # register the LSST bands to the SNCosmo registry
+    # Not needed for LSST, but useful to compare independent codes
+    # Usually the next two lines can be merged,
+    # but there is an astropy bug currently which affects only OSX.
+    numpyband = np.loadtxt(bandfname)
+    sncosmoband = sncosmo.Bandpass(wave=numpyband[:, 0],
+                                   trans=numpyband[:, 1],
+                                   wave_unit=Unit('nm'),
+                                   name='LSST_' + band)
+
+    sncosmo.registry.register(sncosmoband, force=True)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-10-38b82f7ee753>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mbandPassList[0m [0;34m=[0m [0;34m[[0m[0;34m'u'[0m[0;34m,[0m [0;34m'g'[0m[0;34m,[0m [0;34m'r'[0m[0;34m,[0m [0;34m'i'[0m[0;34m,[0m [0;34m'z'[0m[0;34m,[0m [0;34m'y'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mbanddir[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mgetenv[0m[0;34m([0m[0;34m'THROUGHPUTS_DIR'[0m[0;34m)[0m[0;34m,[0m [0;34m'baseline'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;31m# lsstbands = list()[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;31m# lsstbp = dict()[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/posixpath.py[0m in [0;36mjoin[0;34m(a, *p)[0m
+[1;32m     78[0m     [0mwill[0m [0mbe[0m [0mdiscarded[0m[0;34m.[0m  [0mAn[0m [0mempty[0m [0mlast[0m [0mpart[0m [0mwill[0m [0mresult[0m [0;32min[0m [0ma[0m [0mpath[0m [0mthat[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     79[0m     ends with a separator."""
+[0;32m---> 80[0;31m     [0ma[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mfspath[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     81[0m     [0msep[0m [0;34m=[0m [0m_get_sep[0m[0;34m([0m[0ma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     82[0m     [0mpath[0m [0;34m=[0m [0ma[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mTypeError[0m: expected str, bytes or os.PathLike object, not NoneType
+TypeError: expected str, bytes or os.PathLike object, not NoneType
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

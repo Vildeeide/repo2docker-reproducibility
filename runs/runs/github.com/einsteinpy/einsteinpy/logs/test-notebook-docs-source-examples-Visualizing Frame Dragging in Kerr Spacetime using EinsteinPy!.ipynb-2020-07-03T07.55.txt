@@ -1,0 +1,5 @@
+[I 200703 07:59:17 inrepo:35] Testing notebook docs/source/examples/Visualizing Frame Dragging in Kerr Spacetime using EinsteinPy!.ipynb
+[I 200703 07:59:18 execute:404] Executing notebook with kernel: python3
+[I 200703 07:59:35 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Visualizing Frame Dragging in Kerr Spacetime using EinsteinPy!.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

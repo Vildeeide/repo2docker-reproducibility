@@ -1,0 +1,71 @@
+[I 200713 13:05:30 inrepo:36] Testing notebook notebooks/Explore buildings and addresses.ipynb
+[I 200713 13:05:30 inrepo:45] Found kernel python3
+[I 200713 13:05:31 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+building_node_ids = []
+addr_node_ids = []
+
+for x in digest.parse(filename):
+    if isinstance(x, digest.Node):
+        if "building" in x.tags:
+            building_node_ids.append(x)
+        if any(key.startswith("addr:") for key in x.tags):
+            addr_node_ids.append(x)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-4-39091a9c04c3>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0maddr_node_ids[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m [0;32mfor[0m [0mx[0m [0;32min[0m [0mdigest[0m[0;34m.[0m[0mparse[0m[0;34m([0m[0mfilename[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m     [0;32mif[0m [0misinstance[0m[0;34m([0m[0mx[0m[0;34m,[0m [0mdigest[0m[0;34m.[0m[0mNode[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m         [0;32mif[0m [0;34m"building"[0m [0;32min[0m [0mx[0m[0;34m.[0m[0mtags[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/osmdigest/digest.py[0m in [0;36mparse[0;34m(file)[0m
+[1;32m    367[0m       extensions) or a file-like object.
+[1;32m    368[0m     """
+[0;32m--> 369[0;31m     [0;32myield[0m [0;32mfrom[0m [0m_parse[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0m_parse_file_etree[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/osmdigest/digest.py[0m in [0;36m_parse[0;34m(file, parse_func)[0m
+[1;32m    283[0m             [0mfile[0m [0;34m=[0m [0m_gzip[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0;34m"rt"[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    284[0m         [0;32melif[0m [0mfile[0m[0;34m[[0m[0;34m-[0m[0;36m3[0m[0;34m:[0m[0;34m][0m [0;34m==[0m [0;34m".xz"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 285[0;31m             [0mfile[0m [0;34m=[0m [0m_lzma[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0;34m"rt"[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    286[0m         [0;32melif[0m [0mfile[0m[0;34m[[0m[0;34m-[0m[0;36m4[0m[0;34m:[0m[0;34m][0m [0;34m==[0m [0;34m".bz2"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    287[0m             [0mfile[0m [0;34m=[0m [0m_bz2[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode[0m[0;34m=[0m[0;34m"rt"[0m[0;34m,[0m [0mencoding[0m[0;34m=[0m[0;34m"utf-8"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/lzma.py[0m in [0;36mopen[0;34m(filename, mode, format, check, preset, filters, encoding, errors, newline)[0m
+[1;32m    300[0m     [0mlz_mode[0m [0;34m=[0m [0mmode[0m[0;34m.[0m[0mreplace[0m[0;34m([0m[0;34m"t"[0m[0;34m,[0m [0;34m""[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    301[0m     binary_file = LZMAFile(filename, lz_mode, format=format, check=check,
+[0;32m--> 302[0;31m                            preset=preset, filters=filters)
+[0m[1;32m    303[0m [0;34m[0m[0m
+[1;32m    304[0m     [0;32mif[0m [0;34m"t"[0m [0;32min[0m [0mmode[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/lzma.py[0m in [0;36m__init__[0;34m(self, filename, mode, format, check, preset, filters)[0m
+[1;32m    118[0m             [0;32mif[0m [0;34m"b"[0m [0;32mnot[0m [0;32min[0m [0mmode[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    119[0m                 [0mmode[0m [0;34m+=[0m [0;34m"b"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 120[0;31m             [0mself[0m[0;34m.[0m[0m_fp[0m [0;34m=[0m [0mbuiltins[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mmode[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    121[0m             [0mself[0m[0;34m.[0m[0m_closefp[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    122[0m             [0mself[0m[0;34m.[0m[0m_mode[0m [0;34m=[0m [0mmode_code[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../../../Data/isle-of-wight-latest.osm.xz'
+FileNotFoundError: [Errno 2] No such file or directory: '../../../Data/isle-of-wight-latest.osm.xz'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

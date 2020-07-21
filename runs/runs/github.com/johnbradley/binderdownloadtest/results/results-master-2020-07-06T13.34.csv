@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/johnbradley/binderdownloadtest,master,0819eb9,2016-06-07T15:25:03-04:00,build,build,True,github.com/johnbradley/binderdownloadtest/logs/build-master-2020-07-06T13.34.txt,2020-07-06T13:34:50.866592,2020-07-06T13.34,0.11.0
+https://github.com/johnbradley/binderdownloadtest,master,0819eb9,2016-06-07T15:25:03-04:00,notebook,DownloadFileTest.ipynb,False,github.com/johnbradley/binderdownloadtest/logs/test-notebook-DownloadFileTest.ipynb-2020-07-06T13.34.txt,2020-07-06T13:34:50.866592,2020-07-06T13.34,0.11.0

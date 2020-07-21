@@ -1,0 +1,217 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-08T08.05c7o88uv_/github.com/rasbt/mlxtend.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 8402d190ee81
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 022a445e1aa8
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 191c3f40b503
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 433e804ee7cc
+Removing intermediate container 433e804ee7cc
+ ---> 2513cbebba11
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 3b73d0cf5901
+Removing intermediate container 3b73d0cf5901
+ ---> 28a85530e3e2
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 655b5502728f
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting scipy>=1.2.1
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting numpy>=1.16.2
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting pandas>=0.24.2
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting scikit-learn>=0.20.3
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting matplotlib>=3.0.0
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting joblib>=0.13.2
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.24.2->-r requirements.txt (line 3)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas>=0.24.2->-r requirements.txt (line 3)) (1.14.0)
+Installing collected packages: numpy, scipy, pytz, pandas, threadpoolctl, joblib, scikit-learn, kiwisolver, cycler, pyparsing, matplotlib
+Successfully installed cycler-0.10.0 joblib-0.16.0 kiwisolver-1.2.0 matplotlib-3.2.2 numpy-1.19.0 pandas-1.0.5 pyparsing-2.4.7 pytz-2020.1 scikit-learn-0.23.1 scipy-1.5.1 threadpoolctl-2.1.0
+Removing intermediate container 655b5502728f
+ ---> ac2d732c024d
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in da5842e0136e
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: scipy>=1.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (1.5.1)
+Requirement already satisfied: numpy>=1.16.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (1.19.0)
+Requirement already satisfied: pandas>=0.24.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (1.0.5)
+Requirement already satisfied: scikit-learn>=0.20.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (0.23.1)
+Requirement already satisfied: matplotlib>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (3.2.2)
+Requirement already satisfied: joblib>=0.13.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (0.16.0)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from mlxtend==0.18.0.dev0) (45.1.0.post20200119)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.24.2->mlxtend==0.18.0.dev0) (2.8.1)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.24.2->mlxtend==0.18.0.dev0) (2020.1)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn>=0.20.3->mlxtend==0.18.0.dev0) (2.1.0)
+Requirement already satisfied: cycler>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=3.0.0->mlxtend==0.18.0.dev0) (0.10.0)
+Requirement already satisfied: kiwisolver>=1.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=3.0.0->mlxtend==0.18.0.dev0) (1.2.0)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=3.0.0->mlxtend==0.18.0.dev0) (2.4.7)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.6.1->pandas>=0.24.2->mlxtend==0.18.0.dev0) (1.14.0)
+Building wheels for collected packages: mlxtend
+  Building wheel for mlxtend (setup.py): started
+  Building wheel for mlxtend (setup.py): finished with status 'done'
+  Created wheel for mlxtend: filename=mlxtend-0.18.0.dev0-py2.py3-none-any.whl size=1340225 sha256=7862933a6e174ae122e2dbb825ab9565bdee1d0d4e2e998c15681773d5e42699
+  Stored in directory: /tmp/pip-ephem-wheel-cache-uw4fw1r1/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built mlxtend
+Installing collected packages: mlxtend
+Successfully installed mlxtend-0.18.0.dev0
+Removing intermediate container da5842e0136e
+ ---> e5b4e944cafa
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in f9c67e8e90cd
+Removing intermediate container f9c67e8e90cd
+ ---> a98b9f09390e
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 553936baa531
+Removing intermediate container 553936baa531
+ ---> 7fa08a253571
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 15bc5b98dbe2
+Removing intermediate container 15bc5b98dbe2
+ ---> 67a548b3d3c7
+Step 47/50 : USER ${NB_USER}
+ ---> Running in ebd0b08fef8e
+Removing intermediate container ebd0b08fef8e
+ ---> bc032b0c9b84
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 12df80407c3d
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 276714efd0e8
+Removing intermediate container 276714efd0e8
+ ---> adde0987561d
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 20331e3a9d0f
+Removing intermediate container 20331e3a9d0f
+ ---> 7cda5f45ae53
+{"aux": {"ID": "sha256:7cda5f45ae53f69aae1deada656fd1b536aac243add1f6c73577fa7b961b82aa"}}Successfully built 7cda5f45ae53
+Successfully tagged r2d-test-github.com-rasbt-mlxtend:df0feb1

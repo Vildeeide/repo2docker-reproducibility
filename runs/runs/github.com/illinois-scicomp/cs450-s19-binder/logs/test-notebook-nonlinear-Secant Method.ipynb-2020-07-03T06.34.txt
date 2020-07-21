@@ -1,0 +1,5 @@
+[I 200703 06:39:15 inrepo:35] Testing notebook nonlinear/Secant Method.ipynb
+[I 200703 06:39:17 execute:404] Executing notebook with kernel: python
+[I 200703 06:39:21 inrepo:41] Saving exported notebook to /io/notebooks/nonlinear/Secant Method.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

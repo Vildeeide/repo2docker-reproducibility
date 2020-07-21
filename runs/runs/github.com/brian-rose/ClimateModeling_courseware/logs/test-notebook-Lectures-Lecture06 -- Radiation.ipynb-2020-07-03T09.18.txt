@@ -1,0 +1,67 @@
+[I 200703 09:20:46 inrepo:35] Testing notebook Lectures/Lecture06 -- Radiation.ipynb
+[I 200703 09:20:47 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.8/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from metpy.plots import SkewT
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-6-e202a09b782d>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mmetpy[0m[0;34m.[0m[0mplots[0m [0;32mimport[0m [0mSkewT[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/metpy/plots/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     25[0m                 convert_gempak_color])  # pylint: disable=undefined-variable
+[1;32m     26[0m [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 27[0;31m     [0;32mfrom[0m [0;34m.[0m[0mcartopy_utils[0m [0;32mimport[0m [0mUSCOUNTIES[0m[0;34m,[0m [0mUSSTATES[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     28[0m     [0m__all__[0m[0;34m.[0m[0mextend[0m[0;34m([0m[0;34m[[0m[0mUSCOUNTIES[0m[0;34m,[0m [0mUSSTATES[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     29[0m [0;32mexcept[0m [0mImportError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/metpy/plots/cartopy_utils.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     41[0m [0;34m[0m[0m
+[1;32m     42[0m [0;34m[0m[0m
+[0;32m---> 43[0;31m [0mUSCOUNTIES[0m [0;34m=[0m [0mMetPyMapFeature[0m[0;34m([0m[0;34m'us_counties'[0m[0;34m,[0m [0;34m'20m'[0m[0;34m,[0m [0mfacecolor[0m[0;34m=[0m[0;34m'None'[0m[0;34m,[0m [0medgecolor[0m[0;34m=[0m[0;34m'black'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     44[0m [0;34m[0m[0m
+[1;32m     45[0m [0mUSSTATES[0m [0;34m=[0m [0mMetPyMapFeature[0m[0;34m([0m[0;34m'us_states'[0m[0;34m,[0m [0;34m'20m'[0m[0;34m,[0m [0mfacecolor[0m[0;34m=[0m[0;34m'None'[0m[0;34m,[0m [0medgecolor[0m[0;34m=[0m[0;34m'black'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/metpy/plots/cartopy_utils.py[0m in [0;36m__init__[0;34m(self, name, scale, **kwargs)[0m
+[1;32m     14[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m,[0m [0mscale[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m         [0;34m"""Create USCountiesFeature instance."""[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 16[0;31m         [0msuper[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0;34m''[0m[0;34m,[0m [0mname[0m[0;34m,[0m [0mscale[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     17[0m [0;34m[0m[0m
+[1;32m     18[0m     [0;32mdef[0m [0mgeometries[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/cartopy/feature/__init__.py[0m in [0;36m__init__[0;34m(self, category, name, scale, **kwargs)[0m
+[1;32m    262[0m         [0mself[0m[0;34m.[0m[0mscaler[0m [0;34m=[0m [0mscale[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    263[0m         [0;31m# Make sure this is a valid resolution[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 264[0;31m         [0mself[0m[0;34m.[0m[0m_validate_scale[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    265[0m [0;34m[0m[0m
+[1;32m    266[0m     [0;34m@[0m[0mproperty[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.8/site-packages/cartopy/feature/__init__.py[0m in [0;36m_validate_scale[0;34m(self)[0m
+[1;32m    270[0m     [0;32mdef[0m [0m_validate_scale[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    271[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mscale[0m [0;32mnot[0m [0;32min[0m [0;34m([0m[0;34m'110m'[0m[0;34m,[0m [0;34m'50m'[0m[0;34m,[0m [0;34m'10m'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 272[0;31m             raise ValueError(
+[0m[1;32m    273[0m                 [0;34m'{} is not a valid Natural Earth scale. '[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mscale[0m[0;34m)[0m [0;34m+[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    274[0m                 [0;34m'Valid scales are "110m", "50m", and "10m".'[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: 20m is not a valid Natural Earth scale. Valid scales are "110m", "50m", and "10m".
+ValueError: 20m is not a valid Natural Earth scale. Valid scales are "110m", "50m", and "10m".
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

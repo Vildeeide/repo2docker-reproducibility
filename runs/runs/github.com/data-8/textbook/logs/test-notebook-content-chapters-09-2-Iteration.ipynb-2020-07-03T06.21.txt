@@ -1,0 +1,5 @@
+[I 200703 06:27:06 inrepo:35] Testing notebook content/chapters/09/2/Iteration.ipynb
+[I 200703 06:27:07 execute:404] Executing notebook with kernel: python3
+[I 200703 06:27:10 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/09/2/Iteration.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

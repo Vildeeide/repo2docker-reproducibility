@@ -1,0 +1,5 @@
+[I 200703 06:13:46 inrepo:35] Testing notebook tutorial/04 - Adding Annotations.ipynb
+[I 200703 06:13:47 execute:404] Executing notebook with kernel: python3
+[I 200703 06:13:50 inrepo:41] Saving exported notebook to /io/notebooks/tutorial/04 - Adding Annotations.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

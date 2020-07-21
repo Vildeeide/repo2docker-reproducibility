@@ -1,0 +1,12 @@
+[I 200716 06:15:45 inrepo:36] Testing notebook suffering.ipynb
+[E 200716 06:15:45 __init__:79] Notebook JSON is invalid: {'model_id': 'df6304323fa34e419cdacb8564be63c4'} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][9]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': 'df6304323fa34e419cdacb8564be63c4'}
+[I 200716 06:15:45 inrepo:45] Found kernel python3
+[I 200716 06:15:46 execute:404] Executing notebook with kernel: python3
+[I 200716 06:15:47 inrepo:79] Saving exported notebook to /io/notebooks/suffering.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

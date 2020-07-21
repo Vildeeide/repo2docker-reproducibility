@@ -1,0 +1,86 @@
+[I 200706 09:27:09 inrepo:35] Testing notebook notebooks/Day_06.ipynb
+[I 200706 09:27:10 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def is_low(x):  # Returns True  if the string has a lowercase
+    for i in x:
+        if "a" <= i and i <= "z":
+            return True
+    return False
+
+
+def is_up(x):  # Returns True  if the string has a uppercase
+    for i in x:
+        if "A" <= i and i <= "Z":
+            return True
+    return False
+
+
+def is_num(x):  # Returns True  if the string has a numeric digit
+    for i in x:
+        if "0" <= i and i <= "9":
+            return True
+    return False
+
+
+def is_other(x):  # Returns True if the string has any "$#@"
+    for i in x:
+        if i == "$" or i == "#" or i == "@":
+            return True
+    return False
+
+
+s = input().split(",")
+lst = []
+
+for i in s:
+    length = len(i)
+    if (
+        6 <= length
+        and length <= 12
+        and is_low(i)
+        and is_up(i)
+        and is_num(i)
+        and is_other(i)
+    ):  # Checks if all the requirments are fulfilled
+        lst.append(i)
+
+print(",".join(lst))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
+[0;32m<ipython-input-1-b09559e7b8e3>[0m in [0;36m<module>[0;34m[0m
+[1;32m     27[0m [0;34m[0m[0m
+[1;32m     28[0m [0;34m[0m[0m
+[0;32m---> 29[0;31m [0ms[0m [0;34m=[0m [0minput[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0msplit[0m[0;34m([0m[0;34m","[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     30[0m [0mlst[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     31[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelbase.py[0m in [0;36mraw_input[0;34m(self, prompt)[0m
+[1;32m    852[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_allow_stdin[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    853[0m             raise StdinNotImplementedError(
+[0;32m--> 854[0;31m                 [0;34m"raw_input was called, but this frontend does not support input requests."[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    855[0m             )
+[1;32m    856[0m         return self._input_request(str(prompt),
+
+[0;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
+StdinNotImplementedError: raw_input was called, but this frontend does not support input requests.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

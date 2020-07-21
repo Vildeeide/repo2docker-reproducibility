@@ -1,0 +1,5 @@
+[I 200703 11:21:53 inrepo:35] Testing notebook reactor-physics/depletion.ipynb
+[I 200703 11:21:54 execute:404] Executing notebook with kernel: python3
+[I 200703 11:21:57 inrepo:41] Saving exported notebook to /io/notebooks/reactor-physics/depletion.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

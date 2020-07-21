@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/pluskid/Mocha.jl,master,5e15b88,2018-12-05T17:09:34-08:00,build,build,False,github.com/pluskid/Mocha.jl/logs/build-master-2020-07-08T07.25.txt,2020-07-08T07:25:44.947778,2020-07-08T07.25,0.11.0

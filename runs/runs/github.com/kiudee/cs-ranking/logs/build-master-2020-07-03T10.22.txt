@@ -1,0 +1,316 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T10.22cc4xkck4/github.com/kiudee/cs-ranking.
+Using PythonBuildPack builder
+Step 1/49 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/49 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/49 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/49 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/49 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/49 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/49 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/49 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/49 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/49 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/49 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/49 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/49 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/49 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/49 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/49 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/49 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/49 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/49 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/49 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/49 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/49 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/49 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/49 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/49 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/49 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/49 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/49 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/49 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/49 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/49 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/49 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/49 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/49 : COPY src/binder/requirements.txt ${REPO_DIR}/binder/requirements.txt
+ ---> Using cache
+ ---> d58d19f6b4c5
+Step 38/49 : USER root
+ ---> Using cache
+ ---> efac813e2db9
+Step 39/49 : COPY src/ ${REPO_DIR}
+ ---> c48708176dec
+Step 40/49 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 4ee51d60124b
+Removing intermediate container 4ee51d60124b
+ ---> 0ef89517f8e4
+Step 41/49 : USER ${NB_USER}
+ ---> Running in aa05091a99e4
+Removing intermediate container aa05091a99e4
+ ---> 2700bba79998
+Step 42/49 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "binder/requirements.txt"
+ ---> Running in 3029129f55e7
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting numpy>=1.12.1
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy>=0.19.0
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting scikit-learn>=0.18.2
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting scikit-optimize>=0.4
+  Downloading scikit_optimize-0.7.4-py2.py3-none-any.whl (80 kB)
+Collecting pandas>=0.22
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting h5py>=2.7
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting pygmo>=2.7
+  Downloading pygmo-2.15.0-cp37-cp37m-manylinux2010_x86_64.whl (12.1 MB)
+Collecting psycopg2-binary>=2.7
+  Downloading psycopg2_binary-2.8.5-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Collecting docopt>=0.6.0
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+Collecting joblib>=0.9.4
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting tqdm>=4.11.2
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Collecting keras<2.4,>=2.3
+  Downloading Keras-2.3.1-py2.py3-none-any.whl (377 kB)
+Collecting pymc3>=3.8
+  Downloading pymc3-3.9.2-py3-none-any.whl (1.9 MB)
+Collecting theano>=1.0
+  Downloading Theano-1.0.4.tar.gz (2.8 MB)
+Collecting tensorflow<2.0,>=1.5
+  Downloading tensorflow-1.15.3-cp37-cp37m-manylinux2010_x86_64.whl (110.5 MB)
+Collecting pre-commit
+  Downloading pre_commit-2.6.0-py2.py3-none-any.whl (171 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting pyaml>=16.9
+  Downloading pyaml-20.4.0-py2.py3-none-any.whl (17 kB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas>=0.22->-r binder/../requirements-dev.txt (line 5)) (2.8.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from h5py>=2.7->-r binder/../requirements-dev.txt (line 6)) (1.14.0)
+Collecting cloudpickle
+  Downloading cloudpickle-1.5.0-py3-none-any.whl (22 kB)
+Collecting keras-preprocessing>=1.0.5
+  Downloading Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+Collecting pyyaml
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting keras-applications>=1.0.6
+  Downloading Keras_Applications-1.0.8-py3-none-any.whl (50 kB)
+Collecting patsy>=0.5.1
+  Downloading patsy-0.5.1-py2.py3-none-any.whl (231 kB)
+Collecting arviz>=0.9.0
+  Downloading arviz-0.9.0-py3-none-any.whl (1.5 MB)
+Collecting fastprogress>=0.2.0
+  Downloading fastprogress-0.2.3-py3-none-any.whl (12 kB)
+Collecting typing-extensions>=3.7.4
+  Downloading typing_extensions-3.7.4.2-py3-none-any.whl (22 kB)
+Collecting protobuf>=3.6.1
+  Downloading protobuf-3.12.2-cp37-cp37m-manylinux1_x86_64.whl (1.3 MB)
+Collecting google-pasta>=0.1.6
+  Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+Collecting tensorboard<1.16.0,>=1.15.0
+  Downloading tensorboard-1.15.0-py3-none-any.whl (3.8 MB)
+Requirement already satisfied: wheel>=0.26; python_version >= "3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow<2.0,>=1.5->-r binder/../requirements-dev.txt (line 16)) (0.34.1)
+Collecting opt-einsum>=2.3.2
+  Downloading opt_einsum-3.2.1-py3-none-any.whl (63 kB)
+Collecting grpcio>=1.8.6
+  Downloading grpcio-1.30.0-cp37-cp37m-manylinux2010_x86_64.whl (3.0 MB)
+Collecting gast==0.2.2
+  Downloading gast-0.2.2.tar.gz (10 kB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting tensorflow-estimator==1.15.1
+  Downloading tensorflow_estimator-1.15.1-py2.py3-none-any.whl (503 kB)
+Collecting astor>=0.6.0
+  Downloading astor-0.8.1-py2.py3-none-any.whl (27 kB)
+Collecting wrapt>=1.11.1
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting absl-py>=0.7.0
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+Collecting toml
+  Downloading toml-0.10.1-py2.py3-none-any.whl (19 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pre-commit->-r binder/../requirements-dev.txt (line 18)) (1.5.0)
+Collecting nodeenv>=0.11.1
+  Downloading nodeenv-1.4.0-py2.py3-none-any.whl (21 kB)
+Collecting cfgv>=2.0.0
+  Downloading cfgv-3.1.0-py2.py3-none-any.whl (7.3 kB)
+Collecting virtualenv>=20.0.8
+  Downloading virtualenv-20.0.25-py2.py3-none-any.whl (4.7 MB)
+Collecting identify>=1.0.0
+  Downloading identify-1.4.21-py2.py3-none-any.whl (97 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting xarray>=0.11
+  Downloading xarray-0.15.1-py3-none-any.whl (668 kB)
+Collecting netcdf4
+  Downloading netCDF4-1.5.3-cp37-cp37m-manylinux1_x86_64.whl (4.1 MB)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from protobuf>=3.6.1->tensorflow<2.0,>=1.5->-r binder/../requirements-dev.txt (line 16)) (45.1.0.post20200119)
+Collecting markdown>=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->pre-commit->-r binder/../requirements-dev.txt (line 18)) (2.1.0)
+Collecting distlib<1,>=0.3.0
+  Downloading distlib-0.3.1-py2.py3-none-any.whl (335 kB)
+Collecting filelock<4,>=3.0.0
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Collecting appdirs<2,>=1.4.3
+  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Collecting cftime
+  Downloading cftime-1.1.3-cp37-cp37m-manylinux1_x86_64.whl (321 kB)
+Building wheels for collected packages: docopt, theano, csrank, pyyaml, gast, termcolor, wrapt, absl-py
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13703 sha256=cf093ca68b9013b0de831fa1404906b0cc1b050a26cae8bca4f39993550897f3
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/72/b0/3f/1d95f96ff986c7dfffe46ce2be4062f38ebd04b506c77c81b9
+  Building wheel for theano (setup.py): started
+  Building wheel for theano (setup.py): finished with status 'done'
+  Created wheel for theano: filename=Theano-1.0.4-py3-none-any.whl size=2667178 sha256=4a274cd52735b96b3a3999981b040e2ea4ea70410377e7bf1215ec57fd30ea8c
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/33/e0/86/12647586a15bd29c062c9996231380908fb2dcf6a5df1c6f84
+  Building wheel for csrank (setup.py): started
+  Building wheel for csrank (setup.py): finished with status 'done'
+  Created wheel for csrank: filename=csrank-1.2.1-py2.py3-none-any.whl size=215663 sha256=544cef7d66aa509648dd75ae1c73c9e185552d45863dd8789f0022592cdea6f8
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393745 sha256=f06f5ea636517b8bbcd414595af36aebd51c0500230a1a753224f0a3f84b635e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for gast (setup.py): started
+  Building wheel for gast (setup.py): finished with status 'done'
+  Created wheel for gast: filename=gast-0.2.2-py3-none-any.whl size=7540 sha256=0cfae12d39673fd29d4f7069b6b8d26bef75b70264ba2d5dfb3aa1ca7c81b82a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/21/7f/02/420f32a803f7d0967b48dd823da3f558c5166991bfd204eef3
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=ed11dd30a2fda4da1e5d3bfd4f0250d2b9dbc1d4600e03fd324188deb7c5361d
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=70963 sha256=54d70f4befcc3b87eae07038fd9d72165ca4836b6a8c616bc7539c4c5a74fc12
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+  Building wheel for absl-py (setup.py): started
+  Building wheel for absl-py (setup.py): finished with status 'done'
+  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121932 sha256=3382ac02c794973dc4ec0af8c091f3bbbccfb2f7c99f185eb3882ec8433790e3
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fu7usi_1/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+Successfully built docopt theano csrank pyyaml gast termcolor wrapt absl-py
+Installing collected packages: numpy, scipy, joblib, threadpoolctl, scikit-learn, pyyaml, pyaml, scikit-optimize, pytz, pandas, h5py, cloudpickle, pygmo, psycopg2-binary, docopt, tqdm, keras-preprocessing, keras-applications, keras, patsy, cycler, kiwisolver, pyparsing, matplotlib, packaging, xarray, cftime, netcdf4, arviz, fastprogress, theano, typing-extensions, pymc3, protobuf, google-pasta, absl-py, markdown, werkzeug, grpcio, tensorboard, opt-einsum, gast, termcolor, tensorflow-estimator, astor, wrapt, tensorflow, toml, nodeenv, cfgv, distlib, filelock, appdirs, virtualenv, identify, pre-commit, csrank
+Successfully installed absl-py-0.9.0 appdirs-1.4.4 arviz-0.9.0 astor-0.8.1 cfgv-3.1.0 cftime-1.1.3 cloudpickle-1.5.0 csrank-1.2.1 cycler-0.10.0 distlib-0.3.1 docopt-0.6.2 fastprogress-0.2.3 filelock-3.0.12 gast-0.2.2 google-pasta-0.2.0 grpcio-1.30.0 h5py-2.10.0 identify-1.4.21 joblib-0.16.0 keras-2.3.1 keras-applications-1.0.8 keras-preprocessing-1.1.2 kiwisolver-1.2.0 markdown-3.2.2 matplotlib-3.2.2 netcdf4-1.5.3 nodeenv-1.4.0 numpy-1.19.0 opt-einsum-3.2.1 packaging-20.4 pandas-1.0.5 patsy-0.5.1 pre-commit-2.6.0 protobuf-3.12.2 psycopg2-binary-2.8.5 pyaml-20.4.0 pygmo-2.15.0 pymc3-3.9.2 pyparsing-2.4.7 pytz-2020.1 pyyaml-5.3.1 scikit-learn-0.23.1 scikit-optimize-0.7.4 scipy-1.5.0 tensorboard-1.15.0 tensorflow-1.15.3 tensorflow-estimator-1.15.1 termcolor-1.1.0 theano-1.0.4 threadpoolctl-2.1.0 toml-0.10.1 tqdm-4.47.0 typing-extensions-3.7.4.2 virtualenv-20.0.25 werkzeug-1.0.1 wrapt-1.12.1 xarray-0.15.1
+Removing intermediate container 3029129f55e7
+ ---> 480fbccdc2fc
+Step 43/49 : LABEL repo2docker.ref="None"
+ ---> Running in b8602159c394
+Removing intermediate container b8602159c394
+ ---> df644fe24182
+Step 44/49 : LABEL repo2docker.repo="local"
+ ---> Running in 4ed7371913f0
+Removing intermediate container 4ed7371913f0
+ ---> d591aee443f6
+Step 45/49 : LABEL repo2docker.version="0.11.0"
+ ---> Running in e305623d19cf
+Removing intermediate container e305623d19cf
+ ---> ab2f75412cc8
+Step 46/49 : USER ${NB_USER}
+ ---> Running in 98d950fc48f4
+Removing intermediate container 98d950fc48f4
+ ---> a097b6154c6e
+Step 47/49 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> da69aa8cdcd6
+Step 48/49 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 5e4dfda7f74a
+Removing intermediate container 5e4dfda7f74a
+ ---> 751212a1d83f
+Step 49/49 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 4ce10b6b889b
+Removing intermediate container 4ce10b6b889b
+ ---> 4cb155ba977e
+{"aux": {"ID": "sha256:4cb155ba977e4043a3b386aeeae4edc0823284ae2befe3d05028999e7a6b1499"}}Successfully built 4cb155ba977e
+Successfully tagged r2d-test-github.com-kiudee-cs-ranking:194dac8

@@ -1,0 +1,40 @@
+[I 200703 06:55:05 inrepo:35] Testing notebook nbclient/tests/files/Output.ipynb
+[E 200703 06:55:05 __init__:79] Notebook JSON is invalid: 'name' is a required property
+    
+    Failed validating 'required' in notebook['properties']['metadata']['properties']['kernelspec']:
+    
+    On instance['metadata']['kernelspec']:
+    {'language': 'python'}
+[I 200703 06:55:06 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+with output1:
+    raise ValueError("trigger msg_type=error")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-3-7f84f5558b68>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mwith[0m [0moutput1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m     [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"trigger msg_type=error"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mValueError[0m: trigger msg_type=error
+ValueError: trigger msg_type=error
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

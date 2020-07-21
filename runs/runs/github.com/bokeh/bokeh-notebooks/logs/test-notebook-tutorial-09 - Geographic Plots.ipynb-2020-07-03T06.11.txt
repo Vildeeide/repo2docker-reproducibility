@@ -1,0 +1,59 @@
+[I 200703 06:14:08 inrepo:35] Testing notebook tutorial/09 - Geographic Plots.ipynb
+[I 200703 06:14:09 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+from bokeh.models import GMapOptions
+from bokeh.plotting import gmap
+
+map_options = GMapOptions(lat=30.2861, lng=-97.7394, map_type="roadmap", zoom=11)
+
+# Replace the value below with your personal API key:
+api_key = os.environ["GOOGLE_API_KEY"]
+
+p = gmap(api_key, map_options, title="Austin")
+
+data = dict(lat=[ 30.29,  30.20,  30.29],
+            lon=[-97.70, -97.74, -97.78])
+
+p.circle(x="lon", y="lat", size=15, fill_color="blue", fill_alpha=0.8, source=data)
+
+show(p)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m<ipython-input-2-f97db1205866>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0;31m# Replace the value below with your personal API key:[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0mapi_key[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m"GOOGLE_API_KEY"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0;34m[0m[0m
+[1;32m     10[0m [0mp[0m [0;34m=[0m [0mgmap[0m[0;34m([0m[0mapi_key[0m[0;34m,[0m [0mmap_options[0m[0;34m,[0m [0mtitle[0m[0;34m=[0m[0;34m"Austin"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/os.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
+[1;32m    677[0m         [0;32mexcept[0m [0mKeyError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    678[0m             [0;31m# raise KeyError with the original key value[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 679[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    680[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdecodevalue[0m[0;34m([0m[0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    681[0m [0;34m[0m[0m
+
+[0;31mKeyError[0m: 'GOOGLE_API_KEY'
+KeyError: 'GOOGLE_API_KEY'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

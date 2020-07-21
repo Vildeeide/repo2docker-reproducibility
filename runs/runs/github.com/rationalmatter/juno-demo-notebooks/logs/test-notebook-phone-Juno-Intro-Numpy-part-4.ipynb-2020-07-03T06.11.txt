@@ -1,0 +1,39 @@
+[I 200703 06:15:07 inrepo:35] Testing notebook phone/Juno-Intro-Numpy-part-4.ipynb
+[I 200703 06:15:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+M * v
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-21-995fb48ad0cc>[0m in [0;36m<module>[0;34m()[0m
+[0;32m----> 1[0;31m [0mM[0m [0;34m*[0m [0mv[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py[0m in [0;36m__mul__[0;34m(self, other)[0m
+[1;32m    341[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mother[0m[0;34m,[0m [0;34m([0m[0mN[0m[0;34m.[0m[0mndarray[0m[0;34m,[0m [0mlist[0m[0;34m,[0m [0mtuple[0m[0;34m)[0m[0;34m)[0m [0;34m:[0m[0;34m[0m[0m
+[1;32m    342[0m             [0;31m# This promotes 1-D vectors to row vectors[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 343[0;31m             [0;32mreturn[0m [0mN[0m[0;34m.[0m[0mdot[0m[0;34m([0m[0mself[0m[0;34m,[0m [0masmatrix[0m[0;34m([0m[0mother[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    344[0m         [0;32mif[0m [0misscalar[0m[0;34m([0m[0mother[0m[0;34m)[0m [0;32mor[0m [0;32mnot[0m [0mhasattr[0m[0;34m([0m[0mother[0m[0;34m,[0m [0;34m'__rmul__'[0m[0;34m)[0m [0;34m:[0m[0;34m[0m[0m
+[1;32m    345[0m             [0;32mreturn[0m [0mN[0m[0;34m.[0m[0mdot[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mother[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: shapes (5,5) and (6,1) not aligned: 5 (dim 1) != 6 (dim 0)
+ValueError: shapes (5,5) and (6,1) not aligned: 5 (dim 1) != 6 (dim 0)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200712 15:51:51 inrepo:36] Testing notebook computer_vision/dog_cat_classification/.ipynb_checkpoints/Keras playground-checkpoint.ipynb
+[I 200712 15:51:52 execute:404] Executing notebook with kernel: python
+[I 200712 15:51:52 inrepo:79] Saving exported notebook to /io/notebooks/computer_vision/dog_cat_classification/.ipynb_checkpoints/Keras playground-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

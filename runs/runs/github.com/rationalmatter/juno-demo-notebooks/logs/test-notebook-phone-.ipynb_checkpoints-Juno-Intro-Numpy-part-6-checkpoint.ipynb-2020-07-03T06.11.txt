@@ -1,0 +1,39 @@
+[I 200703 06:17:49 inrepo:35] Testing notebook phone/.ipynb_checkpoints/Juno-Intro-Numpy-part-6-checkpoint.ipynb
+[I 200703 06:17:50 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+Theta(array([-3,-2,-1,0,1,2,3]))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-3-6658efdd2f22>[0m in [0;36m<module>[0;34m()[0m
+[0;32m----> 1[0;31m [0mTheta[0m[0;34m([0m[0marray[0m[0;34m([0m[0;34m[[0m[0;34m-[0m[0;36m3[0m[0;34m,[0m[0;34m-[0m[0;36m2[0m[0;34m,[0m[0;34m-[0m[0;36m1[0m[0;34m,[0m[0;36m0[0m[0;34m,[0m[0;36m1[0m[0;34m,[0m[0;36m2[0m[0;34m,[0m[0;36m3[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-2-9a0cb13d93d4>[0m in [0;36mTheta[0;34m(x)[0m
+[1;32m      3[0m     [0mScalar[0m [0mimplemenation[0m [0mof[0m [0mthe[0m [0mHeaviside[0m [0mstep[0m [0mfunction[0m[0;34m.[0m[0;34m[0m[0m
+[1;32m      4[0m     """
+[0;32m----> 5[0;31m     [0;32mif[0m [0mx[0m [0;34m>=[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0m
+[0m[1;32m      6[0m         [0;32mreturn[0m [0;36m1[0m[0;34m[0m[0m
+[1;32m      7[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

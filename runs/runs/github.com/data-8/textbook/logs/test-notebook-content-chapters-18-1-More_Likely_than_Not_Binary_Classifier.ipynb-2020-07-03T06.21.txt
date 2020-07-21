@@ -1,0 +1,5 @@
+[I 200703 06:33:51 inrepo:35] Testing notebook content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
+[I 200703 06:33:52 execute:404] Executing notebook with kernel: python3
+[I 200703 06:33:55 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/18/1/More_Likely_than_Not_Binary_Classifier.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

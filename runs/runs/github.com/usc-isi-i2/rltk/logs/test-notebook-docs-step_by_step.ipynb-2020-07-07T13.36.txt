@@ -1,0 +1,7 @@
+[I 200707 13:37:51 inrepo:36] Testing notebook docs/step_by_step.ipynb
+[W 200707 13:37:51 inrepo:48] No such kernel rltk, falling back on kernel language=python
+[W 200707 13:37:51 inrepo:60] Using kernel python3 to provide language: python
+[I 200707 13:37:52 execute:404] Executing notebook with kernel: python3
+[I 200707 13:37:57 inrepo:77] Saving exported notebook to /io/notebooks/docs/step_by_step.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,617 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-06T07.03obzmetn_/github.com/binder-examples/julia-python.
+Using JuliaRequireBuildPack builder
+Step 1/65 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/65 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/65 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/65 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/65 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/65 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/65 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/65 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/65 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/65 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/65 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/65 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/65 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/65 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/65 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/65 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/65 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/65 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/65 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/65 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/65 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/65 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/65 : ENV JULIA_PATH ${APP_BASE}/julia
+ ---> Using cache
+ ---> 8800e59d3114
+Step 24/65 : ENV JULIA_HOME ${JULIA_PATH}/bin
+ ---> Using cache
+ ---> 32ea90ead8dd
+Step 25/65 : ENV JULIA_BINDIR ${JULIA_HOME}
+ ---> Using cache
+ ---> d81712b8e2bc
+Step 26/65 : ENV JULIA_PKGDIR ${JULIA_PATH}/pkg
+ ---> Using cache
+ ---> cb06d2045bd8
+Step 27/65 : ENV JULIA_DEPOT_PATH ${JULIA_PKGDIR}
+ ---> Using cache
+ ---> 9471d8958b86
+Step 28/65 : ENV JULIA_VERSION 0.6.4
+ ---> Using cache
+ ---> 6c90cc4695ff
+Step 29/65 : ENV JUPYTER ${NB_PYTHON_PREFIX}/bin/jupyter
+ ---> Using cache
+ ---> 5e726e8087ff
+Step 30/65 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${JULIA_HOME}:${PATH}
+ ---> Using cache
+ ---> e2391277f5d9
+Step 31/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 2a71d938b979
+Step 32/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e5-2efrozen-2eyml-a89ca4 /tmp/environment.yml
+ ---> Using cache
+ ---> 8ce42d9676ea
+Step 33/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> 027e6c21a0fa
+Step 34/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fjulia-2finstall-2drepo-2ddependencies-2ejl-dfaa82 /tmp/install-repo-dependencies.jl
+ ---> Using cache
+ ---> b4dfa8190cce
+Step 35/65 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 01b5174db605
+Step 36/65 : USER ${NB_USER}
+ ---> Using cache
+ ---> 4a23b22eef40
+Step 37/65 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> fc4caff262bb
+Step 38/65 : USER root
+ ---> Using cache
+ ---> 1f59099aaabd
+Step 39/65 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 367430a2edeb
+Step 40/65 : RUN mkdir -p ${JULIA_PATH} && curl -sSL "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_VERSION%[.-]*}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" | tar -xz -C ${JULIA_PATH} --strip-components 1
+ ---> Using cache
+ ---> 6ba7c9c14fba
+Step 41/65 : RUN mkdir -p ${JULIA_PKGDIR} && chown ${NB_USER}:${NB_USER} ${JULIA_PKGDIR}
+ ---> Using cache
+ ---> 738e7d961184
+Step 42/65 : USER ${NB_USER}
+ ---> Using cache
+ ---> 9db4f3488f4e
+Step 43/65 : RUN julia -e 'if (VERSION > v"0.7-") using Pkg; else Pkg.init(); end; Pkg.add("IJulia"); using IJulia;' && mv ${HOME}/.local/share/jupyter/kernels/julia-${JULIA_VERSION%[.-]*}  ${NB_PYTHON_PREFIX}/share/jupyter/kernels/julia-${JULIA_VERSION%[.-]*}
+ ---> Using cache
+ ---> 2e9c78557727
+Step 44/65 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> acf14c74e248
+Step 45/65 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 7b0784e748ea
+Step 46/65 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 5c77a35cb981
+Step 47/65 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 931768e883fd
+Step 48/65 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> cffd5d358010
+Step 49/65 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> 73a4d8931455
+Step 50/65 : USER root
+ ---> Running in f28eb1367dff
+Removing intermediate container f28eb1367dff
+ ---> d99c0a95f8e4
+Step 51/65 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 3bedfc68a89d
+Removing intermediate container 3bedfc68a89d
+ ---> 2e5b3b5bd30c
+Step 52/65 : USER ${NB_USER}
+ ---> Running in a8c21cc19dc2
+Removing intermediate container a8c21cc19dc2
+ ---> e10584814821
+Step 53/65 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 076748cf6c47
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... 
+The environment is inconsistent, please check the package plan carefully
+The following packages are causing the inconsistency:
+
+  - conda-forge/linux-64::widgetsnbextension==3.2.1=py35_1
+  - conda-forge/noarch::jupyterlab_launcher==0.13.1=py_2
+  - conda-forge/linux-64::ipywidgets==7.2.1=py35_1
+  - conda-forge/linux-64::jupyterlab==0.34.9=py35_0
+done
+
+Downloading and Extracting Packages
+
+numpy-1.15.2         | 9.2 MB    |            |   0% 
+numpy-1.15.2         | 9.2 MB    |            |   0% 
+numpy-1.15.2         | 9.2 MB    | ##5        |  25% 
+numpy-1.15.2         | 9.2 MB    | ####8      |  49% 
+numpy-1.15.2         | 9.2 MB    | #######2   |  72% 
+numpy-1.15.2         | 9.2 MB    | #########6 |  96% 
+numpy-1.15.2         | 9.2 MB    | ########## | 100% 
+
+xorg-libxau-1.0.9    | 13 KB     |            |   0% 
+xorg-libxau-1.0.9    | 13 KB     | ########## | 100% 
+
+icu-58.2             | 22.6 MB   |            |   0% 
+icu-58.2             | 22.6 MB   | #4         |  14% 
+icu-58.2             | 22.6 MB   | ####1      |  41% 
+icu-58.2             | 22.6 MB   | ######6    |  67% 
+icu-58.2             | 22.6 MB   | #########5 |  96% 
+icu-58.2             | 22.6 MB   | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+
+pyqt-5.9.2           | 4.5 MB    |            |   0% 
+pyqt-5.9.2           | 4.5 MB    |            |   0% 
+pyqt-5.9.2           | 4.5 MB    | 5          |   6% 
+pyqt-5.9.2           | 4.5 MB    | #5         |  16% 
+pyqt-5.9.2           | 4.5 MB    | ###5       |  35% 
+pyqt-5.9.2           | 4.5 MB    | ######5    |  66% 
+pyqt-5.9.2           | 4.5 MB    | ########## | 100% 
+
+gettext-0.19.8.1     | 3.6 MB    |            |   0% 
+gettext-0.19.8.1     | 3.6 MB    | #########7 |  97% 
+gettext-0.19.8.1     | 3.6 MB    | ########## | 100% 
+
+xorg-libxdmcp-1.1.3  | 18 KB     |            |   0% 
+xorg-libxdmcp-1.1.3  | 18 KB     | ########## | 100% 
+
+gstreamer-1.14.5     | 4.5 MB    |            |   0% 
+gstreamer-1.14.5     | 4.5 MB    | #######5   |  75% 
+gstreamer-1.14.5     | 4.5 MB    | ########## | 100% 
+
+qt-5.9.6             | 67.8 MB   |            |   0% 
+qt-5.9.6             | 67.8 MB   |            |   0% 
+qt-5.9.6             | 67.8 MB   | 1          |   2% 
+qt-5.9.6             | 67.8 MB   | 4          |   5% 
+qt-5.9.6             | 67.8 MB   | 7          |   8% 
+qt-5.9.6             | 67.8 MB   | #          |  11% 
+qt-5.9.6             | 67.8 MB   | #3         |  14% 
+qt-5.9.6             | 67.8 MB   | #7         |  17% 
+qt-5.9.6             | 67.8 MB   | #9         |  20% 
+qt-5.9.6             | 67.8 MB   | ##2        |  23% 
+qt-5.9.6             | 67.8 MB   | ##5        |  26% 
+qt-5.9.6             | 67.8 MB   | ##8        |  29% 
+qt-5.9.6             | 67.8 MB   | ###2       |  32% 
+qt-5.9.6             | 67.8 MB   | ###5       |  35% 
+qt-5.9.6             | 67.8 MB   | ###8       |  38% 
+qt-5.9.6             | 67.8 MB   | ####1      |  41% 
+qt-5.9.6             | 67.8 MB   | ####4      |  45% 
+qt-5.9.6             | 67.8 MB   | ####7      |  48% 
+qt-5.9.6             | 67.8 MB   | #####      |  51% 
+qt-5.9.6             | 67.8 MB   | #####3     |  54% 
+qt-5.9.6             | 67.8 MB   | #####7     |  57% 
+qt-5.9.6             | 67.8 MB   | ######     |  60% 
+qt-5.9.6             | 67.8 MB   | ######3    |  63% 
+qt-5.9.6             | 67.8 MB   | ######6    |  66% 
+qt-5.9.6             | 67.8 MB   | ######9    |  70% 
+qt-5.9.6             | 67.8 MB   | #######2   |  73% 
+qt-5.9.6             | 67.8 MB   | #######5   |  76% 
+qt-5.9.6             | 67.8 MB   | #######8   |  79% 
+qt-5.9.6             | 67.8 MB   | ########2  |  82% 
+qt-5.9.6             | 67.8 MB   | ########5  |  85% 
+qt-5.9.6             | 67.8 MB   | ########8  |  88% 
+qt-5.9.6             | 67.8 MB   | #########1 |  91% 
+qt-5.9.6             | 67.8 MB   | #########4 |  94% 
+qt-5.9.6             | 67.8 MB   | #########7 |  98% 
+qt-5.9.6             | 67.8 MB   | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+libxml2-2.9.9        | 1.3 MB    |            |   0% 
+libxml2-2.9.9        | 1.3 MB    | ########## | 100% 
+
+libxcb-1.13          | 396 KB    |            |   0% 
+libxcb-1.13          | 396 KB    | ########## | 100% 
+
+expat-2.2.9          | 191 KB    |            |   0% 
+expat-2.2.9          | 191 KB    | ########## | 100% 
+
+jpeg-9d              | 266 KB    |            |   0% 
+jpeg-9d              | 266 KB    | ########## | 100% 
+
+pthread-stubs-0.4    | 5 KB      |            |   0% 
+pthread-stubs-0.4    | 5 KB      | ########## | 100% 
+
+gst-plugins-base-1.1 | 6.8 MB    |            |   0% 
+gst-plugins-base-1.1 | 6.8 MB    | #####      |  50% 
+gst-plugins-base-1.1 | 6.8 MB    | ########## | 100% 
+
+pytz-2020.1          | 227 KB    |            |   0% 
+pytz-2020.1          | 227 KB    | ########## | 100% 
+
+libstdcxx-ng-9.2.0   | 4.5 MB    |            |   0% 
+libstdcxx-ng-9.2.0   | 4.5 MB    | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+kiwisolver-1.0.1     | 924 KB    |            |   0% 
+kiwisolver-1.0.1     | 924 KB    | 1          |   2% 
+kiwisolver-1.0.1     | 924 KB    | ########## | 100% 
+
+fontconfig-2.13.1    | 327 KB    |            |   0% 
+fontconfig-2.13.1    | 327 KB    | 4          |   5% 
+fontconfig-2.13.1    | 327 KB    | ########## | 100% 
+
+sip-4.19.8           | 290 KB    |            |   0% 
+sip-4.19.8           | 290 KB    | 5          |   6% 
+sip-4.19.8           | 290 KB    | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+libgfortran-3.0.0    | 281 KB    |            |   0% 
+libgfortran-3.0.0    | 281 KB    | 5          |   6% 
+libgfortran-3.0.0    | 281 KB    | ########## | 100% 
+
+openblas-0.2.20      | 17.0 MB   |            |   0% 
+openblas-0.2.20      | 17.0 MB   |            |   0% 
+openblas-0.2.20      | 17.0 MB   | 8          |   8% 
+openblas-0.2.20      | 17.0 MB   | ##1        |  21% 
+openblas-0.2.20      | 17.0 MB   | ###3       |  33% 
+openblas-0.2.20      | 17.0 MB   | ####6      |  46% 
+openblas-0.2.20      | 17.0 MB   | #####8     |  59% 
+openblas-0.2.20      | 17.0 MB   | #######    |  71% 
+openblas-0.2.20      | 17.0 MB   | ########3  |  84% 
+openblas-0.2.20      | 17.0 MB   | #########5 |  96% 
+openblas-0.2.20      | 17.0 MB   | ########## | 100% 
+
+blas-1.1             | 1 KB      |            |   0% 
+blas-1.1             | 1 KB      | ########## | 100% 
+
+notebook-5.7.0       | 7.3 MB    |            |   0% 
+notebook-5.7.0       | 7.3 MB    |            |   0% 
+notebook-5.7.0       | 7.3 MB    | 6          |   6% 
+notebook-5.7.0       | 7.3 MB    | #9         |  19% 
+notebook-5.7.0       | 7.3 MB    | ####       |  40% 
+notebook-5.7.0       | 7.3 MB    | #######1   |  71% 
+notebook-5.7.0       | 7.3 MB    | ########## | 100% 
+
+libuuid-2.32.1       | 26 KB     |            |   0% 
+libuuid-2.32.1       | 26 KB     | ########## | 100% 
+
+openssl-1.0.2u       | 3.2 MB    |            |   0% 
+openssl-1.0.2u       | 3.2 MB    |            |   0% 
+openssl-1.0.2u       | 3.2 MB    | #4         |  15% 
+openssl-1.0.2u       | 3.2 MB    | ###8       |  38% 
+openssl-1.0.2u       | 3.2 MB    | ########1  |  82% 
+openssl-1.0.2u       | 3.2 MB    | ########## | 100% 
+
+libiconv-1.15        | 2.0 MB    |            |   0% 
+libiconv-1.15        | 2.0 MB    | ########## | 100% 
+
+glib-2.65.0          | 3.5 MB    |            |   0% 
+glib-2.65.0          | 3.5 MB    | ########## | 100% 
+
+libgcc-ng-9.2.0      | 8.6 MB    |            |   0% 
+libgcc-ng-9.2.0      | 8.6 MB    |            |   0% 
+libgcc-ng-9.2.0      | 8.6 MB    | 9          |  10% 
+libgcc-ng-9.2.0      | 8.6 MB    | ##8        |  29% 
+libgcc-ng-9.2.0      | 8.6 MB    | #####3     |  53% 
+libgcc-ng-9.2.0      | 8.6 MB    | #######4   |  74% 
+libgcc-ng-9.2.0      | 8.6 MB    | ########## | 100% 
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+dbus-1.13.6          | 602 KB    |            |   0% 
+dbus-1.13.6          | 602 KB    | ########## | 100% 
+
+pcre-8.44            | 261 KB    |            |   0% 
+pcre-8.44            | 261 KB    | ########## | 100% 
+
+matplotlib-3.0.0     | 5.0 MB    |            |   0% 
+matplotlib-3.0.0     | 5.0 MB    |            |   0% 
+matplotlib-3.0.0     | 5.0 MB    | ####6      |  47% 
+matplotlib-3.0.0     | 5.0 MB    | #########9 | 100% 
+matplotlib-3.0.0     | 5.0 MB    | ########## | 100% 
+
+pip-20.1.1           | 1.1 MB    |            |   0% 
+pip-20.1.1           | 1.1 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0mRan pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.53vjrc_e.requirements.txt']
+Pip subprocess output:
+Collecting julia
+  Downloading julia-0.5.3-py2.py3-none-any.whl (62 kB)
+Installing collected packages: julia
+Successfully installed julia-0.5.3
+
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                        main    conda-forge
+alembic                   1.0.3                    pypi_0    pypi
+async-generator           1.10                     pypi_0    pypi
+backcall                  0.1.0                      py_0    conda-forge
+blas                      1.1                    openblas    conda-forge
+bleach                    3.0.2                    pypi_0    pypi
+bzip2                     1.0.6                h470a237_2    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2018.8.24             py35_1001    conda-forge
+chardet                   3.0.4                    pypi_0    pypi
+cycler                    0.10.0                     py_2    conda-forge
+dbus                      1.13.6               he372182_0    conda-forge
+decorator                 4.3.0                      py_0    conda-forge
+defusedxml                0.5.0                      py_1    conda-forge
+entrypoints               0.2.3                    py35_2    conda-forge
+expat                     2.2.9                he1b5a44_2    conda-forge
+fontconfig                2.13.1            he4413a7_1000    conda-forge
+freetype                  2.10.2               he06d7ca_0    conda-forge
+gettext                   0.19.8.1          hc5be6a0_1002    conda-forge
+glib                      2.65.0               h6f030ca_0    conda-forge
+gmp                       6.1.2                hfc679d8_0    conda-forge
+gst-plugins-base          1.14.5               h0935bb2_2    conda-forge
+gstreamer                 1.14.5               h36ae1b5_2    conda-forge
+icu                       58.2              hf484d3e_1000    conda-forge
+idna                      2.7                      pypi_0    pypi
+ipykernel                 5.1.0              pyh24bf2e0_0    conda-forge
+ipython                   7.0.1            py35h24bf2e0_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.2.1                    py35_1    conda-forge
+jedi                      0.12.1                   py35_0    conda-forge
+jinja2                    2.10                       py_1    conda-forge
+jpeg                      9d                   h516909a_0    conda-forge
+jsonschema                2.6.0                    py35_2    conda-forge
+julia                     0.5.3                    pypi_0    pypi
+jupyter_client            5.2.3                      py_1    conda-forge
+jupyter_core              4.4.0                      py_0    conda-forge
+jupyterhub                0.9.4                    pypi_0    pypi
+jupyterlab                0.34.9                   py35_0    conda-forge
+jupyterlab_launcher       0.13.1                     py_2    conda-forge
+kiwisolver                1.0.1            py35h2d50403_2    conda-forge
+libffi                    3.2.1                hfc679d8_5    conda-forge
+libgcc-ng                 9.2.0                hdf63c60_0    conda-forge
+libgfortran               3.0.0                         1    conda-forge
+libiconv                  1.15              h516909a_1006    conda-forge
+libpng                    1.6.37               hed695b0_1    conda-forge
+libsodium                 1.0.16               h470a237_1    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+libuuid                   2.32.1            h14c3975_1000    conda-forge
+libxcb                    1.13              h14c3975_1002    conda-forge
+libxml2                   2.9.9                h13577e0_2    conda-forge
+mako                      1.0.7                    pypi_0    pypi
+markupsafe                1.0              py35h470a237_1    conda-forge
+matplotlib                3.0.0            py35h5429711_0    defaults
+mistune                   0.8.3            py35h470a237_2    conda-forge
+nbconvert                 5.4.0                         1    conda-forge/label/broken
+nbformat                  4.4.0                      py_1    conda-forge
+ncurses                   6.1                  hfc679d8_1    conda-forge
+notebook                  5.7.8                    pypi_0    pypi
+nteract-on-jupyter        1.9.6                    pypi_0    pypi
+numpy                     1.15.2          py35_blas_openblashd3ea46f_0  [blas_openblas]  conda-forge
+openblas                  0.2.20                        8    conda-forge
+openssl                   1.0.2u               h516909a_0    conda-forge
+pamela                    0.3.0                    pypi_0    pypi
+pandoc                    1.19.2                        0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.3.1                      py_0    conda-forge
+pcre                      8.44                 he1b5a44_0    conda-forge
+pexpect                   4.6.0                    py35_0    conda-forge
+pickleshare               0.7.5                    py35_0    conda-forge
+pip                       20.1.1                     py_1    conda-forge
+prometheus_client         0.4.2                      py_0    conda-forge
+prompt_toolkit            2.0.7                      py_0    conda-forge
+pthread-stubs             0.4               h14c3975_1001    conda-forge
+ptyprocess                0.6.0                 py35_1000    conda-forge
+pygments                  2.2.0                      py_1    conda-forge
+pyparsing                 2.4.7              pyh9f0ad1d_0    conda-forge
+pyqt                      5.9.2            py35h05f1152_2    defaults
+python                    3.5.5                h5001a0f_2    conda-forge
+python-dateutil           2.7.5                      py_0    conda-forge
+python-editor             1.0.3                    pypi_0    pypi
+python-oauth2             1.1.0                    pypi_0    pypi
+pytz                      2020.1             pyh9f0ad1d_0    conda-forge
+pyzmq                     17.1.2           py35hae99301_0    conda-forge
+qt                        5.9.6                h8703b6f_2    defaults
+readline                  7.0                  haf1bffa_1    conda-forge
+requests                  2.20.1                   pypi_0    pypi
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                40.4.3                   py35_0    conda-forge
+simplegeneric             0.8.1                      py_1    conda-forge
+sip                       4.19.8          py35hf484d3e_1000    conda-forge
+six                       1.11.0                   py35_1    conda-forge
+sqlalchemy                1.2.14                   pypi_0    pypi
+sqlite                    3.25.3               hb1c47c0_0    conda-forge
+terminado                 0.8.1                    py35_1    conda-forge
+testpath                  0.3.1                    py35_1    conda-forge
+tk                        8.6.9                ha92aebf_0    conda-forge
+tornado                   5.1.1            py35h470a237_0    conda-forge
+traitlets                 4.3.2                    py35_0    conda-forge
+urllib3                   1.24.1                   pypi_0    pypi
+wcwidth                   0.1.7                      py_1    conda-forge
+webencodings              0.5.1                    pypi_0    pypi
+wheel                     0.32.0                py35_1000    conda-forge
+widgetsnbextension        3.2.1                    py35_1    conda-forge
+xorg-libxau               1.0.9                h14c3975_0    conda-forge
+xorg-libxdmcp             1.1.3                h516909a_0    conda-forge
+xz                        5.2.4                h470a237_1    conda-forge
+zeromq                    4.2.5                hfc679d8_6    conda-forge
+zlib                      1.2.11               h470a237_3    conda-forge
+Removing intermediate container 076748cf6c47
+ ---> 1c7721938938
+Step 54/65 : USER root
+ ---> Running in 5d6dda33f284
+Removing intermediate container 5d6dda33f284
+ ---> a8d50fe8ca63
+Step 55/65 : COPY src/ ${REPO_DIR}
+ ---> b5098852b569
+Step 56/65 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 2c95b6c92598
+Removing intermediate container 2c95b6c92598
+ ---> 1914ab7d7d43
+Step 57/65 : USER ${NB_USER}
+ ---> Running in 67797cb73edd
+Removing intermediate container 67797cb73edd
+ ---> c46614aa7341
+Step 58/65 : RUN julia /tmp/install-repo-dependencies.jl "REQUIRE"
+ ---> Running in 481bd7a48b95
+[91mINFO: Cloning cache of ColorTypes from https://github.com/JuliaGraphics/ColorTypes.jl.git
+[0m[91mINFO: Cloning cache of Colors from https://github.com/JuliaGraphics/Colors.jl.git
+[0m[91mINFO: Cloning cache of FixedPointNumbers from https://github.com/JuliaMath/FixedPointNumbers.jl.git
+[0m[91mINFO: Cloning cache of LaTeXStrings from https://github.com/stevengj/LaTeXStrings.jl.git
+[0m[91mINFO: Cloning cache of MacroTools from https://github.com/MikeInnes/MacroTools.jl.git
+[0m[91mINFO: Cloning cache of PyCall from https://github.com/JuliaPy/PyCall.jl.git
+[0m[91mINFO: Cloning cache of PyPlot from https://github.com/JuliaPy/PyPlot.jl.git
+[0m[91mINFO: Cloning cache of Reexport from https://github.com/simonster/Reexport.jl.git
+[0m[91mINFO: Installing ColorTypes v0.6.7
+[0m[91mINFO: Installing Colors v0.8.2
+[0m[91mINFO: Installing FixedPointNumbers v0.4.6
+[0m[91mINFO: Installing LaTeXStrings v1.0.3
+[0m[91mINFO: Installing MacroTools v0.4.5
+[0m[91mINFO: Installing PyCall v1.18.5
+[0m[91mINFO: Installing PyPlot v2.7.0
+[0m[91mINFO: Installing Reexport v0.1.0
+[0m[91mINFO: Building Conda
+[0m[91mINFO: Building PyCall
+[0m[91mInfo: PyCall is using python3 (Python 3.5.5) at /srv/conda/envs/notebook/bin/python3, libpython = /srv/conda/envs/notebook/lib/libpython3.5m.so.1.0
+[0m[91mInfo: /srv/julia/pkg/v0.6/PyCall/deps/deps.jl has been updated
+[0m[91mInfo: /srv/julia/pkg/v0.6/PyCall/deps/PYTHON has been updated
+[0m[91mWARNING: Implicit vectorized function is deprecated in favor of compact broadcast syntax.
+Stacktrace:
+ [1] depwarn(::String, ::Symbol) at ./deprecated.jl:70
+ [2] @dep_vectorize_1arg(::ANY, ::ANY) at /srv/julia/pkg/v0.6/Compat/src/deprecated.jl:18
+ [3] include_from_node1(::String) at ./loading.jl:576
+ [4] include(::String) at ./sysimg.jl:14
+ [5] include_from_node1(::String) at ./loading.jl:576
+ [6] include(::String) at ./sysimg.jl:14
+ [7] anonymous at ./<missing>:2
+ [8] eval(::Module, ::Any) at ./boot.jl:235
+ [9] process_options(::Base.JLOptions) at ./client.jl:286
+ [10] _start() at ./client.jl:371
+while loading /srv/julia/pkg/v0.6/Colors/src/algorithms.jl, in expression starting on line 152
+[0m[91mWARNING: Implicit vectorized function is deprecated in favor of compact broadcast syntax.
+Stacktrace:
+ [1] depwarn(::String, ::Symbol) at ./deprecated.jl:70
+ [2] @dep_vectorize_1arg(::ANY, ::ANY) at /srv/julia/pkg/v0.6/Compat/src/deprecated.jl:18
+ [3] include_from_node1(::String) at ./loading.jl:576
+ [4] include(::String) at ./sysimg.jl:14
+ [5] include_from_node1(::String) at ./loading.jl:576
+ [6] include(::String) at ./sysimg.jl:14
+ [7] anonymous at ./<missing>:2
+ [8] eval(::Module, ::Any) at ./boot.jl:235
+ [9] process_options(::Base.JLOptions) at ./client.jl:286
+ [10] _start() at ./client.jl:371
+while loading /srv/julia/pkg/v0.6/Colors/src/algorithms.jl, in expression starting on line 153
+[0m[91mWARNING: Implicit vectorized function is deprecated in favor of compact broadcast syntax.
+Stacktrace:
+ [1] depwarn(::String, ::Symbol) at ./deprecated.jl:70
+ [2] @dep_vectorize_1arg(::ANY, ::ANY) at /srv/julia/pkg/v0.6/Compat/src/deprecated.jl:18
+ [3] include_from_node1(::String) at ./loading.jl:576
+ [4] include(::String) at ./sysimg.jl:14
+ [5] include_from_node1(::String) at ./loading.jl:576
+ [6] include(::String) at ./sysimg.jl:14
+ [7] anonymous at ./<missing>:2
+ [8] eval(::Module, ::Any) at ./boot.jl:235
+ [9] process_options(::Base.JLOptions) at ./client.jl:286
+ [10] _start() at ./client.jl:371
+while loading /srv/julia/pkg/v0.6/Colors/src/algorithms.jl, in expression starting on line 154
+[0mRemoving intermediate container 481bd7a48b95
+ ---> 214d141742ad
+Step 59/65 : LABEL repo2docker.ref="None"
+ ---> Running in 927c2fe35c82
+Removing intermediate container 927c2fe35c82
+ ---> b54eb3840604
+Step 60/65 : LABEL repo2docker.repo="local"
+ ---> Running in b26713e2b16c
+Removing intermediate container b26713e2b16c
+ ---> 09bd44ca8b52
+Step 61/65 : LABEL repo2docker.version="0.11.0"
+ ---> Running in db882dfd35b6
+Removing intermediate container db882dfd35b6
+ ---> 19e1e87de2e9
+Step 62/65 : USER ${NB_USER}
+ ---> Running in 1927375be282
+Removing intermediate container 1927375be282
+ ---> 3968f74198f9
+Step 63/65 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 2d5b0cf60dcb
+Step 64/65 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in cfe9ddbef6a4
+Removing intermediate container cfe9ddbef6a4
+ ---> 2d8b1a843d2d
+Step 65/65 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in f2796cc16afe
+Removing intermediate container f2796cc16afe
+ ---> 37ff9491a8b5
+{"aux": {"ID": "sha256:37ff9491a8b516f8c0ceefcd56f2a11ebe712ccbf105cf388f1ddf835bbbc3ec"}}Successfully built 37ff9491a8b5
+Successfully tagged r2d-test-github.com-binder-examples-julia-python:6c5c395

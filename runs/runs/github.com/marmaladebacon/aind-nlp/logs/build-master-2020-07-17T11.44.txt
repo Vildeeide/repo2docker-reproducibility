@@ -1,0 +1,344 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-17T11.44aikzivnd/github.com/marmaladebacon/aind-nlp.
+Using PythonBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/51 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 49f0104f801b
+Step 38/51 : USER root
+ ---> Running in fb34a10f9b58
+Removing intermediate container fb34a10f9b58
+ ---> 676c9b7c0ee8
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a20022ebe1ac
+Removing intermediate container a20022ebe1ac
+ ---> bb54ca24b5ea
+Step 40/51 : USER ${NB_USER}
+ ---> Running in c3e8ff0770a2
+Removing intermediate container c3e8ff0770a2
+ ---> 2c7862c2ab47
+Step 41/51 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in b0435238514a
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting beautifulsoup4>=4.5.3
+  Downloading beautifulsoup4-4.9.1-py3-none-any.whl (115 kB)
+Collecting html5lib>=0.9999999
+  Downloading html5lib-1.1-py2.py3-none-any.whl (112 kB)
+Collecting h5py>=2.7.0
+  Downloading h5py-2.10.0-cp37-cp37m-manylinux1_x86_64.whl (2.9 MB)
+Requirement already satisfied: ipython>=5.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 4)) (7.11.1)
+Collecting jupyter>=1.0.0
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting Keras>=2.0.5
+  Downloading Keras-2.4.3-py2.py3-none-any.whl (36 kB)
+Collecting matplotlib>=2.0.2
+  Downloading matplotlib-3.3.0-cp37-cp37m-manylinux1_x86_64.whl (11.5 MB)
+Collecting numpy>=1.13.0
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting nltk>=3.2.2
+  Downloading nltk-3.5.zip (1.4 MB)
+Collecting pandas>=0.19.2
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Requirement already satisfied: requests>=2.13.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 11)) (2.22.0)
+Collecting scikit-learn>=0.18.1
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting tensorflow>=1.2.0
+  Downloading tensorflow-2.2.0-cp37-cp37m-manylinux2010_x86_64.whl (516.2 MB)
+Collecting wordcloud>=1.3.1
+  Downloading wordcloud-1.7.0-cp37-cp37m-manylinux1_x86_64.whl (364 kB)
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.0.1-py3-none-any.whl (32 kB)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from html5lib>=0.9999999->-r requirements.txt (line 2)) (0.5.1)
+Requirement already satisfied: six>=1.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from html5lib>=0.9999999->-r requirements.txt (line 2)) (1.14.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (0.7.5)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (3.0.3)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (4.3.3)
+Requirement already satisfied: setuptools>=18.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (45.1.0.post20200119)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (2.5.2)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (0.16.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (4.8.0)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (0.1.0)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=5.2.0->-r requirements.txt (line 4)) (4.4.1)
+Collecting qtconsole
+  Downloading qtconsole-4.7.5-py2.py3-none-any.whl (118 kB)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0.0->-r requirements.txt (line 5)) (5.1.4)
+Collecting jupyter-console
+  Downloading jupyter_console-6.1.0-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: ipywidgets in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0.0->-r requirements.txt (line 5)) (7.5.1)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0.0->-r requirements.txt (line 5)) (5.6.1)
+Requirement already satisfied: notebook in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter>=1.0.0->-r requirements.txt (line 5)) (6.0.3)
+Collecting pyyaml
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting scipy>=0.14
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib>=2.0.2->-r requirements.txt (line 7)) (2.8.1)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.3
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting pillow>=6.2.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting click
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting regex
+  Downloading regex-2020.7.14-cp37-cp37m-manylinux2010_x86_64.whl (660 kB)
+Collecting tqdm
+  Downloading tqdm-4.48.0-py2.py3-none-any.whl (67 kB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.13.0->-r requirements.txt (line 11)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.13.0->-r requirements.txt (line 11)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.13.0->-r requirements.txt (line 11)) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=2.13.0->-r requirements.txt (line 11)) (1.25.7)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting tensorflow-estimator<2.3.0,>=2.2.0
+  Downloading tensorflow_estimator-2.2.0-py2.py3-none-any.whl (454 kB)
+Collecting protobuf>=3.8.0
+  Downloading protobuf-3.12.2-cp37-cp37m-manylinux1_x86_64.whl (1.3 MB)
+Collecting termcolor>=1.1.0
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Collecting wrapt>=1.11.1
+  Downloading wrapt-1.12.1.tar.gz (27 kB)
+Collecting gast==0.3.3
+  Downloading gast-0.3.3-py2.py3-none-any.whl (9.7 kB)
+Collecting keras-preprocessing>=1.1.0
+  Downloading Keras_Preprocessing-1.1.2-py2.py3-none-any.whl (42 kB)
+Collecting grpcio>=1.8.6
+  Downloading grpcio-1.30.0-cp37-cp37m-manylinux2010_x86_64.whl (3.0 MB)
+Collecting astunparse==1.6.3
+  Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+Requirement already satisfied: wheel>=0.26; python_version >= "3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from tensorflow>=1.2.0->-r requirements.txt (line 13)) (0.34.1)
+Collecting opt-einsum>=2.3.2
+  Downloading opt_einsum-3.2.1-py3-none-any.whl (63 kB)
+Collecting absl-py>=0.7.0
+  Downloading absl-py-0.9.0.tar.gz (104 kB)
+Collecting google-pasta>=0.1.8
+  Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+Collecting tensorboard<2.3.0,>=2.2.0
+  Downloading tensorboard-2.2.2-py3-none-any.whl (3.0 MB)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=5.2.0->-r requirements.txt (line 4)) (0.1.8)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.2->ipython>=5.2.0->-r requirements.txt (line 4)) (0.2.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.2.0->-r requirements.txt (line 4)) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=5.2.0->-r requirements.txt (line 4)) (0.6.0)
+Requirement already satisfied: pyzmq>=17.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter>=1.0.0->-r requirements.txt (line 5)) (18.1.1)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter>=1.0.0->-r requirements.txt (line 5)) (4.6.1)
+Requirement already satisfied: jupyter-client>=4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qtconsole->jupyter>=1.0.0->-r requirements.txt (line 5)) (5.3.4)
+Collecting qtpy
+  Downloading QtPy-1.9.0-py2.py3-none-any.whl (54 kB)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel->jupyter>=1.0.0->-r requirements.txt (line 5)) (6.0.3)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->jupyter>=1.0.0->-r requirements.txt (line 5)) (3.5.1)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets->jupyter>=1.0.0->-r requirements.txt (line 5)) (5.0.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.6.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.8.4)
+Requirement already satisfied: jinja2>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (2.11.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.3)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.4.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (1.4.2)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (3.1.0)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter>=1.0.0->-r requirements.txt (line 5)) (1.5.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.7.1)
+Collecting google-auth<2,>=1.6.3
+  Downloading google_auth-1.19.1-py2.py3-none-any.whl (91 kB)
+Collecting markdown>=2.6.8
+  Downloading Markdown-3.2.2-py3-none-any.whl (88 kB)
+Collecting werkzeug>=0.11.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Downloading google_auth_oauthlib-0.4.1-py2.py3-none-any.whl (18 kB)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Downloading tensorboard_plugin_wit-1.7.0-py3-none-any.whl (779 kB)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets->jupyter>=1.0.0->-r requirements.txt (line 5)) (3.2.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.4->nbconvert->jupyter>=1.0.0->-r requirements.txt (line 5)) (1.1.1)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting cachetools<5.0,>=2.0.0
+  Downloading cachetools-4.1.1-py3-none-any.whl (10 kB)
+Collecting rsa<5,>=3.1.4; python_version >= "3"
+  Downloading rsa-4.6-py3-none-any.whl (47 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from markdown>=2.6.8->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.2.0->-r requirements.txt (line 13)) (1.5.0)
+Collecting requests-oauthlib>=0.7.0
+  Downloading requests_oauthlib-1.3.0-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->jupyter>=1.0.0->-r requirements.txt (line 5)) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets->jupyter>=1.0.0->-r requirements.txt (line 5)) (19.3.0)
+Collecting pyasn1<0.5.0,>=0.4.6
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->markdown>=2.6.8->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.2.0->-r requirements.txt (line 13)) (2.1.0)
+Requirement already satisfied: oauthlib>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<0.5,>=0.4.1->tensorboard<2.3.0,>=2.2.0->tensorflow>=1.2.0->-r requirements.txt (line 13)) (3.0.1)
+Building wheels for collected packages: nltk, pyyaml, termcolor, wrapt, absl-py
+  Building wheel for nltk (setup.py): started
+  Building wheel for nltk (setup.py): finished with status 'done'
+  Created wheel for nltk: filename=nltk-3.5-py3-none-any.whl size=1434678 sha256=376626a49c1882360cf35bbf92ef368525a3ebe7152e1ac6a4607ef71d662ba8
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jrznujjd/wheels/45/6c/46/a1865e7ba706b3817f5d1b2ff7ce8996aabdd0d03d47ba0266
+  Building wheel for pyyaml (setup.py): started
+  Building wheel for pyyaml (setup.py): finished with status 'done'
+  Created wheel for pyyaml: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393745 sha256=592dbdacb4a77fee7f50411e313fd9c2373361d922ad976b9849404b8b8ac9fe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jrznujjd/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=5f10091cb7cc0d08bbd375904f5b0a01ce64c2a6333e8b5b883bb3975795533a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jrznujjd/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+  Building wheel for wrapt (setup.py): started
+  Building wheel for wrapt (setup.py): finished with status 'done'
+  Created wheel for wrapt: filename=wrapt-1.12.1-cp37-cp37m-linux_x86_64.whl size=70964 sha256=689915c1f5fba644315bca16ff532f2a555e51858bc01d2eee4a1125510db024
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jrznujjd/wheels/62/76/4c/aa25851149f3f6d9785f6c869387ad82b3fd37582fa8147ac6
+  Building wheel for absl-py (setup.py): started
+  Building wheel for absl-py (setup.py): finished with status 'done'
+  Created wheel for absl-py: filename=absl_py-0.9.0-py3-none-any.whl size=121932 sha256=373a7032bde06b0fb91c39dbd4cce65cae02ffec78e894260da8fb8ea6d3e432
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jrznujjd/wheels/cc/af/1a/498a24d0730ef484019e007bb9e8cef3ac00311a672c049a3e
+Successfully built nltk pyyaml termcolor wrapt absl-py
+[91mERROR: tensorflow 2.2.0 has requirement scipy==1.4.1; python_version >= "3", but you'll have scipy 1.5.1 which is incompatible.
+[0mInstalling collected packages: soupsieve, beautifulsoup4, html5lib, numpy, h5py, qtpy, qtconsole, jupyter-console, jupyter, pyyaml, scipy, Keras, pyparsing, pillow, cycler, kiwisolver, matplotlib, click, joblib, regex, tqdm, nltk, pytz, pandas, threadpoolctl, scikit-learn, tensorflow-estimator, protobuf, termcolor, wrapt, gast, keras-preprocessing, grpcio, astunparse, opt-einsum, absl-py, google-pasta, pyasn1, pyasn1-modules, cachetools, rsa, google-auth, markdown, werkzeug, requests-oauthlib, google-auth-oauthlib, tensorboard-plugin-wit, tensorboard, tensorflow, wordcloud
+Successfully installed Keras-2.4.3 absl-py-0.9.0 astunparse-1.6.3 beautifulsoup4-4.9.1 cachetools-4.1.1 click-7.1.2 cycler-0.10.0 gast-0.3.3 google-auth-1.19.1 google-auth-oauthlib-0.4.1 google-pasta-0.2.0 grpcio-1.30.0 h5py-2.10.0 html5lib-1.1 joblib-0.16.0 jupyter-1.0.0 jupyter-console-6.1.0 keras-preprocessing-1.1.2 kiwisolver-1.2.0 markdown-3.2.2 matplotlib-3.3.0 nltk-3.5 numpy-1.19.0 opt-einsum-3.2.1 pandas-1.0.5 pillow-7.2.0 protobuf-3.12.2 pyasn1-0.4.8 pyasn1-modules-0.2.8 pyparsing-2.4.7 pytz-2020.1 pyyaml-5.3.1 qtconsole-4.7.5 qtpy-1.9.0 regex-2020.7.14 requests-oauthlib-1.3.0 rsa-4.6 scikit-learn-0.23.1 scipy-1.5.1 soupsieve-2.0.1 tensorboard-2.2.2 tensorboard-plugin-wit-1.7.0 tensorflow-2.2.0 tensorflow-estimator-2.2.0 termcolor-1.1.0 threadpoolctl-2.1.0 tqdm-4.48.0 werkzeug-1.0.1 wordcloud-1.7.0 wrapt-1.12.1
+Removing intermediate container b0435238514a
+ ---> 1fc9bde05289
+Step 42/51 : USER root
+ ---> Running in b4072914cf24
+Removing intermediate container b4072914cf24
+ ---> 2d55e32f55f3
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 1a3c782495d5
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e4373ea1742d
+Removing intermediate container e4373ea1742d
+ ---> 55e37ae2e099
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in ccee0eb5012a
+Removing intermediate container ccee0eb5012a
+ ---> 83adbd977bca
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in e2ba4df62fd2
+Removing intermediate container e2ba4df62fd2
+ ---> 9361af7f308e
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in a68984cb7ed5
+Removing intermediate container a68984cb7ed5
+ ---> d1153880461b
+Step 48/51 : USER ${NB_USER}
+ ---> Running in 95eb77430b4f
+Removing intermediate container 95eb77430b4f
+ ---> b376bb0544d6
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 520f386b29c3
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in a7eb74d27b99
+Removing intermediate container a7eb74d27b99
+ ---> 9993b02154a4
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in b9708dd1aca0
+Removing intermediate container b9708dd1aca0
+ ---> a34917cb37e4
+{"aux": {"ID": "sha256:a34917cb37e4242a9904fa47b04148eb2143013fbb73a36c6c59e896c057fa8c"}}Successfully built a34917cb37e4
+Successfully tagged r2d-test-github.com-marmaladebacon-aind-nlp:a96925d

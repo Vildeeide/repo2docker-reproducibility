@@ -1,0 +1,5 @@
+[I 200707 06:09:25 inrepo:35] Testing notebook Chapitre 2 - Variables et types/Chapitre 2.2 - Les classes numériques.ipynb
+[I 200707 06:09:35 execute:404] Executing notebook with kernel: octave
+[I 200707 06:09:35 inrepo:41] Saving exported notebook to /io/notebooks/Chapitre 2 - Variables et types/Chapitre 2.2 - Les classes numériques.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,59 @@
+[I 200715 12:37:43 inrepo:36] Testing notebook sources/tech-tutorials/model_eval/2_crossval/label_join/join_exercise.ipynb
+[I 200715 12:37:44 inrepo:45] Found kernel python3
+[I 200715 12:37:45 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+my_agg = incident_aggregation(pd.to_datetime('2016-01-01'),
+                             'incident_type',
+                             'incident_date',
+                              pd.Timedelta(365,'d'), 
+                              {'count_neglects': lambda x: sum(x=='neglect_of_duty'),
+                              'count_conduct': lambda x: sum(x=='conduct_unbecoming')})
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mSpecificationError[0m                        Traceback (most recent call last)
+[0;32m<ipython-input-5-0b400d511148>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m                               [0mpd[0m[0;34m.[0m[0mTimedelta[0m[0;34m([0m[0;36m365[0m[0;34m,[0m[0;34m'd'[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m                               {'count_neglects': lambda x: sum(x=='neglect_of_duty'),
+[0;32m----> 6[0;31m                               'count_conduct': lambda x: sum(x=='conduct_unbecoming')})
+[0m
+[0;32m<ipython-input-4-1e80312d3101>[0m in [0;36mincident_aggregation[0;34m(as_of_date, agg_col, date_col, time_delta, agg_funcs, filename)[0m
+[1;32m     42[0m [0;34m[0m[0m
+[1;32m     43[0m     [0;31m# aggregate by entity_id and apply the functions[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 44[0;31m     [0;32mreturn[0m [0mdf[0m[0;34m[[0m[0magg_col[0m[0;34m][0m[0;34m.[0m[0mgroupby[0m[0;34m([0m[0mlevel[0m[0;34m=[0m[0;34m[[0m[0;36m0[0m[0;34m,[0m[0;36m1[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0magg[0m[0;34m([0m[0magg_funcs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/groupby/generic.py[0m in [0;36maggregate[0;34m(self, func, *args, **kwargs)[0m
+[1;32m    251[0m             [0;31m# but not the class list / tuple itself.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    252[0m             [0mfunc[0m [0;34m=[0m [0m_maybe_mangle_lambdas[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 253[0;31m             [0mret[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_aggregate_multiple_funcs[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    254[0m             [0;32mif[0m [0mrelabeling[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    255[0m                 [0mret[0m[0;34m.[0m[0mcolumns[0m [0;34m=[0m [0mcolumns[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/groupby/generic.py[0m in [0;36m_aggregate_multiple_funcs[0;34m(self, arg)[0m
+[1;32m    292[0m             [0;31m# GH 15931[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    293[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_selected_obj[0m[0;34m,[0m [0mSeries[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 294[0;31m                 [0;32mraise[0m [0mSpecificationError[0m[0;34m([0m[0;34m"nested renamer is not supported"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    295[0m [0;34m[0m[0m
+[1;32m    296[0m             [0mcolumns[0m [0;34m=[0m [0mlist[0m[0;34m([0m[0marg[0m[0;34m.[0m[0mkeys[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mSpecificationError[0m: nested renamer is not supported
+SpecificationError: nested renamer is not supported
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

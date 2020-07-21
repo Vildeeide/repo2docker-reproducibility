@@ -1,0 +1,5 @@
+[I 200703 06:38:21 inrepo:35] Testing notebook eigenvalue/Computing the SVD.ipynb
+[I 200703 06:38:22 execute:404] Executing notebook with kernel: python3
+[I 200703 06:38:23 inrepo:41] Saving exported notebook to /io/notebooks/eigenvalue/Computing the SVD.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

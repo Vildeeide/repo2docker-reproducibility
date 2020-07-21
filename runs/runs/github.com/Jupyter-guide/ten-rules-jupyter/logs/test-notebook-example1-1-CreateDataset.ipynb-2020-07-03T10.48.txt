@@ -1,0 +1,5 @@
+[I 200703 10:52:56 inrepo:35] Testing notebook example1/1-CreateDataset.ipynb
+[I 200703 10:52:57 execute:404] Executing notebook with kernel: python3
+[I 200703 10:53:16 inrepo:41] Saving exported notebook to /io/notebooks/example1/1-CreateDataset.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

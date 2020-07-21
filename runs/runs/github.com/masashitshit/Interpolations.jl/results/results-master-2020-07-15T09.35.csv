@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/masashitshit/Interpolations.jl,master,cb2a842,2017-06-04T18:05:16+09:00,build,build,False,github.com/masashitshit/Interpolations.jl/logs/build-master-2020-07-15T09.35.txt,2020-07-15T09:35:11.338247,2020-07-15T09.35,0.11.0

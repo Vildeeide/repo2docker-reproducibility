@@ -1,0 +1,5 @@
+[I 200706 12:53:26 inrepo:35] Testing notebook example1/2-CalculateFeatures.ipynb
+[I 200706 12:53:27 execute:404] Executing notebook with kernel: python3
+[I 200706 12:53:30 inrepo:41] Saving exported notebook to /io/notebooks/example1/2-CalculateFeatures.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

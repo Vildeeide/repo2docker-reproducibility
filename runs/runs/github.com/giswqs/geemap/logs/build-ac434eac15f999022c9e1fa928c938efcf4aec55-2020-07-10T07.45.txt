@@ -1,0 +1,432 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-10T07.45e8r1fl49/github.com/giswqs/geemap.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 4f928165b3f1
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 7ae763bb88ac
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> f0eca4261b20
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a3dbdcf7daf4
+Removing intermediate container a3dbdcf7daf4
+ ---> a97a31db57db
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 87eb90a66b3f
+Removing intermediate container 87eb90a66b3f
+ ---> b0d3260a923b
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in e97d0f1e2d1b
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting bqplot
+  Downloading bqplot-0.12.14-py2.py3-none-any.whl (4.7 MB)
+Collecting click
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting colour
+  Downloading colour-0.1.5-py2.py3-none-any.whl (23 kB)
+Collecting dulwich
+  Downloading dulwich-0.20.5-cp37-cp37m-manylinux2010_x86_64.whl (500 kB)
+Collecting earthengine-api
+  Downloading earthengine-api-0.1.227.tar.gz (153 kB)
+Collecting folium>=0.11.0
+  Downloading folium-0.11.0-py2.py3-none-any.whl (93 kB)
+Collecting geeadd>=0.4.8
+  Downloading geeadd-0.5.0-py3-none-any.whl (29 kB)
+Collecting geocoder
+  Downloading geocoder-1.38.1-py2.py3-none-any.whl (98 kB)
+Collecting ipyfilechooser
+  Downloading ipyfilechooser-0.3.4-py3-none-any.whl (7.3 kB)
+Collecting ipyleaflet>=0.12.6
+  Downloading ipyleaflet-0.13.1-py2.py3-none-any.whl (5.1 MB)
+Collecting ipynb-py-convert
+  Downloading ipynb-py-convert-0.4.5.tar.gz (3.6 kB)
+Collecting ipytree
+  Downloading ipytree-0.1.8-py2.py3-none-any.whl (1.1 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting mss
+  Downloading mss-6.0.0-py3-none-any.whl (76 kB)
+Collecting pillow
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting pyshp
+  Downloading pyshp-2.1.0.tar.gz (215 kB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Requirement already satisfied: ipywidgets>=7.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->-r requirements.txt (line 1)) (7.5.1)
+Collecting numpy>=1.10.4
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting traittypes>=0.0.6
+  Downloading traittypes-0.2.1-py2.py3-none-any.whl (8.6 kB)
+Requirement already satisfied: traitlets>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->-r requirements.txt (line 1)) (4.3.3)
+Requirement already satisfied: urllib3>=1.24.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dulwich->-r requirements.txt (line 4)) (1.25.7)
+Requirement already satisfied: certifi in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dulwich->-r requirements.txt (line 4)) (2019.11.28)
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting google-cloud-storage
+  Downloading google_cloud_storage-1.29.0-py2.py3-none-any.whl (85 kB)
+Collecting google-api-python-client
+  Downloading google_api_python_client-1.9.3-py3-none-any.whl (59 kB)
+Collecting google-auth>=1.4.1
+  Downloading google_auth-1.18.0-py2.py3-none-any.whl (90 kB)
+Collecting google-auth-httplib2>=0.0.3
+  Downloading google_auth_httplib2-0.0.4-py2.py3-none-any.whl (9.1 kB)
+Collecting httplib2<1dev,>=0.9.2
+  Downloading httplib2-0.18.1-py3-none-any.whl (95 kB)
+Collecting httplib2shim
+  Downloading httplib2shim-0.0.3.tar.gz (17 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->-r requirements.txt (line 5)) (1.14.0)
+Collecting branca>=0.3.0
+  Downloading branca-0.4.1-py3-none-any.whl (24 kB)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium>=0.11.0->-r requirements.txt (line 6)) (2.22.0)
+Requirement already satisfied: jinja2>=2.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium>=0.11.0->-r requirements.txt (line 6)) (2.11.0)
+Collecting beautifulsoup4>=4.9.0
+  Downloading beautifulsoup4-4.9.1-py3-none-any.whl (115 kB)
+Collecting logzero>=1.5.0
+  Downloading logzero-1.5.0-py2.py3-none-any.whl (14 kB)
+Collecting ratelim
+  Downloading ratelim-0.1.6-py2.py3-none-any.whl (4.0 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 13)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (5.0.4)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (7.11.1)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (5.1.4)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (3.5.1)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.0->bqplot->-r requirements.txt (line 1)) (4.4.1)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.0->bqplot->-r requirements.txt (line 1)) (0.2.0)
+Collecting google-resumable-media<0.6dev,>=0.5.0
+  Downloading google_resumable_media-0.5.1-py2.py3-none-any.whl (38 kB)
+Collecting google-cloud-core<2.0dev,>=1.2.0
+  Downloading google_cloud_core-1.3.0-py2.py3-none-any.whl (26 kB)
+Collecting google-api-core<2dev,>=1.18.0
+  Downloading google_api_core-1.21.0-py2.py3-none-any.whl (90 kB)
+Collecting uritemplate<4dev,>=3.0.0
+  Downloading uritemplate-3.0.1-py2.py3-none-any.whl (15 kB)
+Requirement already satisfied: setuptools>=40.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-auth>=1.4.1->earthengine-api->-r requirements.txt (line 5)) (45.1.0.post20200119)
+Collecting rsa<5,>=3.1.4; python_version >= "3"
+  Downloading rsa-4.6-py3-none-any.whl (47 kB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.2.8-py2.py3-none-any.whl (155 kB)
+Collecting cachetools<5.0,>=2.0.0
+  Downloading cachetools-4.1.1-py3-none-any.whl (10 kB)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium>=0.11.0->-r requirements.txt (line 6)) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium>=0.11.0->-r requirements.txt (line 6)) (2.8)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.9->folium>=0.11.0->-r requirements.txt (line 6)) (1.1.1)
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.0.1-py3-none-any.whl (32 kB)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (4.6.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (3.2.0)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (2.5.2)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.1.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (4.8.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.7.5)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (6.0.3)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (5.3.4)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (6.0.3)
+Collecting protobuf>=3.12.0
+  Downloading protobuf-3.12.2-cp37-cp37m-manylinux1_x86_64.whl (1.3 MB)
+Collecting googleapis-common-protos<2.0dev,>=1.6.0
+  Downloading googleapis_common_protos-1.52.0-py2.py3-none-any.whl (100 kB)
+Collecting pyasn1>=0.1.3
+  Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.15.7)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.1.8)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (18.1.1)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.7.1)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (5.6.1)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (1.4.2)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.8.4)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.4.4)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.3)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->-r requirements.txt (line 1)) (0.5.1)
+Building wheels for collected packages: earthengine-api, ipynb-py-convert, pyshp, future, httplib2shim
+  Building wheel for earthengine-api (setup.py): started
+  Building wheel for earthengine-api (setup.py): finished with status 'done'
+  Created wheel for earthengine-api: filename=earthengine_api-0.1.227-py3-none-any.whl size=181589 sha256=72a2ed16edc2c6f345e6c8c7e6ffe20bfc9f1f3542b6989266134ef85efe127a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2g2lm3eg/wheels/bc/e8/1c/c9f26efda23e175b4a716b326ee5aeceac1e8d5a2f422153f3
+  Building wheel for ipynb-py-convert (setup.py): started
+  Building wheel for ipynb-py-convert (setup.py): finished with status 'done'
+  Created wheel for ipynb-py-convert: filename=ipynb_py_convert-0.4.5-py3-none-any.whl size=4323 sha256=03f9631e73d3a384383dcfb7d673db5d72b3a326d5641634f5cbae8ca474a7cd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2g2lm3eg/wheels/86/ae/69/f65a51573548046fe7866d751935da250008651513689770ff
+  Building wheel for pyshp (setup.py): started
+  Building wheel for pyshp (setup.py): finished with status 'done'
+  Created wheel for pyshp: filename=pyshp-2.1.0-py3-none-any.whl size=32608 sha256=ed165631a821c153c7c44af6d8118af0e765f7e231819b07c6d966f2e4d138c0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2g2lm3eg/wheels/a0/c5/f3/548a073ac6a83d5b23d9b39cdd24314fc84bc8afc9882deb33
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=a5afbcfa86d2699b35ec312e85651afe0078789bddfb56199d2a6617348ded65
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2g2lm3eg/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+  Building wheel for httplib2shim (setup.py): started
+  Building wheel for httplib2shim (setup.py): finished with status 'done'
+  Created wheel for httplib2shim: filename=httplib2shim-0.0.3-py2.py3-none-any.whl size=18058 sha256=ae928206e8750f6653c91af95c9746a986db38119be34043010a2de60e4d97a7
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2g2lm3eg/wheels/b7/3d/b4/033d07bc6a387ce6e16807fe14d4b780d84c78e54dc73a3568
+Successfully built earthengine-api ipynb-py-convert pyshp future httplib2shim
+Installing collected packages: pytz, numpy, pandas, traittypes, bqplot, click, colour, dulwich, future, google-resumable-media, protobuf, googleapis-common-protos, pyasn1, rsa, pyasn1-modules, cachetools, google-auth, google-api-core, google-cloud-core, google-cloud-storage, httplib2, google-auth-httplib2, uritemplate, google-api-python-client, httplib2shim, earthengine-api, branca, folium, soupsieve, beautifulsoup4, logzero, geeadd, ratelim, geocoder, ipyfilechooser, ipyleaflet, ipynb-py-convert, ipytree, pyparsing, cycler, kiwisolver, matplotlib, mss, pillow, pyshp
+Successfully installed beautifulsoup4-4.9.1 bqplot-0.12.14 branca-0.4.1 cachetools-4.1.1 click-7.1.2 colour-0.1.5 cycler-0.10.0 dulwich-0.20.5 earthengine-api-0.1.227 folium-0.11.0 future-0.18.2 geeadd-0.5.0 geocoder-1.38.1 google-api-core-1.21.0 google-api-python-client-1.9.3 google-auth-1.18.0 google-auth-httplib2-0.0.4 google-cloud-core-1.3.0 google-cloud-storage-1.29.0 google-resumable-media-0.5.1 googleapis-common-protos-1.52.0 httplib2-0.18.1 httplib2shim-0.0.3 ipyfilechooser-0.3.4 ipyleaflet-0.13.1 ipynb-py-convert-0.4.5 ipytree-0.1.8 kiwisolver-1.2.0 logzero-1.5.0 matplotlib-3.2.2 mss-6.0.0 numpy-1.19.0 pandas-1.0.5 pillow-7.2.0 protobuf-3.12.2 pyasn1-0.4.8 pyasn1-modules-0.2.8 pyparsing-2.4.7 pyshp-2.1.0 pytz-2020.1 ratelim-0.1.6 rsa-4.6 soupsieve-2.0.1 traittypes-0.2.1 uritemplate-3.0.1
+Removing intermediate container e97d0f1e2d1b
+ ---> 0963c3a68894
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 4d554b64f23e
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: bqplot in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.12.14)
+Requirement already satisfied: click in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (7.1.2)
+Requirement already satisfied: colour in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.1.5)
+Requirement already satisfied: dulwich in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.20.5)
+Requirement already satisfied: earthengine-api in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.1.227)
+Requirement already satisfied: folium>=0.11.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.11.0)
+Requirement already satisfied: geeadd>=0.4.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.5.0)
+Requirement already satisfied: geocoder in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (1.38.1)
+Requirement already satisfied: ipyfilechooser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.3.4)
+Requirement already satisfied: ipyleaflet>=0.12.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.13.1)
+Requirement already satisfied: ipynb-py-convert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.4.5)
+Requirement already satisfied: ipytree in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (0.1.8)
+Requirement already satisfied: matplotlib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (3.2.2)
+Requirement already satisfied: mss in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (6.0.0)
+Requirement already satisfied: pillow in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (7.2.0)
+Requirement already satisfied: pyshp in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geemap==0.6.14) (2.1.0)
+Requirement already satisfied: numpy>=1.10.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->geemap==0.6.14) (1.19.0)
+Requirement already satisfied: traitlets>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->geemap==0.6.14) (4.3.3)
+Requirement already satisfied: ipywidgets>=7.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->geemap==0.6.14) (7.5.1)
+Requirement already satisfied: traittypes>=0.0.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->geemap==0.6.14) (0.2.1)
+Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bqplot->geemap==0.6.14) (1.0.5)
+Requirement already satisfied: urllib3>=1.24.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dulwich->geemap==0.6.14) (1.25.7)
+Requirement already satisfied: certifi in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dulwich->geemap==0.6.14) (2019.11.28)
+Requirement already satisfied: httplib2<1dev,>=0.9.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (0.18.1)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (1.14.0)
+Requirement already satisfied: google-api-python-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (1.9.3)
+Requirement already satisfied: future in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (0.18.2)
+Requirement already satisfied: google-auth>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (1.18.0)
+Requirement already satisfied: google-cloud-storage in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (1.29.0)
+Requirement already satisfied: google-auth-httplib2>=0.0.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (0.0.4)
+Requirement already satisfied: httplib2shim in /srv/conda/envs/notebook/lib/python3.7/site-packages (from earthengine-api->geemap==0.6.14) (0.0.3)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium>=0.11.0->geemap==0.6.14) (2.22.0)
+Requirement already satisfied: jinja2>=2.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium>=0.11.0->geemap==0.6.14) (2.11.0)
+Requirement already satisfied: branca>=0.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from folium>=0.11.0->geemap==0.6.14) (0.4.1)
+Requirement already satisfied: beautifulsoup4>=4.9.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geeadd>=0.4.8->geemap==0.6.14) (4.9.1)
+Requirement already satisfied: logzero>=1.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geeadd>=0.4.8->geemap==0.6.14) (1.5.0)
+Requirement already satisfied: ratelim in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geocoder->geemap==0.6.14) (0.1.6)
+Requirement already satisfied: kiwisolver>=1.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->geemap==0.6.14) (1.2.0)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->geemap==0.6.14) (2.8.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->geemap==0.6.14) (2.4.7)
+Requirement already satisfied: cycler>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->geemap==0.6.14) (0.10.0)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.0->bqplot->geemap==0.6.14) (0.2.0)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from traitlets>=4.3.0->bqplot->geemap==0.6.14) (4.4.1)
+Requirement already satisfied: ipykernel>=4.5.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (5.1.4)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (3.5.1)
+Requirement already satisfied: ipython>=4.0.0; python_version >= "3.3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (7.11.1)
+Requirement already satisfied: nbformat>=4.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (5.0.4)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->bqplot->geemap==0.6.14) (2020.1)
+Requirement already satisfied: uritemplate<4dev,>=3.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-api-python-client->earthengine-api->geemap==0.6.14) (3.0.1)
+Requirement already satisfied: google-api-core<2dev,>=1.18.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-api-python-client->earthengine-api->geemap==0.6.14) (1.21.0)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-auth>=1.4.1->earthengine-api->geemap==0.6.14) (0.2.8)
+Requirement already satisfied: setuptools>=40.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-auth>=1.4.1->earthengine-api->geemap==0.6.14) (45.1.0.post20200119)
+Requirement already satisfied: rsa<5,>=3.1.4; python_version >= "3" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-auth>=1.4.1->earthengine-api->geemap==0.6.14) (4.6)
+Requirement already satisfied: cachetools<5.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-auth>=1.4.1->earthengine-api->geemap==0.6.14) (4.1.1)
+Requirement already satisfied: google-resumable-media<0.6dev,>=0.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-cloud-storage->earthengine-api->geemap==0.6.14) (0.5.1)
+Requirement already satisfied: google-cloud-core<2.0dev,>=1.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-cloud-storage->earthengine-api->geemap==0.6.14) (1.3.0)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium>=0.11.0->geemap==0.6.14) (3.0.4)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->folium>=0.11.0->geemap==0.6.14) (2.8)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jinja2>=2.9->folium>=0.11.0->geemap==0.6.14) (1.1.1)
+Requirement already satisfied: soupsieve>1.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from beautifulsoup4>=4.9.0->geeadd>=0.4.8->geemap==0.6.14) (2.0.1)
+Requirement already satisfied: tornado>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (6.0.3)
+Requirement already satisfied: jupyter-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (5.3.4)
+Requirement already satisfied: notebook>=4.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (6.0.3)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.1.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (3.0.3)
+Requirement already satisfied: pygments in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (2.5.2)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.7.5)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.16.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (4.8.0)
+Requirement already satisfied: jupyter-core in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (4.6.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (3.2.0)
+Requirement already satisfied: googleapis-common-protos<2.0dev,>=1.6.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-api-core<2dev,>=1.18.0->google-api-python-client->earthengine-api->geemap==0.6.14) (1.52.0)
+Requirement already satisfied: protobuf>=3.12.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from google-api-core<2dev,>=1.18.0->google-api-python-client->earthengine-api->geemap==0.6.14) (3.12.2)
+Requirement already satisfied: pyasn1<0.5.0,>=0.4.6 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyasn1-modules>=0.2.1->google-auth>=1.4.1->earthengine-api->geemap==0.6.14) (0.4.8)
+Requirement already satisfied: pyzmq>=13 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter-client->ipykernel>=4.5.1->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (18.1.1)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.7.1)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.8.3)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (1.5.0)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (5.6.1)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.1.8)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.6.0)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython>=4.0.0; python_version >= "3.3"->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.6.0)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.15.7)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (19.3.0)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (1.5.0)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (3.1.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.8.4)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (1.4.2)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.6.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.4.4)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat>=4.2.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (2.1.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->notebook>=4.4.1->widgetsnbextension~=3.5.0->ipywidgets>=7.5.0->bqplot->geemap==0.6.14) (0.5.1)
+Building wheels for collected packages: geemap
+  Building wheel for geemap (setup.py): started
+  Building wheel for geemap (setup.py): finished with status 'done'
+  Created wheel for geemap: filename=geemap-0.6.14-py2.py3-none-any.whl size=358058 sha256=056cba21a43ef70360f137539cd59acdf1d44b7f20013375c691f112d5f52087
+  Stored in directory: /tmp/pip-ephem-wheel-cache-p7b3hwlc/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built geemap
+Installing collected packages: geemap
+Successfully installed geemap-0.6.14
+Removing intermediate container 4d554b64f23e
+ ---> 20713a0e1389
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in dd65e44028cd
+Removing intermediate container dd65e44028cd
+ ---> 4622e4582952
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 91dac2e1c06f
+Removing intermediate container 91dac2e1c06f
+ ---> f812e5edbbc7
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 4542f9a4c2cf
+Removing intermediate container 4542f9a4c2cf
+ ---> a5c338facfb6
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 82982835c4d5
+Removing intermediate container 82982835c4d5
+ ---> f584ed653800
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> fcc987217cb7
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in ac387d8bddef
+Removing intermediate container ac387d8bddef
+ ---> 7d9e7c1cf369
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 17dfbc27fa1a
+Removing intermediate container 17dfbc27fa1a
+ ---> 83d17b85a84b
+{"aux": {"ID": "sha256:83d17b85a84bff5c0fcb3de281a53999f82fa27cdc6ac901a9af2594699f0e93"}}Successfully built 83d17b85a84b
+Successfully tagged r2d-test-github.com-giswqs-geemap:ac434ea

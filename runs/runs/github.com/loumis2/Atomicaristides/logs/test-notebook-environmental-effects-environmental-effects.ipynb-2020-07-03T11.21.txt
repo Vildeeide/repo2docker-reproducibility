@@ -1,0 +1,5 @@
+[I 200703 11:21:46 inrepo:35] Testing notebook environmental-effects/environmental-effects.ipynb
+[I 200703 11:21:47 execute:404] Executing notebook with kernel: python3
+[I 200703 11:21:47 inrepo:41] Saving exported notebook to /io/notebooks/environmental-effects/environmental-effects.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

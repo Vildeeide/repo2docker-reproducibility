@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/krisrogers/scraping,master,22b6748,2017-08-24T13:45:44+10:00,build,build,False,github.com/krisrogers/scraping/logs/build-master-2020-07-20T10.07.txt,2020-07-20T10:07:30.861387,2020-07-20T10.07,0.11.0

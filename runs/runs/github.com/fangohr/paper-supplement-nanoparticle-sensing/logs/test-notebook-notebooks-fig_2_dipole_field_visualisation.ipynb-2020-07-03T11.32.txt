@@ -1,0 +1,5 @@
+[I 200703 11:32:37 inrepo:35] Testing notebook notebooks/fig_2_dipole_field_visualisation.ipynb
+[I 200703 11:32:38 execute:404] Executing notebook with kernel: python3
+[I 200703 11:32:39 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/fig_2_dipole_field_visualisation.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

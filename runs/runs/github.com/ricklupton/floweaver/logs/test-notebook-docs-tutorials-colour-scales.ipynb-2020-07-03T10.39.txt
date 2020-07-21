@@ -1,0 +1,5 @@
+[I 200703 10:40:18 inrepo:35] Testing notebook docs/tutorials/colour-scales.ipynb
+[I 200703 10:40:19 execute:404] Executing notebook with kernel: python3
+[I 200703 10:40:29 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorials/colour-scales.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

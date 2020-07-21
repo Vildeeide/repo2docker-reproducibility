@@ -1,0 +1,5 @@
+[I 200706 09:51:22 inrepo:35] Testing notebook ipython_examples/Churyumov-Gerasimenko.ipynb
+[I 200706 09:51:23 execute:404] Executing notebook with kernel: python3
+[I 200706 09:52:02 inrepo:41] Saving exported notebook to /io/notebooks/ipython_examples/Churyumov-Gerasimenko.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

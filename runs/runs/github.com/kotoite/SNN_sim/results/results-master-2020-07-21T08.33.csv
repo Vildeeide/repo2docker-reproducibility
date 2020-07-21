@@ -1,0 +1,5 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kotoite/SNN_sim,master,5d77674,2018-03-18T15:38:19-07:00,build,build,True,github.com/kotoite/SNN_sim/logs/build-master-2020-07-21T08.33.txt,2020-07-21T08:33:50.433978,2020-07-21T08.33,0.11.0
+https://github.com/kotoite/SNN_sim,master,5d77674,2018-03-18T15:38:19-07:00,notebook,Fast_Prop_Layers_Rate_Mode.ipynb,False,github.com/kotoite/SNN_sim/logs/test-notebook-Fast_Prop_Layers_Rate_Mode.ipynb-2020-07-21T08.33.txt,2020-07-21T08:33:50.433978,2020-07-21T08.33,0.11.0
+https://github.com/kotoite/SNN_sim,master,5d77674,2018-03-18T15:38:19-07:00,notebook,Untitled.ipynb,False,github.com/kotoite/SNN_sim/logs/test-notebook-Untitled.ipynb-2020-07-21T08.33.txt,2020-07-21T08:33:50.433978,2020-07-21T08.33,0.11.0
+https://github.com/kotoite/SNN_sim,master,5d77674,2018-03-18T15:38:19-07:00,notebook,.ipynb_checkpoints/Untitled-checkpoint.ipynb,True,github.com/kotoite/SNN_sim/logs/test-notebook-.ipynb_checkpoints-Untitled-checkpoint.ipynb-2020-07-21T08.33.txt,2020-07-21T08:33:50.433978,2020-07-21T08.33,0.11.0

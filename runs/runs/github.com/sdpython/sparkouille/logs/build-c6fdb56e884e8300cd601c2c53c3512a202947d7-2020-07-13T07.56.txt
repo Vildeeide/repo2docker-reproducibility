@@ -1,0 +1,335 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-13T07.56tthmpr1q/github.com/sdpython/sparkouille.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 10547e400dcd
+Step 38/50 : USER root
+ ---> Running in 69c06ab673d4
+Removing intermediate container 69c06ab673d4
+ ---> 7436a948a2cd
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 092c5f1384e1
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in a869ef9d5c77
+Removing intermediate container a869ef9d5c77
+ ---> 68889873dad3
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 76d26844ab05
+Removing intermediate container 76d26844ab05
+ ---> 99596d63391c
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 68d696e58675
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mRequirement already satisfied: chardet in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (3.0.4)
+Collecting coverage
+  Downloading coverage-5.2-cp37-cp37m-manylinux1_x86_64.whl (229 kB)
+Collecting guzzle_sphinx_theme
+  Downloading guzzle_sphinx_theme-0.7.11.tar.gz (2.5 MB)
+Collecting jyquickhelper
+  Downloading jyquickhelper-0.3.128-py3-none-any.whl (1.1 MB)
+Collecting pyensae
+  Downloading pyensae-1.3.839-py3-none-any.whl (468 kB)
+Collecting pymyinstall
+  Downloading pymyinstall-1.3.1776-py3-none-any.whl (2.1 MB)
+Collecting pyquickhelper>=1.8.2602
+  Downloading pyquickhelper-1.9.3418-py3-none-any.whl (2.2 MB)
+Collecting pyspark
+  Downloading pyspark-3.0.0.tar.gz (204.7 MB)
+Collecting qgrid
+  Downloading qgrid-1.3.1.tar.gz (889 kB)
+Collecting sphinx_bootstrap_theme
+  Downloading sphinx-bootstrap-theme-0.7.1.tar.gz (1.2 MB)
+Collecting sphinxjp.themes.basicstrap
+  Downloading sphinxjp.themes.basicstrap-0.5.0-py2.py3-none-any.whl (1.3 MB)
+Collecting sphinxjp.themes.sphinxjp
+  Downloading sphinxjp.themes.sphinxjp-1.0.2-py2.py3-none-any.whl (95 kB)
+Requirement already satisfied: wheel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from -r requirements.txt (line 13)) (0.34.1)
+Collecting yahoo_historical
+  Downloading yahoo_historical-0.3.2-py3-none-any.whl (3.6 kB)
+Collecting Sphinx>=1.2b1
+  Downloading Sphinx-3.1.2-py3-none-any.whl (2.9 MB)
+Requirement already satisfied: ipython in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jyquickhelper->-r requirements.txt (line 4)) (7.11.1)
+Collecting jupyter
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Requirement already satisfied: notebook in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jyquickhelper->-r requirements.txt (line 4)) (6.0.3)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Requirement already satisfied: urllib3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pymyinstall->-r requirements.txt (line 6)) (1.25.7)
+Requirement already satisfied: requests in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pymyinstall->-r requirements.txt (line 6)) (2.22.0)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pymyinstall->-r requirements.txt (line 6)) (45.1.0.post20200119)
+Requirement already satisfied: pip>=10.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pymyinstall->-r requirements.txt (line 6)) (20.0.2)
+Collecting fire
+  Downloading fire-0.3.1.tar.gz (81 kB)
+Collecting py4j==0.10.9
+  Downloading py4j-0.10.9-py2.py3-none-any.whl (198 kB)
+Requirement already satisfied: ipywidgets>=7.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from qgrid->-r requirements.txt (line 9)) (7.5.1)
+Collecting babel>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting sphinxcontrib-htmlhelp
+  Downloading sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl (96 kB)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl (121 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl (90 kB)
+Requirement already satisfied: Pygments>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Sphinx>=1.2b1->guzzle_sphinx_theme->-r requirements.txt (line 3)) (2.5.2)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Requirement already satisfied: Jinja2>=2.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Sphinx>=1.2b1->guzzle_sphinx_theme->-r requirements.txt (line 3)) (2.11.0)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl (84 kB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting sphinxcontrib-serializinghtml
+  Downloading sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl (89 kB)
+Collecting docutils>=0.12
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Requirement already satisfied: jedi>=0.10 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (0.16.0)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (3.0.3)
+Requirement already satisfied: decorator in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (4.4.1)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (4.8.0)
+Requirement already satisfied: pickleshare in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (0.7.5)
+Requirement already satisfied: backcall in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (0.1.0)
+Requirement already satisfied: traitlets>=4.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipython->jyquickhelper->-r requirements.txt (line 4)) (4.3.3)
+Requirement already satisfied: nbconvert in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->jyquickhelper->-r requirements.txt (line 4)) (5.6.1)
+Requirement already satisfied: ipykernel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jupyter->jyquickhelper->-r requirements.txt (line 4)) (5.1.4)
+Collecting qtconsole
+  Downloading qtconsole-4.7.5-py2.py3-none-any.whl (118 kB)
+Collecting jupyter-console
+  Downloading jupyter_console-6.1.0-py2.py3-none-any.whl (21 kB)
+Requirement already satisfied: pyzmq>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (18.1.1)
+Requirement already satisfied: nbformat in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (5.0.4)
+Requirement already satisfied: Send2Trash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (1.5.0)
+Requirement already satisfied: jupyter-core>=4.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (4.6.1)
+Requirement already satisfied: jupyter-client>=5.3.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (5.3.4)
+Requirement already satisfied: terminado>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (0.8.3)
+Requirement already satisfied: prometheus-client in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (0.7.1)
+Requirement already satisfied: tornado>=5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (6.0.3)
+Requirement already satisfied: ipython-genutils in /srv/conda/envs/notebook/lib/python3.7/site-packages (from notebook->jyquickhelper->-r requirements.txt (line 4)) (0.2.0)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->pyensae->-r requirements.txt (line 5)) (2.8.1)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->pymyinstall->-r requirements.txt (line 6)) (2.8)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests->pymyinstall->-r requirements.txt (line 6)) (2019.11.28)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fire->pyquickhelper>=1.8.2602->-r requirements.txt (line 7)) (1.14.0)
+Collecting termcolor
+  Downloading termcolor-1.1.0.tar.gz (3.9 kB)
+Requirement already satisfied: widgetsnbextension~=3.5.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from ipywidgets>=7.0.0->qgrid->-r requirements.txt (line 9)) (3.5.1)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.3->Sphinx>=1.2b1->guzzle_sphinx_theme->-r requirements.txt (line 3)) (1.1.1)
+Requirement already satisfied: parso>=0.5.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jedi>=0.10->ipython->jyquickhelper->-r requirements.txt (line 4)) (0.6.0)
+Requirement already satisfied: wcwidth in /srv/conda/envs/notebook/lib/python3.7/site-packages (from prompt-toolkit!=3.0.0,!=3.0.1,<3.1.0,>=2.0.0->ipython->jyquickhelper->-r requirements.txt (line 4)) (0.1.8)
+Requirement already satisfied: ptyprocess>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pexpect; sys_platform != "win32"->ipython->jyquickhelper->-r requirements.txt (line 4)) (0.6.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (0.3)
+Requirement already satisfied: bleach in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (3.1.0)
+Requirement already satisfied: testpath in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (0.4.4)
+Requirement already satisfied: defusedxml in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (0.6.0)
+Requirement already satisfied: mistune<2,>=0.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (0.8.4)
+Requirement already satisfied: pandocfilters>=1.4.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (1.4.2)
+Collecting qtpy
+  Downloading QtPy-1.9.0-py2.py3-none-any.whl (54 kB)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from nbformat->notebook->jyquickhelper->-r requirements.txt (line 4)) (3.2.0)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach->nbconvert->jupyter->jyquickhelper->-r requirements.txt (line 4)) (0.5.1)
+Requirement already satisfied: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook->jyquickhelper->-r requirements.txt (line 4)) (0.15.7)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook->jyquickhelper->-r requirements.txt (line 4)) (1.5.0)
+Requirement already satisfied: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from jsonschema!=2.5.0,>=2.4->nbformat->notebook->jyquickhelper->-r requirements.txt (line 4)) (19.3.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->jsonschema!=2.5.0,>=2.4->nbformat->notebook->jyquickhelper->-r requirements.txt (line 4)) (2.1.0)
+Building wheels for collected packages: guzzle-sphinx-theme, pyspark, qgrid, sphinx-bootstrap-theme, fire, termcolor
+  Building wheel for guzzle-sphinx-theme (setup.py): started
+  Building wheel for guzzle-sphinx-theme (setup.py): finished with status 'done'
+  Created wheel for guzzle-sphinx-theme: filename=guzzle_sphinx_theme-0.7.11-py3-none-any.whl size=2555156 sha256=4533b17a67c401fb91f7fdefd01b5aa56c4e17032441d74816140e091fff8f76
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/5c/d1/84/25697025762e126f3a2eba16cae45f22432fe99669b05df5c0
+  Building wheel for pyspark (setup.py): started
+  Building wheel for pyspark (setup.py): finished with status 'done'
+  Created wheel for pyspark: filename=pyspark-3.0.0-py2.py3-none-any.whl size=205044184 sha256=a964776f82136f0df9acf4bad791e5e6114b9f05ff4a28c4e48d8d63a3cae29a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/4e/c5/36/aef1bb711963a619063119cc032176106827a129c0be20e301
+  Building wheel for qgrid (setup.py): started
+  Building wheel for qgrid (setup.py): finished with status 'done'
+  Created wheel for qgrid: filename=qgrid-1.3.1-py2.py3-none-any.whl size=1761259 sha256=f977e2c5e01f89459d10259b52c4a02ba4c575440830e032d3c66fc00a4623b1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/53/87/cb/c63a58774627471976061afb5b8657b76d2268c1e76e980586
+  Building wheel for sphinx-bootstrap-theme (setup.py): started
+  Building wheel for sphinx-bootstrap-theme (setup.py): finished with status 'done'
+  Created wheel for sphinx-bootstrap-theme: filename=sphinx_bootstrap_theme-0.7.1-py3-none-any.whl size=1250222 sha256=26a6e5d6dbfbb2b2cf30a18b3bb75e8cbe0449c95ddf958cc15f8e5a63ecb827
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/08/be/f3/01d145bc6faf769e37d9fb6f1d2f078bc8cd9725c9d883699c
+  Building wheel for fire (setup.py): started
+  Building wheel for fire (setup.py): finished with status 'done'
+  Created wheel for fire: filename=fire-0.3.1-py2.py3-none-any.whl size=111003 sha256=58d229b463d4903a6c49cbbc8ada7591439870602a6f9809d726d187976d0157
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/95/38/e1/8b62337a8ecf5728bdc1017e828f253f7a9cf25db999861bec
+  Building wheel for termcolor (setup.py): started
+  Building wheel for termcolor (setup.py): finished with status 'done'
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4830 sha256=ee23bbeeb3dbbcba26e7dc72aa1ade65234aed79166e14ef381e72c201bf4e6a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t5hh_m0e/wheels/3f/e3/ec/8a8336ff196023622fbcb36de0c5a5c218cbb24111d1d4c7f2
+Successfully built guzzle-sphinx-theme pyspark qgrid sphinx-bootstrap-theme fire termcolor
+Installing collected packages: coverage, pytz, babel, pyparsing, packaging, sphinxcontrib-htmlhelp, imagesize, sphinxcontrib-applehelp, sphinxcontrib-qthelp, sphinxcontrib-jsmath, sphinxcontrib-devhelp, alabaster, snowballstemmer, sphinxcontrib-serializinghtml, docutils, Sphinx, guzzle-sphinx-theme, qtpy, qtconsole, jupyter-console, jupyter, jyquickhelper, numpy, termcolor, fire, pyquickhelper, pandas, yahoo-historical, kiwisolver, cycler, matplotlib, pyensae, pymyinstall, py4j, pyspark, qgrid, sphinx-bootstrap-theme, sphinxjp.themes.basicstrap, sphinxjp.themes.sphinxjp
+Successfully installed Sphinx-3.1.2 alabaster-0.7.12 babel-2.8.0 coverage-5.2 cycler-0.10.0 docutils-0.16 fire-0.3.1 guzzle-sphinx-theme-0.7.11 imagesize-1.2.0 jupyter-1.0.0 jupyter-console-6.1.0 jyquickhelper-0.3.128 kiwisolver-1.2.0 matplotlib-3.2.2 numpy-1.19.0 packaging-20.4 pandas-1.0.5 py4j-0.10.9 pyensae-1.3.839 pymyinstall-1.3.1776 pyparsing-2.4.7 pyquickhelper-1.9.3418 pyspark-3.0.0 pytz-2020.1 qgrid-1.3.1 qtconsole-4.7.5 qtpy-1.9.0 snowballstemmer-2.0.0 sphinx-bootstrap-theme-0.7.1 sphinxcontrib-applehelp-1.0.2 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-1.0.3 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.4 sphinxjp.themes.basicstrap-0.5.0 sphinxjp.themes.sphinxjp-1.0.2 termcolor-1.1.0 yahoo-historical-0.3.2
+Removing intermediate container 68d696e58675
+ ---> 17c2faa584ee
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 83bc468b8f3f
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: pyspark in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sparkouille==0.1) (3.0.0)
+Requirement already satisfied: py4j==0.10.9 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pyspark->sparkouille==0.1) (0.10.9)
+Building wheels for collected packages: sparkouille
+  Building wheel for sparkouille (setup.py): started
+  Building wheel for sparkouille (setup.py): finished with status 'done'
+  Created wheel for sparkouille: filename=sparkouille-0.1.32-py3-none-any.whl size=10394 sha256=a94515da064756091ac12c23df6ba4f30abf07d93b76d5da4de9b13d6851c161
+  Stored in directory: /tmp/pip-ephem-wheel-cache-zv4jhtzy/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built sparkouille
+Installing collected packages: sparkouille
+Successfully installed sparkouille-0.1.32
+Removing intermediate container 83bc468b8f3f
+ ---> 5705cfd7ced2
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in 5e0d804e0f71
+Removing intermediate container 5e0d804e0f71
+ ---> 148640b692dc
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 43182daee6a1
+Removing intermediate container 43182daee6a1
+ ---> 6f62a29859f7
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 2b7a69e38d9d
+Removing intermediate container 2b7a69e38d9d
+ ---> fd086c540787
+Step 47/50 : USER ${NB_USER}
+ ---> Running in a236f3aa020e
+Removing intermediate container a236f3aa020e
+ ---> f12f4da31a85
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 876305cce4f9
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in f66c6bd4eec9
+Removing intermediate container f66c6bd4eec9
+ ---> 868d90563794
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 78d384588eeb
+Removing intermediate container 78d384588eeb
+ ---> 2c9f4a7316a2
+{"aux": {"ID": "sha256:2c9f4a7316a218e087280fe5ed3848d0c454bf9e7d35412fc89571fde92766dc"}}Successfully built 2c9f4a7316a2
+Successfully tagged r2d-test-github.com-sdpython-sparkouille:c6fdb56

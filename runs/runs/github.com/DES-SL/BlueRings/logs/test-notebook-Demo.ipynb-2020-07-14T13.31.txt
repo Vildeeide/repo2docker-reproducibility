@@ -1,0 +1,41 @@
+[I 200714 13:31:17 inrepo:36] Testing notebook Demo.ipynb
+[W 200714 13:31:17 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200714 13:31:17 inrepo:60] Using kernel python3 to provide language: python
+[I 200714 13:31:18 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from StandAloneRingFinder import *
+------------------
+
+Traceback [0;36m(most recent call last)[0m:
+
+  File [1;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py"[0m, line [1;32m3319[0m, in [1;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+[0;36m  File [0;32m"<ipython-input-1-949cec6bb76c>"[0;36m, line [0;32m1[0;36m, in [0;35m<module>[0;36m[0m
+[0;31m    from StandAloneRingFinder import *[0m
+
+[0;36m  File [0;32m"/home/vildeeide/StandAloneRingFinder.py"[0;36m, line [0;32m32[0m
+[0;31m    print comR[0m
+[0m             ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print(comR)?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(comR)? (StandAloneRingFinder.py, line 32)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

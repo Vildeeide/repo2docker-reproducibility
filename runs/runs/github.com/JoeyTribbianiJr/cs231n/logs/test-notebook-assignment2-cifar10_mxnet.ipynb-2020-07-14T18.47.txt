@@ -1,0 +1,129 @@
+[I 200714 18:48:07 inrepo:36] Testing notebook assignment2/cifar10_mxnet.ipynb
+[W 200714 18:48:07 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200714 18:48:07 inrepo:60] Using kernel python3 to provide language: python
+[I 200714 18:48:08 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#ligh
+"""In this assignment, you should train your own net on cifar10 classification with deep learning framework MXNet.
+   With MXNet, you only need to define the nets with symbol connection, then set hyperparameters to train the 
+   network. You can also save your model and load pretrained model to finetune the network. Make sure using GPU 
+   mode. You should achieve at least 80% on the validation set."""
+
+"""vist http://mxnet.io/get_started/index.html to get familar with mxnet!"""
+   
+import sys
+import os
+import numpy as np
+import mxnet as mx
+import logging
+
+# download data if necessary
+def _download(data_dir):
+    if not os.path.isdir(data_dir):
+        os.system("mkdir " + data_dir)
+    os.chdir(data_dir)
+    if (not os.path.exists('train.rec')) or \
+       (not os.path.exists('test.rec')) :
+        os.system("wget http://data.dmlc.ml/mxnet/data/cifar10.zip")
+        os.system("unzip -u cifar10.zip")
+        os.system("mv cifar/* .; rm -rf cifar; rm cifar10.zip")
+    os.chdir("..")
+
+
+# data
+def get_iterator(data_shape=(3, 28, 28)):
+    if '://' not in data_dir:
+        _download(data_dir)
+
+    train = mx.io.ImageRecordIter(
+        path_imgrec = os.path.join(data_dir, "train.rec"),
+        mean_img    = os.path.join(data_dir, "mean.bin"),
+        data_shape  = data_shape,
+        batch_size  = batch_size,
+        rand_crop   = True,
+        rand_mirror = True)
+
+    val = mx.io.ImageRecordIter(
+        path_imgrec = os.path.join(data_dir, "test.rec"),
+        mean_img    = os.path.join(data_dir, "mean.bin"),
+        rand_crop   = False,
+        rand_mirror = False,
+        data_shape  = data_shape,
+        batch_size  = batch_size)
+
+    return (train, val)
+
+
+def get_net(num_classes=10):
+    #####################################################################################
+    # TODO: define your net                                                             #
+    # Define symbols that using convolution and max pooling to extract better features  #
+    # from input image.                                                                 #
+    #####################################################################################
+    data = mx.symbol.Variable(name="data")
+    
+    conv1_1 = mx.symbol.Convolution(data=data, kernel=(3,3), pad=(1,1), num_filter=128, name="conv1_1")
+    relu1_1 = mx.symbol.Activation(data=conv1_1, act_type="relu", name="relu1_1")
+    pool1 = mx.symbol.Pooling(data=relu1_1, pool_type="max", kernel=(2,2), stride=(2,2), name="pool1")
+    
+    conv2_1 = mx.symbol.Convolution(data=relu1_1, kernel=(3,3), pad=(1,1), num_filter=128, name="conv2_1")
+    relu2_1 = mx.symbol.Activation(data=conv2_1, act_type="relu", name="relu2_1")
+    pool2 = mx.symbol.Pooling(data=relu2_1, pool_type="max", kernel=(2,2), stride=(2,2), name="pool2")
+    
+    conv3_1 = mx.symbol.Convolution(data=pool2, kernel=(5,5), pad=(2,2), num_filter=256, name="conv3_1")
+    relu3_1 = mx.symbol.Activation(data=conv3_1, act_type="relu", name="relu3_1")
+    conv3_2 = mx.symbol.Convolution(data=relu3_1, kernel=(5,5), pad=(2,2), num_filter=256, name="conv3_2")
+    relu3_2 = mx.symbol.Activation(data=conv3_2, act_type="relu", name="relu3_2")
+    pool_3 = mx.symbol.Pooling(data=relu3_2, pool_type="max", kernel=(2,2), stride=(2,2), name="pool_3")
+
+    flatten = mx.symbol.Flatten(data=pool_3, name="flatten")
+    fc4 = mx.symbol.FullyConnected(data=flatten, num_hidden=1024, name="fc4")
+    relu4 = mx.symbol.Activation(data=fc4, act_type="relu", name="relu4")
+    drop4 = mx.symbol.Dropout(data=relu4, p=0.5, name="drop4")
+
+    fc5 = mx.symbol.FullyConnected(data=flatten, num_hidden=1024, name="fc5")
+    relu5 = mx.symbol.Activation(data=fc5, act_type="relu", name="relu5")
+    drop5 = mx.symbol.Dropout(data=relu5, p=0.5, name="drop5")
+
+    fc6 = mx.symbol.FullyConnected(data=drop5, num_hidden=1024, name="fc6")
+    softmax = mx.symbol.SoftmaxOutput(data=fc6, name="softmax")
+
+
+    
+    
+    #####################################################################################
+    #                              END OF YOUR CODE                                     #
+    #####################################################################################
+    return softmax
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-1cdf5e51f10f>[0m in [0;36m<module>[0;34m[0m
+[1;32m      9[0m [0;32mimport[0m [0msys[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     12[0m [0;32mimport[0m [0mmxnet[0m [0;32mas[0m [0mmx[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m [0;32mimport[0m [0mlogging[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+ModuleNotFoundError: No module named 'numpy'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

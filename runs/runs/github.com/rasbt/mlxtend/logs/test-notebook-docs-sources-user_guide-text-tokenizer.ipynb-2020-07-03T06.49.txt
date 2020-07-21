@@ -1,0 +1,42 @@
+[I 200703 07:04:41 inrepo:35] Testing notebook docs/sources/user_guide/text/tokenizer.ipynb
+[I 200703 07:04:43 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+with open('../../api_modules/mlxtend.text/tokenizer_emoticons.md', 'r') as f:
+    s = f.read() + '<br><br>'
+
+with open('../../api_modules/mlxtend.text/tokenizer_words_and_emoticons.md', 'r') as f:
+    s2 = f.readlines()
+    s += ''.join(s2[1:])
+print(s)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-5-444a31475e9b>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'../../api_modules/mlxtend.text/tokenizer_emoticons.md'[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m     [0ms[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m [0;34m+[0m [0;34m'<br><br>'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'../../api_modules/mlxtend.text/tokenizer_words_and_emoticons.md'[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m [0;32mas[0m [0mf[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m     [0ms2[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mreadlines[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../../api_modules/mlxtend.text/tokenizer_emoticons.md'
+FileNotFoundError: [Errno 2] No such file or directory: '../../api_modules/mlxtend.text/tokenizer_emoticons.md'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

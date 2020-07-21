@@ -1,0 +1,305 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-16T12.107xrxiv5v/github.com/UWSEDS-aut17/uwseds-group-nw-climate-crew.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 2283c3e45a2c
+Step 38/50 : USER root
+ ---> Running in effa163c7a98
+Removing intermediate container effa163c7a98
+ ---> a58e2c825fc1
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 3c51d8bb7263
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 42788068fd16
+Removing intermediate container 42788068fd16
+ ---> 434ded024e62
+Step 41/50 : USER ${NB_USER}
+ ---> Running in 39107188c022
+Removing intermediate container 39107188c022
+ ---> 9f42d55cd005
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 67b68ee268b1
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting pandas
+  Downloading pandas-1.0.5-cp37-cp37m-manylinux1_x86_64.whl (10.1 MB)
+Collecting plotly
+  Downloading plotly-4.8.2-py2.py3-none-any.whl (11.5 MB)
+Collecting geopandas
+  Downloading geopandas-0.8.1-py2.py3-none-any.whl (962 kB)
+Collecting dash
+  Downloading dash-1.13.4.tar.gz (67 kB)
+Collecting dash_renderer
+  Downloading dash_renderer-1.5.1.tar.gz (1.2 MB)
+Collecting dash_core_components
+  Downloading dash_core_components-1.10.1.tar.gz (3.4 MB)
+Collecting dash_html_components
+  Downloading dash_html_components-1.0.3.tar.gz (187 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->-r requirements.txt (line 3)) (2.8.1)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 5)) (1.14.0)
+Collecting retrying>=1.3.3
+  Downloading retrying-1.3.3.tar.gz (10 kB)
+Collecting fiona
+  Downloading Fiona-1.8.13.post1-cp37-cp37m-manylinux1_x86_64.whl (14.7 MB)
+Collecting pyproj>=2.2.0
+  Downloading pyproj-2.6.1.post1-cp37-cp37m-manylinux2010_x86_64.whl (10.9 MB)
+Collecting shapely
+  Downloading Shapely-1.7.0-cp37-cp37m-manylinux1_x86_64.whl (1.8 MB)
+Collecting Flask>=1.0.2
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting flask-compress
+  Downloading Flask-Compress-1.5.0.tar.gz (6.5 kB)
+Collecting dash-table==4.8.1
+  Downloading dash_table-4.8.1.tar.gz (1.8 MB)
+Collecting future
+  Downloading future-0.18.2.tar.gz (829 kB)
+Collecting cligj>=0.5
+  Downloading cligj-0.5.0-py3-none-any.whl (5.7 kB)
+Collecting click-plugins>=1.0
+  Downloading click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting click<8,>=4.0
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Requirement already satisfied: attrs>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->-r requirements.txt (line 6)) (19.3.0)
+Collecting munch
+  Downloading munch-2.5.0-py2.py3-none-any.whl (10 kB)
+Requirement already satisfied: Jinja2>=2.10.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Flask>=1.0.2->dash->-r requirements.txt (line 7)) (2.11.0)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting brotli
+  Downloading Brotli-1.0.7-cp37-cp37m-manylinux1_x86_64.whl (352 kB)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.10.1->Flask>=1.0.2->dash->-r requirements.txt (line 7)) (1.1.1)
+Building wheels for collected packages: dash, dash-renderer, dash-core-components, dash-html-components, retrying, flask-compress, dash-table, future
+  Building wheel for dash (setup.py): started
+  Building wheel for dash (setup.py): finished with status 'done'
+  Created wheel for dash: filename=dash-1.13.4-py3-none-any.whl size=74951 sha256=5c83b728c1e4909404b5fbc1158f8f9635077547abea7c533c36c49cfbf686ff
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/06/28/f7/a5ce9b564da2bb24f6c8fbe190c0458c6ff4a497a937815103
+  Building wheel for dash-renderer (setup.py): started
+  Building wheel for dash-renderer (setup.py): finished with status 'done'
+  Created wheel for dash-renderer: filename=dash_renderer-1.5.1-py3-none-any.whl size=1182060 sha256=4df3a1135150f259f90bbef3aea6daf0502b47ecee160a78e1ac66848a966013
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/bd/ab/c9/0f49b8aeec6b07e30f7dacd9128a1571bd583f39d316affb7f
+  Building wheel for dash-core-components (setup.py): started
+  Building wheel for dash-core-components (setup.py): finished with status 'done'
+  Created wheel for dash-core-components: filename=dash_core_components-1.10.1-py3-none-any.whl size=3458660 sha256=4cadc314735534edb3ca262a4c4fed0d0649ac68a0b6d67fcd39e71f3733a166
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/10/6c/7a/8849a35d2f66126db2773d0575c2b1e07897701ae2d23c7f2e
+  Building wheel for dash-html-components (setup.py): started
+  Building wheel for dash-html-components (setup.py): finished with status 'done'
+  Created wheel for dash-html-components: filename=dash_html_components-1.0.3-py3-none-any.whl size=427304 sha256=fc8e796ce31c3b112d013c652e047e27f2dd1c518d1c4888102ad7f269a82a5b
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/36/34/f9/c3d147461b28467d5bbd14d255be66f6728a1580ff9fbebece
+  Building wheel for retrying (setup.py): started
+  Building wheel for retrying (setup.py): finished with status 'done'
+  Created wheel for retrying: filename=retrying-1.3.3-py3-none-any.whl size=11429 sha256=4b82857679440115ba9ca372c1c0e7eedd0e9583a71207349c22ea9c0a3c8125
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/f9/8d/8d/f6af3f7f9eea3553bc2fe6d53e4b287dad18b06a861ac56ddf
+  Building wheel for flask-compress (setup.py): started
+  Building wheel for flask-compress (setup.py): finished with status 'done'
+  Created wheel for flask-compress: filename=Flask_Compress-1.5.0-py3-none-any.whl size=5271 sha256=ceaf819308fd242c492df88efd8872b841abfad63731387d19ba92148a9b45b8
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/d6/9f/c9/4bf2abf65cceaa8d19423bc34b88443b3b063f167d2082c212
+  Building wheel for dash-table (setup.py): started
+  Building wheel for dash-table (setup.py): finished with status 'done'
+  Created wheel for dash-table: filename=dash_table-4.8.1-py3-none-any.whl size=1779390 sha256=40194754b22d4813935b0c2183712f5967e1106bc4738eace419687c950fca05
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/66/81/95/b2774b227694b28cf1a6a7dcb92af258cebac354dfa67af6bb
+  Building wheel for future (setup.py): started
+  Building wheel for future (setup.py): finished with status 'done'
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491056 sha256=a4b9f13abaf05592bbdf2570e2827fcc38efa60fb899647af63a637ef44aa124
+  Stored in directory: /tmp/pip-ephem-wheel-cache-r9d1j7oe/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+Successfully built dash dash-renderer dash-core-components dash-html-components retrying flask-compress dash-table future
+Installing collected packages: numpy, scipy, cycler, kiwisolver, pyparsing, matplotlib, pytz, pandas, retrying, plotly, click, cligj, click-plugins, munch, fiona, pyproj, shapely, geopandas, itsdangerous, Werkzeug, Flask, brotli, flask-compress, dash-renderer, dash-core-components, dash-html-components, dash-table, future, dash
+Successfully installed Flask-1.1.2 Werkzeug-1.0.1 brotli-1.0.7 click-7.1.2 click-plugins-1.1.1 cligj-0.5.0 cycler-0.10.0 dash-1.13.4 dash-core-components-1.10.1 dash-html-components-1.0.3 dash-renderer-1.5.1 dash-table-4.8.1 fiona-1.8.13.post1 flask-compress-1.5.0 future-0.18.2 geopandas-0.8.1 itsdangerous-1.1.0 kiwisolver-1.2.0 matplotlib-3.2.2 munch-2.5.0 numpy-1.19.0 pandas-1.0.5 plotly-4.8.2 pyparsing-2.4.7 pyproj-2.6.1.post1 pytz-2020.1 retrying-1.3.3 scipy-1.5.1 shapely-1.7.0
+Removing intermediate container 67b68ee268b1
+ ---> 63c0c244331f
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in 23327467cc11
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.19.0)
+Requirement already satisfied: pandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.0.5)
+Requirement already satisfied: plotly in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (4.8.2)
+Requirement already satisfied: geopandas in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (0.8.1)
+Requirement already satisfied: dash in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.13.4)
+Requirement already satisfied: dash-renderer in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.5.1)
+Requirement already satisfied: dash-html-components in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.0.3)
+Requirement already satisfied: dash-core-components in /srv/conda/envs/notebook/lib/python3.7/site-packages (from futurefish==0.0.1) (1.10.1)
+Requirement already satisfied: pytz>=2017.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->futurefish==0.0.1) (2020.1)
+Requirement already satisfied: python-dateutil>=2.6.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pandas->futurefish==0.0.1) (2.8.1)
+Requirement already satisfied: retrying>=1.3.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotly->futurefish==0.0.1) (1.3.3)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from plotly->futurefish==0.0.1) (1.14.0)
+Requirement already satisfied: pyproj>=2.2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geopandas->futurefish==0.0.1) (2.6.1.post1)
+Requirement already satisfied: shapely in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geopandas->futurefish==0.0.1) (1.7.0)
+Requirement already satisfied: fiona in /srv/conda/envs/notebook/lib/python3.7/site-packages (from geopandas->futurefish==0.0.1) (1.8.13.post1)
+Requirement already satisfied: dash-table==4.8.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dash->futurefish==0.0.1) (4.8.1)
+Requirement already satisfied: future in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dash->futurefish==0.0.1) (0.18.2)
+Requirement already satisfied: Flask>=1.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dash->futurefish==0.0.1) (1.1.2)
+Requirement already satisfied: flask-compress in /srv/conda/envs/notebook/lib/python3.7/site-packages (from dash->futurefish==0.0.1) (1.5.0)
+Requirement already satisfied: munch in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->futurefish==0.0.1) (2.5.0)
+Requirement already satisfied: attrs>=17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->futurefish==0.0.1) (19.3.0)
+Requirement already satisfied: click<8,>=4.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->futurefish==0.0.1) (7.1.2)
+Requirement already satisfied: cligj>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->futurefish==0.0.1) (0.5.0)
+Requirement already satisfied: click-plugins>=1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from fiona->geopandas->futurefish==0.0.1) (1.1.1)
+Requirement already satisfied: itsdangerous>=0.24 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Flask>=1.0.2->dash->futurefish==0.0.1) (1.1.0)
+Requirement already satisfied: Werkzeug>=0.15 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Flask>=1.0.2->dash->futurefish==0.0.1) (1.0.1)
+Requirement already satisfied: Jinja2>=2.10.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Flask>=1.0.2->dash->futurefish==0.0.1) (2.11.0)
+Requirement already satisfied: brotli in /srv/conda/envs/notebook/lib/python3.7/site-packages (from flask-compress->dash->futurefish==0.0.1) (1.0.7)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.10.1->Flask>=1.0.2->dash->futurefish==0.0.1) (1.1.1)
+Building wheels for collected packages: futurefish
+  Building wheel for futurefish (setup.py): started
+  Building wheel for futurefish (setup.py): finished with status 'done'
+  Created wheel for futurefish: filename=futurefish-0.0.1-py3-none-any.whl size=65648 sha256=8dd36f64e92a75bb5484c6d37f8d5ce9f2cefbe746af5097701db5a7a9d789e7
+  Stored in directory: /tmp/pip-ephem-wheel-cache-k3god6ak/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built futurefish
+Installing collected packages: futurefish
+Successfully installed futurefish-0.0.1
+Removing intermediate container 23327467cc11
+ ---> 3ee1a28dea68
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in a5fb0d8b9c33
+Removing intermediate container a5fb0d8b9c33
+ ---> e8b464cc6da1
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in 20203a759105
+Removing intermediate container 20203a759105
+ ---> 9907b8047752
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 6eb83fa269df
+Removing intermediate container 6eb83fa269df
+ ---> 9d7ecc6f0589
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 830d2ce3d7a7
+Removing intermediate container 830d2ce3d7a7
+ ---> 54380b98cd76
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> d799e9d7fd9e
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in a492368b254d
+Removing intermediate container a492368b254d
+ ---> 91c9a3925dd4
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 2cfc1170adbd
+Removing intermediate container 2cfc1170adbd
+ ---> dd04f2b14f01
+{"aux": {"ID": "sha256:dd04f2b14f01a8cc4c254a2a32f827e52e6352a556f469d870f1d67739574dc0"}}Successfully built dd04f2b14f01
+Successfully tagged r2d-test-github.com-uwseds-aut17-uwseds-group-nw-climate-crew:eee60dc

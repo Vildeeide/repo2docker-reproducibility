@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/darkprinx/100-plus-Python-programming-exercises-extended,master,aad2c3c,2020-06-19T10:23:12+06:00,build,build,False,github.com/darkprinx/100-plus-Python-programming-exercises-extended/logs/build-master-2020-07-03T07.21.txt,2020-07-03T07:21:35.492751,2020-07-03T07.21,0.11.0

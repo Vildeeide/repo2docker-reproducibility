@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/satvik1988/CSS-Indian-National-Elections-Uni-Koblenz-,master,1721ab9,2019-09-01T15:42:48+05:30,build,build,False,github.com/satvik1988/CSS-Indian-National-Elections-Uni-Koblenz-/logs/build-master-2020-07-07T13.50.txt,2020-07-07T13:50:58.104801,2020-07-07T13.50,0.11.0

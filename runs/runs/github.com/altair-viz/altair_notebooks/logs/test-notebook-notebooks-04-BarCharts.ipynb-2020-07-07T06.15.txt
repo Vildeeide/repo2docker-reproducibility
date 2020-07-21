@@ -1,0 +1,105 @@
+[I 200707 06:15:37 inrepo:35] Testing notebook notebooks/04-BarCharts.ipynb
+[I 200707 06:15:38 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from vega_datasets import data
+movies = data.movies()
+
+alt.Chart(movies).mark_bar().encode(
+    x=alt.X('IMDB_Rating', bin=alt.Bin(maxbins=10)),
+    y='count(*):Q',
+)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/vegalite/v4/api.py[0m in [0;36mto_dict[0;34m(self, *args, **kwargs)[0m
+[1;32m    371[0m [0;34m[0m[0m
+[1;32m    372[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 373[0;31m             [0mdct[0m [0;34m=[0m [0msuper[0m[0;34m([0m[0mTopLevelMixin[0m[0;34m,[0m [0mcopy[0m[0;34m)[0m[0;34m.[0m[0mto_dict[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    374[0m         [0;32mexcept[0m [0mjsonschema[0m[0;34m.[0m[0mValidationError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    375[0m             [0mdct[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36mto_dict[0;34m(self, validate, ignore, context)[0m
+[1;32m    326[0m                 [0;34m{[0m[0mk[0m[0;34m:[0m [0mv[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_kwds[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0mk[0m [0;32mnot[0m [0;32min[0m [0mignore[0m[0;34m}[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    327[0m                 [0mvalidate[0m[0;34m=[0m[0msub_validate[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 328[0;31m                 [0mcontext[0m[0;34m=[0m[0mcontext[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    329[0m             )
+[1;32m    330[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m_todict[0;34m(obj, validate, context)[0m
+[1;32m     60[0m         return {
+[1;32m     61[0m             [0mk[0m[0;34m:[0m [0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 62[0;31m             [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     63[0m             [0;32mif[0m [0mv[0m [0;32mis[0m [0;32mnot[0m [0mUndefined[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     64[0m         }
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m<dictcomp>[0;34m(.0)[0m
+[1;32m     61[0m             [0mk[0m[0;34m:[0m [0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     62[0m             [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 63[0;31m             [0;32mif[0m [0mv[0m [0;32mis[0m [0;32mnot[0m [0mUndefined[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     64[0m         }
+[1;32m     65[0m     [0;32melif[0m [0mhasattr[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0;34m"to_dict"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m_todict[0;34m(obj, validate, context)[0m
+[1;32m     54[0m     [0;34m"""Convert an object to a dict representation."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     55[0m     [0;32mif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mSchemaBase[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 56[0;31m         [0;32mreturn[0m [0mobj[0m[0;34m.[0m[0mto_dict[0m[0;34m([0m[0mvalidate[0m[0;34m=[0m[0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m=[0m[0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     57[0m     [0;32melif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0;34m([0m[0mlist[0m[0;34m,[0m [0mtuple[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mndarray[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     58[0m         [0;32mreturn[0m [0;34m[[0m[0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m [0;32mfor[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36mto_dict[0;34m(self, validate, ignore, context)[0m
+[1;32m    326[0m                 [0;34m{[0m[0mk[0m[0;34m:[0m [0mv[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mself[0m[0;34m.[0m[0m_kwds[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0mk[0m [0;32mnot[0m [0;32min[0m [0mignore[0m[0;34m}[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    327[0m                 [0mvalidate[0m[0;34m=[0m[0msub_validate[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 328[0;31m                 [0mcontext[0m[0;34m=[0m[0mcontext[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    329[0m             )
+[1;32m    330[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m_todict[0;34m(obj, validate, context)[0m
+[1;32m     60[0m         return {
+[1;32m     61[0m             [0mk[0m[0;34m:[0m [0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 62[0;31m             [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     63[0m             [0;32mif[0m [0mv[0m [0;32mis[0m [0;32mnot[0m [0mUndefined[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     64[0m         }
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m<dictcomp>[0;34m(.0)[0m
+[1;32m     61[0m             [0mk[0m[0;34m:[0m [0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     62[0m             [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 63[0;31m             [0;32mif[0m [0mv[0m [0;32mis[0m [0;32mnot[0m [0mUndefined[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     64[0m         }
+[1;32m     65[0m     [0;32melif[0m [0mhasattr[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0;34m"to_dict"[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/utils/schemapi.py[0m in [0;36m_todict[0;34m(obj, validate, context)[0m
+[1;32m     54[0m     [0;34m"""Convert an object to a dict representation."""[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     55[0m     [0;32mif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mSchemaBase[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 56[0;31m         [0;32mreturn[0m [0mobj[0m[0;34m.[0m[0mto_dict[0m[0;34m([0m[0mvalidate[0m[0;34m=[0m[0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m=[0m[0mcontext[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     57[0m     [0;32melif[0m [0misinstance[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0;34m([0m[0mlist[0m[0;34m,[0m [0mtuple[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mndarray[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     58[0m         [0;32mreturn[0m [0;34m[[0m[0m_todict[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mvalidate[0m[0;34m,[0m [0mcontext[0m[0;34m)[0m [0;32mfor[0m [0mv[0m [0;32min[0m [0mobj[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/altair/vegalite/v4/schema/channels.py[0m in [0;36mto_dict[0;34m(self, validate, ignore, context)[0m
+[1;32m     40[0m                     raise ValueError("{} encoding field is specified without a type; "
+[1;32m     41[0m                                      [0;34m"the type cannot be inferred because it does not "[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 42[0;31m                                      "match any column in the data.".format(shorthand))
+[0m[1;32m     43[0m                 [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     44[0m                     raise ValueError("{} encoding field is specified without a type; "
+
+[0;31mValueError[0m: IMDB_Rating encoding field is specified without a type; the type cannot be inferred because it does not match any column in the data.
+ValueError: IMDB_Rating encoding field is specified without a type; the type cannot be inferred because it does not match any column in the data.
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,59 @@
+[I 200708 06:39:15 inrepo:36] Testing notebook misc/blogging_in_wordpress_with_jupyter_notebooks.ipynb
+[W 200708 06:39:16 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200708 06:39:16 inrepo:60] Using kernel python3 to provide language: python
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 548, in _load_config_files
+    raise StopIteration
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/srv/conda/envs/notebook/lib/python3.7/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/srv/conda/envs/notebook/lib/python3.7/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel_launcher.py", line 16, in <module>
+    app.launch_new_instance()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 588, in launch_instance
+    app.initialize(argv)
+  File "</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-124>", line 2, in initialize
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 74, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/ipykernel/kernelapp.py", line 540, in initialize
+    super(IPKernelApp, self).initialize(argv)
+  File "</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-7>", line 2, in initialize
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 74, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/application.py", line 460, in initialize
+    self.load_config_file()
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/application.py", line 319, in load_config_file
+    path=self.config_file_paths
+  File "</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-5>", line 2, in load_config_file
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 74, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/traitlets/config/application.py", line 556, in load_config_file
+    for config in self._load_config_files(filename, path=path, log=self.log):
+RuntimeError: generator raised StopIteration
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 403, in preprocess
+    with self.setup_preprocessor(nb, resources, km=km):
+  File "/srv/conda/envs/notebook/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 345, in setup_preprocessor
+    self.km, self.kc = self.start_new_kernel(**kwargs)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 296, in start_new_kernel
+    kc.wait_for_ready(timeout=self.startup_timeout)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/blocking/client.py", line 120, in wait_for_ready
+    raise RuntimeError('Kernel died before replying to kernel_info')
+RuntimeError: Kernel died before replying to kernel_info
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

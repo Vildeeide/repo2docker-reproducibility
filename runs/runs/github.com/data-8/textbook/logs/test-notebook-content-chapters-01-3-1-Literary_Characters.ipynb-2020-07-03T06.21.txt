@@ -1,0 +1,5 @@
+[I 200703 06:26:33 inrepo:35] Testing notebook content/chapters/01/3/1/Literary_Characters.ipynb
+[I 200703 06:26:34 execute:404] Executing notebook with kernel: python3
+[I 200703 06:26:38 inrepo:41] Saving exported notebook to /io/notebooks/content/chapters/01/3/1/Literary_Characters.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200703 07:03:24 inrepo:35] Testing notebook attention/Attention_Basics_Solution.ipynb
+[I 200703 07:03:25 execute:404] Executing notebook with kernel: python3
+[I 200703 07:03:32 inrepo:41] Saving exported notebook to /io/notebooks/attention/Attention_Basics_Solution.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

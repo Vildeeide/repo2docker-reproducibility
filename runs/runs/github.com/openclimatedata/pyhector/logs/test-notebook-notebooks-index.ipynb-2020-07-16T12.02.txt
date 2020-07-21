@@ -1,0 +1,18 @@
+[I 200716 12:07:10 inrepo:36] Testing notebook notebooks/index.ipynb
+[I 200716 12:07:11 inrepo:45] Found kernel python3
+[I 200716 12:07:11 execute:252] Executing notebook with kernel: python3
+[I 200716 12:07:19 inrepo:79] Saving exported notebook to /io/notebooks/notebooks/index.ipynb
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 81, in run_notebook
+    os.makedirs(os.path.dirname(dest_path))
+  File "/opt/conda/lib/python3.6/os.py", line 210, in makedirs
+    makedirs(head, mode, exist_ok)
+  File "/opt/conda/lib/python3.6/os.py", line 220, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/io/notebooks'
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

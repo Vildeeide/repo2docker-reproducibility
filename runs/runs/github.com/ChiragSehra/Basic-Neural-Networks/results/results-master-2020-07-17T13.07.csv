@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ChiragSehra/Basic-Neural-Networks,master,b974b94,2019-02-19T00:21:47+05:30,build,build,True,github.com/ChiragSehra/Basic-Neural-Networks/logs/build-master-2020-07-17T13.07.txt,2020-07-17T13:07:12.093377,2020-07-17T13.07,0.11.0
+https://github.com/ChiragSehra/Basic-Neural-Networks,master,b974b94,2019-02-19T00:21:47+05:30,notebook,MNIST_keras.ipynb,False,github.com/ChiragSehra/Basic-Neural-Networks/logs/test-notebook-MNIST_keras.ipynb-2020-07-17T13.07.txt,2020-07-17T13:07:12.093377,2020-07-17T13.07,0.11.0
+https://github.com/ChiragSehra/Basic-Neural-Networks,master,b974b94,2019-02-19T00:21:47+05:30,notebook,revising_neural_networks.ipynb,False,github.com/ChiragSehra/Basic-Neural-Networks/logs/test-notebook-revising_neural_networks.ipynb-2020-07-17T13.07.txt,2020-07-17T13:07:12.093377,2020-07-17T13.07,0.11.0

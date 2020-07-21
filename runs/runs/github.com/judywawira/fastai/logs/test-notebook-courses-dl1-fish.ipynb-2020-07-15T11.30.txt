@@ -1,0 +1,58 @@
+[I 200715 11:43:53 inrepo:36] Testing notebook courses/dl1/fish.ipynb
+[I 200715 11:43:53 inrepo:45] Found kernel python3
+[I 200715 11:43:55 execute:404] Executing notebook with kernel: python3
+/srv/conda/envs/notebook/lib/python3.7/site-packages/jupyter_client/manager.py:358: FutureWarning: Method cleanup(connection_file=True) is deprecated, use cleanup_resources(restart=False).
+  FutureWarning)
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+img = plt.imread(f'{PATH}train/ALB/{files[0]}')
+plt.imshow(img);
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-5-c697ff8a631e>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mimg[0m [0;34m=[0m [0mplt[0m[0;34m.[0m[0mimread[0m[0;34m([0m[0;34mf'{PATH}train/ALB/{files[0]}'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mplt[0m[0;34m.[0m[0mimshow[0m[0;34m([0m[0mimg[0m[0;34m)[0m[0;34m;[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/pyplot.py[0m in [0;36mimread[0;34m(fname, format)[0m
+[1;32m   2059[0m [0;34m@[0m[0mdocstring[0m[0;34m.[0m[0mcopy[0m[0;34m([0m[0mmatplotlib[0m[0;34m.[0m[0mimage[0m[0;34m.[0m[0mimread[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2060[0m [0;32mdef[0m [0mimread[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0mformat[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2061[0;31m     [0;32mreturn[0m [0mmatplotlib[0m[0;34m.[0m[0mimage[0m[0;34m.[0m[0mimread[0m[0;34m([0m[0mfname[0m[0;34m,[0m [0mformat[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2062[0m [0;34m[0m[0m
+[1;32m   2063[0m [0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/matplotlib/image.py[0m in [0;36mimread[0;34m(fname, format)[0m
+[1;32m   1462[0m             raise ValueError('Only know how to handle PNG; with Pillow '
+[1;32m   1463[0m                              'installed, Matplotlib can handle more images')
+[0;32m-> 1464[0;31m         [0;32mwith[0m [0mImage[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfname[0m[0;34m)[0m [0;32mas[0m [0mimage[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1465[0m             [0;32mreturn[0m [0mpil_to_array[0m[0;34m([0m[0mimage[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1466[0m     [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_png[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/PIL/Image.py[0m in [0;36mopen[0;34m(fp, mode)[0m
+[1;32m   2876[0m [0;34m[0m[0m
+[1;32m   2877[0m     [0;32mif[0m [0mfilename[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2878[0;31m         [0mfp[0m [0;34m=[0m [0mbuiltins[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0;34m"rb"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2879[0m         [0mexclusive_fp[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2880[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: "data/fish/train/ALB/ls: cannot access 'data/fish/train/ALB': No such file or directory"
+FileNotFoundError: [Errno 2] No such file or directory: "data/fish/train/ALB/ls: cannot access 'data/fish/train/ALB': No such file or directory"
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

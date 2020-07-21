@@ -1,0 +1,5 @@
+[I 200703 07:58:40 inrepo:35] Testing notebook docs/source/examples/Plotting spacial hypersurface embedding for schwarzschild spacetime.ipynb
+[I 200703 07:58:41 execute:404] Executing notebook with kernel: python3
+[I 200703 07:58:52 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Plotting spacial hypersurface embedding for schwarzschild spacetime.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

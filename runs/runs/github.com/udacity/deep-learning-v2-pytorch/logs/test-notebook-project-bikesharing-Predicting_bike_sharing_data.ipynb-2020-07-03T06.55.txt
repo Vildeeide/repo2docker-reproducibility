@@ -1,0 +1,72 @@
+[I 200703 07:06:43 inrepo:35] Testing notebook project-bikesharing/Predicting_bike_sharing_data.ipynb
+[I 200703 07:06:44 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import sys
+
+####################
+### Set the hyperparameters in you myanswers.py file ###
+####################
+
+from my_answers import iterations, learning_rate, hidden_nodes, output_nodes
+
+
+N_i = train_features.shape[1]
+network = NeuralNetwork(N_i, hidden_nodes, output_nodes, learning_rate)
+
+losses = {'train':[], 'validation':[]}
+for ii in range(iterations):
+    # Go through a random batch of 128 records from the training data set
+    batch = np.random.choice(train_features.index, size=128)
+    X, y = train_features.ix[batch].values, train_targets.ix[batch]['cnt']
+                             
+    network.train(X, y)
+    
+    # Printing out the training progress
+    train_loss = MSE(network.run(train_features).T, train_targets['cnt'].values)
+    val_loss = MSE(network.run(val_features).T, val_targets['cnt'].values)
+    sys.stdout.write("\rProgress: {:2.1f}".format(100 * ii/float(iterations)) \
+                     + "% ... Training loss: " + str(train_loss)[:5] \
+                     + " ... Validation loss: " + str(val_loss)[:5])
+    sys.stdout.flush()
+    
+    losses['train'].append(train_loss)
+    losses['validation'].append(val_loss)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-12-2eb691898b07>[0m in [0;36m<module>[0;34m[0m
+[1;32m     15[0m     [0;31m# Go through a random batch of 128 records from the training data set[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     16[0m     [0mbatch[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mrandom[0m[0;34m.[0m[0mchoice[0m[0;34m([0m[0mtrain_features[0m[0;34m.[0m[0mindex[0m[0;34m,[0m [0msize[0m[0;34m=[0m[0;36m128[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 17[0;31m     [0mX[0m[0;34m,[0m [0my[0m [0;34m=[0m [0mtrain_features[0m[0;34m.[0m[0mix[0m[0;34m[[0m[0mbatch[0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m,[0m [0mtrain_targets[0m[0;34m.[0m[0mix[0m[0;34m[[0m[0mbatch[0m[0;34m][0m[0;34m[[0m[0;34m'cnt'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     18[0m [0;34m[0m[0m
+[1;32m     19[0m     [0mnetwork[0m[0;34m.[0m[0mtrain[0m[0;34m([0m[0mX[0m[0;34m,[0m [0my[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/pandas/core/generic.py[0m in [0;36m__getattr__[0;34m(self, name)[0m
+[1;32m   5272[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0m_info_axis[0m[0;34m.[0m[0m_can_hold_identifiers_and_holds_name[0m[0;34m([0m[0mname[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   5273[0m                 [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 5274[0;31m             [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   5275[0m [0;34m[0m[0m
+[1;32m   5276[0m     [0;32mdef[0m [0m__setattr__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m:[0m [0mstr[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'ix'
+AttributeError: 'DataFrame' object has no attribute 'ix'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

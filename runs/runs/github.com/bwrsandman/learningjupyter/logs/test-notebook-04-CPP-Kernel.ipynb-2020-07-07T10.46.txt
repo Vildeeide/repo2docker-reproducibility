@@ -1,0 +1,7 @@
+[I 200707 10:47:09 inrepo:36] Testing notebook 04-CPP-Kernel.ipynb
+[W 200707 10:47:10 inrepo:47] No such kernel xeus-cling-cpp17, falling back on kernel language=C++17
+[W 200707 10:47:10 inrepo:59] Using kernel xcpp17 to provide language: c++17
+[I 200707 10:47:17 execute:404] Executing notebook with kernel: xcpp17
+[I 200707 10:47:18 inrepo:77] Saving exported notebook to /io/notebooks/04-CPP-Kernel.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

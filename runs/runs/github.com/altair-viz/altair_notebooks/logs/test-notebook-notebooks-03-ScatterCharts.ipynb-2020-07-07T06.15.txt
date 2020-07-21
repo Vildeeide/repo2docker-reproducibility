@@ -1,0 +1,5 @@
+[I 200707 06:15:25 inrepo:35] Testing notebook notebooks/03-ScatterCharts.ipynb
+[I 200707 06:15:26 execute:404] Executing notebook with kernel: python3
+[I 200707 06:15:28 inrepo:41] Saving exported notebook to /io/notebooks/notebooks/03-ScatterCharts.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

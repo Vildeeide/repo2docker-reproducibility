@@ -1,0 +1,5 @@
+[I 200706 08:31:03 inrepo:35] Testing notebook tutorials/circuits_advanced/3_advanced_circuit_visualization.ipynb
+[I 200706 08:31:08 execute:404] Executing notebook with kernel: python3
+[I 200706 08:31:48 inrepo:41] Saving exported notebook to /io/notebooks/tutorials/circuits_advanced/3_advanced_circuit_visualization.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

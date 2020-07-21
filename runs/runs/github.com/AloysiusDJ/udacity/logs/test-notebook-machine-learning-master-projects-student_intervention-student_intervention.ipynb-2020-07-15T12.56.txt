@@ -1,0 +1,41 @@
+[I 200715 12:57:15 inrepo:36] Testing notebook machine-learning-master/projects/student_intervention/student_intervention.ipynb
+[W 200715 12:57:15 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 12:57:15 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 12:57:16 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Import libraries
+import numpy as np
+import pandas as pd
+from time import time
+from sklearn.metrics import f1_score
+
+# Read student data
+student_data = pd.read_csv("student-data.csv")
+print "Student data read successfully!"
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-1ea93829b8a4>"[0;36m, line [0;32m9[0m
+[0;31m    print "Student data read successfully!"[0m
+[0m                                          ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print("Student data read successfully!")?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print("Student data read successfully!")? (<ipython-input-1-1ea93829b8a4>, line 9)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

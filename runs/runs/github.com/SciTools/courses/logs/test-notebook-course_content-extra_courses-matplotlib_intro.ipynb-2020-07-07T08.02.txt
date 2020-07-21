@@ -1,0 +1,5 @@
+[I 200707 08:02:59 inrepo:35] Testing notebook course_content/extra_courses/matplotlib_intro.ipynb
+[I 200707 08:03:03 execute:404] Executing notebook with kernel: python3
+[I 200707 08:03:11 inrepo:41] Saving exported notebook to /io/notebooks/course_content/extra_courses/matplotlib_intro.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

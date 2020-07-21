@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/samkugji/fraudulent_insured_person,master,f79ab00,2016-12-22T14:57:40+09:00,build,build,True,github.com/samkugji/fraudulent_insured_person/logs/build-master-2020-07-14T18.42.txt,2020-07-14T18:42:45.473284,2020-07-14T18.42,0.11.0
+https://github.com/samkugji/fraudulent_insured_person,master,f79ab00,2016-12-22T14:57:40+09:00,notebook,Classification_fraudulent_insured_person_through_basic_process.ipynb,False,github.com/samkugji/fraudulent_insured_person/logs/test-notebook-Classification_fraudulent_insured_person_through_basic_process.ipynb-2020-07-14T18.42.txt,2020-07-14T18:42:45.473284,2020-07-14T18.42,0.11.0

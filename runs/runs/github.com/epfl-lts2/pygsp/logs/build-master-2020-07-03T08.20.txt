@@ -1,0 +1,361 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T08.20lqzandzh/github.com/epfl-lts2/pygsp.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : USER root
+ ---> Using cache
+ ---> 4477f562c4c4
+Step 38/50 : COPY src/ ${REPO_DIR}
+ ---> 8aa05116a0a7
+Step 39/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 8f312f0320f4
+Removing intermediate container 8f312f0320f4
+ ---> b00830108141
+Step 40/50 : USER ${NB_USER}
+ ---> Running in cd2fbb3ed976
+Removing intermediate container cd2fbb3ed976
+ ---> d2f5caaf4db2
+Step 41/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in d5f4e8918c1b
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Building wheels for collected packages: PyGSP
+  Building wheel for PyGSP (setup.py): started
+  Building wheel for PyGSP (setup.py): finished with status 'done'
+  Created wheel for PyGSP: filename=PyGSP-0.5.1-py3-none-any.whl size=1864463 sha256=f228b1219fec615d3c1c35d929a0b0d9bd5d2b6270592b69f33b1465f65aabd4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-iob_lj03/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built PyGSP
+Installing collected packages: numpy, scipy, PyGSP
+Successfully installed PyGSP-0.5.1 numpy-1.19.0 scipy-1.5.0
+Removing intermediate container d5f4e8918c1b
+ ---> bb4cc9100727
+Step 42/50 : LABEL repo2docker.ref="None"
+ ---> Running in 64749c8f7330
+Removing intermediate container 64749c8f7330
+ ---> f0d0c34e928f
+Step 43/50 : LABEL repo2docker.repo="local"
+ ---> Running in aaf7bce4a24d
+Removing intermediate container aaf7bce4a24d
+ ---> 07be08a8f925
+Step 44/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in b6728a1567d7
+Removing intermediate container b6728a1567d7
+ ---> 2cae9ae64792
+Step 45/50 : USER ${NB_USER}
+ ---> Running in d724ea1633bd
+Removing intermediate container d724ea1633bd
+ ---> e9d6d8d64598
+Step 46/50 : RUN chmod +x postBuild
+ ---> Running in 9106af449916
+Removing intermediate container 9106af449916
+ ---> e8d6539186c2
+Step 47/50 : RUN ./postBuild
+ ---> Running in 3bd6a117acc1
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PyGSP==0.5.1) (1.19.0)
+Requirement already satisfied: scipy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PyGSP==0.5.1) (1.5.0)
+Collecting networkx
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Collecting scikit-image
+  Downloading scikit_image-0.17.2-cp37-cp37m-manylinux1_x86_64.whl (12.5 MB)
+Collecting pyunlocbox
+  Downloading pyunlocbox-0.5.2-py2.py3-none-any.whl (41 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting pyqtgraph
+  Downloading pyqtgraph-0.11.0-py3-none-any.whl (800 kB)
+Collecting PyOpenGL
+  Downloading PyOpenGL-3.1.5-py3-none-any.whl (2.4 MB)
+Collecting flake8
+  Downloading flake8-3.8.3-py2.py3-none-any.whl (72 kB)
+Collecting coverage
+  Downloading coverage-5.1-cp37-cp37m-manylinux1_x86_64.whl (227 kB)
+Collecting coveralls
+  Downloading coveralls-2.0.0-py2.py3-none-any.whl (12 kB)
+Collecting sphinx
+  Downloading Sphinx-3.1.1-py3-none-any.whl (2.9 MB)
+Collecting numpydoc
+  Downloading numpydoc-1.1.0-py3-none-any.whl (47 kB)
+Collecting sphinxcontrib-bibtex
+  Downloading sphinxcontrib_bibtex-1.0.0-py3-none-any.whl (14 kB)
+Collecting sphinx-gallery
+  Downloading sphinx-gallery-0.7.0.tar.gz (6.4 MB)
+Collecting memory_profiler
+  Downloading memory_profiler-0.57.0.tar.gz (34 kB)
+Collecting sphinx-rtd-theme
+  Downloading sphinx_rtd_theme-0.5.0-py2.py3-none-any.whl (10.8 MB)
+Requirement already satisfied: wheel in /srv/conda/envs/notebook/lib/python3.7/site-packages (from PyGSP==0.5.1) (0.34.1)
+Collecting twine
+  Downloading twine-3.2.0-py3-none-any.whl (34 kB)
+Collecting pyflann3
+  Downloading pyflann3-1.8.4.1.tar.gz (10.5 MB)
+Collecting PyQt5
+  Downloading PyQt5-5.15.0-5.15.0-cp35.cp36.cp37.cp38-abi3-manylinux2014_x86_64.whl (76.6 MB)
+Requirement already satisfied: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx->PyGSP==0.5.1) (4.4.1)
+Collecting imageio>=2.3.0
+  Downloading imageio-2.8.0-py3-none-any.whl (3.3 MB)
+Collecting PyWavelets>=1.1.1
+  Downloading PyWavelets-1.1.1-cp37-cp37m-manylinux1_x86_64.whl (4.4 MB)
+Collecting pillow!=7.1.0,!=7.1.1,>=4.3.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Collecting tifffile>=2019.7.26
+  Downloading tifffile-2020.6.3-py3-none-any.whl (133 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib->PyGSP==0.5.1) (2.8.1)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Requirement already satisfied: importlib-metadata; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from flake8->PyGSP==0.5.1) (1.5.0)
+Collecting pyflakes<2.3.0,>=2.2.0
+  Downloading pyflakes-2.2.0-py2.py3-none-any.whl (66 kB)
+Collecting pycodestyle<2.7.0,>=2.6.0a1
+  Downloading pycodestyle-2.6.0-py2.py3-none-any.whl (41 kB)
+Collecting mccabe<0.7.0,>=0.6.0
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting docopt>=0.6.1
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+Requirement already satisfied: requests>=1.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from coveralls->PyGSP==0.5.1) (2.22.0)
+Collecting snowballstemmer>=1.1
+  Downloading snowballstemmer-2.0.0-py2.py3-none-any.whl (97 kB)
+Collecting sphinxcontrib-serializinghtml
+  Downloading sphinxcontrib_serializinghtml-1.1.4-py2.py3-none-any.whl (89 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.2-py2.py3-none-any.whl (121 kB)
+Requirement already satisfied: Pygments>=2.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx->PyGSP==0.5.1) (2.5.2)
+Requirement already satisfied: setuptools in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx->PyGSP==0.5.1) (45.1.0.post20200119)
+Collecting packaging
+  Downloading packaging-20.4-py2.py3-none-any.whl (37 kB)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Collecting sphinxcontrib-htmlhelp
+  Downloading sphinxcontrib_htmlhelp-1.0.3-py2.py3-none-any.whl (96 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.3-py2.py3-none-any.whl (90 kB)
+Collecting docutils>=0.12
+  Downloading docutils-0.16-py2.py3-none-any.whl (548 kB)
+Collecting babel>=1.3
+  Downloading Babel-2.8.0-py2.py3-none-any.whl (8.6 MB)
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.12-py2.py3-none-any.whl (14 kB)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.2-py2.py3-none-any.whl (84 kB)
+Requirement already satisfied: Jinja2>=2.3 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from sphinx->PyGSP==0.5.1) (2.11.0)
+Collecting imagesize
+  Downloading imagesize-1.2.0-py2.py3-none-any.whl (4.8 kB)
+Collecting pybtex-docutils>=0.2.0
+  Downloading pybtex_docutils-0.2.2-py2.py3-none-any.whl (4.6 kB)
+Collecting oset>=0.1.3
+  Downloading oset-0.1.3.tar.gz (7.3 kB)
+Collecting pybtex>=0.20
+  Downloading pybtex-0.22.2-py2.py3-none-any.whl (279 kB)
+Collecting psutil
+  Downloading psutil-5.7.0.tar.gz (449 kB)
+Collecting requests-toolbelt!=0.9.0,>=0.8.0
+  Downloading requests_toolbelt-0.9.1-py2.py3-none-any.whl (54 kB)
+Collecting tqdm>=4.14
+  Downloading tqdm-4.47.0-py2.py3-none-any.whl (66 kB)
+Collecting colorama>=0.4.3
+  Downloading colorama-0.4.3-py2.py3-none-any.whl (15 kB)
+Collecting rfc3986>=1.4.0
+  Downloading rfc3986-1.4.0-py2.py3-none-any.whl (31 kB)
+Collecting readme-renderer>=21.0
+  Downloading readme_renderer-26.0-py2.py3-none-any.whl (15 kB)
+Collecting pkginfo>=1.4.2
+  Downloading pkginfo-1.5.0.1-py2.py3-none-any.whl (25 kB)
+Collecting keyring>=15.1
+  Downloading keyring-21.2.1-py3-none-any.whl (31 kB)
+Collecting PyQt5-sip<13,>=12.8
+  Downloading PyQt5_sip-12.8.0-cp37-cp37m-manylinux1_x86_64.whl (283 kB)
+Requirement already satisfied: six in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cycler>=0.10->matplotlib->PyGSP==0.5.1) (1.14.0)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata; python_version < "3.8"->flake8->PyGSP==0.5.1) (2.1.0)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=1.0.0->coveralls->PyGSP==0.5.1) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=1.0.0->coveralls->PyGSP==0.5.1) (2019.11.28)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=1.0.0->coveralls->PyGSP==0.5.1) (1.25.7)
+Requirement already satisfied: idna<2.9,>=2.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from requests>=1.0.0->coveralls->PyGSP==0.5.1) (2.8)
+Collecting pytz>=2015.7
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied: MarkupSafe>=0.23 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from Jinja2>=2.3->sphinx->PyGSP==0.5.1) (1.1.1)
+Collecting PyYAML>=3.01
+  Downloading PyYAML-5.3.1.tar.gz (269 kB)
+Collecting latexcodec>=1.0.4
+  Downloading latexcodec-2.0.1-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: bleach>=2.1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from readme-renderer>=21.0->twine->PyGSP==0.5.1) (3.1.0)
+Collecting SecretStorage>=3; sys_platform == "linux"
+  Downloading SecretStorage-3.1.2-py3-none-any.whl (14 kB)
+Collecting jeepney>=0.4.2; sys_platform == "linux"
+  Downloading jeepney-0.4.3-py3-none-any.whl (21 kB)
+Requirement already satisfied: webencodings in /srv/conda/envs/notebook/lib/python3.7/site-packages (from bleach>=2.1.0->readme-renderer>=21.0->twine->PyGSP==0.5.1) (0.5.1)
+Requirement already satisfied: cryptography in /srv/conda/envs/notebook/lib/python3.7/site-packages (from SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine->PyGSP==0.5.1) (2.8)
+Requirement already satisfied: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine->PyGSP==0.5.1) (1.13.2)
+Requirement already satisfied: pycparser in /srv/conda/envs/notebook/lib/python3.7/site-packages (from cffi!=1.11.3,>=1.8->cryptography->SecretStorage>=3; sys_platform == "linux"->keyring>=15.1->twine->PyGSP==0.5.1) (2.19)
+Building wheels for collected packages: PyGSP, sphinx-gallery, memory-profiler, pyflann3, docopt, oset, psutil, PyYAML
+  Building wheel for PyGSP (setup.py): started
+  Building wheel for PyGSP (setup.py): finished with status 'done'
+  Created wheel for PyGSP: filename=PyGSP-0.5.1-py3-none-any.whl size=1864463 sha256=f921f0e4b17d3bafbe6977befb9d99e372d528e9eabbb93f2720fb36602e8cb8
+  Stored in directory: /tmp/pip-ephem-wheel-cache-x41tzchd/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+  Building wheel for sphinx-gallery (setup.py): started
+  Building wheel for sphinx-gallery (setup.py): finished with status 'done'
+  Created wheel for sphinx-gallery: filename=sphinx_gallery-0.7.0-py3-none-any.whl size=113990 sha256=736f1c655a32f311b0c4d8936f03e7d16c0f081f41401c1c663b2da0406da8db
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/29/9c/f2/b89fbd3b8d077989a1c59392a083430027a419687a8a2087b0
+  Building wheel for memory-profiler (setup.py): started
+  Building wheel for memory-profiler (setup.py): finished with status 'done'
+  Created wheel for memory-profiler: filename=memory_profiler-0.57.0-py3-none-any.whl size=28992 sha256=5d00b3d759b06ebb3a3a3dcfe55e74430cd389e7adaa5a64e92aa6ba188219bc
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/0c/84/4a/8afc0620ec149b2c0a4ed08b021e3a2dc7063fa08e1fcb40c8
+  Building wheel for pyflann3 (setup.py): started
+  Building wheel for pyflann3 (setup.py): finished with status 'done'
+  Created wheel for pyflann3: filename=pyflann3-1.8.4.1-py3-none-any.whl size=10663418 sha256=1cbb8cc080e5e5c024c72bd47958e8a7a3cd4eb60360f022e562dffec6d2802c
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/d3/0b/c6/92074f7bb11fa1db6ff6b0b60139893270eae8edb393299f0a
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13703 sha256=f55fa3e4039eb9cc69646845b1669095e6c1e1a41cb68229b70de9729cb64feb
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/72/b0/3f/1d95f96ff986c7dfffe46ce2be4062f38ebd04b506c77c81b9
+  Building wheel for oset (setup.py): started
+  Building wheel for oset (setup.py): finished with status 'done'
+  Created wheel for oset: filename=oset-0.1.3-py3-none-any.whl size=9661 sha256=84e70b2303b7e7e88f94fdfb79f0bb7e87318e7635589805493cac05071ce565
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/d3/97/cf/cfafe0bedac445a9492baca15b27f8afb4693182b00a975ac7
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.7.0-cp37-cp37m-linux_x86_64.whl size=276505 sha256=698d8a639a94c568306e2193ecb601dbf38cbf478a0dd4107de4ca19f727f48f
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/b6/e7/50/aee9cc966163d74430f13f208171dee22f11efa4a4a826661c
+  Building wheel for PyYAML (setup.py): started
+  Building wheel for PyYAML (setup.py): finished with status 'done'
+  Created wheel for PyYAML: filename=PyYAML-5.3.1-cp37-cp37m-linux_x86_64.whl size=393748 sha256=9744341c4b83109973bc9dade817776b8d77360f92d32ca8827951b14b76ae78
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/5e/03/1e/e1e954795d6f35dfc7b637fe2277bff021303bd9570ecea653
+Successfully built PyGSP sphinx-gallery memory-profiler pyflann3 docopt oset psutil PyYAML
+Installing collected packages: networkx, pillow, imageio, PyWavelets, cycler, pyparsing, kiwisolver, matplotlib, tifffile, scikit-image, pyunlocbox, pyqtgraph, PyOpenGL, pyflakes, pycodestyle, mccabe, flake8, coverage, docopt, coveralls, snowballstemmer, sphinxcontrib-serializinghtml, sphinxcontrib-applehelp, packaging, sphinxcontrib-jsmath, sphinxcontrib-htmlhelp, sphinxcontrib-qthelp, docutils, pytz, babel, alabaster, sphinxcontrib-devhelp, imagesize, sphinx, numpydoc, PyYAML, latexcodec, pybtex, pybtex-docutils, oset, sphinxcontrib-bibtex, sphinx-gallery, psutil, memory-profiler, sphinx-rtd-theme, requests-toolbelt, tqdm, colorama, rfc3986, readme-renderer, pkginfo, jeepney, SecretStorage, keyring, twine, pyflann3, PyQt5-sip, PyQt5, PyGSP
+  Attempting uninstall: PyGSP
+    Found existing installation: PyGSP 0.5.1
+    Uninstalling PyGSP-0.5.1:
+      Successfully uninstalled PyGSP-0.5.1
+Successfully installed PyGSP-0.5.1 PyOpenGL-3.1.5 PyQt5-5.15.0 PyQt5-sip-12.8.0 PyWavelets-1.1.1 PyYAML-5.3.1 SecretStorage-3.1.2 alabaster-0.7.12 babel-2.8.0 colorama-0.4.3 coverage-5.1 coveralls-2.0.0 cycler-0.10.0 docopt-0.6.2 docutils-0.16 flake8-3.8.3 imageio-2.8.0 imagesize-1.2.0 jeepney-0.4.3 keyring-21.2.1 kiwisolver-1.2.0 latexcodec-2.0.1 matplotlib-3.2.2 mccabe-0.6.1 memory-profiler-0.57.0 networkx-2.4 numpydoc-1.1.0 oset-0.1.3 packaging-20.4 pillow-7.2.0 pkginfo-1.5.0.1 psutil-5.7.0 pybtex-0.22.2 pybtex-docutils-0.2.2 pycodestyle-2.6.0 pyflakes-2.2.0 pyflann3-1.8.4.1 pyparsing-2.4.7 pyqtgraph-0.11.0 pytz-2020.1 pyunlocbox-0.5.2 readme-renderer-26.0 requests-toolbelt-0.9.1 rfc3986-1.4.0 scikit-image-0.17.2 snowballstemmer-2.0.0 sphinx-3.1.1 sphinx-gallery-0.7.0 sphinx-rtd-theme-0.5.0 sphinxcontrib-applehelp-1.0.2 sphinxcontrib-bibtex-1.0.0 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-1.0.3 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.4 tifffile-2020.6.3 tqdm-4.47.0 twine-3.2.0
+Removing intermediate container 3bd6a117acc1
+ ---> 51d09a3722aa
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> b3a90abfab94
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 7d736b6310f0
+Removing intermediate container 7d736b6310f0
+ ---> 38e7dbe62d92
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 93b062a1928a
+Removing intermediate container 93b062a1928a
+ ---> 4236cc12643f
+{"aux": {"ID": "sha256:4236cc12643f64c1b959330eef0a5d34b63960aa5d3e436df17eccb823ba2ecf"}}Successfully built 4236cc12643f
+Successfully tagged r2d-test-github.com-epfl-lts2-pygsp:c8687ee

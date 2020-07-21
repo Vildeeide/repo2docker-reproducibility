@@ -1,0 +1,3 @@
+[I 200708 06:45:14 inrepo:36] Testing notebook 6-projects/3D-visualization/browse-pdb.ipynb
+[I 200708 06:45:14 inrepo:45] Found kernel python3
+[I 200708 06:45:15 execute:404] Executing notebook with kernel: python3

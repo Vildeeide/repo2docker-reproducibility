@@ -1,0 +1,5 @@
+[I 200706 10:00:40 inrepo:35] Testing notebook doc/notebooks/Pure_numpy.ipynb
+[I 200706 10:00:41 execute:404] Executing notebook with kernel: python3
+[I 200706 10:00:43 inrepo:41] Saving exported notebook to /io/notebooks/doc/notebooks/Pure_numpy.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,200 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-03T06.4733yr1f32/github.com/jaberg/skdata.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> Using cache
+ ---> 3281d7bb48dc
+Step 38/50 : USER root
+ ---> Using cache
+ ---> 51a628057c90
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> 809b15540b6a
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 88ceec1bd113
+Removing intermediate container 88ceec1bd113
+ ---> 614322b67386
+Step 41/50 : USER ${NB_USER}
+ ---> Running in b7acd7ff334b
+Removing intermediate container b7acd7ff334b
+ ---> 13f9a56c2d6b
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 43adae061cac
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting nose>=1.0
+  Downloading nose-1.3.7-py3-none-any.whl (154 kB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting joblib
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting lockfile
+  Downloading lockfile-0.12.2-py2.py3-none-any.whl (13 kB)
+Collecting scikit-learn
+  Downloading scikit_learn-0.23.1-cp37-cp37m-manylinux1_x86_64.whl (6.8 MB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Collecting scipy>=0.19.1
+  Downloading scipy-1.5.0-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Installing collected packages: nose, numpy, joblib, lockfile, threadpoolctl, scipy, scikit-learn
+Successfully installed joblib-0.16.0 lockfile-0.12.2 nose-1.3.7 numpy-1.19.0 scikit-learn-0.23.1 scipy-1.5.0 threadpoolctl-2.1.0
+Removing intermediate container 43adae061cac
+ ---> ae848e5798eb
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in b37e1e951e92
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+Requirement already satisfied: nose>=1.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from skdata==0.0.4) (1.3.7)
+Requirement already satisfied: numpy in /srv/conda/envs/notebook/lib/python3.7/site-packages (from skdata==0.0.4) (1.19.0)
+Requirement already satisfied: joblib in /srv/conda/envs/notebook/lib/python3.7/site-packages (from skdata==0.0.4) (0.16.0)
+Requirement already satisfied: lockfile in /srv/conda/envs/notebook/lib/python3.7/site-packages (from skdata==0.0.4) (0.12.2)
+Requirement already satisfied: scikit-learn in /srv/conda/envs/notebook/lib/python3.7/site-packages (from skdata==0.0.4) (0.23.1)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->skdata==0.0.4) (2.1.0)
+Requirement already satisfied: scipy>=0.19.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from scikit-learn->skdata==0.0.4) (1.5.0)
+Building wheels for collected packages: skdata
+  Building wheel for skdata (setup.py): started
+  Building wheel for skdata (setup.py): finished with status 'done'
+  Created wheel for skdata: filename=skdata-0.0.4-py3-none-any.whl size=546318 sha256=bf5a9053c246ff95c7d899bef35c134cceedd64f3f21e06f193a23f799a863ce
+  Stored in directory: /tmp/pip-ephem-wheel-cache-c2i3w2lh/wheels/18/1d/f5/bf0f14bf28d31fca5fa5248c6a13f625973319ea6d020a8d96
+Successfully built skdata
+Installing collected packages: skdata
+Successfully installed skdata-0.0.4
+Removing intermediate container b37e1e951e92
+ ---> a2db0a2f7289
+Step 44/50 : LABEL repo2docker.ref="None"
+ ---> Running in af0eda02e117
+Removing intermediate container af0eda02e117
+ ---> 48166f04a742
+Step 45/50 : LABEL repo2docker.repo="local"
+ ---> Running in ae7386a93334
+Removing intermediate container ae7386a93334
+ ---> 91c1e60f4d74
+Step 46/50 : LABEL repo2docker.version="0.11.0"
+ ---> Running in 0acb4859b0fd
+Removing intermediate container 0acb4859b0fd
+ ---> 91895d7078fd
+Step 47/50 : USER ${NB_USER}
+ ---> Running in 487f81df68bd
+Removing intermediate container 487f81df68bd
+ ---> 0c99bb8788c8
+Step 48/50 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 29338d6b575c
+Step 49/50 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 64f6fe1c164c
+Removing intermediate container 64f6fe1c164c
+ ---> 8d4dc5f25550
+Step 50/50 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 2df3a56a0aa0
+Removing intermediate container 2df3a56a0aa0
+ ---> 9ca99308ca0b
+{"aux": {"ID": "sha256:9ca99308ca0b6af5a1d62bb6b8b234788a32ab141a3ee3eccf57faef797fd24f"}}Successfully built 9ca99308ca0b
+Successfully tagged r2d-test-github.com-jaberg-skdata:fb08e82

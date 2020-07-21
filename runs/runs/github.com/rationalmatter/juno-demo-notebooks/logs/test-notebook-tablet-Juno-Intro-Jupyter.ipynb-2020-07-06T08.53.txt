@@ -1,0 +1,5 @@
+[I 200706 08:54:13 inrepo:35] Testing notebook tablet/Juno-Intro-Jupyter.ipynb
+[I 200706 08:54:14 execute:404] Executing notebook with kernel: python3
+[I 200706 08:54:29 inrepo:41] Saving exported notebook to /io/notebooks/tablet/Juno-Intro-Jupyter.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

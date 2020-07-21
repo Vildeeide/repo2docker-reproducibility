@@ -1,0 +1,5 @@
+[I 200713 10:07:04 inrepo:36] Testing notebook 02_machine_learning_setup.ipynb
+[I 200713 10:07:05 execute:404] Executing notebook with kernel: python
+[I 200713 10:07:06 inrepo:79] Saving exported notebook to /io/notebooks/02_machine_learning_setup.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

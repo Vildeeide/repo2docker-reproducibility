@@ -1,0 +1,5 @@
+[I 200706 08:54:30 inrepo:35] Testing notebook tablet/Juno-Intro-Matplotlib.ipynb
+[I 200706 08:54:32 execute:404] Executing notebook with kernel: python3
+[I 200706 08:54:58 inrepo:41] Saving exported notebook to /io/notebooks/tablet/Juno-Intro-Matplotlib.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

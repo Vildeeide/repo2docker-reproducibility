@@ -1,0 +1,5 @@
+[I 200703 10:30:09 inrepo:35] Testing notebook .ipynb_checkpoints/ThomsenWidget-checkpoint.ipynb
+[I 200703 10:30:10 execute:404] Executing notebook with kernel: python3
+[I 200703 10:30:11 inrepo:41] Saving exported notebook to /io/notebooks/.ipynb_checkpoints/ThomsenWidget-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

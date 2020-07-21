@@ -1,0 +1,5 @@
+[I 200706 09:46:30 inrepo:35] Testing notebook Problem-set-2/5-Kernelizing-the-perceptron.ipynb
+[I 200706 09:46:31 execute:404] Executing notebook with kernel: python3
+[I 200706 09:46:31 inrepo:41] Saving exported notebook to /io/notebooks/Problem-set-2/5-Kernelizing-the-perceptron.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,5 @@
+[I 200710 14:26:35 inrepo:36] Testing notebook face4fun/.ipynb_checkpoints/gen_img_lst-checkpoint.ipynb
+[I 200710 14:26:36 execute:404] Executing notebook with kernel: python
+[I 200710 14:26:36 inrepo:79] Saving exported notebook to /io/notebooks/face4fun/.ipynb_checkpoints/gen_img_lst-checkpoint.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

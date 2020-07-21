@@ -1,0 +1,6 @@
+[I 200713 07:27:06 inrepo:36] Testing notebook pso_gaussian/ResultsAndNotes/How to set SWIG in visual studio.ipynb
+[I 200713 07:27:06 inrepo:45] Found kernel python3
+[I 200713 07:27:07 execute:404] Executing notebook with kernel: python3
+[I 200713 07:27:07 inrepo:79] Saving exported notebook to /io/notebooks/pso_gaussian/ResultsAndNotes/How to set SWIG in visual studio.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

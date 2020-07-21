@@ -1,0 +1,5 @@
+[I 200706 12:15:36 inrepo:35] Testing notebook docs/tutorial/vibesystem_notebook.ipynb
+[I 200706 12:15:37 execute:404] Executing notebook with kernel: python3
+[I 200706 12:15:40 inrepo:41] Saving exported notebook to /io/notebooks/docs/tutorial/vibesystem_notebook.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

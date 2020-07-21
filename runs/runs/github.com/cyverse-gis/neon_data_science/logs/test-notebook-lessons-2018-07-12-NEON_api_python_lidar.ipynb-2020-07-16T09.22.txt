@@ -1,0 +1,47 @@
+[I 200716 09:22:43 inrepo:36] Testing notebook lessons/2018-07-12-NEON_api_python_lidar.ipynb
+[I 200716 09:22:43 inrepo:45] Found kernel python3
+[I 200716 09:22:44 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+print("Downloading file of size " + data_size + " to " + path)
+response = requests.get(data_url, stream=True)  
+handle = open(path, "wb")
+start_time = time.time()
+for chunk in response.iter_content(chunk_size=67108864):
+    if chunk: # filter out to keep alive new chunks
+        handle.write(chunk)
+        print("Downloaded size: " + file_size(path))
+    print("Expected file size: " + data_size + " bytes")
+    print("Downloaded file size: " + file_size(path))
+print("--- %s seconds ---" % (time.time() - start_time))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-14-985185afd485>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mprint[0m[0;34m([0m[0;34m"Downloading file of size "[0m [0;34m+[0m [0mdata_size[0m [0;34m+[0m [0;34m" to "[0m [0;34m+[0m [0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mresponse[0m [0;34m=[0m [0mrequests[0m[0;34m.[0m[0mget[0m[0;34m([0m[0mdata_url[0m[0;34m,[0m [0mstream[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mhandle[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0;34m"wb"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      4[0m [0mstart_time[0m [0;34m=[0m [0mtime[0m[0;34m.[0m[0mtime[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;32mfor[0m [0mchunk[0m [0;32min[0m [0mresponse[0m[0;34m.[0m[0miter_content[0m[0;34m([0m[0mchunk_size[0m[0;34m=[0m[0;36m67108864[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/scratch/2017_SRER_1_horz_517000_3527000.laz'
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/2017_SRER_1_horz_517000_3527000.laz'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

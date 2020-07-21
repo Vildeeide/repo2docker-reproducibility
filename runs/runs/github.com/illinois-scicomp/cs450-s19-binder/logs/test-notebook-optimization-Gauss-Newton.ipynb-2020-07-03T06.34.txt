@@ -1,0 +1,5 @@
+[I 200703 06:43:33 inrepo:35] Testing notebook optimization/Gauss-Newton.ipynb
+[I 200703 06:43:34 execute:404] Executing notebook with kernel: python3
+[I 200703 06:43:35 inrepo:41] Saving exported notebook to /io/notebooks/optimization/Gauss-Newton.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

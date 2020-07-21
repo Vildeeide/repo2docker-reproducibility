@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/binder-project/example-dockerfile,efcff45211e371a923e617ffa02ef63b82e6e946,efcff45,2016-11-17T14:22:08-08:00,build,build,False,github.com/binder-project/example-dockerfile/logs/build-efcff45211e371a923e617ffa02ef63b82e6e946-2020-07-14T10.32.txt,2020-07-14T10:32:40.416779,2020-07-14T10.32,0.11.0

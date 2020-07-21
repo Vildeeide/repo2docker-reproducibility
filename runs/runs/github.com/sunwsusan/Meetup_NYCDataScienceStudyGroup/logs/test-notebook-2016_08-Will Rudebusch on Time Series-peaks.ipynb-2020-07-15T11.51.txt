@@ -1,0 +1,57 @@
+[I 200715 11:52:12 inrepo:36] Testing notebook 2016_08/Will Rudebusch on Time Series/peaks.ipynb
+[W 200715 11:52:12 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 11:52:12 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 11:52:13 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import pandas as pd
+import peakutils
+from peakutils.plot import plot as pplot
+from matplotlib import pyplot
+%matplotlib inline
+
+dateparse = lambda x: pd.datetime.strptime(x, '%m/%d/%Y %H:%M:%S')
+
+def normalize(A):
+    A -= A.mean(); A /= A.std()
+    return A
+
+def fix_raw(filename): 
+    raw = pd.read_table(filename, sep='\t', encoding='utf-16', parse_dates={'datetime': [0]}, date_parser=dateparse)
+    data = pd.DataFrame({'datetime' : raw['datetime'],'CO2ppm': raw['CO2 ppm']})
+    data = data.set_index('datetime')
+    data.CO2ppm = pd.to_numeric(data.CO2ppm)
+    return data
+
+########################### main ########################################
+
+df = fix_raw('20150302_CO2Outside_Down.txt')
+print df.head()
+
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-96f045a34974>"[0;36m, line [0;32m24[0m
+[0;31m    print df.head()[0m
+[0m           ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-96f045a34974>, line 24)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,5 @@
+[I 200703 07:05:25 inrepo:35] Testing notebook docs/sources/user_guide/general_concepts/activation-functions.ipynb
+[I 200703 07:05:26 execute:404] Executing notebook with kernel: python3
+[I 200703 07:05:26 inrepo:41] Saving exported notebook to /io/notebooks/docs/sources/user_guide/general_concepts/activation-functions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

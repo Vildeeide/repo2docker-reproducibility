@@ -1,0 +1,207 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-15T13.21kzu90zgt/github.com/alexandonian/lightning.
+Using PythonBuildPack builder
+Step 1/50 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/50 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/50 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/50 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/50 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/50 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/50 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/50 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/50 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/50 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/50 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/50 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/50 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/50 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/50 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/50 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/50 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/50 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/50 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/50 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/50 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/50 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/50 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/50 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/50 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/50 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/50 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/50 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/50 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/50 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/50 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/50 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/50 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/50 : COPY src/requirements.txt ${REPO_DIR}/requirements.txt
+ ---> 20487b7dadf8
+Step 38/50 : USER root
+ ---> Running in 03cdc91e3916
+Removing intermediate container 03cdc91e3916
+ ---> 54995e7d9337
+Step 39/50 : COPY src/ ${REPO_DIR}
+ ---> ecfa01205111
+Step 40/50 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 5ddc615b18b3
+Removing intermediate container 5ddc615b18b3
+ ---> 23a2f5a96150
+Step 41/50 : USER ${NB_USER}
+ ---> Running in ef63cb2e85b3
+Removing intermediate container ef63cb2e85b3
+ ---> 546efead70bd
+Step 42/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir -r "requirements.txt"
+ ---> Running in 34e7f0143460
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting lmdb
+  Downloading lmdb-0.98.tar.gz (869 kB)
+Collecting numpy
+  Downloading numpy-1.19.0-cp37-cp37m-manylinux2010_x86_64.whl (14.6 MB)
+Collecting scipy
+  Downloading scipy-1.5.1-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting scikit-image
+  Downloading scikit_image-0.17.2-cp37-cp37m-manylinux1_x86_64.whl (12.5 MB)
+Collecting boto
+  Downloading boto-2.49.0-py2.py3-none-any.whl (1.4 MB)
+Collecting bolt-python>=0.7.0
+  Downloading bolt-python-0.7.1.tar.gz (25 kB)
+Collecting matplotlib!=3.0.0,>=2.0.0
+  Downloading matplotlib-3.2.2-cp37-cp37m-manylinux1_x86_64.whl (12.4 MB)
+Collecting networkx>=2.0
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Collecting tifffile>=2019.7.26
+  Downloading tifffile-2020.7.4-py3-none-any.whl (138 kB)
+Collecting PyWavelets>=1.1.1
+  Downloading PyWavelets-1.1.1-cp37-cp37m-manylinux1_x86_64.whl (4.4 MB)
+Collecting imageio>=2.3.0
+  Downloading imageio-2.9.0-py3-none-any.whl (3.3 MB)
+Collecting pillow!=7.1.0,!=7.1.1,>=4.3.0
+  Downloading Pillow-7.2.0-cp37-cp37m-manylinux1_x86_64.whl (2.2 MB)
+Requirement already satisfied: python-dateutil>=2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from matplotlib!=3.0.0,>=2.0.0->scikit-image->-r requirements.txt (line 4)) (2.8.1)
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.2.0-cp37-cp37m-manylinux1_x86_64.whl (88 kB)
+Collecting pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1
+  Downloading pyparsing-2.4.7-py2.py3-none-any.whl (67 kB)
+Collecting cycler>=0.10
+  Downloading cycler-0.10.0-py2.py3-none-any.whl (6.5 kB)
+Requirement already satisfied: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from networkx>=2.0->scikit-image->-r requirements.txt (line 4)) (4.4.1)
+Requirement already satisfied: six>=1.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from python-dateutil>=2.1->matplotlib!=3.0.0,>=2.0.0->scikit-image->-r requirements.txt (line 4)) (1.14.0)
+Building wheels for collected packages: lmdb, bolt-python
+  Building wheel for lmdb (setup.py): started
+  Building wheel for lmdb (setup.py): finished with status 'done'
+  Created wheel for lmdb: filename=lmdb-0.98-cp37-cp37m-linux_x86_64.whl size=273176 sha256=d721f8f10b780955c84b792093c688beaceb604e0ffdd26181e31a960ddebbae
+  Stored in directory: /tmp/pip-ephem-wheel-cache-biwyjw4s/wheels/9e/24/96/783d4dddcf63e3f8cc92db8b3af3c70cf6d76398bff77f1d5e
+  Building wheel for bolt-python (setup.py): started
+  Building wheel for bolt-python (setup.py): finished with status 'done'
+  Created wheel for bolt-python: filename=bolt_python-0.7.1-py3-none-any.whl size=31180 sha256=826ed9978758e628a8a235e8282bb8581862038672a1ca34f915bb07067f1cda
+  Stored in directory: /tmp/pip-ephem-wheel-cache-biwyjw4s/wheels/3a/f7/15/0a7c49cb027f8e0805dc0f1d9c25bff3e0b88de009f0048aa5
+Successfully built lmdb bolt-python
+Installing collected packages: lmdb, numpy, scipy, kiwisolver, pyparsing, cycler, matplotlib, networkx, tifffile, PyWavelets, pillow, imageio, scikit-image, boto, bolt-python
+Successfully installed PyWavelets-1.1.1 bolt-python-0.7.1 boto-2.49.0 cycler-0.10.0 imageio-2.9.0 kiwisolver-1.2.0 lmdb-0.98 matplotlib-3.2.2 networkx-2.4 numpy-1.19.0 pillow-7.2.0 pyparsing-2.4.7 scikit-image-0.17.2 scipy-1.5.1 tifffile-2020.7.4
+Removing intermediate container 34e7f0143460
+ ---> 06c04aa6a735
+Step 43/50 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .
+ ---> Running in a67f2291ac97
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mProcessing /home/vildeeide
+[91m    ERROR: Command errored out with exit status 1:
+     command: /srv/conda/envs/notebook/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-req-build-i7wgm0kq/setup.py'"'"'; __file__='"'"'/tmp/pip-req-build-i7wgm0kq/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-req-build-i7wgm0kq/pip-egg-info
+         cwd: /tmp/pip-req-build-i7wgm0kq/
+    Complete output (8 lines):
+    running egg_info
+    creating /tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info
+    writing /tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info/PKG-INFO
+    writing dependency_links to /tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info/dependency_links.txt
+    writing requirements to /tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info/requires.txt
+    writing top-level names to /tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info/top_level.txt
+    writing manifest file '/tmp/pip-req-build-i7wgm0kq/pip-egg-info/lightning_python.egg-info/SOURCES.txt'
+    error: package directory 'lightning_flash/image' does not exist
+    ----------------------------------------
+[0m[91mERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+[0mRemoving intermediate container a67f2291ac97
+The command '/bin/sh -c ${KERNEL_PYTHON_PREFIX}/bin/pip install --no-cache-dir .' returned a non-zero code: 1Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 318, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-alexandonian-lightning:90350fd', '/tmp/r2d-test-2020-07-15T13.21kzu90zgt/github.com/alexandonian/lightning']' returned non-zero exit status 1.

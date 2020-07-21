@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/litat/julia_first_taste,master,bad5491,2016-06-08T17:05:16+08:00,build,build,True,github.com/litat/julia_first_taste/logs/build-master-2020-07-16T06.42.txt,2020-07-16T06:42:47.999508,2020-07-16T06.42,0.11.0
+https://github.com/litat/julia_first_taste,master,bad5491,2016-06-08T17:05:16+08:00,notebook,glossy.ipynb,False,github.com/litat/julia_first_taste/logs/test-notebook-glossy.ipynb-2020-07-16T06.42.txt,2020-07-16T06:42:47.999508,2020-07-16T06.42,0.11.0
+https://github.com/litat/julia_first_taste,master,bad5491,2016-06-08T17:05:16+08:00,notebook,.ipynb_checkpoints/glossy-checkpoint.ipynb,False,github.com/litat/julia_first_taste/logs/test-notebook-.ipynb_checkpoints-glossy-checkpoint.ipynb-2020-07-16T06.42.txt,2020-07-16T06:42:47.999508,2020-07-16T06.42,0.11.0

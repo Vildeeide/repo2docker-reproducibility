@@ -1,0 +1,55 @@
+[I 200715 08:03:28 inrepo:36] Testing notebook Untitled.ipynb
+[W 200715 08:03:29 inrepo:48] No such kernel python2, falling back on kernel language=python
+[W 200715 08:03:29 inrepo:60] Using kernel python3 to provide language: python
+[I 200715 08:03:30 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from core.preprocessing import StatisticalClearSky
+from core.utilities import day_slice_from_date_range
+import numpy as np
+import pandas as pd
+df = pd.read_pickle('data/master_dataset.pkl').fillna(0)
+df = df.loc['2015-07-15':'2017-07-14']
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+sns.set(style='darkgrid', palette='colorblind', context='talk')
+SUMMER = '2015-8-17'
+FALL = '2015-11-17'
+WINTER = '2016-2-16'
+SPRING = '2016-5-2'
+from numpy.linalg import norm
+------------------
+
+Traceback [0;36m(most recent call last)[0m:
+
+  File [1;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py"[0m, line [1;32m3319[0m, in [1;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+[0;36m  File [0;32m"<ipython-input-1-0981718a7772>"[0;36m, line [0;32m1[0;36m, in [0;35m<module>[0;36m[0m
+[0;31m    from core.preprocessing import StatisticalClearSky[0m
+
+[0;36m  File [0;32m"/home/vildeeide/core/preprocessing.py"[0;36m, line [0;32m462[0m
+[0;31m    print 'Please load detrended data'[0m
+[0m                                     ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print('Please load detrended data')?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print('Please load detrended data')? (preprocessing.py, line 462)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

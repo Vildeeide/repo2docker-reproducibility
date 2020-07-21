@@ -1,0 +1,40 @@
+[I 200720 10:06:55 inrepo:36] Testing notebook 06 - Time series (Pandas).ipynb
+[E 200720 10:06:55 __init__:79] Notebook JSON is invalid: {'model_id': '37894d02ddc641c7a92e493891ee493b', 'version_major': 2, 'version_minor': 0} is not valid under any of the given schemas
+    
+    Failed validating 'oneOf' in display_data['properties']['data']['patternProperties']['^(?!application/json$)[a-zA-Z0-9]+/[a-zA-Z0-9\\-\\+\\.]+$']:
+    
+    On instance['cells'][122]['outputs'][0]['data']['application/vnd.jupyter.widget-view+json']:
+    {'model_id': '37894d02ddc641c7a92e493891ee493b',
+     'version_major': 2,
+     'version_minor': 0}
+[I 200720 10:06:55 inrepo:45] Found kernel python3
+[I 200720 10:06:56 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+tmp.
+------------------
+
+[0;36m  File [0;32m"<ipython-input-43-b386b7c597b2>"[0;36m, line [0;32m1[0m
+[0;31m    tmp.[0m
+[0m        ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-43-b386b7c597b2>, line 1)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

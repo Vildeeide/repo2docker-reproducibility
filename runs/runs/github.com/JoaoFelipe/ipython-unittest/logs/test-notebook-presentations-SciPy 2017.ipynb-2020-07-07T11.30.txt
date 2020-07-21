@@ -1,0 +1,69 @@
+[I 200707 11:31:19 inrepo:36] Testing notebook presentations/SciPy 2017.ipynb
+[I 200707 11:31:20 inrepo:45] Found kernel python3
+[I 200707 11:31:21 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%%unittest -u
+"add 1 + 1 returns 2"
+assert add(1, 1) == 2
+"add 1 + 2 returns 3"
+assert add(1, 2) == 3
+"add 2 + 2 returns 4"
+assert add(2, 2) == 4
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-5-ea8bb2a242fb>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_cell_magic[0m[0;34m([0m[0;34m'unittest'[0m[0;34m,[0m [0;34m'-u'[0m[0;34m,[0m [0;34m'"add 1 + 1 returns 2"\nassert add(1, 1) == 2\n"add 1 + 2 returns 3"\nassert add(1, 2) == 3\n"add 2 + 2 returns 4"\nassert add(2, 2) == 4\n'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py[0m in [0;36mrun_cell_magic[0;34m(self, magic_name, line, cell)[0m
+[1;32m   2350[0m             [0;32mwith[0m [0mself[0m[0;34m.[0m[0mbuiltin_trap[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2351[0m                 [0margs[0m [0;34m=[0m [0;34m([0m[0mmagic_arg_s[0m[0;34m,[0m [0mcell[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2352[0;31m                 [0mresult[0m [0;34m=[0m [0mfn[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2353[0m             [0;32mreturn[0m [0mresult[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2354[0m [0;34m[0m[0m
+
+[0;32m</srv/conda/envs/notebook/lib/python3.7/site-packages/decorator.py:decorator-gen-128>[0m in [0;36munittest[0;34m(self, line, cell)[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/magic.py[0m in [0;36m<lambda>[0;34m(f, *a, **k)[0m
+[1;32m    185[0m     [0;31m# but it's overkill for just that one bit of state.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    186[0m     [0;32mdef[0m [0mmagic_deco[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 187[0;31m         [0mcall[0m [0;34m=[0m [0;32mlambda[0m [0mf[0m[0;34m,[0m [0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m:[0m [0mf[0m[0;34m([0m[0;34m*[0m[0ma[0m[0;34m,[0m [0;34m**[0m[0mk[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m         [0;32mif[0m [0mcallable[0m[0;34m([0m[0marg[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipython_unittest/magics.py[0m in [0;36munittest[0;34m(self, line, cell)[0m
+[1;32m    475[0m         [0mtree[0m [0;34m=[0m [0mTransformAssert[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mvisit[0m[0;34m([0m[0mtree[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    476[0m         [0mtree[0m [0;34m=[0m [0mTransformFunction[0m[0;34m([0m[0margs[0m[0;34m.[0m[0mtestcase[0m[0;34m)[0m[0;34m.[0m[0mvisit[0m[0;34m([0m[0mtree[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 477[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mrun_tests[0m[0;34m([0m[0mget_ipython[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0margs[0m[0;34m,[0m [0mtree[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    478[0m [0;34m[0m[0m
+[1;32m    479[0m     [0;34m@[0m[0mmagic_arguments[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/srv/conda/envs/notebook/lib/python3.7/site-packages/ipython_unittest/magics.py[0m in [0;36mrun_tests[0;34m(self, ipython, args, tree)[0m
+[1;32m    341[0m [0;34m[0m[0m
+[1;32m    342[0m         [0;32mif[0m [0mhasattr[0m[0;34m([0m[0margs[0m[0;34m,[0m [0;34m'unparse'[0m[0;34m)[0m [0;32mand[0m [0margs[0m[0;34m.[0m[0munparse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 343[0;31m             [0;32mimport[0m [0mastunparse[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    344[0m             [0mprint[0m[0;34m([0m[0mastunparse[0m[0;34m.[0m[0munparse[0m[0;34m([0m[0mtree[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    345[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'astunparse'
+ModuleNotFoundError: No module named 'astunparse'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

@@ -1,0 +1,35 @@
+[I 200707 13:25:23 inrepo:36] Testing notebook tutorials/control_loop.ipynb
+[I 200707 13:25:24 inrepo:45] Found kernel python3
+[I 200707 13:25:24 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 112, in <module>
+    main()
+  File "/src/inrepo.py", line 108, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 74, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandapower.control as control
+trafo_controller = control.DiscreteTapControl(net=net, tid=114, vm_lower_pu=0.99, vm_uppe_pur=1.01)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-4-2fb4de9c0c6d>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mimport[0m [0mpandapower[0m[0;34m.[0m[0mcontrol[0m [0;32mas[0m [0mcontrol[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mtrafo_controller[0m [0;34m=[0m [0mcontrol[0m[0;34m.[0m[0mDiscreteTapControl[0m[0;34m([0m[0mnet[0m[0;34m=[0m[0mnet[0m[0;34m,[0m [0mtid[0m[0;34m=[0m[0;36m114[0m[0;34m,[0m [0mvm_lower_pu[0m[0;34m=[0m[0;36m0.99[0m[0;34m,[0m [0mvm_uppe_pur[0m[0;34m=[0m[0;36m1.01[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mTypeError[0m: __init__() missing 1 required positional argument: 'vm_upper_pu'
+TypeError: __init__() missing 1 required positional argument: 'vm_upper_pu'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

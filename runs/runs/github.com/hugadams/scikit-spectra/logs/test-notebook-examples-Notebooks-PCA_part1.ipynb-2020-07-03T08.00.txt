@@ -1,0 +1,42 @@
+[I 200703 08:02:46 inrepo:35] Testing notebook examples/Notebooks/PCA_part1.ipynb
+[I 200703 08:02:47 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 76, in <module>
+    main()
+  File "/src/inrepo.py", line 72, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 38, in run_notebook
+    exported = executenb(nb, cwd=os.path.dirname(nb_path))
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%run NBCONFIG.ipynb
+------------------
+
+Traceback [0;36m(most recent call last)[0m:
+
+  File [1;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/IPython/core/interactiveshell.py"[0m, line [1;32m3319[0m, in [1;35mrun_code[0m
+    exec(code_obj, self.user_global_ns, self.user_ns)
+
+  File [1;32m"<ipython-input-1-06cb679711fc>"[0m, line [1;32m2[0m, in [1;35m<module>[0m
+    from skspec.bundled import load_style
+
+[0;36m  File [0;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/skspec/__init__.py"[0;36m, line [0;32m6[0;36m, in [0;35m<module>[0;36m[0m
+[0;31m    from skspec.core.spectra import Spectra[0m
+
+[0;36m  File [0;32m"/srv/conda/envs/notebook/lib/python3.7/site-packages/skspec/core/spectra.py"[0;36m, line [0;32m435[0m
+[0;31m    print '\nKey',delim,'Description'[0m
+[0m                ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m Missing parentheses in call to 'print'. Did you mean print('\nKey',delim,'Description')?
+
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print('\nKey',delim,'Description')? (spectra.py, line 435)
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

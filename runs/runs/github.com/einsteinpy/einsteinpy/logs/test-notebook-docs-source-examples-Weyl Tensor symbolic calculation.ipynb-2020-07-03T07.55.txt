@@ -1,0 +1,5 @@
+[I 200703 07:58:05 inrepo:35] Testing notebook docs/source/examples/Weyl Tensor symbolic calculation.ipynb
+[I 200703 07:58:06 execute:404] Executing notebook with kernel: python3
+[I 200703 07:58:15 inrepo:41] Saving exported notebook to /io/notebooks/docs/source/examples/Weyl Tensor symbolic calculation.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}
