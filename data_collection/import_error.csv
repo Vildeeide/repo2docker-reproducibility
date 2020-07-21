@@ -73,4 +73,36 @@ IMPORT ERROR;;;
 ;70;pushlog/Brexit;Username
 ;71;aquairus/ids;5 failures. Modules
 ;72;nkumarrai/deep_learning;5 failures. Modules 
-;;;
+;73;inishchith/coursera;5 failures. Modules
+;74;yanfenfu/Fermentation-project;1 failure. Syntax 
+;75; neuhofmo/DataHapRockets;3 failures. Modules
+;76;thgil/notebooks;5 failures. Modules
+;77;sprataps/Sentiment-Analysis;Username
+;78;rohangawade/Decision_Tree_Transparency;1 failure. Module
+;79;emilkayumov/kaggle-bnp-paribas;1 failure. Module
+;80;ryankarlos/Deep-Learning-keras-Data-Science-Game-Competition-;Username
+;81;ethankoch4/predict_sentiment;Username
+;82;simama/RLpractice;3 failures. Modules
+;83;datastory/avif-stats;3 failures. Modules
+;84;idontdomath/datos-spark-lab;5 failures. Modules, syntax (python 2), name 
+;85;EnriqueCornejo/jupyter-geo-notebook;Username
+;86;Karrenbelt/allosteric-inference-master;5 failures. Modules and UsageError
+;87;JulioLP/prueba2;Username
+;88;mobius1008/fff;5 failures. Modules
+;89;rockelee/ML;4 failures, 1 ok. Modules 
+;90;konstdrozdov/taxiNY_w7;1 failure. Module
+;91;bharatreddy/sapstec;5 failures. Modules
+;92;psamucao/pycode;1 failure. Module
+;93;matteoAquilani95/ggpl;5 failures. Modules, syntax 
+;94;bishopkd/DSI-SF2-bishopkd;5 failures. Modules, syntax (Python 2)
+;95;msr-peng/Self-Driving-Turtlebot3;4 failures. Modules 
+;96;b9007/Coursera-Machine-Learning-Specialization-University-of-Washington-;Build failure 
+;97;2check91/tahoe_healthcare_case_study;1 failure. Module
+;98;kristinsdottir/datascihw2;1 failure. Module
+;99;ktakagaki/kt-2015-DSPHandsOn;4 failures, 1 ok. Syntax (python 2)
+;100;kat9-lt/study;1 failure. Module
+;101;mtbk24/Statistics;5 failures. Modules
+;102;danielbots/network_intrusion_detection_system;5 failures. Modules
+;103;tirthajyoti/PythonMachineLearning;5 failures. Modules 
+;104;kotoite/SNN_sim;2 fail, 1 ok. Modules
+;105;yangfan1993/Binary-Connect;1 failure. Syntax 
