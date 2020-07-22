@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/younseunghyun/alpacaca_ysh,master,69dacd7,2017-12-10T23:41:51+09:00,build,build,True,github.com/younseunghyun/alpacaca_ysh/logs/build-master-2020-07-16T07.03.txt,2020-07-16T07:03:15.601508,2020-07-16T07.03,0.11.0
-https://github.com/younseunghyun/alpacaca_ysh,master,69dacd7,2017-12-10T23:41:51+09:00,notebook,Untitled.ipynb,False,github.com/younseunghyun/alpacaca_ysh/logs/test-notebook-Untitled.ipynb-2020-07-16T07.03.txt,2020-07-16T07:03:15.601508,2020-07-16T07.03,0.11.0
-https://github.com/younseunghyun/alpacaca_ysh,master,69dacd7,2017-12-10T23:41:51+09:00,notebook,main.ipynb,False,github.com/younseunghyun/alpacaca_ysh/logs/test-notebook-main.ipynb-2020-07-16T07.03.txt,2020-07-16T07:03:15.601508,2020-07-16T07.03,0.11.0

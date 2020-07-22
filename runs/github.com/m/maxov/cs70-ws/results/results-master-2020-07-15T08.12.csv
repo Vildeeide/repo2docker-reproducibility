@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/maxov/cs70-ws,master,84bbc88,2018-04-30T16:37:36-07:00,build,build,True,github.com/m/maxov/cs70-ws/logs/build-master-2020-07-15T08.12.txt,2020-07-15T08:12:11.464217,2020-07-15T08.12,0.11.0
+https://github.com/maxov/cs70-ws,master,84bbc88,2018-04-30T16:37:36-07:00,notebook,ws6/ws6.ipynb,False,github.com/m/maxov/cs70-ws/logs/test-notebook-ws6-ws6.ipynb-2020-07-15T08.12.txt,2020-07-15T08:12:11.464217,2020-07-15T08.12,0.11.0
+https://github.com/maxov/cs70-ws,master,84bbc88,2018-04-30T16:37:36-07:00,notebook,ws6/.ipynb_checkpoints/ws6-checkpoint.ipynb,False,github.com/m/maxov/cs70-ws/logs/test-notebook-ws6-.ipynb_checkpoints-ws6-checkpoint.ipynb-2020-07-15T08.12.txt,2020-07-15T08:12:11.464217,2020-07-15T08.12,0.11.0

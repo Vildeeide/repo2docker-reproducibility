@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mjoneill88/car-worth-linear-regression,master,319d71b,2016-04-26T23:20:28-04:00,build,build,False,github.com/mjoneill88/car-worth-linear-regression/logs/build-master-2020-07-15T12.30.txt,2020-07-15T12:30:44.789062,2020-07-15T12.30,0.11.0

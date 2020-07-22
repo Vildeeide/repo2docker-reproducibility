@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/xbabinec/hntrends,master,f845dc0,2017-07-27T15:10:11+00:00,build,build,False,github.com/xbabinec/hntrends/logs/build-master-2020-07-15T14.05.txt,2020-07-15T14:05:44.768073,2020-07-15T14.05,0.11.0

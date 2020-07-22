@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/isternberg/Pandas_Exploratory_Analysis_Quickie,master,715bf7b,2016-06-03T15:18:56+02:00,build,build,False,github.com/i/isternberg/pandas_exploratory_analysis_quickie/logs/build-master-2020-07-16T07.57.txt,2020-07-16T07:57:00.998511,2020-07-16T07.57,0.11.0

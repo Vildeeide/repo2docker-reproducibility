@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/eduardofvdalmeida/Lista3-Topicos,master,43678b3,2016-11-01T16:42:26-02:00,build,build,True,github.com/eduardofvdalmeida/Lista3-Topicos/logs/build-master-2020-07-17T12.36.txt,2020-07-17T12:36:37.863731,2020-07-17T12.36,0.11.0
-https://github.com/eduardofvdalmeida/Lista3-Topicos,master,43678b3,2016-11-01T16:42:26-02:00,notebook,Lista 3 - com amortecimento.ipynb,False,github.com/eduardofvdalmeida/Lista3-Topicos/logs/test-notebook-Lista 3 - com amortecimento.ipynb-2020-07-17T12.36.txt,2020-07-17T12:36:37.863731,2020-07-17T12.36,0.11.0
-https://github.com/eduardofvdalmeida/Lista3-Topicos,master,43678b3,2016-11-01T16:42:26-02:00,notebook,Lista 3 - sem amortecimento.ipynb,False,github.com/eduardofvdalmeida/Lista3-Topicos/logs/test-notebook-Lista 3 - sem amortecimento.ipynb-2020-07-17T12.36.txt,2020-07-17T12:36:37.863731,2020-07-17T12.36,0.11.0

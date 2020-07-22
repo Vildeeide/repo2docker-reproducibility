@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/trekhleb/homemade-machine-learning/,master,b4239e3,2020-05-05T17:56:31+02:00,build,build,False,github.com/trekhleb/homemade-machine-learning/logs/build-master-2020-07-03T07.17.txt,2020-07-03T07:17:07.291288,2020-07-03T07.17,0.11.0

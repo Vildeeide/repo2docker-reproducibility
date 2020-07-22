@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/keldLundgaard/Polarizing_movies,master,9af39d4,2016-07-06T22:59:59-07:00,build,build,True,github.com/keldLundgaard/Polarizing_movies/logs/build-master-2020-07-20T08.12.txt,2020-07-20T08:12:37.232741,2020-07-20T08.12,0.11.0
-https://github.com/keldLundgaard/Polarizing_movies,master,9af39d4,2016-07-06T22:59:59-07:00,notebook,Polarizing_imdb_movies.ipynb,True,github.com/keldLundgaard/Polarizing_movies/logs/test-notebook-Polarizing_imdb_movies.ipynb-2020-07-20T08.12.txt,2020-07-20T08:12:37.232741,2020-07-20T08.12,0.11.0

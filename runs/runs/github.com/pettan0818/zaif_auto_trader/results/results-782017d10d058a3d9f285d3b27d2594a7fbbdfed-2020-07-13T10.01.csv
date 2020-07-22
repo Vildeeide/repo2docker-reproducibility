@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/pettan0818/zaif_auto_trader,782017d10d058a3d9f285d3b27d2594a7fbbdfed,782017d,2017-07-09T22:42:11+09:00,build,build,False,github.com/pettan0818/zaif_auto_trader/logs/build-782017d10d058a3d9f285d3b27d2594a7fbbdfed-2020-07-13T10.01.txt,2020-07-13T10:01:36.188267,2020-07-13T10.01,0.11.0

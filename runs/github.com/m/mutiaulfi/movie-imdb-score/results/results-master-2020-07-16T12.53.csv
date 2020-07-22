@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/mutiaulfi/movie-imdb-score,master,c73ffbf,2018-04-15T09:20:23+00:00,build,build,True,github.com/m/mutiaulfi/movie-imdb-score/logs/build-master-2020-07-16T12.53.txt,2020-07-16T12:53:46.393127,2020-07-16T12.53,0.11.0
+https://github.com/mutiaulfi/movie-imdb-score,master,c73ffbf,2018-04-15T09:20:23+00:00,notebook,MovieScript.ipynb,False,github.com/m/mutiaulfi/movie-imdb-score/logs/test-notebook-MovieScript.ipynb-2020-07-16T12.53.txt,2020-07-16T12:53:46.393127,2020-07-16T12.53,0.11.0

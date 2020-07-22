@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Sekhansen/machine_learning_economics,master,4e06290,2019-09-01T17:13:58+02:00,build,build,False,github.com/s/sekhansen/machine_learning_economics/logs/build-master-2020-07-03T08.26.txt,2020-07-03T08:26:53.734159,2020-07-03T08.26,0.11.0

@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/bksk1lz/quantizer,master,a374ae5,2017-07-28T16:39:59-04:00,build,build,False,github.com/bksk1lz/quantizer/logs/build-master-2020-07-16T07.53.txt,2020-07-16T07:53:40.233976,2020-07-16T07.53,0.11.0

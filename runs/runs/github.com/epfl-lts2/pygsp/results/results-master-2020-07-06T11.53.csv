@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/epfl-lts2/pygsp,master,c8687ee,2020-05-13T17:43:35+02:00,build,build,True,github.com/epfl-lts2/pygsp/logs/build-master-2020-07-06T11.53.txt,2020-07-06T11:53:37.116235,2020-07-06T11.53,0.11.0
-https://github.com/epfl-lts2/pygsp,master,c8687ee,2020-05-13T17:43:35+02:00,notebook,playground.ipynb,False,github.com/epfl-lts2/pygsp/logs/test-notebook-playground.ipynb-2020-07-06T11.53.txt,2020-07-06T11:53:37.116235,2020-07-06T11.53,0.11.0

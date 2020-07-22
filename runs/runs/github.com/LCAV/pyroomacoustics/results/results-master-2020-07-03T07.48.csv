@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/LCAV/pyroomacoustics,master,67c7f34,2020-07-02T11:59:41+09:00,build,build,False,github.com/LCAV/pyroomacoustics/logs/build-master-2020-07-03T07.48.txt,2020-07-03T07:48:14.183199,2020-07-03T07.48,0.11.0

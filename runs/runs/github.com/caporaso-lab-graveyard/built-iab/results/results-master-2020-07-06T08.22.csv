@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/caporaso-lab-graveyard/built-iab,master,1c7f167,2018-08-07T12:45:31-07:00,build,build,False,github.com/caporaso-lab-graveyard/built-iab/logs/build-master-2020-07-06T08.22.txt,2020-07-06T08:22:02.081641,2020-07-06T08.22,0.11.0

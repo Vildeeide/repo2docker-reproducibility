@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/cc7768/repeatedgames,master,3841f6f,2019-12-07T13:46:39-05:00,build,build,True,github.com/c/cc7768/repeatedgames/logs/build-master-2020-07-16T08.14.txt,2020-07-16T08:14:16.631062,2020-07-16T08.14,0.11.0
+https://github.com/cc7768/repeatedgames,master,3841f6f,2019-12-07T13:46:39-05:00,notebook,Notebooks/AbreuSannikov2014.ipynb,False,github.com/c/cc7768/repeatedgames/logs/test-notebook-Notebooks-AbreuSannikov2014.ipynb-2020-07-16T08.14.txt,2020-07-16T08:14:16.631062,2020-07-16T08.14,0.11.0
+https://github.com/cc7768/repeatedgames,master,3841f6f,2019-12-07T13:46:39-05:00,notebook,Notebooks/.ipynb_checkpoints/AbreuSannikov2014-checkpoint.ipynb,False,github.com/c/cc7768/repeatedgames/logs/test-notebook-Notebooks-.ipynb_checkpoints-AbreuSannikov2014-checkpoint.ipynb-2020-07-16T08.14.txt,2020-07-16T08:14:16.631062,2020-07-16T08.14,0.11.0

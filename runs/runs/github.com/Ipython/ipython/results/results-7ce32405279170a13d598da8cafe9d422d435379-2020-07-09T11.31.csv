@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Ipython/ipython,7ce32405279170a13d598da8cafe9d422d435379,7ce3240,2020-06-09T17:11:00+03:00,build,build,False,github.com/Ipython/ipython/logs/build-7ce32405279170a13d598da8cafe9d422d435379-2020-07-09T11.31.txt,2020-07-09T11:31:26.934595,2020-07-09T11.31,0.11.0

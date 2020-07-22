@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bicycle1885/Julia-Tutorial,6e026bd00722eed8f660e21bad91f2cd35ca55c3,6e026bd,2017-07-02T03:12:50+09:00,build,build,True,github.com/b/bicycle1885/julia-tutorial/logs/build-6e026bd00722eed8f660e21bad91f2cd35ca55c3-2020-07-14T09.45.txt,2020-07-14T09:45:23.332722,2020-07-14T09.45,0.11.0
+https://github.com/bicycle1885/Julia-Tutorial,6e026bd00722eed8f660e21bad91f2cd35ca55c3,6e026bd,2017-07-02T03:12:50+09:00,notebook,Julia高速チュートリアル.ipynb,False,github.com/b/bicycle1885/julia-tutorial/logs/test-notebook-Julia高速チュートリアル.ipynb-2020-07-14T09.45.txt,2020-07-14T09:45:23.332722,2020-07-14T09.45,0.11.0

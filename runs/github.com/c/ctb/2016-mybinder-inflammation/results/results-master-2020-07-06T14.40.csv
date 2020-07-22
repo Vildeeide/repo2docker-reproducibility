@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/ctb/2016-mybinder-inflammation,master,6c7a778,2018-05-25T08:59:45-05:00,build,build,True,github.com/c/ctb/2016-mybinder-inflammation/logs/build-master-2020-07-06T14.40.txt,2020-07-06T14:40:27.026417,2020-07-06T14.40,0.11.0
+https://github.com/ctb/2016-mybinder-inflammation,master,6c7a778,2018-05-25T08:59:45-05:00,notebook,index.ipynb,True,github.com/c/ctb/2016-mybinder-inflammation/logs/test-notebook-index.ipynb-2020-07-06T14.40.txt,2020-07-06T14:40:27.026417,2020-07-06T14.40,0.11.0
+https://github.com/ctb/2016-mybinder-inflammation,master,6c7a778,2018-05-25T08:59:45-05:00,notebook,new-nb.ipynb,True,github.com/c/ctb/2016-mybinder-inflammation/logs/test-notebook-new-nb.ipynb-2020-07-06T14.40.txt,2020-07-06T14:40:27.026417,2020-07-06T14.40,0.11.0

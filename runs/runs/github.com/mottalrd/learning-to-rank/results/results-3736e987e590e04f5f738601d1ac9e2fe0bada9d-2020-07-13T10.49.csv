@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mottalrd/learning-to-rank,3736e987e590e04f5f738601d1ac9e2fe0bada9d,3736e98,2017-04-18T19:22:48+01:00,build,build,False,github.com/mottalrd/learning-to-rank/logs/build-3736e987e590e04f5f738601d1ac9e2fe0bada9d-2020-07-13T10.49.txt,2020-07-13T10:49:56.460059,2020-07-13T10.49,0.11.0

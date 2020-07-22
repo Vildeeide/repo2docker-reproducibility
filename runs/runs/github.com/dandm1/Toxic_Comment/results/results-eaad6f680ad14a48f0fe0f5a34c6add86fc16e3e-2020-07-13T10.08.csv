@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/dandm1/Toxic_Comment,eaad6f680ad14a48f0fe0f5a34c6add86fc16e3e,eaad6f6,2018-03-18T20:38:51+00:00,build,build,False,github.com/dandm1/Toxic_Comment/logs/build-eaad6f680ad14a48f0fe0f5a34c6add86fc16e3e-2020-07-13T10.08.txt,2020-07-13T10:08:14.259653,2020-07-13T10.08,0.11.0

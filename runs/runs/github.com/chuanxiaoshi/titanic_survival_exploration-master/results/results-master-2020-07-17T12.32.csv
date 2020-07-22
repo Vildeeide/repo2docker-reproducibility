@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/chuanxiaoshi/titanic_survival_exploration-master,master,ddf9ed8,2018-03-13T15:59:57+08:00,build,build,True,github.com/chuanxiaoshi/titanic_survival_exploration-master/logs/build-master-2020-07-17T12.32.txt,2020-07-17T12:32:21.186949,2020-07-17T12.32,0.11.0
-https://github.com/chuanxiaoshi/titanic_survival_exploration-master,master,ddf9ed8,2018-03-13T15:59:57+08:00,notebook,titanic_survival_exploration.ipynb,False,github.com/chuanxiaoshi/titanic_survival_exploration-master/logs/test-notebook-titanic_survival_exploration.ipynb-2020-07-17T12.32.txt,2020-07-17T12:32:21.186949,2020-07-17T12.32,0.11.0

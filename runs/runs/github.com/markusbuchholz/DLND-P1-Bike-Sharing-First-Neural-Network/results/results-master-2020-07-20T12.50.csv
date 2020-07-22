@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/markusbuchholz/DLND-P1-Bike-Sharing-First-Neural-Network,master,241297a,2017-08-21T18:39:09+02:00,build,build,False,github.com/markusbuchholz/DLND-P1-Bike-Sharing-First-Neural-Network/logs/build-master-2020-07-20T12.50.txt,2020-07-20T12:50:47.660948,2020-07-20T12.50,0.11.0

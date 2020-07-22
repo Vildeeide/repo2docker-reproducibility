@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/white-fox11/Machine-Learning-Algorithms,master,8dd7f43,2017-07-18T16:16:34-06:00,build,build,True,github.com/white-fox11/Machine-Learning-Algorithms/logs/build-master-2020-07-17T12.38.txt,2020-07-17T12:38:21.099155,2020-07-17T12.38,0.11.0
-https://github.com/white-fox11/Machine-Learning-Algorithms,master,8dd7f43,2017-07-18T16:16:34-06:00,notebook,Linear Regression Algorithm.ipynb,False,github.com/white-fox11/Machine-Learning-Algorithms/logs/test-notebook-Linear Regression Algorithm.ipynb-2020-07-17T12.38.txt,2020-07-17T12:38:21.099155,2020-07-17T12.38,0.11.0

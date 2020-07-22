@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/palmerabollo/facebook-group-crawler,master,25fc80a,2018-04-08T23:26:22+02:00,build,build,False,github.com/palmerabollo/facebook-group-crawler/logs/build-master-2020-07-16T07.04.txt,2020-07-16T07:04:18.989977,2020-07-16T07.04,0.11.0

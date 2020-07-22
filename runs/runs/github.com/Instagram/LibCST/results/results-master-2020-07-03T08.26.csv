@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Instagram/LibCST,master,6a5f71c,2020-06-30T15:40:46-04:00,build,build,False,github.com/Instagram/LibCST/logs/build-master-2020-07-03T08.26.txt,2020-07-03T08:26:28.557355,2020-07-03T08.26,0.11.0

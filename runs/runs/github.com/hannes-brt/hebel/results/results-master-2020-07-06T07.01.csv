@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/hannes-brt/hebel,master,1e2c3a9,2015-08-13T11:21:16-07:00,build,build,False,github.com/hannes-brt/hebel/logs/build-master-2020-07-06T07.01.txt,2020-07-06T07:01:38.806506,2020-07-06T07.01,0.11.0

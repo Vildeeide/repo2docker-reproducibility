@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/daidoji/Kaggle,master,210ecd5,2016-04-16T23:07:39-07:00,build,build,True,github.com/daidoji/Kaggle/logs/build-master-2020-07-16T09.32.txt,2020-07-16T09:32:54.121505,2020-07-16T09.32,0.11.0
-https://github.com/daidoji/Kaggle,master,210ecd5,2016-04-16T23:07:39-07:00,notebook,Titanic Quick Exploration.ipynb,False,github.com/daidoji/Kaggle/logs/test-notebook-Titanic Quick Exploration.ipynb-2020-07-16T09.32.txt,2020-07-16T09:32:54.121505,2020-07-16T09.32,0.11.0
-https://github.com/daidoji/Kaggle,master,210ecd5,2016-04-16T23:07:39-07:00,notebook,shelter_outcomes/Predicting Shelter Outcomes.ipynb,False,github.com/daidoji/Kaggle/logs/test-notebook-shelter_outcomes-Predicting Shelter Outcomes.ipynb-2020-07-16T09.32.txt,2020-07-16T09:32:54.121505,2020-07-16T09.32,0.11.0

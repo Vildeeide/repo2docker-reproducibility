@@ -1,5 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/simama/RLpractice,master,813b008,2017-04-18T18:19:49+03:00,build,build,True,github.com/simama/RLpractice/logs/build-master-2020-07-21T07.31.txt,2020-07-21T07:31:34.148478,2020-07-21T07.31,0.11.0
-https://github.com/simama/RLpractice,master,813b008,2017-04-18T18:19:49+03:00,notebook,dagger.ipynb,False,github.com/simama/RLpractice/logs/test-notebook-dagger.ipynb-2020-07-21T07.31.txt,2020-07-21T07:31:34.148478,2020-07-21T07.31,0.11.0
-https://github.com/simama/RLpractice,master,813b008,2017-04-18T18:19:49+03:00,notebook,q_network_learning.ipynb,False,github.com/simama/RLpractice/logs/test-notebook-q_network_learning.ipynb-2020-07-21T07.31.txt,2020-07-21T07:31:34.148478,2020-07-21T07.31,0.11.0
-https://github.com/simama/RLpractice,master,813b008,2017-04-18T18:19:49+03:00,notebook,HW2.ipynb,False,github.com/simama/RLpractice/logs/test-notebook-HW2.ipynb-2020-07-21T07.31.txt,2020-07-21T07:31:34.148478,2020-07-21T07.31,0.11.0

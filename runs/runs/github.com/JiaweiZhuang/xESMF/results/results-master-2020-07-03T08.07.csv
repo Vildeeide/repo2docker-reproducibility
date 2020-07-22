@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/JiaweiZhuang/xESMF,master,2d2e365,2020-03-06T14:55:21-05:00,build,build,False,github.com/JiaweiZhuang/xESMF/logs/build-master-2020-07-03T08.07.txt,2020-07-03T08:07:38.316456,2020-07-03T08.07,0.11.0

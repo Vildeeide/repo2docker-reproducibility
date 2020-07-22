@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Jorgee1/GT5-Test,master,c42cb1c,2017-11-14T03:23:00-05:00,build,build,False,github.com/Jorgee1/GT5-Test/logs/build-master-2020-07-15T13.27.txt,2020-07-15T13:27:57.886872,2020-07-15T13.27,0.11.0

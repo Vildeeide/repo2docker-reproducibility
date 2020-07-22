@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/litopia/dlnd-first-neural-network,master,129e3ff,2017-04-05T22:37:44-07:00,build,build,False,github.com/l/litopia/dlnd-first-neural-network/logs/build-master-2020-07-20T07.38.txt,2020-07-20T07:38:47.683761,2020-07-20T07.38,0.11.0

@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/edx/edx-platform,master,d26854c,2020-07-07T16:57:21-04:00,build,build,True,github.com/edx/edx-platform/logs/build-master-2020-07-08T06.34.txt,2020-07-08T06:34:37.256769,2020-07-08T06.34,0.11.0

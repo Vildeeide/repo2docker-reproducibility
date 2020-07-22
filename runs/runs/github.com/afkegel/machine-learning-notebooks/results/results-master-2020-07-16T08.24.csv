@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/afkegel/machine-learning-notebooks,master,3e7d12b,2018-02-27T20:41:44+13:00,build,build,True,github.com/afkegel/machine-learning-notebooks/logs/build-master-2020-07-16T08.24.txt,2020-07-16T08:24:20.144707,2020-07-16T08.24,0.11.0
-https://github.com/afkegel/machine-learning-notebooks,master,3e7d12b,2018-02-27T20:41:44+13:00,notebook,Titanic_Survival_Prediction/Titanic Survival Prediction.ipynb,False,github.com/afkegel/machine-learning-notebooks/logs/test-notebook-Titanic_Survival_Prediction-Titanic Survival Prediction.ipynb-2020-07-16T08.24.txt,2020-07-16T08:24:20.144707,2020-07-16T08.24,0.11.0

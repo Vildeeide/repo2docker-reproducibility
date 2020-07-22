@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/chengg04/Julia_tutorial,master,fd364b2,2019-12-02T12:10:07-05:00,build,build,True,github.com/c/chengg04/julia_tutorial/logs/build-master-2020-07-16T06.19.txt,2020-07-16T06:19:29.333383,2020-07-16T06.19,0.11.0
+https://github.com/chengg04/Julia_tutorial,master,fd364b2,2019-12-02T12:10:07-05:00,notebook,2018_UofT_Julia_Tutorial.ipynb,False,github.com/c/chengg04/julia_tutorial/logs/test-notebook-2018_UofT_Julia_Tutorial.ipynb-2020-07-16T06.19.txt,2020-07-16T06:19:29.333383,2020-07-16T06.19,0.11.0

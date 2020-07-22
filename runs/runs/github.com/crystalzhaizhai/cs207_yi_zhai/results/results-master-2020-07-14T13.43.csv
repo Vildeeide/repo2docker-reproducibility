@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/crystalzhaizhai/cs207_yi_zhai,master,faabdc5,2017-11-14T00:13:52-05:00,build,build,True,github.com/crystalzhaizhai/cs207_yi_zhai/logs/build-master-2020-07-14T13.43.txt,2020-07-14T13:43:39.578376,2020-07-14T13.43,0.11.0
-https://github.com/crystalzhaizhai/cs207_yi_zhai,master,faabdc5,2017-11-14T00:13:52-05:00,notebook,Untitled1.ipynb,False,github.com/crystalzhaizhai/cs207_yi_zhai/logs/test-notebook-Untitled1.ipynb-2020-07-14T13.43.txt,2020-07-14T13:43:39.578376,2020-07-14T13.43,0.11.0
-https://github.com/crystalzhaizhai/cs207_yi_zhai,master,faabdc5,2017-11-14T00:13:52-05:00,notebook,homeworks/HW7/HW7-BST-Solution.ipynb,False,github.com/crystalzhaizhai/cs207_yi_zhai/logs/test-notebook-homeworks-HW7-HW7-BST-Solution.ipynb-2020-07-14T13.43.txt,2020-07-14T13:43:39.578376,2020-07-14T13.43,0.11.0

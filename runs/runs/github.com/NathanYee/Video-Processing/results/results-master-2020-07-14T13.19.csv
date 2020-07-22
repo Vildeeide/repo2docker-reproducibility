@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/NathanYee/Video-Processing,master,cf9d173,2017-08-10T12:22:09-07:00,build,build,False,github.com/NathanYee/Video-Processing/logs/build-master-2020-07-14T13.19.txt,2020-07-14T13:19:00.654379,2020-07-14T13.19,0.11.0

@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Midnight93/kaggle_presentation,master,601c1f0,2019-01-08T13:02:46+01:00,build,build,True,github.com/Midnight93/kaggle_presentation/logs/build-master-2020-07-14T11.41.txt,2020-07-14T11:41:55.324654,2020-07-14T11.41,0.11.0
-https://github.com/Midnight93/kaggle_presentation,master,601c1f0,2019-01-08T13:02:46+01:00,notebook,jupyter.ipynb,False,github.com/Midnight93/kaggle_presentation/logs/test-notebook-jupyter.ipynb-2020-07-14T11.41.txt,2020-07-14T11:41:55.324654,2020-07-14T11.41,0.11.0
-https://github.com/Midnight93/kaggle_presentation,master,601c1f0,2019-01-08T13:02:46+01:00,notebook,netflix.ipynb,False,github.com/Midnight93/kaggle_presentation/logs/test-notebook-netflix.ipynb-2020-07-14T11.41.txt,2020-07-14T11:41:55.324654,2020-07-14T11.41,0.11.0

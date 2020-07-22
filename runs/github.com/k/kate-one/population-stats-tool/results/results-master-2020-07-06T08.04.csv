@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kate-one/population-stats-tool,master,beb6a2b,2017-10-17T18:21:43+01:00,build,build,False,github.com/k/kate-one/population-stats-tool/logs/build-master-2020-07-06T08.04.txt,2020-07-06T08:04:22.232848,2020-07-06T08.04,0.11.0

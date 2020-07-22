@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mgruben/creating-customer-segments,master,90038c6,2016-09-07T22:48:27-05:00,build,build,True,github.com/mgruben/creating-customer-segments/logs/build-master-2020-07-14T13.51.txt,2020-07-14T13:51:26.719779,2020-07-14T13.51,0.11.0
-https://github.com/mgruben/creating-customer-segments,master,90038c6,2016-09-07T22:48:27-05:00,notebook,customer_segments.ipynb,False,github.com/mgruben/creating-customer-segments/logs/test-notebook-customer_segments.ipynb-2020-07-14T13.51.txt,2020-07-14T13:51:26.719779,2020-07-14T13.51,0.11.0

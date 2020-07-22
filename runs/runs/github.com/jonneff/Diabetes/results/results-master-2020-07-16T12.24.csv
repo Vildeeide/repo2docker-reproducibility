@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jonneff/Diabetes,master,c388f38,2016-02-11T07:28:50-08:00,build,build,True,github.com/jonneff/Diabetes/logs/build-master-2020-07-16T12.24.txt,2020-07-16T12:24:05.269136,2020-07-16T12.24,0.11.0
-https://github.com/jonneff/Diabetes,master,c388f38,2016-02-11T07:28:50-08:00,notebook,UCI_AIM94_Data_Analysis.ipynb,False,github.com/jonneff/Diabetes/logs/test-notebook-UCI_AIM94_Data_Analysis.ipynb-2020-07-16T12.24.txt,2020-07-16T12:24:05.269136,2020-07-16T12.24,0.11.0

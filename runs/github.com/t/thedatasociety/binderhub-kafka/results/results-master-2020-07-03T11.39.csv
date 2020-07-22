@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/thedatasociety/binderhub-kafka/,master,ad1cd4a,2019-08-27T22:33:39-03:00,build,build,False,github.com/t/thedatasociety/binderhub-kafka/logs/build-master-2020-07-03T11.39.txt,2020-07-03T11:39:51.015229,2020-07-03T11.39,0.11.0

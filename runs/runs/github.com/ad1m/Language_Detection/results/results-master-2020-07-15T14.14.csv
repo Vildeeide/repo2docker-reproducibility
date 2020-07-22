@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/ad1m/Language_Detection,master,5ce0a34,2017-05-01T10:11:17-04:00,build,build,False,github.com/ad1m/Language_Detection/logs/build-master-2020-07-15T14.14.txt,2020-07-15T14:14:52.878568,2020-07-15T14.14,0.11.0

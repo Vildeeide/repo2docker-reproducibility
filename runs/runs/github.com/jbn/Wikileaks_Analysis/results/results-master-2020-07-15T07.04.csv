@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jbn/Wikileaks_Analysis,master,e151da4,2016-12-15T08:55:42-08:00,build,build,False,github.com/jbn/Wikileaks_Analysis/logs/build-master-2020-07-15T07.04.txt,2020-07-15T07:04:05.583648,2020-07-15T07.04,0.11.0

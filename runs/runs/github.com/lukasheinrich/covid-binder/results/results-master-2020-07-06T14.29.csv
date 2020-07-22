@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lukasheinrich/covid-binder,master,8427e5f,2020-03-18T14:38:43+01:00,build,build,True,github.com/lukasheinrich/covid-binder/logs/build-master-2020-07-06T14.29.txt,2020-07-06T14:29:09.231768,2020-07-06T14.29,0.11.0
-https://github.com/lukasheinrich/covid-binder,master,8427e5f,2020-03-18T14:38:43+01:00,notebook,notebooks/001-pcm-data.ipynb,False,github.com/lukasheinrich/covid-binder/logs/test-notebook-notebooks-001-pcm-data.ipynb-2020-07-06T14.29.txt,2020-07-06T14:29:09.231768,2020-07-06T14.29,0.11.0

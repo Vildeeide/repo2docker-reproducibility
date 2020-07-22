@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/bindatype/Crash,2e6a8442ff26e535e630a5db5ad767f914618a77,2e6a844,2017-09-21T15:51:58+00:00,build,build,True,github.com/bindatype/Crash/logs/build-2e6a8442ff26e535e630a5db5ad767f914618a77-2020-07-14T09.59.txt,2020-07-14T09:59:34.803565,2020-07-14T09.59,0.11.0
-https://github.com/bindatype/Crash,2e6a8442ff26e535e630a5db5ad767f914618a77,2e6a844,2017-09-21T15:51:58+00:00,notebook,KeepsCrashing.ipynb,False,github.com/bindatype/Crash/logs/test-notebook-KeepsCrashing.ipynb-2020-07-14T09.59.txt,2020-07-14T09:59:34.803565,2020-07-14T09.59,0.11.0

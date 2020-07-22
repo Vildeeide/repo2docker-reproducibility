@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lyltj2010/miapp,1f99e1270ce6b2264e55eac53d689592f543066e,1f99e12,2016-08-30T00:17:46-05:00,build,build,True,github.com/lyltj2010/miapp/logs/build-1f99e1270ce6b2264e55eac53d689592f543066e-2020-07-13T12.33.txt,2020-07-13T12:33:45.611889,2020-07-13T12.33,0.11.0
-https://github.com/lyltj2010/miapp,1f99e1270ce6b2264e55eac53d689592f543066e,1f99e12,2016-08-30T00:17:46-05:00,notebook,app.ipynb,False,github.com/lyltj2010/miapp/logs/test-notebook-app.ipynb-2020-07-13T12.33.txt,2020-07-13T12:33:45.611889,2020-07-13T12.33,0.11.0

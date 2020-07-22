@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mw10104587/chez-R-practice,master,30dbe35,2016-04-11T14:02:44-04:00,build,build,True,github.com/mw10104587/chez-R-practice/logs/build-master-2020-07-17T06.40.txt,2020-07-17T06:40:10.296531,2020-07-17T06.40,0.11.0
-https://github.com/mw10104587/chez-R-practice,master,30dbe35,2016-04-11T14:02:44-04:00,notebook,Chez-HW2.ipynb,False,github.com/mw10104587/chez-R-practice/logs/test-notebook-Chez-HW2.ipynb-2020-07-17T06.40.txt,2020-07-17T06:40:10.296531,2020-07-17T06.40,0.11.0
-https://github.com/mw10104587/chez-R-practice,master,30dbe35,2016-04-11T14:02:44-04:00,notebook,.ipynb_checkpoints/Chez-HW2-checkpoint.ipynb,True,github.com/mw10104587/chez-R-practice/logs/test-notebook-.ipynb_checkpoints-Chez-HW2-checkpoint.ipynb-2020-07-17T06.40.txt,2020-07-17T06:40:10.296531,2020-07-17T06.40,0.11.0

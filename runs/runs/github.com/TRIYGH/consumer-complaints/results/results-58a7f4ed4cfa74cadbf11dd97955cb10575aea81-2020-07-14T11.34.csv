@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/TRIYGH/consumer-complaints,58a7f4ed4cfa74cadbf11dd97955cb10575aea81,58a7f4e,2016-07-26T20:39:34-04:00,build,build,False,github.com/TRIYGH/consumer-complaints/logs/build-58a7f4ed4cfa74cadbf11dd97955cb10575aea81-2020-07-14T11.34.txt,2020-07-14T11:34:02.183919,2020-07-14T11.34,0.11.0

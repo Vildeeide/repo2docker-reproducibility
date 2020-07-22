@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/rasjonell/SentimentAnalysis_TextBlob,e17bb4199470d11d5f942deac9f0ff93355b18cb,e17bb41,2017-10-22T23:13:22+04:00,build,build,True,github.com/r/rasjonell/sentimentanalysis_textblob/logs/build-e17bb4199470d11d5f942deac9f0ff93355b18cb-2020-07-13T09.54.txt,2020-07-13T09:54:27.357376,2020-07-13T09.54,0.11.0
+https://github.com/rasjonell/SentimentAnalysis_TextBlob,e17bb4199470d11d5f942deac9f0ff93355b18cb,e17bb41,2017-10-22T23:13:22+04:00,notebook,main.py.ipynb,False,github.com/r/rasjonell/sentimentanalysis_textblob/logs/test-notebook-main.py.ipynb-2020-07-13T09.54.txt,2020-07-13T09:54:27.357376,2020-07-13T09.54,0.11.0

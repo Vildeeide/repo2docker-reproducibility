@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/sandysrinivasan/sharing-jupyter,master,321b7f1,2019-08-14T15:03:48-04:00,build,build,True,github.com/sandysrinivasan/sharing-jupyter/logs/build-master-2020-07-06T14.15.txt,2020-07-06T14:15:24.474967,2020-07-06T14.15,0.11.0
-https://github.com/sandysrinivasan/sharing-jupyter,master,321b7f1,2019-08-14T15:03:48-04:00,notebook,Data_exploration_student.ipynb,False,github.com/sandysrinivasan/sharing-jupyter/logs/test-notebook-Data_exploration_student.ipynb-2020-07-06T14.15.txt,2020-07-06T14:15:24.474967,2020-07-06T14.15,0.11.0
-https://github.com/sandysrinivasan/sharing-jupyter,master,321b7f1,2019-08-14T15:03:48-04:00,notebook,Github demo.ipynb,True,github.com/sandysrinivasan/sharing-jupyter/logs/test-notebook-Github demo.ipynb-2020-07-06T14.15.txt,2020-07-06T14:15:24.474967,2020-07-06T14.15,0.11.0

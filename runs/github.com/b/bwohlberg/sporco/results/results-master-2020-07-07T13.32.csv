@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bwohlberg/sporco,master,9237d7f,2020-05-31T19:17:55-06:00,build,build,True,github.com/b/bwohlberg/sporco/logs/build-master-2020-07-07T13.32.txt,2020-07-07T13:32:21.579685,2020-07-07T13.32,0.11.0

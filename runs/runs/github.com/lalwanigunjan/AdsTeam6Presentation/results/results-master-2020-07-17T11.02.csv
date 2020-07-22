@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lalwanigunjan/AdsTeam6Presentation,master,75e2552,2018-04-15T23:19:55-04:00,build,build,False,github.com/lalwanigunjan/AdsTeam6Presentation/logs/build-master-2020-07-17T11.02.txt,2020-07-17T11:02:11.847745,2020-07-17T11.02,0.11.0

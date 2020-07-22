@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/rawlik/julia-seminar,master,6abd543,2018-05-15T16:03:33+02:00,build,build,True,github.com/rawlik/julia-seminar/logs/build-master-2020-07-07T08.22.txt,2020-07-07T08:22:17.232514,2020-07-07T08.22,0.11.0
-https://github.com/rawlik/julia-seminar,master,6abd543,2018-05-15T16:03:33+02:00,notebook,seminar.ipynb,False,github.com/rawlik/julia-seminar/logs/test-notebook-seminar.ipynb-2020-07-07T08.22.txt,2020-07-07T08:22:17.232514,2020-07-07T08.22,0.11.0

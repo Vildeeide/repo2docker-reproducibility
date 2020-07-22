@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/crstnbr/JuliaOulu20,eac39ab5446fea45d25257301a3e759239cde26c,eac39ab,2019-11-01T15:21:22+01:00,build,build,True,github.com/c/crstnbr/juliaoulu20/logs/build-eac39ab5446fea45d25257301a3e759239cde26c-2020-07-10T09.54.txt,2020-07-10T09:54:09.149173,2020-07-10T09.54,0.11.0
+https://github.com/crstnbr/JuliaOulu20,eac39ab5446fea45d25257301a3e759239cde26c,eac39ab,2019-11-01T15:21:22+01:00,notebook,test.ipynb,False,github.com/c/crstnbr/juliaoulu20/logs/test-notebook-test.ipynb-2020-07-10T09.54.txt,2020-07-10T09:54:09.149173,2020-07-10T09.54,0.11.0

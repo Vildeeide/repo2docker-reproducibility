@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Python-adaptive/adaptive,master,c339f01,2020-05-20T11:09:22+02:00,build,build,False,github.com/Python-adaptive/adaptive/logs/build-master-2020-07-03T08.22.txt,2020-07-03T08:22:25.182157,2020-07-03T08.22,0.11.0

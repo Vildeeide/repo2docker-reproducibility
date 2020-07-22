@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/kintzhao/bike-sharing,master,3210e66,2017-05-29T11:12:12+08:00,build,build,False,github.com/k/kintzhao/bike-sharing/logs/build-master-2020-07-20T08.06.txt,2020-07-20T08:06:00.124930,2020-07-20T08.06,0.11.0

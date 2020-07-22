@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/rsesha/start_py,master,39e66c3,2017-04-04T19:31:05-04:00,build,build,True,github.com/rsesha/start_py/logs/build-master-2020-07-17T12.44.txt,2020-07-17T12:44:54.664958,2020-07-17T12.44,0.11.0
-https://github.com/rsesha/start_py,master,39e66c3,2017-04-04T19:31:05-04:00,notebook,newline.ipynb,True,github.com/rsesha/start_py/logs/test-notebook-newline.ipynb-2020-07-17T12.44.txt,2020-07-17T12:44:54.664958,2020-07-17T12.44,0.11.0
-https://github.com/rsesha/start_py,master,39e66c3,2017-04-04T19:31:05-04:00,notebook,.ipynb_checkpoints/newline-checkpoint.ipynb,True,github.com/rsesha/start_py/logs/test-notebook-.ipynb_checkpoints-newline-checkpoint.ipynb-2020-07-17T12.44.txt,2020-07-17T12:44:54.664958,2020-07-17T12.44,0.11.0

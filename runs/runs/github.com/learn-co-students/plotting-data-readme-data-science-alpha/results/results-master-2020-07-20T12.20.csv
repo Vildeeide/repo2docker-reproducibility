@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/learn-co-students/plotting-data-readme-data-science-alpha,master,0720bd8,2019-08-29T09:49:07-04:00,build,build,True,github.com/learn-co-students/plotting-data-readme-data-science-alpha/logs/build-master-2020-07-20T12.20.txt,2020-07-20T12:20:46.426521,2020-07-20T12.20,0.11.0
-https://github.com/learn-co-students/plotting-data-readme-data-science-alpha,master,0720bd8,2019-08-29T09:49:07-04:00,notebook,index.ipynb,True,github.com/learn-co-students/plotting-data-readme-data-science-alpha/logs/test-notebook-index.ipynb-2020-07-20T12.20.txt,2020-07-20T12:20:46.426521,2020-07-20T12.20,0.11.0

@@ -1,7 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,build,build,True,github.com/charlieanna/hw2/logs/build-master-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,notebook,Untitled.ipynb,False,github.com/charlieanna/hw2/logs/test-notebook-Untitled.ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,notebook,script.ipynb,False,github.com/charlieanna/hw2/logs/test-notebook-script.ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,notebook,script (1).ipynb,False,github.com/charlieanna/hw2/logs/test-notebook-script (1).ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,notebook,Untitled1.ipynb,False,github.com/charlieanna/hw2/logs/test-notebook-Untitled1.ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0
-https://github.com/charlieanna/hw2,master,7a9c918,2018-03-22T16:24:28-04:00,notebook,ADL_assignment2.ipynb,False,github.com/charlieanna/hw2/logs/test-notebook-ADL_assignment2.ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:01.225783,2020-07-16T12.27,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/shibuiwilliam/weather_outlier,master,1b9e503,2018-03-18T19:01:49+09:00,build,build,True,github.com/shibuiwilliam/weather_outlier/logs/build-master-2020-07-17T12.04.txt,2020-07-17T12:04:40.244303,2020-07-17T12.04,0.11.0
-https://github.com/shibuiwilliam/weather_outlier,master,1b9e503,2018-03-18T19:01:49+09:00,notebook,weather_anomaly.ipynb,False,github.com/shibuiwilliam/weather_outlier/logs/test-notebook-weather_anomaly.ipynb-2020-07-17T12.04.txt,2020-07-17T12:04:40.244303,2020-07-17T12.04,0.11.0

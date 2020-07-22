@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Prashant-mahajan/Seaborn-Tutorial-,master,a618b33,2018-02-01T12:38:22+05:30,build,build,False,github.com/p/prashant-mahajan/seaborn-tutorial-/logs/build-master-2020-07-17T12.06.txt,2020-07-17T12:06:28.096132,2020-07-17T12.06,0.11.0

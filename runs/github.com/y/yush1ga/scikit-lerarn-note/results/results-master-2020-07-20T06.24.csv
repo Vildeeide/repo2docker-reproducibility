@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/yush1ga/scikit-lerarn-note,master,638a4e4,2017-01-06T20:01:12+09:00,build,build,True,github.com/y/yush1ga/scikit-lerarn-note/logs/build-master-2020-07-20T06.24.txt,2020-07-20T06:24:55.621876,2020-07-20T06.24,0.11.0

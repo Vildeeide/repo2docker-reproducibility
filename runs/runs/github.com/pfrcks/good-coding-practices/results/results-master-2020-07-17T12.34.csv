@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/pfrcks/good-coding-practices,master,5ec9e70,2017-09-29T22:04:11-04:00,build,build,True,github.com/pfrcks/good-coding-practices/logs/build-master-2020-07-17T12.34.txt,2020-07-17T12:34:00.075370,2020-07-17T12.34,0.11.0
-https://github.com/pfrcks/good-coding-practices,master,5ec9e70,2017-09-29T22:04:11-04:00,notebook,Better Python.ipynb,False,github.com/pfrcks/good-coding-practices/logs/test-notebook-Better Python.ipynb-2020-07-17T12.34.txt,2020-07-17T12:34:00.075370,2020-07-17T12.34,0.11.0

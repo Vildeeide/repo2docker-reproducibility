@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lmarkely/bike_sharing,master,a30ad2b,2018-01-15T21:41:20-05:00,build,build,False,github.com/lmarkely/bike_sharing/logs/build-master-2020-07-20T07.45.txt,2020-07-20T07:45:38.095129,2020-07-20T07.45,0.11.0

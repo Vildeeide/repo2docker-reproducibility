@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Cindy1122334455/Real-time-Alerts-Map,master,f8a7f37,2018-03-06T13:52:12-05:00,build,build,True,github.com/Cindy1122334455/Real-time-Alerts-Map/logs/build-master-2020-07-16T12.27.txt,2020-07-16T12:27:46.816627,2020-07-16T12.27,0.11.0
-https://github.com/Cindy1122334455/Real-time-Alerts-Map,master,f8a7f37,2018-03-06T13:52:12-05:00,notebook,Code/Devfest2018-presentation 1.ipynb,False,github.com/Cindy1122334455/Real-time-Alerts-Map/logs/test-notebook-Code-Devfest2018-presentation 1.ipynb-2020-07-16T12.27.txt,2020-07-16T12:27:46.816627,2020-07-16T12.27,0.11.0

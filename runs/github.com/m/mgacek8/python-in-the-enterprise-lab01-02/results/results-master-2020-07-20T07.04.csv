@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/mgacek8/Python-In-The-Enterprise-Lab01-02,master,9c93257,2017-05-04T21:52:10+02:00,build,build,True,github.com/m/mgacek8/python-in-the-enterprise-lab01-02/logs/build-master-2020-07-20T07.04.txt,2020-07-20T07:04:37.094503,2020-07-20T07.04,0.11.0
+https://github.com/mgacek8/Python-In-The-Enterprise-Lab01-02,master,9c93257,2017-05-04T21:52:10+02:00,notebook,Lab_1/Log_Parser/My_jupyter_notebook.ipynb,True,github.com/m/mgacek8/python-in-the-enterprise-lab01-02/logs/test-notebook-Lab_1-Log_Parser-My_jupyter_notebook.ipynb-2020-07-20T07.04.txt,2020-07-20T07:04:37.094503,2020-07-20T07.04,0.11.0

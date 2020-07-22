@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/bit-player/getting-to-know-julia,dd93e111e6ab42e2ea26642ade0809fb4b62d4eb,dd93e11,2016-07-22T08:08:42-04:00,build,build,True,github.com/b/bit-player/getting-to-know-julia/logs/build-dd93e111e6ab42e2ea26642ade0809fb4b62d4eb-2020-07-14T10.34.txt,2020-07-14T10:34:58.789827,2020-07-14T10.34,0.11.0
+https://github.com/bit-player/getting-to-know-julia,dd93e111e6ab42e2ea26642ade0809fb4b62d4eb,dd93e11,2016-07-22T08:08:42-04:00,notebook,getting-to-know-julia.ipynb,False,github.com/b/bit-player/getting-to-know-julia/logs/test-notebook-getting-to-know-julia.ipynb-2020-07-14T10.34.txt,2020-07-14T10:34:58.789827,2020-07-14T10.34,0.11.0

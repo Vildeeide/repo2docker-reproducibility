@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mschonfinkel/Internet-Magic-Money,master,b56fce8,2018-01-04T17:58:48-03:00,build,build,False,github.com/mschonfinkel/Internet-Magic-Money/logs/build-master-2020-07-16T12.32.txt,2020-07-16T12:32:57.161710,2020-07-16T12.32,0.11.0

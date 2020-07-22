@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/stevenvandenberghe/language_of_taste,ad9f015a752fafb41ba7111bdddcac52dbb47108,ad9f015,2018-01-23T17:12:41+01:00,build,build,False,github.com/stevenvandenberghe/language_of_taste/logs/build-ad9f015a752fafb41ba7111bdddcac52dbb47108-2020-07-14T08.10.txt,2020-07-14T08:10:09.397059,2020-07-14T08.10,0.11.0

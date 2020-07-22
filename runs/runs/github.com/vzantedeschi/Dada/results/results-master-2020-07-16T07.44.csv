@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/vzantedeschi/Dada,master,79028f8,2019-01-25T14:33:53+01:00,build,build,False,github.com/vzantedeschi/Dada/logs/build-master-2020-07-16T07.44.txt,2020-07-16T07:44:09.366834,2020-07-16T07.44,0.11.0

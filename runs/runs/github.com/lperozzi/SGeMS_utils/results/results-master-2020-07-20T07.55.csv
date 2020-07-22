@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/lperozzi/SGeMS_utils,master,2930a48,2017-08-01T11:32:06-04:00,build,build,True,github.com/lperozzi/SGeMS_utils/logs/build-master-2020-07-20T07.55.txt,2020-07-20T07:55:19.981026,2020-07-20T07.55,0.11.0
-https://github.com/lperozzi/SGeMS_utils,master,2930a48,2017-08-01T11:32:06-04:00,notebook,SGEMS_grid_widgets.ipynb,True,github.com/lperozzi/SGeMS_utils/logs/test-notebook-SGEMS_grid_widgets.ipynb-2020-07-20T07.55.txt,2020-07-20T07:55:19.981026,2020-07-20T07.55,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/meilinger/introduction-to-django,master,2c24323,2017-08-02T07:58:52-05:00,build,build,True,github.com/meilinger/introduction-to-django/logs/build-master-2020-07-20T06.59.txt,2020-07-20T06:59:22.080106,2020-07-20T06.59,0.11.0
-https://github.com/meilinger/introduction-to-django,master,2c24323,2017-08-02T07:58:52-05:00,notebook,Introduction to Django.ipynb,False,github.com/meilinger/introduction-to-django/logs/test-notebook-Introduction to Django.ipynb-2020-07-20T06.59.txt,2020-07-20T06:59:22.080106,2020-07-20T06.59,0.11.0

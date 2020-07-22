@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/burch-cm/julia-opt,master,67ffecf,2016-08-09T16:35:42-04:00,build,build,True,github.com/burch-cm/julia-opt/logs/build-master-2020-07-16T06.41.txt,2020-07-16T06:41:24.054033,2020-07-16T06.41,0.11.0
-https://github.com/burch-cm/julia-opt,master,67ffecf,2016-08-09T16:35:42-04:00,notebook,Optimization with JuMP and RCall.ipynb,False,github.com/burch-cm/julia-opt/logs/test-notebook-Optimization with JuMP and RCall.ipynb-2020-07-16T06.41.txt,2020-07-16T06:41:24.054033,2020-07-16T06.41,0.11.0

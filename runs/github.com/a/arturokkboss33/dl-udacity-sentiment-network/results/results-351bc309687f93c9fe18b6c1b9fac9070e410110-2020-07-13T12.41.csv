@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/arturokkboss33/DL-udacity-sentiment-network,351bc309687f93c9fe18b6c1b9fac9070e410110,351bc30,2017-08-30T16:32:57+02:00,build,build,False,github.com/a/arturokkboss33/dl-udacity-sentiment-network/logs/build-351bc309687f93c9fe18b6c1b9fac9070e410110-2020-07-13T12.41.txt,2020-07-13T12:41:31.543639,2020-07-13T12.41,0.11.0

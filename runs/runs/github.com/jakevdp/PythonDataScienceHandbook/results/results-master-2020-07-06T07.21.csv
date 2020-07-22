@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/jakevdp/PythonDataScienceHandbook,master,8a34a4f,2018-11-30T15:24:10-08:00,build,build,False,github.com/jakevdp/PythonDataScienceHandbook/logs/build-master-2020-07-06T07.21.txt,2020-07-06T07:21:30.381433,2020-07-06T07.21,0.11.0

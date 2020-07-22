@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/jupyter-xeus/xeus-cling,master,1112e4b,2020-06-03T16:03:39+02:00,build,build,True,github.com/j/jupyter-xeus/xeus-cling/logs/build-master-2020-07-06T08.59.txt,2020-07-06T08:59:22.363566,2020-07-06T08.59,0.11.0
+https://github.com/jupyter-xeus/xeus-cling,master,1112e4b,2020-06-03T16:03:39+02:00,notebook,notebooks/xcpp.ipynb,False,github.com/j/jupyter-xeus/xeus-cling/logs/test-notebook-notebooks-xcpp.ipynb-2020-07-06T08.59.txt,2020-07-06T08:59:22.363566,2020-07-06T08.59,0.11.0

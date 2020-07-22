@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/datacamp/projects-basic-introduction-r,master,72a0cef,2019-09-11T14:05:43-04:00,build,build,True,github.com/d/datacamp/projects-basic-introduction-r/logs/build-master-2020-07-16T12.55.txt,2020-07-16T12:55:22.309338,2020-07-16T12.55,0.11.0
+https://github.com/datacamp/projects-basic-introduction-r,master,72a0cef,2019-09-11T14:05:43-04:00,notebook,project.ipynb,False,github.com/d/datacamp/projects-basic-introduction-r/logs/test-notebook-project.ipynb-2020-07-16T12.55.txt,2020-07-16T12:55:22.309338,2020-07-16T12.55,0.11.0
+https://github.com/datacamp/projects-basic-introduction-r,master,72a0cef,2019-09-11T14:05:43-04:00,notebook,project_original.ipynb,False,github.com/d/datacamp/projects-basic-introduction-r/logs/test-notebook-project_original.ipynb-2020-07-16T12.55.txt,2020-07-16T12:55:22.309338,2020-07-16T12.55,0.11.0

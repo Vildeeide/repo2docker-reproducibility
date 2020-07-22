@@ -1,7 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,build,build,True,github.com/Hannorein/variations/logs/build-master-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,notebook,Figure1.ipynb,True,github.com/Hannorein/variations/logs/test-notebook-Figure1.ipynb-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,notebook,Figure3_Figure4.ipynb,False,github.com/Hannorein/variations/logs/test-notebook-Figure3_Figure4.ipynb-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,notebook,Figure2.ipynb,True,github.com/Hannorein/variations/logs/test-notebook-Figure2.ipynb-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,notebook,Figure5.ipynb,False,github.com/Hannorein/variations/logs/test-notebook-Figure5.ipynb-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0
-https://github.com/Hannorein/variations,master,977371d,2016-03-13T20:20:13-04:00,notebook,Figure6.ipynb,True,github.com/Hannorein/variations/logs/test-notebook-Figure6.ipynb-2020-07-07T10.32.txt,2020-07-07T10:32:04.080428,2020-07-07T10.32,0.11.0

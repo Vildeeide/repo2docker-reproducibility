@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/bcsefercik/relation-networks,master,c078631,2018-05-07T08:17:52+00:00,build,build,True,github.com/bcsefercik/relation-networks/logs/build-master-2020-07-15T09.46.txt,2020-07-15T09:46:23.132744,2020-07-15T09.46,0.11.0
-https://github.com/bcsefercik/relation-networks,master,c078631,2018-05-07T08:17:52+00:00,notebook,loadAnImage.ipynb,False,github.com/bcsefercik/relation-networks/logs/test-notebook-loadAnImage.ipynb-2020-07-15T09.46.txt,2020-07-15T09:46:23.132744,2020-07-15T09.46,0.11.0

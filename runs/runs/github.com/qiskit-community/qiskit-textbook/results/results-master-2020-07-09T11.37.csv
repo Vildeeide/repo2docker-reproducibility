@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/qiskit-community/qiskit-textbook,master,b4446e8,2020-07-09T11:59:46+01:00,build,build,False,github.com/qiskit-community/qiskit-textbook/logs/build-master-2020-07-09T11.37.txt,2020-07-09T11:37:31.160199,2020-07-09T11.37,0.11.0

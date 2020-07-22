@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mbabd2016/russianhousingmarket,6293d040ff6dd981bb9c88d68a1dae44f3523537,6293d04,2017-05-09T23:57:58+02:00,build,build,False,github.com/mbabd2016/russianhousingmarket/logs/build-6293d040ff6dd981bb9c88d68a1dae44f3523537-2020-07-13T10.52.txt,2020-07-13T10:52:04.909342,2020-07-13T10.52,0.11.0

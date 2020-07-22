@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/mykebrowne/data-512-a2,master,9b9e6fb,2017-11-02T16:32:33-07:00,build,build,True,github.com/m/mykebrowne/data-512-a2/logs/build-master-2020-07-16T09.33.txt,2020-07-16T09:33:46.878918,2020-07-16T09.33,0.11.0
+https://github.com/mykebrowne/data-512-a2,master,9b9e6fb,2017-11-02T16:32:33-07:00,notebook,hcds-a2-bias.ipynb,False,github.com/m/mykebrowne/data-512-a2/logs/test-notebook-hcds-a2-bias.ipynb-2020-07-16T09.33.txt,2020-07-16T09:33:46.878918,2020-07-16T09.33,0.11.0

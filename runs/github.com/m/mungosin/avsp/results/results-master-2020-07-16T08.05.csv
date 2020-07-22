@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/Mungosin/AVSP,master,b9e1963,2018-02-18T04:35:29+01:00,build,build,False,github.com/m/mungosin/avsp/logs/build-master-2020-07-16T08.05.txt,2020-07-16T08:05:19.357918,2020-07-16T08.05,0.11.0

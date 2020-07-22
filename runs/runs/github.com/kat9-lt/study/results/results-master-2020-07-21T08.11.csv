@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kat9-lt/study,master,f06be9e,2017-10-27T04:23:00+03:00,build,build,True,github.com/kat9-lt/study/logs/build-master-2020-07-21T08.11.txt,2020-07-21T08:11:48.815668,2020-07-21T08.11,0.11.0
-https://github.com/kat9-lt/study,master,f06be9e,2017-10-27T04:23:00+03:00,notebook,seminar_tensorflow.ipynb,False,github.com/kat9-lt/study/logs/test-notebook-seminar_tensorflow.ipynb-2020-07-21T08.11.txt,2020-07-21T08:11:48.815668,2020-07-21T08.11,0.11.0

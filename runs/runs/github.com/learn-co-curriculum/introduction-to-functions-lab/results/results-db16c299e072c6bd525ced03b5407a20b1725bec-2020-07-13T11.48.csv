@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/learn-co-curriculum/introduction-to-functions-lab,db16c299e072c6bd525ced03b5407a20b1725bec,db16c29,2018-05-24T16:00:10-04:00,build,build,True,github.com/learn-co-curriculum/introduction-to-functions-lab/logs/build-db16c299e072c6bd525ced03b5407a20b1725bec-2020-07-13T11.48.txt,2020-07-13T11:48:09.535741,2020-07-13T11.48,0.11.0
-https://github.com/learn-co-curriculum/introduction-to-functions-lab,db16c299e072c6bd525ced03b5407a20b1725bec,db16c29,2018-05-24T16:00:10-04:00,notebook,index.ipynb,True,github.com/learn-co-curriculum/introduction-to-functions-lab/logs/test-notebook-index.ipynb-2020-07-13T11.48.txt,2020-07-13T11:48:09.535741,2020-07-13T11.48,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Ujitoko/irasutoya_scraping,master,3d42cad,2017-05-05T07:55:54+09:00,build,build,True,github.com/Ujitoko/irasutoya_scraping/logs/build-master-2020-07-17T13.16.txt,2020-07-17T13:16:00.945140,2020-07-17T13.16,0.11.0
-https://github.com/Ujitoko/irasutoya_scraping,master,3d42cad,2017-05-05T07:55:54+09:00,notebook,Scraping_all.ipynb,False,github.com/Ujitoko/irasutoya_scraping/logs/test-notebook-Scraping_all.ipynb-2020-07-17T13.16.txt,2020-07-17T13:16:00.945140,2020-07-17T13.16,0.11.0

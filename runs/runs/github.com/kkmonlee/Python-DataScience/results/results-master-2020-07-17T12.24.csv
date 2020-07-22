@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kkmonlee/Python-DataScience,master,bc0f404,2017-06-19T01:17:17+01:00,build,build,True,github.com/kkmonlee/Python-DataScience/logs/build-master-2020-07-17T12.24.txt,2020-07-17T12:24:37.216291,2020-07-17T12.24,0.11.0
-https://github.com/kkmonlee/Python-DataScience,master,bc0f404,2017-06-19T01:17:17+01:00,notebook,Filtering and selecting data.ipynb,False,github.com/kkmonlee/Python-DataScience/logs/test-notebook-Filtering and selecting data.ipynb-2020-07-17T12.24.txt,2020-07-17T12:24:37.216291,2020-07-17T12.24,0.11.0

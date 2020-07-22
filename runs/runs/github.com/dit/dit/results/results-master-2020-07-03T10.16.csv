@@ -1,6 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/dit/dit,master,bd303ef,2020-05-07T16:04:52-07:00,build,build,True,github.com/dit/dit/logs/build-master-2020-07-03T10.16.txt,2020-07-03T10:16:23.257461,2020-07-03T10.16,0.11.0
-https://github.com/dit/dit,master,bd303ef,2020-05-07T16:04:52-07:00,notebook,examples/Time Series Analysis.ipynb,True,github.com/dit/dit/logs/test-notebook-examples-Time Series Analysis.ipynb-2020-07-03T10.16.txt,2020-07-03T10:16:23.257461,2020-07-03T10.16,0.11.0
-https://github.com/dit/dit,master,bd303ef,2020-05-07T16:04:52-07:00,notebook,examples/MDBSI.ipynb,False,github.com/dit/dit/logs/test-notebook-examples-MDBSI.ipynb-2020-07-03T10.16.txt,2020-07-03T10:16:23.257461,2020-07-03T10.16,0.11.0
-https://github.com/dit/dit,master,bd303ef,2020-05-07T16:04:52-07:00,notebook,examples/hypothesis.ipynb,False,github.com/dit/dit/logs/test-notebook-examples-hypothesis.ipynb-2020-07-03T10.16.txt,2020-07-03T10:16:23.257461,2020-07-03T10.16,0.11.0
-https://github.com/dit/dit,master,bd303ef,2020-05-07T16:04:52-07:00,notebook,examples/PID.ipynb,False,github.com/dit/dit/logs/test-notebook-examples-PID.ipynb-2020-07-03T10.16.txt,2020-07-03T10:16:23.257461,2020-07-03T10.16,0.11.0

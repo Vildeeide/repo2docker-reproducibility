@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/greenelab/PathCORE-T-analysis,master,95b72e0,2018-06-06T18:47:44-04:00,build,build,False,github.com/greenelab/PathCORE-T-analysis/logs/build-master-2020-07-15T12.10.txt,2020-07-15T12:10:55.313590,2020-07-15T12.10,0.11.0

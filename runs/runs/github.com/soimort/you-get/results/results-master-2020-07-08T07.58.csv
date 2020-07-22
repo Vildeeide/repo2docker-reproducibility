@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/soimort/you-get,master,bd06317,2020-03-30T18:16:58+02:00,build,build,True,github.com/soimort/you-get/logs/build-master-2020-07-08T07.58.txt,2020-07-08T07:58:11.188031,2020-07-08T07.58,0.11.0

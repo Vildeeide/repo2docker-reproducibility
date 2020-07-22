@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/nicolaskruchten/jupyter_pivottablejs,master,3bcee74,2018-12-04T09:43:25-05:00,build,build,True,github.com/nicolaskruchten/jupyter_pivottablejs/logs/build-master-2020-07-03T07.42.txt,2020-07-03T07:42:55.162915,2020-07-03T07.42,0.11.0
-https://github.com/nicolaskruchten/jupyter_pivottablejs,master,3bcee74,2018-12-04T09:43:25-05:00,notebook,example/jupyter_pivottablejs_example.ipynb,True,github.com/nicolaskruchten/jupyter_pivottablejs/logs/test-notebook-example-jupyter_pivottablejs_example.ipynb-2020-07-03T07.42.txt,2020-07-03T07:42:55.162915,2020-07-03T07.42,0.11.0

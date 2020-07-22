@@ -1,2 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/mikhailklassen/Mining-the-Social-Web-3rd-Edition,master,f628233,2019-08-27T10:41:28-06:00,build,build,False,github.com/mikhailklassen/Mining-the-Social-Web-3rd-Edition/logs/build-master-2020-07-06T08.21.txt,2020-07-06T08:21:33.146579,2020-07-06T08.21,0.11.0

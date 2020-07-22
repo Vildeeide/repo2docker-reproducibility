@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/leilsonlima/crypto_trading,master,0e85660,2018-02-04T15:35:22-02:00,build,build,False,github.com/l/leilsonlima/crypto_trading/logs/build-master-2020-07-15T07.33.txt,2020-07-15T07:33:43.465302,2020-07-15T07.33,0.11.0

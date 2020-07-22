@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/irfani/Jenis-Kelamin,7f78b12b497a228a530b6b78d5376bc2f9dd71fb,7f78b12,2017-07-19T07:05:25+07:00,build,build,False,github.com/i/irfani/jenis-kelamin/logs/build-7f78b12b497a228a530b6b78d5376bc2f9dd71fb-2020-07-13T12.30.txt,2020-07-13T12:30:23.008366,2020-07-13T12.30,0.11.0

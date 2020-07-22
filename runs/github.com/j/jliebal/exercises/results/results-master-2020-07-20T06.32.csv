@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/jliebal/exercises,master,88411c0,2016-08-12T13:57:55+02:00,build,build,True,github.com/j/jliebal/exercises/logs/build-master-2020-07-20T06.32.txt,2020-07-20T06:32:39.569579,2020-07-20T06.32,0.11.0
+https://github.com/jliebal/exercises,master,88411c0,2016-08-12T13:57:55+02:00,notebook,basic_string_exercises.ipynb,False,github.com/j/jliebal/exercises/logs/test-notebook-basic_string_exercises.ipynb-2020-07-20T06.32.txt,2020-07-20T06:32:39.569579,2020-07-20T06.32,0.11.0
+https://github.com/jliebal/exercises,master,88411c0,2016-08-12T13:57:55+02:00,notebook,basic_list_exercises.ipynb,False,github.com/j/jliebal/exercises/logs/test-notebook-basic_list_exercises.ipynb-2020-07-20T06.32.txt,2020-07-20T06:32:39.569579,2020-07-20T06.32,0.11.0

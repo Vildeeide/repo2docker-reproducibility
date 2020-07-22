@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/vdabravolski/stock_prediction,73d7f1ba2e8e0e26f48ab0fef5ee937fb133e83b,73d7f1b,2017-10-02T00:48:10-04:00,build,build,False,github.com/v/vdabravolski/stock_prediction/logs/build-73d7f1ba2e8e0e26f48ab0fef5ee937fb133e83b-2020-07-13T12.49.txt,2020-07-13T12:49:52.828300,2020-07-13T12.49,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/Msaini20/HumanBodyTemperature,master,eb6f161,2018-03-17T10:12:31-07:00,build,build,True,github.com/Msaini20/HumanBodyTemperature/logs/build-master-2020-07-17T13.14.txt,2020-07-17T13:14:49.374418,2020-07-17T13.14,0.11.0
-https://github.com/Msaini20/HumanBodyTemperature,master,eb6f161,2018-03-17T10:12:31-07:00,notebook,sliderule_dsi_inferential_statistics_exercise_1.ipynb,False,github.com/Msaini20/HumanBodyTemperature/logs/test-notebook-sliderule_dsi_inferential_statistics_exercise_1.ipynb-2020-07-17T13.14.txt,2020-07-17T13:14:49.374418,2020-07-17T13.14,0.11.0

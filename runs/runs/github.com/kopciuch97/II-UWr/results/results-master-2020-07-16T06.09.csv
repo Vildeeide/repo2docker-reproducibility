@@ -1,4 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/kopciuch97/II-UWr,master,3bc016e,2018-10-28T20:04:39+01:00,build,build,True,github.com/kopciuch97/II-UWr/logs/build-master-2020-07-16T06.09.txt,2020-07-16T06:09:22.888034,2020-07-16T06.09,0.11.0
-https://github.com/kopciuch97/II-UWr,master,3bc016e,2018-10-28T20:04:39+01:00,notebook,ANL/3/L3_zad2_zad5.ipynb,False,github.com/kopciuch97/II-UWr/logs/test-notebook-ANL-3-L3_zad2_zad5.ipynb-2020-07-16T06.09.txt,2020-07-16T06:09:22.888034,2020-07-16T06.09,0.11.0
-https://github.com/kopciuch97/II-UWr,master,3bc016e,2018-10-28T20:04:39+01:00,notebook,ANL/1/an-L-lista-01_rozw.ipynb,False,github.com/kopciuch97/II-UWr/logs/test-notebook-ANL-1-an-L-lista-01_rozw.ipynb-2020-07-16T06.09.txt,2020-07-16T06:09:22.888034,2020-07-16T06.09,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/KazuhiraDZ/ZHUOZHUOZHUO,master,79a6747,2017-03-06T14:36:02+08:00,build,build,True,github.com/KazuhiraDZ/ZHUOZHUOZHUO/logs/build-master-2020-07-14T13.35.txt,2020-07-14T13:35:23.769295,2020-07-14T13.35,0.11.0
-https://github.com/KazuhiraDZ/ZHUOZHUOZHUO,master,79a6747,2017-03-06T14:36:02+08:00,notebook,Untitled1.ipynb,False,github.com/KazuhiraDZ/ZHUOZHUOZHUO/logs/test-notebook-Untitled1.ipynb-2020-07-14T13.35.txt,2020-07-14T13:35:23.769295,2020-07-14T13.35,0.11.0

@@ -1,3 +1,0 @@
-repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
-https://github.com/erscott/pandasVCF,master,5e3de3e,2019-05-01T23:31:52-04:00,build,build,True,github.com/erscott/pandasVCF/logs/build-master-2020-07-08T06.40.txt,2020-07-08T06:40:35.435729,2020-07-08T06.40,0.11.0
-https://github.com/erscott/pandasVCF,master,5e3de3e,2019-05-01T23:31:52-04:00,notebook,ipynb/pandasVCF_example.ipynb,False,github.com/erscott/pandasVCF/logs/test-notebook-ipynb-pandasVCF_example.ipynb-2020-07-08T06.40.txt,2020-07-08T06:40:35.435729,2020-07-08T06.40,0.11.0
