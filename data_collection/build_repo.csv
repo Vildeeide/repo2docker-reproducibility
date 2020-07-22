@@ -1,260 +1,257 @@
-BUILD-REPO ;;;;;
-;;;;;
-;No;Repository;Files;Does it work?;Notes
-;1;https://github.com/pybrain/pybrain;S;Yes;Py-files
-;2;https://github.com/nltk/nltk;S, requirements_test.txt;Yes;But not building jupyter notebooks. Py-files
-;3;https://github.com/Atcold/pytorch-Deep-Learning;E;Yes;Mismatching kernel, can't be ran.  
-;4;https://github.com/pythoninchemistry/chem_data_analysis_jupyter;R;Yes;Requires user input. Modules not found
-;5;https://github.com/ComputoCienciasUniandes/FISI2028-201910;R;;"From ""analysing.."", list out of range"
-;6;https://github.com/explosion/spacy-io-binder;R;;"From ""analysing"". Just requirements and readme-files. Can't test"
-;7;;;;
-;8;SEMI: https://github.com/Qiskit/qiskit-tutorials;E;Yes;Runs
-;9;https://github.com/binder-examples/r;RT;Yes;Runs
-;10;https://github.com/DS-100/textbook;R;Yes;"From ""popular"" in ""analysing"". Restricted dependencies, runs"
-;11;;;;
-;12;https://github.com/bokeh/bokeh-notebooks;E;Yes;Runs
-;13;https://github.com/rationalmatter/juno-demo-notebooks;E;Yes;Gitignore is the only file not included. Runs
-;14;https://github.com/jupyter-xeus/xeus-cling ;E;;Runs
-;15;https://github.com/ines/spacy-course;R in .binder folder;Yes;Can't test 
-;16;https://github.com/RasaHQ/rasa_core;S, R;Yes;Can't test
-;17;https://github.com/numba/numba-examples ;E in binder, S on first page;Yes;Gitignore also ignored. Numba 043, import error. Typing error
-;18;https://github.com/data-8/textbook;E, R;Yes;Runs
-;19;https://github.com/stencila/examples;None;It is building;Library not identified in dependency list
-;20;https://github.com/wshuyi/demo-spacy-text-processing;E;Yes;.ipynb_checkpoints is in github, but not in jupyter. Runs
-;21;https://github.com/illinois-scicomp/cs450-s19-binder;E;Yes;Runs
-;22;SEMI: https://github.com/scikit-learn/scikit-learn;S, R inside .binder;Yes, but  à;Doesn’t look like github, but makes notebooks
-;23;https://github.com/nilearn/nilearn;S, requirements_...;Yes;Can't test
-;24;https://github.com/clips/pattern;S;Yes;But still not jupyter files
-;25;https://github.com/jaberg/skdata;R, S;Yes;As above
-;26;https://github.com/machinalis/quepy;S;Yes;As above, makes .py files. Can't test
-;27;https://github.com/rasbt/mlxtend;R, S;Yes;Oldest is 4 years old, but other files were recently updated. Could not find file
-;28;https://github.com/kvh/ramp;R, S;Yes;Python is not specified in requirements. Can't test
-;29;https://github.com/machinalis/featureforge;S;Yes;Can't test
-;30;;;;
-;31;https://github.com/public-apis/public-apis;R but in build-folder;Yes;Just two dependencies, 1 is fixed. Can't test
-;32;https://github.com/apache/spark;S, but in python-file;Yes;Can't test 
-;33;https://github.com/jupyter-widgets/ipywidgets;S;Yes;Can't test
-;34;https://github.com/datasciencelabs/2016;;Yes;"This works without any ""specifications file""? can't test"
-;35;***https://github.com/tirthajyoti/Machine-Learning-with-Python;None;Yes;Can't run through the notebooks. Module numpy not found
-;36;https://github.com/openstack/requirements;R, S;Yes;Can't test
-;37;https://github.com/hadley/requirements;None;Yes;R, can't test
-;38;https://github.com/NaomiProject/Naomi;S;Yes;Recent, with setup.py. can't test
-;39;https://github.com/edwinlunando/django-naomi;S;Yes;2015, specifies python versions in setup.py. Can't test
-;40;https://github.com/saltstack/pepper;S;Yes;Pip invoked with an older wrapper. Can't test
-;41;https://github.com/victorlei/smop;S;Yes;2018, pip …. Can't test
-;42;https://github.com/mrkrd/matlab_wrapper;S;Yes;Can't test
-;43;https://github.com/adityadua24/robopy;S;Yes;Can't test
-;44;https://github.com/jupyter/nbclient;R, S;Yes;Quite slow, runs
-;45;https://github.com/iperov/DeepFaceLab;Requirements_...;Yes;From list of trending repos this month. Can't test
-;46;https://github.com/TheAlgorithms/Python;R;Yes;From list of trending repos this month. Requirements are also stated on top of .py files. Can't test
-;47;https://github.com/willmcgugan/rich;S, requirement-dev;Semi, .github-folder not copying;From list of trending repos this month. Can't test
-;48;https://github.com/yunuscadirci/CallStranger;R, S;Yes;Can't test
-;49;https://github.com/LimerBoy/Impulse;R;Yes;Python files, can't test
-;50;https://github.com/soimort/you-get;S;Yes;Can't test. No tests found
-;51;https://github.com/udacity/deep-learning-v2-pytorch;R;Yes;Jupyter repo. Not specified all libraries in dependency list. Runs. Not having modules specified
-;52;https://github.com/jaakkopasanen/AutoEq;R;Yes;Python files, but found on a list of jupyter repos. No module found
-;53;https://github.com/binder-examples/r;Runtime;Yes;"From ""analysing"""
-;54;https://github.com/trekhleb/homemade-machine-learning/;R;Yes;From list over jupyter repos. Build fails
-;55;https://github.com/MinCiencia/Datos-COVID19;R;Yes;Fixed dependencies, no python version specified. Not specified all dependencies. No such kernel, no module
-;56;https://github.com/aamini/introtodeeplearning;;Yes;Can't find tensorflow. usageError
-;57;https://github.com/microsoft/recommenders;;Yes;Has dockerfile, not specified all imports
-;58;https://github.com/darkprinx/100-plus-Python-programming-exercises-extended;;Yes;Requires user input
-;59;https://github.com/NeuromatchAcademy/course-content;;Yes;Requires user input
-;60;https://github.com/pymc-devs/pymc3;R, S;Yes;No module named, not specified all dependencies
-;61;https://github.com/CartoDB/cartoframes;S;Yes;Requires user input, file not found
-;62;https://github.com/jakeret/tf_unet;s;Yes;No training files found
-;63;Tomopy/tomopy;S;;.py
-;64;daavoo/pyntcloud;R, S;Yes;Runs
-;65;brian-team/brian2;S;Yes;Matplotlib not found
-;66;Astropy/astropy-tutorials;E;Yes;Shows error on purpose
-;67;MDAnalysis/mdanalysis;S;Yes;Can't test. No tests found
-;68;e2nIEE/pandapower;S, R;Yes;Can't  test. Type Error, timeout
-;69;zyxue/stanford-cs229;None, but env-conda.yml;Yes;Defining, but not reading the file properly
-;70;poliastro/poliastro;R;Yes;Cant test. Defining but not all
-;71;Quantopian/qgrid;S, R;Yes;Can't test. No tests found
-;72;Binder-examples/conda;E;Yes;Runs
-;73;nicolaskruchten/jupyter_pivottablejs;S, R;Yes;Notebooks also run
-;74;EducationalTestingService/skll;S, R;Yes;Runs 
-;75;scikit-learn-contrib/hdbscan;S, R;Yes;No module named ..
-;76;Hannorein/rebound;S, R;Yes;Runs, can't test
-;77;LCAV/pyroomacoustics;S, R;Yes;Value error, type error
-;78;einsteinpy/einsteinpy;S, R;Yes;Runs 
-;79;hugadams/scikit-spectra;Builds;Builds, but can't open the notebooks because of a non-matching kernel;Requires Python 2
-;80;JiaweiZhuang/xESMF;S;Yes;Runs 
-;81;epfl-lts2/pygsp;S;Yes;Notebook relying on older version of functions
-;82;Python-adaptive/adaptive;S, E;Yes;Runs 
-;83;Instagram/LibCST;R, S;Yes;Runs 
-;84;bwohlberg/sporco;R, S;Yes;Python. No tests found
-;85;Sekhansen/machine_learning_economics ;R, runtime, install.R;Yes;Runs
-;86;vibrationtoolbox/vibration_toolbox;R, S;Yes;Libraries not specified. Variables also not specified 
-;87;brian-rose/ClimateModeling_courseware;E;Yes;Runs 
-;88;mgaitan/curso-python-cientifico;R;Yes;Libraries not in dependency-list
-;89;adafruit/Adafruit_IO_Python;S, R;Yes;Python files. No tests found
-;90;usc-isi-i2/rltk;R, S;Yes;Python. No file found
-;91;dit/dit;R, S;Yes;Runs
-;92;has2k1/gnuplot_kernel ;R, S;Yes;Runs 
-;93;kiudee/cs-ranking;R, R..-;Yes;Libraries not in dependency-list
-;94;Binder-examples/octave;E, index, apt.txt;Yes;Runs
-;95;ericmjl/pyjanitor;R, S;Yes;Libraries not in dependency-list
-;96;Openmodal/pyuff;R, S;Yes;Libraries not in dependency list
-;97;Radis/radis;E, S;Yes;Python files. No tests found
-;98;Dnicolasespinoza/GeomechanicsJupyter;E;Yes;Runs
-;99;Silx-kit/pyFAI;R, S;Yes;Libraries not in dependency-list
-;100;Mmcky/nyu-econ-370;E;Yes;Libraries not in dependency-list
-;101;giswqs/geemap;R, S;Yes;Runs 
-;102;StingraySoftware/notebooks;R;Yes;Requires user input 
-;103;ricklupton/floweaver;S, E;Yes;Runs 
-;104;SBRG/ssbio;R, S;Yes;File not found
-;105;MachineIntellect/DeepLearner;R;Yes;AttributeError
-;106;Jupyter-guide/ten-rules-jupyter;R;Yes;Runs 
-;107;Johnhw/chi_course_2019 ;E;Yes;Imports not defined
-;108;wolfram74/binder_test;R;Yes;Python 2. Notebooks launch. Simple syntax error inside the notebook
-;109;timstaley/voeventdb-tutorials-mybinder-test  ;R;Yes;Runs 
-;110;solowPy/binder;R;Yes;Environment works, but notebook doesn’t work  
-;111;Hannorein/variations;R;Yes;Runs  
-;112;;;;
-;113;mgiacalone1980/machine-learning-assignment;R;Yes;Dependencies not specified. Dataset missing
-;114;michhar/csvconf2016;R;Yes;Not working
-;115;widdowquinn/Notebooks-Bioinformatics;R;Yes;Imports
-;116;johnbradley/binderdownloadtest;R;Yes;For Python 2
-;117;christofs/jupyter;R;Yes;NoFileFound
-;118;mjlavin80/DHWorkshopCMU;R;Yes;LookupError 
-;119;tcstewar/binder_test;R;Yes;For Python 2
-;120;AustralianSynchrotron/intro-pandas-seminar;R;Yes;valueError 
-;121;tonyfast/notebookism-chicago;R;Yes;ModuleNotFoundError
-;122;loumis2/Atomicaristides;R;Yes;Runs 
-;123;fangohr/paper-supplement-nanoparticle-sensing;E;Yes;AttributeError
-;124;mgaitan/curso-python-cientifico;R;Yes;ModuleNotFound
-;125;MridulS/test-tut;R;Yes;AttributeError
-;126;MatsGustavsson/finance-jupyter;E;Yes;Notebooks launch, but errors raise 
-;127;phys2331/electric_field_calculations;E;Yes;Runs 
-;128;ECaMorlaix-1SI-1718/CR;E;Yes;Showing errors
-;129;bio-phys/PyDHAMed;S;Yes;Python files. Modules not found
-;130;davidhendel/galcrash;E;Yes;Relying on older behavior of widgets 
-;131;thedatasociety/binderhub-kafka;R, A, runtime ;Yes;Runs  
-;132;satvik1988/CSS-Indian-National-Elections-Uni-Koblenz-;R;;"Notebook launches, but gives ""no module named sklearn"". Build failed"
-;133;thedatasociety/lab-mongodb;R;;KeyError
-;134;sandysrinivasan/sharing-jupyter;R;;File not found 
-;135;cydonia-io/Blockchainassets;;;Throws connection errors. File not found  
-;136;bwrsandman/learningjupyter;E, A;;Runs 
-;137;timstaley/voeventdb-tutorials-mybinder-test;R;;Runs 
-;138;lukasheinrich/covid-binder;R;;Runs, but wrong kernel  
-;139;NumEconCopenhagen/projects-2019-dsd;R;;Launches, but imports modules not available 
-;140;musicEnfanthen/music21playground;R, A;;Doesn't find all files
-;141;katyhuff/npre412;R;;Module not found 
-;142;ctb/2016-mybinder-inflammation;R;;Runs 
-;143;digital-science/dimensions-api-lab;R;;Asking for user input. 
-;144;criteo-research/iclr_analysis;E;;Notebook validation failed, but runs
-;145;bluesky/tutorials;R, A;;Runs 
-;146;paulber/MiseANiveauMatlab;E, A;;Runs
-;147;namanUIUC/NonlinearComponentAnalysis;R;;OSError
-;148;altair-viz/altair_notebooks;R;;ValueError
-;149;canyon289/pyladies-bayes;R;;Runs 
-;150;mfarragher/appelpy-examples;R;;BadZipFile
-;151;glouppe/tutorials-scikit-learn;E;;Names not specified
-;152;doingmathwithpython/code;R;;Requires user input
-;153;gboeing/osmnx-examples;E;;11. FileNotFound
-;154;mml-book/mml-book.github.io;E;;LinAlgError, index error
-;155;tkrabel/bamboolib;S;;Imports not specified
-;156;qiskit-community/qiskit-textbook;R, runtime;;Runs
-;157;NeuromatchAcademy/course-content;E, R;;Runs 
-;158;hunkim/DeepLearningZeroToAll;R;;All imports not specified
-;159;rouseguy/intro2stats;;;Specific for Python 2
-;160;;R;;
-;161;DeepReinforcementLearning/DeepReinforcementLearningInAction;R;;Frozen dependencies, versions not found. Can't build
-;162;klemag/pydata_nyc2018-intro-to-model-interpretability;R;2019. ;Incompatibility: dependencies and Python version 
-;163;JuliaRobotics/Caesar.jl;;Julia;No tests found
-;164;JuliaLang/PkgDev.jl;;Julia;No tests found
-;165;sisl/JuliaPackageTemplate.jl;;Julia;No tests found
-;166;FluxML/Flux.jl;;"Julia, from ""most popular this week""";No tests found
-;167;JuliaLang/PackageCompiler.jl;;Julia;No tests found
-;168;pluskid/Mocha.jl;;Julia ;When building: Require returns non-zero code. Timezone error. Build failed
-;169;davidbarber/Julia0p4ProbabilisticInferenceEngine;;Julia, notebook;When building: Key error 0.4. Unpinned dependency, pinned version of Julia. Bug report 
-;170;jstagge/reproduc_hyd;;R, reproducibility of research ;Nothing to test?
-;171;anandvl/Flight_onTime_R;;R;No tests found
-;172;martin3141/rats;;R;No tests found
-;173;everhartlab/SscPhenoProj;;R;No tests found
-;174;computational-metabolomics/structToolbox;;R;No tests found
-;175;AtsushiSakai/PythonRobotics;;F;File not found. Docs -> notebook 
-;176;elegant-scipy/notebooks;E, R;;Runs 
-;177;Naereen/notebooks;;;All imports not specified
-;178;SciTools/courses;;;Python 2
-;179;jsignell/pydata_dc_2018;E;;When building: Couldn’t import any backends 
-;180;bioimage-analysis/julia_clusters;;;When building: error finding javahome on linux. Something is missing. Build failed. Dependencies not specified correctly
-;181;rawlik/julia-seminar;;Notebook+ Julia;UndefVarError
-;182;SciML/DiffEqTutorials.jl;;Notebook+ Julia;Runs
-;183;crstnbr/JuliaOulu20;;Notebook + Jupyter;Runs 
-;184;QuantEcon/quantecon-notebooks-julia;;Notebook + Jupyter;PostBuild returns non-zero code. Build fails
-;185;JuliaReinforcementLearning/ReinforcementLearningAnIntroduction.jl;;Notebook+ Julia ;Runs 
-;186;JuliaAcademy/DataScience;;Notebook+ Julia ;Runs 
-;187;networkx/notebooks;R;;While building: Failed building wheel for pygraphviz. Specified in requirements. Build failed
-;188;worldbank/ML-classification-algorithms-poverty;;Interesting;Pandas is failing, and needs numpy to run. Pinned down dependencies, but not Python.  
-;189;urigoren/nlp_ner_workshop;;;File not found. Module not found
-;190;kratzert/pangeo_lstm_example;;;Retrieve error. Requires user input. Time-out  
-;191;thedatasociety/lab-cassandra;;;Versions don’t match jupyterLab version. Build failed
-;192;anandvl/Flight_onTime_R;;R;Can't test. No tests found
-;193;nprost/supervised_missing;R;;Runs 
-;194;openmodal/pyFRF;R;;Not specified all imports
-;195;dbuscombe-usgs/pyDGS;E, S;;Not specified all imports
-;196;scikit-mobility/scikit-mobility;;;Attribute Error. Iloc, loose dependency, direct API usage
-;197;PyMLVizard/PyMLViz;R;;"Numpy and pytorch are not compatible. No property ""normed"""
-;198;trustad/Pabio536;E;;Missing optional dependency. Mismatch kernel. File not found
-;199;econ-ark/DemARK;R, runtime;;Runs 
-;200;breze-no-salt/breze;R, S;;Not specified all imports, kernel error 
-;201;docmarionum1/python-data-science-primer;;;Not specified all imports. Sklearn cross_validation is now changed
-;202;ndronen/modeling;S, R;;Error, =is not a valid operator . Tried to specify dependencies, but not in the right way
-;203;Datadesk/california-crop-production-wages-analysis;R;;Only for Python 2.7. build failed
-;204;A-Jacobson/CNN_Sentence_Classification;R;;No matching pytorch distribution  build fails
-;205;ISMB-ECCB-2019-Tutorial-AM4/reproducible-computational-workflows;E;;For python 2
-;206;erscott/pandasVCF;S, R;;Not specified all imports
-;207;ndronen/modeling;;;Dependencies are not specified in the right way. Build failed
-;208;choldgraf/write-ups;R;;RuntimeError: generator raised StopIteration. Errors about incompatibility. Pinned dependencies, python not specified
-;209;davidgasquez/kaggle-airbnb;;;Not specified all imports. Sklearn cross_validation is now changed
-;210;A-Jacobson/CNN_Sentence_Classification;R;;No matching distribution for torch . build failed
-;211;mapbox/gabbar;S;;Not specified all imports
-;212;mdeff/cnn_graph;;;#tensorflow in dependency list, but is imported. Error: tensorflow has no attribute app 
-;213;DustinAlandzes/machine-learning-with-python-cookbook-notes;;;ResolvePackageNotFound. Build failed
-;214;edx/edx-platform;S;From 26;Can't test. No tests found
-;215;Sympy/sympy;S;From 26;Runs  manually
-;216;django/django;S;From 26;Can't test. No tests found
-;217;Ipython/ipython;S;From 26;Import and python 2
-;218;Nijel/weblate;S, R;From 26;Could not build wheels, use PEP517 that cannot be installed directly. Build failed
-;219;scipy/scipy;S;From 26;Libraries not found. Build failed
-;220;Statsmodels/statsmodels;S, R;From 26;Not specified all imports
-;221;tomchristie/django-rest-framework;S, R;From 26;Can't test. No tests found
-;222;MongoEngine/mongoengine;S, R;From 26;Can't test. No tests found
-;223;Azure/azure-sdk-for-python;S, shared_requirements.txt;From 26;Reads the .txt, but can't find version satisfying the requirements build fails
-;224;Pydcs/dcs;R, S;From 26;Can't test. No tests found
-;225;Rwl/PyCIM;S;From 26;Can't test
-;226;taavi/ipython_nose;R, S;29;Type error. 
-;227;JoaoFelipe/ipython-unittest;S;30;UsageError
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
-;;;;;
+No;Repository;Files;Does it work?;Notes
+1;https://github.com/pybrain/pybrain;S;Yes;Py-files
+2;https://github.com/nltk/nltk;S, requirements_test.txt;Yes;But not building jupyter notebooks. Py-files
+3;https://github.com/Atcold/pytorch-Deep-Learning;E;Yes;Mismatching kernel, can't be ran.  
+4;https://github.com/pythoninchemistry/chem_data_analysis_jupyter;R;Yes;Requires user input. Modules not found
+5;https://github.com/ComputoCienciasUniandes/FISI2028-201910;R;;"From ""analysing.."", list out of range"
+6;https://github.com/explosion/spacy-io-binder;R;;"From ""analysing"". Just requirements and readme-files. Can't test"
+7;SEMI: https://github.com/Qiskit/qiskit-tutorials;E;Yes;Runs
+8;https://github.com/binder-examples/r;RT;Yes;Runs
+9;https://github.com/DS-100/textbook;R;Yes;"From ""popular"" in ""analysing"". Restricted dependencies, runs"
+10;;;;
+11;https://github.com/bokeh/bokeh-notebooks;E;Yes;Runs
+12;https://github.com/rationalmatter/juno-demo-notebooks;E;Yes;Gitignore is the only file not included. Runs
+13;https://github.com/jupyter-xeus/xeus-cling ;E;;Runs
+14;https://github.com/ines/spacy-course;R in .binder folder;Yes;Can't test 
+15;https://github.com/RasaHQ/rasa_core;S, R;Yes;Can't test
+16;https://github.com/numba/numba-examples ;E in binder, S on first page;Yes;Gitignore also ignored. Numba 043, import error. Typing error
+17;https://github.com/data-8/textbook;E, R;Yes;Runs
+18;https://github.com/stencila/examples;None;It is building;Library not identified in dependency list
+19;https://github.com/wshuyi/demo-spacy-text-processing;E;Yes;.ipynb_checkpoints is in github, but not in jupyter. Runs
+20;https://github.com/illinois-scicomp/cs450-s19-binder;E;Yes;Runs
+21;SEMI: https://github.com/scikit-learn/scikit-learn;S, R inside .binder;Yes, but  à;Doesn’t look like github, but makes notebooks
+22;https://github.com/nilearn/nilearn;S, requirements_...;Yes;Can't test
+23;https://github.com/clips/pattern;S;Yes;But still not jupyter files
+24;https://github.com/jaberg/skdata;R, S;Yes;As above
+25;https://github.com/machinalis/quepy;S;Yes;As above, makes .py files. Can't test
+26;https://github.com/rasbt/mlxtend;R, S;Yes;Oldest is 4 years old, but other files were recently updated. Could not find file
+27;https://github.com/kvh/ramp;R, S;Yes;Python is not specified in requirements. Can't test
+28;https://github.com/machinalis/featureforge;S;Yes;Can't test
+29;;;;
+30;https://github.com/public-apis/public-apis;R but in build-folder;Yes;Just two dependencies, 1 is fixed. Can't test
+31;https://github.com/apache/spark;S, but in python-file;Yes;Can't test 
+32;https://github.com/jupyter-widgets/ipywidgets;S;Yes;Can't test
+33;https://github.com/datasciencelabs/2016;;Yes;"This works without any ""specifications file""? can't test"
+34;***https://github.com/tirthajyoti/Machine-Learning-with-Python;None;Yes;Can't run through the notebooks. Module numpy not found
+35;https://github.com/openstack/requirements;R, S;Yes;Can't test
+36;https://github.com/hadley/requirements;None;Yes;R, can't test
+37;https://github.com/NaomiProject/Naomi;S;Yes;Recent, with setup.py. can't test
+38;https://github.com/edwinlunando/django-naomi;S;Yes;2015, specifies python versions in setup.py. Can't test
+39;https://github.com/saltstack/pepper;S;Yes;Pip invoked with an older wrapper. Can't test
+40;https://github.com/victorlei/smop;S;Yes;2018, pip …. Can't test
+41;https://github.com/mrkrd/matlab_wrapper;S;Yes;Can't test
+42;https://github.com/adityadua24/robopy;S;Yes;Can't test
+43;https://github.com/jupyter/nbclient;R, S;Yes;Quite slow, runs
+44;https://github.com/iperov/DeepFaceLab;Requirements_...;Yes;From list of trending repos this month. Can't test
+45;https://github.com/TheAlgorithms/Python;R;Yes;From list of trending repos this month. Requirements are also stated on top of .py files. Can't test
+46;https://github.com/willmcgugan/rich;S, requirement-dev;Semi, .github-folder not copying;From list of trending repos this month. Can't test
+47;https://github.com/yunuscadirci/CallStranger;R, S;Yes;Can't test
+48;https://github.com/LimerBoy/Impulse;R;Yes;Python files, can't test
+49;https://github.com/soimort/you-get;S;Yes;Can't test. No tests found
+50;https://github.com/udacity/deep-learning-v2-pytorch;R;Yes;Jupyter repo. Not specified all libraries in dependency list. Runs. Not having modules specified
+51;https://github.com/jaakkopasanen/AutoEq;R;Yes;Python files, but found on a list of jupyter repos. No module found
+52;https://github.com/binder-examples/r;Runtime;Yes;"From ""analysing"""
+53;https://github.com/trekhleb/homemade-machine-learning/;R;Yes;From list over jupyter repos. Build fails
+54;https://github.com/MinCiencia/Datos-COVID19;R;Yes;Fixed dependencies, no python version specified. Not specified all dependencies. No such kernel, no module
+55;https://github.com/aamini/introtodeeplearning;;Yes;Can't find tensorflow. usageError
+56;https://github.com/microsoft/recommenders;;Yes;Has dockerfile, not specified all imports
+57;https://github.com/darkprinx/100-plus-Python-programming-exercises-extended;;Yes;Requires user input
+58;https://github.com/NeuromatchAcademy/course-content;;Yes;Requires user input
+59;https://github.com/pymc-devs/pymc3;R, S;Yes;No module named, not specified all dependencies
+60;https://github.com/CartoDB/cartoframes;S;Yes;Requires user input, file not found
+61;https://github.com/jakeret/tf_unet;s;Yes;No training files found
+62;Tomopy/tomopy;S;;.py
+63;daavoo/pyntcloud;R, S;Yes;Runs
+64;brian-team/brian2;S;Yes;Matplotlib not found
+65;Astropy/astropy-tutorials;E;Yes;Shows error on purpose
+66;MDAnalysis/mdanalysis;S;Yes;Can't test. No tests found
+67;e2nIEE/pandapower;S, R;Yes;Can't  test. Type Error, timeout
+68;zyxue/stanford-cs229;None, but env-conda.yml;Yes;Defining, but not reading the file properly
+69;poliastro/poliastro;R;Yes;Cant test. Defining but not all
+70;Quantopian/qgrid;S, R;Yes;Can't test. No tests found
+71;Binder-examples/conda;E;Yes;Runs
+72;nicolaskruchten/jupyter_pivottablejs;S, R;Yes;Notebooks also run
+73;EducationalTestingService/skll;S, R;Yes;Runs 
+74;scikit-learn-contrib/hdbscan;S, R;Yes;No module named ..
+75;Hannorein/rebound;S, R;Yes;Runs, can't test
+76;LCAV/pyroomacoustics;S, R;Yes;Value error, type error
+77;einsteinpy/einsteinpy;S, R;Yes;Runs 
+78;hugadams/scikit-spectra;Builds;Builds, but can't open the notebooks because of a non-matching kernel;Requires Python 2
+79;JiaweiZhuang/xESMF;S;Yes;Runs 
+80;epfl-lts2/pygsp;S;Yes;Notebook relying on older version of functions
+81;Python-adaptive/adaptive;S, E;Yes;Runs 
+82;Instagram/LibCST;R, S;Yes;Runs 
+83;bwohlberg/sporco;R, S;Yes;Python. No tests found
+84;Sekhansen/machine_learning_economics ;R, runtime, install.R;Yes;Runs
+85;vibrationtoolbox/vibration_toolbox;R, S;Yes;Libraries not specified. Variables also not specified 
+86;brian-rose/ClimateModeling_courseware;E;Yes;Runs 
+87;mgaitan/curso-python-cientifico;R;Yes;Libraries not in dependency-list
+88;adafruit/Adafruit_IO_Python;S, R;Yes;Python files. No tests found
+89;usc-isi-i2/rltk;R, S;Yes;Python. No file found
+90;dit/dit;R, S;Yes;Runs
+91;has2k1/gnuplot_kernel ;R, S;Yes;Runs 
+92;kiudee/cs-ranking;R, R..-;Yes;Libraries not in dependency-list
+93;Binder-examples/octave;E, index, apt.txt;Yes;Runs
+94;ericmjl/pyjanitor;R, S;Yes;Libraries not in dependency-list
+95;Openmodal/pyuff;R, S;Yes;Libraries not in dependency list
+96;Radis/radis;E, S;Yes;Python files. No tests found
+97;Dnicolasespinoza/GeomechanicsJupyter;E;Yes;Runs
+98;Silx-kit/pyFAI;R, S;Yes;Libraries not in dependency-list
+99;Mmcky/nyu-econ-370;E;Yes;Libraries not in dependency-list
+100;giswqs/geemap;R, S;Yes;Runs 
+101;StingraySoftware/notebooks;R;Yes;Requires user input 
+102;ricklupton/floweaver;S, E;Yes;Runs 
+103;SBRG/ssbio;R, S;Yes;File not found
+104;MachineIntellect/DeepLearner;R;Yes;AttributeError
+105;Jupyter-guide/ten-rules-jupyter;R;Yes;Runs 
+106;Johnhw/chi_course_2019 ;E;Yes;Imports not defined
+107;wolfram74/binder_test;R;Yes;Python 2. Notebooks launch. Simple syntax error inside the notebook
+108;timstaley/voeventdb-tutorials-mybinder-test  ;R;Yes;Runs 
+109;solowPy/binder;R;Yes;Environment works, but notebook doesn’t work  
+110;Hannorein/variations;R;Yes;Runs  
+111;;;;
+112;mgiacalone1980/machine-learning-assignment;R;Yes;Dependencies not specified. Dataset missing
+113;michhar/csvconf2016;R;Yes;Not working
+114;widdowquinn/Notebooks-Bioinformatics;R;Yes;Imports
+115;johnbradley/binderdownloadtest;R;Yes;For Python 2
+116;christofs/jupyter;R;Yes;NoFileFound
+117;mjlavin80/DHWorkshopCMU;R;Yes;LookupError 
+118;tcstewar/binder_test;R;Yes;For Python 2
+119;AustralianSynchrotron/intro-pandas-seminar;R;Yes;valueError 
+120;tonyfast/notebookism-chicago;R;Yes;ModuleNotFoundError
+121;loumis2/Atomicaristides;R;Yes;Runs 
+122;fangohr/paper-supplement-nanoparticle-sensing;E;Yes;AttributeError
+123;mgaitan/curso-python-cientifico;R;Yes;ModuleNotFound
+124;MridulS/test-tut;R;Yes;AttributeError
+125;MatsGustavsson/finance-jupyter;E;Yes;Notebooks launch, but errors raise 
+126;phys2331/electric_field_calculations;E;Yes;Runs 
+127;ECaMorlaix-1SI-1718/CR;E;Yes;Showing errors
+128;bio-phys/PyDHAMed;S;Yes;Python files. Modules not found
+129;davidhendel/galcrash;E;Yes;Relying on older behavior of widgets 
+130;thedatasociety/binderhub-kafka;R, A, runtime ;Yes;Runs  
+131;satvik1988/CSS-Indian-National-Elections-Uni-Koblenz-;R;;"Notebook launches, but gives ""no module named sklearn"". Build failed"
+132;thedatasociety/lab-mongodb;R;;KeyError
+133;sandysrinivasan/sharing-jupyter;R;;File not found 
+134;cydonia-io/Blockchainassets;;;Throws connection errors. File not found  
+135;bwrsandman/learningjupyter;E, A;;Runs 
+136;timstaley/voeventdb-tutorials-mybinder-test;R;;Runs 
+137;lukasheinrich/covid-binder;R;;Runs, but wrong kernel  
+138;NumEconCopenhagen/projects-2019-dsd;R;;Launches, but imports modules not available 
+139;musicEnfanthen/music21playground;R, A;;Doesn't find all files
+140;katyhuff/npre412;R;;Module not found 
+141;ctb/2016-mybinder-inflammation;R;;Runs 
+142;digital-science/dimensions-api-lab;R;;Asking for user input. 
+143;criteo-research/iclr_analysis;E;;Notebook validation failed, but runs
+144;bluesky/tutorials;R, A;;Runs 
+145;paulber/MiseANiveauMatlab;E, A;;Runs
+146;namanUIUC/NonlinearComponentAnalysis;R;;OSError
+147;altair-viz/altair_notebooks;R;;ValueError
+148;canyon289/pyladies-bayes;R;;Runs 
+149;mfarragher/appelpy-examples;R;;BadZipFile
+150;glouppe/tutorials-scikit-learn;E;;Names not specified
+151;doingmathwithpython/code;R;;Requires user input
+152;gboeing/osmnx-examples;E;;11. FileNotFound
+153;mml-book/mml-book.github.io;E;;LinAlgError, index error
+154;tkrabel/bamboolib;S;;Imports not specified
+155;qiskit-community/qiskit-textbook;R, runtime;;Runs
+156;NeuromatchAcademy/course-content;E, R;;Runs 
+157;hunkim/DeepLearningZeroToAll;R;;All imports not specified
+158;rouseguy/intro2stats;;;Specific for Python 2
+159;;R;;
+160;DeepReinforcementLearning/DeepReinforcementLearningInAction;R;;Frozen dependencies, versions not found. Can't build
+161;klemag/pydata_nyc2018-intro-to-model-interpretability;R;2019. ;Incompatibility: dependencies and Python version 
+162;JuliaRobotics/Caesar.jl;;Julia;No tests found
+163;JuliaLang/PkgDev.jl;;Julia;No tests found
+164;sisl/JuliaPackageTemplate.jl;;Julia;No tests found
+165;FluxML/Flux.jl;;"Julia, from ""most popular this week""";No tests found
+166;JuliaLang/PackageCompiler.jl;;Julia;No tests found
+167;pluskid/Mocha.jl;;Julia ;When building: Require returns non-zero code. Timezone error. Build failed
+168;davidbarber/Julia0p4ProbabilisticInferenceEngine;;Julia, notebook;When building: Key error 0.4. Unpinned dependency, pinned version of Julia. Bug report 
+169;jstagge/reproduc_hyd;;R, reproducibility of research ;Nothing to test?
+170;anandvl/Flight_onTime_R;;R;No tests found
+171;martin3141/rats;;R;No tests found
+172;everhartlab/SscPhenoProj;;R;No tests found
+173;computational-metabolomics/structToolbox;;R;No tests found
+174;AtsushiSakai/PythonRobotics;;F;File not found. Docs -> notebook 
+175;elegant-scipy/notebooks;E, R;;Runs 
+176;Naereen/notebooks;;;All imports not specified
+177;SciTools/courses;;;Python 2
+178;jsignell/pydata_dc_2018;E;;When building: Couldn’t import any backends 
+179;bioimage-analysis/julia_clusters;;;When building: error finding javahome on linux. Something is missing. Build failed. Dependencies not specified correctly
+180;rawlik/julia-seminar;;Notebook+ Julia;UndefVarError
+181;SciML/DiffEqTutorials.jl;;Notebook+ Julia;Runs
+182;crstnbr/JuliaOulu20;;Notebook + Jupyter;Runs 
+183;QuantEcon/quantecon-notebooks-julia;;Notebook + Jupyter;PostBuild returns non-zero code. Build fails
+184;JuliaReinforcementLearning/ReinforcementLearningAnIntroduction.jl;;Notebook+ Julia ;Runs 
+185;JuliaAcademy/DataScience;;Notebook+ Julia ;Runs 
+186;networkx/notebooks;R;;While building: Failed building wheel for pygraphviz. Specified in requirements. Build failed
+187;worldbank/ML-classification-algorithms-poverty;;Interesting;Pandas is failing, and needs numpy to run. Pinned down dependencies, but not Python.  
+188;urigoren/nlp_ner_workshop;;;File not found. Module not found
+189;kratzert/pangeo_lstm_example;;;Retrieve error. Requires user input. Time-out  
+190;thedatasociety/lab-cassandra;;;Versions don’t match jupyterLab version. Build failed
+191;anandvl/Flight_onTime_R;;R;Can't test. No tests found
+192;nprost/supervised_missing;R;;Runs 
+193;openmodal/pyFRF;R;;Not specified all imports
+194;dbuscombe-usgs/pyDGS;E, S;;Not specified all imports
+195;scikit-mobility/scikit-mobility;;;Attribute Error. Iloc, loose dependency, direct API usage
+196;PyMLVizard/PyMLViz;R;;"Numpy and pytorch are not compatible. No property ""normed"""
+197;trustad/Pabio536;E;;Missing optional dependency. Mismatch kernel. File not found
+198;econ-ark/DemARK;R, runtime;;Runs 
+199;breze-no-salt/breze;R, S;;Not specified all imports, kernel error 
+200;docmarionum1/python-data-science-primer;;;Not specified all imports. Sklearn cross_validation is now changed
+201;ndronen/modeling;S, R;;Error, =is not a valid operator . Tried to specify dependencies, but not in the right way
+202;Datadesk/california-crop-production-wages-analysis;R;;Only for Python 2.7. build failed
+203;A-Jacobson/CNN_Sentence_Classification;R;;No matching pytorch distribution  build fails
+204;ISMB-ECCB-2019-Tutorial-AM4/reproducible-computational-workflows;E;;For python 2
+205;erscott/pandasVCF;S, R;;Not specified all imports
+206;ndronen/modeling;;;Dependencies are not specified in the right way. Build failed
+207;choldgraf/write-ups;R;;RuntimeError: generator raised StopIteration. Errors about incompatibility. Pinned dependencies, python not specified
+208;davidgasquez/kaggle-airbnb;;;Not specified all imports. Sklearn cross_validation is now changed
+209;A-Jacobson/CNN_Sentence_Classification;R;;No matching distribution for torch . build failed
+210;mapbox/gabbar;S;;Not specified all imports
+211;mdeff/cnn_graph;;;#tensorflow in dependency list, but is imported. Error: tensorflow has no attribute app 
+212;DustinAlandzes/machine-learning-with-python-cookbook-notes;;;ResolvePackageNotFound. Build failed
+213;edx/edx-platform;S;From 26;Can't test. No tests found
+214;Sympy/sympy;S;From 26;Runs  manually
+215;django/django;S;From 26;Can't test. No tests found
+216;Ipython/ipython;S;From 26;Import and python 2
+217;Nijel/weblate;S, R;From 26;Could not build wheels, use PEP517 that cannot be installed directly. Build failed
+218;scipy/scipy;S;From 26;Libraries not found. Build failed
+219;Statsmodels/statsmodels;S, R;From 26;Not specified all imports
+220;tomchristie/django-rest-framework;S, R;From 26;Can't test. No tests found
+221;MongoEngine/mongoengine;S, R;From 26;Can't test. No tests found
+222;Azure/azure-sdk-for-python;S, shared_requirements.txt;From 26;Reads the .txt, but can't find version satisfying the requirements build fails
+223;Pydcs/dcs;R, S;From 26;Can't test. No tests found
+224;Rwl/PyCIM;S;From 26;Can't test
+225;taavi/ipython_nose;R, S;29;Type error. 
+226;JoaoFelipe/ipython-unittest;S;30;UsageError
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
