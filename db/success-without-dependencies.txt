@@ -1,0 +1,1001 @@
+                                    repo,                                   commit, notebooks, language, version
+    prateek27/ml-workshop-pec-chandigarh, b07ed16fb3d9d615045c7fc94e7725f9353fec2f,         2,    python,   3.6.4
+      kajay/Decision-Tree--Random-Forest, 19ddb01df3c57b6fd8d759703750f133ec5b26c0,         1,    python,   3.5.1
+garmo/Student-Alcohol-Consumption-and-Grades, 15b7f53da4bcfb106ca2fe876c6cd5b29f182cf8,         1,    python,   3.5.2
+                josephofiowa/zuck-harvey, e7a45a0ac88ef033d290b015cd8873dff1486ec3,         1,    python,  2.7.12
+yogendra-sahu/data-structures-algorithms-in-python, 7cbec637898f1ce9eff7affedc9f7a7da096a694,         3,    python,   3.6.1
+              richford/nuc_astro_midterm, f54ddc11bf67c851bbcbcdfe2440c8a23d0a935e,         1,    python,   3.5.1
+                  MarkWh1te/MLAlgorithms, 1a3ba3adcbfe379a78a4508ae9433c78270d77f5,         3,    python, 3.6.0;3.6.2
+    lovekesh-thakur/ML-Ipython-Notebooks, 5a76fe1a29abdac8f1b91e15fb0b9580080b58e9,         1,    python, 2.7.11+
+                            baroncs1/TDK, bc1fc57c1ba1ede881619f68c40865e58b8e3b39,         1,    python,   3.5.2
+                               brsr/math, 5867ea2b1085a74e2627669ad07aface110bc1af,         4,    python, 3.5.2;3.6.1
+kutvonenaki/PCA-LDA-of-handwritten-digits, 58213a1be835b0a186c0811da8afacff9e8f5f47,         1,    python,   3.5.1
+                          annu025/Kaggle, c752c7e78f3e23120f52afc72a498b23e87e140d,         1,    python,   3.6.2
+                     bachsh/hydrodynamic, 03280affd137edb9e27157456c9a3e42eb4b1070,         1,    python,   3.6.1
+                   tamitarai/github-test, 77be9b9b67f754ec68b5eab6dcb17b66831a0800,         1,    python,   3.5.3
+                   guanyunie/stat679work, 49c0d1eb9d9da456cbaf5b1b884c397710b52912,         1,    python,   3.5.2
+             FrancescaNatale/PAA-project, 7f855257d6f95434f6a6b1c364fdab730ec880d0,         1,    python,   3.6.0
+Jurasr/4VisualizingCollegeMajorsEarnings, 06d34ded3ec89502f04999e0d69e51d7805f3055,         1,    python,   3.6.3
+          himanshun3/New-Year-Resolution, 4d9313a437ac02f02927d0263bb3b73b2a354d33,         1,    python,   3.6.2
+mat-esp-2015/capstone-adelia-daniela-daniel, b90f9848a76924d1416f759f474c6082cd593062,         1,    python,   3.4.3
+             basqueinmyglory/WebScraping, a060312b7cf888379d130a411ac4fe5dfed62a42,         3,    python,   3.6.0
+                    AngelinaYuz/goldbach, c4bbedc3d7a43512bc6bee0f921039caea20aabc,         1,    python,   3.6.1
+         guevaracar/Pandas-Data-Analysis, 6f7a6e33d683f0ae9ef6ea1ad06649bba7d0e979,         1,    python,   3.6.2
+                selfcompiler/datascience, 990dd4b1ee5c769d6321ab223b87de5f3edd9f3a,         1,    python,  2.7.14
+              rakipo/datasciencecoursera, d6e99d3b0c98ca41cc154f19cfde0c879a6640ef,         1,    python,   3.6.0
+                   GuanJianChun/mlcourse, e0c9227f7f182cacf37b4e9f643a766a1b1a60fc,         1,    python,  2.7.13
+                    cappsjr/Kmeans-drill, c5c4569e35184aafdffd92c2e349adae34ef50e7,         1,    python,   3.6.1
+              J-Marotta/HappinessByState, f3011214a8471f0dcea7e3ac4e32dfc9c78d5e21,         1,    python,   3.6.2
+                    Jollyhrothgar/kaggle, 7cd6cf203eaed4f817a2529344123177c142b06c,         1,    python,   3.6.0
+                stanlee321/word_counting, 38b0b4d8ffe11573ea00a1692d37c1f62c529131,         1,    python,  3.5.3+
+                  xingwudao/python-daily, c3efd935c1e607417770b7053e37bfa76d8eb2d8,         1,    python,   3.5.4
+       bourque/COSC-602-Image-Processing, a4e73c03c5a2ed4e09a8a1c40bcdd316b708870e,         1,    python,  2.7.12
+             cashish0106/04-Numpy-Pandas, 2f577a09ce227ae0756dc6918057557dd45e5e06,         2,    python,   3.6.4
+khandelwalpranav05/House-Prices-Advanced-Regression-Techniques, 378ff5bc27fcd4d2071e1463336e82e4d866648d,         1,    python,  2.7.12
+   adamdicken123/adamdicken123.github.io, 5d9b05fd527fb26da803e65e92224965766ee9e7,         1,    python,  2.7.11
+            laurabilicz/adventOfCode2017, 5726d8bd0778424467688fb968bc143f9191090f,         2,    python,   3.5.2
+                  Peiyang/regressors-toy, 04ab5dadfd8fe36b99d44279341cd4e3adfe869b,         1,    python,   3.6.2
+               abhibisht89/tfidf_example, d6035957fe5c44230628d9944044441b67b399f6,         1,    python,   3.5.4
+                              yajnab/TSF, 3401c47cae818bd11aaf17e12677e25fa0f965a1,         1,    python,   3.5.2
+                   yla139/mnist_practice, 0143fb3eb460ebe3759f67647e2db6e9ce48e32e,         1,    python,   3.6.3
+              EthVentures/SpotExchangeML, 8823187be1387432707caafdb7c0636ab25cf92a,         1,    python,  2.7.13
+              jiinro/Analysis_Matplotlib, f25a6f9ec1b08b67df4c56fcfefa3df140d908e0,         1,    python,   3.6.3
+            datanomnom/iris-kmeans-class, dc4907cee8b5ceb85a34ebe5b5c50eb7d23fd98d,         1,    python,  2.7.13
+                       christyho/1051025, c8def8461fcbd944ecc598f9be3f8fb29675996c,         1,    python,   3.5.2
+                        prosperityai/SVM, 81de665abbf44a87bf6e09c55a405eee6406ca26,         1,    python,   3.6.0
+                            Oohpierre/DS, 8383e612467ff63970bd0c9db99802e9cfb6e551,         2,    python, 2.7.11;2.7.12
+            mlight9/Hospital_Readmission, 6dc87db18dee5224cc5ac86daba5f97aa6ea49c5,         1,    python,   3.6.3
+                  healthactuary/desynpuf, 6fc1c190d23ef474666a35204dafed56497553e1,         1,    python,   3.5.2
+       anilkumarbs19/DSM_ASSIGNMENT-10.1, 3434ac0c60340e8dc842c21905057889b3bd5809,         1,    python,   3.6.3
+            rparkin1/python4DataAnalysis, 62f12005d9a147793fe549ff40d27c79db484be7,         1,    python,  2.7.11
+          henriquewildes/trabalho-01-PLP, 78a29b6c83a6243d4766728a74c8ca8be341b5c3,         1,    python,   3.5.3
+         sorosora/big_data_analytics_hw1, 5b78e4cdc809d9cd5f2554729e1e092cd7ee88a1,         1,    python,  2.7.13
+         777shipra/intro_to_webscrapping, 1aedb503d9391aba1b9ca4a5d69850945671a07d,         1,    python,   3.6.4
+               owentemple/greatest-films, f75fb10b3c6892edc350a9bc084c82581df09d03,         2,    python,  2.7.12
+Yantai/Guided-Project--Visualizing-Earnings-Based-On-College-Majors, 1164356a036b242b85bf48e52a2c6882473178d4,         1,    python,   3.4.3
+                     sanjidahmy/testingx, 8112d07f121df4ce77b7b71c38a445839470ef1e,         2,    python,   3.5.2
+               LimLawrence/LearningCodes, 74fcd46eedd00cb310efeeb4b9c1ba25f3059cc6,         1,    python,  2.7.13
+                Verbon/SentimentAnalysis, 063d812ec803fde20431471fec5716cde3a48241,         1,    python,   3.6.3
+brianoleary15/Visualizing-The-Gender-Gap-In-College-Degrees, e8182a569dd67e7c5b5dd0146100dbdce373515a,         1,    python,   3.4.3
+         gundamkeroro/autoencoder-celebA, 1c454c01567e4dfdd4cc3fddfe63d7ea4d1f7482,         1,    python,   3.6.0
+           brandonongnz/star_wars_survey, 37a21580d7b1d86d79d9e1b57a043727657fd605,         1,    python,  2.7.13
+riccardoalbertazzi/computer-vision-image-processing, 97ce61f55c7c99bba1da0e600f113995c8d7995e,         2,    python,  2.7.12
+            thiagoandrade6/deep-learning, e0b916f5ae25563c21ee9cec86a12904bdb9fb0a,         1,    python,   3.5.2
+                     werkerostyk/amcp_dc, af7ebf4a0105722c3623b6fc451c37c44df6bca6,         3,    python,   3.6.4
+        FAES-BIOF/03-loop-example-beyfea, 91b09bfba92391a790ee25136e7eac28fafd6cdf,         1,    python,   3.6.1
+                jrios6/Adam-vs-SGD-Numpy, 2230f7f8c18aa1fa11b6313384209b3c04f6b98e,         1,    python,   3.5.3
+              tprakash2211/Assignment4.1, 3f47da725dc05f1cc7e02555e9fa7c7fbb313270,         1,    python,   3.6.3
+                  bmenounos/geog311_lab3, 8f3a16569b201e922482658abe847d7eebeee36e,         1,    python,   3.4.5
+         CPSC585/perceptron-VirajDeshwal, f5d0d5cbb36f8f53a2b4d27ad280d95a4cf5b4d5,         1,    python,   3.6.2
+                   PiffTizz123/test-repo, fe57dc01e1f64a8637ca00213c4cb32397cbe7bc,         1,    python,   3.5.2
+              hazkaz/bookish-octo-waffle, 65a38b8db559e80ceafc2bda4b2e34801c40fe2f,         1,    python,   3.6.3
+                   theBlindRooster/Pyber, d420a1abf7aa5fd1c7f4a5aa4cde13d48c83436b,         2,    python,   3.6.3
+      nohd0/BostonHousingPricePrediction, 3190e42886f9625418b29a6496ebef151adfe243,         1,    python,   3.6.2
+          mauriciotejada/labor_economics, 1dd7432e37f08d280b9e06c09b4666ba57ce1a4a,         4,    python,   3.5.3
+                  akashjaswal/algorithms, ed2b92e2ffb22e708fd03255b9ccf86194ab23cd,         1,    python,  2.7.12
+                   cjauvin/lhs-notebooks, de38a74d5e1d3505ca00453cbfb05d46159f4c54,         2,    python,   3.6.3
+marlon-rodrigues/ML---Machine-Learning---House-Pricing-Predictions, 7bb08779a1f0cdb26fbe473c667c70fae20cf4cc,         1,    python,  2.7.11
+            dfigue92/nyc-school-analysis, aa37a60b6980c3945da187204ed64eb76c95fe6e,         1,    python,   3.6.3
+megha25/Surviving-the-Titanic-and-Random-Classifiers, 969fb8d69ee555dc54bda398c0db722bdf7eba5c,         1,    python,  2.7.12
+             nickrobinson251/py-lectures, 14161264519fc7110e41fd55b31d46928f122a16,         2,    python,   3.5.2
+                     herwaldo/Simulacion, 574c9750f130a31c67a665165e2f327bf19bc538,         1,    python,   3.4.3
+                JustM57/ChatBot-Tutorial, b41e9292fc016a84f697ae85a576ef3eee5dd950,         1,    python,   3.5.2
+           thesupermanreturns/AIsaturday, 173ae83f99bab21be6cb5bbda087a8710c24b30f,         1,    python,   3.6.3
+    pyashwanthkumar/Algorithms-In-Python, 0903b802377c903b195072c29790cdc7d87fdb9b,         1,    python,   3.5.2
+                         caheredia/Hydro, 7558582de0e62b288c08910f08a6c6c827ab0c48,         1,    python,   3.6.0
+                 Ferumdriel/jupyter-demo, 82b09dbf811ca2575481577df867d6c598c15934,         1,    python,   3.6.4
+      wildlyclassyprince/robbins-formula, ca1170335f4841d0e2d3ec48b1fbc27c68f7b21e,         2,    python,   3.6.2
+                         gaurav6351/NLTK, 501f76262c085533c873feeb817b0a744ec7eddb,         2,    python,  2.7.12
+                         shenky1/Softver, 8e87d800971931ec40ca8b7d2c295b450a623d1f,         1,    python,   3.6.4
+                 HugoGuillen/arff2pandas, f3b41e09f4a36650c5fe8f4baef020fcdd068bc4,         1,    python,   3.6.1
+masterdatascienceifca/geocoding-laramaktub, 06742f1b2ade4ddf299bebd7b242b2453d0d7e35,         1,    python,   3.6.3
+               JJLWHarrison/hr-analytics, ec2e8e24716095756a349e4c1144f6696f88e89d,         1,    python,   3.6.1
+               randvoorhies/SimpleKalman, a37bd8e5a5f063a3dc34c334f808b2df08773e5d,         1,    python,  2.7.11
+   jenniferpeebles/first-python-notebook, 6a11c54304dad6d75ffce86c272f5235f1568cde,         1,    python,  2.7.13
+                   laholmes/the-bachelor, a7b8844f977b9a3f9fa7130cbc17297fd74077cd,         1,    python,   3.5.2
+Alexbanana19/Reinforcement-Learning-An-Introduction, 39aeb1e99c8d7972ffebc7e73d53a34c27f81858,         2,    python,  2.7.13
+            shrivastavapankajj/teststart, 56404a0dc275de6dec6911cbb2176b1fae644216,         1,    python,   3.6.1
+                    finin/random_economy, 1e8ac4fb2820cb9acc1df5c5797bbd13296f6928,         1,    python,  2.7.11
+                          arastel/INF725, 0d007787d3e1ebec734a601acbf88d6010fa3c51,         1,    python,  2.7.12
+Pedroteixeirabisognin/Exercicio-Machine-Learning, 0c08589437ba16276bae316efe4e97bec136cff6,         1,    python,   3.6.1
+              HaniMohamed/ObjectTracking, 2c54a6376dc5c2ab0bc68aef07be69b570e63155,         1,    python,   3.6.3
+                    DuinoDu/CsdnBlogCode, 13998e954ed27775d2a982696775fac07e27177c,         1,    python,   2.7.6
+                 bartonlab/lecture-notes, 3781e39d26c1daf840df5a9dfa1e077611b50472,         1,    python,   3.6.4
+musicidatascirun/statistical_fundamentals, 8b30613ab5b26c193931b6145bc363d0199e1a6b,         1,    python,   3.5.2
+                   stephencge/ISL-python, 68d1bf9a495f40051000fb43512d7a0fec0cd27f,         3,    python,  2.7.12
+                   arunsug/DataWrangling, 64a98648510cbc52b33791bc3e4b3df02206c189,         1,    python,   3.6.0
+                         glorysdj/dsStar, 876606525ca448da0fd731ff5b26b9c474377720,         1,    python,   2.7.6
+               spookiestevie/python-math, 1109034a138239c9ffa5e6061f6380c0ebd713f7,         2,    python,  2.7.12
+        jianmyphy123/crime_data_analysis, 81f74863952e5381a0a766ddd3295e61a30ea52b,         1,    python,   3.6.0
+                   akhileshh/lfd-caltech, bace0a01f8d7686acf28d145ad99e017201e07dd,         2,    python,   3.6.2
+                  hexiyang/BSDS_2017fall, faf8a8bd882108b3388961a3b6f117d064cd6bf5,         1,    python,  2.7.13
+Byte7/Solar-Flares-Prediction-RHESSI-Mission, 7c42105796b9c0a58d3bd439c8a9e8ead1455d59,         2,    python,   3.6.2
+                tomyc/jupyter_clustering, 5e6e364b5f18aa8b12d00838d89c91421af92c57,         1,    python,   3.5.2
+ jaspindersingh83/seaborn_visualizations, d654b53c25fc637acbc84b94fb86bb5193f3f15f,         1,    python,   3.6.0
+                     ntirupathirao18/SVM, 83d8519545c5ee3775b56aeb5fdf8009671e3414,         2,    python,   3.6.3
+    sw20066/Dataquest---Winning-Jeopardy, c9e0bd068117377ed0ee2a7c4d27f6ec636d22f0,         1,    python,   3.4.3
+jaybeeunix/uis-csc570r-week3-titanic_eda_lab, dbb177a7eb4e93a9d363038a1d958d4fd76ef9d4,         1,    python,   3.6.2
+             Nandrajog93/Beautiful-Soup-, e5e26cac29372f8900da7aa520ef3306490b1d73,         1,    python,   3.6.2
+    sebastienharinck/matplotlib-examples, d7565f7af04d2afd0267620787397ce7027e404b,         1,    python,   3.5.2
+FE588-2017-Fall-Bogazici/hello-world-gokhanozel, c61649ac2618a569264e72bee9f881b71cec91d2,         2,    python,   3.6.1
+            napsternxg/AuthorGeomovement, 8e858d4deabf2a3731d54567b37dc8a066a0f10e,         1,    python,  2.7.12
+            hemanthezio/Machine_Learning, bb26bbb5b0eaf86377512bfa37ff5f332e32349f,         2,    python,   3.6.4
+        buddharajuramaraju/Assignment9.1, 7c93d1aeb26fe3550becffa965a1e94e03665148,         1,    python,   3.6.3
+     feidt/svm-chirp-classification-demo, cc4bfacd2dc1c9010b06c5934a2b346e603206c7,         1,    python,   3.4.3
+                bicubic/public-notebooks, 090b622fa92ba27f00d51a50fbda5ab76f8a1162,         1,    python,  2.7.11
+                    janboone/assignments, 17d46a5a6b4889a18e7b5df13d6d35c91f20ec14,         2,    python,   3.5.1
+         shokirovnozir/jupypterWorkspace, 31d179efa9ede8981cd94ea1aaa2f40d4ffca328,         1,    python,   3.6.3
+  juanengml/TarefinhaSenaiEletroMecanica, 869b9f34d77ab5f1605d377a173106c3585b5ef7,         1,    python,  2.7.13
+           parameswaranvv/finding_donors, d59572ed9c0bf020cd06fe71042553a42c0400ee,         1,    python,  2.7.13
+               haydnchapman/dataquest.io, c5f12ab53ff557a91cf70c86b9dced1d9e31052a,         1,    python,   3.6.1
+              iAmeeth/Vibration-Analysis, 4372ab3aa1d4918870ed20adf33534708feb4105,         1,    python,  2.7.12
+evanreierson/EDIN01-Project-2-Shift-Register-Sequences, 1718999f358bae36f631704867269137c298794d,         1,    python,   3.6.1
+UCSC-Treehouse/RNA-Seq-version-concordance, 42d5a323303d96ae03ef376a5aae10db14203793,         1,    python,   3.5.1
+                JustinMDeLuna/Naive-Baes, 363e4e8c25a0f292c917d6ecb80024822d30e7fa,         2,    python,   3.6.3
+   rick9415/GradientDescent-for-a-neuron, cf94492381070edee940b05479b186ee0ec0aec7,         1,    python,   3.6.4
+                  thomasviaud/clustering, 382c0092ad8ebcbcc993f5e8a1ee6c1175f918de,         1,    python,  2.7.12
+                        manandoshi/ma540, 7392f8c6b89f1fe4cb0067277d812da3931ae9ce,         1,    python,   3.5.3
+                             bjmain/ZIKV, 78ada0852b5729c6f916d6fc35090a02ce43abaa,         1,    python,   3.5.2
+                 ryanrygg/misc_notebooks, 908bd12fa92e20f235a8cd9a142aaebf2f99c24f,         1,    python,   3.5.2
+                  StatsGuy31415/Fractals, cb7428d7c2179576844d53ca9af5367440ae9bc5,         3,    python,   3.6.0
+                         mriosrivas/test, d96518d48bf61c1fcc95d8efa84f023146a0293c,         1,    python,   3.5.2
+    rajurajvijay619/Clickbait_Classifier, 009b4aebe233dc910012f80b801db7272c0a5fb0,         1,    python,  2.7.13
+                    Ryxai/MLND-Section-2, 6c6720d62a953ce23bbee1e510c97861160ea9fd,         1,    python,  2.7.12
+                ethanruhe/ml_for_trading, de25c69809ddc4664affc5d89ed76158238ad18d,         1,    python,   3.6.3
+                         ryoppippi/NL100, 0f06ea5b5ccb701203b46864fd12416617f3bf38,         3,    python,   3.6.0
+                          pd-Shah/Pandas, 435bffaa9b18a89674407235ed71664076d47ca3,         1,    python,   3.5.2
+                             divyam28/ML, edc2a574603904a9b7b9f1889f750d316eccb4eb,         1,    python,   3.6.3
+                   asalamaah/SpringBoard, 8b74d6b6131c95477aba8b7cb2cd015654ee919f,         2,    python,  2.7.11
+                     brandonfry/pythonds, 99583f0e40fbeab5f91411657b810b141f7850a5,         1,    python,   3.5.4
+           abilash21/Session1Assignment1, 91ba13e6e61f38e2cad11eb12bceae8255204388,         1,    python,   3.6.3
+        oppasource/Unsupervised-Learning, bf5f8da5fad1b4eb443c98311e95175d674231f8,         1,    python,   3.4.3
+                  ytliu0721/quant-python, f3582967a59dde64fd882d386fc9750272982d07,         1,    python,   3.6.1
+        FlorinGh/learningPandas_Harrison, bf7cf5a5793f19c18ebe0344a85f93c12f1d974c,         1,    python,   3.6.3
+                        superdino1/watch, 2a7aba2b1700dbe5eed603ef09e566367a8f497a,         1,    python,  2.7.13
+                    blomadam/CodeSamples, dce9de0c9caf482dda1543bd3740221102f0b4c1,         1,    python,   2.7.9
+                JonDesu/JupyterNotebooks, 5e0e2c54df288812289cc4cec9e690e0e542ca7a,         1,    python,   3.6.1
+      olpa/stepic_neural_networks_public, d58e9a5f8bd312a7fa3a00c688b738767f595d39,         2,    python,   3.4.3
+                 tanmoy7989/paper3_plots, 249037ebea4c2c497514113cfe6fe79458f64af2,         1,    python,  2.7.13
+        devarajuvinoda/DataVisualization, d202b88649c8ffa99010bda4f26bc3b797ef5fd4,         1,    python,   3.5.4
+        NickGervais/linear_regression_ML, 74b72a08eab72405c422e2873fd37a52a2f73b58,         2,    python,   3.6.2
+                    bbrandom91/WeatherPy, e7686e5ec76d265d590d8d560a65368f89154a86,         1,    python,   3.6.2
+               nomalet/TimeTemp_Resample, 8b11037fcc763319f5ca57c51bdba2979b5e1fb2,         1,    python,   3.6.4
+         yotamsch/Social_Networks_CS3076, b41173edc394b634307dfe99c7d1cb0366bd1841,         2,    python,   3.6.5
+                    paulo-m-costa/Ec160a, f76b7632d9512d4e9a1405604160c882eba213fa,         3,    python,   3.5.2
+            wisefool769/TwentyFourSolver, 04f2073b6b3581887a6d335bbf55c38803ebf937,         1,    python,  2.7.12
+              yingchen858/openface_study, 54c1a5ecf75f6d6b4a0e6e82acc295b9264aad51,         1,    python,  2.7.13
+clarkzzz/dataquest_guided_project_Analyzing-Thanksgiving-Dinner, aa3bf964f4939b48893d00f24c56adbfb50892cf,         1,    python,   3.4.3
+        jay-thakur/Pixers-Roller-Coaster, 4fe7065dcb5665080b14e1b44c4da35333730aeb,         1,    python,   3.6.2
+           amoha39/Clustering-Assignment, ae74278761d173992842c6fbb7f89353638b803b,         1,    python,  2.7.12
+                      Vasuji/tut-phy2054, e67214dcee5a348ad6a8093431518df755ae527b,         1,    python,   3.5.2
+                 shaido987/novel-dataset, eaeb94789b508e00ee94ac0491c27cdaedc7dac0,         1,    python,   3.5.2
+               swabelo/Python-Code-Notes, 0510b93ae597dd69bea1c370801657cd400fa665,         1,    python,  2.7.13
+       danaesavi/artificial_intelligence, b03c5e2fb1cf0cdf1fc71af0ece207e7102c1875,         1,    python,  2.7.10
+                   aegorenkov/babypandas, ef976d04fab2648251a63ae349617d47856ae047,         1,    python,  2.7.11
+              paulozip/naufragio-titanic, 83bfb2c09a35d4df1299f2d1945a1d24f6a60e7e,         1,    python,   3.5.2
+                    Lotfull/Economics-HW, 8974d8ff30275a083b6307dedd2678f58a5911c4,         1,    python,   3.6.0
+     takluyver/cern-jupyter-presentation, 82903d45792724a1ee9ba53c26930dc34faec206,         1,    python,   3.4.3
+              Namkolla/Nearest_Neighbors, 4e44da567102c7de56ee72e9434e57a73c97f469,         1,    python,   3.6.1
+                  ynyeh0221/Bloom-filter, 5d65edef936d51464903ff25aa0b3bfb180d3328,         1,    python,  2.7.11
+    SamuelJLeonard/finite_mixture_models, cb3ef744e4deaa4536b22af5c20603a409bace3b,         1,    python,   3.6.0
+             darkingwing/network_visuals, 5b95f39c21f84abe33f9df3537bc029f80722f5c,         1,    python,   3.6.0
+SiddharthAgarwal-01/Movie-Recommendation-System, 09fa5a3afb114210c3abdfc02b807086c16d3dba,         1,    python,   3.6.2
+                  jsudufour/30days-of-ml, caebe09273075c464d06fd3841ac5d9177bbe3b1,         1,    python,   3.5.4
+        aaashisharora72/Titanic-Survival, 424881317c52a47175d57c18166cc4bd325a52a3,         1,    python,   3.6.3
+                    burmistrovm/neuronet, 62c3540dd65a760d3c0cfcc7cbd32e3734b70d22,         1,    python,  2.7.13
+            sundarkota/DS-Assignment_2.2, be1f06fbb416b2646fe0852349c3190fa4ed2fac,         1,    python,   3.6.4
+                         johnyout/parser, b757ce4aad9842b06e164eb47a5c71f9c5dfdd54,         1,    python,   3.6.3
+             VanessaSayuri/Probabilidade, 94d321bff66b5d54ba264e72295dd766de9edf3e,         1,    python,   3.6.4
+   bauhuasbadguy/Homebrew-neural-network, a3399327e5309a903187cdf81d9566ef1602157e,         1,    python,   3.5.2
+                          bpgpharma/json, 808d6914b4e9e7b26b5c33ed224d940e515270bb,         1,    python,   3.6.2
+          trisaurabh/Tutorial_decorators, ff4e3d860d4e029d9dd585346f172d7000826ba0,         1,    python,   3.6.1
+               vaibagga/chess-prediction, 4a542e298996495471e3ed49821fc829587d1e1c,         1,    python,   3.6.3
+        arnarejo/datacamp-exploring-lego, be933febce972d911891518d38d42fdd94ed1880,         1,    python,   3.5.2
+                         JakubDvo/Python, d47514821b0a0e284cf1755d110ff13374756db3,         1,    python,  2.7.13
+           buntyke/ReinforcementLearning, 1d3ef8b2f7344dd46209c3d70b3858bd7e508f00,         1,    python,   2.7.6
+                 manioftony/web-scraping, ba6907fb7d6c8879bf7277120c09bc209cc5247c,         1,    python,  2.7.12
+                drwofle21/Data-Wrangling, e2172e7e75468a9da470873a0059e60c77704fdd,         2,    python,  2.7.11
+               LiuHaixu1997/regression_1, 67f8c352cdb76a680a2847eeb052753375c5e94e,         1,    python,   3.6.3
+             PraveshGill/Online-Compiler, 145898c42e17072dc550ac5c9c9b34e5e8a5b78b,         1,    python,   3.6.4
+                 abpoll/Boston-Buildings, 87a7c3f2b8e285cdc55c6d6fc38b42e619d4a85a,         1,    python,   3.6.3
+                    ahsan2github/titanic, 2ca32a5fc8409227edc655ad4b18fadad1b03f98,         1,    python,   3.5.2
+           yepterence/MalignancyLearning, 193271b29f0ccef0debe9db8d18fc8429f15f983,         1,    python,  2.7.12
+                            kamaing/test, c857cd68e5564acbcf45f3a910c660ba5d183a3d,         1,    python,   3.6.3
+Rodolfoarv/Cracking-the-Coding-Interview, 41938b4a2aacfa3395a0edd89aaa102f8fab709c,         8,    python,   3.6.4
+                   Gianno91/ML_Artefacts, b8fa94881496776c69e5894104c7f38a7dd261d2,         1,    python,   3.5.2
+                  yoonkanglow/regression, 649e0de6120b989320599e4382093b9769bf6f56,         1,    python,   3.6.1
+            tnpestana/mlcourse-exercises, 276bd4a1df1327152b9f3308085d57d778445868,         1,    python,   3.6.2
+                     atombear/saulcopter, 539fcb0f6afdfb3ba0096d186377492c6ad7185d,         1,    python,   2.7.6
+              andymcarter/CreditAnalysis, e0f0ca2de66a0891a55a92dbe92af736e274cde0,         1,    python,   3.6.0
+   andyschneider85/nyu_python_homework_4, d1f3104d1d6eb7af095f910ab2e17faaa21c94fd,         1,    python,   3.5.2
+          dphelps/CMU_Security_Analytics, 6761d5c8d3de60a74fc8a861e209ae3e6d194a73,         1,    python,   3.4.3
+paul-shannon/jupyter-widget-demo-all-in-notebook, 025efd8c74707a2afe9e264cfef4dd86f668fd0f,         1,    python,   3.5.2
+            tatebe/FastSLAM_Tatebe_Motoi, 089ba599573ae459d645812923ef8e051c69c040,         1,    python,   3.6.1
+                  SohyunJeon/ML_practice, 2ace2ee24827bc936413c84039c9416d8c5e525c,         2,    python, 3.6.2rc1
+                         mkuiper/HashNet, dc21acbf8c37990fa4ad8c23fcb4d328b6781a7d,         1,    python,   3.5.2
+                  GERUlab/python-recipes, 63e3743e8069bc30fe86f3d55a8363e7397694e7,         2,    python, 2.7.11;3.6.4
+           manoj652/zuckerberg-testimony, 807916eff2d9dfe4ed361fec91f5840c4553ce88,         1,    python,   3.6.3
+            soumyasanyal/machinelearning, 4feda3c82ef6683e69293b9eb7e2be5a5ebc034b,         8,    python, 3.5.2;3.5.4;3.6.5
+Puayny/genetic-algorithm-optimize-weights, 054bbce53fce73444831ea31569efb2579b0809d,         1,    python,   3.6.3
+          ericnewnam/principal-component, 8f5de678747315a6450eee0aeed99cc0e4c7d19a,         1,    python,  2.7.13
+   Sandeep-AnilKumar/Kaggle-House-Prices, 225c7f214e19d757b9a7f21f0b4c988dfc4fb56b,         1,    python,   2.7.6
+                       franchesoni/TIMAG, d8667a6d2603461c8da39b3ff55799d6ad8952bc,         1,    python,   3.6.4
+                      mhasoba/VecDensity, 1ba25a6ad5f44ac2336c1e51ba63062475b64112,         1,    python,  2.7.12
+                     katbailey/notebooks, 9fe42c3f8870c50b1195a51f4116be2b6aad0d51,         1,    python,  2.7.11
+                       ximenesfel/opencv, 585162efe49c58e2cd6425294eba9ed082a7fc5c,         3,    python,   3.6.2
+                       farzadz/algorihms, 7fa073cc2bc822a8e778d1d394b90fb7b6faca2f,         1,    python,   3.5.2
+                          Tudor67/CS231n, f7d4cd7fb04b48c1045e62b849703c5c100e395e,        12,    python,  2.7.14
+              rebeccabernie/Iris-Jupyter, b40f3aded687fb8d6f7f6261391d5bb6e8af149c,         1,    python,   3.6.1
+         holyalchemist/JupyterHelloWorld, 0d2d261f5376a40d19e6e2de577ac8b42a8f947c,         1,    python,   3.6.4
+          bojana-rankovic/AppRecommender, cefc64472eda79e4c812e7c8602528d957df2187,         1,    python,   2.7.9
+    shitian-ni/LINEAR-DISCRIMINANT-TREES, e654acaa01020727d82388a061cc904fb66ae738,         1,    python,   3.5.2
+                         tc427/plot_demo, e86f52e9b2f2836ad02a505f6da608300f7526b5,         1,    python,  3.5.2+
+               reyadji/wikipedia-traffic, 42a92a05f0405f6ad3785909cceb51f1ee01a1d7,         1,    python,   3.6.1
+                  vestuto/pydata-atx-eda, 65e5ff6299d341fdff93904376150c4c1139f64a,         1,    python,   3.6.2
+                 lkkouam/Panda-Challenge, fa913123f14ccb211dc230fa4c5e747f46466082,         1,    python,   3.6.4
+                   agmm/Electromagnetics, 965e6db18d7d7afd8c7cc1413fab2076b534eabd,         3,    python,   3.5.1
+              Isha8/Flood-Fill-Algorithm, d2d3eb6bdc3ef1fbc09474ffdd0ef42a8c4812c5,         1,    python,   3.5.2
+        Samimust/spr_recommender_engines, 2c9a9493d47e47de970b35313fd632e066028f47,         2,    python,   3.5.2
+       asindico/machinelearning-SmartCab, 00d0cc4504c852da7cb5284511318d311bf272cd,         1,    python,   2.7.8
+                     matachi/movie-diary, 804d225f9c3effd962ca87d2b637879db917c21c,         1,    python,   3.5.3
+                            gully/BigHug, 03244f44450fa73a1c3b4fae838caad95848dd81,         1,    python,   3.4.4
+                       habakan/langknock, 58c61128863e1e730d556d7b57a1f434f8455e80,         2,    python,   3.5.1
+                     ludgo/data_analysis, d72882e04c982dbb816a30840b7cda2df6f73cfa,         1,    python,   3.6.0
+manaswinidas/Titanic-death-data-set-work, 1e35698835f3997aaa342efb0ff9b9e15a084985,         2,    python,   3.6.2
+   nahianjahangir/PS4_Consumer_Analytics, f7be05add7ac49297a219ed45c36149e0f2bb454,         1,    python,   3.5.1
+                  jeromepouille/smartcab, 8fa4b58830b77539f286afe3cebbc2392a41de9d,         1,    python,  2.7.13
+     chusiang/ansible-jupyter.dockerfile, 513d69792d4cd1193e22069bfb13a554d067204c,         1,    python,  2.7.12
+                     lmikke/Leshkow_MLhw, 99d3989a792fc855483af3926f094825eb99ea12,         1,    python,  2.7.13
+               roopalJazz/boston_housing, c1e29657727a0a46a8a8dcb1e2a67fd9f79d0683,         1,    python,  2.7.12
+                       Claudio888/FIFA18, 847ed4afce41dde96ede46f822de994bc50d94ca,         1,    python,   3.6.0
+        Samimust/spr_logistic_regression, bde8b7cfdc83f1c0e6a537f391753f682063e092,         1,    python,   3.5.2
+                  kalymaan/Bias_Variance, a92ebe3859e7424ecfe986429c6adf10c29f8514,         1,    python,  2.7.14
+     aukintux/business_binomial_analysis, a18ce86c2eabd77a4cd928f29d35a86347a7be11,         1,    python,   3.5.2
+ robbiejones96/LearningFromDataExercises, 6b015320d5f5ecbf79191784dab6ed6676613238,         1,    python,  2.7.11
+  ClaseML-2017/regularization-rfigueror1, 147925c9a23187a425c75d86853db564c4f7ceb9,         1,    python,  2.7.12
+                        ppeiris/Learning, 5c802e7435cca53a5b1b3b237d1f08fd775b3644,         3,    python,  2.7.13
+           kshitijyad/IRIS_Data_Analysis, d688cbe5eb186bfd57b10ae537bef33f4ee7edf6,         1,    python,   3.6.4
+                      Mentropy/dreamteam, 133744b986b955588327cbe427db80bf09ced3e4,         1,    python,  2.7.13
+              JunaidAsghar/MNIST-DATASET, a1358133515523f279f20095e8e54f95dff9bc9e,         2,    python,   3.6.2
+                           MSaydak/tarot, b345f96ccf63a81791cdcc82d79fa8cdd3b5f9f7,         1,    python,   3.6.1
+      naomihng/Recession-UniversityTowns, 7ed3bf1a8f03313d368a631d34c618047fb9f24d,         1,    python,   3.6.0
+        joshuaemayer/recommender-systems, a5bffa067f888454b6a9a0e77fcbce8db2d9656c,         2,    python,  2.7.11
+         JoaoGranja/Analyzing_Gun_Deaths, 63c259ca4e00b3c9b180baadddd2e49994b58d94,         1,    python,   3.4.3
+               AlliedToasters/Exoplanets, 0adb44fcdd7a7442813e52bf207e5c58871b0f8d,         1,    python,   3.6.1
+   shahinpr/Machine-Learning-with-Python, f3f2978b5ef4e94493500c7b885292dcdeef0333,         2,    python,   3.6.1
+                ForsetiTeam/Forseti-docs, a23642c7b3ceb63e28fb101400987b0d59204a6c,         2,    python,   3.6.3
+                BusinessOptics/test_repo, ef029487a87dc0a0238de145f28a8fc1991ac300,         1,    python,  2.7.13
+          thwee-alchemist/TinyBlockchain, 3ab47c3a60589ba98b0d6f5e69c85ef1fa0a2e8c,         1,    python,  2.7.12
+                    Kelv92/Data-Projects, 257780a87217bcf7df12c228ad653e57737c58c8,         2,    python,   3.5.2
+                  maxial/MachineLearning, 8370c146eba9c894861706b7827a00b87ec018bd,         1,    python,   3.5.2
+            SubhadityaMukherjee/ML-Learn, 4777a0531d114d8e779dfebe47bdae2801a1b64a,         1,    python,   3.6.3
+          NuwanKaluarachchi-UOCFOS/Week5, 7561ae45b9c69e8e12acc4eed82552c2f1c611f2,         1,    python,   3.6.1
+                csizsek/seaborn-examples, 82ede99df162fe58e27efd27a04a1d3efcdc7950,         1,    python,  2.7.11
+       BanzaiOtis/INFO-W18-Final-Project, a6de51fff2be1b486355ba6bcb3a50ff85efc0da,         2,    python,   3.5.1
+                      forero/NatureIndex, cd8e2d167f8ab074434253fa7083aa70e6a8155f,         1,    python,   2.7.6
+               brownd10/python-challenge, 0b42dd86557973b1c931b5c1656810748a23edca,         2,    python,   3.6.4
+                  thedavidliang/Math_157, 28b9a3111f96b867c9fb8fd1f5ebb0fb8ffb9cd5,         3,    python,  2.7.13
+                 mrazakhan/Demography180, 828d56e973244b9e3613abd9d93df4703a57c937,         1,    python,   3.5.0
+ sandy1999/college_attendance_prediction, 1e89b32cf7be331d649a7fa0f7930e8426b4fa0d,         1,    python,   3.6.4
+   Slaski/MLND-Train-a-Smartcab-to-Drive, 4d7d8d87bdc0ebb220aab8e7fde9b91476d85230,         1,    python,  2.7.14
+               hlncrg/yewnoDataChallenge, 8221358c91baa9cc5cfb975e9460bea3f5d71913,         1,    python,   2.7.8
+                            Wailt/HiTree, 30f7e0add56482653b1b9d294f8fee76694461f7,         1,    python,  2.7.13
+             wangminhang/CarND-LeNet-Lab, 6e03d63ec4b44ce62f3a6fef959ceccbcd1b7968,         2,    python,   3.5.2
+                        astrax/IMAO_2017, ce40a98b0ae00b77241b2fcad584e68941043e7d,         1,    python,   3.6.0
+                            dimal97/mmst, b2d005cc01d7e60c8a0b24e40988f42aaa030286,         1,    python,   3.5.1
+Diana-Kapralova/edx-PHYS201x-Waves-Optics, 06a3810d8a0a2e047aded0fef5c9ba6d23c34b92,        17,    python, 3.5.3;3.6.1
+                  luckymj/code-exercises, 397df1810ca5b9d5832e39230e26f27a8a435056,         1,    python,   3.6.4
+            chensandiego/machinelearning, 9e8bf0f650bbd77430ec44149f6645f5b785437b,         1,    python,   3.5.1
+                        ellenkeister/FCS, 00c7a99e1580c961571ba18fbe2f8978089ea019,         1,    python,   3.6.3
+DaMacho/classification_shelterAnimal_project, bde5ebefa0169f1118d7e52c095aabf142cad03d,         2,    python,   3.6.1
+           AndreMiranda1/PriceRegression, 43ed6139e2eb232bf50498d648acf8d1603645e2,         1,    python,   3.6.3
+                   bcbeidel/sklearn-demo, 8b280dd98913c3cf524499683387be31d70bb22b,         4,    python,   3.6.3
+                  ramseynoj/w261_quizzes, fa793b1970a97969e198950ed1db8bbe42a2db0e,         1,    python,  2.7.13
+                     tveritinova/ml-mipt, 5827bfcbed57c64068ef87787646f25cdef4b72c,         2,    python,  2.7.11
+                      jgalsurkar/K-Means, 2c099542f7dbbbe5df86b8c851614ffe0236b845,         1,    python,   3.6.1
+   karolisjan/Bioprocess-Fault-Detection, 75539677266a40cb706ae53cd990f16be9a0cd43,         1,    python,   3.6.1
+               AjayShelar/Datastructures, 3f562f248e4481463ea5a32cae01def335e05ff2,         3,    python, 3.6.1;3.6.2
+             dataninja-python/Challenge4, 1168cf7622654629ec56247a6e7f894a31081357,         2,    python,   3.6.4
+                   FinTechie/FuelEconomy, 75a47823711ba1278f5b3d5c832f3b3ce5dde414,         1,    python,   3.6.2
+          JoMedeiros/T2_U3_Probabilidade, 06132998e9a7efafbc0c641819ac8e3413403e84,         1,    python,   3.5.2
+              EthanMacdonald/SS-tutorial, 11b0b880dab564bd4086eff8891ce121c8f3a0ce,         2,    python,   3.5.1
+       AIHackerTest/linfeng365_Py101-004, 41094258de1b7f61121e9fffed6ba76752709e26,         1,    python,  2.7.13
+          kazewind22/DM_Task3_Clustering, 18268d2b6eb037563cf93f4cb96791427e152a74,         1,    python,   3.6.1
+                   rthamman/w266-project, 80f7fbd8717fc3083555e6179105279beff675b7,         1,    python,  2.7.11
+    kamsuri/titanic_survival_exploration, 5c1e3c91c9a4684c03b6585f3bc501333e63e8ab,         1,    python,  2.7.13
+             PCoelho07/titanic_kaggle_ML, 6c1ba828372e534375dcd63739f16120611eec7b,         1,    python,  2.7.12
+    justinchow11/Data-Analysis-Portfolio, 6790c5876acb528becba96ece33969277ed133e6,         2,    python,   3.6.1
+  Trion129/Gradient-Descent-from-scratch, e79123d27168a93ea5ff13fe74c7c6fd7dbd53e0,         1,    python,   3.6.1
+dennis-leeyinghui/HKEX_Stakeholder_Change_List, da2566faffd1413b119717aacddca95a69d6e959,         1,    python,   3.5.2
+viznu/Twitter-Bot-Detection-Using-Classifiers-and-Clustering, 36e802b33b6e835bf5392aa8a1b75e3c97e662ad,         1,    python,  2.7.13
+         bgwilson12/3.1.3-KNN-Regression, c979b295e14b8fb0d4a8825666ad9ff6b1211ae3,         1,    python,   3.6.2
+                       otarfi/first_repo, 3c690ba41209477ca65f2521701bcb3c7f07969f,         1,    python,   3.4.5
+sahilph/Surviving-The-Titanic-and-Random-Forest-Classifier, a14e4fd9d1331fddd29d17d41a2a3a287b05e6ff,         1,    python,  2.7.12
+                 eantaev/problem-solving, d861c5a5fb71189b7d3fdb399c54e80175aaa417,         1,    python,   3.6.2
+              kaqqy/basic_neural_network, 71fad7d5ae4494897c0ed6d1c9ccd6c53d100299,         3,    python,   3.5.2
+           Niyatihd/matplotlib-challenge, 48bd1ea769eff936837ca85ab4732a16df42d2fb,         2,    python,   3.6.3
+             physics91si/devangiviv-lab6, d7071ab6f0542a95a4ec389af928b8009718b265,         2,    python,   3.5.1
+alexsubotic/A-Collection-of-Data-Science-Take-home-Challenges, ab1f2b51d22f058a4ff54186d56f14bc705cc0fc,         1,    python,   2.7.6
+                        DanielAnthes/DM3, 7527cc0542f340db037116c3969a3c45d3611317,         1,    python,  2.7.13
+                            willxie/temp, 362b905375acded96afede49ae77b89fd80adc8c,         1,    python,  2.7.13
+                jsconway28/unit_project1, 01a6c7da6326780807466dc94ca0fc78a7a7d6c8,         1,    python,   3.6.3
+miguelgd54/Classifier-Dimension-Performance-Analysis-For-Medical-Condition-Predictions-UCSD, 36fa36faf0d1d6c14a00bb346a6817ca40314a29,         1,    python,   3.6.3
+      nikhil15iitd/visual_analytics_hw03, e2344e5232213fbb0e746c51e75837593142f97e,         1,    python,   3.6.2
+        buddharajuramaraju/Assignment7.1, 1152ebd5e80804b8c8fda548044a3c6e001d8c08,         1,    python,   3.6.3
+                        AaronCHH/Py_DATA, 024ab7568b038fcb85d5956851a6bf20cfe4bde8,         3,    python,   3.5.2
+                     licongyuan/homework, 2911affe00fe23c22e3d2320806d20b2df2cdfa1,         1,    python,   3.6.0
+                     zz44l43/wee10-class, bf1296a96d7cfb205acdb872442bffcd2c4aa921,         1,    python,   3.5.2
+                    KPMallaney/911-Calls, 5355c6e38aa8905d174b572637e0c9ea0cb1ae18,         1,    python,   3.6.4
+                   jamiecook/pedestimate, 7c2105a44208dcc22c4e442ffa5b41bc960febba,         1,    python,   3.5.2
+                        mneely1/CodeWars, 3f2caab5e83ee81a36e8dd13f0edf1285d1c477a,         2,    python,   3.6.1
+             ChisatoKasebayashi/ProbRobo, c4c50bb024f545000bc85040489e6b7ad59a8b8c,         2,    python,   3.6.1
+               s-t-e-a-l-t-h/nb_stripout, 5aec8a3c4de95359d3cef2e9616d9dec39d862c9,         1,    python,   3.6.2
+                 ritterj57/mlnd-Smartcab, 1eaf7521e97c3fa69d01f7ff85bcb9abca5b6eca,         1,    python,  2.7.13
+                        BojkArth/finance, d349343f73cd1e6bf397df702528f58e6408b1b6,         1,    python,   3.6.3
+         mrclagman/python-DS-ML-bootcamp, de76358f980347dee4433b505a8e2eeae1c345f6,         1,    python,  2.7.12
+   ddrossi93/2015-Flight-Delays-Analysis, d16c6448c73454e751f5b18001e335a6028dc9b2,         1,    python,   3.6.1
+                   hushchyn-mikhail/heat, f76de7ec99f4dcf48eaf0335f300c261e36da108,         1,    python,  2.7.13
+                       llloo/my_leetcode, 7108a8a4cc5a99d985d3b492fdf44ec6fa3149cc,         1,    python,  2.7.12
+                 Elleppi/MachineLearning, bd736a1535a7221a832af068723553e259486422,         1,    python,   3.6.4
+          KaitlynKeil/FairbankAirQuality, a94d6dab89bcadd6cd605e971964b8a3752aeaf6,         2,    python, 3.5.2;3.6.1
+        Taaccoo-beta/Physical-Simulation, 320892dcec9b05133bc1e2139e5dbe65bd791c7f,         2,    python,  2.7.12
+           buffos/carND.behavior.planner, 725fdb79519a298ba54c45127bac40242d905747,         1,    python,   3.6.1
+                         vozvivan/cs231n, d958ddb805dfd3c088248dba190358ad2b21e6f7,         2,    python,  2.7.13
+RodrigoVillatoro/machine_learning_projects, 3a7fca2bdfd7789320b1e58f6f4170763c2950e6,         4,    python,  2.7.10
+                    loringit/arbitration, 5ffbb747c9d97c1e0ce0237cbbc93a6530273c9e,         1,    python,   3.4.3
+             rrbb014/automobile_analysis, acf2d8357bc85da0694001db570fd257d36afaa4,         2,    python,   3.5.2
+                      ohugo/Data-Science, dda804a89f322018451ae0ff7d97a9e95eac5bc7,         1,    python,   3.6.4
+                  dwormuth/JupyterTop100, 6fbcccb95b496c4c74b1d22412df8680a2cd345e,         1,    python,   3.6.2
+              Dmitry-Denisov/coursera-ml, 5637a6c39e8331eb64c9f69c9c3c16660d69110a,         1,    python,   3.6.1
+   mchengny/Titanic_survival_exploration, d178fd664d10c97055dc8c61390d15404c1dfcae,         1,    python,  2.7.13
+                    CyrusYen/BigData_HW1, 02d85a6e82f69c8eb90fa76425ecd43387feeca1,         1,    python,  2.7.13
+                           mattdukesd/ml, b4a81950e2c4b6690e4dd6128bf8fcd1f68bf245,         1,    python,   3.6.1
+                    tachycline/gammadist, 7047e130c7c82431e72b3e1dc93a2512faaa6de7,         1,    python,   3.4.4
+     chiefenne/Transfinite_Interpolation, 4d399acd14daffe00487d213dffffa8008e618d8,         1,    python,  2.7.12
+     cximran/google_trends_election_data, 06a803bdd21df26a737379e7ad8251fa9f97b2f4,         1,    python,   3.6.0
+          pedrobraz1990/Macroeconometria, 90012a379a3f8a6fe3abd0ab738386605c891fb7,         1,    python,   3.5.1
+                          lkwatson/ME520, 44844948953c05eed8fb9dd7f1fe08c70ade56de,         2,    python,   3.6.4
+  mittrayash/Titanic-Survival-Prediction, 66cd8d529c6b0a33e9e954948f2fadef2ac04d53,         2,    python,   3.6.1
+                     abayirli/montecarlo, bf92e9461bfc1bea46b6f6827614d2b582d6bafd,         2,    python, 2.7.11;3.6.3
+                 Peilin-D/cs207binsearch, a6e6f9ccb2e94c7e71c77b7cd27f1049681c98c8,         1,    python,   3.5.2
+          AnilG3/edX-MITx-6.00.1x-Python, 2924aeebcd66cb7d6a2a539af99ce43fc82eb218,         2,    python,   3.6.1
+         abilash21/DSSession4Assignment1, dae17de0e05f5359671c707c0c7301193edf0d48,         1,    python,   3.6.3
+                wildimarnieto/SIMULACION, c9d6bacb39f32b674940a9a8dc680cba55de9384,         2,    python,   3.6.3
+fabienvauchelles/machinelearning-workshop, f8766edfdcb754943f331b22c091c75c390fd5c4,         2,    python,  2.7.10
+                 henrylee123/digitsRecog, 849c58d21179eecae83460a9aa76f82726aa92c5,         1,    python,   3.5.3
+                 onnovalkering/notebooks, b4d59b1fd94c2f8d59c6d9d5dc1c6f3e96132a89,         3,    python,   3.6.3
+               VirPetit/Ejercicios-3-y-4, 100b3e9b36b1b655216f27bcab1a35d5492a15a6,         1,    python,   3.5.2
+ukirderohit/Logistic-Regression-with-the-Titanic-Lab, ed748ba576e71553d15ae4b6b4052341f65b74f6,         1,    python,  2.7.12
+            k1c/Hopfield-Network_SOM_PCA, 541e2a296e3560e26d5a65edff61c969925dd1ce,         1,    python,   3.6.2
+ abhishah901/K-Means_Clustering_Python_2, 24abd85629ca382bad5affe7ea9bcfb43f3c1eab,         1,    python,   3.6.2
+                  tuanable/Project-Euler, dcaf79175be143141cf447410245ec33a8d92cce,         1,    python,  2.7.13
+              ObaidAshraf/Numpy-Practice, 05185b2af0c4fb486681ca285e29a96a22c77b7c,         1,    python,   2.7.6
+                  hazrmard/DecisionTrees, 7d9f5c8fabb4a359d120ee27a844d59eaa688727,         1,    python,   3.6.3
+                    ArieTwigt/gitproject, 95fd57ffd1d2fd564d87d90a5eca56faaf012240,         1,    python,   3.6.4
+      cmsc320final/marijuana_exploration, 8605aa681f6b7b558ad15fcdec092dc411ed154a,         1,    python,   3.6.2
+                    minhhx/code_practice, 717eea772e6484ab2a14f2a65d6d2ac8c405a71d,         1,    python,   2.7.8
+PGE323M-Fall2017/assignment20-OliviaWalker, 840daa8402b09b5fb49cdfd0f34af337b9f03f8a,         1,    python,   3.6.1
+                     fawind/adventofcode, ae9001fd68aa539f2652d846901832cdcc20b09d,         1,    python,   3.5.3
+programacion-taw-utpl-001/trabajo-final-primer-bimestre-final-004, 8aaceacdd31f6acba6a14e9af5c7424501b6aa63,         1,    python,   3.6.1
+                      cmaurer7/Dataquest, b6e79e62ac7d8e72c18faac85eb1b6ca41c4a2d8,         1,    python,   3.5.2
+              IrisYanfGuo/bioinformatics, d1762c9e35619249276c5cbcdff280e657c23e7c,         4,    python,   3.6.0
+          t0tem/KNN-models-for-car-price, 8804ed093afccb8d61af94e4ccf598f7b487efe9,         1,    python,   3.4.3
+                  Wenfei1017/CCIS_CS6220, a85dee3a71ab7666eb74fa17c18e34a4529ce2d3,         1,    python,   3.6.3
+                         josezilla/bTest, d092308fe98aacfa696688207eb104e24937a291,         1,    python,  2.7.13
+           YahiaAshrafFCI/Neural-Network, 335e11b92a8ccb6f4b1e4a504a63e3873c8d3bee,         5,    python, 2.7.14;3.6.3
+                  verowulf/ML-Cheatsheet, d7a6f3992cff506b14dde8e2b0f742e3a85138df,         1,    python,   3.5.2
+SukritiSharma/Stanley-Terrain-Classification, 0ff4781be76250a10bcba409930a24d75fb9020f,         1,    python,  2.7.14
+     WendyLT/Computational-communication, 997bc5819de91d9161d2ea2c62cf3b83fe5d93a2,         1,    python,  2.7.13
+             andresbarragan22/SIMULACION, b97d29882cb1f6f42e641f94caaed596fb1c219e,         1,    python,  2.7.11
+            ghing/appalachian-town-halls, e3a36b123ec8ba1b55cf6f8397feed5decb459b1,         1,    python,   3.5.2
+       qikeno/Titanic-Passenger-Analysis, 983d3974d75b93f31f06784e87a4bce2013723d2,         1,    python,  2.7.13
+                         DrMikeMaik/Smog, 0209a965a24d8d296eaeb3a31346c3c926edc912,         1,    python,   3.6.1
+akiokaki/SI618_netflix_analysis_with_jupyter_notebook, a27b3a8b34f331bbc501e681a0989a82196335d0,         1,    python,   3.6.1
+                       Crewcible/GitGood, a5d6939e2bd052a18a046ffbd30277ad17e0841d,         1,    python,   3.5.2
+                      devinmcgloin/vtest, 3ccd650e4c04f049ef224c974f2fe7d984e9f4c3,         1,    python,   3.5.1
+       jrenner/hacker-news-salaries-data, d5b9f1ccd3adef91f456d73b9bc66cdeec4e63a5,         1,    python,   3.5.1
+        UUDeCART/decart_instructor_guide, 46f7af54a96e7871e887b35e2edbbd7dda738197,         1,    python,   3.5.2
+                    SandhyaJha/Mammogram, 3f24a23383c2c5170ef8fb09fa387662acac1ffc,         1,    python,   3.5.2
+          tdgch/analytics_regexp_builder, 337758e6a0e0d432996def7ca5b8a7910e06d005,         1,    python,   3.5.1
+     caporaso-lab/longitudinal-notebooks, b59461a436ea1e425a76189d52026b331677fee1,         1,    python,   3.5.4
+                dpawlows/Electrodynamics, 5cd967fed347094a9717f559c89d701ddad7bb83,         3,    python,  2.7.11
+    bkarthikeyan1988/Python2-Assignment2, c82d73e486056342fc3f1ff11e24c2bc64e26911,         1,    python,   3.6.4
+    nickbiso/TF-Softmax-Regression-MNIST, f4f69c5edeec86a04b99f13be83cc59f0af42587,         1,    python,   3.6.1
+             alexjsing/Personal-Projects, ffef79fb2c0fae12aa7d0e505874d88c5e26f481,         3,    python, 3.4.3;3.6.1
+                          rongjin/hadoop, 89b80a816b8c4f1fc24dcf6c18260d01197aafd7,         2,    python,  2.7.11
+                        zerts/GameOfLife, 3bf7b2915006b4726624f68e97cd0f258b28ffaf,         1,    python,  3.5.2+
+           Asra-shaik/LogisticRegression, dcb10566e4d057da11a1284564f5e8391fd0a70b,         1,    python,   3.6.1
+                           hudbrog/ML_01, 0a9a53fef99093375e1016bc7dc92e093b42678d,         1,    python,  2.7.10
+                              pu-re/plan, 51d633bd870bf907382bacb9263e614ce527ccf4,         1,    python,   3.5.1
+           MehsumX97/Exploring-US-Births, 6f4caabedfb4073e8b000d77224cdb629aa754e0,         1,    python,   3.6.3
+      chasekregor/IntroducingChasingData, 6861e5ade0eaf543e0f9789cdb39c267decf1b02,         1,    python,   3.6.4
+          TEJAPS/multi_linear_regression, 06185d2e50989f35288ca4c3eee70e77d41b462e,         1,    python,   3.6.1
+rlimbu/statistics-for-terrified-biologists, 9141abe98b1ded6e86a6c3a0234ee1862c997fec,         1,    python,   3.6.3
+                         aqiliangxue/ZWK, b889595458c4c8cb81c9a96e6b111f2993110aca,         1,    python,   3.6.3
+           jay-thakur/Explore-Gun-Deaths, d464030574d38d4d68f4f6e8cb3c3effb469dc2b,         1,    python,   3.6.2
+Rajnish176/Python3_Session3_Assignment_3.3, 05c7e3b5864c27d59ef42731b0250a3181248d07,         1,    python,   3.6.3
+  dmnguyen92/Titanic-disaster-prediction, be63ba15e25b1cc98bd817954696a5e9cc97913a,         1,    python,   3.6.3
+                     tejesh95/my_scripts, 7c3deca85c92493a26e6420af8e43e0b024b31b2,         1,    python,  2.7.13
+      lincoln1alpha/CO2-Emissions-Levels, 3221f58ac21e522fb4e90fd3936423cede5f4714,         1,    python,   3.6.2
+          sw20066/Analyzing-Thanksgiving, c93e29d6779f2a1953056f7ba46e9e9234563d3a,         1,    python,   3.4.3
+         doran-teaches-code/Midterm-proj, bc38d382135761fc7deaf6c71828c4935ef23e62,         2,    python,   3.6.1
+abhishekmshr956/Basic-Recurrent-Neural-Network-Implementation, 08b4315a2a6d822d92a668c3a4eb511945c78ab1,         1,    python,  2.7.14
+                    bbqtaco/jupyter_test, cd5b2f254c7e3086a89d336199229ccd69bf884a,         1,    python,   3.6.0
+bnguyen8472/advanced-validation-assignment, 0cd79939a1a9d187a99d29979602b82f1e254802,         1,    python,   3.6.1
+  khaledghobashy/wheel_loads_calculation, 1d1393afa01c0e2856f4109ab658932b9bd06a39,         1,    python,   3.6.0
+   arthurpessoa/ipython-titanic-disaster, f908afd08e7b2dbea67a3ea795da703a818d0672,         1,    python,   3.6.2
+    sateeshkadiyala/health_data_analyzer, d469f60f3a98b755d29a8a699a7a6cccdbf41159,         1,    python,   3.4.3
+        qtheninja/grokking_deep_learning, 2dca0ca6d24424ec355a133654aed707103a0a9b,         1,    python,  2.7.12
+      ivan-gallego/data_analysis_udacity, e06acd08e44d113c08658a5697de1c9e7bf48736,         2,    python,  2.7.11
+         jbisa/Python-Intensive---Week-2, 0e112d4028ec7449de3bc28a4f9b542eb8d87b52,         3,    python,   3.6.1
+                    fatken/screepScripts, d1a331760b3549c6ec92356c4b256eb7a8d485d1,         1,    python,   3.5.2
+            dmitriy-panasiuk/math_for_DS, 180b23d02848c63970130b913d31d8e0b24376e4,         2,    python,   3.6.1
+                        biavillas/packet, ff559474a00a061bb807c483f631e35e3ff9a742,         1,    python,  2.7.10
+           fiorenza2/UnderOverfitExample, a10251a3210394150496dbac59b3ac48c7c52dab,         1,    python,   3.5.2
+             Pre-Seminar/Tentative_Codes, ba8f72f1e41acb9f64d0338f160ce1b6f58aa251,         2,    python,   3.6.3
+                      ducha-aiki/LAF2ell, def687343f11e0875825b5ea25da866f9168b691,         2,    python,  2.7.12
+                     erica-lei/academyPy, 40c07e3440135439e87f7b0f26129859008c344a,         1,    python,   3.6.2
+adamosman/Visualizing-The-Gender-Gap-In-College-Degrees, a4f02ce35865bce148c15bc810b5c4b54e657d81,         1,    python,   3.4.3
+       yjhouma/monte-carlo-small-example, e9828a1586f0fde79613595870335eaa5b0c9fcb,         1,    python,   3.5.3
+      rodgzilla/machine_learning_pokemon, ae4564d16871c5759e035ef140994cf58dd8867b,         1,    python,   3.5.2
+                     brad-gh/Text_mining, bacdf58b36de52308cdb4a63857c51500f2c9136,         1,    python,   3.5.2
+    yudazilian/Hands-On-Machine-Learning, 7cbdf48d60b547627e3b2efeb19a35b0a2b9a963,         1,    python,   3.6.1
+  barisesmer/Machine-Learning-Algorithms, 6c2812c53ffc226e31cf5ab6074122f571396a88,         2,    python, 3.6.1;3.6.2
+                        bshlgrs/econflow, 8f3c978628efaa979d8b5d77cb493ddfb52514d6,         1,    python,   3.6.1
+ ONS-OpenData/cmd-crime-with-home-office, a7de4746ce2a5a2037ae9c9a1cadff141b615a6c,         1,    python,   3.6.1
+                           e850323e/test, 4439bcb2e6ecdcd14ae405da733818168a33c0f8,         1,    python,   3.5.2
+21Ansh/MachineLearning-and-Data-Analysis, 14db952c9054278933a6d3dccb83455ed9644a2d,         2,    python,   3.5.2
+                  jinwonchung/testgpages, afabd0a936a79e0fb9b07fc4bf5fd00713d1fab3,         2,    python,   3.6.1
+                    bsumner137/ion_chain, ae63f0d50c95270490e7ee3da849f6c39fb41da4,         1,    python,   3.5.2
+        aedoler/IS-362-Week-3-Assignment, 6f9956488640a076ecfd919819df2aaba98037b1,         1,    python,   3.5.2
+ytian22/Port-of-Oakland-Inventory-Control, e76e31c24ea241aabb601e758c6aeddad7204d23,         1,    python,  2.7.13
+                AmyinTX/Cross-Validation, 40243fff2a62120e4fcb1f0da43ca0070ba36317,         1,    python,   3.5.2
+                      greulist137/Boston, 7592e26469286c1a5b1c9ded839ec98f1df8ff90,         1,    python,  2.7.14
+                aparnaadesai/HelloGithub, 664b10232678f9364b2743aba7b385495527409d,         1,    python,  2.7.10
+                         thisismetis/dsp, 9f3e097c8055f285bf664864220cc93fe8cfadfd,         2,    python,   3.5.2
+           afakharany93/DH_Matrix_Python, d9716909f1cf156f5c7c22a04f403c26b472f748,         1,    python,   3.6.3
+                   siwest/sfly_challenge, ee061c821985c3011402d557e0e89080cfc601cd,         1,    python,   3.5.2
+                 allenw097/its_lit_repo1, 723ee6ff6ba0b0d26b2b4eb8449fe9f490456aea,         1,    python,   3.6.3
+                      Cobord/NumericalQM, 02f5ad6896b9f18d4a05d298676f7f5e800796c7,         2,    python,   3.6.0
+                      byrolew/DA_zadania, 3415d34735a737f5103e0321ed753ba02fd9608e,         1,    python, 2.7.12+
+      edwardsta/latent-semantic-analysis, c71687cc5886be375a2995f7f68c8bf5fed976d4,         1,    python,   3.6.1
+EndlessLethe/Notebook-Statistical-Learning-Method, 198a998bf08ad87be3149b72d5c5f72c558a6eda,         1,    python,   3.6.1
+                           edsu/imls-cdx, 8c9a30755d94bd99587ca77c61e57b1a0352cef8,         1,    python,   3.5.1
+              etnarek/INFO-F-410_project, f9aa3b04bdc3b24cb00589fb0eee04cc2797cade,         2,    python,   3.6.1
+                   JKPoynter/Github_test, f43461e5b8ed8abaccbf16156867856a5dfc09aa,         1,    python,   3.5.1
+avisionh/Detect-Anomalous-Pupil-Destination, 1bf2f6a8d56f410914d5a86a53ae2045789e39ee,         1,    python,   3.5.2
+                odds0128/Python_learning, ccac2789693ba148f2aff87c3e7877c6a2c4b4ae,         1,    python,   3.6.0
+         gulays/RacialDiscriminationCase, 6e5f548f03bc7d22351d62c9fb262e623534b0c0,         1,    python,   3.6.0
+strongdan/Hedaro-build-web-pages-email-course, edb13e8b84b39c175b29b677560f2e6ecb7d8eab,         2,    python,   3.5.1
+jaspindersingh83/AdvancedPython_lambdas_lists, 88a19ee08232206f1259e1ec551a6c2db3ce76bb,         1,    python,   3.6.0
+               symtor/advanced-comp-2017, b56e45dc45ec11d21d03ce513bb2df7e7e487c4f,         2,    python,   3.6.0
+      carolina93duarte/Final-Assignment-, 134bbc92ad473c810b6f3b5736d7e27bfa007a9d,         1,    python,   3.5.2
+     Kristen16/Social-Analytics-Homework, c00cdfdc7ab3dd7701fdec62a9fa3a785da5d45b,         1,    python,   3.6.3
+                      galaxyChen/ml_exp1, 6592198048c105bb233438044f3bfd1ddc1d38fa,         2,    python,   3.6.2
+                            UMKCgeg/Wiki, 9908d098d605d2b82d60ba21f6dd4f0b3d4531a0,         1,    python,  2.7.10
+             JohannesHeidecke/UPC-MAI-CI, a208243eec3419bd7424854a5b50613b403dcee1,         1,    python,  2.7.12
+                 lotka/ukPetitionScraper, 635694e6316404f505e8caf1dd705736cfb6cf4f,         1,    python,  2.7.12
+       SeoHyeonDeok/visualization-things, 9e4832bc16910dc803fb969c9333cf0c191d0afb,         2,    python,   3.5.2
+     devsawant92/Customer-churn-analysis, 7bc9c5df2de5044c41d3fcc403a3786d13482f21,         1,    python,   3.6.3
+            xiaohaibuhuai/finding_donors, e1f4cd5dad64fff946b980bc326785c87ae8a06c,         1,    python,  2.7.13
+                   LLx2/PandaDataScience, cdea5d8b5978e35ec5c2e430875b4a950b939d9c,         1,    python,  2.7.11
+      HanXiaoyang/Neural-Network-Example, 0dd4dd7f4b1f660c54cf826abc7463c42bb11ff1,         1,    python,  2.7.10
+                    littlew/python_mllib, 50dd05a57fb5c2445f31b772703b8b0a13af5307,         2,    python,   3.6.4
+                     mnmd/Medicine_Notes, 73cacad66afb0a4900bd2be8504e12fd9ab091f7,         1,    python,  2.7.12
+                     Vasilyeu/gosmonitor, 75c173f03c67f942f07d8a0584cca1525b047819,         1,    python,   3.5.2
+        buddharajuramaraju/Assignment6.2, 94418ad29440415d3edaf5b3a4408623609df4d4,         1,    python,   3.6.3
+Evan0605/Becoming-an-Independent-Data-Scientist, 30da3f0af3847eb109c7480991f2d2b1a8b10d97,         1,    python,   3.6.0
+              cmondorf/language_projects, 5d482d96c92ee906d6a73b8523745c2ee236a05d,         1,    python,   3.5.2
+                    oliviaaviles/pendulo, 40c7033b90b9e78bb8200d87a988f1ef8a978cc5,         1,    python,   3.6.1
+                    samirpdx/data-512-a1, cf44a92cd76a37a00f86d56adefb7ba4a00dd3a8,         1,    python,   3.6.0
+    imsenthur/Data_Science_From_Scratch., ae3c31a0392d4d9e0ca9067caa89d7e72b3bcc27,         4,    python,   3.6.2
+              yolaCaptain/RansomAnalysis, f33125d69b3f58caca27e4640da23c683d9367e4,         1,    python,   3.6.1
+          pvbLina/Vessel-Idle-Time-Check, 28da60ebf186b0c53bf7af410a4c88c8bfcb29c7,         1,    python,   3.6.1
+       haocabbage/550.431-course-project, 97e630817f7c88226763d0a42b75514aa0aa2fe9,         1,    python,  2.7.12
+               alwaysarian/blooddonation, c1d21e7b7201d19a46048a32e8d77d84612216e9,         1,    python,   3.6.3
+              texty/local-elections-2010, 0a059bf506e8ecc7c490a8a61e4142800a602aa8,         2,    python,  2.7.10
+   jhoerr/I526-Labs-04-Linear-Regression, 4077b0c73106ddd30a1db1302d5c78e68efe8d8a,         1,    python,   3.6.3
+            gdossena/InteractiveSampling, 7e1125af3676287be8dc4261cc768d034c17f81b,         1,    python,   3.5.2
+                      i-bogdan/Blackjack, 2854267a126f973924a3f23c9601975c7fe2aaa7,         1,    python,  2.7.13
+                blueForestIcarus/ipython, aaa5d37e84e391fdad8c2eff7a8a795188b04e7f,         1,    python,   3.5.1
+Adekusiek/Udacity_DeepLearningFundation_PJ1, 64fd2f44abf4bc9c5484a37c33afe6f348cdfd4a,         1,    python,   3.6.1
+        nschroet/Niels-jupyter-notebooks, 2b48e9021246088e67ba15b8e12f04eae3ba3b5c,         1,    python,  2.7.13
+nazmiasri95/Simple-Linear-Regression-using-Python, 50934a0838cdc10a3b19e6bf34e9fd30e95e179a,         1,    python,   3.5.2
+                      pdchi/temporary4hw, a0c789fe1658cd037da46e781de2da12df667b94,         2,    python,  2.7.12
+juneyang1992/dataquest_python_intermediate_proj, 59d7a43ffdc8fa6e313be530e733ce8f6299bec0,         1,    python,   3.4.3
+                      ShinaBhatia/Python, 9401f405e6634387abdfa99d7025c6c241dd6fc2,         1,    python,  2.7.12
+                e7dud7e/data_engineering, d0472b8c04f7c2829a8496bf89a023678395c395,         2,    python,   3.6.1
+                       maxxporoshin/iism, 233fce1129695b1bf3c9711de389cc0f0c8b309f,         4,    python,   3.5.2
+      shawdm/experiments-tensorflow-data, de4dd2424f77d2cb495980e028c0e171cc8e339a,         1,    python,   3.6.3
+                    phy604-sbu/homework3, 39c23b04894b1b0b332c33bd7f16e894d9062ca2,         1,    python,   3.6.2
+serithemage/2018_CSAT_Mathematics_Type_GA, 93c4c49daedf43fb3b1fecaade97d5c2dbb3021c,         1,    python,   3.6.2
+                     yuanyangwu/kid_math, 5b61c2281bbe0c6ad498e976abd9a42e27cbc475,         1,    python,  2.7.12
+                   avikejriwal/DnD-Stats, e9430bd2dd26ffa28b03bd5eb4418cfa18d6b636,         1,    python,   3.6.2
+dovinhanhnguyen/Part_II_Computational_Exercises, 31bb420fcdad8be69eecfac583eab4b1164b6e56,         9,    python,   3.6.4
+                        gvanhorn38/nobal, 25d4ab31f42c8e15f195541999013ee4528bb3ca,         1,    python,  2.7.10
+  srikrishnavamsi/DataAnalyst-Nanodegree, 80148bb8445cf253a71b4bc768c3810652139635,         2,    python,  2.7.12
+                 tfjgeorge/data-analysis, 55bf0d46963e2d4eb6095263ca316c3031037ae9,         1,    python,  2.7.13
+                   MartinRep/FishersIris, d2bae41bd6457e68f02b8fb0dbee22087fdae5d2,         1,    python,   3.6.2
+              JoshuaW1990/kaggle-titanic, 8bc56d21e28e11e8e4cafc3f8e54a60231cfd648,         1,    python,   3.5.2
+                 jaona/ipython-notebooks, 7b3b6d3e4ac0438677a2e9662e46c226d8c0cd8b,         1,    python,   3.6.0
+       daviddewhurst/simulated-annealing, f9d172c62101ebb30d15111b8f5e37f0c6523f51,         1,    python,  2.7.14
+                          izkgao/Crawler, 15d2562690228a30a19a5c5a78533efe8f232c15,         1,    python,  2.7.12
+                        edgarxi/tutorial, 1ea559d25eead619763811f230e31a29f7669a61,         1,    python,  2.7.12
+              nDevelop/sympy_3D_pendulum, 04af3fb67492c6baee903d3b2a30fc81d4dbb03b,         1,    python,   3.5.2
+                    shlomile/Simple-Calc, a6a3d0e1cdc773cc5c03125889e5cfdff65baf4d,         1,    python,  2.7.13
+     andythewhale/AI_Simulated_Annealing, 27bb00c90db242ae3312565d9cf240e79ab47ab9,         1,    python,   3.6.0
+anandrudraraju/Guided-Project_4_Analyzing-Thanksgiving-Dinner, 8b3e8eb579206bd324aa2f5e08392ea45afbd077,         1,    python,   3.4.3
+            Henry0422/simple_multithread, aef1f76b4f38a4a3b3b79f9d2fe4cc6b47fca0b8,         1,    python,  2.7.11
+                             vhar95/wave, 0388c83dcc54a8eb18d2aeb200bb8a1f073123f3,         1,    python,   3.6.3
+marty-vanhoof/Identifying_Fraud_from_Enron_Data, bd2607474b5ff8f4c27b0cf1dafee68627dab999,         1,    python,   3.6.1
+                     Torroledo/ZprimeMVA, 4e5f6b6984ef64fcef0f631bd4fe2a5112367205,         8,    python,  2.7.14
+                          vnotes/Crawler, 791bad42ab5d7b3f3f46e10fc54607a32a8970a5,         1,    python,   3.5.2
+                          msoares/treino, fd46b271eaa7e21f689ddb8a051fabad6191edd7,         1,    python,   3.5.1
+                      apachaves/vigilant, 64243ed522dfe2ce0411b0682c3379c77fa4d349,         2,    python,  3.5.2+
+       mackboudreau/HousePricePrediction, c569e1635254d34d3e4b39a2ea5ad9df37ea3903,         1,    python,   3.6.1
+Reverberation1981/TMDb-Movie_DataAnalysis, 9d8c6c80d0529967838ba565f5a758e0993c8031,         1,    python,   3.6.4
+jzallen07/Springboard-mini-project--Racial-Discrimination-EDA, 58086570f947ff4aa719fb229643cbc11694fb39,         1,    python,   3.6.2
+                 iranroman/WCNN_examples, 9d6e380bca849d74f84ffbb5bc2aed680c9f9475,         2,    python,  2.7.11
+             dichotomies/investment-game, 9a04acea49cd3bbede2c2be1eaab3939c41a3dbd,         1,    python,   3.6.1
+                  baroooo/bet_calculator, 34a72c965f256fb21cdc2a86bbae92a0723477bc,         1,    python,  2.7.14
+                  shammer83/python_tools, b3e73e2893598a9b564db4cbdc61ebd6c609201f,         1,    python,   3.6.3
+             leportella/outlier-analysis, fdeaedec305050fdb0564ada49ac830d5e4695f0,         3,    python,   3.5.2
+                  joetechem/jupyter_test, e2ec6bafdbb902315f34e0275cf51231d4063058,         5,    python,  2.7.13
+             cryanzpj/DS-GA-1004_PROJECT, 43eee19d6fc02de8f167644c18e427f6a2224286,         1,    python,   2.7.9
+                  mjmoon/bokeh_tutorials, ee4fb90b4017a94d05d044e139de246c618ea520,         2,    python,   3.6.1
+                 ridekrew/algorithm-pocs, a9dc98f76e83445937b1adcc816603d2c33f6ab4,         1,    python,   3.6.0
+                saulshanabrook/ma-police, 2a65d36548b7db1d8b4f415d81a38005b0975f3b,         1,    python,   3.5.2
+                          cgore1/cse_591, 2a89c9d9a7f18bb2ac3c5ad2ed7fe9df3272bbeb,         3,    python,  2.7.10
+                     padipadou/us_census, d694881afde5d23f7fd7810c2899e9ff03afe046,         1,    python,   3.6.0
+MIS6300-2017Fall/election-exploration-mdktran, ea89ebc2d97067e4903c326f85be60c8407986eb,         1,    python,   3.6.1
+               PierreBoyeau/minst_kaggle, 33a7238d623393c78c3b536a07ef4d3afcef6352,         1,    python,   3.5.2
+                    sjh8543/codingkungfu, 465be0dce3495e4168b00481397c04ef679f76f7,         1,    python,   3.6.2
+                       ndeepesh/char-rnn, a043989aefd74a7761397d4b24ca79df070f4219,         1,    python,   3.6.0
+eklavyasaxena/Big-Data-Systems-and-Intelligence-Analytics, 24c026a642377a871ca3207c4d2b37e76dc9f7ac,         1,    python,   3.6.3
+                     mzouink/numbersGame, 9b1e38fd9e9fad06cf967d96c5de0fba8786c95c,         1,    python,   3.6.0
+                  PuzzloGeek/Python-Misc, 73ba4239900da2c98207879e07fdee54d6f6a9ce,         1,    python,  2.7.12
+              ClementLalanne/IPT-K-Means, 167f5b9d6f929763033a7ac5a26b11729b4df34b,         1,    python,   3.5.2
+               woo-chia-wei/backtracking, fe24f96d3bdcd64a3c5d154688810355f16c7446,         1,    python,   3.6.1
+                 leosartaj/sympy-pyconuk, a3459847a585c86ff78c1a5c59a0d909ce559400,         1,    python,  2.7.11
+                yupitsme/TFIDF_in_Python, 9c1bfe3650eec17d63cdf5e7a0137a77abc4a2b2,         1,    python,   3.6.0
+               Wiesler/tf_gettingstarted, e10556832e84bfcbf22c00bd55a70cdd6ab53a4a,         1,    python,   3.5.2
+              Ailuropoda1864/kickstarter, ee6bb904315159fcedc4bfa94ef1928b793ae161,         1,    python,  2.7.13
+phanitejakesha/PREDICTION-AND-CONTROL-OF-EMPLOYEE-TURNOVER, 550e184e4b51c110031d6d881053556c0b42b378,         1,    python,   3.6.3
+                  bam241/model_assesment, 91223c044b67393dfe7cf10c25d0917f2abcfa74,         1,    python,   3.5.3
+projectssByCoders/MLClassifiersComparison, ca2d0099d9d3980f1ba0570175c9e67ad2aa731f,         1,    python,   3.6.1
+            mylamour/python-and-pythonic, 22634025c6b96e7010cf8b4ea3748ecc10172239,         1,    python,   3.6.0
+            toracle/python-basic-lecture, 502ab65c04be565c878a06634b43699a4191b326,         1,    python,   3.6.3
+zhanzecheng/Implement_of_Statistical_learning, 7a25f9d85c6dac138e77d743eec761836207a87c,         2,    python,   3.6.5
+                                iJKos/RL, f4c86ae6fbfa05c1b88a123bd1637b40387d3b13,         1,    python,   3.6.1
+ JuusolaLab/Microsaccadic_Sampling_Paper, a4453f7e47abf2ea2a924c376d4c1c157c6011e2,         1,    python,   3.6.1
+                  Miguel75An/SVM-Kernels, ffaab56778dc1627a78f3d2bab08e688dbc84208,         1,    python,   3.5.4
+                   georgedeath/notebooks, d37088cc7958cf2e6b5cee066775c1b674b9f709,         1,    python,   3.6.1
+bhuvneshkhandelwal/Statistical-Methods-Assignment, ac1ae042518541c5a5637522ab7138849c341df9,         1,    python,   3.6.2
+fairfield-university-is510-fall2017/is510-quiz-5-aagarwal07, b157e83742364fe7566f362987c15394437e3d90,         1,    python,   3.6.1
+                    SakariLampola/Thesis, cf778a323a1c199dbc9f2f0a4f08a804ad951bf6,         5,    python,   3.6.2
+                   carriere4/tensor-work, ca85a15c12c6449e1306f7e0cf9a8dc4bea9d2d1,         1,    python,   3.5.3
+               zhan656/bootcamp_project1, e1caeac761c2c1fbabe192b5a429f07adbf3d10a,         2,    python,   3.6.3
+                   danvimont/hello-world, 16dfdb574f67a8a6777ed943a395f272886456e7,         1,    python,   3.6.4
+               marko93ue/backpropagation, 31d72c38d0c37d87cc98fd223ffe110653eee318,         1,    python,   3.6.0
+         pedritomelenas/TFM-tesselations, 845a2e21242f503ea70fa97b030290b823279a23,         1,    python,   3.4.4
+              vnaidu/data-wrangling-json, 271d68116660874578604780c2b84b52159a8d62,         1,    python,   2.7.9
+                           ludgo/udaWine, a718d737c085a099c19842b15dcc2f05dcc0f676,         1,    python,   3.6.0
+    nikkimandhani/object_recognition_cnn, d7ed87b9e86a607a46b4cd53b6bdea91cfcec2c7,         1,    python,   3.6.4
+                 wutienyang/jupyter-tips, 3d7a721dbf20decce8d1c1c4eb9edf889167b519,         1,    python,  2.7.13
+           KonstantinPristavskiy/mo_labs, f68b6b9b510735601c8104a58c3833aaae09098d,         1,    python,  2.7.12
+aditsrivastava4/Human-Resources-Analytics, 8c9174bea55214524502eee7c72f7d82aed3a45d,         1,    python,  2.7.12
+                 morvantr/frenchsalaries, 580e88c3c5d4982d8f0108bc0b77e2d184dc116f,         1,    python,   3.6.1
+           haiphuc/cs109-in-vino-veritas, d9f28949e20453aa907e707d3cb0d261fa537290,         1,    python,   3.5.3
+                       Lingviston/aoboi2, 2029ef8f738f5fa57f3684ab5e091036af99a301,         1,    python,   3.6.1
+          vivekmadhavaram/neuralnetworks, 8cdb4336187069b24de3f9be8a11a12738992325,         1,    python,   3.6.3
+          lawsim/deep-learning-project-1, 6dc8beb3518976785fce9ef59ed2ecd4acf6e7e1,         1,    python,   3.5.2
+     toledolu2019/double-slit-experiment, 48469755db06bbd0d41cdd638b2fffd2a53c59b9,         1,    python,   3.6.1
+        knowsuchagency/cp-interview-prep, 94d20dcd33bc779b506a8e17de6c90f4158d2fd0,         1,    python,   3.5.1
+              vihborsaxena/Iris-Dataset-, ef4997a88b08d84df978dcf666a71f30f55d7fce,         1,    python,   3.6.1
+alucard001/Neural-Network-In-Keras-Using-Iris-Dataset, 58242066aa650698452016ce773e02d58a97e6df,         1,    python,   3.5.3
+     Zahidul-Islam/dlnd-my-first-network, 2fafdec80dc15962d96deaf29ced11f957332a8f,         1,    python,   3.5.3
+                  ngduyanhece/siamese_NN, 88f5d0b7f52f4352419b429ec10d1d8777b5b6ea,         1,    python,   3.5.4
+                          scaldas/BI_PCA, 1aa515bc7acf22e050ad253bdf5f8c8b28d94413,         1,    python,   3.5.1
+                   YanLiang1102/Leetcode, 7295df906444e05274b6507737cce33700c886c8,         2,    python,   3.6.1
+       AbdelBenjelloun/Multi_Arm_Bandits, c70a44e16d7796dea9dedb3f8938c5e18b5aa3c5,         1,    python,   3.6.0
+      TheMarsGuy/analyzing_movie_reviews, b3fcf02bec1a62d657c4ab86cac3b057e2e26a42,         1,    python,   3.6.1
+     gwsb-istm-6212-fall-2016/Xing-Zhang, 5411b25e10af669b72186c34f72af116ca74c3e5,         1,    python,   3.5.2
+              mloning/monty_hall_problem, 834158eecbf90bf65986a7bd01b3ebef3a0cb85c,         1,    python,   3.6.4
+                 cpcdoy/Very-Large-Graph, 8880cb45ccf005277774bac84bfe1388e639b132,         1,    python,   3.5.2
+                     archhuang/119toLine, d657a64de278dbb730842aa193e2b5560731e10a,         4,    python,   3.6.1
+                             amallia/kNN, f82d405934fdf9b3184ddc30330da1599dff9cc1,         1,    python,   3.6.4
+michaelhaar/Intro-to-Linear-Regression-and-Gradient-Descent, 29d6cfea51ca13808ac1c8c8e85aefc88201f0da,         1,    python,   3.6.2
+                      jakevc/reply-times, 45561eef6b3285f6c0f0b4ae63bff3a7d1e5da96,         1,    python,   3.6.3
+SecurityQQ/Methods-of-Optimisations-at-MIPT, 4adddb6cf4e19b779432311ad4a75e9b8804d0c3,         1,    python,  2.7.12
+                  be-rays/Phugoid_rocket, 1ed22bc86e575ad2b3cba3872c76ea97b4c22505,         1,    python,  2.7.12
+            krushika29/Predict-Happiness, 9bc162c28eca0aa756fc5497b23c9a94c98cf82d,         1,    python,   3.6.1
+                        zmurchok/Math101, fde8f742f80bb64245d59d6b060ca1aac34c8606,         1,    python,   3.5.2
+         reynoldscem/convex-optimisation, ce2ede67ddaebdf23a73d045d634296970cc749c,         1,    python,   3.4.3
+                             EJohnF/Fund, 50f06ba47dcb3ac4a3eef16411598be851cae07c,         1,    python,   2.7.6
+             wcarande/telemetryChallenge, 0bc70913dd3da5886671a5194f7f7c5894375f9a,         1,    python,  2.7.11
+                     A123DOHRE/bargraph-, 23a392591d11a61eaec56ed346ffebbce0690079,         2,    python,  2.7.12
+elasticnet12345/classification-year-of-anime_No2, df317e1881284d82287b75ab749d507978cf3a4e,         2,    python, 3.4.3;3.6.0
+            YCHEN-NYU/FitWithMouseClicks, a4f2324820c716aef917c98b4016e597c0f77143,         1,    python,   3.6.3
+   mbcheng/cambridge_bicyclist_citations, 2452918f2a8d1c8070392d60095035965b63cc8c,         1,    python,  2.7.12
+programacion-taw-utpl-001/trabajo-final-primer-bimestre-final-006, 685a9809cf688a5eb8bf64e0cb83dc88639907c9,         1,    python,   3.6.3
+              atkinsjc23/ClusterAndCurve, 07fe7e9a123563e68417fa911a4333d53dff9a51,         1,    python,   3.6.3
+         jianghan2013/Gas_adsorption_lib, 60516f4a465f91d7f947157147cc378f8c568c59,         1,    python,   3.5.2
+         calebstrait/SupermarketDataDive, 6439e307a69471c5ae1376501fbbdd42c8765925,         1,    python,   3.5.2
+    rowhitswami/Python-for-Data-Analysis, c4560ab981b4b3d3f67d5367633150e222524dc9,         2,    python,   3.6.4
+thenups/lattitude-web-visualization-dashboard, 48bd0605570c0b899a1c3ec4b6c2ef5f1861d509,         1,    python,   3.6.3
+                tinagoetschi/myTestRepo2, 0150058bee4f1656a5ceb0cd4d1fa5d455950d90,         2,    python,   3.5.2
+            mbartlettnix/Heros_of_Pymoli, 68f22372bc06080563ddc9c053b1ff748e8db4d7,         1,    python,   3.6.3
+             arinayarina/multiprocessing, bcf03d06b7f06855aec663a76c26866c754ba267,         3,    python,   3.5.2
+                     AmyinTX/Chi-Squared, 34915cde1d91afd03d7ed942ed7f7002a8238c5d,         1,    python,  2.7.12
+                    yenlung/jupyter_test, 51f52779474d621602cae3746fcc2871769c6636,         1,    python,   3.5.2
+                          jinankjain/CIL, f2463f124d0be2378b48b2ed7633637d89b9c695,         1,    python,   3.6.1
+                     mkhabibullin/Pandas, b0d82307dbbb9bb57ae46628190658084811d7a0,         1,    python,   3.6.0
+    AmarnathVibhute/SocialMediaAnalytics, c5a7d914a61908f8979b33fb6f1cdf26d2659491,         1,    python,   3.6.1
+                     ducksfrogs/data_ana, 3a0c00fb9191d40200d8ef8ee36a0f25bafae239,         1,    python,   3.5.2
+                     ronistern/db-course, 6bc4d4e7b7701bfd0915b0a9004e7ae250ffadd0,         1,    python,  2.7.14
+             ranamajid007/DEFinalProject, f96acec90456f98d2a6b152b382ad48260cd6875,         1,    python,   3.6.0
+              jdprada1760/JesusPrada_Ej2, 121a9ad8b2cb90c0d5b13ea819a89fd6fdf7a59b,         1,    python,   3.5.2
+           mukulsalhotra/NY_SAT_Analysis, 4185ed55fe31d2ce83605a474f19b8968ff90049,         1,    python,   3.5.3
+             hanshenry90/manner_of_death, 46c4efacdb589d17f905a6fecf45a075c3f174b5,         1,    python,  2.7.13
+                       takeshi-a/titanic, 5dd8791f4cc5b259b8735d5447281cca66f1b46b,         2,    python,   3.4.4
+                       boulbi777/openway, 526ed578c5d7959953c8dbae1e392d157c792f26,         1,    python,   3.5.2
+h2hdata/aa_network-analysis-route-inspection, 01113480a4dffc0da23cf1b06f78902e0d6a840b,         1,    python,   2.7.5
+FOSSEE/Python-Textbook-Companions-for-Schools, 8f65123afe2035dced5dec0280202fc99f478571,         9,    python, 2.7.11;2.7.5
+pd-Shah/Merge-join-and-concatenate-in-pandas, ea842ba9a2d51570deecdc6d6c9dd6c5fc1fe2fa,         1,    python,   3.5.2
+          denisje/juegopiedrapapeltijera, ff8d715c3c61ec185e7c552822957d223774cbaf,         1,    python,   3.6.1
+            HaraldHeitmann/notebooks_EFX, c5fa1accfc4845767cd466bba328259894c73efa,         2,    python,   3.6.4
+             Shivanshu17/ML-From-Scratch, 068552cdcf054910b204162e22aa72759921c198,         1,    python,   3.6.1
+                      alandalaporto/aaaa, 4e16e6b02b4aacbb078a66792f2539a6f59e5e70,         1,    python,   3.6.0
+     adcroft/space-time-scale-schematics, 0aaf0967a995c1019a9bf7932f2fa09f0745dcd4,         1,    python,   3.6.2
+        timofei-durakov/machine-learning, 1a019adb231d187a91bf2d66a4dcf84e257f06ba,         1,    python,  2.7.12
+                Jakob-Horowitz/dataquest, e53dddbc445264295d6eb1b57bbeb64fc17a984c,         1,    python,   3.4.3
+             gustavorodarte/IMD-Bet-Game, a45738d84e2cbf2b0c9eb3c266790c6b98879646,         1,    python,   3.6.0
+                    kafsima/wwc-atl-hack, 977a608dbaabf42c7c4bc507da6b5ddd176813e5,         1,    python,  2.7.12
+                ukirderohit/Naive-Bayes-, 6973fd4630bb576605044b79a8f7ca3fe1146fdf,         1,    python,  2.7.12
+                             althot/anac, bc3f45f8f52068c582e0c83685f01c282b0ec565,         1,    python,  2.7.13
+                jesusneg/P177_Homework02, 7c64de56f073a47794ba84bbc5ebd47813918154,         1,    python,   3.6.0
+                 rbk2145/Uber-case-study, 9e50113e02963a93d9a0b7b114402a83f4eed566,         1,    python,   3.6.3
+FE588-2017-Fall-Bogazici/option-pricing-afkavak, ecc32fd4dde5a116a2de08653fe488c9a8c237f1,         1,    python,   3.6.1
+                     jinyeom/dp-practice, 44f4af3a670acf4e174877e13965210d695c6c45,         1,    python,   3.6.1
+           Truxton-Marley/udacity_donors, f7d006e5f3dccc85530a5b94c1d8ce896d49330f,         1,    python,   3.6.0
+ganorberg/machine-learning-video-game-sales, f3cbaf933fb665f633fe8c90bd04492f656c9197,         1,    python,   3.6.0
+               Devesh-Singhal/HelloWorld, 5d1206b9cc822a0df5d1f48cd17636f1b5dc36db,         1,    python,  2.7.13
+         csh3l3-2017b/0a-heroes-Arrive17, 0f4aaaf49d39a5ee738cdbafc38ba619c10fa649,         1,    python,   3.6.3
+                        Kokkinos/askhsh2, 683dae06e173af592477cdc50a9f31e15b3553cb,         1,    python,   3.6.3
+             Abhijeet19811/Assignment6.0, 5648d20f410eddb9b99c0a49ff0f8fab0d902fc6,         2,    python,   3.6.3
+                      A-myth19/Leetcodes, 49f1cd7937f841ffc79fbf37ae84e667225a60a7,         1,    python,   3.5.2
+   savi1910/Data-Visualization-in-Python, 88a88a80b448390f7dab9015b7f4793abfeb53a1,         4,    python,   3.5.2
+      chasekregor/BreastCancerPrediction, a8a0b4fcf2ee7323cb8c2e39b1d01205bb232483,         1,    python,   3.6.1
+        mariacamilaremolinagutierrez/spc, 082458d8b01c7103d2d58ef3b996e6cb276ebd19,         1,    python,   3.6.1
+                          nac7/Hackathon, bdc6ea660cf2a7b1c7867e1379c9e5fc658ff5d6,         1,    python,   3.5.2
+      alexkeenan/jupyternotebookworkflow, 1e52280f62516b539ccf1f3c2fcc36ccd42894e4,         2,    python, 3.6.1rc1
+                     KirillReuk/numerics, 5165f1a2146a3dec84e99438c766415058851327,         1,    python,   3.6.4
+            SethHWeidman/net_foundations, d3340fd7a6b92462ac34df555f1b4cef4b10a61d,         1,    python,  2.7.12
+                        kazimnanji/repo1, 40294667bf5febc716bce1c2cb5ce9cff34fa7a8,         1,    python,  2.7.13
+   chapman-phys227-2016s/hw-4-C0deMonkee, ed902f5367b0552e4b79d39eebddae2e5527ee5c,         1,    python,  2.7.10
+xinliu10/Liqi-Feng-and-Xin-Liu_Fawcett_FinalProject, 30eb1756e2c3c593fef64afffde3792c176f3069,         1,    python,   3.5.1
+                   dav376/boston_housing, 38f2acff28ce2d2850d4cccfa9c66705d529dacd,         1,    python,  2.7.12
+               d123456ddq/tensorflow_lab, bb9fec954f8a2270bcea88c762710d1c71538305,         4,    python,   3.6.3
+paritosh127/python-data-machine-learning, 3799b9763b1e8c60137878b85639209650e8e2a9,         3,    python,   3.6.2
+rupalisjain/Dashboard-Individual-Project, c2c9ed044ca6606cd275dd9b01b4d7fdde93eb73,         1,    python,   3.6.0
+                       wbdean/MarkovText, e401c4c05cd6f5281a0f5ca00ba2f59ce526be3a,         1,    python,   3.6.0
+BIOF309/04-conditionals-example-shlosman, f253252611e5dc7a63fdc0b4431965153d801411,         1,    python,   3.6.1
+             csherwood-usgs/dune_erosion, 4ce2bb841f15e9acc933cfd76ce6953a753f3af6,         1,    python,   3.6.3
+                   gf712/MeaslesDynamics, b54ae217e5ccb3f0ddcb28a988db71fbd94a62a8,         1,    python,   3.5.2
+                    MPozek/su_2017_lab01, 177229e3cf44a81a717ea049b8cc1f5ce72e1209,         1,    python,   3.6.2
+                          maogeng/ml_lib, bf5af0309b2225fa6641e9cef9d26484e898031d,         2,    python,   3.5.1
+                   SuyinTan/Titanic-data, fe252370f888fd84c81129d62c67b627a0e89366,         1,    python,  2.7.13
+                     bcglee/meetup_query, 0f4541968b704e691628a3f003c90f5169f009fe,         1,    python,  2.7.10
+                       JohnVithor/Sorter, 682c54eb1c72771cf67ab117c961d207adcd5ea0,         2,    python,   3.6.1
+nodimdim/FloodIt-Game-Solving-With-A-Star-Search, 46b443c9141dc5632f61ad194657074d5d43b23f,         2,    python,   3.6.1
+                HsiangHung/Miscellaneous, 0c040ca5661f9fe8cb61620fba303dab84997b16,         3,    python, 3.4.5;3.5.2
+           CPSC585/perceptron-Maruti-Ram, 3abff9f434de5e29751019daa0961fc6c1633078,         1,    python,  2.7.12
+                            ohmr/sandbox, 2761b61b5db8e7d217d7b1da3194ab13bb0bd559,         1,    python,   3.6.0
+                    timzhang642/8-Puzzle, c12522ec1bcb4564a5204023d1ace3a56c206204,         1,    python,   2.7.5
+   agathver/computer-graphics-algorithms, c951bc09843022cbf445bd390326c2b0ac582943,         1,    python,   3.6.2
+                   hakandilek/ml-sandbox, 82601dfdda0755ea3cac28dcffb3674672bfebc3,         5,    python,   3.5.2
+                     chaonan99/merge_sim, 0a96685b261c94ffe7d73abec3a488ef02b48cd0,         1,    python,   3.6.0
+           Wenchao-Yang/digit-recognizer, a76ac34ea863786f21b4846634e50461136a5f5d,         5,    python,   2.7.9
+jack841021/July-25.-Taipei-Data-Science-Meetup-in-English, 8d904a529f860a7bf8c190696c59a2368b4a1c23,         5,    python,   3.4.4
+                    psygrammer/smallmind, 4fee44d0f588f987563ff5e35afb2fbd0f2ba73c,         1,    python,   3.4.3
+                      cdmuhs/pyandcoffee, 2706e34dfb0751ae1fd8647f88bd348628cbdcbd,         1,    python,   3.6.4
+                  davidjwiner/bike-theft, 72a8c0a68e7889826de33dd417220f9a8d77665b,         1,    python,   3.5.2
+    nanduriprabhakar/Kaggle_Competitions, f8c74c5b4460b660a9461b5bc7c663b6d7cc1842,         1,    python,   3.6.2
+           veganafro/web_scrapping_robot, abf178893a7a887ad159a626300ff015dd644220,         1,    python,   3.5.2
+                   gabeeden/unity_imager, 2dfe2760ed5aa985eef700459d9222ac4973b19c,         1,    python,   3.6.3
+      eriansha/coursera-machine_learning, ad4b6fbd59e160a39d619e6b76356d2ac84703fd,         1,    python,   3.6.1
+               WittyAgnomen/DecisionTree, 41ae8538821335d61e6078fa3fdfbe3884f5974b,         1,    python,  2.7.11
+ craftprogrammer/consumption-measurement, 13bcbf65fead7a41a9a726667d498e8b4dec7d52,         1,    python,  2.7.11
+     TeamworkDreamwork/DeepLensChallenge, ad8b3c13c8a396028960b4eafe54f07a4fde7b72,         2,    python,   3.6.2
+       sujana99/drug-activity-prediction, e0962e048affc98de8cd0b04ce2d3712077dab56,         1,    python,   3.6.3
+seemamishra33/Test-a-Perceptual-Phenomenon, a20177bdf3f4cc1f3f15e960a622668f06a62ca7,         1,    python,  2.7.12
+                          binnis/Scripts, 731487a04aa7671e14e5d13be25441576d1022c2,         1,    python,   3.6.2
+                     NickWhite1/smartcab, d2057454002745b0e2ba627166d4a9f7e6b5c53b,         2,    python,  2.7.13
+                  arunkv/aind2-recursive, ef10824004417d71eed88bfa754df1c2a226eb2b,         1,    python,   3.6.1
+  aymanopen/knn-alphabet-images-detector, c7a477ee22f9e45e664e91e2a4ad13a9fc4a14eb,         1,    python,   3.6.2
+                            l-mathur/edu, 58684e0bb8dfcb837fdb87483e5867a542842020,         1,    python,   3.5.4
+                 ti250/diffraction-demos, 959ee68e51bc4ea9bf47275844bb3acda4d57abb,         2,    python,   3.5.2
+andrewrgoss/udemy-python-data_structs-algorithms, 0466698dfd9345ca026e02a97106090a1f83c282,         6,    python,   3.5.2
+                Harshal2894/Project_Iris, 5ab08ace4025158341bfe016924b6a24dbf11711,         1,    python,   3.6.3
+             Ktjosephs/IS362_Assignment5, d9a283187394fccb56d5919babc3450642e4d17a,         1,    python,   3.5.4
+                  susan-shu-c/xkcd_humor, c9bcbcf98b9d1ca252882eedd11aff374256ae99,         1,    python,   3.6.3
+                        Anoopkulkarni/ML, d45bcba9a5fd530ccd2ccf17cb29506da232f723,         2,    python,   3.6.1
+                     David-Tamayo/python, 2832034a279fc6f260bd83c04ec9806306ef6a21,         1,    python,  2.7.14
+                cgarz001/P177_Homework03, d5b792ceab922dd0568aef5a77aa42790c3f4cb2,         1,    python,   3.6.0
+          richardhuang2/CS660_second_lab, 770a4d900a8c2778261b70ff6a214b8179020360,         1,    python,   3.6.1
+           ji3g4aunaun/NYUST_DM_20171218, 2d43e986d5eea756c4de5b0c317e1f53fdcdc356,         1,    python,   3.5.2
+           aizzakatrina/matplotlib-Pyber, 1b6124a397fcfc901f718db23d4d7c060ba4c8c4,         1,    python,   3.6.3
+          ZeccaLehn/deep_learning_python, f556b1c4dc9e5635262405646fd5a5ef839e0c7e,         2,    python,   3.5.1
+                    armzak1/comp_methods, 3d9839131b6323fd2ed07dcfa9b084cb6fcb46f2,         3,    python,   3.6.0
+            h-e-l-l-o-w-o-r-l-d/projects, dd205b47a8d87bd44f5a42b6cf00d925ccbf8a98,         1,    python,   3.6.0
+              JonRudnick/PollsterRatings, d01476876a691e0a9a53e78330cb44b3621c0ba2,         1,    python,   3.6.1
+                  tracykteal/binder-test, 5be4562e9e2ee52a70ebd72e22a1c67b035e3cec,         1,    python,   3.4.2
+                          pistacja96/PLA, 60859534db0515ceeb2a435aa1f2dd1789a7668e,         1,    python,  2.7.12
+                  JinshaLiu/Quant-python, d04b8ab405f64345874b7085f9127f24e65d354c,         4,    python,   3.6.1
+FE588-2017-Fall-Bogazici/midterm2-isikdu, 5a7144d121972d001a4dde525375f8886dc3a676,         1,    python,   3.5.3
+       weirdbrume/stepic_neural_networks, 50603a50e458aff42b276f262f3dc6ca0ab4cd90,         2,    python,   3.6.3
+      yuvalb9/MTA_Learning_from_examples, 4f7818f42e5dcbc6a7c31fc7c8a7171ae06b3671,         1,    python,   3.6.4
+                heberqc/generador-grafos, 3935c6989dd99252e8a331a4d8d5fb6bd1bbd599,         2,    python,   3.6.3
+       TheAstroFactory/lunar_coincidence, 89ca8dbbcfce0be84c9d930e71670796a843c4a9,         1,    python,  2.7.11
+hshans/Iris-data-Classification-using-decision-trees, c6421c65c506f0b170fec14f04ef0421974fb436,         1,    python,   3.5.2
+       hermesribeiro/deeplearning-dot-ai, 45006264fa5b1ae35322b3ae095f1702b54e3d27,         1,    python,   3.6.3
+                   jhconning/simpleTeach, 12598f26a96aa2955d13729a407637b1f03ce35c,         1,    python,   3.4.4
+ wassimseif/Deep-Learning-Specialization, 723731e7b06f7a0c24ac8a6d683b558634d16712,         3,    python,   3.6.2
+        sarthakagarwal18/Spam-Classifier, ca963f8b7967e02d61f13f63f294558c5e159414,         2,    python,   3.5.2
+  mark-gluzman/FEM-for-the-heat-equation, 7a031c2678c6e6438a3e3ca9c3b76a08b51dc569,         1,    python,  2.7.11
+                chaseWilliams/principles, acfcef5a0e5b78b8877b8f21a5028b7796548032,         1,    python,   3.5.2
+            11ayush11/Begin-Data-Science, 19f53e39ce4bf168d75666b8775c2b4eb1a8619a,         1,    python,   3.6.1
+                     SvenMayer/notebooks, 5de618c3497d1a88ad8bb3fbd1ae54e0f56fa2da,         2,    python,   3.5.2
+            pllam3/gaussian-copula-model, 62bb14348afb55b5c56faee45d4d7a7d7891cae7,         1,    python,   3.6.3
+                       oliveirarjd/Stock, 2cd2b90bc3bfa673bbee2e60b020e19b70fce708,         1,    python,  2.7.13
+Finance-And-ML/US-Stock-Prediction-Using-ML-And-Spark, 295786d98edd23410ce2fb8c40ffecc2fe33bab3,         1,    python,   3.6.1
+davidgibsonp/linear_regression_excercise, a662c02517019050ebd91027d6122daed7889854,         1,    python,   3.6.3
+         me25hage/CSIS_200_Final_Project, 1f40289b250a9961cad28f63a7b8860a6e4c425c,         1,    python,  2.7.10
+CC-ML/tercera-asignacion-del-curso-cm-072-team-bomb, 7e657ccd03b096da352b26f3286de774383737dc,         1,    python,  2.7.12
+              Yizhi-Fang/campus_security, e38bdaa4396164ecaa3815c28d979ad92fb82f50,         1,    python,   3.6.1
+                     ddorris330/Tutorial, ddc9422acfcfcf534f70e8de057985c903a9a07f,         1,    python,   3.5.1
+                      ProGramN10557/test, 04fc250f05a90dd8b8d29db121708cd57d230192,         1,    python,   3.6.3
+                benjamingmeiner/kapascan, 4feef925af823890dab37bd48572ce8511995c39,         2,    python,   3.4.2
+                yuripedro/Crime-Analysis, 9a60d8d1c029750f2eafe3c378e468ab7e4a95bf,         1,    python,   3.6.1
+                         SBU-BMI/jupyter, f375dd132bea767fdc764896a250810a22bd1f93,         1,    python,   3.5.1
+      FAES-BIOF/03-loop-example-shoos001, 518c9372cd74c9b2fea319fa8f255bcd062f737a,         1,    python,   3.6.1
+  ShreyashSoni/tensorflow-classification, f98f7dab27d8558174c7a99ede47622c707c2c76,         1,    python,   3.5.3
+   ClementLalanne/computer-vision-tp4-m1, 25eba44ecfe5cef8b5d668fab7ca0852829c8072,         1,    python,   3.5.2
+             Helga-Helga/bachelor-thesis, e58ece331df288a4f287fb1b2c2f0cb1c584e4be,         2,    python,  2.7.13
+            JenSteele/Prudential_LifeIns, 0de372f15fdf79d60c29ba7518fdd2c71e81afa7,         3,    python,  2.7.10
+            AdamZDLiu/Financial-Networks, 969de471aaa02bdf9d58eeaacf85ea5de42b1be3,         1,    python,   3.5.2
+                 abhinra/JupyterWorkflow, c3e5b0af48e4da25d78be06bcb56c4c6c64232a6,         1,    python,   3.6.3
+chenyuqing/Digit_recognition_based_CNN_MNIST, 2ddc36a72fa9731201351c37424634b07dafb529,         1,    python,   3.5.2
+                 bacook17/soccer_puzzler, e2d87d8213aa556aa3d18efb3edfe445d0f1924e,         1,    python,   3.6.3
+               lexuanthongnhat/notebooks, b98ba42a83c2eb34530fbfa27fd19794537b98cf,         1,    python,   3.5.2
+                  yiyunzhao/SWC_HLT_2017, aada0f852f9a132beffd003e95f27c2388d8e4d7,         1,    python,   3.6.0
+      zubata88/introduction-to-notebooks, 24c7c033da6d643afe841bc1f77e91c95ff9d8fd,         1,    python, 2.7.12+
+ brianmcguckin/thinkful_unit_01_capstone, b73d43ad83e7cf8e0ead09419e53684c57bd5c9f,         1,    python,   3.6.4
+                           warproxxx/nir, 0ead6df10cb0b53608ea56367fa627095acff017,         1,    python,   3.6.1
+         kmcquighan/Calc-II-Growth-Rates, e3d827f49ecf4a0f57c782b0e7e79e459d25c33e,         1,    python,  2.7.13
+                        349214897/MyNote, ad78d1e50a6ca9b6aa5200b7c6bcb413be9257bf,         1,    python,   3.5.2
+                 Ryshackleton/MLS_reader, e68312eb179d6f7f51548989b277d43d7b7afe9c,         1,    python,   3.5.1
+                      janvdvegt/belchAIr, d4bc7411b4b3293760cc7b05f37de0efd6057d77,         1,    python,   3.5.2
+            dmontiel/Open_Data_Collision, 064a7b51e2ba29dd1c78a624f2116c8bec531052,         1,    python,  2.7.12
+             Adhira-Deogade/Web-Scraping, 2eed83356f9bab49e0e7fbbb67791d3abf0b3c48,         4,    python,  2.7.13
+                            ipaomi/books, 1bb723719320e4294ee87d4143e6d8b3447966b0,         1,    python,   3.6.4
+              yishanyishanliang/20161025, 4ff8cf9df58659afc9c22f3cc779a08886f94cb3,         1,    python,   3.5.2
+                         iagsav/sometest, ed1e469d58c5465be138b5d1a3ebc97641b742b0,         1,    python,   3.5.4
+               ub-aa/ass2-greedy-dekinsg, b4fcaf58628a5e90ed05b78445e00ff60287bf32,         1,    python,   3.5.2
+                      magocli93/miprueba, e86dad749354ee0b3d4987f3fe5201bd97efa469,         1,    python,   2.7.6
+          ThomasRoca/Dataviz-with-python, 8e2e9acbfd183166669a054abe759affb784d26a,         1,    python,   3.4.4
+                 uu-python/day6-projects, 986524dce15d86adb051b805a7200df1fcc938d3,         1,    python,  2.7.10
+lizpund/famous-actresses-wikipedia-python, 20f66aa0e1bc2bc78dfd10a013e90352f3bfbccb,         1,    python,   3.6.1
+       MLtaotao/AIND-Simulated_Annealing, 99335fcf7dbca7b9198770ab3c1bc7299c33af67,         1,    python,   3.6.0
+                    METASPACE2020/survey, 2d69c5800df1057fa64b6a6c4115532efb96766f,         1,    python,  2.7.10
+     ShrVerK/Miscellaneous-mini-projects, 2910aceb57b168356cf8647773bfe2d116f3b932,         1,    python,   3.6.3
+                       kwakaba/nlp-class, 2c947cf7de6f7827b6ee7e6623ca75f8810c5744,         1,    python,   3.5.2
+                      sacmax/project_knn, f23baae1c5d1f801f94d2e2fe1285e0cd20558c7,         1,    python,   3.5.2
+         shinys825/Basic_BigDataPractice, 80799c0963da528c6dc82c49eae8059f21f327fc,         1,    python,   3.6.2
+                       twanito/jhub-test, c305b92412833adf4bd7428f0f540963f181a8d0,         1,    python,   3.6.3
+baninaveen/Predicting_Boston_House_Pricing-, 25bbcf1eeeb4c946cd5a88223a3ff19fd1ec82f3,         1,    python,  2.7.14
+            eronlloyd/Data_Analyst_ND_P0, 8261cd0cf010be2ad6c6d76da360b6f72210e518,         1,    python,   3.5.0
+                       etra0/github-plot, 01ceeb69b3c2e975d4b632b5cb2d66acf4fe3474,         1,    python,   3.6.2
+                             Ciolos/test, 22468be92c466dde4141f029bf32e035ebc35f90,         2,    python,   3.5.2
+                         Eraylson/medium, e0b9426b15b487a3198bb061c93fa63725c4ac77,         1,    python,   3.6.1
+AlexandrePoussard/McKinsey-Hackaton-Sales-Excellence-01.2018, 2360ad5811743ee31093131174d912be43c6dc32,         1,    python,   3.6.4
+              UshaBennur/python_acadgild, 5a4a2ab4567250a14254482c291e7402d101587d,         1,    python,   3.6.3
+JameStock/House-Prices--Advanced-Regression-Techniques, 39d347b0f38498ce7c2931737503bf87ab268bfd,         1,    python,   3.6.4
+                 jonititan/FantasyDesign, ccda1a3e1c5651a087c7ee38ead358c4dd97c314,         1,    python,  2.7.12
+                inglesp/brexit-and-trump, db38621fd081d0eacc93fe6267e7ea43f6699d19,         1,    python,   3.5.2
+  happyYolanda/self-driving-car-practice, b910601e1f6772858d84937afb16325b85031846,         1,    python,   3.6.1
+             dw-data/Oscars-gender-ratio, d5986544d5440fa7c07b786b546ed7c0f0a27ae6,         1,    python,   3.5.1
+                 RunningLeon/coursera-ML, 3ff4d82ac7bb75ceba48b4cc60ac85cba2750092,         2,    python,   3.6.1
+                YK-Orfeluna/CurveFitting, 5cbbe66f3e276ff77bfaebaf60ace931103efb64,         1,    python,   3.6.4
+              alexandermoore/experiments, 16cedc20ecf1b011b64e35aa585039335a55e8d0,         1,    python,   3.5.2
+                       Zenith00/ml_learn, d664bcdf0152b51cf50963f7802cbacea399d325,         1,    python,   3.5.4
+               rowhitswami/OS-Assignment, 44bd297652905eb90098b36ac4607daf509687e2,         1,    python,   3.6.4
+        raisa3006/A-quick-numpy-tutorial, bda1e845b1296025b2ecfd60a9e9fe20b57a7143,         1,    python,  2.7.11
+           mehwish212/working-with-lists, 36dd2884d6b9a0197b86fe9b21e0aa661af3d195,         1,    python,   3.6.1
+            schreurz/rock_paper_scissors, 3d8be57cc02837c4df09f275cbb84200f4795e7b,         1,    python,   3.5.1
+        vtjeng/tensorflow_mnist_extended, e5e72c704977b8b647ec02a49b7d20267ffa15a7,         1,    python,   2.7.6
+                zukako0930/multi_network, c77032bc58eea7e4b9e46b5d03331b54dad5c39f,         1,    python,   3.6.2
+           JoeBrownOnline/Data-Wrangling, fe30f3e795d3488a324f97c48caae25236af0088,         3,    python,   3.6.0
+       AbhilashReddyM/GeometricMultigrid, 89baf81ec20ed8ad5c8621264361e67c3cdd4542,         3,    python, 3.5.3;3.6.3
+                 light010/Assignment-2.5, 950003c6f685e573a2621dbb0433362a022c9a83,         1,    python,   3.6.3
+             dcordovao/ayudantias-progra, 012f0b3dc38c40d6d20cc608bcf062f70f55a5c0,         1,    python,  2.7.12
+             idrigo/discharge_in_channel, e3f0b59290f5972e2daf4bc5034a924901144455,         1,    python,  2.7.13
+                    basicmachines/pandas, 0ce1c21302ef00fa2855e81b3c60dc7b0cf08ea9,         1,    python,  2.7.11
+   batogov/recommender-systems-in-python, 3f00b0ce816bb3fdc91b5e1e9da4746e269c0168,         1,    python,   3.6.0
+                eliz79/IS362_Assignment3, 1665e4fb0aa0bbd902f5d316612e6228819c9683,         1,    python,   3.5.4
+                   fercook/dataviz-notes, aa8389b8f56507d72946146149eba1ddeb0885fc,         1,    python,  2.7.11
+               aywander/IC5063_potential, 5bb4866c1a8151d65a5b8317f1dbde1d4940a00a,         1,    python,   3.5.2
+                 iury-porto/bayesian-TVs, b9cf505f96312e13a4b4b3ef5cad534db000703f,         1,    python,   3.5.1
+                           mgreenbe/lab4, af0de2e1d49b96190719a79ea829c22edfbaebf7,         1,    python,  2.7.12
+                     xingjinglu/WorkTips, 2a5eb51d1bc9f9d544d782987d06a36e51a4fe70,         1,    python,   3.6.4
+       Abhay-765/SentimentAnalysis_Movie, 7737e291422b93f8c464c9683befde5526aaa195,         1,    python,   3.6.2
+ashatilov/mlcourse_open_survey_visualisation, 3fa5ab7dfb1d57ea8b6bef6a29643c56f0408d26,         1,    python,   3.5.2
+                        fisadev/examples, 631feb2772680dd812322904313960f0b4754e1f,         1,    python,  3.5.2+
+                  dspp-gwu/assignment-01, f23238c74286ad9e3471eb2affd26bea997e1384,         1,    python,   3.5.2
+                  mohammad-tanweer/algos, 331dfa66189f518015cc0ee8e431787e11218898,         1,    python,  2.7.14
+                       cwang0129/Udacity, 3f90ab3fb174c8a6fc4beae7f70cec5262781d26,         4,    python,  2.7.13
+           ESEP-Database/SciPolResources, 32c3bf1ee316dcdfe00372eacfd5bc1f3c9ea44f,         1,    python,   3.5.2
+               shubhcm/customer_segments, 04de1688aee5fb995194daf88916b1657a7ce085,         1,    python,   3.6.1
+             yyxtreme/ML-loan_prediction, c46fff2c0dad8f181ffdd08d31ac612a0924808a,         1,    python,   3.5.4
+                yilinggit/PythonLearning, 1e94887d37065499a111392224a69c65f571fd46,         1,    python,  2.7.12
+                infiniteline/JupyterDemo, ac4526dab62e54ffd4e7270e7d1ebdd221d56d81,         1,    python,  2.7.13
+ devarajuvinoda/2.Support_Vector_Machine, cf9c08679d6704c4d0639716954e7b1bd3cc7b5e,         1,    python,   3.6.2
+christopher-w-murphy/What-is-my-FunctionalThresholdPower, 66f630743bd7609f13090bfe3757852239be5402,         1,    python,   3.6.1
+          aankul/DataAnalysisUsingPython, 21a9c9d71f3e2ef3c2af7c80b75e5046c6062543,         1,    python,   3.5.1
+     ishigero/nearest_neighbor_algorithm, 473103e299259d5203690fe11c0fe3e6fa547593,         1,    python,   3.6.0
+                     erikfrojdh/smhi-api, 7da8098a1895da5476d19e0ac6dee25bed5d6228,         1,    python,   3.6.3
+  jgastaiza/Jose_Astaiza_FinalAssignment, 2a871dbd70d2fc11449bab81bafa284176bf38c0,         1,    python,   3.5.2
+          JorgeCeja/first-neural-network, a656f36915f8cf513ad27c339f78d4e7494585d9,         1,    python,   3.5.2
+                       danilofrp/courses, b37fd1162fd9b0380f78377d7dcde57a4186500f,        11,    python,   3.5.2
+ satyabratarath/CollegeDegrees_GenderGap, 13dba729a48deeb6f4197a6d6a16454d0914ce6c,         1,    python,   3.4.3
+                      CIVE-650C/Lecture9, cff1fb73f07b662a63249eed64c82dc441efdc52,         1,    python,   3.5.2
+           zhangyaqi1989/Python-Tutorial, 698976f2d0c6da29de2168ac41a22b6bc39656f8,         3,    python,   3.6.3
+Edy-Barraza/K-Nearest-Neighbors-Classifier, f1a2ae80db3d783ee8c1e12e2f332fc63bf7d829,         1,    python,   3.6.2
+mcassi17/Logistic_Regression_Springboard, e2a8295f2c7a170eb92ec891c308ba4d74c54ea2,         1,    python,   3.6.1
+              alikaratana/Kaggle-Titanic, bcdccea886712e1c47a18cca4b67c8b1992a4ac2,         1,    python,   3.5.2
+                             rcjrman/ML1, 23421f35488367581952dbb1a47011f4747444f2,         1,    python,  2.7.12
+                   calvinfeng/go-academy, 33272d103675995bded72ee3cf6153231bd4d9a2,         1,    python,  2.7.12
+                              Vogul/boss, a1a92db31e85f41138f390afaeec32a39f13a814,         2,    python,   3.6.0
+                   david-lipman/AP-Stats, 2dc1192701558e8cb99a55bf8fb27e79f2f9c35e,         1,    python,   3.5.3
+                     tohver/Data_Science, cee09713cae1175de808b331de5158563822718d,         1,    python,   3.6.0
+           jmarca/jupyter_notebook_intro, e2af6ef1d19903d77a73b2b7e06f6a3837efd166,         1,    python,   3.6.3
+Jagatmachines/Kaggle-Titanic-Machine-Learning-from-Disaster, c75a18b0f55b978ed012cea28e3cb988aec01f67,         1,    python,   3.6.3
+               KMSAAJ/Titanic_Prediction, bcf095b152a8bdeb62ffb82ff07c36a501762610,         1,    python,   3.6.0
+              shuyangsun/svm_spam_filter, 092db75dc32a0d7f5b5d2f0a1867ed4533d9fe08,         2,    python,   3.5.2
+hoopernikaho/20170324_TES5_SQ1_full_bw_noise_spectrum, b4ceb723c3663ec15e4d7402a117db9c8c009ce3,         2,    python, 2.7.10;3.5.2
+              AkiraMisawa/sicp_in_python, 64ac42013d2c676d4d91ee43286eebaffce08796,        18,    python,   3.6.1
+         fergalreid/fergalreid.github.io, b5850a0b7f09bbe9d68fcea6bd3447e9a7d0acb8,         1,    python,  2.7.11
+jstnphan/Predicting-Movie-Ratings-From-Reviews-Using-Naive-Bayes, fedaedc28a5aab99f71edf98befa4efd5bbe6e59,         1,    python,   3.6.0
+        AiyanaLizMathew/Heroes_Of_Pymoli, 78653c38465af5d089f260c87322dec2d54ac7da,         2,    python,   3.6.3
+                  schrodinator/No_Thanks, eb6ef3df4660d9021481c2a7438593f38cb78675,         1,    python,   3.5.1
+                  kamoakon/Academy-of-Py, e487152786869f4bae8eb80e1d45b4cea2090cd1,         1,    python,   3.6.4
+                          SandrineP/iris, 489cd24d9e355751ac4184dd87c6eb34a45771fb,         1,    python,   3.5.3
+       central-ldn-data-sci/pushingTrees, 26c2ea71e7c8dd60dd5546d8a7898b6741422663,         1,    python,   3.6.1
+     girijaghali/05.matplotlib-challenge, 2c063299db3cb4b818a52b1c847a295f727f6928,         2,    python, 3.6.3;3.6.4
+                    positivcheg94/crypto, d6925d667cbf4224a5629a3e734b18959fd5c3e8,         1,    python,   3.5.3
+              asvnpr/MiscCodeFromCourses, 08de12ff13d08932e1c12ce31c4ce352d0a4f7ec,         2,    python,   3.6.0
+  abkmohan/Python_Session2_Assignment2_2, 8a59df96c0c27d4cf7dd34ce30c4febd941aa004,         1,    python,   3.6.3
+                       ofiraktm/testproj, 198dc198be965e0d5b895493cc304ad8bc6d134e,         1,    python,   3.5.4
+                  edwinlimantara/jupyter, 8c274c3a624d4e9d11aebbb0a3e5ec01b24d0e46,         1,    python,   3.6.3
+Abhinavfreecodecamp/analysisofHabermanSurvivalDataSet, f21325dd34b7ea294af07a45adc4d9ef4c7caacc,         1,    python,   3.6.3
+                   harshgo/DecisionTrees, 3e57aa2a3b4ad3e45fe11b79da93e962cf52611e,         1,    python,   3.6.2
+                  Goykhman/Random_market, 65bedab4db6b0fab6df1b50576cf568a6bd88bb5,         1,    python,  2.7.12
+ngrafgr/carpentry_internal_workshop_mar22, 5be07b14534c01d52085580c57c3991c885f2895,         1,    python,   3.6.1
+              jay-thakur/Police-Killings, d7a6a8828860caa9bb7d753ba3cf069c3a61eede,         1,    python,   3.6.2
+                      tokunami/pandas-hw, c35d1451e3ffc0060bb0ed58cdc0f5b9b89e80fb,         2,    python,   3.6.3
+              moqri/RePEc-Python-Scripts, e13b8ad48b5bc0ba4d46678add209e155738b920,         2,    python,  2.7.12
+      pdfarhad/data_science_from_scratch, 96567ecb0394e4318900d59d3b999e9c12618255,         2,    python,   3.5.1
+               teknari/NumpyArraySlicing, 0fc40bdbb083d8302ca7038a181a88d1428edca8,         1,    python,   3.6.1
+             sandyspicer02/Final_Project, 9ee3809ddd23aa3ffb8fa71eb60774d5e68dd50e,         1,    python,  2.7.10
+                 zzhang115/cs686-ml-lab2, 28ea4f6867552a7239de6a53f9fec041db3d69ee,         1,    python,   3.6.4
+           danielegaggero/gammaRayModels, 4819260849b900984dea0cc9e35b4d9a4811f228,         1,    python,   3.5.0
+    danielzayas/United_States_Gun_Deaths, d62100fd4fd802b2ad9de914aa76eeec190e254b,         1,    python,   3.6.1
+ Lingaro-DataScience/Data-Science-Summit, 2508d992e090bc2bb06fd6c65e892ac7dc0bdda2,         1,    python,  2.7.13
+          xingjun415/StatisticalLearning, df4fd33bfa16e880b3df88e65b4530fa583c63d6,         1,    python,   3.6.0
+                 nokados/courseAlignment, 9e57c3addb1cc78d10c17db9a8e1179407df80a0,         1,    python,   3.6.0
+             shenxiangzhuang/Probability, a7b0de8930083dca4a7fa2b28b16d8b51c0d5c3a,         1,    python,   3.6.1
+      vmaini/bayesian_hypothesis_testing, 9659be712b3ccbe016031130e70a59c125f7f1e3,         1,    python,  2.7.13
+       tcrack326/DLND-your-first-network, 1bd63fca6ef528a70d3fcdcd74d4b84f5946995e,         1,    python,   3.5.2
+                 alzel/microbes_pipeline, d8665d172d2d8f9ccedce1e17ae8cc431bfa51fa,         1,    python,   3.6.1
+           tthoraldson/make-amazing-data, e46581f04a56467db68235fb37110ae26ed47e76,         1,    python,   3.6.1
+                              kgnete/k03, 76fbc02449e478fd5709d376613e91c8ffbad72e,         1,    python,   3.5.2
+raffg/Modelling-Credit-Card-Default-Risk, 45e69da02cd19bf21d780026fb52aabd6b68cd01,         1,    python,   3.6.0
+                      cflavs/bioinfoUFPB, 56395bd59e6005c7bf9a55dac5a4356acc6e46b2,         1,    python,   3.6.4
+                    u0524808/final-exams, 3c4dcc275add2efa671810c710ad8b5439f1961c,         2,    python,   3.5.2
+               MotokiShiga/MI2I_Tutorial, 7ed8273cc08c231887b26a7c329e304d3266f71b,         2,    python,   3.6.3
+            KianaH/Titanic-Data-Analysis, 669adfbd0143ebfd304ff8d5e47b168ac4986d58,         1,    python,   3.6.1
+                             DeltaP/name, b6cf1bfece80784f2ab8c10a2500616069d2a8a2,         2,    python,   3.6.1
+                 ravindra-ut/data-mining, 79c98d0ed818ec27d056c7fd77c0b9985e8c7cbb,         1,    python,  2.7.12
+       pankajsphy/bats_phytoplankton_TSA, 9f48c754ce565c0de4495b842da8fa2341fee59e,         1,    python,   3.5.2
+            zampeta/KaggleContestTitanic, 03baa8958f57a2e091447fa80fa59dcfffb622ac,         1,    python,   2.7.9
+                      dannypaz/handsonml, fee546f44fe1682b6ce7a8dd95d2879a920fe32e,         1,    python,   3.6.4
+       vishalagg/iris_species_classifier, 6bdea3f258771feb349861d94d1d4451495561b1,         1,    python,   3.5.2
+          mnoori/HousePricing_sklearn_lr, ad7f75e206afdac1806b362c6535f78986abf038,         1,    python,   3.6.3
+       helencolliander/extraterrestrial-, ef5db848a1b6c9d8c3ca8108c95b24cea8bbaad2,         1,    python,   3.5.1
+                      acctun/testgpages1, 59c66441dc8d26605e066b180735f77251527a56,         2,    python,   3.6.1
+                     dareolu/DataScience, bbc2ceee6028a4c3d884efd1ea439578b51c3cf8,         1,    python,  2.7.13
+            KPLauritzen/ml-group-meeting, 96a56225a2b87bac61f7e4052cd86bc967f85e90,         1,    python,   3.6.0
+                mcharitha3/Python-Basics, c1ec819b3104be0dc309e43f49faabfe18984a15,         1,    python,   3.6.4
+         anujgupta82/Synthetic_Gradients, 6cdbe7480adf8132210539f7ad91a6c63c8d31ea,         3,    python,  2.7.11
+                       Atlas7/python-wow, c8f07214c32123b9399f4d36ca123fed83f6c5d0,         1,    python,   3.6.2
+                  ibavly/Titanic-udacity, 386264de993e84975ffa4d2102327d3a6cc22de6,         1,    python,  2.7.12
+           MakrisHuang/TexttilingWithLDA, 3e4e9838b67f9f9df4eb4ae6d217cddbd8f5b1ba,         1,    python,  2.7.12
+alekseimi/tehnologije_razvoja_informacijskih_resitev-vaje, 6fa2a3986f5df9a4d190cd3e0f4f4602ca0139e4,         2,    python,   3.6.4
+                       liyepeng/luckfile, a92dcc91bce8e23cb34b93fc95e65f82f4f46bab,         1,    python,  2.7.12
+                      sethjuarez/tfnotes, cfa1131555b0e213b5d306d99c734561aa5694d0,         2,    python,   3.5.3
+lohithsubramanya/India_Population_Analysis_-2011-2016-_zekeStats, 2206d8deff1b7f189258dc0198e712e59f9ede0b,         3,    python, 3.5.3;3.6.0
+              EndlessDavidDu/Data-Mining, 496e0e08bc01d0d4ff3b0e12e6c394a2f091a75e,         1,    python,   3.6.3
+                    lightning95/itmo-kse, 9d8b378939f0926ae0c63d2b7671c1da1d314442,         1,    python,   3.5.0
+                   PegushinML/GameofLife, 1f4b3d6b4a22f8af9d79e358ed8c99bf46283a8c,         1,    python,   3.6.3
+               JihyeLee-kr/AI_tensorflow, a5c681fda7d2db0bdad40c6ef0dd8be3aebdf6d9,         2,    python,   3.6.3
+                    loulou-hz/ML_methods, a91cf7e156444f9f089c74cd3660512b5904a28a,         3,    python,   3.6.1
+                      adriansarno/rl_pub, 2350dadb17416dfee97196acd5b72070fca3d33e,         1,    python,  2.7.12
+                      lmoureaux/physf210, d84277cf76157a904bda3d7f632c61ecdda5c153,         1,    python,   3.5.4
+ nikhilraghava/Second-Order-Optimization, 8563cd671016bc56c5fd37789c0a5bef21a3a73a,         1,    python,   3.6.4
+              Aidandos/lstm_from_scratch, be6cea51f2221afdbb862488f47abf45ef14a5fd,         1,    python,   3.6.1
+Mujtaba1995/Arbitrage-Calculation-for-crypto-currency-with-pandas-and-numpy, 9521ccdf73be8e8c063e072756b8ca8d99038c5e,         1,    python,   3.6.3
+              Lucianacadef/APS-4---CD-DP, 19ce79ee3f1f059e5dffcdbfa8ebe5ba867378df,         1,    python,   3.6.1
+PhysicsNeuron/MachineLearningCoursera042017, 09b9287ebb2087d72587f82b48ef107d25ace3d5,         1,    python,   3.6.1
+       Rana-ElRobi/predict-to-paraphrase, 0eeabfaaa6d3d088e466287ea0c64db31f53b73a,         2,    python,   3.5.2
+               d-li14/Statistic-Learning, fc5ecb294a8ce06481f2cfd58dce46f7ff598f23,         1,    python,  2.7.13
+          nalamidi/Web-Scrapping-Project, 1183d0928046ba26e4b6145475b149d9460a69d7,         1,    python,  2.7.13
+           josepmercadal/Landau-patterns, 1faec7343e2a4f67488d2737d121a63a67c18ca4,         1,    python,   3.5.2
+                 twally3/cornell-chatbot, 9b5c0b2b01bc546e55ba91f06a16cd6d4bf58e84,         1,    python,   3.5.2
+                    ongweekiat/Blackjack, b8f229ab945afad6db229f19a547cba1dd02534f,         1,    python,  2.7.14
+               Creekee/customer_segments, dab3352935c4a1ce0b4e42a0ee721dd9e524b5dc,         1,    python,  2.7.13
+                           whereover/LDH, dba945c566cf43afd9c8beaa8d351a97a8bd668f,         3,    python,   3.5.2
+      ijphats/data-science-experiments-1, b4a3ab16255824bebcf388eedb49a1d0a50e71c1,         1,    python,   3.4.3
+             hasha/population-classifier, 65f4ae2b6cccc55b8c9ebe47dc03b329862b221d,         1,    python,  2.7.12
+                  ivanteokh/Airbnb-Price, 8383b76e8b6084f27aab03f256ebabf53203ce22,         1,    python,  2.7.11
+                jadnohra/jupyter_goodies, e844d4fa098cef0801b58a3d4e4a1c20591668ec,         1,    python,  2.7.13
+     ronaka0411/Web-Data-Analysis-Python, ee282538fc2144b9838cfca430af76ba3684c44c,         1,    python,   3.6.3
+                               iinus/div, 1f1ee701344a305aaa2f4eb5d52b0f0bccbd6b9d,         1,    python,   3.6.3
+      EXPYH/simple_auto_encoder_of_mnist, c2f555bd1c04aa69081f6e57339f8138a83afad2,         1,    python,   3.6.0
+   huanhuanxuxu/udacity-machine-learning, d0d541218caff91254a9105efc4c34bfd121d3ca,         2,    python,  2.7.11
+           bakarov/eyetracking-semantics, aa8004818ae4d663580d215cd61f067a08403744,         1,    python,   3.6.1
+                         heidtn/quadquad, 490450221cc7dea3521c85e5062843229a6a2a1b,         1,    python,  2.7.12
+          abdelrahmansaud/boston_housing, bbd18e4ffdc2f09a2114c8a7ee40e294220ece5d,         1,    python,  2.7.11
+                   emily-jean/clustering, 6be4c251aa532c6cf8e15cbda9a7a91532ad8dd5,         2,    python,   3.6.1
+                zelladoor/boston_housing, 9e84b629c5340d040b44b0dcd5caab22a865ca77,         1,    python,  2.7.10
+           aki21j/House_price_prediction, 388fd18edbaa16c161c3b6853f38676b8d213d7f,         1,    python,   3.6.0
+         klopmp/sharepoint-data-analysis, e237ba8aeab8cf4992d2034b7a22544b22f5ab4b,         2,    python,   3.5.1
+           jacobstallone/Evergreen-sites, 4e8d87ebf7c99b7b02fa99ccb73c7eb65e44d273,         1,    python,  2.7.13
+               sghaleb1/Machine_learning, 02523393725ddd1185f0b82973d39773328ee13a,         1,    python,   3.6.1
+  BuzzLightYear91/Numerical-Analysis-Lab, a5fbf353c1ffb1cd265e44ba838682afba92769c,         1,    python,   3.6.1
+              baumanab/udacity_ABTesting, 36bc61e56e0d8485573ed17d4f6af9471e700f94,         1,    python,  2.7.10
+           sugetha24/Coursera-ML-Scripts, 4a7a69684a9f17a6dbc8b9843f24de330ecbd903,         4,    python,  2.7.11
+            akhils-gh/Monty_Hall_Problem, 901d46b357511dd4ec63d9c8e68ce04e5cad8fa4,         1,    python,  2.7.12
+                     aaaa884249/20161025, e0576f3e1258fd795ff6907409386a96ae2b18fc,         1,    python,   3.5.2
+                devonsun/cohort_analysis, f9061406b431427785430892aec8aa9e42a3092a,         1,    python,   3.5.2
+                jannab/customer_segments, d39698006b96aaed1a49299078e9cb5caa01a945,         1,    python,  2.7.12
+ akheelsally/Non_trivial_problem_solving, 2bfa3a1cbca47ee844320191e5c10558ffec8d7f,         1,    python,   3.5.2
+            ghostrider77/attachment_yard, 192ecb64b1bda0582d343a8a31f9e574ab76a0c8,         2,    python,  2.7.11
+                       narutsoo/tutorial, d9f7b7e1d7efce862f1f6bc0a4e0b1a38e491260,         1,    python,  2.7.12
+          annapriante/identityclassifier, 8f9a12a79bda8e5f733d3d8933655fbecae6580c,         1,    python,   3.5.2
+                           yuuurolo/test, 5d7e005f7e1f2de39a57edcd7cfef0b75f4d6da5,         1,    python,   3.6.3
+                tyarkoni/reproducibility, 76b512af94e163af95569176ef8dd57d26c7e8b3,         1,    python,   3.5.2
+                  Korakos/boston_housing, 0fcdd711acc27602c2dff4b5377a743bd17b9159,         1,    python,  2.7.12
+            alvinahayward/python_scripts, 08b52841ad9ba20c046fec56d851182436f83b94,         1,    python,   3.5.3
+     FAES-BIOF/02-gc-percent-pickles0618, 9c54f0432e6a94c026b6b8152db5e413ed7aad54,         1,    python,   3.6.1
+                   vafajardo/SpringBoard, 7d721e15cd631a682e3eebdd402a712bc9ceb744,         1,    python,   3.6.2
+                             K-ran/kpnet, adec263139f79c5a723ee2fa1831c23f34f4896c,         1,    python,   3.5.2
+                     airfs/Visualization, 64c140fde44386a4a2d399d279348a98e937c433,         1,    python,   3.5.3
+                         wonaya/demo_git, 38858437c44f17471d21feed864cb2b70b7e63bc,         1,    python,   3.6.3
+                           krishanth4/nn, a2c55804c97cbf6008c9ed970f3823892646cb6c,         1,    python,  2.7.13
+                             lemhell/GA2, 7f5af90e984cadee1acaa6c61ff0d9c2cf07622a,         1,    python,   3.5.1
+                             zadrozny/ny, c3d1ba0ba23a3d3e6684d58464ad470164ac1681,         1,    python,   3.5.1
+                  orrinjelo/projecteuler, 260995e7c132aa218d5812b6d8b1f3d0f8aacdf4,        11,    python, 2.7.13;3.6.1
+                 Vincent-Li-9701/Titanic, a1f4d6cefb7fe4118b99b20058846a99b2d9b66a,         2,    python,   3.6.3
+FE588-2017-Fall-Bogazici/hello-world-skckbfl, 0173d98b2f9ed8bcc1ba87a92bba525015fd516f,         2,    python,   3.6.1
+       Reshikesh/Python-1-Assignment-1.4, 62817c56401dba1e64a645f8a413649daba0910f,         1,    python,   3.6.4
+wesleyabbey/DLND-my-first-neural-network, 8263ca83f0f7893c1e62045c03ad5645d0f4b14b,         1,    python,   3.6.0
+          saitoHugo/customer_segments-ML, 89822e5707a54ce4b1e44bdd83eb7bfce3151613,         1,    python,  2.7.13
+                   sunyam/Titanic_Kaggle, d4dfd6eef78902ff6e4d35f167b3a1a06d4d9ec0,         1,    python,  2.7.10
+                            cczysz/nc-bb, f784806676789374b249df36cad53dbca1844d46,         1,    python,   3.5.1
+             evinaik/incumbency-analysis, a8607ba5ce918f9bc7d44a707c383ed35001ce0e,         1,    python,   3.6.2
+         buzzlair/datasciencefromscratch, b3a08f77c9ab2675644ce329743ef0d4ba938519,         1,    python,  2.7.12
+SeshadriKolluri/Coursera-Applied-Machine-Learning-in-Python, 6a30960e2ed6ab96bda6efeebc44b80ba47f6c8b,         4,    python,   3.6.1
+                          ajaysub110/HDR, ea0c7c368fbbcca508aa92a41a43a0c967ac17f7,         2,    python,   3.6.1
+rllabmcgill/rlcourse-march-24-guillaumebrg, 43fe4627b23690b575eb5c8f3ce66c359fc1d707,         1,    python,   2.7.8
+                     zw1tter1on/DataWork, f41ba593d1e3246f90418e346ca2aba2090a6c6a,         1,    python,   3.4.3
+vaishalilambe/lambe_vaishali_spring_2017_New, b3468ab32393ecf2dcefead5de107cd22fbdb383,         1,    python,   3.5.2
