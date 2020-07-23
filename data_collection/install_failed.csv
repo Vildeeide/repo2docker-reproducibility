@@ -1,4 +1,4 @@
-No;Repo;repo2docker-checker, without commit 
+No;Repo;repo2docker-checker results
 1;bendichter/tenseflow, a6ae1c1f264fb06a2f521adcddf8e474a5696974;3 failures. Modules
 2;mottiden/Notebooks, 0aa07638bbad8a4702883548f82d19b6237b310f;5 failures. FileNotFound, modules
 3;apockill/EasyInference, 33dc9c90a3d07de305f1cdb9ffb88906202998d7;No tests found
@@ -189,6 +189,3 @@ No;Repo;repo2docker-checker, without commit
 188;egorkrash/BayesSRGAN;Build failed. No matching distribution. Version requirement not satisfied
 189;irfannurafif/openml-keras;5 failures. Syntax, module
 190;leduynguyen/DeepLearningFoundation;5 failures. Modules
-;;
-;;
-;;

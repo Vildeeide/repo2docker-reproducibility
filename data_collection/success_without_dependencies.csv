@@ -1,4 +1,4 @@
-No;Repo;Repo2docker-checker
+No;Repo;Repo2docker-checker results
 1;haskone/software_labs;2 failures. Modules 
 2;gijoev/matplotlib-homework;1 failure. Module
 3;zhenyuan992/python_data_science;1 failure. Module 
@@ -108,5 +108,3 @@ No;Repo;Repo2docker-checker
 107;stevenokm/ml-nthu-2017-fall;Build failed. Could not read from remote repository
 108;Gabaly92/Creating-Customer-Segments;2 failures. Syntax
 109;JimvandenBerg/assignments;5 failures. No such kernel named ir, module
-;;
-;;

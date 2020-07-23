@@ -1,4 +1,4 @@
-No;Repo ;Repo2docker-checker 
+No;Repo ;Repo2docker-checker results
 1;18F/identity-analysis-sandbox;Build failed. Exit status 1 
 2;learn-co-students/calculating-distance-lab-ds-test-nikhil-steven;Username
 3;learn-co-students/calculating-distance-lab-nikhil-data-science-test;Username
@@ -130,9 +130,3 @@ No;Repo ;Repo2docker-checker
 129;hoyasam/DLnano_introTF;Username
 130;hoyasam/bike_sharing_nn;Username
 131;hughperkins/selfstudy-LIME;1 failure. AttributeError
-;;
-;;
-;;
-;;
-;;
-;;

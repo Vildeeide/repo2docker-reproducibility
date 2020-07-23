@@ -1,4 +1,4 @@
-No;Repo;repo2docker-checker, without commit
+No;Repo;repo2docker-checker results
 1;Midnight93/University-rank, 640650e0a677d359a8e741d015f9635a821c570c;1 failure. No such kernel named ride
 2;Midnight93/kaggle_presentation, 4101fe3cb3246ec62e5f876ad2b8e4edd6ef91a5;"2 failures. Module (pandas) and ""ride"""
 3;marami52/nb-test, 4c480bbed5262a6fdf8afd7164005bd8099ec53b;"3 failures. Module and ""ride"""

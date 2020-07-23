@@ -1,4 +1,4 @@
-No;Repository ;repo2docker-checker 
+No;Repository ;repo2docker-checker results
 1;18F/identity-analysis-sandbox;Build failure
 2;learn-co-students/calculating-distance-lab-data-science-pilot-test;Username
 3;learn-co-students/calculating-distance-lab-ds-test-lights;Username
@@ -105,8 +105,3 @@ No;Repository ;repo2docker-checker
 104;howl-anderson/binder_tester;1 failure. AttributeError
 105;hoyasam/DLnano_introTF;Username
 106;hoyasam/bike_sharing_nn;Username
-;;
-;;
-;;
-;;
-;;
