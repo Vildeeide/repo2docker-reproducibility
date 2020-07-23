@@ -1,0 +1,972 @@
+                                    repo,                                   commit, notebooks, language, version
+           18F/identity-analysis-sandbox, 3c0b49513bed33d40374f424c9282fb53ea6f171,         1,    python,   3.5.1
+learn-co-students/conditionals-python-lab-data-science-alpha, c58a6e89353b4f61f15b1fa8058059887b0dc14d,         1,    python,   3.6.5
+learn-co-students/conditionals-python-lab-data-science-intro-000, c58a6e89353b4f61f15b1fa8058059887b0dc14d,         1,    python,   3.6.4
+learn-co-students/conditionals-python-lab-demo-machine-learning, c58a6e89353b4f61f15b1fa8058059887b0dc14d,         1,    python,   3.6.4
+learn-co-students/conditionals-python-readme-data-science-alpha, 235b163d8aecde77589848b8baba0cbcdd469982,         1,    python,   3.6.5
+learn-co-students/conditionals-python-readme-data-science-intro-000, 235b163d8aecde77589848b8baba0cbcdd469982,         1,    python,   3.6.4
+learn-co-students/conditionals-python-readme-demo-machine-learning, 235b163d8aecde77589848b8baba0cbcdd469982,         1,    python,   3.6.4
+learn-co-students/for-loops-readme-data-science-pilot, 3de188f66850dffb195a2f05b3825371ce2cae5d,         1,    python,   3.6.1
+learn-co-students/map-filter-readme-data-science-alpha, 81f7f157e45f22855ce405afbca108f901c66702,         1,    python,   3.6.1
+learn-co-students/map-readme-python-data-science-alpha, 83b27c20873c1b0c835a132533c3df1deae13a00,         1,    python,   3.6.5
+learn-co-students/map-readme-python-data-science-intro-000, 83b27c20873c1b0c835a132533c3df1deae13a00,         1,    python,   3.6.5
+learn-co-students/map-readme-python-demo-machine-learning, 83b27c20873c1b0c835a132533c3df1deae13a00,         1,    python,   3.6.5
+learn-co-students/calculating-distance-lab-nikhil-test-ds, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+learn-co-students/plotting-data-lab-data-science, c3f8ebf6f0497c2a3692cf882d2fc785fd021226,         1,    python,   3.6.5
+learn-co-students/plotting-data-lab-data-science-intro-000, c3f8ebf6f0497c2a3692cf882d2fc785fd021226,         1,    python,   3.6.4
+learn-co-students/plotting-data-lab-data-science-pilot, c3f8ebf6f0497c2a3692cf882d2fc785fd021226,         1,    python,   3.6.5
+learn-co-students/plotting-data-lab-demo-machine-learning, c3f8ebf6f0497c2a3692cf882d2fc785fd021226,         1,    python,   3.6.4
+learn-co-students/plotting-data-readme-data-science, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.5
+learn-co-students/plotting-data-readme-data-science-alpha, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.5
+learn-co-students/plotting-data-readme-data-science-intro-000, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.5
+learn-co-students/plotting-data-readme-data-science-pilot, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.5
+learn-co-students/plotting-data-readme-demo-machine-learning, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.4
+learn-co-students/python-variables-lab-data-science, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-students/python-variables-lab-data-science-alpha, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-students/python-variables-lab-data-science-intro-000, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-students/plotting-data-lab-data-science-alpha, c3f8ebf6f0497c2a3692cf882d2fc785fd021226,         1,    python,   3.6.5
+learn-co-students/python-variables-lab-data-science-pilot, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-students/calculating-distance-lab-nikhil-data-science-test, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+learn-co-students/calculating-distance-lab-ds-test-lights, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+                          koldunovn/AWI2, f4bc8732b90aa387256a62f724d3ea8c803da0a4,         1,    python,   3.6.1
+        konstantinstadler/pymrio_article, ba619217fed4d298a1fccfa488645400c9c3ebde,         1,    python,   3.6.3
+                     krisrogers/scraping, 22b67487457954de59f6f815563b0b0e87aea2d6,         1,    python,   3.6.0
+              kristianperkins/nbrequests, 36648bcff708d5568252a849fe57557733ee9777,         1,    python,   3.6.1
+                              krzdur/cdr, 4546d81d7adf54896a5d5116bce95921c511a2b5,         1,    python,   3.6.1
+           kulla/mfnf-statistic-20171007, 7b8a87aa4116834f80e86dda7025b744eaf2c450,         1,    python,   3.5.3
+       kure-kosen/deep-learning-practice, 6dcd4f220820d442258c0941d5d1f9b524b70d02,         1,    python,   3.6.1
+          kwangchih/first_neural_network, 71436a2ec493d4b9eaf3f31fabe28693f417eb01,         1,    python,   3.6.3
+          kylehounslow/jupyter-notebooks, 6a390fcbd80ec16b1bb5a1d634858ede278b537a,         1,    python,   3.5.2
+                        ladisk/pyTrigger, 4bb36bdd6f1521565ec6c9d9ad828276c0a4792c,         1,    python,   3.6.3
+      lalwanigunjan/AdsTeam6Presentation, 75e25528fbb0da22f3020f18347a95eaf1fc90a9,         1,    python,   3.6.4
+learn-co-students/calculating-distance-lab-ds-test-nikhil-steven, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+            landre5/first-neural-network, 2f0ea5c831947068186f93bf2fa73f474c5854c9,         1,    python,   3.6.1
+learn-co-curriculum/calculating-distance-lab, 03ed475be91ea555cfb28f7453ebcd5a09bb8573,         1,    python,   3.6.4
+learn-co-curriculum/conditionals-python-readme, 235b163d8aecde77589848b8baba0cbcdd469982,         1,    python,   3.6.5
+   learn-co-curriculum/map-readme-python, 83b27c20873c1b0c835a132533c3df1deae13a00,         1,    python,   3.6.5
+learn-co-curriculum/plotting-data-readme, 61334ddd8776ca2a4e6dc8a5871493598cf98793,         1,    python,   3.6.5
+learn-co-curriculum/python-variables-lab, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-curriculum/python-visualizing-with-collections, 9cd5a9b5f6489ceed95e3cff4d6c2f98918980b5,         1,    python,   3.6.1
+learn-co-curriculum/visualizing-in-python, dd11a30e482aaec751a48bb2d8b52ef46b7d7ecf,         1,    python,   3.6.4
+learn-co-students/calculating-distance-lab-data-science, 514b276d284b05b1860495bab3b17b601136418c,         1,    python,   3.6.4
+learn-co-students/calculating-distance-lab-data-science-alpha, 514b276d284b05b1860495bab3b17b601136418c,         1,    python,   3.6.4
+learn-co-students/calculating-distance-lab-data-science-pilot, 514b276d284b05b1860495bab3b17b601136418c,         1,    python,   3.6.4
+learn-co-students/calculating-distance-lab-data-science-pilot-test, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+                           lbzqwe/binder, b0720c745f2ebdf80d0780a3c438b120ed105ccf,         1,    python,   2.7.9
+            kojoidrissa/pycaribbean_2018, 5c3d3d1aa2239acfcc2ba02c3f6ee8045ce98272,         1,    python,   3.6.1
+learn-co-students/python-variables-lab-demo-machine-learning, 6fe3f2a3aa8482970a262503bc99029eb1c92606,         1,    python,  2.7.14
+learn-co-students/visualizing-in-python-data-science-pilot, 3a60568fd8d6aa93e1de495cda3a869e1d509af5,         1,    python,   3.6.1
+                     madhug/bike-sharing, 9a7aa7b7b551a03b83e9d05fb708163fc8c7369b,         1,    python,   3.6.3
+madhujahagirdar/your-first-neural-network, d5e296b0af98cf49acf47ba6dafd98fb000d49ca,         1,    python,   3.6.1
+      madhur-taneja/First-Neural-Network, 2301ee16fc9edf37d1e3ae8883713b9959472573,         1,    python,   3.6.4
+                maeehart/AutotalliSpyder, 30c279d01d75442b502cdb1e9f04ebc4d9f60243,         1,    python,   3.5.2
+           marceljm/first-neural-network, 29fe1e9d1a593029509d35a7b9da29918d173ddb,         1,    python,   3.6.4
+              marcellobenigno/webmapping, b3457d26da5a49e0d226a0be7272a93b928d6c29,         1,    python,   3.5.0
+marcinbielecki/Advanced-Macroeconomics-in-Python, 8d4b4646640ecd19ca71330dff31099616c3c9b8,         1,    python,   3.6.0
+                        marcosflp/crypto, ebe7cf162c68f65693257cd76f8232f4bc71573b,         1,    python,   3.5.3
+markusbuchholz/DLND-P1-Bike-Sharing-First-Neural-Network, 241297a27598f48f8c33999dcda872a01551a966,         1,    python,   3.5.3
+               martako/AI-SVM-classifier, d33f727629156b9a7e66588e1bdf340f2f2f25df,         1,    python,   3.6.0
+                martinkersner/ann-meetup, fe1237bcf0f064f961e0305ca5668f1278dee976,         1,    python,  2.7.13
+               lyzs90/booking-validation, 649d95c5333d24d2490c6e2e88dd1312ee0f116a,         1,    python,   3.4.4
+      martinkersner/meta-learning-meetup, e7074958c3f34437d080449d7631f600dbb06c52,         1,    python,   3.6.2
+               mashabow/font-pen-samples, 6e5122f165fc49ad07b0d16c0935b5f465fe4e44,         1,    python,   3.6.3
+mathewmorales/First-Neural-Network-Project, d859ad5e9a063a49ab9e27d3b093e590bd3e964b,         1,    python,   3.6.3
+           matthiaskoenig/libsbgn-python, 9a9fba8849512a8f2178ecac0fe1ead0283c1a98,         1,    python,  2.7.12
+               matthiaskoenig/sbml-merge, d6636cfccf0f72320a4c2b7b6829c53b957020ea,         1,    python,   3.6.2
+            matthiaskoenig/tellurium-cas, 652ce0154c954f8269dd5ab301c8de766860d922,         1,    python,   3.5.2
+          matthiaskoenig/universal-model, 79233bfe5160f7a07b2d2959f68eb42b9e10358b,         1,    python,   3.5.2
+     matthiasludwig/first-neural-network, 07c17c4c481019b84affc7305639bfb88e4c805d,         1,    python,   3.6.0
+          mbabd2016/russianhousingmarket, 6293d040ff6dd981bb9c88d68a1dae44f3523537,         1,    python,   3.6.1
+              mcmcclur/jupyter_notebooks, ffb6db590f6496702bde269526ca872f7f4c1ee2,         1,    python,   3.6.0
+    med-hachoum/heart-disease-prediction, 29cd2d434185dcf95b8e26386941edd0da91eb9c,         1,    python,   3.6.3
+        meilinger/introduction-to-django, 2c24323d90dd5ad7790acb26d308c07c164ea27c,         1,    python,  2.7.13
+          martinwxi/First-Neural-Network, 4bfe673575f6ab77bf2287cf7e1a7545467d0377,         1,    python,   3.6.5
+learn-co-students/visualizing-in-python-data-science, 3a60568fd8d6aa93e1de495cda3a869e1d509af5,         1,    python,   3.6.1
+        luqmanhakim/first-neural-network, 1b2ba29405991ad38a45d64ad0a8bc0d6e3b1efe,         1,    python,   3.6.0
+       luhego/udacity-aind-sudoku-solver, 14b2f04f676bc3425f059a23a84638a3b77c21e0,         1,    python,   3.6.3
+learn-co-students/visualizing-in-python-data-science-pilot-test, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+learn-co-students/visualizing-in-python-ds-test-lights, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+learn-co-students/visualizing-in-python-ds-test-nikhil-steven, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+learn-co-students/visualizing-in-python-nikhil-data-science-test, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+learn-co-students/visualizing-in-python-nikhil-test-ds, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+         leejonggun/first-neural-network, abf4d93682b72c3d0a1ab7a8070ae87fa4e01c82,         1,    python,   3.6.1
+          leephillips/JupyterExperiments, 481888a2fc515a84344ebc1d49efb2ad9eb3b17a,         1,    python,   3.6.3
+        lemoinef/dlnd_embedding_word2vec, a866c4a92cb4953a24621141baf7d086063f788a,         1,    python,   3.6.1
+                 leo-gan/PyTorch-SungKim, 8024691721978c8fa27278ea875081b3f4bdb21c,         1,    python,   3.5.3
+       lfedeli/Training-RNN-by-diffusion, acea73a445e9f893c1bcc2803257cbeafd1823cf,         1,    python,   3.5.3
+              lgaetecl/DataScienceTraine, fd3fcf38c2ef3675d77d6b041396d6ab50de8e27,         1,    python,   3.6.4
+lukhar/machine-learning-a-probabilistic-perspective, e66b7bc03a5adf66d384f6915b0067c124dc2d78,         1,    python,   3.6.0
+       liammcinroy/revl-ml-cpp-challenge, da66809c465a6212007463aa00766b2fbe7ce415,         1,    python,  2.7.13
+                      ling592b/class_1-2, 272f1d17268396fc45daa5ce5d6927a11c838ec7,         1,    python,   3.6.3
+           lionfish0/download_thingspeak, c425a3e00f6d50c8d7cfe1d80a9aa8b5a7ede368,         1,    python,   3.6.3
+       litopia/dlnd-first-neural-network, 129e3ff6cee3cd69b00e3e6e0cda83da3eaa0e14,         1,    python,   3.6.1
+littlepea/python-admin-business-logic-talk, 8d020ceb175492e25cd02e5960d6e0b966017f2b,         1,    python,  2.7.13
+             liuzqt/ubuntu_dialog_corpus, a554580c8b35ebc0d101d9efd1323a96f2357de6,         1,    python,   3.5.2
+                   lmarkely/bike_sharing, a30ad2b559fc304b69e113ff1f32b99701ca8713,         1,    python,   3.6.2
+                 losc-tutorial/quickview, 0bb777e23e2b8e95f558f6543a462fadc47732d7,         1,    python,  2.7.12
+                       lovit/KR-WordRank, 770ea1ee477461edf0f26c5728aa21cd0b0a9bd1,         1,    python,   3.5.2
+                    lperozzi/SGeMS_utils, 2930a488ae165c3efbb1a3bc6a72172a0e6ee289,         1,    python,   3.5.2
+                        ltiao/recomposed, 5476c5504249d4e30dbfb81fc18ea932bcbba0fd,         1,    python,   3.5.2
+ltpitt/python-jupyter-deep-learning-neural-network, b203eaa6a3c1e3c11de90e2ddba92d1713f562e4,         1,    python,   3.6.1
+                     lincolnfrias/binder, d81b83435525dafe84bd916f69c1798187f67547,         1,    python,   3.6.3
+             metasyn/creditcardfrauddata, 1a7899816ae95ec1569ff9a5b62d1cb30762f1b9,         1,    python,   3.5.2
+                        kojoidrissa/owwc, 659e32c1967160c8fccc211323b68d29ee808aec,         1,    python,   3.5.1
+         kmpopova/udacity-dlnd-june-2017, 266ba7d9fd6dda40740600645025952d58a371da,         1,    python,   3.5.3
+               hsiaoer/housing_estimates, e9ee878b453e1c18e75a2e216e82b84b1cca16e6,         1,    python,   3.6.2
+              hughperkins/selfstudy-LIME, b892452eb0cbd38d77ce0b602e113a491611e132,         1,    python,   3.5.2
+                hugohadfield/sym_scratch, 027a38499e6d0eb1fead720b0fe95cf7c38fe020,         1,    python,  2.7.11
+      hugomailhot/neural-net-study-group, 0419f526fcc2aae00020a5c15f0454c957f0d24b,         1,    python,   3.5.2
+              huichan/deep-learning-dlnd, 3de4c41b9a864f2f80ef28379c97eee559fc0082,         1,    python,   3.6.1
+               zhouxiaoxiang/oriole-docs, aea92bf146f887d5a0119d961e67f70c09ef63c3,         1,    python,   3.5.2
+        huuuuusy/Sharing-Bike-Prediction, e1895b9b6a42d3a420e147777d7c8284ad787d75,         1,    python,   3.6.1
+                 hypercott/cryptoanalyze, dfb41a300cd6225640f2a521e56db491144c6cfc,         1,    python,   3.6.2
+                    ianmathew90/redshift, 7c31b6030be0c7f0d0743f25246de3aba619f4ab,         1,    python,   3.4.3
+ianozsvald/research_module_layout_template, 464fd071a2f6aff6d485fee51c58c77c2079377e,         1,    python,   3.6.0
+                   ibarshai/jupyter_demo, 7f7c7ec2f041fb41ae09142c36705716b4eb1013,         1,    python,   3.6.2
+                 hoyasam/bike_sharing_nn, 160764883c922dd7fdec91886ff54e98014d9496,         1,    python,   3.6.2
+       ignaciovidalfranco/actividad3mfpd, 6d2302889b8d693a1aa51bccc2d8f35d54752402,         1,    python,   3.5.2
+   igorgenuino/predict-daily-bike-rental, 3e0e5dfb1f5f0fc1e788109336c76ca30fde759b,         1,    python,   3.6.4
+                        ihrke/pyjags-rpy, a8534769c6018179ba983533ac65887065853aa5,         1,    python,   2.7.6
+                            ildarkit/hw7, a24ba6d7f116b29630e2983b20e7a1f3a8010c64,         1,    python,   3.5.2
+                imWildCat/nd101-projects, 9b73052511162f2563869b83b9330ee85004b88e,         1,    python,   3.6.0
+                      inders/Word2Vec-NN, 5cb84fba3eb69102ad11b33f7237b29b88491218,         1,    python,   3.6.0
+           irglbriz/first-neural-network, c971bc6c395a194286af4b7bd0fdf5ec8073e63b,         1,    python,   3.6.1
+                       iskreng/RNOffsets, a1c3cc9009b299c5fce8517c80962e25004f304c,         1,    python,   3.6.3
+          ivanfoong/pdfeaturegen-example, 93cfdad0ed9a95cdff9c75dbd38c372e658d4633,         1,    python,   3.6.4
+             ivicts/first_neural_network, ff3f8d2203c076dbecfe62ddd70c05e61af43c22,         1,    python,   3.6.2
+ivogeorg/udcty-dlnd-weight-initialization, 9ac3d7fab304d3b24a3b64d59f4ae518e25a4ff5,         1,    python,   3.5.3
+                   j6k4m8/PyTablePrinter, cb6ac58633ab9ecd60e7ccdbcb37843529216883,         1,    python,  2.7.10
+       ignaciovidalfranco/tiroparabolico, fbd07f6083f953abf31442a6d8215a268fc60779,         1,    python,   3.5.2
+          jack482653/GAN-tensorflow-impl, 196cb1650db7a52c418bfea462d708d73f88338a,         1,    python,   3.6.1
+             howl-anderson/binder_tester, 5bc35aadbb38a6316110b1ad3ef61a98b8abc684,         1,    python,   3.6.4
+                hnagib/Parametric-Curves, 5f833aa7dded4ae4584e55778a1f59a765d2c1b1,         1,    python,   3.5.2
+    grantathon/crypto_portfolio_analysis, 72f8172c767451954b3ab3844cdd0479ec52dc2b,         1,    python,   3.6.2
+granularity/neural-network-bike-sharing-project, a18bfd844d1ff6ac5369029b0807eafa81b28db4,         1,    python,   3.6.3
+                      greglever/genomics, c0ba70aabfad89c121651b7da60811ae8845ba2d,         1,    python,   3.5.1
+                 gregpoore/Deep_Learning, 7bbb6736076f1b9bea7ff3168d5d625520da9bc4,         1,    python,   3.6.2
+                   gsantoro/sna-notebook, b5d43b41e03a28beba059eb28ebc53c32323ab59,         1,    python,   3.6.0
+                   gtback/pytn-datetimes, 16308e72a6c7f0368d29b50014f75b8a801a97bf,         1,    python,   3.6.0
+                          gulley/collatz, b9ef2a6324e45bdf1de94c01eabe2628e0f4e8f6,         1,    python,   3.6.1
+             gxie20/tv-script-generation, 1fd7f01a0a42021e223ccd98eabe2c4ccb16e241,         1,    python,   3.5.2
+                              gyglim/dvn, 5fbfd2bf6a13701a3cb70f29b8dc4f7817780988,         1,    python,   2.7.6
+    haakenlid/python-challenge-solutions, f18ceecfdf5bc61c714a6e19b10a783d5cec202b,         1,    python, 3.7.0b1
+                      hahdawg/pdparallel, 67395d2febbded3279455b7f50e40b6815ef62ca,         1,    python,  2.7.13
+      hongyang01613/First_neural_network, b57ad2272a91e1f2cea4250a6602e8d32e005032,         1,    python,   3.5.4
+                      haishenming/uda-u5, 8e4a5a6bd4eab8fc6228de85fb133162eff6fdbc,         1,    python,   3.6.3
+               haotiansun/Neural-Network, ccbe6c071bb95aac27c6be037e7b311287db561c,         1,    python,   3.5.3
+                    hardingnj/genomeplot, f280735adc2a97f14142717e1aa3e9b4ca1b2809,         1,    python,   3.6.4
+         haribaskar/apiai-search-webhook, ee393f525287f3ad739920388b85e4c4710fda1c,         1,    python,   3.5.2
+ harpreetsingh/first-neural-network-bike, 9435a3668c07f1234883a7818ac600fa0442f783,         1,    python,   3.6.4
+                     heglex/gene-science, 84eae795c781459dfd3a5b5fb2ac8f86a74f8354,         1,    python,   3.6.0
+  herzogmartin/dlnd_first-neural-network, 3dd377db57dee19688c5112a979e1c2c9fec3d7a,         1,    python,   3.6.3
+                  hetul-patel/python-spi, 97746d0903519fa4bf05570cb56dfefc40d731f9,         1,    python,   3.6.1
+                 hhllcks/footballdataorg, 991528a802655342c5bb61fc0684aeac7a43a69a,         1,    python,   3.6.0
+               hhu28/miniproject-prepare, 9d623f628a518bd689f53f9a37a76b222dabb794,         1,    python,  2.7.13
+             hkeeler/sac-civic-hack-2016, 162e01b7b21ee6a21a7c189e71563f54d4b107b8,         1,    python,   3.5.1
+hlfshell/udacity-deeplearningND-first-neural-network, 09da432311a3896b1ea189851d0adb103c2dc424,         1,    python,   3.6.4
+                         haneensader/eeg, 825e2be9d859009536dd225c464a89747ea5a0a8,         1,    python,  2.7.13
+    knf-us/pidays-2017-plotting-workshop, 42c8c43cd54e049c2c64df1c1fe8956fc0ebaf2f,         1,    python,   3.4.3
+               jakekara/ctnamecleaner-py, a24e190803007a4b5c0ab3d99c9ad239f2c7d198,         1,    python,  2.7.11
+                         jakesnow/quakes, 15bc223b4ba588025309f0b8590be9d713acf4ee,         1,    python,   3.6.4
+    jraj002/simple_flask_docker_training, b9627b5a0922a13d41fd35a3a8fa9bb33572a6bd,         1,    python,   3.6.3
+jrbourbeau/xmeeting-intro-machine-learning, 1a8c6705bd615fce7f1775b82b1efcd7f9ca381b,         1,    python,   3.6.0
+                 juli0213/MyDeepLearning, b1b176a56b539853878c085c9cbcef48d9e6d547,         1,    python,   3.6.4
+           juliangaal/python-cheat-sheet, cee14b11de5a3f63ed1e70453cfa4b14923cb177,         1,    python,   3.6.1
+             juliencohensolal/ml_toolbox, d260bb8dd76df1fcd929a60b23c01cf4f31cfe93,         1,    python,   3.5.2
+            juneyi1/KitchenNightMaresApp, e4455008b18d0a4421b7ffe7cbb895324ee2772d,         1,    python,   3.6.1
+               jupyterhub/binder-billing, 78cb3be90b689fcf6bce979b4ecd94cc371dd79c,         1,    python,   3.6.2
+          justinsolms/Quadcopter-Project, dee8c6f3f871f6f2360f443f4f3648c7bb445c24,         1,    python,   3.6.4
+   justlittle/uda_neural_network_bicycle, 815840b4c7c24d49e1fe240ea69d97f3d74a056f,         1,    python,   3.6.1
+                    jwkvam/plotlywrapper, 9d661862b6258b0907a8f851393ccfb1de36bef3,         1,    python,   3.5.2
+           jxm-math/first-neural-network, eb76fc48702f9902b8777379455d4c3b5ced7713,         1,    python,   3.6.2
+                  josian/PyDataSciMeetup, f3e24ab1407382a11c7e021f5d9dd76a53ef124b,         1,    python,   3.5.3
+                   k-nut/flinkster-usage, 562dbe68a426e210d33afd5b45a90ee7e5d0bfad,         1,    python,   3.6.3
+     kadimetla/machine-and-deep-learning, 62a1c0547a06a54e8b46464696cf9c2e48350eec,         1,    python,   3.6.3
+             kamujun/naive_bayse_anatomy, 6aec78ed8acee6b6bd266506fc46faf3a5223468,         1,    python,   3.6.1
+                  karanshgl/cyclotron-dl, 4f9bd5484ae5d4fe407e34ad928638009043011a,         1,    python,   3.6.2
+   kartik-nighania/Neural-Network_python, be20142d8e4554e5e58924d8920d587d851a3c14,         1,    python,   3.6.3
+                          katelaan/sloth, d5464e51aab3acf2613831991f4c191de01d77e8,         1,    python,   3.5.2
+              katsupatree/data_wrangling, 9d16d00688fe70099e0015f6934ccfaaba38d18e,         1,    python,   3.6.0
+                        kazup0n/lifegame, 2c710ed6419dd30a28dcaf5a352e08d107b08405,         1,    python,   3.6.0
+         keldLundgaard/Polarizing_movies, 9af39d430dc56c9c8feec963b896b0a849a013fa,         1,    python,   3.5.1
+                kingliantop/deeplearning, 84be1ee84713be5e51b1e62a567181a0a3320986,         1,    python,   3.6.1
+     kirillmakhonin/ifmo-lab-python-2016, f50e9f536e538d90c511bdb7d3538e961bc2c7f9,         1,    python,   3.4.3
+                          kjschiroo/mlip, 0c0bb64d8050763b368d771a174fb11754d8ebff,         1,    python,   3.5.2
+          kadimetla/first-neural-network, 9dea495f9442584fdb447fe79e447c540b0ebc3d,         1,    python,   3.6.3
+                          jakeret/propro, 36f4c0b634316189593548bf92b62e2d94b1a928,         1,    python,  2.7.11
+            josemazo/recommender-systems, e5858b5c77dc62ad8772e8f56019c8226e5167e7,         1,    python,   3.5.2
+          jordan-arenstein/matric-finals, 5e2e84af27bd911cc8b943a396fd6eae9740e970,         1,    python,   3.6.1
+      jamesferry11/Udacity-Deep-Learning, f284793e20b1c9e37d553227578b2974f3e5a94d,         1,    python,   3.6.0
+              jasleen19/twitter-streamer, 136ee3acc00c5ea99d6b5af96c73fabd5472a8a7,         1,    python,   3.6.3
+                 jay-thakur/Bike-Sharing, c151c4b9d977a68e0303427a47f18c967cbf259b,         1,    python,   3.6.2
+                           jbmorgado/isl, 1cad2d6b4385634c227ae1084b05c8308fd077d9,         1,    python,   3.5.2
+            jcaraya/basic_neural_network, dbdfb50d0e906d4af720fcb73d62446b11eead45,         1,    python,   3.6.3
+jcsastre/udacity_deep-learning_first-neural-network, 039f1d3f2fa3b162aa37874d252a716d55616261,         1,    python,  2.7.12
+                       jeremiak/fec-data, 1ebd6be38dff29a5f98e603ac1272f119bad8098,         1,    python,   3.4.2
+    jesus-a-martinez-v/bike-ridership-nn, 259ebf76c4ce1b02a2913f15d53e8b27d44a55f0,         1,    python,   3.5.2
+jesusnuma/Project-3---Generate-TV-Scripts, 060d414a60b59e671002f5e9e8a1a0c4f00eb0da,         1,    python,   3.5.4
+                    jgarbers/trynotebook, 575ea70689db34f723f90821ea9018b559d62d69,         1,    python,  2.7.12
+                    jgomezdans/mauna_loa, aa4e650761e341d4369cef64630248ba18e4bca0,         1,    python,   3.6.2
+                   jorgergb/udacity_dlnd, 6e485771fc5bfaf48555726b4455f4b66b4738c5,         1,    python,   3.6.1
+                jhendric98/mlpregression, 93522e62d716a666eae76af9f10087649b912de7,         1,    python,   3.6.4
+             jittat/cupt-admission-stats, 5b2c1d178ac341e2d94c8b4a2d101c7ae381c281,         1,    python,   3.5.3
+        jkallioniemi/finnish-number2word, de82be17c90550067edf83082ebd912291559c0b,         1,    python,   3.6.4
+                  jkanner/quickview_test, ba444d49ce0490aed122501189a24930a96e08e2,         1,    python,  2.7.12
+                         jklaw90/mlstuff, c59674ef6be8a2a75d76a1b2f4a952b6599572fb,         1,    python,   3.6.3
+                   jobovy/example-binder, 13a55d073847df64e33af4bc0ff21593b2112757,         1,    python,   3.5.3
+          johnbradley/binderdownloadtest, 0819eb94cb7475197b21077285671e0ca9b160a2,         1,    python,  2.7.11
+                     johnlam/cryptonotes, e71719357aec3863e24628ef7b0ec335c9bb3029,         1,    python,  2.7.12
+                  johnwheeler/handson-ml, aa6ef68d172de1e7e18de226c7a01b1fe18374a9,         1,    python,   3.6.1
+               jonatasleon/calculo-sympy, b87b61948678a14567ba74c848bd075b38dea2ea,         1,    python,   3.5.2
+                jonititan/AircraftDesign, 9b0499bc10453de9f3695781d95005760055fd8c,         1,    python,  2.7.12
+             jonschull/MyBinder.org-test, b0720c745f2ebdf80d0780a3c438b120ed105ccf,         1,    python,   2.7.9
+        jiffyclub/ipythonblocks-mybinder, cb1508d1fc130f733022e7eea5b6f2c1f316b920,         1,    python,   3.5.1
+mgacek8/Python-In-The-Enterprise-Lab01-02, 9c93257b9aa779113b0a26e49be2f54d60790e20,         1,    python,   3.6.0
+             mhowto/first-neural-network, 574d8997d2886447e9c7b7af36e982a085218f0b,         1,    python,   3.6.2
+               michaelbironneau/insights, 729e888eec6fc2d87b957968f05356578b08792e,         1,    python,   3.4.1
+      sheikhumar93/Simple-Neural-Network, cd8b4bc42192894d1a1f678f3846d339458d9ea8,         1,    python,   3.6.0
+   shekharf9/Bike-Sharing-Neural-Network, 1206cf39395b2cce9b0bac88ae8cadc36c076348,         1,    python,   3.6.1
+          siddikui/Simple-Neural-Network, 8f4c0c2662efa3a4e77960010e517612f0808aed,         1,    python,   3.6.2
+            siddimore/FirstNeuralNetwork, 6c0f4d37514776eb11174eefdb459ae74c9038d9,         1,    python,   3.5.2
+              sidh-crypto/sidh-optimizer, 7f5da331fe3c76a7d48c95d5954b640ebf3aa6d5,         1,    python,   3.5.2
+                          smk950226/ORLY, 6c118f99606763fd2ac3253c427883afc789310e,         1,    python,   3.6.2
+                        smujjiga/pybytes, 418b14c31144341da4a11600fbd4aa0d3c9831a3,         1,    python,  2.7.12
+                 snow13bbc/Final-Project, 6ebdd906455b8f7215dd2f2f305fb58500135973,         1,    python,   3.6.4
+             snowcranestart/deeplearning, 0e35e888631e7d56f59253cae6771b45d84fd752,         1,    python,   3.5.4
+        soujiro0725/cryptanalysis-python, 399b87eed7277f97916b621051dcce237863560a,         1,    python,   3.6.3
+                          sp4ghet/kaggle, 419a65e89b920b667110ac64330680bf62addae6,         1,    python,   3.6.4
+                      seppomerimaa/maths, 9fe6e2de2700546bd1ec490a037fa41128efd95b,         1,    python,   3.6.1
+        sprij/DLNDF-first-neural-network, be057f0e515b2f85ad3ff354abd837bce5654371,         1,    python,   3.6.1
+                     ssterrett/starlines, ce6ad90411f78e9e85ab7746b195e833d3547d1b,         1,    python,   3.5.4
+stanleymwangi/make_your_own_neural_network, e806bdcf753b924780922c05206af407d21ac7ed,         1,    python,   3.5.4
+         stefan-niculae/image-completion, de5f3d023ca6ae575bdfe3b29fb44b9d1e4ae7f3,         1,    python,   3.6.0
+                  subokita/guided_filter, ab1b85d48a59733eae4fb2329ea9b615b78536ef,         1,    python,   3.6.2
+                      supernova106/pybot, 0e5325c94675464a5bb5125b4dc5eee907ce8823,         1,    python,   3.6.4
+                          superphy/pomft, df79e528c11f6909346c332547e3a12f7e67b3c1,         1,    python,   3.6.3
+                swang373/uproot-tutorial, f9c565cd0754b46819f8e6a82cdce9779a272ced,         1,    python,   3.6.1
+                           swchen888/APM, da44d754c438484f156895bacba8b348b11256fd,         1,    python,   3.5.5
+                  takuyakubo/study_group, 9400175dc0132f46bdb439ccc3b82ed1cebe89be,         1,    python,   3.5.2
+                  tammoippen/autoencoder, 29853a8e51f68edfcd16d60a2cbcef1597d3c951,         1,    python,   3.6.3
+                    tasuki/minotaur-data, e9cde4086cae7a6e6f9c2b90c6168c6d43848062,         1,    python,   3.5.2
+               sspickle/MC_Optics_Hasbun, fbe7623b68bf73b30b1369f34810c6342aa90b1c,         1,    python,   3.6.2
+                tdooner/scrape-offenders, 7381f011f1d2dfd5c7b15d96db590f4d9b22c28d,         1,    python,   3.6.0
+                     sepandhaghighi/pycm, c2c6e6850bf9ee3e8f3941b32d9a1f7608f32112,         1,    python,   3.5.2
+                       se7oluti0n/cs224n, 56e204e524247368b795b80ed0b4ee0db7f8b15c,         1,    python,  2.7.12
+                          rsokl/liveplot, 15a156328864271c987f1ccdc323f54c54ed792a,         1,    python,   3.6.3
+                        ruivieira/gnaddr, 6fa2b799153226b89490f11e120a60ae9416ef10,         1,    python,   3.6.3
+                     rutwikc47/skylarkcv, c9a65509e1d973c2bb938e25e09f5e7fa953b75a,         1,    python,   3.6.0
+  rvinas/predicting_subcellular_location, eec789395c56dfa008fe7fe52c17c58dac0defc7,         1,    python,   3.6.4
+                 ryancollingwood/Pokedex, 10ddafcf21e5d7a37933b0a9930f00225a2d7f30,         1,    python,   3.6.2
+                  s0288/first-neural-net, 566122b4e94d6e60ffcc805792240c70f69a2edb,         1,    python,   3.6.0
+sahoora-nath/Titanic-Machine-Learning-from-Disaster, 313242d8ae4aeed9edaef5029ff93b7cd289c677,         1,    python,   3.6.4
+                samzhang111/rnn-notebook, bf07abcf73783aad85264768dd9fc4770e5bfa65,         1,    python,   3.4.1
+samzhang111/stat-function-visualizations, b9d8a02a68c5e948df8f4f431099e0afafc11e7a,         1,    python,   3.5.2
+             samzhuwj/list-comprehension, 96f10f56dfa1e3fea63d3dafba469dbacfcb27dc,         1,    python,   3.6.3
+                 samzhuwj/ml-python-wiki, 036bbf6ed3148fc92f08a9b46d9387fd371f8f36,         1,    python,   3.6.4
+              selenewaide/DataAnalytics1, 55142dfd070696ec5c42cbd7085aefc920c4f7fa,         1,    python,   3.5.2
+                  samzhuwj/python-matrix, 61292d95a5c6b2dc96775bebafacfdfb60cd353c,         1,    python,   3.6.3
+                     samzhuwj/use-pyfpdf, 049ad9b8dddff84295b17ef60aef1995ba7159dd,         1,    python,   3.6.4
+       sanketg10/neural-network-in-numpy, f2019181bed56cdb8fd52ce813e8de3d5f303097,         1,    python,   3.6.2
+        sarath145p/jupyter_notebook_test, f3381c149e8df14599166c82f876916ceedcaf4e,         1,    python,   3.6.4
+                saturnist/bitcoin-prices, 1a0f4b6e6a511edab3a02e2ba4f5f20aed6c9504,         1,    python,   3.6.0
+                  sbeslow/waterfountains, 028a2fa415e318670f8308aa3979647eb6cdcd46,         1,    python,   3.6.0
+       schoolofdata-ch/dataviz-hkb-loleg, 6140c695468ab3b241aa98638270c639f1c265ab,         1,    python,   3.6.4
+                        sciyoshi/riddler, e97d631f0deb3dc372c8f40623835dfb41f255f8,         1,    python,   3.6.0
+                      scotchka/mutt-lang, 36ecf829ecde31017f60eb9a105eacd88ce14c7d,         1,    python,  2.7.13
+scottshypula/dlnd.P1_First_Neural_Network, 2805231926cf844466692be711947d3f30c42bb5,         1,    python,   3.6.3
+                   sdelquin/data_science, 5589b5496738f8ebec67c303428fa25ce7633bae,         1,    python,   3.6.0
+                 sdia/hypothesis-testing, def2287661ba4486f7e6ec786213ce494fe92e9c,         1,    python,   3.6.4
+                       samzhuwj/read-csv, 53a9a0378d6f2fe77ade9cbc36857ed5766285f5,         1,    python,   3.6.4
+            rprofeta/pitchEstimationtest, a345381cd82bcd6e3fe35e5cee96589f755f4583,         1,    python,   3.5.4
+             tfalbo/MyFirstNeuralNetwork, ade6fa267a6a6ecf8d291d9e7ce42eedbbfca024,         1,    python,   3.6.4
+               tijmenvandenbrink/jupyter, 8e4b6c6df385ac01e467072a58328982fe994b36,         1,    python,  2.7.13
+                           vz415/Citi_NN, a0dc395ed667979489ddb1d6315d7719e7d98310,         1,    python,   3.5.3
+    wang970073247/DeepLearning-projects1, 240313b308fa51a2dc0f85c8e990ce00c0f5eafb,         1,    python,   3.5.4
+           weithink/first-neural-network, 533192df83146c24a6060b60f5d7c4f561cfa5d0,         1,    python,   3.5.3
+wesleytsang/udacity_deep_learning_neural_network, 50b005cd61c16b15f14eca44de559e38397e3c21,         1,    python,   3.6.2
+                 wholmgren/mybinder-test, 3f9fe0a10593fc9e904f84cd771373141296879a,         1,    python,   3.6.1
+                willaccc/udacity_project, 28f24f7384cd411f389ba763542393be28116b0d,         1,    python,   3.6.1
+                      willdumm/SoilStuff, 414fbc99a6fccbcc00cacdb0fbdaf3ebd001e473,         1,    python,   3.6.4
+  wootencl/D3_Jupyter_Data_Visualization, cb98fe8fc688931e8c4c18c9942eb0a977ca37e1,         1,    python,   2.7.8
+   workforce-data-initiative/tpot-abacus, f157654a510a85d41e26c5747433e8fa1a10c76e,         1,    python,   3.6.1
+                 wouterdobbels/notebooks, 3ea99e9911d5a1c977fd4dfcde11ded86a88e052,         1,    python,   3.6.4
+              wuling31715/function_timer, 6db66c8453e4be96c1cede6b32674480fe6913cd,         1,    python,   3.6.0
+                           vtran61/test1, 38f90e827b32ffa243305f98f089d043f25fb547,         1,    python,  2.7.10
+    wuub/pylight-processing-tabular-data, 01d801a198f0a0e4a28fd32ef9dc65b54b1ce591,         1,    python,   3.6.1
+                          xmnlab/lottery, f45f752006b85959321fc628ad954f5f23878c33,         1,    python,   3.6.4
+      yhagio/bike_sharing_neural_network, 2b13fcf3f70bde4bf0ccdbdd799da646cd052457,         1,    python,   3.6.2
+            ytpub01/first-neural-network, 9a6e3b4d47ce74deff77c9fc14ef377d40afde26,         1,    python,   3.6.2
+                        yungyuc/modmagic, c5c248e0d1a539afecdade7d70b70c4f646a4946,         1,    python, 3.7.0a0
+                          yupikaiei/test, 91b164f2deacfd4266e900a7a0b58dce8c149c42,         1,    python,   3.6.3
+             yutongshen/DSAI-AutoTrading, efb6275de55717d23338572df345c1aaca537d83,         1,    python,   3.6.4
+  zaccharieramzi/kernel-digits-challenge, 416da1a6d416ca04e34f501f80d248837c2f162c,         1,    python,   3.5.2
+                   zakPiontkowski/resram, e3e7037308bd79c1980ca9b31cba5ceea1efd7e6,         1,    python,  2.7.14
+      zejunliu/Machine-Learning-Projects, 3773ca337a018dd0de09d48ee52cd693d91ab79e,         1,    python,   3.6.2
+        zengzhi2015/first-neural-network, 28f147e0ea3e8812199280b859d4a6210d509773,         1,    python,   3.5.2
+                           zenkig/BikeNN, 0dbdc739c3a6e22e6d2a0372e5e4bc0602358686,         1,    python,   3.6.1
+                       x1sa1/PyElectrica, 3a4adef9f1ad5b576f26859afb3b5398beda32bd,         1,    python,   3.6.6
+         think-data/first-neural-network, 6f9584897a5f09a75e06f373603dac7745971e3e,         1,    python,   3.6.3
+vsumanbabu/DeepLearning-PredictBikeSharingRides, dae878d91b973d1b70a34098ed53425f84738179,         1,    python,   3.6.1
+                          vnodecg/nslkdd, c3d955402c4412da6f01ebb2f085b78997bddc48,         1,    python,  2.7.13
+    timofeyantonenko/clusterization_test, bc1a81595793304453fe7ee1130902a0a6809c98,         1,    python,   3.5.2
+    timtwotoes/DLND-First-neural-network, 411a40987935d4f946714185be2fdb8ae4dde891,         1,    python,   3.6.1
+                  tksmd/hannari-python-3, 9a6463e10b5cf04a9f6313a82ddfb02c03d031ae,         1,    python,   3.6.3
+                 tkzeng/dashboards_setup, 7b6ec030464f931e6c202ad896d020fa54dfc63e,         1,    python,   3.4.4
+                  tlkahn/Cohort-analysis, 2dba68b21b3256775c586a502832b733f7569f6f,         1,    python,   3.6.1
+                     tompollard/tableone, 308293129ff6c23515dfceac3c758d4dbb36504e,         1,    python,   3.6.1
+            tormink/first-neural-network, 2348a15b43bc16f6e6fe1a219a561b16773366a6,         1,    python,   3.6.1
+       trevordmiller/practice-jupyterlab, 94f78b2029bb6777e1e652208f282ac66ff929cf,         1,    python,   3.6.4
+              trevorpburke/podcast-alarm, 5457e1173a1096df954988cdb3bcd71680740ccb,         1,    python,   3.6.0
+                      txytju/keras-frcnn, 576bcb1487bb26d6510911413f13ca971dfe6c9a,         1,    python,   3.5.2
+                   typingduck/moving_air, b2dba0008534418cc016bc2e253695db2aa82b7a,         1,    python,   3.6.1
+         vsanjay/My_First_Neural_Network, 67aee5be31063c055dc19da2cd2a2ddcca79b7be,         1,    python,   3.6.2
+vaibhavsinhvaghela/Sentiment-Analysis-with-Deep-learning-Neural-Networks-Natural-Language-Processing-, 79d1f19b526bcb9a0b5ef3c944d2dda124fd3b95,         1,    python,   3.6.3
+            vcsalvador/dlnd-project1-rnn, 2bee6e541ea637090fced6293aa452e65409ed5f,         1,    python,   3.6.3
+                vhiggins/clone-class_1-2, 272f1d17268396fc45daa5ce5d6927a11c838ec7,         1,    python,   3.6.3
+               vibhor-kainth/data-mining, 1ffe9c51c907f54789f9fd7c6f3e21617f784d11,         1,    python,   3.5.2
+          victorpb/courseMachineLearning, 1e6afd955a21a5d3a8632569f307b92f14197f2e,         1,    python,   3.6.4
+               vincentclaes/sales_report, e1dc6790d6ed335ba3ecb1c09728252afd3cd5cd,         1,    python,   2.7.6
+                         vineetu/Udacity, 54b1180b7af2c3dd864f2856556f038b3c590a55,         1,    python,   3.6.1
+          vishy7057/TV-script-generation, 938ea7dc34e49e7644cb2ceb6995adce14a5e5fd,         1,    python,   3.6.3
+         vitorbaptista/licenses_analysis, c6b79a922a7b5113b203bce662f030a68d66975d,         1,    python,   3.5.2
+                         vlad17/np-learn, d5b7b8976639e452c625670567bf2bcbb33fd9b2,         1,    python,   3.6.3
+     vlandham/national_parks_map_extract, 301eb7a284bdd5d2d28fdf2e4746a310fefb6289,         1,    python,  2.7.12
+           vmalekal/first-neural-network, 98a329c68d6a093b6c5ef8a7b76288acdadb67ac,         1,    python,   3.6.1
+vcarpenter/movie_reviews_sentiment_analysis, ff14227e0abd533d702071f4d7c9e41636d39177,         1,    python,   3.5.3
+   rosiehoyem/baseball-stats-hiring-test, e7e1905c8525aa8eb10f942b236a954b57fce416,         1,    python,   3.5.2
+        ron-johnson/first-neural-network, 6c3b36e86c876e0626a5a37fd8adeb95cca3856d,         1,    python,   3.6.4
+               romaintha/backpropagation, a1dd28b8e3574a430678a670048b556e3021b994,         1,    python,   3.5.5
+                 n101012000/udacity_imdb, f1a05aee15ede51ce34b407751c446b4b697da1b,         1,    python,   3.5.2
+                    nakshatrasharma/DLND, dbe4fd3320e30d9e99c7cc518071eda4875270b3,         1,    python,   3.6.4
+               naoufal51/Orion-Augmented, 202771eb94b3b80706a7b5c67616b72571d0c9d3,         1,    python,   3.5.2
+          nathalietran/boston_bike_share, ba3a6f5bcb8d615fd09b8ff3daa2009685d35a8b,         1,    python,   3.6.0
+             nbedi/college-president-pay, 3988beb90d5620e2997703865cafff1c9e84478c,         1,    python,   2.7.6
+                    nel215/change_finder, 7cf46222606074fa7188f801797799abed14a99c,         1,    python,   3.5.1
+ netlogic/brets_first_neural_net_project, 73fc0db2bf5a47da96c587b665e556fcb14e4ca2,         1,    python,   3.6.2
+                neuroneuro15/filldefense, f62a8177a8fe2a30dd7f268958d10789a4e615a2,         1,    python,   3.6.1
+        ngs-docs/2017-davis-ggg201a-day1, f8629b023ecf5f94ba1bda2797f084f8a7adb7b9,         1,    python,   3.5.3
+                   ngs-docs/2018-ggg201b, d179b631fe4406a2a91e4dde124be91547261a7a,         1,    python,   3.6.3
+           nicktfranklin/ChangePointDemo, 46845d0e7fe227b89f49c1c7361245d9a4f79089,         1,    python,  2.7.11
+                          mzgubic/dRdemo, e6c7d37f758844170cfae209ccc5985e01e15705,         1,    python,   3.6.2
+                       nikhartman/dxfasc, 8d941ff22edc4311c19c5a52d763dfb8de80fbd6,         1,    python,   3.5.1
+                            noahgift/mma, e2641647a501d5b6107068b2a269188a228b12a8,         1,    python,   3.6.4
+             nohhem/first-neural-network, 8aa48ac8252d5436c53d635056a88d417108f652,         1,    python,   3.6.2
+            nprapps/trump-tweet-analysis, 482171a7d9001f8de113431ade6280055e6db255,         1,    python,   3.6.2
+         nuitrcs/crd-2017-numpy-workshop, af05f2afbdc094eb55306f5c80d2a1a1976c1363,         1,    python,   3.6.0
+            nunesma/first-neural-network, a5485e75bef17a5bb9c0f2447321e0c902866d5f,         1,    python,   3.6.1
+                     ochoadavid/DrawBeam, aff5202b19c3612b324bc83beb247446a50716e2,         1,    python,   3.5.1
+                       ocoudray/DataCamp, 5af2cb89061bc1ce644b9c1e850e8bcb96a636ba,         1,    python,   3.6.4
+          ontouchstart/binder-tensorflow, a5eb59b761f99f1783e81cf18f5ace6939b1cb61,         1,    python,   3.5.2
+               onyxfish/nicar-2017-agate, b0a47d7b6970ce3d348840d13d2f05532c673be3,         1,    python,   3.6.0
+             opendatateam/udata-explorer, 4ec1a0fced35e602be2fc86f8cfa8f46f4e5d865,         1,    python,   3.6.1
+                    oskopek/iris-distrib, 69d62488364668841722588e2b5f2f23c9128c63,         1,    python,   3.6.2
+                nmbrgts/Gap-Minder-Clone, 9055bebd10955dffc82339c60110132b28de2fa3,         1,    python,   3.5.2
+                   oxpeter/smartfest2018, a2b94c43e1e852cdd1f40f7d5e823df9aeac2615,         1,    python,   3.6.2
+         mxfunc/python-data-cleanup-talk, 1eaee268bed8fc800069c61f8306760d2bb21474,         1,    python,  2.7.10
+                        msto/simple-venn, 7f79b272b5fd07bd0112293c26de58e513f706e9,         1,    python,   3.5.2
+                      michaelcapizzi/FPL, 640aea1b42652f15ad77396e933795b496c6ae22,         1,    python,   3.6.1
+                 michaelraypace/first-dl, 9157640709a77e0c5e44a00b4c1c55bfe1a2eb8a,         1,    python,   3.5.2
+             miknoj/IMDB-Data-with-Keras, 609fa6f57b203a20930e7700a43dd940421aefb5,         1,    python,   3.5.4
+    mikolajsacha/BioPairwiseOptimization, f5c7ed3db4a462cad0d2d8b21ad8129274547fc1,         1,    python,  2.7.13
+                     mirzaevinom/egtplot, 9a338a7c582e90aa76a3a9b3b978f43ad136bc18,         1,    python,   3.6.5
+  mity-shantiranjan/first-neural-network, 0bbcd637a9853d40091bf0e7c072291db15966e4,         1,    python,   3.6.1
+   mjenczmyk/lanczos-sigma-approximation, 79874771f302325ce71606ded9238fad8cec2d45,         1,    python,  3.5.0+
+mjlavin80/basics_of_text_analysis_in_python, 6d52b0070b051a467d13792f0e089e531d32ec9d,         1,    python,   3.5.1
+               mkrphys/ipython-tikzmagic, bcbb04553c06a430192ed6e54f7caade779e7dba,         1,    python,  2.7.12
+                     mlamoureux/Callysto, fa2deb840f594c43754abda8cfc21c8205917d3b,         1,    python,   3.6.4
+             mmacpherson/lifting-program, 960c1764aa52f347e856755b4586117155a010b7,         1,    python,   3.6.3
+                              mvsaha/eon, 957f0c832e2106654ba7266ff4a11f0f4742b9f1,         1,    python,   3.4.3
+                    mmalandro/TVNotebook, 01d6e371c835191c80bf8f93c1e60aa446753a55,         1,    python,   3.6.1
+                mmngreco/quantdare_posts, 17b25debb2b15dcd458f8e6fd4e378ca37d755cb,         1,    python,   3.5.4
+mohamedabdallah1996/Sentiment-Classification-from-scratch-, 96c09beb99db177bc59cae3e1102151837c03027,         1,    python,   3.5.2
+  monty47/Sample-Based-Optimal-Transport, 9aa4bbbac444ffeebc8066d3194cf81f103f2228,         1,    python,   3.6.2
+            movesan/first-neural-network, 813e8e30cc293eb34128bc03e41b7f05d0e4ea7a,         1,    python,   3.6.3
+          mpeven/mobility_classification, 80a09cc1c5295f164f956d5821fa614177cf4570,         1,    python,   3.6.4
+                      mprzewie/benchmark, bc204e889e247a6cbad3456a00c296c1e1519504,         1,    python,   3.5.2
+  mragungsetiaji/dukun-crypto-portofolio, 8c520ebe0303f46e4ccabffb6803a4b02a959898,         1,    python,   3.6.3
+                       mrcosta/uberstive, 02c609c3febb3f5d93243b9046514a489b4f002b,         1,    python,   3.5.1
+                           mrodruck/test, afa5231c993f0279a9e59edc8b52a63af5c25997,         1,    python,  2.7.12
+                    mrschue/pylab_course, fb728b8defdc7f90644c187c2f603eb4af8823c0,         1,    python,   3.5.3
+                      msarvestani/CNI-JC, c7f868ee6294e3eadfc067a21e34b233e42cd961,         1,    python,  2.7.12
+       mmedum/computational_geometry_fun, 75669d7e20e0be6f1368d6ebc1c955b183ded931,         1,    python,   3.6.2
+                      p76061425/DSAI_HW2, b0cb149428adda4f9e6e371cc3d946276afa3ba6,         1,    python,   3.6.4
+pablo-munoz/numerical-methods-final-project, 1f6c665c3180db8d55338d4ae5e6bc4ae481664f,         1,    python,   3.6.4
+  palewire/altair-jupyter-lab-bug-report, ed7bdce1a4d79cfa8db8707d86cdc80e7953e6e8,         1,    python,   3.6.4
+                     pw94/Autocorrection, 44238d6501bcafab97ea12c5851ca9a6ea0faad3,         1,    python,   3.5.2
+                           pyexcel/talks, b333eadcbdced6a37ce0a8604ddf35ef7e9fb7de,         1,    python,   3.5.2
+  python-seminar/aasigment10-YuguangTong, 0d589fd7330cce7970a99942708376dbd740a0b5,         1,    python,   3.5.2
+           qklwl926/first-neural-network, 72743c81fe8770e889a20c85a162dc54d928e5fb,         1,    python,   3.6.2
+           qy242521/first_neural_network, 72d751af14cc08295ef2ac56a6d523ea3ae97f1f,         1,    python,   3.6.1
+           rafjaa/machine_learning_fecib, 70ee68aa6702fd04b00c984f8064a9a488b9f05f,         1,    python,   3.5.2
+                          ragAgar/LiNGAM, 71e74c6293fa214c9021d46d8d58907696699281,         1,    python,   3.5.1
+             ramp-kits/astrophd_tutorial, cb2508f05f0163039de298b4a2d2978dfb26061e,         1,    python,   3.6.0
+   ramp-kits/epidemium2_cancer_mortality, 6980169a812de9cc827f9236ac5614b7b1b6fa41,         1,    python,  2.7.12
+              raphbacher/demo-jupyterlab, 436dd1304284f2bf6fca399bb04c9a2c999ec38d,         1,    python,   3.6.2
+                      rapturous/randomPy, 962cc3911d3be023f493f86d01568b0d3aaac5fc,         1,    python,   2.7.9
+                       pw2393/crypto-rnn, 068cb99c9431369edffa862d4d955d0ba5cbc7ee,         1,    python,   3.6.4
+  rastringer/Bike_Sharing_Neural_Network, 183fe02af5257b5a2cb00a07aaec14c2b92443e5,         1,    python,   3.5.2
+                            rdeterre/dis, 21908ae18c09ee55dff5805603dca01a2aa3e264,         1,    python,   3.6.2
+           renatolipi/python_for_finance, 7907b2fabd66e700a7ba8edb4693eeeefc697367,         1,    python,   3.5.3
+                 renzon/pytest-decorator, 90ad9c584f53d5c33e1b62a28aae16da10b8e2ac,         1,    python,  2.7.13
+   rick-liu/dlnd-rnn-generate-tv-scripts, f57b14f5b8c9445a3f32c6e7bcdcde5fd9dfc7ba,         1,    python,   3.6.1
+                   ricoms/Data_challenge, d48e86a2f200945f1c78c088163465ed4c6e6e50,         1,    python,   3.5.2
+          rishabmps/first-neural-network, 3c0970f271edcc39829f78d75382a658f62bccd4,         1,    python,   3.6.0
+                       rlucioni/statcast, 5d98f66e79c49e4fa23a3de3551d4bd2766eb181,         1,    python,   3.6.1
+rmotr-curriculum/class-material-file-management, 58f1261acc751abdeb7793253acf9d0b7ab639ef,         1,    python,   3.6.0
+                   robodasha/h5pywrapper, c124aa73814c0f99a45e31cb8c34c076a55dee15,         1,    python,   3.5.1
+            rogercaminal/ContestAnalyzer, 0f841f3b6e425c5949b2d536e15a50f4a2f8c010,         1,    python,   3.5.2
+   rohitwesley/DLND-first-neural-network, 9353f5bf40dde42f176e99b9765b966c05a8fca7,         1,    python,   3.6.1
+                       rck-j/DLND-Prjct1, 0ec1b0724f11ba566564acb7a3db4df3509431ef,         1,    python,   3.6.3
+                     pvanheus/testserver, 785f1da4e82ae0b1c3c09291452c3a0d78609799,         1,    python,   3.5.2
+                   ptocca/VennABERS-demo, 67e73d66a051d540318cda4bd04e7e4feefe534f,         1,    python,   3.6.4
+                             ptocca/VAPD, 05ee7b6ffe002e44c386b678d2271a8ad1fea349,         1,    python,   3.6.4
+                       parasdahal/deeprl, de5bda832d5093daa9bca721a38ad1cd66e5a6c5,         1,    python,   3.6.1
+        pascalbayer/first-neural-network, b8e1e831f2225ab81270ee10e1692e9711917fd4,         1,    python,   3.6.2
+pauloromeira/desafio_datascience_intelivix_dez2016, 0145692d5fa6725556de1ffb082998e7e16cded1,         1,    python,   3.6.0
+                    paulromer149/Qn_temp, 6b6da5e1e12eafdb97cc88ad53ce42041df09d0c,         1,    python,   3.6.5
+                         pazikkamil/algo, e241d49fe973a4b9464e6e5ee35c9a79bddb9a3f,         1,    python,   3.4.6
+                   pdebuyl/live_langevin, 427ecc5abec55871b39b9af6e9d28093d67c6941,         1,    python, 3.6.4rc1
+                  pdubreuil1/men-project, 8087ac903804805b8c6c4686746393c665a73194,         1,    python,   3.5.2
+         pedrofolim/first-neural-network, 5f1dcca19a000a04d3cf3cfbb1ff8d960939c57b,         1,    python,   3.6.2
+                  peps-uga/potts-example, e35af58b9987f311d279b557d3457a9d58f2bcbd,         1,    python,  3.5.2+
+                  peterlawless/moneyball, 5d1ee8dd554d80eb653c1c842fcd879346ba6877,         1,    python,   3.5.1
+                   petkovacs19/rnn-model, 0d884de9647be7ee9a68c2f975c0b89b0adad5cc,         1,    python,   3.6.1
+                       pfctdayelise/aomp, f82ca9cd07df2a9bd38a627a160e2a2b48d10d52,         1,    python,   3.4.3
+ pgcharetteUdeS/jupyter-notebook-example, 6ee5605a081a4eedb30d1c8f05ad5256209b555e,         1,    python,   3.6.2
+                    piovere/furry-system, 131617d7b4ba1ca9c8db5405af5702a0f1a23c8d,         1,    python,   3.6.2
+plizonczyk/potential-octo-computing-machine, a9984755ef9777efb39b7abc2a7f5757ae765d88,         1,    python,  3.5.2+
+          plotly/jupyterlab-chart-editor, 659069e075f40a3389cfcda2f86f260d3e89a565,         1,    python,   3.6.4
+                pmanlukas/bikeclassifier, d558d30a5d0f92cda654e245f23510bc98d01cd4,         1,    python,   3.6.3
+   pmichalik85/dlnd-first-neural-network, ec27fc870b2134c404088fbf93b7abcb538d6c13,         1,    python,   3.6.2
+prakhardogra921/Regression-using-Neural-Networks, 1e27330786588c53d1142fd37454f6c6a8331326,         1,    python,   3.5.2
+      pranavdixit8/Predictive-Regression, d5b77d1924c09de37f2b837785c949b0baf90395,         1,    python,   3.6.2
+    prayashm/gdgbbsr-text-classification, 578183ed69ac44c7040eddee81f6370aa08224cc,         1,    python,   3.5.0
+                     prayashm/ml4dummies, 310fa0192a3974c2ecd0d5c6ce085f5682f7627f,         1,    python,   3.4.3
+                     prosass83/ucbotplot, 25b4bb10b4c637d4349ecab56f29a8f9720f7012,         1,    python,   3.5.5
+        psychemedia/ipython_magic_folium, 650f167ada7dd5c3eaaaf5d264e7e7be25f43ab5,         1,    python,   3.6.1
+ptendolkar1/Biodiversity_unit15_HW_challenge, 882e80da036730423d25a6a71f7bcc9805b998ce,         1,    python,   3.6.2
+                 gonzalo123/pivot.pandas, b9c612254be131f105aef8afec2c14ea3bc09251,         1,    python,   3.6.4
+                           gitcordier/ML, 1068a14b040f25c397f4b50265116cb43f81634f,         1,    python,   3.6.5
+          hupili/hhba2016-argentina-vote, 61acb0b77934dd74b0741dab6c9c42c686816389,         1,    python,   3.5.1
+            alexbseaton/complex-mappings, 6284f86c9b268ab40b8b5acbe088a68dbef783d8,         1,    python,   3.6.0
+             StasBel/machinelearning2-hw, 54167337d941ead357dca087959afc77e0b119d1,         1,    python,   3.6.2
+           StillSad/first_neural_network, 5e9c70db54e3a92ce3a5de139a0fda7e7a6af0ff,         1,    python,  2.7.14
+            Sumobot1/lilo-and-stitch-ing, 702d41041580c2eb128b53c84d1320b6b95560bc,         1,    python,   3.5.2
+         SupahNoob/energy-usage-analysis, 12c81674535cb7bb217873383957e802820b0552,         1,    python,   3.6.2
+        TanNgocDo/DeepLearningFoundation, 63c1587df4fddd6475e1b6e8aa83c672c3cee70d,         1,    python,   3.6.1
+                        TasniaK/titantic, 96774f303950a56f74e8fbab3df2e366b2789716,         1,    python,   3.6.3
+  ThamizharasaN2116/First-Neural-Network, 09f7a7acc0929f66461439bfdb383ea172621d5c,         1,    python,   3.5.3
+         TheAisBack/first-neural-network, 8bf09962961488a780c386f1244957d512f1d838,         1,    python,   3.6.2
+  TheWeiTheTruthAndTheLight/assignment-1, d46f543ee5c7dd07c916c9056bb7f52d277f6334,         1,    python,  3.5.1+
+                            Tisp/MAC0417, 495fb95ada205bce5768a607d87adce60494b1e9,         1,    python,   3.5.2
+ ToolsForRadicals/postcode_to_electorate, e34a50df752aeb02e5b0d54bfc89b5c3a3d4238f,         1,    python,   3.5.2
+     TrentoCrowdAI/datasets-preprocessor, aee0aa8a4f653892f100f54459e748e37046123a,         1,    python,   3.6.4
+                  USEPA/IO-Model-Builder, 1eac9f24d4ee3b241c9f24c4d267993578c2a30b,         1,    python,   3.5.1
+             VPetukhov/StockSegmentation, ad9f97711fd6a371f4fb675858dc4282cf05beba,         1,    python,   3.6.3
+VictorZhang2014/DLND-first-neural-network, 0cd9891b4c3d822805274ae25f70fa0dee19103d,         1,    python,   3.6.4
+VioletVivirand/lime-mechine-learning-demo, 92817b09357223312b8b4dc6971b1c83983fc127,         1,    python,   3.6.0
+            VladyslavKha/AudioProcessing, 403c29efa50701306bff3d289378ab8b98f343d5,         1,    python,   3.6.4
+WilliamGarrow/neural-network-bike-sharing-project, e2caf1c2c6b49fb1e2c0e0d803d0925d68719f8f,         1,    python,   3.6.3
+ Xfan1025/DLND-Bike_Ridership_Prediction, 13cc34abd77a47138f87db7e7f5de66391d76662,         1,    python,   3.6.1
+                     YuguangTong/CalCalc, 0d589fd7330cce7970a99942708376dbd740a0b5,         1,    python,   3.5.2
+                     ZJianxin/dlnd_prct1, 0a42d1f82f777b7b4db0fc9f31a9f1c63ea06f70,         1,    python,   3.6.0
+      ZL14E161110/HW7---Social-Analytics, 2808aba6b51c9a7f3ec20d5af7031f76f06d8a80,         1,    python,   3.6.3
+a19garcia95/predicting_bike_sharingrides, ca761720874ff67cc5f01e2732a9513cc109f01c,         1,    python,   3.6.3
+     Spaxe/pyconau2017-messy-sensor-data, 3be1596c681c237c017aceff671eae2fe5adc250,         1,    python,   3.6.2
+                 Sleepychord/ML-practice, 931e4bec0086ffe793d2625fbec3c2ab881b33f7,         1,    python,  2.7.10
+            SilvioGiancola/dlnd-Project1, d8dbd7ea9b4b14b931b651bee08c4334f4688df4,         1,    python,   3.6.1
+                    Shuyib/pimaMLsklearn, 2c7fe1914088f39b33f38478685f0889f6d26f67,         1,    python,   3.5.2
+       PythonMilano/pillole-di-python-01, 9a12a483e8f3b1f359af2f95dbe6a36edd11dbcc,         1,    python,   3.5.2
+      RHDZMOTA/recursive-pascal-triangle, 813090e39738ba3a937f2c07870c6e12094cdb39,         1,    python,   3.6.3
+Ratimon/neural-network-rental-ridership-predict, 6988b2529e44cff0df13e512d233652656ff4e2a,         1,    python,   3.6.1
+                      ReemUW/BinderTest2, ece23dac9e2a45c22ef1c6194f9d2e0e7c594ac7,         1,    python,   2.7.9
+                      ReemUW/BinderTest3, 67a86b6aea075635c8b08d697dbc3c42a79bed1f,         1,    python,   2.7.9
+                        RmDr/Test-binder, e3f1330db637556c490a5beffc679be688541ddf,         1,    python,  2.7.12
+            Robin888/hccEncoding-project, 6be306f78c7abfadf1e730283023b35adef426cf,         1,    python,  2.7.12
+              RoboTigers/trajectory_demo, 11b6175001996a68c29a4e355bd0ad5d6bedd36f,         1,    python,   3.5.0
+RonTam/Udacity_DLND_Your_First_Neural_Network, 4bfa5d30b1ba7e4e2acbcfcc8cb7ebe0f26b28ff,         1,    python,   3.6.1
+      RuanShuisheng/first-neural-network, 9860f7a2c7cce8aa6b7192f0ba22b335165a967d,         1,    python,   3.5.4
+     RyanO515/UdacityDeepLearn-BikeShare, 00de745e807949df3e581cfb5dad14a4bee4cf81,         1,    python,   3.6.1
+    aakashdhekane/NewsCategoryClassifier, 95af7ce8a3d587c073622ed451781ac0dedb00d5,         1,    python,   2.7.6
+                       SChehade/Fakenews, c9bb2bdb58575b91a8eae4ff69fd94244a0e99b7,         1,    python,   3.6.2
+                     SPW1981/Colour-repo, 60856bea21799d2075e4cf293e005321b49cd012,         1,    python,   3.5.2
+                         SPW1981/Colours, a537504add671194d537c284f4b92930923c28b4,         1,    python,   3.5.2
+           Salman-H/bike-sharing-network, a831476160b1a3212843afcb08276104d066ca50,         1,    python,   3.6.1
+                  Sambeth/kaggle_titanic, 45745d950fb52233748284fc2f9bd6d1734f0b38,         1,    python,   3.6.0
+        Santana9937/first-neural-network, e36920108da1c4f9d447bb51924c97168ad54bcd,         1,    python,   3.6.0
+         Sascha0912/first-neural-network, 954b58f3aefc714d76a467e581cef636f9e893d9,         1,    python,   3.6.3
+                SchuhMichael/notebooks-1, 47619503985f3bf57b9e84af07c5232686d7f491,         1,    python,   3.5.3
+        SherL0cked/deep_learning_udacity, f2b3b0e410007455a92b3bc3898fb0021ef5c15a,         1,    python,   3.6.3
+ Shilpaj1994/Neural_Network-Bike_Sharing, ff3086a73208de55d6732ee8c22c7ac4a4d48ff6,         1,    python,   3.6.0
+Shinichi-Nakagawa/pitchpx-example-pitchfx, e68e99301aabcf71083a8a6a071e75b44261d5d4,         1,    python,   3.5.2
+ ShreyashSoni/feed-forward-NeuralNetwork, b503b8d3117905ee075f03a841919f0a290c36c4,         1,    python,   3.6.0
+          SNOWMANxD/first-neural-network, 44514f5d2e3843e845759730d96b87d4a3b094d0,         1,    python,   3.6.2
+PierreMarion23/jupyter-widget-hello-world-binder, 3df3f1fc514034d59069d1a23c3a7180857ab152,         1,    python,   3.6.3
+                         abwilf/CSCS_HW1, 98068f077570258a163396cd6f7b464b71078038,         1,    python,   3.6.3
+                  acycliczebra/Notebooks, a874da8f757406c9f01925ab7476772727ccc06b,         1,    python,   3.5.2
+             analyticalmonk/KMeans_elbow, cfdf42e56f465bbbf9735b8ae9472a6233b0e924,         1,    python,   3.4.5
+analyticalmonk/NeuralNetwork_FromScratch, da8ef04db0885f5bec757a26b2f10ff6ecd0c4e6,         1,    python,   3.4.5
+                         anarey/pyvarfoo, 580da03cddc55f6583e25d87a2b283c4732eb396,         1,    python,  2.7.12
+          anasbarakat/employee_attrition, 0dd67837474093c9f34a3fa818d53f3e19c795c9,         1,    python,   3.6.4
+         anastyn/bike_sharing_prediction, c9422e6cb029527034161aefa73a5e8aa1e88455,         1,    python,   3.6.1
+                             andram/SSGW, 7f52243dd108b8e43c4463366586d7f4c586e0cc,         1,    python,   3.6.4
+                 andreagrandi/ml-housing, 90f45cc3b5f42082a984bef1795254b556c4640d,         1,    python,   3.6.1
+           andreagrandi/ml-pima-notebook, 61ae8810fab89e283df6e27a97fc8f17521e70b1,         1,    python,   3.6.2
+                 andreagrandi/ml-titanic, d195f4e4e6dd0d453be93d032776098220af9b2b,         1,    python,   3.6.2
+     andrewosh/example-requirements-mini, 31b3a096f1f2ab518072493db09e1702c5f14e3d,         1,    python,   2.7.9
+              andrewrosss/dlnd_project_1, d59ec29b4f7f564bd4257d637f0a292ab65314e1,         1,    python,   3.6.1
+                    anfejear/Life-s-game, a47d59668dd8d795b1538490576010bb0f4fcea3,         1,    python,   3.6.3
+                    ankur-gupta/simpledf, 24d8eb577a794c87e5c4edd149a8624087fa8473,         1,    python,  2.7.12
+             antoine-gagne/hello_jupyter, e1c4299bbf6d5dc2232b3267eafdfe67be7c8662,         1,    python,   3.6.2
+               araichev/project_reporter, 8b9b59258bd694b8aa2ddcd10c65ff97a7f1a204,         1,    python,   3.5.2
+      arif-zaman/emotions-classification, 7139eb19caefa3ede07c3ccdf7f4c416f027a427,         1,    python,   3.6.1
+          arjunbazinga/MultiArmedBandits, 096b11fe9d0025a4595588c9cf30d7c727b5eda5,         1,    python,   3.5.2
+         arkitpatel/first-neural-network, d3295a274f1261ee4b30140800c40487e4fef9f7,         1,    python,   3.6.3
+                      arkorobotics/Philo, e881aee95a59e4319187fbf5f4f731545f42610f,         1,    python,   3.5.0
+                         arm61/book_club, b2797715f4ec799fcc45ad8d951a8f9683c8b352,         1,    python,   3.6.2
+                          arnehuang/crux, 5cbd81f2e6c295db8036ad1177639b6032cd1ef6,         1,    python,   3.6.5
+ arthurbarros/predict-bike-sharing-rides, 22d631f145cfac3d5981a54ddb8bc22216a5eb99,         1,    python,   3.5.2
+ arthurcgusmao/dlnd_first_neural_network, 7c46feed0725a7cc43a6dbf5d880b1309cddbdcb,         1,    python,   3.6.0
+   amnghd/FIFA_WORLD_CUP_2018_PREDICTION, e82fd973e0ed063476d30accd82b96bc3a8edecd,         1,    python,   3.6.4
+                amdrgoncalves/restaurant, 911a42473a766e66940618b516ba0474e4fff9fd,         1,    python,   3.5.2
+              amarallab/cub_benchmarking, cd05d3a473eb24846e4f646b9b06e9b642e3e3e7,         1,    python,   3.5.2
+           altschop/first_neural_network, 19d5f288a329fbba2cdfdbc7591b11782931ba56,         1,    python,   3.6.1
+ adaptive-learning/data-science-workshop, b6c36654ba45a8bdb845b6e58971dcc4aa61cb4b,         1,    python,   3.5.0
+       adi1998/SDS_hackathon_2017_server, 83cb84912aebb6e525d21a925c705c9c1a1cd476,         1,    python,   3.5.3
+               adityap86/Neural-Networks, 7a2c9450d08de8bc42c229d1cbbd4994467536bb,         1,    python,   3.6.1
+   adityasiwan/Neural-Network-Prediction, a43169571fcb28a6ee3b8fd2d957f1de00249078,         1,    python,   3.6.1
+  adrianlievano/BikeSharingNeuralNetwork, 34c66b43f51c4e17adc97161b9fb14c2a74fc0cc,         1,    python,   3.6.3
+   affablebloke/dlf-first-neural-network, abee7e23d4f583f93fd65a31d5e5e0bb08b00def,         1,    python,   3.6.4
+                   afoun7/FoodForThought, 73084575e5ddec16612971daa03cc82143bff368,         1,    python,  2.7.10
+                      aftertouch/titanic, b358fb90c5bab27b100bdededf30d6dbd28141ab,         1,    python,   3.6.3
+          agassi4013/tensorflow_examples, d9c72b43e7461862e12707328837e7903295456c,         1,    python,   3.6.3
+                       agconti/dog-walks, 8b6c6921b97073a49f0f55b05b95d40cb107d037,         1,    python,   3.6.4
+             agostontorok/christmas_post, 64230422d61542ded8201ff45bc8b21a9751d679,         1,    python,   3.6.3
+                achillesrasquinha/digdet, a96ec3958708406587f82be11b9eb9a0940c8e0e,         1,    python,   3.5.2
+                       agupta83/first-nn, 58a3f241c33dc7d845b6d67639d8263344e32de8,         1,    python,   3.5.2
+                       ahwagner/skittles, ecf9000f58059ae70e5d58434f0ae18656b115af,         1,    python,   2.7.6
+             aimuch/first-neural-network, 81a2c05c76bf6c82022d8eef187f78d16b1b3fc7,         1,    python,   3.6.3
+ajayv14/Deep-Learning-Nano-Degree---Project-1-, 48acbdc0b4dbe58c4b7ec926a4176d1bc2dfd6b2,         1,    python,   3.5.5
+                  ajgan/InstagramCrawler, 46a33185378c0b71005f158b2d298b4993be1607,         1,    python,   3.6.1
+                            akaija/THEIA, 5e5c06cb9a89a6405a3e50a83316d3ed0cb7e1a0,         1,    python,   3.5.3
+       akucukelbir/probprog-finalproject, bc3d0d38c7f9bb1d2007acae99e996f695b6734f,         1,    python,   3.6.1
+                   alanoMartins/DMM_K1NN, c4b39d66cc96e1327739afdc5cb724c9cd833afe,         1,    python,   3.6.3
+         alastairong/udacity-bikesharing, 3bd0bca1fe00ce3b6323924c2d09b62bd78f4a77,         1,    python,   3.6.2
+                alexandergorskih/firstnn, a455e4a9b5e7fe91a6c8668872a2189741db00ad,         1,    python,   3.6.4
+                      ginop/myMetroStats, 81aa741a6997796ecb2f557c4be090b5014875e6,         1,    python,   3.6.5
+                           alexhagen/jdc, 87fdb6027b873959db4cef4d0193589f8c717dfd,         1,    python,  2.7.12
+           ahmetanildindar/mybinder_test, 8deefb43b0cd8e0f323976cb1b5d1ff448df91aa,         1,    python,   3.5.2
+          arthurxin/first_neural_network, ec003f3f1a9d09d331f6be022b7438b89d8d382c,         1,    python,   3.6.1
+PierreMarion23/jupyter-widget-drawing-pad-binder, fb24efdb3529dfee7274d69a6e384329d8ad0b71,         1,    python,   3.6.3
+                           Ortuna/ml-fun, b7a9cf65d666d39257770552213829058c6fd032,         1,    python,   3.6.0
+DEV-learn-co-students/calculating-distance-lab-ds-test-2-avidor, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-test-321, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-test-avidor, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-test-nikhil, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-tests-lights-anim-brian, bf318f529b061c144ebde1a8f46040e3f7768dbf,         1,    python,   3.6.1
+DEV-learn-co-students/visualizing-in-python-data-science-light-test, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+DEV-learn-co-students/visualizing-in-python-ds-test-123, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+DEV-learn-co-students/visualizing-in-python-ds-test-321, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+DEV-learn-co-students/visualizing-in-python-ds-test-nikhil, 57f66b15a55fa94fd7bbcb9653cdfcf65e4822f9,         1,    python,   3.6.1
+DEV-learn-co-students/visualizing-in-python-ds-tests-lights-anim-brian, 3a60568fd8d6aa93e1de495cda3a869e1d509af5,         1,    python,   3.6.1
+                   DIYCoffeeGuy/espresso, 93306eaf0e3c05deca8269a92b9bd7f28699d04c,         1,    python,   3.5.1
+              DanielAndreasen/mpld3-demo, 5f773842a2fed1813b7df112ac2ac29665473403,         1,    python,  2.7.13
+                         DataMedSci/PTAM, 2a998ded78fa018cd66b0fdff2c4d70ef44a5786,         1,    python,   3.6.2
+              DavidRdgz/hitbsec-notebook, ae50b707503ed563f04afb4760295c1d1549d432,         1,    python,   3.5.2
+    DeastinY/particle_swarm_optimization, dd6c8c606491a9b5a1413b0450d136bdfbfaffda,         1,    python,   3.6.0
+                   DiptarkBose/Bike-Zone, 9147b965da475e646924fd5fdc11c21e6862da3a,         1,    python,   3.6.0
+                        ERGZ/islr-python, 8149173e23f881a7a7b276c60597a8661fee1841,         1,    python,   3.6.2
+ESILV-python-data-science/lab-python-Gby56, 6b50e03c015c82898ee97ff89ddc5b6d3af5a343,         1,    python,   3.5.3
+                Ehsan-N/Udacity-First-NN, db2d2a46e0208598e56334cefb6a5c250c77b5f0,         1,    python,   3.6.2
+                     En3rG/MLND-Capstone, 836b4f7c1bbb3634026b362001ab13190ade499b,         1,    python,   3.5.3
+EricLingRui/Neural-network-detailed-deduction, 31c99cee6c5db30ba43f51002f9b83a054b04b66,         1,    python,   3.6.3
+ErickDiaz/TFLearn_hand_written_digit_recognition, 6dd3191bf60401f4d52b327346b758fe5ec5d5b6,         1,    python,   3.5.3
+    FlavienGelineau/fake_news_classifier, 093a68546e171b892f4e2238243d51e56f4f9aaa,         1,    python,   3.5.2
+DEV-learn-co-students/calculating-distance-lab-ds-test-2, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-test-123, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-ds-light-test-2, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-data-science-light-test, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+                        9Y5/econometrics, 6f22b848aa24d44bc52481b774ccb31de885be7b,         1,    python,   3.6.1
+         AIHackerTest/JeetChan_Py101-004, 3ee84e362cec2caa2da15f2555440559e6027c3d,         1,    python,   3.6.1
+                  AKrishnachand/WulffGit, a70322895f36304656cb25a0526685fb2393f078,         1,    python,   3.6.1
+     AlanCoding/Black-Hole-Tidal-Habitat, 1743e74e11115d4328a150a7cc253fdaca644ec5,         1,    python,  2.7.11
+     Aleti1/Deep-Learning-Neural-Network, 8cace9a74e0955f91ff5eacffd47582479e61885,         1,    python,   3.6.3
+            AlexGoico/Tor-Usage-Analysis, 14dd8df8709647b64b03064834ad17aebbcb00bf,         1,    python,   3.6.3
+            AlexGoico/Torres-Code-Review, 500545f26a7485f120c129feca8d8d5417ae99f8,         1,    python,   3.6.3
+          Alyxion/DLF_FirstNeuralNetwork, d8649b0d83357a361feb7710612fab9216129a94,         1,    python,   3.6.3
+AnttiHaerkoenen/vyborg_historical_town_atlas, b0aa449b42bb3344b26f110f6e0b315edad4b084,         1,    python,   2.7.6
+              ArcasProject/ArcasExamples, 91b4ca01ceec323cd5dab7588a69038635f9b310,         1,    python,   3.5.2
+                      Areej1997/Project1, 697c61df4b0985afc7c20ab9b79bd019adbe9e5d,         1,    python,   3.6.3
+    Florents-Tselai/greek-wines-analysis, c0a8d5b98e67980c7a865fd75678cfd17d057a99,         1,    python,   3.6.3
+           ArmlessJohn404/DesafioDomRock, 1f81cf61ea73f9c68aef4381a490383147e8757a,         1,    python,   3.5.2
+     AtlasCoughed/bicycle-rental-program, 5b746c97ada4dd3335333bbbec24ebb7627ace57,         1,    python,   3.6.1
+            B123789/first_neural_network, 68e684adec49d4e44e7da3f7344b12869feeac14,         1,    python,   3.6.1
+                     BUYISAN/Python-Data, 07b757b2364b2b07ad68ea32ea327faa5a94c79e,         1,    python,   3.5.2
+           Booritas/first-neural-network, 2a6880f0170727f440747fd7802135cd6c90f52c,         1,    python,   3.6.1
+BuzzFeedNews/2016-01-port-arthur-arrests, d4996033b22e7b449532519d6672f50ee90fff14,         1,    python,   2.7.8
+BuzzFeedNews/2016-01-texas-municipal-courts, 3570e8d4a70e4a89d20ff7caedc61787a1b116d5,         1,    python,   2.7.8
+BuzzFeedNews/2016-11-philadelphia-turnout, ee5d0864841458357f52651279ad93ecdb1f945f,         1,    python,   2.7.9
+  CJL89/First-Neural-Network-New-Version, 1b79d1d743758fa735f55633c5a4a05d148d0295,         1,    python,   3.6.2
+          CameronBoudreau/weather-report, d7736a8b717623b186ab84358e6864ada31e20eb,         1,    python,   3.5.1
+                         Castyn/nn_proj1, edacaae9e1e1f795a0d6d5cd5e7034cad470d2aa,         1,    python,   3.6.1
+DEV-learn-co-students/calculating-distance-lab-da-test-3-avidor, 94c9b65da642534d06c5cb5005a5b593e48f57a2,         1,    python,   3.6.1
+Asmataib/heart_deasies_prediction_using_datamining_and_ML, 58b0c51e3d8ed64c603d24489b88f89e4a0417da,         1,    python,   3.6.4
+  Pariyat/dlnd-your-first-neural-network, 7fc081e900e846e2f224e7de1ee1170b52a3316b,         1,    python,   3.6.2
+                  FlorianWilhelm/distvis, 61f58f47b6cb63d0682aea249d317b00a1aa3e4b,         1,    python,   3.4.3
+  FranciscoACLima/py-aprendizado-maquina, 066bf8095f3c4b59a9a110953cbdfd394fae11c1,         1,    python,   3.5.2
+                 Jonathan56/Asterank_app, 0e576da308386775ce9957a3c306ec3edbe1a515,         1,    python,  2.7.12
+              JonathanKross/ultimate-pig, 915be29a83e566a9e1e6586022206ed84246568b,         1,    python,   3.5.1
+             JuanKRod/cryptocurrency-viz, 131584ca24afe5e20d5e199a8ace82ab0992a863,         1,    python,   3.6.4
+ JustinGOSSES/datajam_Mars_MajorElements, 3bec54463df68456111d362e1034095e012cb357,         1,    python,   3.5.2
+                     Jwuthri/MowerMarket, 766690e8a8f5822d02de081698b69d39406fd76b,         1,    python,   3.6.2
+           KPI-FICT-IP32/SystemModelling, d99ec6edeb70b7faee35b8736a8c5e1a1c7fce07,         1,    python,   3.5.2
+        Keenencates/First-Neural-Network, a7031b76b73c5807673704a5e136c5647123accf,         1,    python,   3.6.2
+                     Knutselbaar/e-liner, 44fc6ca557d5a78ee3786f1e70bbccbc778c4881,         1,    python,   3.6.1
+     Krzek/FirstProjectNanodegreeUdacity, e4fd9dfe78517d4b8a97fd6782506ff79063da0e,         1,    python,   3.6.3
+                  LAV42/Superpolynomials, 9507437a44a59c28ea468c833b9c791742687b5a,         1,    python,   3.6.1
+LajosNeto/neural-network-bike-prediction, da48db84cd74bf587d5985ce886cfde251bc6d66,         1,    python,   3.6.1
+       LimberenceCheng/sentiment-network, c56c81f696a7c4ae1ecec1bc4db106811eb175ef,         1,    python,   3.6.2
+Lodur03/Bike-Sharing-Prediction-with-NeuralNet, a034eae4368e2efa7dedf90a506e741b5153e149,         1,    python,   3.6.3
+           MHAbido/Simple-Neural-Network, c99297e5e49f0916c5ca1f5360415887b4afd449,         1,    python,   3.6.1
+               ManifoldFR/map432-project, 2d3f94612bd185d21e66609270e6d20b73d1fb2c,         1,    python,   3.6.4
+Marco-Santoni/Marco-Santoni.github.io-src, 4e715bb6517b8986ef39cc79a0c4fe076a0554bb,         1,    python,   3.5.1
+                     MisterYu/poptart_py, bbc5ee04046c6a2e118f9e94f190b1e49a5341a1,         1,    python,   3.5.2
+   Nadohs/udacity_deep_learning_project1, e0f8aafeb718a873c17dfcbf068ffb1e1067162e,         1,    python,   3.6.1
+NathanMeulen/Importance_Sampling_Presentation, 60321edacd5c52b15f05ba35f9f868a198534f09,         1,    python,   3.6.3
+          NaturalHistoryMuseum/notebooks, 60edc70e1d44cfc8c6c27dc1f5c8705b77b88ddc,         1,    python,   3.5.0
+            NawfalTachfine/PredictionAPI, 5fdd992d43506be7e02cebb5c42761299d4c230e,         1,    python,   3.5.2
+       Nigurasi/PythonEx3TrueInformation, 516177e4027b27ddee7f0a1fb3aababf34de1eda,         1,    python,   3.6.0
+                        OMS-NetZero/FAIR, 102321911819981a0497376a0da2f9dd8528e8c6,         1,    python,   3.6.3
+                     Jish80/Blur_project, 1ae3492ff8d576fd4249833db10be29b600ec173,         1,    python,   3.5.3
+        JinbaoSite/Deep-Learning-Udacity, 4a96543761a9ea586c725b5cb851c0358ec14b65,         1,    python,   3.5.2
+      JeroenSweerts/first-neural-network, 41f7ea2ef3ad6f38e13d0f915ec776f424ecd09f,         1,    python,   3.6.3
+           JennaVergeynst/Altusried_test, 087a971716b6ae9dc763bcfb1a494c77dbccc7b6,         1,    python,   3.5.4
+         Francososa/tv-script-generation, 19f48e2a9c339189315c49c74f83e30a25763d9f,         1,    python,   3.5.3
+       GedRap/monte_carlo_sales_estimate, ad76f21c351d7430137a8750b78fbc3fa5c6f5d9,         1,    python,  2.7.11
+                   GeeHLee/deep_learning, 081dcb4d82058ef8889dfd2506e03d33acdc6958,         1,    python,   3.5.4
+  GoatWang/newBingCrawler_LabeledCompany, 4d71c9367ab12db3420c82063bd0ac3b24efa73c,         1,    python,   3.5.3
+GokuMohandas/Attentional-Interfaces-O-Reilly, 27bac41d55ccb355ff77b2012dc2d7669c3515fa,         1,    python,   3.6.0
+          Gouiaa/Bike-Sharing-Prediction, 5e5e28278bcbdaea9d5c12133162f96f00eb7f5e,         1,    python,   3.6.1
+         Guardiome/genotype_to_phenotype, 33df5628ab7f215be132991868c765875a6161f6,         1,    python,   3.6.3
+         HaiyangJin/OnlineBrainIntensive, ad08de6d54562d17228c6065a72ac82ed404bba0,         1,    python,   3.6.1
+                  Hansastro/Astrodynamic, dbc5cb53b4d4bdca245bf99bc93d1b1f7d936746,         1,    python,   3.5.2
+                   HexKrak/Udacity-DL101, 27148cb14c705672217f859797dead13bc3417ba,         1,    python,   3.6.1
+                          HichamEB/ELTDM, afeb46560905336d00bb33a698cbb6737c8cb81c,         1,    python,   3.6.3
+      Forest779/Sentiment_Classification, 2d140a98fa0b7b5f05bb27871d043991c5adf3ca,         1,    python,   3.6.3
+HimanshuKumar111/DNLD_Bike-Sharing-Prediction-Challenge, e672c37c2433e594159aa832333fe829aa83100f,         1,    python,   3.6.3
+                       HmartinFr/twitter, dd9310a21e425e03158a94b915a7ccec9a37cf40,         1,    python,   3.5.2
+                       HugoGuillen/nb2py, 34726ee20fe8d856cb8c2fded5008c744ae87018,         1,    python,   3.6.1
+                     Hulk89/hulkNotebook, 68f286fd9d7f6b0b04a5dd7bf35e94c936deadca,         1,    python,   3.5.1
+                              IDerr/MADO, 2da72f27ab349d6224da6ff0671577d952aa593d,         1,    python,   3.6.4
+        InsightDataScience/swe-barebones, 5ffe69bf1382a8c1b011af237cd29b08d56b766d,         1,    python,   3.5.2
+          IntelliFinder/BicycleDatasetNN, b22d81e7135610a1856034d3a3c52f3fa08ab9e7,         1,    python,   3.6.0
+     Ishmeetsingh97/first_neural_network, 219a6d4eb76f68cb2e1af0d841b1f06a0053de92,         1,    python,   3.6.3
+                JaggedParadigm/pairplotr, 9b4ada682824bc73f35f31480a4f49e54fb4540a,         1,    python,  2.7.12
+       JanF90/Bikesharing_Neural_Network, 5c8c06bdfeaef9ca32e3709627b870c501e3231f,         1,    python,   3.6.1
+JannesKlaas/sometimes_deep_sometimes_learning, 332aba3a8e04ce80f8da01c11bbe3b1cb0c4109a,         1,    python,   3.5.4
+                      JazzTap/phcjupyter, ea0772251406b0170ec03c220201969cc8bda08a,         1,    python,  3.5.2+
+                       HmartinFr/Traffic, f3a3f8bc3b75160affa71b581eab11324c0e31b5,         1,    python,   3.5.2
+      arturokkboss33/DL-udacity-project1, 43b43b041c00d8529f25d7a6fac1ed8b4b23b6ef,         1,    python,   3.6.2
+    zliebowitz/frc-gyro-encoder-analysis, ca422ca63426db34a70d9611b5746f224b0e9a13,         1,    python,   3.6.2
+              aschwa/super-octo-chainsaw, aa1bfe2b3ffd199accac9256298566dd9d5ac25c,         1,    python,  2.7.12
+                     dusjads/cg-conspect, 4db62fae4abec241137e0c2b0a2b61e5a4c4465e,         1,    python,   3.5.2
+                     cochoa0x1/pykoreaqi, 0ee3fa8f5a876ab6ff6a33ca40f82affc495670d,         1,    python,   3.6.1
+                   colelordmay/581_pres2, 151d15ec6261cd3cecbc1993f8fb7886a7b92fdc,         1,    python,   3.5.2
+                   consideRatio/stencils, 50ae03a099e74d5e41f776ede7053ec481927d97,         1,    python,   3.6.3
+           dtarasiuk/jupyter-experiments, edd48a015a5cca84a7c2d782ad3281c0855fa1a9,         1,    python,   3.5.1
+                    coyote240/2048Solver, 82687cf6775ab755a27eb5ed3f05d901d3acff2a,         1,    python,   3.5.1
+            crlane/talk-python-packaging, bc01e49f2101c6e2d5c26e917c50d8a8d1aff2c5,         1,    python,   3.5.2
+                   csams/python_examples, ece3212dc0850ce02bf6b24d1634eccbbc445e6c,         1,    python,  2.7.13
+                     ctb/2016-mybinder-1, a757b35bd38d90e4dae21c9ebd8395730c94b05b,         1,    python,   2.7.3
+                ctb/2018-dcppc-minid-agr, b569c952416ab61082559113d76cacaf3406fc57,         1,    python,   3.6.3
+   cxanthis/udacity-deep-learning-course, 675036bb2da6b053b368b0d7feee9dac3dcc0031,         1,    python,   3.6.4
+             cxy229/first-neural-network, f72dce864b9ce0bd5e34c00841783a244b3b731e,         1,    python,   3.6.1
+                   dserrano1524/AIND-RNN, 78bad1a6931d092515ff2e2908f27ff88ca141f2,         1,    python,   3.6.0
+                  daedaluschan/hk_school, 5fd6f5eff701ff3d76dde0aa9df33f1d51939a67,         1,    python,   3.5.1
+                    dschien/ads_notebook, a4223594a75ae7e757d0fa9d3d0c83d5b00ebb1b,         1,    python,   3.6.1
+          drscook/gerrymandering_uniform, 996b52f8e1b6d63094cc074862d8439698b3c5bb,         1,    python,   3.6.4
+                     daihang16/tv_script, 474760e73279c0b0be1b9308707e22ebd3217f6b,         1,    python,   3.6.1
+                         cloudy/robotics, 883043839889d3b81e072200539d873668af30a6,         1,    python,   3.5.2
+                  dwcaraway/guess_number, e4640493bcc8cb8d504a37c478135aa61b53708c,         1,    python,   3.6.0
+               claudiordgz/udacity_ud170, 53cd5aa03a09e68f4c377f7bdeff437786252271,         1,    python,   3.5.2
+                      dwetta/binder-test, 9354ca1515ba08eb9d75b5e44bdf5d71043d1a42,         1,    python,  2.7.11
+                cheevahagadog/FARS-demos, 254a0233528971dd6f9af1c343fd5a5777c7f710,         1,    python,   3.6.0
+                   cheripai/TestAnalyzer, 6836a93d0f6ca176ed1feee868747ecc5c012f88,         1,    python,   3.5.2
+          chief1988/first-neural-network, 7979c5f8cdcb63032dd11ce05a0a7ac4b3789638,         1,    python,   3.6.2
+                choldgraf/binder-billing, c857231473143a6448890fde04d06f89e1bfffa6,         1,    python,   3.6.2
+           choldgraf/binder-janelia-test, 5085227ac2bbca3e9809ed73462df050121bf699,         1,    python,   3.6.1
+department-of-veterans-affairs/docketeer, 405691c7074287832b1a93f49d007c38bd197eee,         1,    python,   3.6.4
+                elvinx/connexion-example, 99e41ecc9aca141d45733fbbd328b777af29db8c,         1,    python,   3.5.2
+                   chriscanal/BikeRental, 55a8992f3646614969515fce0faf9235be087dff,         1,    python,   3.6.1
+driscollis/NebraskaCode_Python_Decorators, bd06dc274b60ffbf955a787878e1c5210e5d40a2,         1,    python,   3.6.4
+               eltonnuness/first-network, 1cf7fc7bdbdf504f6cbaf125bc352a55ccca6a8e,         1,    python,   3.6.1
+                     elliottsj/csc443-a1, 95bc7fa26e9eb14a4de226677c45ec4a9a5ae4fd,         1,    python,   3.5.1
+             eliasdabbas/keywords_widget, de41834cbafa21041d463ede332c4864e7e86886,         1,    python,   3.6.3
+   christos-tsotskas/MachineLearningDojo, 7f9bcb4c7d9c2582818ada5a6688bce39961816e,         1,    python,   3.6.3
+                          elevenching/dl, 4c6f947b15644ceaa92f91eb09f6a74ace558f97,         1,    python,   3.6.1
+                  ck2886/MLP-BikeSharing, 686f7ecd66486be255de85a7f9fabebe5cc38d9b,         1,    python,   3.6.4
+           elberman/first-neural-network, 8c39d7e3095905f72c06cf0659c297e9d2079096,         1,    python,   3.6.3
+             eglassman/idea-workshop-kdd, 37b5b9855a33033521ce497e035a796df27a239c,         1,    python,  2.7.10
+              dylanbstorey/deep-learning, f19f5459382184225601fdbedcf7f9a9331b633a,         1,    python,   3.6.1
+   elninowang/dlnd_weight-initialization, 1143991556ee1d52238fe0e02ae71be526e21ce7,         1,    python,   3.5.3
+charlielito/supervised-intermedio-yale-face-recognition, e9fa3eb34bdd67f0457b3ca75061a3dce60d2d50,         1,    python, 2.7.12+
+      dalalkrish/Bike-demand-predictions, f09606382b522d8ac4b781ff827f6362a9ed4060,         1,    python,   3.6.2
+       damaggu/grid_cell_exercise_public, 34016625033a7043f83fadf650ec121e195ec8f8,         1,    python,  2.7.13
+                     djson8/learning-git, 0f564e9b59d3868bec13984bb53268b912c5801f,         1,    python,   3.6.0
+                 davidmcclure/bpo-quotes, 24809af27979140d644148453a6a9d45642d8644,         1,    python,   3.5.2
+          djodgers/numpy_neural_networks, a761f51cd3c862b33a8a4d948fa0f3e69e77c85a,         1,    python,   3.6.1
+                             dawe/discan, a3dfd11f61d106600c47139daa1ca4074a7bc195,         1,    python,   3.5.2
+                       dimatura/imgutils, bec87b712d23344eaa35d8e3cbdc48e6fe8b4669,         1,    python,  2.7.13
+              dbrrt/openshift-sklearn-ex, 993f1dafd1db4c0eff689a8025e3adea46c28d91,         1,    python,   3.6.2
+            dconz13/image-classification, a643ddb162eacba22c58a16415f564ed01de9bba,         1,    python,   3.6.2
+      dcoulter13/Deep-Learning-Project-1, 51c493fc335f29dc733300a0880b578eb1920530,         1,    python,   3.6.1
+        digvwell/deep-learning-practices, a4abf4e37446e89f97820610519a5d16c6335f54,         1,    python,   3.6.0
+                        deFarro/py_ed_11, adb2a9640cc903ce977137f2703e101342189933,         1,    python,   3.6.4
+    diegofsousa/ACOForTravellingSalesman, 7e70d2b94ce4562b8494c73a4f406a652d70ba5b,         1,    python,   3.6.1
+           dhruv-97/first-neural-network, ea48d38b2995c8b718a854b30f7eed9b396b4185,         1,    python,   3.6.2
+                        deFarro/py_ed_12, a9fa96408e1f3bfe6995945cdd9eaf4fb143daeb,         1,    python,   3.6.4
+                            dgen/NumPyNN, 10deb3a7c0f08d09d669e2f2cd8683aa0cbb74e8,         1,    python,   3.5.1
+                       dfava/readingclub, c93d91e5c634a93fd4b06a18f5c760f97ef9ce78,         1,    python,   3.6.5
+                  deepSalva/bike_sharing, aff51b9f3a40983505110e86db8872164540a45f,         1,    python,   3.5.3
+         devRohanGarg/FirstNeuralNetwork, 2d893e6e52aa509569235b57c6d95eeba93b95df,         1,    python,   3.6.0
+              davidmantillanyc/ghettotcx, dbadcb268ed04bddb106392122214a486602cc5f,         1,    python,   2.7.6
+davidgengenbach/developer-salary-statistics, 2324d8a7c5072b4241da85286c736b6a5fe0ce8b,         1,    python,   3.5.3
+                    dkapitan/comet-chart, 06262f426b008afaf4edf8e8055fb2bc8d64fb2d,         1,    python,   3.6.2
+                  davidbrochart/cellflow, bf1f7312b80a2456e14da0b71df1b734098f47f5,         1,    python,   3.6.4
+           draperjames/fileupload2binder, edf9a5ba43bd0216113b6f06afc3597f742ad771,         1,    python,   3.6.3
+          drabekj/Stock-Marke-Prediction, 263fdc405b0f6870aa71f0e676260610f0cc0334,         1,    python,   3.5.1
+                           dr-1/airqdata, 3b67a6b8303a273de2824665a4dba6d7e6c9ebdc,         1,    python,   3.5.3
+     doudoujay/dlnd_first_neural_network, 0d49922f26f59ed335596414f43cb5fa22fc57c5,         1,    python,   3.6.2
+damoonazarpazhooh/feed-forward-sentiment-analysis, ffbe065d92367fcd34b56ae075530463a78fc41f,         1,    python,   3.6.1
+ dmarrinan/News-Tweet-Sentiment-Analysis, 4fe662dde6e72e918167e176a11be3dd4217cc9d,         1,    python,   3.6.3
+                     dandip/EffortlessAI, 2934701c7abdb295a6be3534768774a2764dda93,         1,    python,   3.6.3
+       danielrobb/civl215-design-project, 4972b404142e07d78cf117d87858c068ac608cde,         1,    python,   3.6.0
+             drewrey/advent-of-code-2017, 57e16a90f913ee53aa17467817998dabce45fd07,         1,    python,   3.6.2
+    danthelion/python-synetiq-rmssd-calc, 86e655dc2cb977e178456d674e085d5e28472f4b,         1,    python,   3.5.1
+darylantony/udacity-deep-learning-first-neural-network, ad8b1d35bfb829e843422b9702e9576e888a119a,         1,    python,   3.6.1
+   datadesk/python-road-clipping-example, 92ccfce82c5dfaf1489b791baa09ff56ede70533,         1,    python,   3.6.4
+            arylwen/first-neural-network, ee7dded3e85b54811ef822e1e1cf51111d2260e4,         1,    python,   3.6.2
+dmardanbeigi/Likert_Scale_Plot_in_Python, 942c0997dbcb1faeec0b2ccd729632c7b9dea18f,         1,    python,   2.7.9
+                  davebiagioni/pylighter, 072083f50aaa7bf9d25d19adf4bf1ec8480f856f,         1,    python,  2.7.13
+                         dlabctawg/ungdc, 0a36a7ee9ff3065b7ecee1d0a831126d32193b66,         1,    python,   3.6.1
+           dkarunakaran/dlnd-p1-first-nn, 47b4e0a4056723000cb7002d389f00349be2ec00,         1,    python,   3.6.2
+               davidbradway/emojize_text, 414ecf2d953de416dba016a68d1de269d02a97e1,         1,    python,   3.6.3
+                     darribas/int_dbscan, b2f9c6e1dc12aaafce876060a47c65dc20d40a64,         1,    python,  2.7.12
+emilwareus/Deep-Learning-Foundation---Project-1---Bike-Prediction, cf11b4aace25d8b11d7b122ef9ae7f7ffa0d04f5,         1,    python,   3.6.1
+                   emilbayes/nltk-binder, 3966eb51e821b7d35a2859043898b96f0c19c1cb,         1,    python,   3.5.1
+                            eminik/ai-rl, 071de5b17200d7e18879f47fab6ecfdbb34c7013,         1,    python,   3.6.2
+       fredelf/bike-sharing-nn-predictor, 7249097c37d60d6b3adadbf9bb2e9dc2c7b11ce0,         1,    python,   3.6.1
+   bertothunder/coursera-neural-networks, 7fdfa58e22b30f854ccd93748ea3bb54a0d8bf44,         1,    python,   3.4.3
+flsantos/udacity-project-your-first-neural-network, b9b4c72f45634d1438aac7a5e4cbdf902ef9127c,         1,    python,   3.6.1
+         florintraian22/python-exercises, d41b81f72849302eba07ebfd57e9eaaba4221a2b,         1,    python,   3.6.1
+              binder-examples/jupyterlab, 010b47c7d99ca697bde75f08af021ee5174c8245,         1,    python,   3.6.2
+                   binder-examples/latex, 29e2eecf573151ac8d61a715da5640682301727c,         1,    python,   3.6.2
+          binder-examples/remote_storage, 538d0a42d5b951fe1f885e5975f70422028ed630,         1,    python,   3.6.2
+            binnymathewiitkgp/testbinder, 27c313ac8b8bb0cbb1e44d3e1a79949cefc10ec4,         1,    python,  2.7.10
+             findanddelete/fnr_notebooks, 64343f3509e0bdbb6156d27076e83267a30d9a53,         1,    python,   3.6.3
+                   bittremieux/smart-lab, 9f5f1b6c9d7a5ea1615cdfde49bb7e4c8fbb94e5,         1,    python,   3.6.1
+               fifiteen82726/binderspark, 9dc22965b6c7a47c8ad51a0fc5fe7b3cc50fbc00,         1,    python,   2.7.9
+charlielito/supervised-basico-microchip-tests, fcf8b4c5624ea8edf7193d7211f8fa32a27f0834,         1,    python, 2.7.12+
+                bjmorgan/data_NEB_spinel, 3d003515dcf1c3e2725db3606a37d24022a84c94,         1,    python,   3.6.1
+                   bl-nero/seneca-effect, f9821783767c1ce01fde1ffa1435633bb0dfcb24,         1,    python,   3.5.2
+         blackblitz/first-neural-network, 52fbbbe678d1aa70b3388a718cf988f4325c0067,         1,    python,   3.6.3
+      blado-runnero/first-neural-network, e91c762c8ff3f862acee1169285bef892ce3f5ce,         1,    python,   3.6.1
+     blaiszik/CHiMaD-polymer-publication, c24cc45379a039f48764ff1f6de0daf1559f23ba,         1,    python,   3.5.2
+               bdesnoy/cs6220f17project2, e846302ba3e0d31adbf339df8b96cfa97f0bdc4f,         1,    python,   3.6.2
+                           boileaum/test, 42442b40cf85e90da612b8960592a595da464b40,         1,    python,   3.6.2
+           freehoge/first-neural-network, 90ab6be0494f3ddea134c657b191108193b6ccae,         1,    python,   3.5.2
+frodebjerke/deep-learning-bike-prediction, ccf535bd30f48aa5f196b895493adc4c2d10246f,         1,    python,   3.6.1
+                     gfleetwood/handyman, 968d3dcba1163bdf466fa5241a71304a774597dd,         1,    python,   3.6.5
+                     astudillor/analyzer, d033d70fe695e62e9b298b1be03ed533d7571df5,         1,    python,   3.5.3
+      atifkureishy/deeplearning-project1, c763208d3de5674c76981f57b22aab00ae26ae0f,         1,    python,   3.6.1
+georgelgore/python-lists-lab-data-science-pilot, adcec4cb6504031416f76fcc77a9a932564acdd0,         1,    python,   3.6.1
+                attraylor/my_binder_test, c5360ccff36f3964214c11f84e1f0aaed7a702df,         1,    python,  2.7.13
+      atuchak/grannydatasoup-devops-test, 44cc40ac45dd804cf8c8bb422e5193852e38a89a,         1,    python,   3.5.3
+                       auag92/docker_use, 67e95cda2a32e6e00ab1d9a8c21f20c5076731eb,         1,    python,  2.7.12
+                    geokai/Python_Tricks, 9ba550aaea8f3747890cbcba7e69a1617df6cb92,         1,    python,   3.6.4
+        aylliote/ramp-santander-products, 51f6e2cc79186df166ff7f3983f34bc25300e549,         1,    python,   3.5.3
+      aywengo/nd101-first-neural-network, e043ef0464037adec48ccd6cec62fe9cf56a4ebb,         1,    python,   3.6.2
+                    gcardoso2314/titanic, b468f43388fa9d521acf2fd7966bff0a1adf963a,         1,    python,   3.5.2
+                    b5m3/rl_sutton_notes, 1b21e2fcc5330037cbc2fb66427cf9b35542bf0b,         1,    python,   3.6.1
+             gafarina/BikeNeuralNetworks, 577e4b2ee0119df1971506bdf18a389c7b6d02f0,         1,    python,   3.5.2
+   badphysics/electrostaticsandpotential, 3161e2ac1d311d00e120b6a0dbc92fdf013df662,         1,    python,   3.6.1
+             gabrieldelaparra/pai-tarea1, b7632bfefbe69a9adbbc61d0d9ad795befb380f4,         1,    python,   3.6.3
+     barabasicsongor/ML-presentation-TGM, 916af18b15718d555a74957681031e4230179cae,         1,    python,   3.6.1
+           barrachri/imbalanced_datasets, fc341afc6416eb55527ccd62c5025f4176032ab1,         1,    python,   3.6.2
+                 bastula/dicom-notebooks, b97bd61431450dbb980011e788813e4848096dc1,         1,    python,   3.5.2
+                  brettcannon/travelbrag, f0640cb53237ad47466863e6ff60e87a2684ad7f,         1,    python,   3.6.1
+         bjarnagin/python-crop-signature, 73f40abae17a00124b9aef8e4515129056f385c1,         1,    python,   3.5.2
+                  brianlan/kaggle-nuclei, ad5c94e54cb86a519a7c22e6a64ba74de1b3e0bc,         1,    python,   3.6.2
+         callonravi/deep-learning-master, effe4a51ce7d7611439dd90d10302499f941d4be,         1,    python,   3.6.1
+                          breuleux/hrepr, 8fd80026ccd2778628867454d22c9156f2177365,         1,    python,   3.6.1
+               caroem/DLND_First_Project, f894aa528d85e48f4d9637f4e7147e98a66d61bc,         1,    python,   3.6.0
+                 caspervdw/trackpy-force, 409b115118f9dc8d7bdde1c5a6b728be8b79826e,         1,    python,   3.5.2
+                       fbcotter/plotters, 12c39416302b7eead12325901d16a98fbd9a73c7,         1,    python,   3.6.1
+cavaunpeu/single-neuron-gradient-descent, 776b0949e6712beb7299fa3fa3e21f0deb24d017,         1,    python,   3.4.3
+                      fabio1079/ml_fonts, f359bb0e79b70302a0355e4da9fdec16f2d5322e,         1,    python,   3.5.2
+              eug93/first-neural-network, 3da4e0ddbdbbd8cffa5f1b8c96854b894b3c73af,         1,    python,   3.6.2
+               ericinlinux/ruben_project, e5b4902a92c0b2ae7bbab209d94f96503fc1b49a,         1,    python,   3.6.3
+               ericdevries/psychic-disco, 1464b1d9e842153846031cca649e1cecacc06e84,         1,    python,   3.6.4
+                             cedias/FMTL, 48148198ce0318915600638edeaf910ce1823656,         1,    python,   3.6.3
+           cesslab/AIG-EyeDataProcessing, 499d7643872a3ece5e5a986bcd6865928f5c1445,         1,    python,   3.6.2
+  cesslab/Experiment-SuspenseAndSurprise, 5cfe1c8467a6c5a64453c7248cdb36e75d9374dc,         1,    python,   3.6.2
+                    ericchansen/rfm_demo, 2de630ea6f97ab71afef870e2c2f3820ed4f108a,         1,    python,   3.6.4
+        chanzuckerberg/image-widget-demo, dd575da5991f47e467c0cd77da9478ea4d6d26ed,         1,    python,   3.5.2
+charlesjansen/Deep-Prediction-of-Bike-Rental-Ridership---Neural-Network, f194caf020cddfb8a036fba8c7acea6883e9565e,         1,    python,   3.5.3
+charlielito/supervised-basico-admission-exams, a9e1cd2628ba9787ee50f9df0d52673a5576ba16,         1,    python,  2.7.13
+                    c-labpl/qrs_detector, 13a404d135525d3d14136aa4aa4a10af5e34cf01,         1,    python,   3.6.0
+   burtonbiomedical/MyFirstNeuralNetwork, 9427dbf4ddf1d1914b4c586837877210270bc92f,         1,    python,   3.5.2
+    denverlobo/bike_share_neural_network, d9ab781f337d7170117b9272d67f6c0bf8560937,         1,    python,   3.6.1
+       buitron/heroes_of_pymoli_analysis, 78e70799dd7d014efa7e3ce4d06cc1e9312b4829,         1,    python,   3.6.3
+          buitron/academy_of_py_analysis, fcf98ddeeead4c5b40df999b82ba7aa7ca10897e,         1,    python,   3.6.3
+                   bruno153/NeedMoreData, 2654d6854b2fc0f57afb5d800875ebe2341e3917,         1,    python,   3.5.2
+ buddha314/beer-league-positionator-2000, 114a08e4478de899dc7ae6b189b967e4508b0e92,         1,    python,  2.7.10
+     felipegssantos/first-neural-network, 8a6c54b65057f8b03c3adf701d6ead6576dae4c1,         1,    python,   3.6.1
+                  buitron/pyber_analysis, 1e81bd0b3898adc1182ef84275c5cddd08687210,         1,    python,   3.6.3
+                  felipefujioka/bankrupt, 98422f784332cd7c7f6eabd1eee11b08c3e1884f,         1,    python,   3.6.1
+          brtknr/SushiSandwichClassifier, 7061b3b03f3fd5959a3626c8c59fe276b73d2751,         1,    python,   3.6.4
+                     bthemad/coursera-ml, 9d97f3fa28db7f762bbb13d13bdc516c3e9dbf45,         1,    python,   3.6.1
+               dmargala/ccds-import-demo, 712480d4f0987804ee5f923513e356622cfa6567,         2,    python,   3.5.2
+                 florinp/cohort-analysis, 1f6631765b486f61b0c1490e37f5f19222aa6040,         2,    python,  2.7.12
+                 imjacobclark/neuralnets, 4ac563156e972b7bbeb781f81eb886d2fb970d0f,         2,    python,   3.6.1
+                  dsw88/salary-estimator, bd9aac2b04bd63b6a3e8a7d6ae4791b5697814d8,         2,    python,   3.6.0
+      APIIDragonKid/first-neural-network, e1023cc32924b9fcaf16ea89d553c51271da921f,         2,    python,   3.6.2
+BuzzFeedNews/2018-03-oscars-script-diversity-analysis, c0f15dc057896f3828b8d460a02a17eba168a79b,         2,    python,   3.6.3
+                            vega/ipyvega, c6c00fb7669e7a4b6633062a8a32676ead84b272,         2,    python, 3.5.1;3.6.1
+                          drorata/abtest, e30b05190636ab82c0273b7164adce2852857c4d,         2,    python,   3.6.4
+  innovationOUtside/ipython_magic_canvas, e4f4cadec774fde6c354bff688700d03d27a4c74,         2,    python,   3.6.4
+               fccoelho/Curso_Blockchain, dfbc564454561dda727616892a0c8b96ecfc808b,         2,    python, 3.5.2;3.5.3
+                         toolness/ml-fun, 5b135a11dae6cce51fe61e58f0265513a54fc16e,         2,    python, 3.6.0;3.6.1
+               HajimeKawahara/chopstacks, 120a9315eba830fcf7efc1b58307a9d7cd97ee26,         2,    python,  2.7.12
+        jfmolano1587/DataScienceProjects, 9c13cd90fd0a0897618e9db626523d481c9e32d3,         2,    python,   3.5.2
+                   Ben-wu14/deeplearning, 4efa0292535c8c5037c9a88442dd52959e648133,         2,    python,   3.6.1
+           IsaacMuhanLi/TianChi-Diabetes, fd3e7bc20c933dee34c0ad70f7189d10a04af616,         2,    python,   3.5.1
+                       ygpark2/notebooks, a5731f30ab85890c5211a49a95661708a82e39b8,         2,    python,   3.6.0
+            Codutie/tensorflow-tutorials, 219f76e3accc6192a0759bda4b074a09bc685608,         2,    python,   3.6.0
+      DCgov/enterprise-dataset-inventory, 9c1af22b9e1d31a6bc007bdef2c7dff5224fe844,         2,    python,   3.6.3
+              IBCNServices/MCAppAnalysis, f4ead4b363a4455f60518769483a022ca4025625,         2,    python,   3.6.3
+                     jean-k-cp/python101, ee7dcdcaf1ad9b8fc9dbc3f015cca2d6b7e736de,         2,    python,   3.6.4
+       shahariarrabby/AnalyzingIMDBKeras, 01f0b3fd5333c9246d3e0aa19edd29ad678da7bd,         2,    python,   3.5.4
+   ColinKotar/TFLearn-Sentiment-Analysis, 2c6e7805362fbee19f3b2fdb4ddcee2b9766de4e,         2,    python,   3.5.3
+                          sjdh/ml-binder, 3500db53d58c6aa7171ff7f2e8442b45513584a2,         2,    python,   3.5.3
+      ColeMurray/Tensorflow-introduction, 17977c0a652d996ff439c258a4da2ae1c9ff47b6,         2,    python,  2.7.10
+                  jbrubaker/hr_analytics, 03b4b33ff1f4c68be47cdc81d3706a72aa4e5e80,         2,    python,  2.7.13
+                  fmilitao/jupyter-probe, faf83518067d484e9df40f7314b32b06357ad53b,         2,    python, 3.5.1;3.6.5
+      schuermannator/UdacityDeepLearning, 1dbc72b3b511a0a2537ceee258ff6fab2631c220,         2,    python, 3.5.2;3.6.1
+                     fritjofwolf/RL_misc, c2a000f34aa3affc5941bad8d69a7438fa4c21eb,         2,    python,   3.5.2
+                    datavistics/sms_spam, d858fdd25371979b42fb66093866479fe098aff0,         2,    python,   3.6.4
+               glouppe/tutorials-iml2017, 7f21c3e7d57febd15410daf4c530defbb69fcb96,         2,    python,   3.5.3
+                   pyrooka/felsogeodezia, f78ed4fd0884f0ee38950aff555617fe5cd65208,         2,    python,   3.6.4
+                              kahnjw/pml, 9a61ef9e34675bc3e6f3ca36a95af0f6efdc4c7e,         2,    python,   3.5.2
+        kaibaesler/xdiag_magic_extension, 025b82f18553829dfb0839fed9ac3de2b083823f,         2,    python,   3.6.4
+ pw2393/healthcare-financial-performance, 248927d48e4cda11e61cbed6207e309ba938ff40,         2,    python,   3.5.2
+                    alhvi/prueba-jupyter, 8b7fd4520e2532b7a5a84e3d02fce12f743ed18c,         2,    python,   3.6.4
+                        dakenblack/DRC18, 746181d26cfd0ec7046a0ad088220d2af7f48bf2,         2,    python,   3.5.2
+                   brihijoshi/Math_of_ML, 014707b7bc889435ec8be7505894655654f4e819,         2,    python,   3.5.2
+              katilp/cms-data-popularity, 278627937504805b398dc140bf1dfc2bfc7117fb,         2,    python,   3.6.0
+                  mmoelter/LiquidCrystal, c1abfa32e86195e893e98d4af2dc5fd04e2e5b9c,         2,    python, 3.6.3;3.6.4
+                daamanmeet/Deep_learning, 993fb856bb9824cec7384829d0c4cc700830c6bf,         2,    python, 3.6.0;3.6.1
+                        mmoelter/Phys133, 8ea518c075e62fc5d57adc99b94d2e3d2d502a2c,         2,    python,   3.6.2
+                    bsorsch/c_elegans_ca, edca1840988c08450dfcdb2e86d880f7a7d5f838,         2,    python,   3.5.2
+             mshenfield/deeplearningbook, e493c212f7af51b7bcb41cde770cbfd58d385326,         2,    python,   3.5.1
+                   camitak/UFABC-ML-2018, 6612cc87a740fda990ce8095fe49b2ea3ca1eaa0,         2,    python,   3.6.3
+                   adamldarnell/happyweb, a5eae8b252f313f03eb481f19ca27d7fbd769a1a,         2,    python,   3.6.2
+              costrouc/mse-bandstructure, fa3d08e4685622c96ae02e03594a928929c2a2df,         2,    python,   3.5.2
+                 cmacus/physiology_notes, 63eb04f17bd76b720104b58469ef770ae4eaede2,         2,    python,   3.6.3
+          cloudinertia/document_practice, a3fa312853c8803ed4cc4bf00de787723ddbc7ad,         2,    python,   3.5.1
+     nataly-nicole/electromagnetismo_ubb, c72753eb4b33b1a56f8788014db68298e4995524,         2,    python, 2.7.11;2.7.12
+                    nealde/Notes-on-Bard, 242a850342c9243905e2001344cfa8b18605b4c1,         2,    python,  2.7.12
+          kylegilde/data602-finalproject, 26e144d9a4ce45351a7a7e9dc391aabd9a1d913e,         2,    python,   3.6.1
+YisongShen1995/machine-learning-algorithm, 462f56014e9fff7d4a31bde4c6afebff90d1c473,         2,    python,   3.5.2
+                    ckgrosch/pythonLearn, f278150107e6ad3521beff8acfe0fa9034b8024f,         2,    python,   3.6.2
+                        pablo-munoz/blog, c6a9f4f9917d2f399a2cf133e10922aa932b1182,         2,    python,   3.6.4
+  TheDancerCodes/Python-Machine-Learning, 5d96c511997acf39607a4c8d9ca6e8e33f1a0900,         2,    python,   3.6.0
+        ookgezellig/KB-Wiki-Stats-Graphs, 849808bcef9b07a18ebb0f5033e5893b73c3ac75,         2,    python,   3.6.4
+                         quantizimo/test, 3d830dac676877db0a3a63ee0c482bc1b6871d6a,         2,    python,   3.6.3
+laurentperrinet/2018-03-26_cours-NeuroComp_FEP, c9f0294a735b2f5384576c16f86448551425eec5,         2,    python,   3.6.4
+rmotr-group-projects/ds-unit-2-us-census-analyisis, 3afd952ee611acd3f7359373ba659501ae57fda7,         2,    python,   3.6.4
+               malliwi88/Expo-Kidnapping, 08bbc264ec2aa95d5cef63b67b80ca5cf805c1ed,         2,    python,   3.5.2
+Kautenja/comp7970-assignment04-ProactiveVulnerabilityAnalysis, 68df0cb27b6af5cebae23c30ee88854abbd2bf45,         2,    python,   3.6.2
+                davidmcclure/quote-match, 836486c497d05bbd69eec1ccbbc7c252af3eeae1,         2,    python,   3.5.2
+     LucasSabbatini/MyFirstNeuralNetwork, 91ec488f27d33dfa8c07b91b8c85ea619f7655f0,         2,    python,   3.5.3
+                     martingasser/filter, f59aa7bc52708248bca386716c38a1897fb0055e,         2,    python,   3.6.0
+             rahulnusiss/IWVRDataProcess, 4497a25ff53aa169256881d574b82ee021a83239,         2,    python,   3.6.1
+                        balldel/f-server, a1014ca53752bec9c3c68de34bc182399d013949,         2,    python, 3.6.2;3.6.4
+          ruberthbarros/outlier-analysis, 5ca33bed653840d42f623f663c79d43f1d387a83,         2,    python, 3.6.0;3.6.2
+                        rknLA/pd-expline, 16562c083f2c35d9d07cb055e7a62d1d422ebbdf,         2,    python,  2.7.11
+      jolynch/python_performance_toolkit, f2f0a0992f2775c6a497b30f65cfa8311caa81c9,         2,    python,  2.7.13
+                bayronportilla/Notebooks, c0652a3cb25748a0623586d2d16953c9e9ef62cc,         2,    python,  2.7.12
+            rightx2/MicroTradingPractice, fe2fe271900a3a956ff5988e55519279030d90f0,         2,    python,   3.5.4
+                   beiciliang/ECS735-lab, 67b1241848e6ff5cfffdb4f056562c03962664ac,         2,    python,  2.7.14
+  mdietrichstein/digitalpreservation-dmp, 114ba2fcec2807f2d0f1073f3e26065ab1201eaa,         2,    python,   3.6.4
+  NighTurs/moscow-renovation-voting-2017, d7001b0304508d984c24bb3046016954f6102bbc,         2,    python,   3.6.1
+                      Oceanos1/LFA_Labo4, a1ee002f572e0b0fec89635cf1e33abb2ab63f5e,         2,    python,   3.6.4
+                    samez21/leyes-kepler, b76acd4ea143b9822a7a19877b51edc66ca13b2b,         2,    python,   3.6.3
+                         leopiney/c_divv, 7979d1af9f0e6143d1df2ccf5714a767844ab283,         2,    python,   3.6.0
+nishantmittal1990/Keras_NeuralNetwork_Learning_Pods, 4fa954c653eca6b680a2645ef8b8cd44cee7ec40,         3,    python, 3.5.2;3.5.3
+lucaslra/AzureCoder-PlayingWithPandasInJupyter, 2f7526add2bcf87769eeea7bd3a2190fcc9253d2,         3,    python,   3.6.3
+                        gevero/py_matrix, 0cea96440e30b64ff38098813a123a3d94a1c38e,         3,    python,   3.5.2
+          TomoyukiAota/python_playground, 0249655f7d00d85d1b19ed52be1714d7838aa2d1,         3,    python,   3.6.4
+                 zero2cx/db-app-notebook, 32f9c3c16d35e986979a46b4190bc43e2b9b5a49,         3,    python,   3.6.4
+            alykat/first-python-notebook, 661d73e467d7d821f1868969be5300a92d430594,         3,    python,  2.7.10
+               vitaly-efremov/bepythonic, 82e27f8ca1928ed0ae029afb8f5215e1e6132461,         3,    python,   3.6.3
+                 CarstenIsert/AIND-Keras, 4612933a37a8f796f4eafe2b0afc52f75f95c294,         3,    python,   3.5.3
+g0vhk-io/sitcon-hk-2017-jupyter-tutorial, 2c929baf7f5077f236f6a86e530f314eb490ecdd,         3,    python, 3.5.0b4;3.6.1
+           andythewhale/Keras_Admissions, f6706d5d9e673f13c86e78d343ad750ee1abafde,         3,    python, 3.5.2;3.6.0
+              yasarsid/AIND-DeepLearning, 171933db7663c842ac39ad600c1f2d1422f3c707,         3,    python, 3.5.2;3.5.3
+                      bgalbraith/bandits, 1cb5b0f7e716db13530324f04e57d1d07cfc5640,         3,    python,   3.5.1
+         michaeloneill/GaussianProcesses, afe81b05c9b86fc4114b2ca91c4ae4bd9db70269,         3,    python,   3.5.1
+                   zed/jupyter-notebooks, 18f59b0949d575299d80aabf1e08b0984371597c,         3,    python,   3.6.3
+        hb20007/greek-dialect-classifier, dc98e163dc029a06324a7d2c2b1f2cbfd426c36f,         3,    python,   3.6.4
+          Tareqhellibia/ReDI_DataScience, 33f32c92ff05d89a85859f45d70a8fb2b55f6a43,         3,    python,   3.6.2
+             jrios6/DLND-Neural-Networks, 40b90f04b2828ec394c0b7e49376537cf8720330,         3,    python,   3.5.2
+                         prob140/prob140, f6d7a5c185d6d519e736630630249b89e4d7a658,         3,    python,   3.5.2
+                    kapec94/cardiovector, 20340355810f103dc755586174e73f8c0fbbf506,         3,    python,   3.6.3
+          dmarrinan/Weather-Station-Data, 2616c0b2d0b31143e5f221e720fe61505c260a13,         3,    python,   3.6.3
+Lee-W/Intro_to_Python_Data_Science_Tools, 4ba24c7b3c8caec529a12e2357fa86d69306566e,         3,    python,   3.6.4
+           DreamsFuture/StimulationPaper, 1fe91761c8a5d8d1fa71e5c6a3169a6d7fc3974e,         3,    python,   3.5.2
+         satishboggarapu/DNN_MiniProject, 50b1b6b15b32bfb31b398f28f1193701c701a1a4,         3,    python,   3.5.3
+                        Erik-J-D/syde552, a30e659cbf6443a6331fd478dbf1c1e9b0b2a461,         3,    python,   3.5.2
+                             opus49/test, 3aaf21f1a9671f4ac80b4a826155c350921dae6f,         3,    python, 3.6.3;3.6.4;3.6.5
+   raviolli77/startup_weekend_supplement, dda9cc6f2729952abbf337ebfc14c66439ea02e1,         3,    python,   3.5.2
+                       jumpertown/eipimo, 59a841b027b676ba6cf91f73835229b9fba061a3,         3,    python,   3.6.0
+joe-from-mtl/ele8812_Cours_AnalyseMultiresolution, 4eefccdd29dd8cadd7b9733ba988cf289d0ef535,         3,    python,   3.6.4
+         davidboutelier/ForwardModelling, 9e19ebb6c534fb5e8b4d94b2ce47d8ac72980b31,         3,    python, 3.5.2;3.5.3
+                         deathbeds/sweet, 3bad27c1d5eab7fb42ac6a354608378dcca2587b,         3,    python,   3.6.3
+                          sabau/aind2-dl, 68befb7933c674d2c1fccba782d24d3430031b48,         3,    python, 3.5.2;3.5.3
+                           paulgb/penkit, 1c9342261812cddd9aa074f37a497f3a5d78c85d,         3,    python,   3.6.1
+          biozz/advent-of-code-solutions, 75c86b022d09e387855f8fd8af89ec7a85fd2d98,         4,    python, 3.6.1;3.6.2
+                        ir4y/ml-coursera, e7cfcb77a635147864e66e6d0722d6983e374f8f,         4,    python,   3.6.2
+                        kd-nguyen/guttag, 86456b6f1f1675fa64ed14655e4a70fd87c59cff,         4,    python,   3.6.1
+         JohnPaton/numpy-neural-networks, da5446c6e7cf1c3a06901f68d0df313c9cda8fc6,         4,    python,   3.6.3
+                    gasabr/modeling_lab2, c9b9f9bf438a707f18967978d27b7cf8f515156c,         4,    python,   3.5.0
+                     markusschanta/talks, bf13a94204f1a489d1b1cefa3c4132bed6de845c,         4,    python,   3.6.3
+                            ayatk/nlp100, 4c903696c22e3577ad46c8f364aae27fb28d9d72,         4,    python,   3.6.3
+ aaai2018-paperid-62/aaai2018-paperid-62, 7e742aae9ddaccd14ead2c5619f7a8e78881bb76,         4,    python,   3.5.3
+   nextco/linear-and-logistic-regression, d558aaeed5aa0e0d52bff8983897a8c15629f496,         4,    python,   3.5.3
+                        epwalsh/seminars, baabadfff850ab742db85e7344d1b90df7a78916,         4,    python,   3.5.2
+                   Visgean/learning_data, 800db46edd2bca0344c06f146e482d3e5c9f5a60,         4,    python,   3.6.4
+rmotr-curriculum/ds-class-3-data-wrangling, 54166c3f1ece7707b366eaded30112ee6c3e54fb,         4,    python,   3.6.4
+                             sedanlab/rl, 3a7ae721ce06b6aea8ab893f3c833cc6ad95ec19,         5,    python,   3.5.4
+                     jessstringham/talks, ac29539cb808ce491823f5441929e05bccc53d59,         5,    python,   3.5.2
+                         rlabbe/kruschke, 19de1d90720d05060f838f76b63644d8804219c7,         5,    python,   3.5.1
+             atonderski/tda231-ml-course, e2622f8bfde838f73ee49417032cbb90f762be5f,         5,    python,   3.6.4
+             rodrigo-pena/graph-learning, 596990fa5832d3c6fb485ff856582d4cea91cda4,         5,    python,   3.5.2
+    tylerwmarrs/titanic-survivors-kaggle, 24900abbee88272fa4d4e6e196baf8596baa6db2,         5,    python,   3.5.2
+                         ontouchstart/tf, 19dcfab7cbf0d249b36812ac238cd4bc121cd92a,         5,    python,  2.7.12
+       christinequintana/cmps263-project, 2322ec88c53c7281c6e4e833aaea01d3b92ecd39,         5,    python,  2.7.13
+         kasajei/MathmaticalOptimization, 48a45db953d6e121e3912e5a30ae1c0a519af0aa,         5,    python,   3.6.0
+             icoxfog417/baby-steps-of-rl, 48e81fc90d5719e3525345f9c6d9cd1d30cfc663,         5,    python,   3.6.4
+                        cds-snc/vac-data, 8b100dce0556514f4fbb8f635bee6d184ea9e4e3,         5,    python, 3.6.4;3.6.5
+                 Shillaker/python-taster, 0bc57ded4baf9dc9879ff6864600fa3bc5160071,         5,    python,   3.5.2
+                              cpoli/tbee, e29ab04313cb2574acbe54fee1f2eec6d0edbd40,         5,    python,   3.4.4
+        matthewfeickert/Statistics-Notes, 5d658f55430bac7388c9da5e26846f0c137be7b3,         6,    python, 3.5.3;3.5.4
+                Raggen96/kitchen.timer.2, e38a16dd1d793ea47052e9c0ae534e428f6cf87a,         6,    python,   3.6.4
+                takahiro-777/game_theory, d57c30c816c73fe605a4f5e927d2cdda5b3174fd,         6,    python,   3.5.2
+                           mondeja/mesas, 46475f74157eca936b52a96a0427c92f268be7cd,         6,    python, 3.7.0a4
+                      andef4/cpvr_matlab, fe0864476eb1a3e8b5acba4c9e3e3f6e08411521,         6,    python,   3.5.2
+                       Jhengsh/tidyframe, 3a70f0b70358a55de0b2afe7b92a8b592cee04f3,         7,    python,   3.6.3
+                      catch22/pyfermions, 298bc00549e5b83e14840817897c14ab37a12b7b,         7,    python, 3.6.1;3.6.2
+                  dursunkoc/learn-pandas, 7b512d08234a0291a901e7c80f6af79c926830db,         9,    python,   3.6.4
+                     simnalamburt/snucse, a8b773a942eaa21b2ca2a71211af935ff4549065,        11,    python,   3.6.0
+                       jdgillespie91/aoc, 90cb47247ffef46db157d93642e594c24e50a82d,        11,    python,   3.6.2

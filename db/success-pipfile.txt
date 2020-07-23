@@ -1,0 +1,46 @@
+                                    repo,                                   commit, notebooks, language, version
+                      haishenming/uda-u5, 8e4a5a6bd4eab8fc6228de85fb133162eff6fdbc,         1,    python,   3.6.3
+driscollis/NebraskaCode_Python_Decorators, bd06dc274b60ffbf955a787878e1c5210e5d40a2,         1,    python,   3.6.4
+                        kazup0n/lifegame, 2c710ed6419dd30a28dcaf5a352e08d107b08405,         1,    python,   3.6.0
+               onyxfish/nicar-2017-agate, b0a47d7b6970ce3d348840d13d2f05532c673be3,         1,    python,   3.6.0
+   datadesk/python-road-clipping-example, 92ccfce82c5dfaf1489b791baa09ff56ede70533,         1,    python,   3.6.4
+  palewire/altair-jupyter-lab-bug-report, ed7bdce1a4d79cfa8db8707d86cdc80e7953e6e8,         1,    python,   3.6.4
+                       samzhuwj/read-csv, 53a9a0378d6f2fe77ade9cbc36857ed5766285f5,         1,    python,   3.6.4
+                         jakesnow/quakes, 15bc223b4ba588025309f0b8590be9d713acf4ee,         1,    python,   3.6.4
+                     samzhuwj/use-pyfpdf, 049ad9b8dddff84295b17ef60aef1995ba7159dd,         1,    python,   3.6.4
+            alexbseaton/complex-mappings, 6284f86c9b268ab40b8b5acbe088a68dbef783d8,         1,    python,   3.6.0
+                       agconti/dog-walks, 8b6c6921b97073a49f0f55b05b95d40cb107d037,         1,    python,   3.6.4
+VioletVivirand/lime-mechine-learning-demo, 92817b09357223312b8b4dc6971b1c83983fc127,         1,    python,   3.6.0
+     TrentoCrowdAI/datasets-preprocessor, aee0aa8a4f653892f100f54459e748e37046123a,         1,    python,   3.6.4
+                      supernova106/pybot, 0e5325c94675464a5bb5125b4dc5eee907ce8823,         1,    python,   3.6.4
+                  tammoippen/autoencoder, 29853a8e51f68edfcd16d60a2cbcef1597d3c951,         1,    python,   3.6.3
+       trevordmiller/practice-jupyterlab, 94f78b2029bb6777e1e652208f282ac66ff929cf,         1,    python,   3.6.4
+                        sciyoshi/riddler, e97d631f0deb3dc372c8f40623835dfb41f255f8,         1,    python,   3.6.0
+                   pyrooka/felsogeodezia, f78ed4fd0884f0ee38950aff555617fe5cd65208,         2,    python,   3.6.4
+                     jean-k-cp/python101, ee7dcdcaf1ad9b8fc9dbc3f015cca2d6b7e736de,         2,    python,   3.6.4
+                           izikeros/blog, e350bc092b2b5ee3956c627f1c2275e85902168f,         2,    python, 2.7.14;3.6.4
+                         GitNiko/linearC, e38a5b14e988daca679780ed1e1659ac4b9f65bd,         2,    python,   3.6.2
+                               farnoy/ml, 4a6e13534dcb6023f03c10b4d3f7fd9bec67d046,         2,    python,   3.6.4
+              erikkvale/machine_learning, 8119f5b4e92790fedd0d51f234134f0cc888cb31,         2,    python, 3.6.1;3.6.5
+            elisabeth-berg/trending-food, 39918c903365484957091178d1c17eb926e76716,         2,    python,   3.6.4
+                      timm052/Realpython, 35ca9167ac9f4df69294fb906a479f40454d4375,         3,    python,   3.6.5
+ knowsuchagency/knowsuchagency.github.io, 1202a56dd445e0f79c6b4555217e11223a0f7e72,         3, python;unknown, 3.6.1;unknown
+          TomoyukiAota/python_playground, 0249655f7d00d85d1b19ed52be1714d7838aa2d1,         3,    python,   3.6.4
+            budiryan/colorspace-analysis, 9851d8972d7f6ee4ab9a577050ee5700546d33f0,         4,    python, 3.5.2;3.6.4
+          biozz/advent-of-code-solutions, 75c86b022d09e387855f8fd8af89ec7a85fd2d98,         4,    python, 3.6.1;3.6.2
+     GustavoDinizMonteiro/inverted_index, 76d98d334784eb1204544ae6e4e7ddebf4f49deb,         4,    python, 3.5.2;3.6.5
+                      elanorigby/pyquest, 9edf6f85c1e8fc74bbe3cd3ac13f4bc626f18f45,         5,    python,   3.6.1
+        morenoh149/dog-breeds-classifier, ed72a1f861d672f8d8d460de904473e90ff351f2,         5,    python,   3.6.2
+             paulolemus/machine-learning, 5889c83c0586f1594934d2bc61939038929f6298,         5,    python,   3.6.3
+             atonderski/tda231-ml-course, e2622f8bfde838f73ee49417032cbb90f762be5f,         5,    python,   3.6.4
+                    kurtrm/miscellaneous, 82053525a3c258ad1d9a0e821a62fdbce2150240,         7,    python,   3.6.3
+                       Jhengsh/tidyframe, 3a70f0b70358a55de0b2afe7b92a8b592cee04f3,         7,    python,   3.6.3
+                      sci10n/ML-Examples, d6703fe7c060315340bd9fe5c1ce796b089b152c,         8,    python, 3.5.2;3.6.2
+                     westen30/playground, 88f25cf2eb253e6113c8ca6952fef1d6b66dd23e,         8,    python,   3.6.3
+villeristi/applied-machine-learning-in-python, d061297f59f7856ae05d196918762d69d2fad325,        13,    python, 3.5.2;3.5.3;3.6.1
+           alexishevia/jupyter_notebooks, e4f03c4b7e859f12ed470b2594b239fb7b7ee0f5,        14, go;python,  ;3.6.5
+        foriequal0/grad-proj-tf-tutorial, 69fcafffef4d9227b49f382b0eec1f099c6f1e3e,        16,    python, 2.7.6;3.6.3
+        dmolesUC3/mrt-autoscale-analysis, c489d37dc98bd394fe5ab83936c5bf8283fc798b,        17,    python,   3.6.5
+cjwinchester/ire-2018-python-for-data-analysis, 3262f1f5eed2d712ffb7a2106381d5b98ff2adc3,        21,    python,   3.6.4
+                      onnudilol/ml_in_py, a178d3de61d0f5881423fd27bcb26d713e0e36d2,        33,    python,   3.6.3
+dgkim5360/the-elements-of-statistical-learning-notebooks, 2551161e8f233a0ed547be9dfabdf5e008afbab0,        40,    python, 3.5.2;3.6.4

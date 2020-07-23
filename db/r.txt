@@ -1,0 +1,1001 @@
+                                    repo,                                   commit, notebooks, language, version
+   royxss/Predicting_CreditCard_Defaults, c7a1d0de57961bba2f3a37503160000edaa0d65c,         1,         r,   3.3.2
+                 eliiza/challenge-hamlet, fb9dae5a8e5064dab9b5adcca039514cf19abc19,         1,         r,   3.4.2
+              elenalowery/DSX_Local_Test, e4021bbd207c6eb17a4aa5b3bf347eb32827f073,         1,         r,   3.3.2
+        elenalowery/DSX-Local-Automotive, e7fd83c7f5c8267c6143035932974bd0d43a1438,         1,         r,   3.3.2
+   elena-petrova/kaggle_deaths_causes_DA, ab5b6623c456adc9d2014f8083201df477a6a858,         1,         r,   3.3.2
+               elena-petrova/customer_DA, f7c6933445121bf60f40433f5eab8851dbe65f40,         1,         r,   3.3.2
+       parsechange/Pairs-of-Random-Walks, dd70b6131c8b10ab98904de6d3f3134ec065f841,         1,         r,   3.4.2
+                      patrickneise/week3, 15b1882d7c8c9d96e8ba836760a395c22b9f303d,         1,         r,   3.3.2
+                               ej550/SAM, 13fc4bef2014b479f444c5c9772056d21bfb95a0,         1,         r,   3.3.2
+       einheitActual/accountability_2016, 9a328dd201bae59522f7c752adece6ebdb9a8036,         1,         r,   3.2.3
+                elizabethkoenen/JOUR-407, 00bad70117b9401d7b329d5b87859d812094ca3f,         1,         r,   3.4.3
+        paullovachy/Basketball-Reference, d1fc151d5c33f79b52bf7775546525fe11a8bee5,         1,         r,   3.4.0
+                       pawar121/BIG-DATA, 8def1473735f101a002752ae075fa534ec2e8439,         1,         r,   3.3.2
+       pbalaji85/LearningMachineLearning, 6bd651b9772d789a5d956e4e2672a71389629059,         1,         r,   3.4.3
+                 edvalente/hackinghealth, fa3e95e20e98f4759590b3cf2feb56b475cdca99,         1,         r,   3.4.2
+                          edithbird/pynb, faa40605cf303434fdcdb71d32c92eedcbe3354e,         1,         r,   3.4.2
+                  ecudone/biobase-rnaseq, b487902e206aa3a90330aaedc975f775781a8c09,         1,         r,   3.2.4
+                      eclopton/RTProject, c7609f6dbc25eb17cabb92a5248532cc84d04a0c,         1,         r,   3.4.3
+                      eclopton/MovieData, 19d7521f3f8e09321e5789aeee0b65369c4c3def,         1,         r,   3.4.3
+peiyuzhu/Level-difficulty-in-Candy-Crush-Saga, 5209ea9692e81335afdb96d6fc6c7bebed273881,         1,         r,   3.4.1
+                    pepascuzzi/jupyter01, f9c0193879339dfe35e0c8eccad8e582c2290ec9,         1,         r,   3.2.2
+paveq12/simple_linear_regression_in_R_jupyter, ae0137e6e0c24b09acc7c80d1566d9853b0a4f6e,         1,         r,   3.4.2
+        ebusato/MesureEtIncertitudeL2SPI, 9b9a7c220b3da9fe7afeae05894a0a74a2d4b307,         1,         r,   3.3.2
+                ellguso/docker_functions, 0269525ec869bd304f20af86844af8f7d56a6ee1,         1,         r,   3.3.2
+   parisepigenetics/bigData_Biclustering, 22dd101faccf952def1524b8afb375e2655ae2d2,         1,         r,   3.4.2
+                      erikcs/kalman-stan, 57c3e1d1dd65ffd209bac7c04fb16135865a83f5,         1,         r,   3.4.1
+pacificera/Coursera-Datascience-Capstone, 3ff3b48385edd18ec30b91dfd89a70d589fa286c,         1,         r,   3.2.2
+                    ericwbzhang/RoughVol, 586f66663c697ae52306451f78911018edbc0811,         1,         r,   3.2.2
+            padipadou/housing_statistics, c52ba042623882b66921ab3511dc77577b3a7953,         1,         r,   3.3.2
+                    eogasawara/mylibrary, 8fd5b658cf953c5a12faa92ec3a2bb09c33f69ed,         1,         r,   3.4.1
+                pafonta/r-lunch-10-04-18, 1d6586730edf51b07a926bd35bfa3ed1e4ef68e2,         1,         r,   3.4.3
+    eogasawara/airport-delay-propagation, 7d79247c2107da8d62f0c4ff8d99a6233dddaabd,         1,         r,   3.3.3
+                           enachtig/Rfun, eeb7054b171179f597f9d2827f01f64a02ffa277,         1,         r,   3.3.1
+                       emreg00/proximity, 1b782aac425e2e218fd7d831275dbeed9c6303fe,         1,         r,   3.2.2
+                            parker84/fun, ff381b303bf1578f8f6303701df657e4285443c5,         1,         r,   3.3.1
+                         emreg00/proxide, f3645c357b91fd175e02127203d267d5ec0db468,         1,         r,   3.2.2
+        emmanuelives/Hydrocarbon-Project, 5b19560fe92dc4421dc5471904e8360e2add9490,         1,         r,   3.3.2
+          emmakamarainen/beautiful-plots, a5577378d65bd548b4d8f2d7be9c77f6d9bc6d07,         1,         r,   3.3.1
+                         emirlej/titanic, e6f2181de8f53730cca599898d38ce85d8749b24,         1,         r,   3.3.2
+                         paguarda/CPTime, 65a0305cba439c354d8cc61c2e7635e9084796ca,         1,         r,   3.4.3
+      pallavbakshi/timeseriesanalysisinr, 42aa4fe29f27883e9a0f18d930089d435e54e770,         1,         r,   3.4.0
+     panchoqv/Couple-s-Violence-in-Chile, dfa017132cf1b51541c166626a691f75030d8588,         1,         r,   3.3.1
+             elzawie/LogReg_Insurances_R, b7dcc7759200ee51dcca876f287819c8334aa530,         1,         r,   3.3.3
+                       elvinrz/R_Handson, c45be3b4d35259cc9ba0365187f47c66df81d894,         1,         r,   3.3.2
+                panchoqv/evacuation-actr, 9bf0859e2d93c79f43f8bdb8ba55836b2fd61bbb,         1,         r,   3.3.1
+        emredjan/15.071x_Voting_Outcomes, 1cf65273868420ee2d12f2a7d6d139508a1d0508,         1,         r,   3.2.5
+    petershahlevlnow/DS450_DetroitBlight, d52f8f7b1c992637ba9119ab34f9deeb0d35d368,         1,         r,   3.3.3
+                            ebotwick/dsx, f5ff51939d08dba26094e5f4917a9acc58e9a21a,         1,         r,   3.3.2
+                    ebenmichael/sap-demo, 61b3779468cdc40d07fe67041539c3e43639e204,         1,         r,   3.4.3
+                   posvaliuk/datascience, eeb6c696abc57372a9d6feffdb3cab59b6dad842,         1,         r,   3.2.2
+                      donaldbraman/r-viz, 8b24091c5a2285d33a51d715e025735180f1541d,         1,         r,   3.3.2
+   domptail/Tanzania-Water-Wells-ongoing, e21065d378d902a707604acc94e8ff89ee5e3f87,         1,         r,   3.3.2
+                      dominikl/notebooks, d192cee0736da26cd6950ddadb94793894dc8f39,         1,         r,   3.4.3
+                   pourzanj/coagulopathy, 00fdea9ca67f9ccbb05e23688c6d6a83654e3489,         1,         r,   3.1.2
+        docsteveharris/spotid-biomarkers, 11277361cc82a870c099c0d9f1763220232a55bc,         1,         r,   3.4.1
+                  docjason/DataAnalytics, bf6ab129969a734779d7a7809e6caddc1a5e9a4e,         1,         r,   3.2.2
+         pprzetacznik/Tensorflow-example, ca2b4ebf72f7c079d40ac5d75954430616c2c7f3,         1,         r,   3.2.3
+                     dmorgan26/UNGAvotes, a1f708e156f2f6e98ec0f71d232a5047016097c7,         1,         r,   3.4.3
+                        doorleyr/SFCrime, 836604e2f5eafe566e224bac806983b4337b7f16,         1,         r,   3.1.3
+                 dmorgan26/TelecomsChurn, 648c1cb2b4ad1edae1908328a132cd0ef44c2601,         1,         r,   3.4.3
+                 dmkilburg/clean_UCI_HAR, b8b2d4a3e28a5a2bccb90d077203d83670695074,         1,         r,   3.4.3
+                pranathim1/Miscellaneous, ed2cf9649dcbead58e92263a1abd5fb8ee6a4ac6,         1,         r,   3.3.1
+dmeyer3691/DataScience_Platform_Onboarding, 794deb506c3783b3322ddaa235139a8b7c145107,         1,         r,   3.4.0
+                         dmckinney5/4753, d29a3f0952129933241c7554c14ddbc2df5585cc,         1,         r,   3.2.2
+              dleprovost/crimes-notebook, e494bed6f08238b0eb6ed161abd7320d2fa6eac3,         1,         r,   3.4.2
+   prateekutd/Student-Alchol-consumption, 0667eba78ebfaec27346cda0a1ffedd5b7f1e6e8,         1,         r,   3.4.3
+                      dkumazaw/stat203_r, 77bc7c368b49fe11f66a0bbe5ac1183aa157c8da,         1,         r,   3.4.3
+pritamnegi/Datacamp-Machine-Learning-in-R, 518a95b3df5e5ca79e76f964ae90bbdb12b3b828,         1,         r,   3.3.2
+                                 djfan/R, 7b6bc28a4c303cdec07c10b8a7523ec3e4371a01,         1,         r,   3.1.1
+                         prajnak/ccfraud, bf18af01674d4c3b8447f6f88896c07af835c0ab,         1,         r,   3.3.2
+                        dorcoh/madlan-hw, 4dd314764482f950fbcfdc90ca3cdd9c8693e0df,         1,         r,   3.3.1
+               polygraph-cool/skatemusic, b80dc37133f04cc2a0204a83a72dc4dd9dd33fc9,         1,         r,   3.3.2
+              pjtorres/Bioinformatics-BC, f0d0640a900ce3ed698e3d1436e02284ad1ce869,         1,         r,   3.3.2
+     eacunafer/Rlabs--Regresion-Aplicada, 9002a9ec2879374efa02dd9867b510b213eea009,         1,         r,   3.4.1
+       e2vinodj/Workshop_PreWork_Project, b22cd27bc44b0fba17ea622b406b405852de0e05,         1,         r,   3.4.2
+               e-sensing/SITS_R_notebook, f0b6e7a0b6d60a586f2f1af9e455edefc5374b86,         1,         r,   3.4.1
+        dynamicwebpaige/ml-code-snippets, 255ead97d130fe48b9a1e338dc252d8c442beecb,         1,         r,   3.3.0
+   dylanjcastillo/stroop_effect_analysis, ccbe5e7a3871d6c92c2f143732ceeea46bde2805,         1,         r,   3.2.3
+ dylanjcastillo/predictive_text_capstone, 41c942764f294529b8f4f3b6422cfd17c2a1deb9,         1,         r,   3.2.3
+                pfeifn/facebook_checkins, ecf595931f8ea4698c7b788e86c3c3a862dee3f5,         1,         r,   3.2.2
+                 pgtpg/jupyter-regex-ubo, 23d61aa90f42d9ffaa45225b02fdd6d27e19a442,         1,         r,   3.4.2
+       dvirreif/align_R-LinearRegression, 1379c0fc11f2251e4714533f0a011468cd3096dc,         1,         r,   3.3.1
+              dtabak/Rover_Data_Analysis, 20153af3d410fd03a0cf6a236e62b87f90463e7f,         1,         r,   3.4.3
+                 phnmnl/MTBLS233-Jupyter, b19e158f3463145d600e79e8ec1b5c90ae64ea25,         1,         r,   3.3.2
+               phnmnl/MTBLS233-POP-Swift, 8376384c01f870eff90d23455f99c7d5b477bfe7,         1,         r,   3.2.1
+                             dsolva/UfoA, cd7332d78918ce15add3d5ef798d840c68178efb,         1,         r,   3.4.2
+                        dsolva/DiamondsA, ca3dcc5c9d7e5e29dea8cc00f1656acc05e44961,         1,         r,   3.4.2
+               phoenixrishabh/favar_code, 4426436429a1830606ea1cc0da3beab6580460dc,         1,         r,   3.2.2
+                        drvvn/persuasion, ef59fa15d5467a22b311409688691ebfe1aff31c,         1,         r,   3.2.4
+                    drtagkim/bi_usw_2017, 4714fc60fd7116730ce228d875d43740a88c9028,         1,         r,   3.3.2
+                     pielstroem/MAR-Meta, 4d4fd59827b42a9c2170f5d5bc2caeceae2978b4,         1,         r,   3.3.1
+   drammock/logistic-regression-tutorial, 8952cbc394f14f95b89e8c71a240d9ea7523332e,         1,         r,   3.3.2
+           piruty/gihyo_datascientist_ml, f5322bd4ee8bfa8f99a01ce5e7bb836eaaa3d0e9,         1,         r,   3.2.2
+                             pjtorres/AJ, f097a5990e3be073da85b31e152fe76f958c8494,         1,         r,   3.3.2
+          pablote3/basketball-analytical, 78c5daf0711d92d8ada2ec90eedd5901ec8b45c3,         1,         r,   3.4.2
+                   promer94/R_Coursework, 0a288897601e6ad9dd24a073b373e76ee42f4b22,         1,         r,   3.4.2
+        eroicaleo/MachineLearningProfLin, ce6cf2677379b18898d9ef2f25daf3d8660b4c54,         1,         r,   3.3.1
+                p-chaim/filtration_focus, cbfb9884a3b5f592ce6322a2dfadd355052c1158,         1,         r,   3.1.3
+                         gdavila/Jupyter, 6f6e221fa9a2a21483a7a31655e5b337e55f3dee,         1,         r,   3.2.4
+              niteen11/Data-Science-Math, cb57f0a12e339a05e06578ef55a08a9aeb370bd7,         1,         r,   3.4.2
+         gchoonoo/Stand_and_Move_at_Work, e9468742ac06dfcae80980d5eafaba2f21b1a54f,         1,         r,   3.2.2
+    gchoonoo/HNSCC_parse_RNAseq_Notebook, 5d3b0b20307eb02a3ff8c99a379b17d0646357cb,         1,         r,   3.2.2
+                 gchoonoo/HNSCC_Notebook, 1b6ec9dc6175f4e10c16154fa3bca190f38da5c7,         1,         r,   3.2.2
+   gchoonoo/HNSCC_Clinical_Data_Notebook, d9b35127576f8a5ae0cf7d153a9db51dc83a352e,         1,         r,   3.2.2
+gchoonoo/HNSCC_Annotate_Tumor_Progression, 3e1d2e198928dabaea52f05990a7934eb53756fe,         1,         r,   3.2.2
+            gchoonoo/Buxco_notebook_plot, 75284232d37ffddd92280c4ca19ce114ccd969b2,         1,         r,   3.2.2
+                 gchoonoo/Buxco_notebook, f9b4acf29a6a05890476ba8e3d041a95427f6a33,         1,         r,   3.2.2
+                      gdesvignes/R-stats, c53680abe842eabbe2b1bdab623705627b1b3ad6,         1,         r,   3.3.2
+                        gchaas/Gapminder, 34ff206b8cbc4f195f0a9d78f37f2429f3396776,         1,         r,   3.4.2
+nith1989/Boston-House-Pricing-Advanced-Regression-, 290ce159782ad3b4bb83d58bc877625e082b14d0,         1,         r,   3.2.3
+gaurangmhatre/CMPE256-Are-you-being-too-optimistic, e66decffb496467cf3267b37cf99d6d8fc23283b,         1,         r,   3.4.2
+nitinrabbit/JHU-Coursera-Introduction-to-R, 6ba72877ff4a0967d0b920eb3d6fc633f14fa252,         1,         r,   3.3.1
+garethjns/Kaggle-IntegerSequenceLearning, 9adc27667e21101ad554c80daa38ffe1104e1692,         1,         r,   3.3.1
+    garciparedes/titanic-getting-started, c6ff23e1c88ce4f52f87ed87178d86c7e69dbdd4,         1,         r,   3.4.2
+     garciparedes/castile-and-leon-crops, ea8dc1ae9797bba6251058e3bc50a266f4dc2da3,         1,         r,   3.4.3
+                    nitinrabbit/demo.rep, 436c3e4562e1ad4ba76bf7665da9c7d7c93b2ac6,         1,         r,   3.3.1
+      nlewis690/cmu2017forgettingproject, 3991809a67298a310bef8334125802f99e267d66,         1,         r,   3.3.2
+                  nmoezzi/crimeanalytics, 490e53e5eacd1f89868bc2d626dd5731c260399a,         1,         r,   3.3.1
+       gbrunner/arcgisbinding-in-jupyter, 4d493d5a9e68532c5f8d4b0b710a46f75f255b52,         1,         r,   3.4.2
+                  nsanthanam/search_data, 0a8ff2d4870dec948ac815c726a341886968e007,         1,         r,   3.3.1
+               nishraptor/News-Headlines, 268259b933d39a5b0e258bd9316e510ca66644e4,         1,         r,   3.4.1
+    ninofabrizio/InteligenciaCompetitiva, ebf315ef33316bf1c6fe4a04d25a1b5b40819530,         1,         r,   3.1.3
+      gmboyer/HydrothermalPhotosynthesis, aee212a29920e50472e9ba72ea738cffc034042b,         1,         r,   3.3.2
+              gmboyer/HotSpringVsClimate, ba95a25be6d865010b196c327cc367662c6aa361,         1,         r,   3.3.2
+                      gliu66/628_module2, 8625b203eb8c868a98cfa99771bece7b5d7be433,         1,         r,   3.4.1
+                              gl3383/PCA, f1e6d84db0897f9b040e082edfc7190a8ff56d8a,         1,         r,   3.4.1
+              gl3383/Logistic-Regression, 9807a188b20f75518cd6938fe74a956e3e1541de,         1,         r,   3.4.1
+               gl3383/Hypothesis_testing, fe33838052c64b6a2e6f438b61179495a3487929,         1,         r,   3.4.1
+                         gl3383/Ensemble, 7af9377fefe45e64b57ced48c930933b8ae7f9ff,         1,         r,   3.4.1
+                       gl3383/Clustering, d3e8f66c32e7503c492baf1f9988e3ee593d7f96,         1,         r,   3.4.1
+              gl3383/Bayesian-Statistics, de5f45ba264c123af844990b33907b2a117b73dc,         1,         r,   3.4.1
+         nirdesh1995/datasciencecoursera, 501f18c06f3151728ffa1248f37a01ec851f1fd1,         1,         r,   3.2.1
+giogen/Computational-Theory-of-Mind-Project, aa08d2ca201e2b419ddd1d73aa0d8f485a178d77,         1,         r,   3.3.0
+                      nickb-/BPPipelines, cc2d69cd55ece0dd24244a000f658bf30ba3ac3e,         1,         r,   3.3.1
+                      ggodreau/rnotebook, 01b9fc07a217a0a92609e6733b6bf7c07264ecb1,         1,         r,   3.3.2
+                           ggodreau/c4t2, 4bff61eab3d76acaeb2f517706093cdd5efa0e12,         1,         r,   3.3.2
+                            nifannn/ISLR, 0ede40fa20d63fbc73596c6ff585728c6836f839,         1,         r,   3.3.1
+    nikolayvoronchikhin/DataScience_Demo, d668d66ca4ee5ed70a6cda3285055f5b23da720e,         1,         r,   3.4.0
+                      getopt/Epigenetics, be7e8daab860c5ac2d15082ac1b2b7a82a4bbc3b,         1,         r,   3.3.2
+                     german1983/Coursera, 6df7c6df33890c6ddfffda242dcf0794ec40734b,         1,         r,   3.3.2
+               geraudster/titanic-kaggle, 935a387a38c6a56d11b5b8e80129d0e08501ac7b,         1,         r,   3.2.3
+                        ningyuuu/dsc5101, bd6fc4282f09e366bb45d89e5c52e6e5a08370ee,         1,         r,   3.3.1
+            ghassem1365/HypothesiesTestR, e139ed33b20e34d5898f8ac2756cb3b7b871c9a0,         1,         r,   3.3.1
+      gandhiajay18/Hadoop_TextProcessing, ccbf152f789a745f0898fdffb36e62c0c386cffc,         1,         r,   3.3.2
+  gaelhuser/Cytometer-data-analysis-in-R, d2069184d0f530132718a938cd612a28f167b3e7,         1,         r,   3.4.1
+                       gaelangu/ebac-svm, 90b97acee194e07b97aa4436ac6831c4d5d9b59f,         1,         r,   3.3.2
+                    ocefpaf/r_htmlwidget, f6725a830b4005155b512349d971630c01c9f4c3,         1,         r,   3.4.1
+         febsrj/CEFET-Mobilidade-AnlExpl, c1707cb078818e7414a5f922919cbb9f97e099a3,         1,         r,   3.4.1
+    oharapaGitHub/machinelearningsamples, 15bb706aefa1d4aed7e1fa199668b372bcb0f2b9,         1,         r,   3.3.1
+             feaselkl/DataScienceProcess, 54e20eb6a0ac7c630603a4ad7f110a970b4428a1,         1,         r,   3.4.2
+                           faustogc/MDFT, 17d53da176b50603b12d38624b947c2d7e59e68b,         1,         r,   3.3.2
+                omshapira/Movie-Analysis, c1ddee4ae0aac77a1cc2d124ad39abab90875670,         1,         r,   3.4.2
+                        onedwd/ctd_test2, 10316a2f2540414ab2c9da4044e1f8ee0cf916f3,         1,         r,   3.3.1
+                          fabrimafe/LDLD, 38ef7284b73af727250818518985337e739ddac4,         1,         r,   3.2.0
+                       fabricebrito/test, b4171bf1f79d8044cc3ce5cfe92fb9a9691e4983,         1,         r,   3.2.2
+                   ocampor/glm-insurance, aa8229aa5ccedfb941b9c40d0afb7fec080c9a43,         1,         r,   3.3.2
+            fabikw/DataAnalysisInstacart, 7b3ce9a3fba6df7fdcdd217e6755d218b9a3063c,         1,         r,   3.4.2
+    ornl-training/python-advanced-pandas, d4272e42cdf94bca646af5e325ffc08048590240,         1,         r,   3.2.4
+                  evertonjlima/Notebooks, 1f0ade279215c04adc64c460f369b698dd11fae8,         1,         r,   3.2.3
+             ornl-training/python-pandas, 2e404c87e4a606737d38c0f87502d63214324405,         1,         r,   3.2.4
+                          ornldaac/modis, 95c79572b8b7c8f38120acc1ab3589d25d87e4c9,         1,         r,   3.4.2
+              etarena/RKColocal-Notebook, d4470a3bc280c9ebcecddcd2d9f73f20c0e53b26,         1,         r,   3.4.3
+   ornldaac/modis_webservice_qc_filter_R, 5e5f054615037a5d5c8bfe5c289349ffd18cf363,         1,         r,   3.4.2
+                   outlierbio/chipseq-nb, f3f9592fd92a52e1ab9f92dee7fd5a0e8294b585,         1,         r,   3.4.2
+                           essicolo/nuee, 83160a751ca18440e97637e19348b362215911f7,         1,         r,   3.4.2
+                             escheihi/IA, 4fa778a4474c70a8978e5bae17d6395213225c27,         1,         r,   3.4.1
+orlandodasilvajr/analise-sentimentos-filmes, 20dcf1ad43064234dc7aff43e270a293c2e38c4a,         1,         r,   3.3.2
+              felipelageduarte/SPAM_UFPR, 504ff277029c9ce25f8ccb5c47c3e53468b6c9db,         1,         r,   3.4.4
+                        obedaeg/Maestria, 694f4a129afebf772875cef9004e2661eb6c3943,         1,         r,   3.4.1
+             feog/DataScienceForBusiness, 9fd981dd9a7cf64c84a38e8d4b7cf2b44762f1fe,         1,         r,   3.3.2
+                     gabrielpreda/Kaggle, d2e49f5fe5985c34a37c35bbd73c5a79f908abdd,         1,         r,   3.4.1
+                     fsmunoz/watson-wbme, f4ae609dcbbf3e6a351fde703b9f75c8063f5915,         1,         r,   3.3.2
+                      fsmunoz/jpeginator, bfe4d6de85be936f32a36677816a2368c9ca0934,         1,         r,   3.3.2
+                     ntraut/My-notebooks, af7ab345c136ca4e97ac7b20706b058cb1eb3f05,         1,         r,   3.3.2
+francoisbirgand/discharge_and_flux_calculations, 63509c72ef59e5288f4be5c3866874b07cbf7aac,         1,         r,   3.4.0
+francoisbirgand/Hydrologic-statistics-trials, 0ac85503886ae552624d0da3e6ddcbcc0fb7bbf8,         1,         r,   3.4.0
+                     francoHazard/prueba, c377c77478ea9c87cbb58e3b1bb0d4ac92db809d,         1,         r,   3.4.1
+         fragosoluana/flight-delay-paper, 71167f2d6b8af7d2d137b3a139155179886739d9,         1,         r,   3.3.3
+                             fpsom/godel, da2533f4889c81ac955204583b414ea8919f38ac,         1,         r,   3.4.2
+                   nuest/sensebox-binder, 5b174648761ec1cfcc9fca74b80413967a9c2d16,         1,         r, unknown
+                               floAH/nnn, 1575af1ad2255a1f99feec190088654a52b19c29,         1,         r,   3.4.2
+                nusgnaf/kaggle-solutions, 6578f80145ec6eee37a7fcfd7c81092ecb673d00,         1,         r,   3.2.4
+                         fleclercq/R2018, 1a6c7a8349a98536d3568a9574b467fb26d0d033,         1,         r,   3.4.2
+         flavio-carvalho/SentimentHourFP, 8af96e8dd32f472dfbc87b18c2b843a0bf30bc83,         1,         r,   3.4.1
+                nvn2011/Hitters-Data-Set, f4f4bb46e6094863c67c0807ed808128757bc713,         1,         r,   3.4.2
+                 flame-stream/Evaluation, 575500a148492a4d5d1784736feaffd69fb46fc6,         1,         r,   3.3.2
+                               fjro/mnla, 1d77d3e106a39008ba0f97b8a75482161b8fc751,         1,         r,   3.3.1
+               nvn2011/Work-on-Auto-data, ef984a2bc7007fafcb1ce9c67f55f2ca37eb53b1,         1,         r,   3.4.2
+      fgsilva/crime_seattle_sanfrancisco, a72ee85f0aaa2b9bbe0bd16112d5e6c3f89cbac3,         1,         r,   3.3.1
+             fernandomayer/jupyter-rautu, fece117c33edd8acb4adc740c1844958636199b9,         1,         r,   3.3.1
+                fernando-licona/ZnO-nano, 6a4a86cf577ee52d0906e747a935de557af3df32,         1,         r,   3.4.1
+                   p-shen/age_prediction, 483e374341291773e5f79c67ece67aaf13126129,         1,         r,   3.4.1
+pruthvim88/Large-Scale-Data-Text-Processing-with-Hadoop-MapReduce, 6051424a74acbd14ff73107310b620d6667fd0aa,         1,         r,   3.3.2
+   divya-vakil/Machine-Learning-Projects, 21601dcfcf0420c7d8c31588b7c37b04d781f397,         1,         r,   3.4.2
+                      psycafe/R-for-work, aea61bc9d7919bc1905108ed68a1bd7fa368e531,         1,         r,   3.4.1
+             choo76/Price-Earnings-Ratio, 3da0469ac6d8840d46dafef9dc634f4718fcbce2,         1,         r,   3.4.2
+              choo76/Halloween-Indicator, 9ce1fa1b1b4b6a9916fa0b9bff732b1adb170b4f,         1,         r,   3.4.2
+             choo76/Fundamental-Analysis, 000ceee39ade8044405a2c3312c110e53b5c836e,         1,         r,   3.4.2
+                  choo76/Dividend-Income, 007b9c74a636db32192399f5374f84261bf5c6f9,         1,         r,   3.4.2
+                 choo76/Digital-Payments, fe2a3c23d9f62f6c1006c580d8f0fb3a098d0ccd,         1,         r,   3.4.2
+     chmathys/bayesian-inference-example, 5339d488ee5b2ec271c39e6925e9e8c712103571,         1,         r,   3.3.1
+chinthanishanth/Churn-Prediction-in-Telecom-Domain, 2857a42e1f175a4260cfe7b2086d08ab7ebc36d3,         1,         r,   3.3.2
+           rleisti/DataScienceAssignment, fbf4098f2e176edac8bdce4afde0318a229cfe8e,         1,         r,   3.1.1
+                chessplayer60/hallo-welt, f5086dcd364fa834940c6681524ccc8dce9b2624,         1,         r,   3.3.2
+                    rlbarter/ggplot2-thw, 1c39fdbdb455241da56f7b4a8faebf1fb3ea2ff4,         1,         r,   3.3.2
+                    chepyle/QSPR_Example, 292a210517cbcffc3a81246e2954afe7e0ce10a4,         1,         r,   3.2.3
+              rmaestre/Geostatistics-GAM, a50fb7b1e00cbc600fab5337f36d2ca4f9071672,         1,         r,   3.2.3
+                        rmdfnc/loanDataR, c8d6c0ca21c1b8748b550d06a7a6f5e64c839440,         1,         r,   3.3.2
+                rmdfnc/thruputPrediction, 73d4c41c34184937b63bb0630ee61afd1a6eb279,         1,         r,   3.3.2
+                      charlVSchoor/Viegi, a6e1799c1d0161b5759523a45ef6b5697be66580,         1,         r,   3.4.0
+             channabasavagola/R_learning, b30b6f50b2f5afd987c5be7e872f1ee726c3a28e,         1,         r,   3.4.3
+                          chaitanyaenr/R, 20c19b523df9f15b8b1f81751f59e0065893cb8e,         1,         r,   3.2.2
+         cerikahp/Microarrays-Metabolism, b7a91f9eac737955cdc7b3e6d64dc912e886c0d9,         1,         r,   3.3.1
+cemileserce/visualization_seattleincidents, 9d704f2cc3ea4eec3d1a580c35364aa02e79283b,         1,         r,   3.2.3
+              celinagacias/Side-Analyses, a44ec76e699bacb54dff06db4cc22d4c0c6a188c,         1,         r,   3.3.3
+                       chenxu10/Pokerman, 21fcbb77845f13f52154f389ebffb38d591a6808,         1,         r,   3.4.1
+                      celinagacias/SHINE, d01f28fce893b05037356d654ebae95520daf7ba,         1,         r,   3.3.3
+chrisscastaneda/Cortana-Intelligence-Competition-Womens-Health-Risk-Assessment, 09ff086a1fa95e3666d6161cbd6759295dc7fad8,         1,         r,   3.2.3
+     rladies/losangeles_20170416_ggplot2, 527ea03dec36a416ffd2314662d06c4477ab2555,         1,         r,   3.3.2
+                              cmap/cmapR, 252e2c905b577988b556284c426e250e1a6515c0,         1,         r,   3.2.1
+ribeiros/CKME136_Capstone_Project_Final_Report, 7fb9ec67005511f36cd2b11914041870b4ddca73,         1,         r,   3.3.1
+                      cliburn/r-viz-2018, b3425793eb0b4f0d2a3165b315f7c105332e0be8,         1,         r,   3.3.0
+                      ribeiros/portfolio, 2d8de20f27031bb8d282e7eb789680ef0e57cee3,         1,         r,   3.3.1
+cleonadja/Problem-Statement-Demographic-Data, dc5f4091df13e6c8a6e571aebc23541195ec34d3,         1,         r,   3.3.2
+                         ricklentz/DS745, 9c5bc500b8996f800c2e60a2b07051543c911c2e,         1,         r,   3.4.3
+                      rickyall/R-example, 95412590a2ad30492d8f196628a8efbfa9ac2586,         1,         r,   3.3.1
+                   clayop/PPD-R-Workshop, 3a76506deeba24a78c1d9f9da099a129c0468bbf,         1,         r,   3.4.3
+                  claussian/core-beliefs, 9f4246dacc3a2ac728536ad0c47dfb2354684616,         1,         r,   3.2.0
+chrisscastaneda/Methods-for-Data-Analysis-Final-Project, 59c0fb7225c9a75b5b6273d5bbd0417c78cc04da,         1,         r,   3.2.3
+       rishikksh20/Wine-Dataset-Explorer, 6415452feda1ce1fee3bc99bec679e3e21427d5d,         1,         r,   3.4.1
+          ciortanmadalina/ML_HousePrices, 814907c5dfa7991233f926e92e13c07419fae41c,         1,         r,   3.3.2
+           rjshanahan/AUU-Text-Analytics, b629cca49e3aa57584e2b049f0523568f7aab13b,         1,         r,   3.2.2
+cimox/Simple-grid-solver-using-blind-hillclimbing-algorithm, 4d0db92e80f8196c37fdf3934fba8239d63080a6,         1,         r,   3.2.3
+               cicanas/Astro_515_Project, 2ecefe30a2fa125e6b58cc83d1b8fc46b48c9e95,         1,         r,   3.4.0
+       chumekaboom/chumekaboom.github.io, 2b379501ed8c68289278d30e1a5e5a69cf9f0279,         1,         r,   3.2.2
+                            rkripa/r-isl, da0a6b938001b6ae469afc1a7ba667f568299ff3,         1,         r,   3.2.3
+             rladies/bcn_20170424_rbokeh, ee0d087da1d563e4f944b4a63cc1f9b4142bda07,         1,         r,   3.3.2
+                 christopherahern/GAM-DH, 25bc325ec7b80bd93312a379f201310495faa87b,         1,         r,   3.2.2
+          christiankaiser/kriging-with-r, 8fa232b551df6699e7a36caa0d6bc84892b6bf9d,         1,         r,   3.2.4
+rithinch/Analyzing-Uber-Pickups-in-NYC-Aug-2014, 0345be25b2dec3a317a3342d79a67748f3b3f2c7,         1,         r,   3.3.2
+         robertocspinto/MachineFailureMD, a45d78bc6a0bb43cc12d3f38bd6605ef0af67269,         1,         r,   3.4.0
+    robinovitch61/coursera_BayesianStats, e58679b57b79139ebb03385e55510b2d56d49480,         1,         r,   3.4.0
+               celinagacias/Competitions, d84e8c4696e6800d6a9bd8b9630f5ea219a8cbcf,         1,         r,   3.3.1
+                  rubenvdk/MEP_notebooks, 8088405598f993e938fe9cab26096bcdfdca8b0e,         1,         r,   3.4.3
+             c-94/Statistical-Learning-R, a4a4fa654fc880422757c120421ebc61dc6de930,         1,         r,   3.4.2
+   byron-data/R-Programming-Assignment-1, d5d689cf4acafa9e343840e11ef9d491b917e9ab,         1,         r,   3.3.2
+      byron-alb/supermarket-transactions, f5b9a09ec74fb67cf410f4f0062546eab5e1ed28,         1,         r,   3.3.2
+        byoungwookjang/stats306_w18_labs, f37952989a80a817a542b80980f4eabb3f7a95a7,         1,         r,   3.4.2
+                 bylin/election-day-2016, 0d425249123272c3928ee2d06f1644c278a629cb,         1,         r,   3.2.2
+                      buruzaemon/hedonic, c0b98b8e8d2227a1b03a9e24bbf73a193c3fbf38,         1,         r,   3.3.1
+                       ruddjm/data.table, 9793300cbe54b7b35a3e8443098aa96864856c8f,         1,         r,   3.3.1
+                          buckleya2/Blog, 36e03ce1bbf8eedb92808e86203066d8d6f88545,         1,         r,   3.3.1
+     rsinghal757/DSG_Mushroom_Classifier, 4444447d0dfc998b8274692515de10f225135e7a,         1,         r,   3.4.1
+                       bthot2/Similarity, 0a56cb60520858c54d898210eb828af1a6d98822,         1,         r,   3.3.2
+             bthot2/Credit-Data-Analysis, bbe08cb6bb31de6974192f8714fd2aa35b05939d,         1,         r,   3.3.2
+          bschieche/R-bikesharing-demand, f00c27d98c1fe8bf88bb8d47d27a3e2d119b8f9c,         1,         r,   3.3.0
+                broadwym/vidl-r-workshop, 55075f40bf00734ba2d51559e4662583ca46ea37,         1,         r,   3.4.2
+                brlohith/data_science_uw, cbdd36a8d56fb213bc68a90421492238d92e2447,         1,         r,   3.2.2
+                       britm92/Tutorials, 836cd0041d92086545159f2e7daab3e87db922fa,         1,         r,   3.3.2
+                        brilhana/ecn2160, 66c94f82fd5ae12846f84cd821c4b9bdd77cdfd1,         1,         r,   3.4.3
+briantfriederich/Exploring_Red_Tape_In_Vietnam, e010e2ecb11568baad66666ba2fad94930729250,         1,         r,   3.4.3
+   brianhill11/population-prediction-pca, 258c8bfe979182587669b8a2ef9aaa18f17fe60f,         1,         r,   3.4.3
+                     brian-bai/allaboutR, 255ec954a7b1c1b77c18e8a5133c2737c11a3c85,         1,         r,   3.2.2
+    bthot2/Identifying-the-Spam-messages, 93149415577ebc80ce00b88a1fd341b0683d5573,         1,         r,   3.3.2
+                      calvlaw92/Auto_MPG, 0026af2efff619616601f6edace6a0901c87e0db,         1,         r,   3.3.2
+             royxss/ggplotVisualizations, 5dd7eb291158b0ddbae9da7e5caab4ae24a24790,         1,         r,   3.4.1
+   royxss/Predicting_IoT_Device_Failures, b8d8064d26d1a88d3acd0658112e6c40bf5b3c31,         1,         r,   3.4.2
+          ceferra/ThresholdChoiceMethods, 2ad157d79ecaf09a755d31147fa6a80d8245b2f9,         1,         r,   3.2.3
+                    ceferra/RCalibration, d18e38cd72ff8f353e8cd258f234e8b42ebfaf6f,         1,         r,   3.2.3
+                        rodolfomssouza/R, 4a7a854f532ec683f6795f5c880ac8b79fd872b7,         1,         r,   3.4.2
+rodrigoperes/visualizando_programas_sociais, ab6ff093339b97132dc25054bafd7744df85776c,         1,         r,   3.3.2
+           ccolon944/EconometricsProject, 0fe3b3e67fa37dff92c0a6c14446eae7e6e84f87,         1,         r,   3.3.2
+                rodrigoteodoro/projetosR, e433ebe14d3191fa0cf4641747ed4d1ff939539b,         1,         r,   3.2.3
+                   cbrands/r-cheat-sheet, f1013e25cf0853dfa26c7690d0530aed65821048,         1,         r,   3.4.2
+      catherinemzhang/CA_DOJ_OpenJustice, 85ab54731e6b3c89892ce640a822b5ef8aafe3a3,         1,         r,   3.1.1
+   castrillom/practica_grupo_estadistica, ad9ef9c562e9b07a90ab02620e898787db061704,         1,         r,   3.4.2
+                 casanabria2/DataScience, 7ca811f0330cd5a70b750ae17d949b9e964446d6,         1,         r,   3.4.2
+                      carltoews/teaching, cf107ca38ef6a6430a04e19ef07824a98b3371ba,         1,         r,   3.3.2
+                  carloslizarragac/UVRad, a408d1491dd30d3bd03bbb9cd5cb68e3340c69f4,         1,         r,   3.4.2
+rohitkapa/H2O-Consumer-Loan-Risk-Modeling, 0e98ac067e1189513c5e41d940068f3851b4e00e,         1,         r,   3.1.3
+         romankierzkowski/datascience-ml, ebf6dc3cfff5f40e19ad06b6a407099765af9912,         1,         r,   3.2.0
+                      rongxinyu/capstone, 6a165808d479ec15dafe657ad20bc5b3a9f206ee,         1,         r,   3.2.1
+            rosaak/RoutineBioinfoScripts, 74016c2c32974c5d59cf10d91b3a905597325645,         1,         r,   3.2.3
+                         rosgori/Pruebas, 6a7a67c864136a7c5a2c028ee0d3283aa924cb0e,         1,         r,   3.4.4
+        royxss/CrimePredictionsInChicago, 401981cbb96dcd7666fa885403f721e14f1cca9f,         1,         r,   3.4.1
+     camilogavo/Predictive_Exercise_JCGO, 67ec1fabf4ca16c3906827bd280bc7b7916996e1,         1,         r,   3.3.3
+                  m1thr4nd1r/datascience, bf524d853ff0cea0e6c3fa7608608372e2189c61,         1,         r, unknown
+            cambonator/Data-Viz-Cookbook, ab29c8be41a60b1b25727b7683e04ac95a2aa9a5,         1,         r,   3.4.2
+                   cnjr2/ggplot_tutorial, d853f74fd16d44b5b77fa54c0a0acd34a9e15066,         1,         r,   3.2.2
+                      codeBehindMe/ADLA1, 901bae7143b37a23a6520aa36f9c3cad23739aa1,         1,         r,   3.3.0
+                      codeBehindMe/ADLA2, 40cf65f834d8aab8e04f3681a3cbe690cba41dca,         1,         r,   3.3.0
+                rgmantovani/postAnalysis, e2562e12a622da39220e2fd2afa5db6f61ba3f14,         1,         r,   3.3.0
+                   dbacsik/host_genes_db, b86ec024e83b8ce22c6b4f2402c5c090b36870a8,         1,         r,   3.4.0
+          racharya/RecommendationProject, 9466f95e650fbac786bce5a412c18e6254144bf8,         1,         r,   3.4.2
+                  davidrivera62/Trabajo2, 14152fef4c88e61f66096771d5347cadbeb137ad,         1,         r,   3.3.2
+      racheljansen/LinearAlgebraTutorial, 26cfafa63628e4ca47cc2bb61c8bf184bb128492,         1,         r,   3.2.2
+            racsosabe/Estadistica-2017-I, 7c54f617079e4757655dd964f3cb2572d8b32d60,         1,         r,   3.3.1
+dataseer-carl/ingest-hremployeeattrition, c3d06de11f42b2ea091363b72ee9cc079dfa445a,         1,         r,   3.4.2
+     rafaeldcsantos/NotebooksDataScience, 5a76acc662b1c29cbae15af571177893857b9011,         1,         r,   3.3.2
+               raghu0891/Crime-Analytics, 233aa3b0deccebaeb1536cb56a274a8fe6893864,         1,         r,   3.2.2
+  datacamp/projects-basic-introduction-r, 9e9944f2308a1f9a20aa5828512924305b617e97,         1,         r,   3.4.2
+           r-scotti/LeraningJupyterWithR, 57b9d368cbd4028cc91a95d5e3f97c2cc84233d1,         1,         r,   3.3.1
+                  raina99/kaggle-datsets, 29ebed2afacca11d9c60763f5eef59f2c83b01fb,         1,         r,   3.4.1
+                         daracha/dataviz, ca7634224230c48f19a6e39ced014a983604ffd4,         1,         r,   3.4.2
+                     dansheikh/notebooks, 3f733b836ab042ac800cde6b176b61384f2cd0d8,         1,         r,   3.3.1
+      raj-chakvarthy/NLP-Suicide-Wordmap, 1bfdcc6834fbe359b2df8400e065097f38dc6a93,         1,         r,   3.4.2
+              dansbecker/odsc-r-tutorial, b579dc74c8e4590d839e2376effb87c87efea66e,         1,         r,   3.2.2
+danielfriday5/Wrangling_and_Visualizing_Musical_Data, 0556bb826c76ce61a4aec1312a8a36e163c7705c,         1,         r,   3.4.1
+danielfriday5/Phyllotaxis_Draw_Flowers_Using_Mathematics, b8092e590830382a41b6398ac8ff8fe23f50b8f5,         1,         r,   3.4.1
+danielfriday5/Exploring_the_Kaggle_Data_Science_Survey, 4ff088281467ce70ceb65840b8b15c7e8656daaa,         1,         r,   3.4.1
+danielfriday5/Dr_Semmelweis_and_the_History_of_Handwashing, 5629cdaed005ba12525e4842edb699150b807b42,         1,         r,   3.4.1
+                  danchurch/taiwan_dada2, 9730e24976ffd39b7ea9dbb48a0ac007685a2132,         1,         r,   3.4.4
+                     data-space/facebook, 1c29e0677e49639d2ba2c47a96083e8d637d4f14,         1,         r,   3.3.2
+ dcardonah/Proyecto-Analitica-Predictiva, 80ad5488db8df9eadd9455fba289c741e8284d3a,         1,         r,   3.4.3
+      dcldmartin/Dissertation_selections, 24a00d127741d83f9bdf45c1c69346fc4cd990cb,         1,         r,   3.3.2
+                      ddbourgin/ols-demo, 8a717308a12b1a13b553b9fd7c5e63a1a0ac74b5,         1,         r,   3.3.1
+              digrapm/sharing-a-notebook, 854da2f9ce21fa69d372ddd9640ac1fd9eff27ee,         1,         r,   3.1.3
+                   dieumynguyen/APPM5570, 0abf5be8f644d61d73ab45049ae73a21665d0f2a,         1,         r,   3.3.2
+             pushthings4ward/Rplayground, 163e6ce2e79564de62653f3ed4524f229df37108,         1,         r,   3.2.2
+            qaiseri79/Soding-individuals, 4946306bff71a4fe0364f6648950c76b1a913cc3,         1,         r,   3.4.1
+                   dharmeshkakadia/yarnR, 485bfe0e90f650fd68d4fec8274796fec7858552,         1,         r,   3.2.2
+             dharmeshkakadia/mynotebooks, 3dfbef1c2e743b408aa03ed34f4c52f824022e8a,         1,         r,   3.2.2
+                dhanian/DataVisulization, c04eda99107ba34698d7518aeadaa773bd7641a3,         1,         r,   3.2.3
+                     dgramsey/Intro_to_R, 0ea9f91295b815b2d9e017f642deb0e61f5ecbf0,         1,         r,   3.2.3
+     dgason/San-Francisco-Crime-Analysis, 812404e0c129d45ec044c08e24570e13de8995f5,         1,         r,   3.3.2
+               qedsoftware/afsisdb-demos, be7412abb89c5349c27a0f2def7fa1d52d03525c,         1,         r,   3.3.2
+         dgarcia-eu/EmotionDynamics_RSOS, 4fb04449246a49693eb690a666cb001849f4c077,         1,         r,   3.3.0
+         dgarcia-eu/Contaminacion_Madrid, 55fca8c0f3eefec3c6b58e66da463c4d5c47d64a,         1,         r,   3.2.2
+qja0428/Drive-Visual-Analysis-with-Automobile-Data, 686fa61f23ea69bd274d8d0fb8b90a216938e595,         1,         r,   3.3.2
+         qja0428/ModelingStockMarketData, 53a2208b905353fb46cfc54bb55916ee6eac2c73,         1,         r,   3.3.2
+            devashishpatel/IMDB-Top-5000, 54387dee5b95f41b99924b498423b928e871cb6f,         1,         r,   3.4.0
+             devashishpatel/HR-Analytics, 6d9cc7b483e84383efd045b63ad9c2a5fc7dc22a,         1,         r,   3.4.0
+devashishpatel/Customer-Satisfaction-Prediction-Model, a0a4cb41f35f508d1c77978ef11e6bd95574c83b,         1,         r,   3.4.0
+               dennisprangle/rainfallABC, 305fdb85ad23b49f94c0b32f793ac8a937bbc289,         1,         r,   3.2.3
+                deldersveld/ms-cognitive, f41468f4b1366f4bc8cd5d349c60158a1b1277f6,         1,         r,   3.1.1
+                deisygysi/EVOP2018_Stats, 1f49c34ce05120d0c16141c6df567de2778db058,         1,         r,   3.3.2
+               qluong8490/Biobase.rnaseq, 19a9326a3c506ca3c8ce7f111fdd3706751887cd,         1,         r,   3.2.4
+                rajeev4k/QTW-CaseStudy10, ca9bcacd8ded5e9760b772a1d19bbdc6beeacaa3,         1,         r,   3.3.2
+                          gmboyer/Lipids, 735b4baf2a81423aa16c55286b1b2c34368c6279,         1,         r,   3.3.2
+          danangcrysnanto/Var_Caller_OBV, 96640690f64b3bd5156cbb5211650b96213555f7,         1,         r,   3.4.2
+                 rajeev4k/QTW-CaseStudy8, a31e1105b9c4026ec01d567c583ad9dbd558c1e3,         1,         r,   3.3.2
+             coolxid/Data-Mining-Project, e1988e241b2609487ecc58c5c09762cc81427cc6,         1,         r,   3.3.2
+           consta35/NewYork_HospitalData, 08658bd22eba6d141457a877ce4cc6dabb05ea11,         1,         r,   3.2.3
+            reanggue/data-housing-with-R, f6af03a421445926075d8d66590b584a1912a4e2,         1,         r,   3.3.2
+                      consta35/Capstone2, 2be3aa606cea3e7c2218bb826069e59941fd1c5b,         1,         r,   3.2.3
+           computationalmedia/sir-hawkes, b94ca4bbfacf05b29c96577a48837bd9ae5b42aa,         1,         r,   3.4.3
+computational-epigenetics-section/SNP_calling, 8861ac73320f8e833b0d9594cce4e76bb0acdae7,         1,         r,   3.4.1
+      reanggue/row-data-College---Kaggle, 54932d879d196952932f9f3ca02efde67c9c26d1,         1,         r,   3.3.2
+   reanggue/row-data-economy-from-Kaggle, 4d63f2d8d1b0d55aa3ec15eb2e62fc41c7e713a4,         1,         r,   3.3.2
+                compbiocore/r-workshop-1, 69b9955188970e62b389642121317d06c94af808,         1,         r,   3.4.2
+                       corinnecm/zoo_knn, f4fbe399c44c20a82c01969f15c92ade5b0217c2,         1,         r,   3.2.2
+                           reanggue/test, 0a097107f277f0ca3213e179c48885b2adf7c6d7,         1,         r,   3.3.2
+reinareyes/data-science-nuggets-market-basket-senators, 8107acee1a1969bdbc6df8566e3c76dcd8fcd273,         1,         r,   3.2.2
+              reneeva29/Crime-Assignment, 46f01bd3fb2fa574f07653f6282bbd4fce1b082d,         1,         r,   3.3.1
+      rexthompson/DATA-512-Final-Project, 64891d4873601415f2388bdf5efc8ca60a25b154,         1,         r,   3.4.2
+colbrall/neanderthal_predixcan_manuscript, 25772be30c454247dfd5ede4e0f895750f0cb504,         1,         r,   3.4.2
+      codykingham/Lev25_scribal_exegesis, 8ecd1c2091507dfbc35764ad4baed56764ecdcf6,         1,         r,   3.4.2
+             codefromjames/Dune-Habitats, fa1e47afe48ddb1e4ff1520aef74f854af07ec05,         1,         r,   3.3.3
+                rezzonic/crime_analytics, 684e73ffb411d79a37b9218a4a467edd5c9befad,         1,         r,   3.2.4
+                          rforgione/ISLR, 45bad87098d43236a32287db336c5cc960b1d664,         1,         r,   3.1.0
+                rgiordan/MicrocreditLRVB, 810cda6393e618ab22e34eb4d1f613553d3d0f0b,         1,         r,   3.2.3
+rehanali/DengAI-Predicting-Disease-Spread, 92d302d27d7d8721ef7232ded10b7447fe2f6b04,         1,         r,   3.4.3
+reanggue/Sberbank-Kaggle-Russian---Kaggle-Linear-Model, 6805035cbfb3b519c7bbcdb1cf52c13e672d31db,         1,         r,   3.4.1
+                         cphalpert/bikes, 312060cca5a279caacc047c95883e282a813f817,         1,         r,   3.2.2
+                    rdekou/German_Credit, 6451610df6d1726b496d642215a58e6edc8077eb,         1,         r,   3.3.1
+    ramani2002/R_Packages_Usage_Examples, 4d25aedcdecd46661321ab34361190e84322ae14,         1,         r,   3.3.1
+            daiknaka/sentimentalanalysis, 550a566ab5c456253a82cedd127e4ffb838d7345,         1,         r,   3.3.1
+                             rampje/OMTM, 28541db4a28be91a0ac8760743df8a841ba28fb0,         1,         r,   3.3.2
+  randommm/superposition-birth-processes, 04c5a643b8f09bac509139476c3b6a6529cb662f,         1,         r,   3.4.2
+     d-alex-hughes/sharing-mx-experiment, 1d1d31dfbab08f83b4a147d2867e5f8160b7534b,         1,         r,   3.3.2
+         d-alex-hughes/apsa-presentation, 482a80f2aed96c22ae437094bd256ddcfc402815,         1,         r,   3.3.2
+               raov5/DSX-Tips-and-Tricks, c5ffca9dd7299b8a4ae03f2f6d2dd3da3c579680,         1,         r,   3.3.2
+raov5/Spatial-Analysis-and-Mapping-with-R, 1679329391104223fa635848c3c2c237f62c8ce2,         1,         r,   3.3.2
+                     cyamma/predicthouse, c4f5255c69b80bf0400ef3e10af2556ae0d65095,         1,         r,   3.3.1
+                   cyamma/melb_car_crash, cc70012ae8512067aa3470ba26cf7a8d0fd994d9,         1,         r,   3.3.2
+       ravi3222/Playing_Moneyball_in_NBA, b6379d97101efffda347739363b16965ef9038c2,         1,         r,   3.4.2
+              cupcakemayhem15/MQA-part-3, 7ad65b47f6880901e882990af50ed517aa4f99c9,         1,         r,   3.4.1
+                   cuiran/Kaggle_Titanic, 8a1bba1830ebaf6348c826052d035adb82a06691,         1,         r,   3.2.2
+ravi3222/USDA_National_Nutrient_Data_Analysis, 07f0b7167e63cfb3f593f389d6a1381ff565a947,         1,         r,   3.4.2
+                       ctb/2016-testtest, f07fbda9880ba0878c395c0e4e9b4ee9eab1a8d4,         1,         r,   3.1.1
+              ctb/2016-mybinder-irkernel, 312350001ba326a26bf9db82f0b75d03bd680291,         1,         r,   3.1.1
+                       csim456/engsci211, 2b14e78f04f1d1f352a524e66372d9ffb98f4462,         1,         r,   3.3.0
+           raviolli77/ggplot2_Tutorial_R, 5a818b5f4b88b60eea83d935d0a932703157da70,         1,         r,   3.3.2
+                   csathish/data_science, 59b1f12f79099ca42fcd94ea9a9e85fb76e1386e,         1,         r,   3.2.2
+                        crviana/md_enade, 88a984b053aa44a6b77f23d774a1d61bc044202c,         1,         r,   3.3.2
+             cris-manlangit/GEOG594-cris, 6e742fcdc58bb4c25a7dc18af3cde3069b361243,         1,         r,   3.3.1
+                rajeev4k/QTW-CaseStudy12, 0182691b27dd74a68b41c428423d5d385b76b3c6,         1,         r,   3.3.2
+       brentsnyder/CB_Analytics_Workshop, a02c64ac139f93588d8f101e81026af408cfdb01,         1,         r,   3.3.3
+            nhadizad/CSX_450_1_Project_2, 96094369a8d7336f9cfa50e195cd08550e400166,         1,         r,   3.3.2
+                 goelshivani321/CMPE-272, 92a9ee8be14e5f73ffd17689ec9947b150892430,         1,         r,   3.4.0
+                    kevinconca/h2o-UNIGE, 921baeb980f2c686fc813b30c7449e205d5100f6,         1,         r,   3.4.2
+                      kevinash/SensorKit, b38606b7f04203b8e8d1bb006953817c693aec59,         1,         r,   3.1.1
+           kelly19921107/prostate_cancer, 42776be59147c62340db9843fdeb112970e63f61,         1,         r,   3.4.0
+             keberwein/jupyter_notebooks, e75af273d5eed51ff8646fad51210e96a15282dd,         1,         r,   3.2.4
+kdrl/Applied-Data-Centric-Social-Sciences, 5785e7be9f46f24b4602be6ec39dce4bfc28d51a,         1,         r,   3.3.1
+      kdmurray91/2017_cichilid-kwip-mash, 10592c9322818f07096f197f711521f8a848bf9e,         1,         r,   3.3.3
+               mattwaite/GitHubClassDemo, 254361048715b9dc726602775c517cb6e3347e85,         1,         r,   3.4.1
+                   kcpawan/R_Programming, 80cb286b0be8bb6ec5008eefa072f9e7c53e07a2,         1,         r,   3.4.1
+                mattwaite/nebraskavoters, 1c30e6fa2eeae5b7442183da588b7f64f5f8fca0,         1,         r,   3.3.1
+         kgarbutt/P4_White-Wine-Analysis, 8d380ca2cbd55f090461766f9222a30c5a277de2,         1,         r,   3.4.2
+               maxbiostat/R0_uncertainty, 32bb1791b20dde7162a13c07d7a6a4b8cf7e4902,         1,         r,   3.2.4
+           katekats/Marketing-mix-models, 6fdb2a8be80a9d13b354131af81e04d897d9f11e,         1,         r,   3.4.1
+ kashyapbhuva/IBM-Attrition-HR-Analytics, c5456ef32b159bb50bc0793257c399abc1a630af,         1,         r,   3.4.3
+       karthikprasanna28/dplyr-tutorials, ba2c8ea6f07dfa25b2693686ec0ad58e9ae79ac5,         1,         r,   3.4.3
+  karthikprasanna28/Time_Series_Analysis, 31af58f2e62cde7976ae50973f4ae01b6b46796f,         1,         r,   3.4.3
+     karthikbharadwaj/HandsOnDataScience, b158f5930b94896c8c3843e8f483878cfdfbe052,         1,         r,   3.3.0
+                   karthik/os_value_prop, 45d811cf7f318aacc1f8df746e69824316d7d58b,         1,         r,   3.3.0
+                        karthik/mybinder, cf81c7474577af906c7a410233d44f72aeaa5c17,         1,         r,   3.1.1
+               karlosmantilla/tallerGEIH, e0718aecf49831d98feba2e9abeabac1962956ce,         1,         r,   3.4.3
+        karina7rang/kaggle_competition_r, 60e8b2075215b6115821ec4d1186405aa1011863,         1,         r,   3.4.2
+              maxpolaczuk/CSGO-TrueSkill, a3504dee61a3826f587cb938cf4d228b75eb0c39,         1,         r,   3.3.2
+            karenmjiang/Madelon-Data-Set, 0f50b54d5a436a7ac9175cf77254d87b1dd93203,         1,         r,   3.3.2
+                 khakieconomics/StanEcon, 7d8612d37a7925174eeed369177ede018cb4bbdf,         1,         r,   3.2.3
+                mattjabbott/data-science, 3c73d73fe6a104d84fea14cca22d6579bad7635e,         1,         r,   3.3.1
+kohaugustine/Sensory-and-Chemometrics-Data-Science-Seminar-Series, 01b35ef5151d91a2ce6dbda1165f018b9c2f1f69,         1,         r,   3.2.3
+                     masedki/moocRchap02, df30bad1258336f6cb02c02ee71dec08858dacc3,         1,         r,   3.4.2
+                       masedki/moocrtest, 96458c0b54c534e4fc9f1045eb23b48416c19afa,         1,         r,   3.4.2
+        kn-kn/Exploring-Tipping-Patterns, 85e2544f50c99e682f784e3cc808b3a34d733245,         1,         r,   3.3.0
+                      mat156/epicjupyter, 138924a1d986557c8fbeac20261b32e74347a8c3,         1,         r,   3.2.3
+                     kms15/reading_notes, 0df906734f2b512ed7eac590394da48847111d36,         1,         r,   3.4.4
+matheus-asilva/Analysis-of-Soccer-Events, fbd43fa73b9ef849c3e28d56d958ee8281328a53,         1,         r,   3.4.1
+                  klovens/biobase-rnaseq, 5ede22ea16e5773401c37761b9251907fe35ffed,         1,         r,   3.2.4
+matheus-asilva/Kaggle-Survey-Exploratory, 465bebcb009a78f3ad5e492fa70e9283c7391ec3,         1,         r,   3.4.1
+  khakieconomics/intro_to_stan_for_econs, a3bb77ccb43a4f7eadce703ebca6f0c2f9b9ee44,         1,         r,   3.2.3
+                 mathew-hall/OddsScraper, 2cc4558e032bb73d8b7443c6242216cc6dd32db8,         1,         r,   3.2.2
+             kkhatr2/MSD_GenrePrediction, 18189584776d33c3d0c33a1361d1f4b7479bb0af,         1,         r,   3.4.1
+                 mathew-hall/SheffieldML, 80f1d519f6006c5865c9f69cf444e9ae573a762b,         1,         r,   3.3.2
+                    kjnaithani/Sagebrush, f4d6c576e304567793988ec9d282a25de98ee610,         1,         r,   3.3.0
+                   matiasdamelio/Jupyter, 5797ceb5d9019909897381e524c818ea28aa2a29,         1,         r,   3.4.2
+                kiva22e/OK-cupid-project, 37ebe72d3d3dff1997c3b2404b8f869e7a8f3e08,         1,         r,   3.3.2
+              kiva22e/Framingham-Project, 9a1de9dd28b2c9161eaf647ed10d85b8a0fb2d90,         1,         r,   3.3.2
+       mattconners/mattconners.github.io, 913a27b7f81ce6819d27ab7d91da2a8ef7da4019,         1,         r,   3.3.0
+matthiaslmz/Predicting-Late-Debt-Payments, 1dbf83c91343ad78715ffa1784cc89a19bd2292d,         1,         r,   3.3.2
+              kiendang/bracket-style-war, b502b9420e3edafd00c423de0616d139db81755b,         1,         r,   3.3.2
+                      kkhatr2/forbes2000, 7ac04ff5b1753863bc2790c6c37f9a4a4b0b820b,         1,         r,   3.3.1
+                mazlo/lod-graph-analysis, 03fc72a51702259dc4aba11101bedb81830b7d28,         1,         r,   3.3.2
+      mbaddar1/sportswear-sales-analysis, 74b7901c24eb9592d8ea7e359a41a4b06d7b71b1,         1,         r,   3.4.0
+      kanishkasthana/humanNeuronClusters, c8d9f87136251bb589e06af1a0b32b470f37fa87,         1,         r,   3.2.3
+     mgholamii/Rental-Listing-Inquiries-, 342701a9f85be8b41fc43a02b40ceb1ee12252bf,         1,         r, unknown
+                        mguzmann/courses, d64692fe3092c3760948a987bff658196bb3f7f7,         1,         r,   3.3.1
+     mhc-stat343-s2018/lab-clt-solutions, b82c772463524c156de9f6d604c3f4db7bdaa1be,         1,         r,   3.4.3
+          jstearns/jupyter_workshop_demo, cca2bb16034a4934c61e2b11692e609a85211aa6,         1,         r,   3.2.2
+               jsphyg/Titanic_Prediction, d80dc1747cd7ce61a205af7d90bb0d98b3f14e25,         1,         r,   3.3.2
+mhc-stat343-s2018/lecture-mle-sampling-dist-normal-approx, b4cddf67ee25427fd9ff3658a86791f5e56dbc82,         1,         r,   3.4.3
+       miaramirezho/Ddefault-credit-card, 752e700b8a49246f006d8dae3c558e51d8ddc1b9,         1,         r,   3.4.4
+                      miarangoa/Trabajo3, de00b0d6e27509f69f665172c8b2dc36c3ec6f2e,         1,         r,   3.3.2
+       jpiscionere/jpiscionere.github.io, b6676fb6e7d270dcc3cdec5fb18e6b9e6b7ffe2f,         1,         r,   3.3.3
+               juanesfonsecan/dsx-prueba, 23f11463b665bcc66371e2c659c17153901c0ae8,         1,         r,   3.3.2
+        micha-p/communication_assignment, 9b175778f2069244b560f945797a6a21b8814aae,         1,         r,   3.2.2
+          michaelmhoffman/biobase-rnaseq, 1dcc45c040f822b2c38491eef501f77c5fb34c47,         1,         r,   3.2.4
+           michwojt/bigdata-speed-dating, 0a3de2803849868cd4697ff6af19f5f76f54277e,         1,         r,   3.4.0
+                    joshoberman/sf_crime, e6cd2279e4cb284ed16cab5e7846deb0ff9bf725,         1,         r,   3.3.2
+     joshia4/Data-Analytics-Term-Project, 829b7a658443bb05a204a3d529125a32ad26c4e7,         1,         r,   3.4.2
+                 miguelfortuna/WebOfLife, bd1ac94f67d5a501dd47dc1c18c9e2ba923f2444,         1,         r,   3.2.0
+       mikheyev/mucrosquamatus-selection, a72217a96cd2d45dc84c6e9a580f972e8e13e9b1,         1,         r,   3.2.3
+  jorovipe97/machine-learning-supervised, c692570550baff5f7b1ea6aa36e30038b6528ebb,         1,         r,   3.4.2
+                  mikheyev/test-binder-r, bb65ac874741ecf2e3515899c20fd987b1b9d8dd,         1,         r,   3.2.2
+        milaboratory/mixcr-rna-seq-paper, e7aff55b03e50659b86dda6bc51122e8a418d1c0,         1,         r,   3.4.3
+      michaelbasca/Data-Science-at-Scale, f79a8e7bc9ae16f26076541401bb119bbcd25ac0,         1,         r,   3.2.4
+          mfournierca/kijiji_car_scraper, c2fcf8f53fd4064badd647cef581015ec30b3bd4,         1,         r,   3.2.3
+                    mfernandez1992/test1, b56d4ad954542ac31ed94b1dde5b7ffcb59d4085,         1,         r,   3.4.3
+                   juanpalopez/notebooks, c739fd99625e751caa283695e411a9552a82f1ad,         1,         r,   3.3.2
+   kanishkasthana/graphModelPresentation, a2cc812b3bdf7ff37c857434a5b2335d17492334,         1,         r,   3.2.3
+                             mbaddar1/ts, 5dad1b874c6bc6bd554a749bd1d6f9a4f2a8572b,         1,         r,   3.4.0
+                   mcburton/trump-tweets, f01be4ed7a557951bd923e40f3bb99dee215dd9b,         1,         r,   3.3.1
+                    mclarknc/RF-Analysis, 55c31e57bb6407a6dc762a5e7a60bcb0d6ca8207,         1,         r,   3.3.1
+                    md5sam/ggtree_arslan, 1171631c9e1aad965b055a807eb3100cb41baf0d,         1,         r,   3.3.3
+         kamran-haider/genomics_harvardx, d703c83ce5cba1c47e6684863856ff84279ed641,         1,         r,   3.3.1
+             mdhurley/Data-Analysis-2017, 6d56f5320e02225a47111f39956d4849c8461699,         1,         r,   3.4.2
+             mealbahrani/heatmap_project, 144d7245329d08b30df679b8fe477c69cab7edb3,         1,         r,   3.4.1
+              jyotipba/Income-prediction, 4d3387c71876215cff37ed7e882eaa9c686a9303,         1,         r,   3.1.3
+         jyotinayak1976/J-PAL-STATA-test, 439371689a0321386e68d1c4d477ac6a00942a44,         1,         r,   3.3.2
+         medetcan/DataScience-R-Coursera, 73c4ea6caebce56d243863ddb5da694b10dcb722,         1,         r,   3.3.2
+jyotinayak1976/AirlineCrash-Analysis-Using-clustering, 99655b8dff567780a2542682c616074920b92a31,         1,         r,   3.3.1
+                   megamanics/RNotebooks, f97e324883d82148436a419957bf0c2b71a087c3,         1,         r,   3.3.2
+     meinaw/Lending-Club-loan-prediction, fa1200a8215664a7cb537cfc5e41e0d96bb1abe5,         1,         r,   3.4.2
+           melindaleung/Madelon-Data-Set, ac1aa760f128ec7e8e0c6b45244745cf27086810,         1,         r,   3.3.2
+           meredithmjackson/Petrel-Krill, 38b7a98656791b9a4bee35f2588cf0b1c352162f,         1,         r,   3.3.1
+                       julwin/repository, 0eba700909f7d601656830dc9828fc464e2d8e8c,         1,         r,   3.3.2
+                        judonini/MLwithR, 34661b744f45359c2a52c165c6dadfbc20ec81ed,         1,         r,   3.4.2
+                   juaquins/public-share, e2d87536b4088d4c47a1040a5cb968a1cf91fb44,         1,         r,   3.3.2
+                 juanvillada/R-Notebooks, 5a90142af9a23ef7f7c01aca3b54f6f85cb6a00d,         1,         r,   3.3.2
+                   juanvazqmont/tallerbd, d066038b24ebf6d6ae2f0d1c80ebad3c2e8de122,         1,         r,   3.2.2
+     korupoluarun/Linear-Regression-in-R, e25ed1546dd89a9c019277e0830c7d411890c39b,         1,         r,   3.4.3
+     jonpappalord/mobility_and_wellbeing, 556a9ec12fd145bc6554a1c0e1c64e2b16bd64b3,         1,         r,   3.2.4
+             kovidamunaga/complete-cases, e73222609521a979b30b60e1fe0d9429b6f1f4c4,         1,         r,   3.4.2
+  krenova/MixedDistributionMixtureModels, 089abd096c2312a085e925052213dfb2df999c2d,         1,         r,   3.3.2
+                       mafreitas/MQuantR, cb61d44908e822e3f1c66442c186609c939d74b5,         1,         r,   3.4.1
+          ljstrnadiii/ExhaustiveScanTest, d6918150241b88f7a92cfce9ecb125f06245c3f2,         1,         r,   3.3.2
+mafreitas/snakemake_lablefree_proteomics, d47e2c54256615e16e9e7477f8af087c0cf2a4af,         1,         r,   3.4.1
+                    ljdursi/binder-ahead, 580168954f90cd92275ca3e620e1ebed789ecc22,         1,         r,   3.2.2
+                 lizamc/ggplot2_workshop, 95ddea6abca0df9653c109af854100ba21a2ec39,         1,         r,   3.3.2
+                          lizamc/Titanic, 388c0fdf1ff3c79714b493eec15613f92b3d1b24,         1,         r,   3.3.2
+                      liyuqi/Python_prac, d0a40a7246cef3f7469507ef0bb0ce6918ddcd90,         1,         r,   3.2.3
+liumiguo/Translating-help-files-of-R-packages-to-chinese, fefd31d3d3bc22b3f8da46d073fb4488aa3beaf6,         1,         r,   3.3.2
+        liujj90/ClassifyReceptorResponse, 1850754ba2c37395b96e20ab62beb4b1d31e50ae,         1,         r,   3.2.1
+             lkalesinskas/biobase_rnaSeq, 770130eb6ee0c1cd49982fbc5665a0b78834ba87,         1,         r,   3.2.4
+         maglavis138/DashboardDataUpdate, 3f61e70dea5ddf12b2c9b107698dc82a4a9d71cf,         1,         r,   3.4.1
+                    litvaklab/NMEG_utils, 5b215182ac901fd3ef014ac3b1a8eb8c6a5fa242,         1,         r,   3.3.2
+       littlesdada/littlesdada.github.io, 25fecca84aeb09ca81d582f4138748763f539dab,         1,         r,   3.4.0
+     mahdirajabi96/AIR_InterviewQuestion, 86abd4e039141b4f3b834c2a435d732c5644b616,         1,         r,   3.4.1
+           linwoodc3/datasciencecoursera, 4ef9b54a8cfc3bedc4c7042fa8fb625445f53e7b,         1,         r,   3.2.2
+                     linhbngo/parallel-r, a9adcf164a8b6d7794e2b8d3fce09d70ed7e05e8,         1,         r,   3.3.1
+                        lingyielia/R_edx, 3ca7866d4bca149554adb6aa584bb354cd4594f2,         1,         r,   3.4.2
+                             lingsangt/R, 937236a5a81e308042c3b51450ee6ba64016afc4,         1,         r,   3.4.2
+lingcheng99/breast-cancer-gene-signature, b7b3c151b330f571e32e99cf5de1d6817221c3ca,         1,         r,   3.2.3
+                      mahidhar/R_Handson, c45be3b4d35259cc9ba0365187f47c66df81d894,         1,         r,   3.3.2
+                        liu3619679/test2, 5a4e7756fb1d889b42389ddbc00ec8af09885844,         1,         r,   3.3.1
+                      maibru/hello-world, f989d6eeb3057b99508ae7fc8a208194475363b6,         1,         r,   3.3.1
+lmcoronadom/Las-Vegas-Strip-Classification, 2644988c905fe6a275efd5b8c63eb7ffba141c35,         1,         r,   3.4.3
+                   longjp/circadian-gene, c428bb6aff60fb94dbb5cf622d53b6f779efd27b,         1,         r,   3.4.3
+      lx865712528/DataMining-Assignment1, cc9541ca010b7d48ecc8865bdd6858d6c9586dc6,         1,         r,   3.3.3
+                         luketis/pcs5024, 3d858b8529c69cad8b1c4e349f29f1e6cdd9e7c4,         1,         r,   3.4.3
+                    maaarangogo/CDA-2016, 27c1cd3c643289785099abfec2d73f38d29b23cd,         1,         r,   3.2.2
+                   maad2011/DSS_Coursera, f76afd1703e30dca53a61d14d0e903becbe73f84,         1,         r,   3.2.2
+                 luiarthur/sst_litreview, d78ee42aad2e5de1da17e875709a58fc27d19ef3,         1,         r,   3.2.2
+           maatorresva/TRABAJO-ANALITICA, 1aa16c971d9952cb30e59d21a95b2720478111e6,         1,         r,   3.4.3
+             lubiavinhas/SITS_R_notebook, 8898b655ad027de86cfbed7be9be608a1ff77bda,         1,         r,   3.4.1
+            ltminty/Bioinformatics-and-R, eee501e5ab7cbd617e757bb57d66d1a0bc8be36c,         1,         r,   3.1.3
+               mabdrabo/Kaggle-DS-Survey, b605406ceb0238850485cec9ea7482d9e0490ce1,         1,         r,   3.4.1
+        loftina/ProbabilityAndStatistics, bec4de21ececd046ee2759a5fdff643067a971e1,         1,         r,   3.3.2
+             mabdrabo/NIST-bad-passwords, bee05d266684ab0e46e389fcbffae1d2167a985a,         1,         r,   3.4.1
+                 lssnadia/UCLA_CSX_450_2, da6352ec3dde7a7ee9a8e0c63e5add224964f2ec,         1,         r,   3.3.2
+                      lssnadia/Iris-Data, b6671e9d5c78804746aaa25d11305669df9e2553,         1,         r,   3.3.2
+            machow/projects-example-mirt, 63bc86d6ec330f3cc97f985fba563f3a563b8380,         1,         r,   3.3.1
+            macieksk/expression_analysis, 8b4ae5cfb5c701b1fe7733b52e0bc5637bc7b713,         1,         r,   3.2.0
+                madraziw/test_docker_tag, e03abdde61d1a98c368f02dc400ae62498f71630,         1,         r, unknown
+   louwjlabuschagne/dataScience-template, c8be2639e276f61e0a419d2c4db5be5642fbda1b,         1,         r,   3.3.3
+            louwjlabuschagne/bigMacIndex, 54a1eb9d413b18481c7c2c40bd0102c695ec568f,         1,         r,   3.3.3
+                   madsenmj/ml-gas-price, 677dac6fbe5d6eca2adf8292a94d170099f30770,         1,         r,   3.3.2
+                            longjp/hw689, 1c1bc98a19417cdd82d46837e6ab67f299ed2463,         1,         r,   3.4.3
+        mabdrabo/discovering-handwashing, 5b44fe242a828c893d94d2790d0b08a90446cbc5,         1,         r,   3.4.1
+           lilylaila/CSX_450_1_Project_2, f51f3db150ce5f6c9f98b4cd9bcf3ebdc11a3825,         1,         r,   3.3.2
+                liiskolb/vishic2_article, bd5d4ef06c61e27d33304ae51b8f5083328389c2,         1,         r,   3.3.2
+                  liconoc/quantification, ccdcd9986be6557e902bd673e48f6fa4d1737888,         1,         r,   3.2.4
+             marcsburt/titanic-project-r, ef2e271e96661be691fa3c16defd949e59b4ef3a,         1,         r,   3.2.3
+            maribelacosta/dief-notebooks, a18bfbe4db02263c27ba01c061936ef827bc8498,         1,         r,   3.3.2
+      larskotthoff/openml-recompute-test, c7c5fcee52fbcc9d625e8d1b61cb3387e52a198b,         1,         r,   3.2.2
+                     lanagarmire/lilikoi, 14dfd73ab8ef7d6069825c1debe6c71f7777d628,         1,         r,   3.4.3
+          lakshyapriyadarshi/phyllotaxis, c9f38f083bbeef3d9cda2ec1607c64ba164f1b42,         1,         r,   3.4.1
+                  lakshya111/phyllotaxis, f4d0863732bd577680c38143a76a04ff0197cd57,         1,         r,   3.4.1
+                        laisbaroni/CEFET, fd2a683de5db9d0420517d565d3ab86d033edd31,         1,         r,   3.4.1
+               marielouiese/Fallstudien1, b339e5e39324c31e25a8e235b41f7a2178cba768,         1,         r,   3.2.3
+          markus93/PR-Gender-Recognition, 0e32f3cdf71f77bfb8264366f66888a82f0e4bf3,         1,         r,   3.3.2
+           marciocourense/women-s-health, d40e7bdc8503872582f3022fbb1a3e561bbe0bde,         1,         r,   3.3.2
+   kyungho-park/KChouse_price_prediction, 986c9bbb697ccc87c9b1673228f5015d3dc232ba,         1,         r,   3.4.1
+  kwankhede/Vehicle-Regression-Analysis-, 253cbd21d9fa20624b8e41978989393a87be3fdc,         1,         r,   3.3.3
+                      martingale/MLClass, 6fef2143bd4a1a59be108905c25c159b6d5265c5,         1,         r,   3.3.2
+                         kvsista/Titanic, 0f869cdc42ed30f7b72210f8ded6ad291ce6db6a,         1,         r,   3.3.2
+            kvsista/New-Haven-Crime-Data, 3b68e03528f5abd49e9b2d6ca16cfad3fd5d898c,         1,         r,   3.3.2
+         kumar-abhishek/UWDATASCI_350_DB, 6b504787c0d054db44dc4bcfef867d6d5a3ae086,         1,         r,   3.4.0
+                    maryrudy/Portfolio-R, 76f09cc162fcf556c3f053e6412e4bb61d2ecb93,         1,         r,   3.4.1
+                   kristijensen/sleuth_R, ad721371a792d43969c5614e77b62e556256f36c,         1,         r,   3.3.1
+                     masaomi/akam_popgen, 5aafa49c74d1afd276d59a3a9973c1e18d3a6351,         1,         r,   3.3.2
+                      krenova/NelderMead, 8302d2324d534145262101a3d06a3ef64b7344a9,         1,         r,   3.3.2
+               kyledotterrer/r-notebooks, 120b900eda57fe3c658936d414b826c2584af3c7,         1,         r,   3.3.2
+maobao418/drivers_trip_completion_prediction, 6829abf502df63a9be1bf570b4a8cd97a1b119a6,         1,         r,   3.4.0
+                           lebmih/Errors, 04368d33a5045c5d03959d3a690ce2d02e878222,         1,         r,   3.2.2
+                  lecardozo/explorations, 9db19f8d6e37b15982122c1bb9cba74263f1954d,         1,         r,   3.4.3
+                      libseline/Project1, 7c9feff71c5807488c26c629e59cdb99fe573379,         1,         r,   3.4.2
+  libseline/LSeline_SororityData_JOUR407, 38ba33ffe5ca2147ae2b1f37e267174a980ac6f9,         1,         r,   3.4.2
+                lhhunghimself/testbinder, ba6ba580b67fa82206cbb040fecff04fcf33a702,         1,         r,   3.3.2
+                      lgellis/DSX-Export, e64caa97935f481f96a438e2b276fc6a0f1d7cbc,         1,         r,   3.3.2
+    lgatto/open-rr-bioinfo-best-practice, 87ea322ba9b7d2c229a4860110936316d5732dfa,         1,         r,   3.3.0
+                 mainul12/data_science_R, c655be2e736994b3beb155b15e22b5911f334512,         1,         r,   3.3.2
+                    levvim/Immune_subset, 9d5dc84568cef2188e63ea3172e6ae148927a062,         1,         r,   3.3.2
+leventkayin/HR-Analytics-Homework-1-Employee-Satisfaction-Survey, cb543c885e8079f63494519f2163e4b28266ea80,         1,         r,   3.4.2
+                      lethe1216/DataAPIs, b3fa2c0a78269d556a2c6466dc6634acb9c78de4,         1,         r,   3.3.1
+                     lesley2958/intro-ml, 29cfc15b66104bb1f0ea027f046491eb06dc1f9b,         1,         r,   3.3.2
+             lesley2958/data-prep-with-R, 8bde9193af799a7d7a04ed043fd4ea8b7ef4afea,         1,         r,   3.3.2
+                    manashmndl/LearningR, d91395d0357dc40d1957653ea79f427b9c5671ad,         1,         r,   3.3.2
+               leonardosminfo/myProjects, 46ddf973d708e91649e6b3b11eb890ec7bfcfc28,         1,         r,   3.4.1
+                    leonardosminfo/Stock, 53f4b65c149c6ec47d095016818be49b98aaf48a,         1,         r,   3.4.1
+                     lennet/CycleHack_AR, b4689b15606e9849e35d0acdd3d7333aca9cbdeb,         1,         r,   3.4.1
+        manasye/Probability_Distribution, e6f82eaa924f342a726179ca36f7f4f6e5892bc7,         1,         r,   3.4.3
+      manojkumar-github/ClusterAnalysisR, 56c834ed2fe1e9210b4278c46571187835ba8fa7,         1,         r,   3.2.3
+                  lemonlaug/odsc-prophet, 0525ce47df0e3bd62bb01be08f4ded7f5a73ca3f,         1,         r,   3.4.2
+                     lelonxumalo/heatmap, 3bfd2cd086cef3290164e1f6c5bf14d14a89b905,         1,         r,   3.4.3
+                        manuskc/ml-notes, 8a33c5f5b018b57b72d1a2abfdd93c4c3c315f0f,         1,         r,   3.4.1
+        maobao418/customer_loan_analysis, ab0d2d9f6b7216578cec816404a166f5f251ad4c,         1,         r,   3.4.0
+                             kramer003/R, a7ccf601768e55a87d8edc5b900ae2f3368cb3e3,         1,         r,   3.3.1
+                joneswan/trial_and_error, 4af405f1b68b6f206a20325654629400b0f5ae85,         1,         r,   3.3.2
+                 jonathanlittel/triangle, 764aea20d499f6e086350bdf7a64152a182902fc,         1,         r,   3.3.2
+            minimaxir/facebook-reactions, 5ededc075ad095c8b1b884658468edc71f39e3de,         1,         r,   3.2.3
+     hputnam/project_juvenile_geoduck_OA, e36f699c7d7b233f6b644645684c054891516a6d,         1,         r,   3.3.1
+                    hopfenspiel/leuphana, bdebd4f7d1821263555f23d52e26e6f02655cb51,         1,         r,   3.4.1
+hondajyh/Sprint_6_Preliminary_Findings_Hypotheses, 2164470c19091ae218639cd5572d90c1e556d296,         1,         r,   3.4.2
+                  hollylutz/CuttlefishMP, 00628c1de54c22b19d6f5e64b63ea24cded9301f,         1,         r,   3.4.1
+                         hollylutz/BatMP, c69e66ef7369889a396483294212ecddb2de1402,         1,         r,   3.4.1
+                    hnielens/dsx_default, 48d69129412e84c6d665e295573824a5164f25c2,         1,         r,   3.3.2
+           naomifridman/SoiRecTimeSeries, 76e924da3d5a08c305455cb9e71dd91da9f6d39d,         1,         r,   3.3.2
+    naqeebasif/DataScienceSpecialization, b05359567b9a9d064d3da4f70d444cdd0649cde6,         1,         r,   3.4.2
+                 hmahzoon/R_Jupyter_flow, c37764edd8ed4eeba9f5192e0a810177be5dc077,         1,         r,   3.4.0
+hrishikesh-saraf/Data-Analysis-On-IMDb-Dataset, 08f5815f0524d9e1b2135a4a8a58e1d0985293d6,         1,         r,   3.3.2
+              hiromiyake/word-prediction, 5ccac7ab3efb1720af6c007f22977818c18543a4,         1,         r,   3.3.3
+              himanish2006/NLP-wordcloud, ab81cf00a22a79134d5d7039e8bdc1f1a12030e0,         1,         r,   3.3.3
+                himanish2006/GGPLOT-in-R, ca756a8ef0837f6a5a515a8b869288c676943b1c,         1,         r,   3.3.3
+              hillstub/Jupyter-Notebooks, 1931128314161a99f5f7af25337f2d29c664122b,         1,         r,   3.3.1
+                        nathanesau/coord, a5a895bf9a13d441e8d89854528af34c18dab43b,         1,         r,   3.3.0
+                 hgibling/biobase-rnaseq, f6a8056c3172831915c09d7d5ebbfe861d1b2cc5,         1,         r,   3.2.2
+               natlai123/R_Practice_Code, a13afd45f71bad9e611397776fb0ac09521f191f,         1,         r,   3.4.0
+natmod/seattle-housing-price-time-series-analysis, cc224cb846fd645d2cce3ad3455a77fe79b2a628,         1,         r,   3.3.1
+             henripal/thermo-uncertainty, d9d8361a1d382691290e65491de6f17ce1ed389c,         1,         r,   3.2.2
+                      naubergois/apriori, 4c411dc392da50e136157399b48c5b82f46be218,         1,         r,   3.3.2
+                nash1111/R-jupyterbackup, d9fcc684f8694ecdebf16fa01595eb3ece75aa8e,         1,         r,   3.4.2
+            heisenberg0820/Bad-Passwords, 3298980a47a9cfd59f7c88b02a1f16bdc187bd68,         1,         r,   3.4.1
+              nandanrao/machine-learning, 5239f5df34f57961f91d1a2ca26fb759b7fbf954,         1,         r,   3.3.1
+huangshiyang/Classification-of-Handwritten-Russian-Letters, a54b27c1fde13c71456c98d6142736d47beb0313,         1,         r,   3.4.4
+            idr-contrib/serrano-remining, 7a2b7ba0369730edd8c249cdbdb321bac812dd2d,         1,         r,   3.3.1
+                     idhamhalim/SQL-in-R, 8c2a15f55b65a803e83e156953ee7851b0e40547,         1,         r,   3.4.2
+           ibm-watson-data-lab/R-samples, e42fa861b81358fc0a832b31e09b5e4f74dfb84b,         1,         r,   3.3.0
+                           iblis17/notes, f03480f35beff49402dfea79bd3566b1f082b2f8,         1,         r,   3.2.2
+           mw10104587/data2-Philanthropy, b96eececd6c99471ef75f1bcffdbc9b66cd31279,         1,         r,   3.2.2
+                          mwarscher/R-VU, 0dd3e55f3453182026282f0b8d424637afbcce0a,         1,         r,   3.5.0
+          iandennismiller/election-memes, ad06fad5b9bcc548b76cce2a969cacd635d01a71,         1,         r,   3.3.1
+          my-cold-rake/STA-Final-Project, 63f0d65ddd509442bff3da0697a3bd9cc084eb47,         1,         r,   3.3.1
+                     myfrozty/MUAS-works, 828f9ca87dea935dace42ce304fff1a933b66325,         1,         r,   3.4.2
+hrishikesh-saraf/Parallel-Text-Processing-Using-MapReduce, 7ce3000410b764840ffb54aeb41c2bff9e5d2ef8,         1,         r,   3.3.2
+                  mykebrowne/data-512-a1, d75fa5e0220166c273fd7dda2cbe5f5f188c7502,         1,         r,   3.2.4
+      iAnalyticsGeek/WorkingWithDatesInR, 2852e228115ee23c7ce21d94928ecff02937e98e,         1,         r,   3.3.1
+                  mykebrowne/data-512-a6, ffe3d533ac09e67d29ca8369c6f63ef3fe6b52d6,         1,         r,   3.2.4
+                    hy09/Jupyter_biobase, d0884d77d704efc0c90bc657cbfaede3a4348493,         1,         r,   3.2.2
+                   n-birta/DS_lab_oracle, c1278b7bd549924fbef80eea53c2ebdc8a0eec01,         1,         r,   3.3.2
+        hussius/TCGA_proteomics_tutorial, 2f16e4856d2b27d1bb0df2c914b6d2c776613018,         1,         r,   3.2.3
+                 nadiinchi/PSAD_homework, 80c34679362bb27679e4207917fdec38633df591,         1,         r,   3.2.3
+          hugosilveiradacunha/Statistics, fbaaa777eca2a7ed41ab3d66c72882d703efd487,         1,         r,   3.3.1
+                      hugoladret/APP2018, d4a4f8b72074f60f7fa41f2c0f7da0e733461247,         1,         r,   3.4.2
+      huffpostdata/primary-dropout-votes, b13d3584c099010466e4e67fdfc20a3ad9149e44,         1,         r,   3.2.3
+                  mykebrowne/data-512-a2, 9b9e6fb9be2b0c3990c3839de8e0dcb936e4d831,         1,         r,   3.2.4
+                       navalsinghIBM/nyc, 0a5a6a348fd47a33ccfd2812b30e85d2fd9fe085,         1,         r,   3.4.2
+                         healess/R_study, 624463dee46e1de3d4c3a6e97485039c72b8cdef,         1,         r,   3.3.2
+                        hdzierz/carolina, a75fe24b8406e0925311cae0da7c5331baca331e,         1,         r,   3.3.0
+                 gustavoliu/MITx-15.071x, 899f0b8cdb41cf16f3243f7db4305930e4097946,         1,         r,   3.4.3
+                 gupta706/Linear-Algebra, 843da6a1799dfbee011fc1f3a95d4326442e1989,         1,         r,   3.2.3
+                     gucchi123/draw_tree, f8a02480dafa5ea9255632df1eb1e882de3b4985,         1,         r,   3.4.2
+            gtolomei/ml-feature-tweaking, d304a796717644095190a79648413c0ecc0c8670,         1,         r,   3.4.3
+                      nellac77/churngame, c017d8cfdc39ef2d6694db1207fea122b05cf27b,         1,         r,   3.4.2
+                    grokkaine/hmalecture, 78f3f2ab7012d8d1fd3bbd0c7fbcce8abfe9a6fc,         1,         r,   3.3.2
+                           gremau/jnoble, b110957d16fc7d502f5d57f11a85a2164a41b958,         1,         r,   3.3.3
+                      gregmedlock/lncRNA, c2326c8fc2dcfbc4b86fd594075145120216a12f,         1,         r,   3.2.2
+        gregdevore/Data-Science-Capstone, 2a50205592fa08bc270bc8445baa1827d6439f43,         1,         r,   3.4.1
+                guzmanlopez/ACRRF_course, c2efdaa9a9dbaf2b174f9c86f8cd383b5197f87b,         1,         r,   3.4.4
+                   grantpatten/ipynb2rmd, 80ea1f021e5aa0090e967b8fbfae4bcc41246d4c,         1,         r,   3.3.1
+    net70/KMeans-Clustering---R-Language, 5f6e4d8f9ec209653acb706a3fcb2c8e52c1aeaf,         1,         r,   3.3.2
+                gorskim/monte-carlo-case, fa9c6908ef8238a37c635158405545d5ae026ce6,         1,         r,   3.4.3
+                  gor181/build-project-r, 474127a7e9d8b03a35e6cbffd1acaa0c2f4c0151,         1,         r,   3.4.2
+net70/Linear-Regression---Machine-Learning-in-R, 404a7d2144f887490228f55e8738eb7c0d886895,         1,         r,   3.3.2
+gognambiar/Python-Spark---Latin-Text-Lemmatization, e6abc39c809d522400763ca1bc16e496c1e3a33c,         1,         r,   3.3.2
+                            newgene/abcb, 0df37c518313a223af5deccaefeec3ee19c1a1df,         1,         r,   3.2.3
+nf-s/Grouping-and-Ordering-of-Sites-in-the-River-Valleys-of-Northwest-Tasmania-by-Rind-Thicknesses, 6919110893bfb2e9caf36da31b5fb2cb3360935a,         1,         r,   3.3.2
+                ngcouch/time-for-remorse, 646b0e6b3fa16f3d9e744edcc90ad54320caa7df,         1,         r,   3.4.3
+             ngdeepak/deepak-datascience, 907d7209a31da4c02aee9daadcc16f423bcb31ed,         1,         r,   3.4.0
+net70/Hierarchical-Clustering---R-Language, 4aa4811c8614766ff3ab7270280461c0e3bf9bcc,         1,         r,   3.3.2
+  gvaschenbach/appliedPredictiveModeling, 396d9623f10f45a6701698ca09427c19002e9583,         1,         r,   3.4.3
+                            gwats10/Top3, 418e3e0d9ad96a24d2e8dc3586fff527ff70a601,         1,         r,   3.3.2
+                        h-hnd/Nagoyastat, ff27bf267505b1cb3b03c094484881ed14dec532,         1,         r,   3.3.1
+   navierula/adjective-polarity-analysis, 5d63fb810a3ca60c8a7c3fdb8eb79ad82b5c61df,         1,         r,   3.4.2
+              neaorin/PredictTheWorldCup, c1bbbbfdc48d8cf570f4466a880ed22e7d84292a,         1,         r,   3.3.0
+  hatityechindove/Analysis-Tool-Box-Demo, 9cb5f46854594545cf303e253931371b7d4292f1,         1,         r,   3.4.2
+            harilsatra/US-H1-B-Petitions, 71f9a4a06b20071704aa24b941493dde77c04a8e,         1,         r,   3.3.2
+ harilsatra/Twitter-response-to-an-event, 7af8b6cb87544d2b2d08ccbf8245b2f50c547a78,         1,         r,   3.3.2
+         harilsatra/Top-K-Twitter-Trends, bfb22477aa4bcab388ce9539921d77e4b0de9eaa,         1,         r,   3.3.2
+harilsatra/European-Soccer-Data-Analysis, 8270774566db523840657d77d7128c75ec74e88b,         1,         r,   3.3.2
+                   hanxixuana/jupyter_nb, e6ad52db178b3811dc84cb9d7e7429855bb94072,         1,         r,   3.2.3
+                    neeshu89/MPG_Project, c43338cfb847409b0afd9e5bde1c48fd577faeab,         1,         r,   3.3.2
+                              hanakhan/R, 16c98fb25ff571f7d4dd6aab6d749ff482053ef1,         1,         r,   3.3.1
+                    hamzamohdzubair/Test, 8abdbce8e3024ae7865f29897d89579dfba0a090,         1,         r,   3.2.3
+                     halleycl/SCSNL_BPSO, cf984d9341021c231ea45ac8d02549679db27017,         1,         r,   3.4.1
+               halleycl/SCSNL_ASD_Hetero, 8dcaf51f3cbb2c6bc7b319fbabb2b38a0eac33e0,         1,         r,   3.3.1
+                neilpanchal/ggthemr-test, 855e63487137fe83a8d02d9da9d37cc88d580727,         1,         r,   3.3.3
+       halfak/damaging-goodfaith-overlap, def71ea35c3b9b6f9396928af0edd1b14a3e978e,         1,         r,   3.2.3
+                    haleh-aleahmad/Divvy, 39448db7ef8a9bec53c80da5b3934261b754fa11,         1,         r,   3.3.3
+                hadrienpierre/projetStat, b33dbe05cbdc185143b7d4752f3fd65e9734e12a,         1,         r,   3.4.2
+                      hackthemarket/vwap, ea00ec48a6ebfc8609e396f327ac194bc4735363,         1,         r,   3.3.2
+                haalberto/Crime-Analysis, 36ea13e3b4408ef1dfb266deedc7eaede60cf25d,         1,         r,   3.3.1
+               neilpanchal/r-boilerplate, ba43284f8d15278f318f5c4d53b8c27c6a755997,         1,         r,   3.3.3
+       nelakrawiecova/Data-Visualization, b365efe4c5f15ad42fd0dbbfc74797a442ad1563,         1,         r,   3.4.3
+              mw10104587/chez-R-practice, 30dbe359d84468d33066ae3e00344519e46d035f,         1,         r,   3.2.2
+               ilemhadri/for-singularity, 5cbff42f8d721b6470269760bad848f5c43e6f3e,         1,         r,   3.4.2
+                 imhirama/waterchallenge, 91c1408728fede34c3ca1c91558c18c5543a534e,         1,         r,   3.3.2
+           imranture/PredictMovieRatings, 4a5d3a2d628943cbf3fd79f6b6c2181f8614bdf7,         1,         r,   3.3.2
+                          jmhernan/JoseH, 4aee2afccb141f8a6537e1fb7df3ccfb1b03efaf,         1,         r,   3.3.1
+                       jlewis91/dailyviz, 5ae91440594cb70eec086ed82c03205188b1cda4,         1,         r,   3.3.2
+                    jldork/BaseballDataR, 9848796e1291e54ade31574f8db8955e30a46234,         1,         r,   3.2.3
+                         mitomac/juptyer, a574385e91c788d49655fdeb9dfa72db0af77dcf,         1,         r,   3.2.0
+                      jkshr/binder_trial, dbca2a55ecf73b983f0dbec79cfc2bffbb6ab6ca,         1,         r,   3.4.2
+                 jkosterhale/InsightDemo, cd8ce79dc1f4f9615c3069e84e1823fce13f56ee,         1,         r,   3.2.2
+               jjmcnelis/MODIS-service-R, 37d1dba5307c919521d0503ffe48bfcfb7414fae,         1,         r,   3.4.2
+                          miwojc/ISL-ch2, 31a3df67be3147f85b66b6fc051ea15376ff9aa5,         1,         r,   3.4.2
+         jimmyhm/ProbabilidadEstadistica, 08534c5e1faec9de6a02c46e74da44ee5a6bc351,         1,         r,   3.3.2
+               jmhernan/SeattleCrimeDemo, db3e02e133e8012724af6c82e7a44e72867f3e9a,         1,         r,   3.3.1
+                                  mjjw/r, 6814463e3578bd2367f133f6ebe20b230253e869,         1,         r,   3.3.1
+                    jhmorse/mlads2017-55, 50c70dc9209b18517014d11c35a57d546a86af22,         1,         r,   3.3.2
+                       mjmoon/r_workshop, 3d42d8bd9e2a3f16a03baff959419d94439a6e65,         1,         r,   3.4.2
+         jgutierrezh/contencion-clientes, 7aa33ea11161c917ef2302ea9656adcf36da4732,         1,         r,   3.4.3
+mjtat/Plotting-event-related-potentials-in-R, 78df832c317b151846c6400c6cf865badc6ec7d7,         1,         r,   3.3.2
+                  mkinet/DataExploration, 1946ddbcbf41222540487c93b2776902e71f3a0b,         1,         r,   3.2.2
+                        mkoculak/analiza, b2fdf6691f85dc94b39381bd184dba2cf6776c3d,         1,         r,   3.2.3
+                  mkrzyzanska/CAA2018_S9, fb5c2c1a49df37f59b1773b8187def9ac3bb2280,         1,         r,   3.4.1
+                     jet-okapi/learningR, 957b9f74895a16bc6491fb91294c3f479a29cad8,         1,         r,   3.2.2
+                              mlu68/Face, 157ae897c1d8de7137eafc1c45bed38eee7a15f5,         1,         r, R version 3.3.2 (2016-10-31)
+                    jhonatancasale/ML-T3, 38d4ef64a02d1d65be3ec0ea35c4aaa9efce9947,         1,         r,   3.3.3
+        joachimvonwulffen/biobase-RNASeq, 76db8b7a99470372beaa9d4388f3c2811312596a,         1,         r,   3.2.4
+     joakark/Corporacion-Favorita-Kaggle, e47103b86052de3746702caf4dd31b5283f5bd91,         1,         r,   3.4.2
+ mipelamo/Analysis-of-Credit-Delinquency, 981ecbfef07b4568742cb66d8af36608a3eea168,         1,         r,   3.2.3
+                      joidegn/R-tutorial, 2393fb5ace1ffad689a00cd68c92cb64b6c53444,         1,         r,   3.3.3
+    minimaxir/movie-data-sanity-checking, cc1dd5c5057b5598eba8bb6837ef508abe3cc98f,         1,         r,   3.2.3
+                  minimaxir/movie-gender, 76581d9468d4b59dfbd6963c21a6c85e2339bd82,         1,         r,   3.2.3
+         minimaxir/movie-revenue-ratings, 87fbffe98dc0ce68951b69e2d83ec0350125e536,         1,         r,   3.2.2
+             johnchower/notebook_hosting, 8c789e230857a25d4348cf1e94f3c5869ba689d2,         1,         r,   3.3.1
+    johnchower/industry_standards_report, 2a765ec45de65afdbc50b378ea0d95e83abb8c41,         1,         r,   3.3.1
+   johnWilshire/r_jupyter_notebooks_test, 2adfaea3a964ae72c165500b4819594a23e7a9da,         1,         r,   3.3.1
+                  minimaxir/reddit-graph, 576b4e4cd8b45fc2841e226fea336baf834af976,         1,         r,   3.3.0
+                joeyzhouchosen/Work_Demo, 50e5af5337c7f2e71e7914796725190468963f9e,         1,         r,   3.4.2
+          joestemarie/R-for-Data-Science, d7495e56e1b94d6a62dd5c5cabad90526c55b356,         1,         r,   3.4.3
+         minimaxir/stack-overflow-survey, 699c09a24ba42f7984ded5a2cbdbda6179d81dc8,         1,         r,   3.3.0
+                    joelcponte/US-Census, 8e50bb1ca107ae0f3aa8581ffe9bdb01173fa670,         1,         r,   3.4.1
+          joebrillantes/manila_accidents, 275cf3df689888bb5a974a4899d968aa7a3777a3,         1,         r,   3.3.2
+joebrillantes/DirectMarketingOptimization, b5c1150ac24457a9f6412bc8963bcb5cfaa6ad3d,         1,         r,   3.3.2
+             minimaxir/subreddit-related, 77582a42c37db3e94a20bd0f60404654029af5f0,         1,         r,   3.3.0
+                joaomeirelles/scaling_br, 77a7db0885fbb605c9d2b2f0e64005d36368d4d5,         1,         r,   3.4.0
+                 joaomeirelles/moc_umgdb, ae5b46a0949e10e9f30e9d9ec901b37465514d55,         1,         r,   3.4.0
+                   joaomeirelles/ghg_gps, 1c7d6d02a3b1cc1a7f3b70cb0a1f4db1b69bf14c,         1,         r,   3.2.2
+             joaomeirelles/energydrivers, fade40cda76b398a86b3cf62c3b1f157b1d13501,         1,         r,   3.4.0
+                   joaomeirelles/EEIO_ch, 1f1a5008e2b2d07d8e82f5e33f4032688d072072,         1,         r,   3.4.0
+                           joaogui1/ML4U, 427262775ec957f8bbe717f647a22682406b62f0,         1,         r,   3.4.4
+                             mlu68/rf_ci, 3e9a74562fc3f31baf2d76e7e6b6d5ab22a43154,         1,         r, R version 3.3.2 (2016-10-31)
+         gnascimento/mineracao_dados_sih, c4f4ee1f83c44fdb145fa02c76d1f2daf0ca3716,         1,         r,   3.4.0
+                    jeremyrcoyle/hal9001, a53c46bff247339bd7d9fa952a36af33aa29b393,         1,         r,   3.4.1
+                          jeradhoy/MSUWC, f07a2f18633e611537bd69b9962497cd77c18ae9,         1,         r,   3.2.0
+                      jande118/fdac17-FP, 9bf1daca50cc42fb848910e894e29c2a3536c7f1,         1,         r,   3.4.1
+                     mpalencia-lizeo/LDA, 176ff3c7eff79834cc66f92cd482459a7c32a841,         1,         r,   3.4.2
+                 mponweiser/LDA-snippets, 645f7b2c48160767231f900924c7e4cd03910bdb,         1,         r,   3.3.1
+                              mrccode/cv, 033c360ae15dc0e0172fb452c64655b1a09803c5,         1,         r,   3.3.2
+          mrccode/katowiceVisualisations, ca171d643a95d0396b7a8dd2327abc6662d096bf,         1,         r,   3.3.2
+       jam1245/Missing-Migrant-Analysis-, 8b7ccce0e2fd431c4c58c036c1589191956f65a2,         1,         r,   3.4.0
+                mrccode/ue-MiTAD-weather, aa08114dd46a35e99599f68815eb5b24e7eb73d9,         1,         r,   3.3.2
+                  jakemoody/Test-Project, 4b01ab19cb5a8fa37829acb9a434651da5374cc0,         1,         r,   3.4.2
+jagpreet1058/Explore_Hillary_Clinton_Emails_R, 382c48388a369976a0df758e345e0b1c83837c1a,         1,         r,   3.3.1
+                 mozuliov/Costs-Forecast, 59486f2cbea18897cf79140c4f637baa97db72e7,         1,         r,   3.4.3
+   jaekookang/vowel_variability_analysis, 932ceef527078e345059739ba9ff5c9d513d28f9,         1,         r,   3.4.0
+                             mryap/mba-R, aced8095ef7a05441ba56fd6972988323fc85dda,         1,         r,   3.4.1
+                           iveksl2/bball, e49a9036ae43bbb03484515a7459a1993418f11b,         1,         r,   3.3.1
+                         mskilab/Ppurple, 2639f04dea46a3a08e7fed55d016d1a8106983d9,         1,         r,   3.4.1
+                       ishaojunzhang/ads, 3f88d1c92cc1114b485d0a9f14eb839d5b75496f,         1,         r,   3.3.1
+              mutiaulfi/movie-imdb-score, c73ffbf4ed471f8fc0d433f08ad624cd24d7c418,         1,         r,   3.4.1
+                     iperoyg/fecd_lista4, 210b0a4ee4ea439398683312ef388f2ad12f0268,         1,         r,   3.4.3
+                         io2oi/selfstudy, 7ea60f83e790b757d3a4aefb1934c3e658ac7474,         1,         r,   3.3.1
+                             io2oi/R_Bio, 1fafbb86f3e727e49d8cb304e94a82b83c7d8fea,         1,         r,   3.3.1
+               mvaniterson/KaggleDsb2018, c18e760781c5ccaf80e9187d5cf5d900288fde18,         1,         r,   3.4.2
+                  jackcook/kaggle-survey, a853bc14807f6eeab2cff7339a2551854cf463ca,         1,         r,   3.4.2
+                 janice-mccarthy/HCAsymp, 0c1aff694ba38f0b174266de43f95661a199b61a,         1,         r,   3.3.1
+                   mosherif/Assignment_6, 98b5af47a480ee02c19ab1365eacd30ef7f9ca37,         1,         r,   3.3.1
+               jason-osajima/stat405_hw1, 78320016a496c0ed0f84b1b9fd8316cd28c3fbc6,         1,         r,   3.3.1
+  jemmageoghegan/species_jumping_project, 98bce7e1b7484ebd328fd043f906418de502f39f,         1,         r,   3.3.1
+        jellis18/random-online-tutorials, e4a7956a929938afd9edb07ef3997118d844954f,         1,         r,   3.4.2
+            jellis18/R-optimal-statistic, 611224b828ed17e166ce21af8ce4e069011a2594,         1,         r,   3.3.2
+                   mmagnuski/metaanaliza, 29d1769f60bebde189e5ff27958953006db0ea83,         1,         r,   3.3.0
+                      jeandreamer/Public, 12f0cf700d6dfc9115c1bc0967d8a4cb5a7849f2,         1,         r,   3.2.3
+                      mmottahedi/STAT597, cbea487a633de522cafcd23e8627a8b482ae0bed,         1,         r,   3.3.1
+                      mmpozulp/IntroToMC, 1ce1f480d634d5ca8822a1ceaecbaeb13dba063c,         1,         r,   3.4.0
+                   mobileraj/Duolingo_ES, 2490a2f6acc8096bfe604548eceb2da5428aa8ec,         1,         r,   3.2.4
+                              mochar/etc, 95273d0c9a76a4c9bb6ba3f1b1f9a455a4381a0a,         1,         r,   3.4.2
+ jcfiallos/Proyecto-Analitica-Predictiva, 5dfff6cd21000e758c58a36c4099d0d65dbb61e6,         1,         r,   3.4.4
+                  moimartyna/assignments, eb3217515150f464d8d2bd747f2035a6f8228cf9,         1,         r,   3.3.2
+       momih/random_explorations_of_data, a730e3fd2f991fa8cfff2c8e6f42a8ab494b78be,         1,         r,   3.3.2
+  monisjaved/Data-Processing-With-Hadoop, ba33a5bd4b6f00f4d539b9392c045a9545fcaee4,         1,         r,   3.3.2
+   monisjaved/Data-Processing-With-Spark, 9271d10172f9c92ac1b7f108ee2ebf9bf39a6153,         1,         r,   3.3.2
+   monisjaved/Twitter-Data-Mining-With-R, 7ce633a41b558c6fee914b6393c426acdeb563db,         1,         r,   3.3.2
+                     jbandlow/timeseries, 4f73b3c65fb0a941478fac8447ead254180abc12,         1,         r,   3.3.2
+              mooneymi/jupyter_notebooks, d36b1312c3f534c21a1fb614d827ff3375e34e89,         1,         r,   3.1.3
+jayanttikmani/cross-sellingCaravanInsuranceUsingDataMining, 745667e0e97a6f116068590301397943d4b67778,         1,         r,   3.3.2
+          mosesnegus/CSX_450_1_project_2, 53dae3129d29242f96c01b224f4099e77aa8c1f7,         1,         r,   3.3.2
+     jasonfeiwang/data-512-final-project, 7c72097122fdfb3bdb201c4d11e67f4d78a811dc,         1,         r,   3.4.1
+               jason-osajima/stat418_hw3, 7169d6fdc07b0c56dce17acb31d0a42b0ef7eed5,         1,         r,   3.3.1
+                   mlu68/withOlivier2017, 46d085a8cc7fc3308942fad276bc498f1d5edc71,         1,         r, R version 3.3.2 (2016-10-31)
+          braveenth/mcdata-visualization, f54ef06b5d5928aa410d59c86d3fe30418c68481,         1,         r,   3.4.3
+        m4bulmagd/Data-Mining-Report-JMU, 82501097bf5dfb9a46f5b51d8843bbfee30e3dde,         1,         r,   3.4.3
+                   ryanhulscher/RNAprobR, ecf1120f7f67194d047f7f7d02b23f7c83100178,         1,         r,   3.3.2
+ Kritidutta/Loan-Prediction-Problem-in-R, 9d8fcc8b8842392505b174760815187f7072d242,         1,         r,   3.3.2
+                  KosukeMizufune/lecture, 495baa84f9b452e1e9d9cb8267c3a5511861eca6,         1,         r,   3.3.3
+                  Kosnicki/Rat_Alcohol_R, 6187abd0d033efe16310ff99b7fa37b2d467a63a,         1,         r,   3.2.4
+               Kosnicki/PICRUSt_ratvsAGP, 94da1591fc15f32f9f187cc60e84ad59455169a2,         1,         r,   3.2.4
+                  Kosnicki/AGP_Alcohol_R, eb7b76a32cda69409d37e340d46b4f88a7e341ad,         1,         r,   3.2.4
+                          Klimmy/nir-ssa, 41d8ba46aaafa7a8811b28cd7ffc5e77679e276e,         1,         r,   3.4.1
+             KlausGlueckert/credit_score, 55803a7bd8bf9ac0777d6a03a621bd1a1707ccee,         1,         r,   3.3.2
+             KirillPanin/JupyterWorkflow, 2d3c9ae0ea103388a6b8dc571544caf89ff025ab,         1,         r,   3.4.1
+KimKirk/Human-Activity-Recognition-Using-Samsung-Galaxy-S-II-Smartphone, 0cb549da440db3b1a7c10fff644a5cc5ed7b562f,         1,         r,   3.4.2
+                  KritoSu/My-Repositorio, 0cec2224b9b7ac24a6cfa2855a5f0e120bb5cbc3,         1,         r,   3.2.2
+     KimKirk/Household_Power_Consumption, 7fbc2fb0a36f4c5b70b7d581c1842d5d928e6abd,         1,         r,   3.4.2
+                   tvpollet/Jupyter-logs, abb41dcf0118760898a9dce0e4d4c238e949eba6,         1,         r,   3.3.2
+KelvinZx/Applied-Statistics-STA442-homework, 1e833725bc305e6b624694ad1fc0a5e737116ea7,         1,         r,   3.4.1
+         KelseyFertakis/Kelsey-410-Class, 99a86bf2e02286bc410642938bea09ae590bf10f,         1,         r,   3.4.2
+     KejiaHuang/Reddit-comments-analysis, fdc5cfc6750d11607fc8b85901b76e96ff6f817d,         1,         r,   3.1.2
+              Katospiegel/Neuronsandglia, e3e6c9b78cc810e289731e9d20d23f8e56859463,         1,         r,   3.2.3
+tzuliu/UCD-POL280-Bayesian-Methods-for-Social-and-Behavioral-Sciences, ed800ffbacc0c075ea5c844c00b8ca0e98a7b59f,         1,         r,   3.3.3
+tzuliu/What-Ordered-Optimal-Classification-Reveals-about-Ideological-Structure-Cleavages-and-Polarization, 7efe947fcfdf61b486dc601815bdd5ed0def1899,         1,         r,   3.3.3
+                ultemayoshi/data-science, c4c3f24ac9c95ad59482e39778f37a3fa0568e8f,         1,         r,   3.4.2
+                      JungOhLee/AJCCcomp, fcb038f83c37ef71c89466c442c66e06064ae5d3,         1,         r,   3.3.2
+                  tvganesh/yorkrWith-DSE, 3c1dfb21e274e9b8749ce423535e9e1060a4925c,         1,         r,   3.3.0
+                upendrasharma44/FirstDSX, 9a3d70af132a9fd39406bb4a9ad4a8e942edd284,         1,         r,   3.3.2
+          KushnirDmytro/Probability_lab2, 1a75d7b4a5ecc3913d11b5b8f848350e03adbb3b,         1,         r,   3.4.0
+                     tushar00jain/stocks, 8c4e89ca1e473843a121796b90278e620b3f17b1,         1,         r,   3.3.2
+                        tobywise/scripts, 25b9e6f390b163212cf91f10bcbcebe98be6dd60,         1,         r,   3.2.4
+   ManoharSwamynathan/Sentiment_Analysis, a6ad2b4b5fb72b9e4182111c2865546eb472e897,         1,         r,   3.2.2
+           ManchesterBioinference/DEtime, 5de7dc37bee7b7b82bcd9729cd4d78bf49c7ef44,         1,         r,   3.3.1
+                            tonychiu04/R, fda03ad862362e5316d67f25cd4f7e864c566df5,         1,         r,   3.1.3
+                   MaevaTecher/varroaABC, 4f59fa2474d70ab95a2e3d4fa79c2cf89a54326a,         1,         r,   3.3.2
+                  tonyk7440/multivariate, 5980fc16bacd932765199d8a65b4fc01e0b00168,         1,         r,   3.1.2
+                tonyzyang/UCLAx-project2, fcdacfc6f86db9bf05d5d1b68e6e7a86e78cca62,         1,         r,   3.3.2
+                            MNITD/R_Lab1, c0fc3b8e893a4bbb41ea58f817c3683f18d1b191,         1,         r,   3.4.0
+  MH-DataProject/Time-Series-Forecasting, d6734a993da624ce9c2cf46274901e15bb6cb567,         1,         r,   3.4.3
+            tuttoaposto/Wage_Theft_Plots, ade7dd9a878f52fb72acae22d4b70eb981940a8f,         1,         r,   3.3.1
+                     MH-DataProject/Test, e84541fbf321466dfe2f457b062df84cd98aaffa,         1,         r,   3.4.0
+               toshe07/Introduction-to-R, 9650bec5567470ef0d226efb9d3b455e66a9f7e1,         1,         r,   3.4.2
+                       trallard/nbjekyll, 92fc433340a57b68a1c5d29c22dd8fb8dabed710,         1,         r,   3.4.0
+trungduynguyen/Machine-Learning-final-project, 0b854704c0c683888b33ec1647013fcf3aa5f824,         1,         r,   3.2.2
+            tukichen/Bayesian_AB_testing, b9fa58e6c04c6bbb03d68b2b8e9694f7ee87c74f,         1,         r,   3.4.1
+                       Lemon-Py/Analysis, fb205cc107571fc45ccc9976f70a1726927d5ae4,         1,         r,   3.2.3
+  LaurelineJ/WaterManagementOptimisation, 6d5759111ea42b7e417724c268f8d0cc076f6024,         1,         r,   3.2.2
+tulika-sengupta/Parallel-text-processing-using-MapReduce-and-Hadoop-Distributed-File-System, 1293adbb5b35bc98d2a12693b1b9fbfce3413a57,         1,         r,   3.3.2
+   LaMariposa/landscape_genomic_analyses, 44f75dce8aedee2ffbd0b81048c8ef13f3bcc42c,         1,         r,   3.1.2
+tulongthienvu/Multivariate-Statistical-Analysis, f6621a591ae731f3451394640ae26e7c75497da5,         1,         r,   3.4.2
+   MH-DataProject/EDA-Kaggle-Bike-Demand, 901ebbe87ac3baa77526a677c341dc5fa7b3b192,         1,         r,   3.4.0
+    MarichkaS/Statistics-lab-Probability, 4e98296563eb20a9c48f243c5aa20d4d90de86aa,         1,         r,   3.3.1
+      JoseAlanis/SampleData_BinomialGLMM, fe022a66fa9faa720b7f9a71e726e344fae8f508,         1,         r,   3.3.2
+       ursulakaczmarek/alb.housing.costs, 1899858dacd01576005fbbc2196f00f482b24e83,         1,         r,   3.4.1
+                    IsaacCad/Project_Dos, efef91f9f80c6ef1f610b006c101abf1e1fcabee,         1,         r,   3.3.2
+       venpopov/sample-with-desired-mean, 4457af3e67d306746d78ef44c9af24e49de75023,         1,         r,   3.4.3
+         IramMehmooda/Data-Visualization, db6efafdcb0f48b0171ebb75d4245956f8e62407,         1,         r,   3.4.1
+                    InsomniaDrone/R_repo, 71e8cc92b4e12b9a81ad6d310d0702bc1c1341fe,         1,         r,   3.3.2
+         veroniquevoisin/biobaase-rnaseq, 79942d6071018e031c7542f5585e97bf27d80ef5,         1,         r,   3.2.2
+victortiong/stair-climbing-sport-performance, dbcb2cd09d6f685ace09cb3e6cc115395be460d5,         1,         r,   3.3.2
+                  vidyasagarbhargava/IPL, dad7fe08c819b24507678bc1752860a27c4a143a,         1,         r,   3.3.2
+vidyasagarbhargava/Top-500-Indian-Cities, 3489c101625213dc9fe8fd5374aa6ce7c64dd3bf,         1,         r,   3.3.2
+             IBMDataScience/election2016, e1083f11059654c6af34ba2e5df482791e17fe65,         1,         r,   3.3.0
+                venki7474/Kaggle_kernels, 83505553dc74af85739ef34d5f567bf5b6c213d9,         1,         r,   3.4.1
+        IBM/detect-timeseriesdata-change, d21e64b186af413ec8b7fd095232716e85ac9a12,         1,         r,   3.4.2
+vishnugangineni/Time-Series-Model-Detection, a31e320061bf2e7003eb2a31a3b47605a7ccbee2,         1,         r,   3.4.0
+Hitesh111/Wrangling-and-Visualizing-Musical-Data, 731a17ad0e4ed0e452fea15a920ed9ca9f63df9b,         1,         r,   3.4.2
+           vivek6449/Panel_Data_Analysis, ffe58f16e779f8e6f35c347679787c4f650ad9ca,         1,         r,   3.3.2
+     HeskethGD/K-means-in-Communications, 8db3047b196ed320d687bd92818b19dcaab3a588,         1,         r,   3.3.2
+                      HCMY/Visualization, e2d9abed4de8049dfebb4cce4d4065e3aa394375,         1,         r,   3.4.2
+   Gumpf/CommunicatingDataScienceResults, 85d7ca810282a91d0d5074440ea70bad11283ecc,         1,         r,   3.1.3
+             GuanxuSu/628Module1-Bodyfat, 9614d9e34e4b32f695d2b0e7a86e33c816d744be,         1,         r,   3.3.2
+     GinzaLion/CryptocurrenciesToJupyter, 466bdf7fc5c7c102a680da74525f72f98f7db238,         1,         r,   3.4.2
+          vlmeg/R_Regression_Time_Series, ac3acb7b92d39a764a15c53f119f357b5091c0a2,         1,         r,   3.2.2
+     vishalbharti1990/Data_visualization, 2a93882da2d50d57648b38ed3d8d2ab44b50b007,         1,         r,   3.1.3
+                        JorgeQuintanaL/R, 0de02d45e1284d5ff97f162f025f9f094dd267d4,         1,         r,   3.3.2
+                            venkatsvpr/R, cf3729f9cfbac46dcea42d19bd0816721fa9bfd3,         1,         r,   3.4.2
+         JEstebanMejiaV/Series-de-Tiempo, ce0adc13479830ee110240989059bcc86f73b575,         1,         r,   3.3.3
+JohannesTeichert/EHT17_Computational_Intelligence, 1363676f70b0723b514f83859eea25503b131ed5,         1,         r,   3.5.0
+   JoeyL6/Explotory_Data_Analysis_With_R, 452b41b23a9c3b7b57ddb830b96590d295b84ef4,         1,         r,   3.4.2
+                       Joedang/Portfolio, f973bdca1602da8fb0de85142027a27df5d3fd38,         1,         r,   3.2.5
+                    Jianghuiyu/STAT628M1, 40b162f64a9357a4c6ff9d480a1b5b83cb593de6,         1,         r,   3.4.2
+                            vannier/SNCF, d8055992b74f156d0c671f4586b827fb4c908314,         1,         r,   3.2.3
+                  JessieRayeBauer/MICE_R, a0cec2266f83057a996ce5a77741bb1e10405238,         1,         r,   3.4.2
+          JervenBolleman/shenadoahgctest, 25bb18205ffaa363cb65273ddaa7e2e9374be7f4,         1,         r,   3.4.1
+                 JayRamB/Intro-to-ggplot, e76e09dadea343c7550859e26ae0557a8baebb7d,         1,         r,   3.3.1
+JavierLopatin/SpeciesRichness-GLMvsRF-LiDAR, 581423b68d9ff93fd94626c0e6fe72ea5a84370a,         1,         r,   3.3.0
+                  IzuiT/H2O_Dallas_MXNet, 725b9a7d496623a3888ab7b0108740f881701468,         1,         r,   3.3.1
+         JavierLopatin/PLS-Path-Modeling, 97649a3444e4e72b11c0bc23c6e459c6e1a11380,         1,         r,   3.3.0
+    vdbcyril/dr-semmelweis-handwashing-r, 70371b55763cf3e10284c1beb8015db8adf30832,         1,         r,   3.4.4
+      vdbcyril/phyllotaxis-mathematics-r, bed1d02f0bcf0eede3bf5e61ff39665be72de85d,         1,         r,   3.4.4
+    venkata-rao/AllStateInsurance-Kaggle, 870d03c1e3d6de5e439d312670f6338099476652,         1,         r,   3.2.3
+venkata-rao/Visualizing-Decision-Boundries, 92ddd6441454316af22ca5404e1d8ddbb93554f0,         1,         r,   3.2.3
+            JacquelineGu/BodyFat-Analyze, d3b788823304f7f5ef6b51ed07f847d6cb943fe7,         1,         r,   3.4.2
+            JacksonChou/DataCampProjects, 425030fa1cfeecfa137e131d5503d4358fc5a102,         1,         r,   3.4.1
+Jack-Etheredge/Hierarchical-Clustering-of-Differentially-Expressed-Genes, 85a8b21586085b31d34d0c7961960375934d6a37,         1,         r,   3.3.1
+               JXU0728/STAT-628-module-1, cb628e13194ab9d7973ece7317ee691fff50da66,         1,         r,   3.4.2
+     JGI-Bioinformatics/JGI-Data-Science, f44f9a1cd7b37212d3af2853655eb72740d406b7,         1,         r,   3.4.2
+            vdbcyril/bad-password-nist-r, 785d69b1d6cda9aa4f51b16496dcbb0498b50804,         1,         r,   3.4.1
+   MarkPratley/Anscombes-Quartet-Jupyter, 78e9dd842c24a1e86e92b81113aee9d449811e16,         1,         r,   3.3.1
+                 tmthyjames/modeltracker, 35e4b2ba4c2c4bc153bf4d2ffcae91fce9c862a0,         1,         r,   3.3.2
+                 tlbbd-spring2018/lab_10, 85cb00a8af28ec9af53e79e947b0f4ff648544a6,         1,         r,   3.4.4
+           telecombcn-dl/2017-dlcv-team1, d3970d2aef17926b13bf049a67e393e56b263ade,         1,         r,   3.4.0
+                    ReemUW/BinderIR-Data, f3315c8ffa004a0fc6446f6aa9cc8b6bae3b283a,         1,         r,   3.3.2
+       brandonserna/normal-distribution-, 4a33ef95a32d5e20ac701ca296ac2a21b1ce6846,         1,         r,   3.2.2
+             Re-ishi/YoutubeChannelStats, 7071532218f7c4a1414fb75b6a2a197713ae724d,         1,         r,   3.3.2
+         Raymond-Schooley/BioInformatics, bfbeb368ef346d28f4ebc98942e73406c542168d,         1,         r,   3.4.0
+                 tellybobah/data_analize, d67e927217acdf9f68708cd64c07b7f6713f7f7a,         1,         r,   3.4.2
+      RagsX137/Red-Wine-Quality-Analysis, 09c8e38a50e97c6beb3c5578929a18d3d9bcc07d,         1,         r,   3.3.1
+RagsX137/Exploring-the-Brooklyn-Rolling-Sales-Dataset, bb80c04038a43cd5911a1d9e2a1b4991db0ccd80,         1,         r,   3.4.1
+RagsX137/Data-Exploration-for-New-York-Times-datasets, 84ce20517f74631bb7cc7d965a49655d3ee9dcd2,         1,         r,   3.3.1
+                ReemUW/BinderTestBioPkgs, 3b4545aebdb57b92ead458d217f1d0839dca5a1e,         1,         r,   3.3.2
+      RWS-data-science/buoy_localisation, a0ab4e4bd89ec28c7a192dbe7aabb273ad110d21,         1,         r,   3.2.3
+             tentrillion/xcms_dplyr_demo, 4e2e05ed216602625437a2e83b6afa0abb1a58e2,         1,         r,   3.3.1
+         Qizhaolouis/Statistics-Homework, 6067c9c65e14bfaf42e39d8a400fe83010b5239a,         1,         r,   3.4.3
+          QigenLin/wind_speed_statistics, ea0e169395d73bad0ced83b15c211f1ca4c27287,         1,         r,   3.3.2
+               PunamA/Creating_Functions, 9925ef50876ad16b262b846862885cf9627022e2,         1,         r,   3.4.1
+        Programming-Skills/Projects_in_R, dd341e2067ad3f07de92d5c442b6dc4cb7d8b67c,         1,         r,   3.3.2
+                       thankstoalive/new, a1feace7785f031695fbbf44f29e3e7710f8fa5b,         1,         r,   3.4.0
+                     PrL327/GitHubDataJs, 797f3fbaf22ed3786ae5f45f179069101fdbc449,         1,         r,   3.4.2
+         PeiZhangOSU/Assault-and-Poverty, 1f4b43c3c7b13ae48d47e7de329370310caddc70,         1,         r,   3.3.2
+                 the-geek/crime-analysis, 59889c6ed6010be3a56782a7bd6fd3538672a88d,         1,         r,   3.2.2
+       RWS-data-science/Workshop-titanic, 10d52e01d2b7b5996deef391bfe428b7d649b646,         1,         r,   3.3.2
+              PeaSnuter/Digit-Recognizer, 5adb1ebab5723b35a4cb27d199473ec5640d945d,         1,         r,   3.4.2
+                    ReemUW/TestLightning, 39be1e2d88410f6a8cc2186035d78426413590d0,         1,         r,   3.3.2
+                RichardLaBrie/Plexipupus, 90f8615137d0c707cdbc1f47bef6c09a681516c5,         1,         r,   3.3.1
+              SCloves/Lista_3_Descritiva, d656d47b20b6d2db5ba42332835ea4d961c523a8,         1,         r,   3.4.0
+                  SCloves/Estudos-ggplot, b33f94861dc955abd64e4f4b211de09834d788b5,         1,         r,   3.4.1
+                       SCloves/Bootstrap, 48b61d22d0efa2c97fe74002fb7f5d24134c5a77,         1,         r,   3.4.4
+                           SCloves/Bayes, fb4cd78c30f8bbdb6e6451eeb98b93b3e3691566,         1,         r,   3.4.0
+            SCloves/Analise_exploratoria, 0b24e56199944ff5830af34af76d52fee75a4b0d,         1,         r,   3.2.3
+                     tallspencer/STA141B, 91fa16603b601aed583bf879997ae99f49672fbe,         1,         r,   3.3.2
+        Ru0yuZhu/Adult-income-prediction, 9304ac15cf6166c6a29920c5b402a8a820506b55,         1,         r,   3.4.2
+              tanyaschlusser/R_notebooks, 39469e1e69217ed9b944aecf8cac408e9565f9eb,         1,         r,   3.2.2
+RokHoang/Linear-Regression---Predict-weight-over-height, e4f54aa14742f86641c66708123d352883cd02d6,         1,         r,   3.2.3
+                         Renato15/Renato, a3ef167888681ca9c2a95f1226dccaaa18d459dc,         1,         r,   3.2.3
+                       Rohini2505/R-work, 69fd3f8b06c60ba2e85e0391a359939034bbfe1f,         1,         r,   3.4.1
+RodrigoKurosawa/getting_and_cleaning_data, e80a7968af65d0765eb9a7e5ecff03b609d4adc6,         1,         r,   3.3.2
+RodrigoKurosawa/R_ProgrammingAssignment3, f2ac3438551b40af26d581a739eef8029ddf9d79,         1,         r,   3.3.2
+       taroull/Notebook-DataSciencewithR, 940ceaf3c4f4ea9779727b7d4f7f5de3ff4bf135,         1,         r,   3.4.1
+taymourniazi/Identifiyng-Genes-that-cause-Autism, 305d2191240e0505d60cae67955f59124ef0073c,         1,         r,   3.4.2
+taymourniazi/Rich-vs-poor-countries-growth-analysis, 0ed1387fda343e85f3833e60495604cdd9055104,         1,         r,   3.4.2
+       taymourniazi/Wage-prediction-In-R, b7aa20eb724c16c90e6c71010ee4c1ad8a962e3b,         1,         r,   3.4.2
+                     RioKKH/my_notebooks, c15826022a1842a3d8928c988cb9af872b1ff332,         1,         r,   3.4.3
+     team-wolfpack/DSX-Hands-on-Workshop, 2babff770414c7425fa0c87d04a0692ebd16d09e,         1,         r,   3.3.2
+team-wolfpack/Predicting-Customer-Churn-with-Watson-Data-Platform, d922cca3b09d309be09df1641de96b4ad87dc6a9,         1,         r,   3.4.2
+taraskaduk/Create-beautiful-custom-pixel-maps-in-R, 6b30ea1203632db73958bea38085c249204c400a,         1,         r,   3.4.2
+                      the42/jupyter_golf, 48b99f18da298830fba9dbf289bec6aafab7c038,         1,         r,   3.3.1
+ Oshlack/Farlie_emu_wing_RNASeq_analysis, 93008903dafd70cfdb32dcb08ef3e5f4040ecf62,         1,         r,   3.4.0
+          Opoku-Asare/hci2017_tutorial_2, d95002249e645871cf2d22cf216779bc175394ce,         1,         r,   3.4.1
+            MikeXL/DataScienceWonderLand, 6728317bde449f608603fa68a4cfa92ef76446cd,         1,         r,   3.1.1
+                 tlbbd-spring2018/lab_01, 5269efa938a9cdcb0ed1c3f032b44329e58c84ba,         1,         r,   3.4.3
+              Midnight93/University-rank, 640650e0a677d359a8e741d015f9635a821c570c,         1,         r, R version 3.3.2 (2016-10-31)
+                 tlbbd-spring2018/lab_03, 7f548fca8d136939e10410662702a657b66a9f9c,         1,         r,   3.4.3
+Microsoft/r-server-campaign-optimization, eb2e1c022c705cfec8fd7dfd67142352bc7b105a,         1,         r,   3.2.2
+                   Microsoft/AMLWorkshop, 9bf59083d7093918f588b2dc00ddf83d13ac0dbf,         1,         r,   3.1.1
+          MichaelSzczepaniak/Jamatitanic, 7ec6a9983e5be4d92563c6564096cde9f1e10da7,         1,         r,   3.3.2
+        MichaelRGrant/HCDS_Final_Project, 835dd68432a8495cba13d63acd04bf421b7f214f,         1,         r,   3.3.3
+                MichaelRGrant/HCDS512_A2, af074228b3a0701a4b2f75dd129a7042d578b968,         1,         r,   3.3.3
+Minjia-Zhu/Multivariate-Data-Analysis-in-R, 9d19490ee7b333ccee65dbebb798ce2b7b62caf2,         1,         r,   3.4.2
+                MichaelRGrant/HCDS512_A1, a2315895bca5f044d00b5b9cca762ab762ca3f27,         1,         r,   3.3.3
+         MichaelBalas/D4P-Timed-Tap-Test, 4ea544cf28426794d3a0edaa924160b7ffc0a913,         1,         r,   3.4.0
+                 tlbbd-spring2018/lab_06, 24b856148fe80f606cf3116d23f778b340bee6f8,         1,         r,   3.4.3
+      Mengchutsai/Machine-Learning-Class, 6474565f141ab5604d2fa3e8e5dc8402e3879d6e,         1,         r,   3.4.1
+Meissnerinc/2016-US-Pres.-Election-donor-behavior-Vol.-2, e08596a21c581e2e9ebfd03ee90522b8c0146567,         1,         r,   3.4.1
+        Mehul903/Text-Mining-R-Questions, f77f9a9703be222e960751e7e9515627fe72e41f,         1,         r,   3.4.2
+                 tlbbd-spring2018/lab_07, f47ee86928e660e9fca52de75b4ff2022e995d0e,         1,         r,   3.4.3
+                         MayroseLab/Lior, 2bbebcb72329b52dc646c6ba9db40ef0a096e835,         1,         r,   3.4.2
+          MayankPandey3/Image-Processing, fe851ae554cfd6b94e0e4c0f32b272f72fac94ab,         1,         r,   3.4.3
+                 tlbbd-spring2018/lab_09, 3a8bcc7f9c704e5d4a5cfccde23fb215d9642fb2,         1,         r,   3.4.3
+                 tlbbd-spring2018/lab_04, c514131cac6c0f06414742987ec0100e9c182c2c,         1,         r,   3.4.3
+         MitRoberts/coursera-time-series, 1c417977bdddf80510b86c4fec03464efd4ddcb9,         1,         r,   3.4.3
+MoHeydarian/Galaxy-workflow-for-scRNA-seq, 0606a063182035d0a86b603c0a2239cc6a8913c9,         1,         r,   3.3.1
+  MobEsther/CourseraCommunicatingResults, 7920908846c51f0d1555b4b2a13aebc6a53ac520,         1,         r,   3.2.2
+             theislab/scAnalysisTutorial, 9b97ca9c3b8fea65817af92d4b94b0bda2e034ae,         1,         r,   3.3.2
+    OmkarNeogi/Data-Processing-MapReduce, 855ea0fa23ebc1020aaecbd1ddda2bc01f1b704d,         1,         r,   3.3.2
+                   OliveiraNt/Trabalho-R, d229e753449865c024dfdc20884f141737886e1c,         1,         r,   3.4.2
+                  OlegMitsik/MNL_pricing, 62b8f2c8c4ac7f68a7fa1bdd8c55b65e5c6abe04,         1,         r,   3.3.2
+     thir13enth/NUS.EB5202.WEB-ANALYTICS, 9f511f350725bb18d616c0f84c23f242608fa850,         1,         r,   3.4.2
+          thlevy/Wine_Quality_Prediction, 3a7283bb24e3556ed83ae671215f3997bc460ce4,         1,         r,   3.4.3
+              NiklasPfister/jupyter_test, b9ea2d169b6b872cb3e4c7a662268da3752ec607,         1,         r,   3.3.2
+                   NikHytrek/Project-one, ccfb433ddd9455e4df264c1303f0f73d543b6cbd,         1,         r,   3.4.3
+                 NikHytrek/First-project, 8bd050782201c6ce34acd952b4115ec3dbb24d6e,         1,         r,   3.4.3
+ tidus081/Credit-fraud-detection-usingML, c0df0307f60e25df4a14cc69c2193c21e44d7d28,         1,         r,   3.4.3
+       NicolasNeiman/The_orgine_of_music, f14a93afae6f1eb73bea1a2acde4d125a31dcd11,         1,         r,   3.4.1
+             NicolasNeiman/BostonHousing, 2e0f9e938c678abd4270e35892dbd0c23aa4fc39,         1,         r,   3.4.1
+    timhgy/Ames-Housing-Price-Prediction, ac35112e9ddaa44a8b564bd312995b8c419d5194,         1,         r,   3.4.2
+    Nautikus/Kaggle-Chopstick-Ergonomics, 561dea6a89946f093f969a268898da3c92be1a29,         1,         r,   3.3.2
+                     NareKim/datascience, 5baa708e2dad7ff8f2f95090f10aec6d385a54a3,         1,         r,   3.4.1
+timhgy/Solution-for-imbalanced-data-in-classification, ad16b538b9ec9648f7f60445bb9e6bff57d8926b,         1,         r,   3.4.2
+timjir/classifier-comparison-generated-data, 017a0c617640e4816c6a512ead760604010e6172,         1,         r,   3.3.1
+             MuksSharma/JupyterNotebooks, 447c0a421052aad23e0425fe003e6ed1db05d66b,         1,         r,   3.2.2
+                     timjir/wine-quality, 729e2dba3f5787ab656975a8b33bad67582b9145,         1,         r,   3.3.1
+                      MrMindful/aib_demo, c539a24eacbcd9a61d1f21613372227b13063e08,         1,         r,   3.3.1
+                      tkumar012/Religion, 9be159918467eaccdbe0486703533536a9245b15,         1,         r,   3.3.2
+Gianfranco-Campana/datasci_course_materials, 7808bad3003edeaf3f36eef5e4805b80e528a5b3,         1,         r,   3.1.1
+              SCloves/Machine-Learning-R, de64dbeb232ebc15a9ba16d90bfbcb0bc9b15aa9,         1,         r,   3.4.1
+        GeostatsGuy/interactive_geostatr, 4be61820a39ca763801353c325e8b0363aea29b1,         1,         r,   3.4.1
+                Gargonslipfisk/Notebooks, 3af550ffd194801ef3a69276771f0d014b465a3d,         1,         r,   3.2.4
+                 yixuanxu94/R_Coursework, 5a689d650e952d3d65bec1befe2adaa24a99364a,         1,         r,   3.4.2
+                           AvivNavon/HAR, 3523c54fde14f8ddc0ec5ce5e33f48a5ca74f4ca,         1,         r,   3.3.2
+                            Avatoo/projX, 4a3f86cfd0c156dc2ec5ad59beff2fb3ef76cb9f,         1,         r,   3.3.2
+          AurelieDaviaud/Pollution-Peaks, 9966c1a46e0aa7431ab1abb5426dcd75e1a734cb,         1,         r,   3.4.2
+           AurelieDaviaud/Kaggle-Titanic, 3e02aa305e01a6feadd3d759bbae8c5e037275af,         1,         r,   3.3.1
+               ylan0930/Hawkes-Processes, 135cc9fcde455689a77be6ae6f5f2bf4a3cdc0c7,         1,         r,   3.3.2
+              young-geng/stat133_project, 261cfde9eaa3964c0a2126e70754de423a86d599,         1,         r,   3.2.4
+   Atomahawk/yelp-restaurant-recommender, b0d041e30e6d6d2e8e6f611e1f70735e0f0807dd,         1,         r,   3.3.2
+                     Asrink/Data-Science, 77bcde4406bb3bf866f663e2baeaea04a391bd99,         1,         r,   3.3.2
+                          Azure/KDD2017R, 138ce4b6b4f38dae3bc4247e50e220a4d616060b,         1,         r,   3.2.2
+              AshwiniRS/Medium_Notebooks, 14384f20b2032294a86edaf73e9bc068600f1db2,         1,         r,   3.4.1
+                   yourboygorja/Sample-R, d2135de2858dab195cc6309c805d54db2b644400,         1,         r,   3.3.2
+                  ypriverol/github-paper, 1bf55106e3e6321ee50477439f8cd9927464a381,         1,         r,   3.2.3
+                            yu2ke1/logit, 52389103dd499fb3c9a2d847fa4bc379ad33458d,         1,         r,   3.3.2
+                          yu2ke1/outlier, 8a02089f58c2177e5b13db002f8f4719b2f97999,         1,         r,   3.3.2
+                          AshaSato/Pilot, c52c7eb6b8f3dddee0d33189166a06cccc5a5e39,         1,         r,   3.3.2
+yuchimatsuoka/KernelTwoSampleTest_A.Gretton10, 78635d8cef5523acf1edba6b2f192db12df1647f,         1,         r,   3.3.2
+ArpitSidana/Bikeshare_Demand_Multiple_Regression, a58f84b73df0d7d94b76bd2e165743420fc1825c,         1,         r,   3.3.2
+                Ardillen66/StatisticalML, bf1226c1f0eb4c74ce586a8e24dd535a51047298,         1,         r,   3.3.2
+  Architectshwet/Pokemon-with-stats-data, 8eb3cbb191deb19aa2a332723087e59e46e069ba,         1,         r,   3.4.2
+Ashwin-Nikam/Principal-Component-Analysis, 22788df357935cba17bdcced7e60e570c2738bdd,         1,         r,   3.3.2
+  Architectshwet/Mushroom-Classification, 6975f4f287079389a5586cdeeb83046722c5f294,         1,         r,   3.4.2
+     Azure/LearnAnalytics-MRS-Essentials, 2e6c7deb9c6096b6eca5b92aab7a85dd0a111410,         1,         r,   3.2.2
+               yichiehweng/Be1j1ng_PM2.5, 2e6cf56364a3c656d727aa9ce666a4df2c7de30f,         1,         r,   3.4.3
+                  BramHub/Coursera_crime, c2272f335761230b2cc4fe670beee12b8e76b0c1,         1,         r,   3.4.0
+                        BoucheDimitri/ML, 39f13e4779d6deb323992cac8fdf6daa828ae2dd,         1,         r,   3.4.2
+       yashshimpi/Facebook-Data-Analysis, 3c25beb5abc87efd7a6188a19a46d5c7a876e4a9,         1,         r,   3.3.2
+             BohdanBorkivskyi/RubiksCube, 877585b9b4f157636d7d209f4e0b0ae2f21e12bd,         1,         r,   3.4.3

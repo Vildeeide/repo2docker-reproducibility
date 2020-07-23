@@ -1,3 +1,6 @@
 .DS_Store
 .ipynb_checkpoints
 .cache
+__pycache__
+# don't commit config.py with credentials
+db/config.py
