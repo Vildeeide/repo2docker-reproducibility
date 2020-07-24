@@ -1,0 +1,58 @@
+[I 200724 06:04:08 inrepo:36] Testing notebook Logistic Regression 2D.ipynb
+[I 200724 06:04:10 inrepo:45] Found kernel python3
+[I 200724 06:04:13 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+X1 = tf.placeholder(tf.float32, shape=(None,), name="x1")
+X2 = tf.placeholder(tf.float32, shape=(None,), name="x2")
+Y = tf.placeholder(tf.float32, shape=(None,), name="y")
+w = tf.Variable([0.0,0.0,0.0], name="w", trainable=True)
+
+def model(X1,X2,w):
+    return tf.sigmoid(tf.add(tf.add(tf.multiply(X1,w[1]),tf.multiply(X2,w[2])),w[0]))
+y_model = model(X1,X2,w)
+
+cost = tf.reduce_mean(-tf.log(y_model * Y + (1.0 - y_model) * (1.0 - Y)))
+train_op = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    prev_err = 0
+    for epoch in range(training_epoch):
+        err,_ = sess.run([cost,train_op], feed_dict={X1:x1s,X2:x2s,Y:ys})
+        if abs(prev_err - err) < 0.0001:
+            break
+        prev_err = err
+    w_val = sess.run(w,feed_dict={X1:x1s,X2:x2s,Y:ys})
+print(w_val)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-6-f82bb992637e>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mX1[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0mshape[0m[0;34m=[0m[0;34m([0m[0;32mNone[0m[0;34m,[0m[0;34m)[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m"x1"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mX2[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0mshape[0m[0;34m=[0m[0;34m([0m[0;32mNone[0m[0;34m,[0m[0;34m)[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m"x2"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0mY[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mplaceholder[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mfloat32[0m[0;34m,[0m [0mshape[0m[0;34m=[0m[0;34m([0m[0;32mNone[0m[0;34m,[0m[0;34m)[0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m"y"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mw[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mVariable[0m[0;34m([0m[0;34m[[0m[0;36m0.0[0m[0;34m,[0m[0;36m0.0[0m[0;34m,[0m[0;36m0.0[0m[0;34m][0m[0;34m,[0m [0mname[0m[0;34m=[0m[0;34m"w"[0m[0;34m,[0m [0mtrainable[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'placeholder'
+AttributeError: module 'tensorflow' has no attribute 'placeholder'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

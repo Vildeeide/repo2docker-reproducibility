@@ -1,0 +1,4 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/pyrooka/felsogeodezia,master,6f010ac,2020-03-31T08:38:45+02:00,build,build,True,github.com/p/pyrooka/felsogeodezia/logs/build-master-2020-07-23T12.51.txt,2020-07-23T12:51:20.408057,2020-07-23T12.51,0.11.0
+https://github.com/pyrooka/felsogeodezia,master,6f010ac,2020-03-31T08:38:45+02:00,notebook,feladatok/feladat_1.ipynb,False,github.com/p/pyrooka/felsogeodezia/logs/test-notebook-feladatok-feladat_1.ipynb-2020-07-23T12.51.txt,2020-07-23T12:51:20.408057,2020-07-23T12.51,0.11.0
+https://github.com/pyrooka/felsogeodezia,master,6f010ac,2020-03-31T08:38:45+02:00,notebook,feladatok/feladat_2.ipynb,False,github.com/p/pyrooka/felsogeodezia/logs/test-notebook-feladatok-feladat_2.ipynb-2020-07-23T12.51.txt,2020-07-23T12:51:20.408057,2020-07-23T12.51,0.11.0

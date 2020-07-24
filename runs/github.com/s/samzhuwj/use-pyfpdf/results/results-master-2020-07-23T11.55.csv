@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/samzhuwj/use-pyfpdf,master,049ad9b,2018-01-20T00:11:26+08:00,build,build,True,github.com/s/samzhuwj/use-pyfpdf/logs/build-master-2020-07-23T11.55.txt,2020-07-23T11:55:56.416858,2020-07-23T11.55,0.11.0
+https://github.com/samzhuwj/use-pyfpdf,master,049ad9b,2018-01-20T00:11:26+08:00,notebook,use-pyfpdf.ipynb,False,github.com/s/samzhuwj/use-pyfpdf/logs/test-notebook-use-pyfpdf.ipynb-2020-07-23T11.55.txt,2020-07-23T11:55:56.416858,2020-07-23T11.55,0.11.0

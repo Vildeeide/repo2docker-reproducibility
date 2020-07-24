@@ -1,0 +1,146 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-24T05.39ueb9ms4v/github.com/farnoy/ml.
+Using PipfileBuildPack builder
+Step 1/54 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/54 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/54 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/54 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/54 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/54 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/54 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/54 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/54 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/54 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/54 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/54 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/54 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/54 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/54 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/54 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/54 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/54 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/54 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/54 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/54 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/54 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/54 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/54 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/54 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/54 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/54 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/54 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/54 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/54 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/54 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/54 : COPY src/Pipfile ${REPO_DIR}/Pipfile
+ ---> Using cache
+ ---> e8a8fd324d55
+Step 38/54 : COPY src/Pipfile.lock ${REPO_DIR}/Pipfile.lock
+ ---> Using cache
+ ---> df23e0969601
+Step 39/54 : USER root
+ ---> Using cache
+ ---> ba1608ace927
+Step 40/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Using cache
+ ---> 589a46b12453
+Step 41/54 : USER ${NB_USER}
+ ---> Using cache
+ ---> 747b903e245c
+Step 42/54 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install pipenv==2018.11.26
+ ---> Using cache
+ ---> 65aba2ceb733
+Step 43/54 : USER root
+ ---> Using cache
+ ---> 4d0bfaea331c
+Step 44/54 : COPY src/ ${REPO_DIR}
+ ---> 73488991665f
+Step 45/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 257c390718bc
+Removing intermediate container 257c390718bc
+ ---> 198956193fe1
+Step 46/54 : USER ${NB_USER}
+ ---> Running in ce7aa2dd5bb3
+Removing intermediate container ce7aa2dd5bb3
+ ---> dd3aa4bbf6e5
+Step 47/54 : RUN (cd . &&                     PATH="${KERNEL_PYTHON_PREFIX}/bin:$PATH"                         pipenv install --ignore-pipfile --system --dev                 )
+ ---> Running in 23ada22784f4
+Installing dependencies from Pipfile.lock (586379)…
+[91mAn error occurred while installing matplotlib==2.2.0 --hash=sha256:3ca7a2c17b5c4c21177f764abca197ff9ac0ac68352e24718d05929c8592ed0d --hash=sha256:5837e3dd76d43aa2fe0a90c79f6c1d4d38c205550e8ae685bda176af62c86bbd --hash=sha256:08de895360bd5dc489514b395ff5da153931939145ae4608afb78799dc592dc0 --hash=sha256:6cbe2b9cdb61fdea331e1e1feebeb1d03c49cb84af43957767e5471b99ddb822 --hash=sha256:8917e89672b7668861f6db45561bd5fc1ecd240089ab0723e4ca96bd1e1f44ce --hash=sha256:d65879e7ddce62fc2e6339216a0c0273b3f0e4b2401f7edb512efcbd72d13e9b --hash=sha256:c7d2524971ba0b9da1b04a9054749f8654298573243db6eb762d7f58daece1b4 --hash=sha256:504c3a891fcfdb48e94983c50a5b8b626f25000d407ea2d9ab9ed5691762fbe8 --hash=sha256:fe816662169026f6d13063be05f7ccadb11d80e737351b778ceb3fa17ef23002 --hash=sha256:f652a3f23ea347a57eb6743ba83cd91ac347bed08fb82acde0e015a9afacbbd9 --hash=sha256:9819535c069d7207dd55f3992875e96a3ea6a787ddc37afea00cc95bba4125ee --hash=sha256:f6c0fd70adbe1e41d11b3665409566a512ee037268654e558d79f669a6dd183f --hash=sha256:8df8c75938193cda5a041762fcc96f47658a6125fae07dc0678502dba3b62f4c --hash=sha256:c33cf0f2a2064b3ae60f9fb806a1da5addaf6be66ec3d106794955e3888d8442 --hash=sha256:da2ccf36a7f09d07b64b8bb708f1389f8493a5326a12ba959483b9530c64fd23 --hash=sha256:b91ee711c7e6e4c43f106f223e9eac50e98f35153813f5fd70fd592be3616ade --hash=sha256:3947b26e4ba51276df41167614a0fde9fba43740c7999fbd2b5de34fd75119cc --hash=sha256:d744e56eb6742a4a3a9dbbb22c71bd0d6262543a2817fb35c9ed21ff4d06e4ce! Will try again.
+[0m[91mAn error occurred while installing numpy==1.14.1 --hash=sha256:e2335d56d2fd9fc4e3a3f2d3148aafec4962682375f429f05c45a64dacf19436 --hash=sha256:9b762e78739b6e021124adbea07611682db99cd3fca7f3c3a8b98b8f74ea5699 --hash=sha256:7d4c549e41507db4f04ec7cfab5597de8acf7871b16c9cf64cebcb9d39031ca6 --hash=sha256:b803306c4c201e7dcda0ce1b9a9c87f61a7c7ce43de2c60c8e56147b76849a1a --hash=sha256:2da8dff91d489fea3e20155d41f4cd680de7d01d9a89fdd0ebb1bee6e72d3800 --hash=sha256:6b8c2daacbbffc83b4a2ba83a61aa3ce60c66340b07b962bd27b6c6bb175bee1 --hash=sha256:89b9419019c47ec87cf4cfca77d85da4611cc0be636ec87b5290346490b98450 --hash=sha256:49880b47d7272f902946dd995f346842c95fe275e2deb3082ef0495f0c718a69 --hash=sha256:3d7ddd5bdfb12ec9668edf1aa49a4a3eddb0db4661b57ea431477eb9a2468894 --hash=sha256:788e1757f8e409cd805a7cd82993cd9252fa19e334758a4c6eb5a8b334abb084 --hash=sha256:377def0873bbb1fbdedb14b3275b10a29b1b55619a3f7f775c4e7f9ce2461b9c --hash=sha256:9501c9ccd081977ca5579a3ec4009d6baff6bacb04bf07214aade3324734195a --hash=sha256:a1f5173df8190ef9c6235d260d70ca70c6fb029683ceb66e244c5cc6e335947a --hash=sha256:

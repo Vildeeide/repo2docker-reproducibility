@@ -1,0 +1,43 @@
+[I 200723 11:54:50 inrepo:36] Testing notebook exercises/Parallel Computing/Parallel face detection (no download).ipynb
+[I 200723 11:54:53 execute:404] Executing notebook with kernel: python
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+HAAR_CASCADE_PATH = "haarcascade_frontalface_default.xml"
+# if you have opencv installed via homebrew, this would be in
+# /usr/local/share/OpenCV/haarcascades/
+
+import cv
+storage = cv.CreateMemStorage()
+cascade = cv.Load(HAAR_CASCADE_PATH)
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-3-33b6a86a394f>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0;31m# /usr/local/share/OpenCV/haarcascades/[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[0;32m----> 5[0;31m [0;32mimport[0m [0mcv[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0mstorage[0m [0;34m=[0m [0mcv[0m[0;34m.[0m[0mCreateMemStorage[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0mcascade[0m [0;34m=[0m [0mcv[0m[0;34m.[0m[0mLoad[0m[0;34m([0m[0mHAAR_CASCADE_PATH[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'cv'
+ModuleNotFoundError: No module named 'cv'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

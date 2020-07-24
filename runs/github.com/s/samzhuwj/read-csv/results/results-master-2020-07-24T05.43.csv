@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/samzhuwj/read-csv,master,53a9a03,2018-01-08T20:20:57+08:00,build,build,True,github.com/s/samzhuwj/read-csv/logs/build-master-2020-07-24T05.43.txt,2020-07-24T05:43:01.510839,2020-07-24T05.43,0.11.0
+https://github.com/samzhuwj/read-csv,master,53a9a03,2018-01-08T20:20:57+08:00,notebook,read_csv.ipynb,True,github.com/s/samzhuwj/read-csv/logs/test-notebook-read_csv.ipynb-2020-07-24T05.43.txt,2020-07-24T05:43:01.510839,2020-07-24T05.43,0.11.0

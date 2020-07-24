@@ -1,0 +1,45 @@
+[I 200723 13:16:02 inrepo:36] Testing notebook Fundamentals/Chapter 7/Read and Write CSV Data.ipynb
+[I 200723 13:16:06 inrepo:45] Found kernel python3
+[I 200723 13:16:11 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import csv
+import os
+
+csv_path = 'E:\Programming\Realpython\Fundamentals\Chapter 7'
+
+with open(os.path.join(csv_path, "FL_insurance_sample.csv")) as open_file:
+    open_file_reader = csv.reader(open_file)
+    for row in open_file_reader:
+        print (row)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-1-28e4d404578d>[0m in [0;36m<module>[0;34m[0m
+[1;32m      4[0m [0mcsv_path[0m [0;34m=[0m [0;34m'E:\Programming\Realpython\Fundamentals\Chapter 7'[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;34m[0m[0m
+[0;32m----> 6[0;31m [0;32mwith[0m [0mopen[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mcsv_path[0m[0;34m,[0m [0;34m"FL_insurance_sample.csv"[0m[0;34m)[0m[0;34m)[0m [0;32mas[0m [0mopen_file[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m     [0mopen_file_reader[0m [0;34m=[0m [0mcsv[0m[0;34m.[0m[0mreader[0m[0;34m([0m[0mopen_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m     [0;32mfor[0m [0mrow[0m [0;32min[0m [0mopen_file_reader[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'E:\\Programming\\Realpython\\Fundamentals\\Chapter 7/FL_insurance_sample.csv'
+FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Programming\\Realpython\\Fundamentals\\Chapter 7/FL_insurance_sample.csv'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

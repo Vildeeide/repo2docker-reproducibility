@@ -1,0 +1,6 @@
+[I 200723 12:39:40 inrepo:36] Testing notebook ivp_odes/Backward Euler stability.ipynb
+[I 200723 12:39:42 inrepo:45] Found kernel python3
+[I 200723 12:39:45 execute:404] Executing notebook with kernel: python3
+[I 200723 12:39:51 inrepo:79] Saving exported notebook to /io/notebooks/ivp_odes/Backward Euler stability.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

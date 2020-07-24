@@ -1,0 +1,6 @@
+[I 200724 06:14:36 inrepo:36] Testing notebook tutorials/pulse/3_gathering_system_information.ipynb
+[I 200724 06:14:37 inrepo:45] Found kernel python3
+[I 200724 06:14:41 execute:404] Executing notebook with kernel: python3
+[I 200724 06:15:23 inrepo:79] Saving exported notebook to /io/notebooks/tutorials/pulse/3_gathering_system_information.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

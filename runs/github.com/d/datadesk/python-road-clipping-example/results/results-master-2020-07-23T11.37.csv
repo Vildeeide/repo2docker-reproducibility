@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/datadesk/python-road-clipping-example,master,92ccfce,2018-03-19T12:08:06-07:00,build,build,True,github.com/d/datadesk/python-road-clipping-example/logs/build-master-2020-07-23T11.37.txt,2020-07-23T11:37:19.845363,2020-07-23T11.37,0.11.0
+https://github.com/datadesk/python-road-clipping-example,master,92ccfce,2018-03-19T12:08:06-07:00,notebook,notebook.ipynb,False,github.com/d/datadesk/python-road-clipping-example/logs/test-notebook-notebook.ipynb-2020-07-23T11.37.txt,2020-07-23T11:37:19.845363,2020-07-23T11.37,0.11.0

@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/wshuyi/demo-spacy-text-processing,master,20095e1,2018-05-27T17:56:32+08:00,build,build,True,github.com/w/wshuyi/demo-spacy-text-processing/logs/build-master-2020-07-23T12.36.txt,2020-07-23T12:36:53.261322,2020-07-23T12.36,0.11.0
+https://github.com/wshuyi/demo-spacy-text-processing,master,20095e1,2018-05-27T17:56:32+08:00,notebook,demo.ipynb,True,github.com/w/wshuyi/demo-spacy-text-processing/logs/test-notebook-demo.ipynb-2020-07-23T12.36.txt,2020-07-23T12:36:53.261322,2020-07-23T12.36,0.11.0

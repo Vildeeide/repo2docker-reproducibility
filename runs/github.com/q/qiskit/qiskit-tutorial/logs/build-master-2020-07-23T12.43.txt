@@ -1,0 +1,962 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-23T12.432giqp7f0/github.com/QISKit/qiskit-tutorial.
+Using CondaBuildPack builder
+Step 1/51 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/51 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/51 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/51 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/51 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/51 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/51 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/51 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/51 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/51 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/51 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/51 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/51 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/51 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/51 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/51 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/51 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/51 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/51 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/51 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/51 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/51 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2efrozen-2eyml-561ec2 /tmp/environment.yml
+ ---> Using cache
+ ---> efabdd65522a
+Step 26/51 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> c96ce2cba310
+Step 27/51 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> f36915cec7d7
+Step 28/51 : USER ${NB_USER}
+ ---> Using cache
+ ---> 95cf0c2e3ff9
+Step 29/51 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> ec91eebd59f8
+Step 30/51 : USER root
+ ---> Using cache
+ ---> 495ddef063ca
+Step 31/51 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 07277daca591
+Step 32/51 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 0093a1911519
+Step 33/51 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> eb4002f3c1c4
+Step 34/51 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 2d38af0a19af
+Step 35/51 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> b15cc0fcdf93
+Step 36/51 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 3a503a4f9541
+Step 37/51 : COPY src/environment.yml ${REPO_DIR}/environment.yml
+ ---> fa57869819a9
+Step 38/51 : USER root
+ ---> Running in 98d3ea91cc63
+Removing intermediate container 98d3ea91cc63
+ ---> 8fb3214d5d46
+Step 39/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 1cfd3fe072f6
+Removing intermediate container 1cfd3fe072f6
+ ---> 3aa880829fbd
+Step 40/51 : USER ${NB_USER}
+ ---> Running in b6850fd5c343
+Removing intermediate container b6850fd5c343
+ ---> 4b0b58802f49
+Step 41/51 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 946e4287285a
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+jupyterlab-1.2.6     | 4.8 MB    |            |   0% 
+jupyterlab-1.2.6     | 4.8 MB    |            |   0% 
+jupyterlab-1.2.6     | 4.8 MB    | ##         |  21% 
+jupyterlab-1.2.6     | 4.8 MB    | ####2      |  42% 
+jupyterlab-1.2.6     | 4.8 MB    | #######6   |  76% 
+jupyterlab-1.2.6     | 4.8 MB    | ########## | 100% 
+
+sqlite-3.32.3        | 1.4 MB    |            |   0% 
+sqlite-3.32.3        | 1.4 MB    | ######1    |  61% 
+sqlite-3.32.3        | 1.4 MB    | ########## | 100% 
+
+ipython_genutils-0.2 | 21 KB     |            |   0% 
+ipython_genutils-0.2 | 21 KB     | ########## | 100% 
+
+jupyterlab_server-1. | 23 KB     |            |   0% 
+jupyterlab_server-1. | 23 KB     | ########## | 100% 
+
+pygments-2.5.2       | 669 KB    |            |   0% 
+pygments-2.5.2       | 669 KB    | #####5     |  55% 
+pygments-2.5.2       | 669 KB    | ########## | 100% 
+
+setuptools-49.2.0    | 949 KB    |            |   0% 
+setuptools-49.2.0    | 949 KB    | ####2      |  42% 
+setuptools-49.2.0    | 949 KB    | ########## | 100% 
+
+jupyter_telemetry-0. | 11 KB     |            |   0% 
+jupyter_telemetry-0. | 11 KB     | ########## | 100% 
+
+pycurl-7.43.0.5      | 71 KB     |            |   0% 
+pycurl-7.43.0.5      | 71 KB     | ##2        |  23% 
+pycurl-7.43.0.5      | 71 KB     | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+nteract_on_jupyter-2 | 28.0 MB   |            |   0% 
+nteract_on_jupyter-2 | 28.0 MB   | 1          |   2% 
+nteract_on_jupyter-2 | 28.0 MB   | 5          |   6% 
+nteract_on_jupyter-2 | 28.0 MB   | #          |  10% 
+nteract_on_jupyter-2 | 28.0 MB   | #5         |  16% 
+nteract_on_jupyter-2 | 28.0 MB   | ##         |  20% 
+nteract_on_jupyter-2 | 28.0 MB   | ##4        |  24% 
+nteract_on_jupyter-2 | 28.0 MB   | ##8        |  29% 
+nteract_on_jupyter-2 | 28.0 MB   | ###3       |  33% 
+nteract_on_jupyter-2 | 28.0 MB   | ###7       |  37% 
+nteract_on_jupyter-2 | 28.0 MB   | ####1      |  41% 
+nteract_on_jupyter-2 | 28.0 MB   | ####5      |  46% 
+nteract_on_jupyter-2 | 28.0 MB   | #####1     |  51% 
+nteract_on_jupyter-2 | 28.0 MB   | #####5     |  56% 
+nteract_on_jupyter-2 | 28.0 MB   | ######     |  61% 
+nteract_on_jupyter-2 | 28.0 MB   | ######5    |  66% 
+nteract_on_jupyter-2 | 28.0 MB   | #######1   |  71% 
+nteract_on_jupyter-2 | 28.0 MB   | #######6   |  76% 
+nteract_on_jupyter-2 | 28.0 MB   | ########   |  81% 
+nteract_on_jupyter-2 | 28.0 MB   | ########6  |  86% 
+nteract_on_jupyter-2 | 28.0 MB   | #########1 |  91% 
+nteract_on_jupyter-2 | 28.0 MB   | #########5 |  96% 
+nteract_on_jupyter-2 | 28.0 MB   | ########## | 100% 
+
+certipy-0.1.3        | 17 KB     |            |   0% 
+certipy-0.1.3        | 17 KB     | ########## | 100% 
+
+jedi-0.16.0          | 786 KB    |            |   0% 
+jedi-0.16.0          | 786 KB    | 2          |   2% 
+jedi-0.16.0          | 786 KB    | ########## | 100% 
+
+jupyterhub-base-1.1. | 1.8 MB    |            |   0% 
+jupyterhub-base-1.1. | 1.8 MB    |            |   1% 
+jupyterhub-base-1.1. | 1.8 MB    | ######2    |  62% 
+jupyterhub-base-1.1. | 1.8 MB    | ########## | 100% 
+
+ruamel.yaml.clib-0.2 | 160 KB    |            |   0% 
+ruamel.yaml.clib-0.2 | 160 KB    | #          |  10% 
+ruamel.yaml.clib-0.2 | 160 KB    | ########## | 100% 
+
+brotlipy-0.7.0       | 346 KB    |            |   0% 
+brotlipy-0.7.0       | 346 KB    | ########## | 100% 
+
+prometheus_client-0. | 38 KB     |            |   0% 
+prometheus_client-0. | 38 KB     | ########## | 100% 
+
+xz-5.2.5             | 343 KB    |            |   0% 
+xz-5.2.5             | 343 KB    | ########## | 100% 
+
+pyopenssl-19.1.0     | 47 KB     |            |   0% 
+pyopenssl-19.1.0     | 47 KB     | ########## | 100% 
+
+cryptography-3.0     | 632 KB    |            |   0% 
+cryptography-3.0     | 632 KB    | ##7        |  28% 
+cryptography-3.0     | 632 KB    | #########3 |  94% 
+cryptography-3.0     | 632 KB    | ########## | 100% 
+
+ptyprocess-0.6.0     | 15 KB     |            |   0% 
+ptyprocess-0.6.0     | 15 KB     | ########## | 100% 
+
+nbconvert-5.6.1      | 488 KB    |            |   0% 
+nbconvert-5.6.1      | 488 KB    | 3          |   3% 
+nbconvert-5.6.1      | 488 KB    | ########## | 100% 
+
+chardet-3.0.4        | 170 KB    |            |   0% 
+chardet-3.0.4        | 170 KB    | ########## | 100% 
+
+jupyter_client-6.1.6 | 75 KB     |            |   0% 
+jupyter_client-6.1.6 | 75 KB     | ########## | 100% 
+
+ipywidgets-7.5.1     | 101 KB    |            |   0% 
+ipywidgets-7.5.1     | 101 KB    | ########## | 100% 
+
+inflect-4.1.0        | 56 KB     |            |   0% 
+inflect-4.1.0        | 56 KB     | ##8        |  28% 
+inflect-4.1.0        | 56 KB     | ########## | 100% 
+
+parso-0.6.0          | 66 KB     |            |   0% 
+parso-0.6.0          | 66 KB     | ########## | 100% 
+
+wheel-0.34.2         | 24 KB     |            |   0% 
+wheel-0.34.2         | 24 KB     | ########## | 100% 
+
+entrypoints-0.3      | 11 KB     |            |   0% 
+entrypoints-0.3      | 11 KB     | ########## | 100% 
+
+pysocks-1.7.1        | 27 KB     |            |   0% 
+pysocks-1.7.1        | 27 KB     | ########## | 100% 
+
+pip-20.1.1           | 1.1 MB    |            |   0% 
+pip-20.1.1           | 1.1 MB    | #######8   |  79% 
+pip-20.1.1           | 1.1 MB    | ########## | 100% 
+
+icu-67.1             | 12.9 MB   |            |   0% 
+icu-67.1             | 12.9 MB   | 6          |   6% 
+icu-67.1             | 12.9 MB   | #3         |  13% 
+icu-67.1             | 12.9 MB   | ##4        |  25% 
+icu-67.1             | 12.9 MB   | ###4       |  35% 
+icu-67.1             | 12.9 MB   | ####5      |  46% 
+icu-67.1             | 12.9 MB   | #####6     |  57% 
+icu-67.1             | 12.9 MB   | ######5    |  66% 
+icu-67.1             | 12.9 MB   | #######4   |  75% 
+icu-67.1             | 12.9 MB   | ########4  |  84% 
+icu-67.1             | 12.9 MB   | #########5 |  95% 
+icu-67.1             | 12.9 MB   | ########## | 100% 
+
+ld_impl_linux-64-2.3 | 616 KB    |            |   0% 
+ld_impl_linux-64-2.3 | 616 KB    | #          |  10% 
+ld_impl_linux-64-2.3 | 616 KB    | ########## | 100% 
+
+libopenblas-0.3.10   | 7.8 MB    |            |   0% 
+libopenblas-0.3.10   | 7.8 MB    | 5          |   6% 
+libopenblas-0.3.10   | 7.8 MB    | #4         |  14% 
+libopenblas-0.3.10   | 7.8 MB    | ##1        |  22% 
+libopenblas-0.3.10   | 7.8 MB    | ###1       |  31% 
+libopenblas-0.3.10   | 7.8 MB    | ###9       |  39% 
+libopenblas-0.3.10   | 7.8 MB    | ####8      |  48% 
+libopenblas-0.3.10   | 7.8 MB    | #####8     |  58% 
+libopenblas-0.3.10   | 7.8 MB    | ######7    |  68% 
+libopenblas-0.3.10   | 7.8 MB    | #######4   |  75% 
+libopenblas-0.3.10   | 7.8 MB    | ########8  |  88% 
+libopenblas-0.3.10   | 7.8 MB    | #########7 |  98% 
+libopenblas-0.3.10   | 7.8 MB    | ########## | 100% 
+
+async_generator-1.10 | 18 KB     |            |   0% 
+async_generator-1.10 | 18 KB     | ########## | 100% 
+
+json5-0.8.5          | 24 KB     |            |   0% 
+json5-0.8.5          | 24 KB     | ########## | 100% 
+
+ipykernel-5.3.4      | 166 KB    |            |   0% 
+ipykernel-5.3.4      | 166 KB    | 9          |  10% 
+ipykernel-5.3.4      | 166 KB    | ########## | 100% 
+
+pandocfilters-1.4.2  | 9 KB      |            |   0% 
+pandocfilters-1.4.2  | 9 KB      | ########## | 100% 
+
+matplotlib-base-3.2. | 7.1 MB    |            |   0% 
+matplotlib-base-3.2. | 7.1 MB    |            |   0% 
+matplotlib-base-3.2. | 7.1 MB    | #          |  11% 
+matplotlib-base-3.2. | 7.1 MB    | ##5        |  25% 
+matplotlib-base-3.2. | 7.1 MB    | ###3       |  33% 
+matplotlib-base-3.2. | 7.1 MB    | ####5      |  46% 
+matplotlib-base-3.2. | 7.1 MB    | #####9     |  60% 
+matplotlib-base-3.2. | 7.1 MB    | #######3   |  73% 
+matplotlib-base-3.2. | 7.1 MB    | #########1 |  91% 
+matplotlib-base-3.2. | 7.1 MB    | ########## | 100% 
+
+python_abi-3.8       | 4 KB      |            |   0% 
+python_abi-3.8       | 4 KB      | ########## | 100% 
+
+zipp-2.1.0           | 9 KB      |            |   0% 
+zipp-2.1.0           | 9 KB      | ########## | 100% 
+
+pamela-1.0.0         | 9 KB      |            |   0% 
+pamela-1.0.0         | 9 KB      | ########## | 100% 
+
+jupyter_core-4.6.3   | 71 KB     |            |   0% 
+jupyter_core-4.6.3   | 71 KB     | ########## | 100% 
+
+prompt-toolkit-3.0.5 | 232 KB    |            |   0% 
+prompt-toolkit-3.0.5 | 232 KB    | ########## | 100% 
+
+tornado-6.0.4        | 642 KB    |            |   0% 
+tornado-6.0.4        | 642 KB    | ######9    |  70% 
+tornado-6.0.4        | 642 KB    | ########## | 100% 
+
+sqlalchemy-1.3.18    | 1.8 MB    |            |   0% 
+sqlalchemy-1.3.18    | 1.8 MB    |            |   1% 
+sqlalchemy-1.3.18    | 1.8 MB    | ##1        |  21% 
+sqlalchemy-1.3.18    | 1.8 MB    | #####7     |  58% 
+sqlalchemy-1.3.18    | 1.8 MB    | ########## | 100% 
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    | ###3       |  33% 
+openssl-1.1.1g       | 2.1 MB    | ########9  |  89% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+nbformat-5.0.4       | 98 KB     |            |   0% 
+nbformat-5.0.4       | 98 KB     | ########## | 100% 
+
+webencodings-0.5.1   | 12 KB     |            |   0% 
+webencodings-0.5.1   | 12 KB     | ########## | 100% 
+
+mako-1.1.0           | 57 KB     |            |   0% 
+mako-1.1.0           | 57 KB     | ########## | 100% 
+
+pyrsistent-0.16.0    | 90 KB     |            |   0% 
+pyrsistent-0.16.0    | 90 KB     | #7         |  18% 
+pyrsistent-0.16.0    | 90 KB     | ########## | 100% 
+
+pyzmq-19.0.1         | 532 KB    |            |   0% 
+pyzmq-19.0.1         | 532 KB    | 3          |   3% 
+pyzmq-19.0.1         | 532 KB    | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | ##1        |  21% 
+freetype-2.10.2      | 905 KB    | #######5   |  76% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+
+bleach-3.1.0         | 110 KB    |            |   0% 
+bleach-3.1.0         | 110 KB    | ########## | 100% 
+
+libblas-3.8.0        | 11 KB     |            |   0% 
+libblas-3.8.0        | 11 KB     | ########## | 100% 
+
+idna-2.10            | 52 KB     |            |   0% 
+idna-2.10            | 52 KB     | ########## | 100% 
+
+widgetsnbextension-3 | 1.8 MB    |            |   0% 
+widgetsnbextension-3 | 1.8 MB    |            |   1% 
+widgetsnbextension-3 | 1.8 MB    | #####1     |  51% 
+widgetsnbextension-3 | 1.8 MB    | ########## | 100% 
+
+python-json-logger-0 | 8 KB      |            |   0% 
+python-json-logger-0 | 8 KB      | ########## | 100% 
+
+importlib-metadata-1 | 45 KB     |            |   0% 
+importlib-metadata-1 | 45 KB     | ########## | 100% 
+
+wcwidth-0.1.8        | 19 KB     |            |   0% 
+wcwidth-0.1.8        | 19 KB     | ########## | 100% 
+
+urllib3-1.25.10      | 92 KB     |            |   0% 
+urllib3-1.25.10      | 92 KB     | ########## | 100% 
+
+ruamel.yaml-0.16.6   | 167 KB    |            |   0% 
+ruamel.yaml-0.16.6   | 167 KB    | 9          |  10% 
+ruamel.yaml-0.16.6   | 167 KB    | ########## | 100% 
+
+ipython-7.16.1       | 1.1 MB    |            |   0% 
+ipython-7.16.1       | 1.1 MB    | 1          |   1% 
+ipython-7.16.1       | 1.1 MB    | #########2 |  92% 
+ipython-7.16.1       | 1.1 MB    | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+python-3.8.5         | 71.1 MB   |            |   0% 
+python-3.8.5         | 71.1 MB   | 1          |   1% 
+python-3.8.5         | 71.1 MB   | 3          |   3% 
+python-3.8.5         | 71.1 MB   | 5          |   5% 
+python-3.8.5         | 71.1 MB   | 7          |   8% 
+python-3.8.5         | 71.1 MB   | 9          |  10% 
+python-3.8.5         | 71.1 MB   | #1         |  12% 
+python-3.8.5         | 71.1 MB   | #3         |  14% 
+python-3.8.5         | 71.1 MB   | #5         |  16% 
+python-3.8.5         | 71.1 MB   | #7         |  17% 
+python-3.8.5         | 71.1 MB   | #9         |  19% 
+python-3.8.5         | 71.1 MB   | ##         |  21% 
+python-3.8.5         | 71.1 MB   | ##2        |  23% 
+python-3.8.5         | 71.1 MB   | ##4        |  25% 
+python-3.8.5         | 71.1 MB   | ##7        |  27% 
+python-3.8.5         | 71.1 MB   | ##8        |  29% 
+python-3.8.5         | 71.1 MB   | ###        |  31% 
+python-3.8.5         | 71.1 MB   | ###2       |  32% 
+python-3.8.5         | 71.1 MB   | ###4       |  34% 
+python-3.8.5         | 71.1 MB   | ###5       |  36% 
+python-3.8.5         | 71.1 MB   | ###7       |  38% 
+python-3.8.5         | 71.1 MB   | ###9       |  39% 
+python-3.8.5         | 71.1 MB   | ####       |  41% 
+python-3.8.5         | 71.1 MB   | ####2      |  42% 
+python-3.8.5         | 71.1 MB   | ####3      |  44% 
+python-3.8.5         | 71.1 MB   | ####5      |  45% 
+python-3.8.5         | 71.1 MB   | ####6      |  47% 
+python-3.8.5         | 71.1 MB   | ####7      |  48% 
+python-3.8.5         | 71.1 MB   | ####9      |  49% 
+python-3.8.5         | 71.1 MB   | #####1     |  51% 
+python-3.8.5         | 71.1 MB   | #####2     |  53% 
+python-3.8.5         | 71.1 MB   | #####4     |  55% 
+python-3.8.5         | 71.1 MB   | #####6     |  56% 
+python-3.8.5         | 71.1 MB   | #####8     |  58% 
+python-3.8.5         | 71.1 MB   | #####9     |  60% 
+python-3.8.5         | 71.1 MB   | ######1    |  62% 
+python-3.8.5         | 71.1 MB   | ######3    |  63% 
+python-3.8.5         | 71.1 MB   | ######4    |  65% 
+python-3.8.5         | 71.1 MB   | ######6    |  66% 
+python-3.8.5         | 71.1 MB   | ######7    |  68% 
+python-3.8.5         | 71.1 MB   | ######9    |  70% 
+python-3.8.5         | 71.1 MB   | #######1   |  71% 
+python-3.8.5         | 71.1 MB   | #######3   |  73% 
+python-3.8.5         | 71.1 MB   | #######4   |  75% 
+python-3.8.5         | 71.1 MB   | #######6   |  77% 
+python-3.8.5         | 71.1 MB   | #######8   |  78% 
+python-3.8.5         | 71.1 MB   | ########   |  80% 
+python-3.8.5         | 71.1 MB   | ########1  |  82% 
+python-3.8.5         | 71.1 MB   | ########3  |  84% 
+python-3.8.5         | 71.1 MB   | ########5  |  86% 
+python-3.8.5         | 71.1 MB   | ########7  |  88% 
+python-3.8.5         | 71.1 MB   | ########9  |  89% 
+python-3.8.5         | 71.1 MB   | #########  |  91% 
+python-3.8.5         | 71.1 MB   | #########2 |  93% 
+python-3.8.5         | 71.1 MB   | #########4 |  94% 
+python-3.8.5         | 71.1 MB   | #########6 |  96% 
+python-3.8.5         | 71.1 MB   | #########8 |  98% 
+python-3.8.5         | 71.1 MB   | #########9 | 100% 
+python-3.8.5         | 71.1 MB   | ########## | 100% 
+
+more-itertools-8.2.0 | 35 KB     |            |   0% 
+more-itertools-8.2.0 | 35 KB     | ####5      |  46% 
+more-itertools-8.2.0 | 35 KB     | ########## | 100% 
+
+mistune-0.8.4        | 54 KB     |            |   0% 
+mistune-0.8.4        | 54 KB     | ########## | 100% 
+
+notebook-6.0.3       | 6.2 MB    |            |   0% 
+notebook-6.0.3       | 6.2 MB    |            |   0% 
+notebook-6.0.3       | 6.2 MB    | #2         |  12% 
+notebook-6.0.3       | 6.2 MB    | ##4        |  25% 
+notebook-6.0.3       | 6.2 MB    | ####1      |  41% 
+notebook-6.0.3       | 6.2 MB    | #####9     |  60% 
+notebook-6.0.3       | 6.2 MB    | #######8   |  79% 
+notebook-6.0.3       | 6.2 MB    | #########9 | 100% 
+notebook-6.0.3       | 6.2 MB    | ########## | 100% 
+
+pexpect-4.8.0        | 80 KB     |            |   0% 
+pexpect-4.8.0        | 80 KB     | ########## | 100% 
+
+pycparser-2.20       | 94 KB     |            |   0% 
+pycparser-2.20       | 94 KB     | ########## | 100% 
+
+numpy-1.19.0         | 5.2 MB    |            |   0% 
+numpy-1.19.0         | 5.2 MB    | #3         |  13% 
+numpy-1.19.0         | 5.2 MB    | ###5       |  36% 
+numpy-1.19.0         | 5.2 MB    | #####5     |  56% 
+numpy-1.19.0         | 5.2 MB    | ########3  |  84% 
+numpy-1.19.0         | 5.2 MB    | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+alembic-1.3.3        | 108 KB    |            |   0% 
+alembic-1.3.3        | 108 KB    | ########## | 100% 
+
+send2trash-1.5.0     | 12 KB     |            |   0% 
+send2trash-1.5.0     | 12 KB     | ########## | 100% 
+
+testpath-0.4.4       | 85 KB     |            |   0% 
+testpath-0.4.4       | 85 KB     | ########## | 100% 
+
+prompt_toolkit-3.0.3 | 231 KB    |            |   0% 
+prompt_toolkit-3.0.3 | 231 KB    | ########## | 100% 
+
+matplotlib-3.2.2     | 6 KB      |            |   0% 
+matplotlib-3.2.2     | 6 KB      | ########## | 100% 
+
+traitlets-4.3.3      | 134 KB    |            |   0% 
+traitlets-4.3.3      | 134 KB    | #1         |  12% 
+traitlets-4.3.3      | 134 KB    | ########## | 100% 
+
+blinker-1.4          | 13 KB     |            |   0% 
+blinker-1.4          | 13 KB     | ########## | 100% 
+
+requests-2.24.0      | 47 KB     |            |   0% 
+requests-2.24.0      | 47 KB     | ########## | 100% 
+
+attrs-19.3.0         | 35 KB     |            |   0% 
+attrs-19.3.0         | 35 KB     | ########## | 100% 
+
+oauthlib-3.0.1       | 82 KB     |            |   0% 
+oauthlib-3.0.1       | 82 KB     | ########## | 100% 
+
+pickleshare-0.7.5    | 13 KB     |            |   0% 
+pickleshare-0.7.5    | 13 KB     | ########## | 100% 
+
+cffi-1.14.0          | 223 KB    |            |   0% 
+cffi-1.14.0          | 223 KB    | ########## | 100% 
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+importlib_metadata-1 | 3 KB      |            |   0% 
+importlib_metadata-1 | 3 KB      | ########## | 100% 
+
+python-editor-1.0.4  | 9 KB      |            |   0% 
+python-editor-1.0.4  | 9 KB      | ########## | 100% 
+
+libcblas-3.8.0       | 11 KB     |            |   0% 
+libcblas-3.8.0       | 11 KB     | ########## | 100% 
+
+liblapack-3.8.0      | 11 KB     |            |   0% 
+liblapack-3.8.0      | 11 KB     | ########## | 100% 
+
+six-1.15.0           | 14 KB     |            |   0% 
+six-1.15.0           | 14 KB     | ########## | 100% 
+
+decorator-4.4.1      | 11 KB     |            |   0% 
+decorator-4.4.1      | 11 KB     | ########## | 100% 
+
+jaraco.itertools-5.0 | 14 KB     |            |   0% 
+jaraco.itertools-5.0 | 14 KB     | ########## | 100% 
+
+backcall-0.1.0       | 13 KB     |            |   0% 
+backcall-0.1.0       | 13 KB     | ########## | 100% 
+
+terminado-0.8.3      | 23 KB     |            |   0% 
+terminado-0.8.3      | 23 KB     | #######    |  70% 
+terminado-0.8.3      | 23 KB     | ########## | 100% 
+
+defusedxml-0.6.0     | 22 KB     |            |   0% 
+defusedxml-0.6.0     | 22 KB     | ########## | 100% 
+
+markupsafe-1.1.1     | 26 KB     |            |   0% 
+markupsafe-1.1.1     | 26 KB     | ########## | 100% 
+
+jupyterhub-singleuse | 4 KB      |            |   0% 
+jupyterhub-singleuse | 4 KB      | ########## | 100% 
+
+kiwisolver-1.2.0     | 87 KB     |            |   0% 
+kiwisolver-1.2.0     | 87 KB     | ########## | 100% 
+
+python-dateutil-2.8. | 220 KB    |            |   0% 
+python-dateutil-2.8. | 220 KB    | ########## | 100% 
+
+libgfortran-ng-7.5.0 | 1.7 MB    |            |   0% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ##6        |  26% 
+libgfortran-ng-7.5.0 | 1.7 MB    | #########9 | 100% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########## | 100% 
+
+jsonschema-3.2.0     | 90 KB     |            |   0% 
+jsonschema-3.2.0     | 90 KB     | #7         |  18% 
+jsonschema-3.2.0     | 90 KB     | ########## | 100% 
+
+jinja2-2.11.0        | 94 KB     |            |   0% 
+jinja2-2.11.0        | 94 KB     | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+pyjwt-1.7.1          | 17 KB     |            |   0% 
+pyjwt-1.7.1          | 17 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'Uninstalling jupyter-js-widgets jupyter-js-widgets/extension\nRemoving: /srv/conda/envs/notebook/share/jupyter/nbextensions/jupyter-js-widgets\n'
+b'Enabling notebook extension jupyter-js-widgets/extension...\n      - Validating: \x1b[32mOK\x1b[0m\n'
+done
+Ran pip subprocess with arguments:
+['/srv/conda/envs/notebook/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/vildeeide/condaenv.9wuw1biv.requirements.txt']
+Pip subprocess output:
+Collecting qiskit
+  Downloading qiskit-0.19.6.tar.gz (4.0 kB)
+Collecting qiskit-terra==0.14.2
+  Downloading qiskit_terra-0.14.2-cp38-cp38-manylinux2010_x86_64.whl (6.7 MB)
+Collecting qiskit-aer==0.5.2
+  Downloading qiskit_aer-0.5.2-cp38-cp38-manylinux2010_x86_64.whl (23.3 MB)
+Collecting qiskit-ibmq-provider==0.7.2
+  Downloading qiskit_ibmq_provider-0.7.2-py3-none-any.whl (155 kB)
+Collecting qiskit-ignis==0.3.3
+  Downloading qiskit_ignis-0.3.3-py3-none-any.whl (179 kB)
+Collecting qiskit-aqua==0.7.3
+  Downloading qiskit_aqua-0.7.3-py3-none-any.whl (1.9 MB)
+Requirement already satisfied, skipping upgrade: numpy>=1.17 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (1.19.0)
+Collecting scipy>=1.4
+  Downloading scipy-1.5.1-cp38-cp38-manylinux1_x86_64.whl (25.8 MB)
+Collecting python-constraint>=1.4
+  Downloading python-constraint-1.4.0.tar.bz2 (18 kB)
+Collecting ply>=3.10
+  Downloading ply-3.11-py2.py3-none-any.whl (49 kB)
+Collecting psutil>=5
+  Downloading psutil-5.7.2.tar.gz (460 kB)
+Collecting sympy>=1.3
+  Downloading sympy-1.6.1-py3-none-any.whl (5.8 MB)
+Requirement already satisfied, skipping upgrade: jsonschema>=2.6 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (3.2.0)
+Collecting marshmallow-polyfield<6,>=5.7
+  Downloading marshmallow-polyfield-5.9.tar.gz (8.5 kB)
+Collecting retworkx>=0.3.2
+  Downloading retworkx-0.4.0-cp38-cp38-manylinux2010_x86_64.whl (956 kB)
+Collecting marshmallow<4,>=3
+  Downloading marshmallow-3.7.1-py2.py3-none-any.whl (45 kB)
+Collecting dill>=0.3
+  Downloading dill-0.3.2.zip (177 kB)
+Collecting networkx>=2.2; python_version > "3.5"
+  Downloading networkx-2.4-py3-none-any.whl (1.6 MB)
+Requirement already satisfied, skipping upgrade: python-dateutil>=2.8.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (2.8.1)
+Collecting fastjsonschema>=2.10
+  Downloading fastjsonschema-2.14.4-py3-none-any.whl (21 kB)
+Collecting cython>=0.27.1
+  Downloading Cython-0.29.21-cp38-cp38-manylinux1_x86_64.whl (1.9 MB)
+Collecting pybind11>=2.4
+  Downloading pybind11-2.5.0-py2.py3-none-any.whl (296 kB)
+Requirement already satisfied, skipping upgrade: urllib3>=1.21.1 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (1.25.10)
+Collecting requests-ntlm>=1.1.0
+  Downloading requests_ntlm-1.1.0-py2.py3-none-any.whl (5.7 kB)
+Requirement already satisfied, skipping upgrade: requests>=2.19 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (2.24.0)
+Collecting websockets<8,>=7
+  Downloading websockets-7.0.tar.gz (49 kB)
+Collecting nest-asyncio!=1.1.0,>=1.0.0
+  Downloading nest_asyncio-1.4.0-py3-none-any.whl (5.2 kB)
+Collecting scikit-learn>=0.17
+  Downloading scikit_learn-0.23.1-cp38-cp38-manylinux1_x86_64.whl (6.7 MB)
+Requirement already satisfied, skipping upgrade: setuptools>=40.1.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from qiskit-ignis==0.3.3->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (49.2.0.post20200712)
+Collecting fastdtw
+  Downloading fastdtw-0.3.4.tar.gz (133 kB)
+Collecting pyscf; sys_platform != "win32"
+  Downloading pyscf-1.7.3-cp38-cp38-manylinux1_x86_64.whl (26.0 MB)
+Collecting docplex
+  Downloading docplex-2.15.194.tar.gz (582 kB)
+Collecting quandl
+  Downloading Quandl-3.5.1-py2.py3-none-any.whl (25 kB)
+Collecting h5py
+  Downloading h5py-2.10.0-cp38-cp38-manylinux1_x86_64.whl (2.9 MB)
+Collecting dlx
+  Downloading dlx-1.0.4.tar.gz (5.5 kB)
+Collecting mpmath>=0.19
+  Downloading mpmath-1.1.0.tar.gz (512 kB)
+Requirement already satisfied, skipping upgrade: attrs>=17.4.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied, skipping upgrade: pyrsistent>=0.14.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied, skipping upgrade: six>=1.11.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from jsonschema>=2.6->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (1.15.0)
+Requirement already satisfied, skipping upgrade: decorator>=4.3.0 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from networkx>=2.2; python_version > "3.5"->qiskit-terra==0.14.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (4.4.1)
+Collecting ntlm-auth>=1.0.2
+  Downloading ntlm_auth-1.5.0-py2.py3-none-any.whl (29 kB)
+Requirement already satisfied, skipping upgrade: cryptography>=1.3 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (3.0)
+Requirement already satisfied, skipping upgrade: certifi>=2017.4.17 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (2020.6.20)
+Requirement already satisfied, skipping upgrade: chardet<4,>=3.0.2 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (3.0.4)
+Requirement already satisfied, skipping upgrade: idna<3,>=2.5 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from requests>=2.19->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (2.10)
+Collecting joblib>=0.11
+  Downloading joblib-0.16.0-py3-none-any.whl (300 kB)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-2.1.0-py3-none-any.whl (12 kB)
+Requirement already satisfied, skipping upgrade: more-itertools in /srv/conda/envs/notebook/lib/python3.8/site-packages (from quandl->qiskit-aqua==0.7.3->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (8.2.0)
+Collecting inflection>=0.3.1
+  Downloading inflection-0.5.0-py2.py3-none-any.whl (5.8 kB)
+Collecting pandas>=0.14
+  Downloading pandas-1.0.5-cp38-cp38-manylinux1_x86_64.whl (10.0 MB)
+Requirement already satisfied, skipping upgrade: cffi!=1.11.3,>=1.8 in /srv/conda/envs/notebook/lib/python3.8/site-packages (from cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (1.14.0)
+Collecting pytz>=2017.2
+  Downloading pytz-2020.1-py2.py3-none-any.whl (510 kB)
+Requirement already satisfied, skipping upgrade: pycparser in /srv/conda/envs/notebook/lib/python3.8/site-packages (from cffi!=1.11.3,>=1.8->cryptography>=1.3->requests-ntlm>=1.1.0->qiskit-ibmq-provider==0.7.2->qiskit->-r /home/vildeeide/condaenv.9wuw1biv.requirements.txt (line 1)) (2.20)
+Building wheels for collected packages: qiskit, python-constraint, psutil, marshmallow-polyfield, dill, websockets, fastdtw, docplex, dlx, mpmath
+  Building wheel for qiskit (setup.py): started
+  Building wheel for qiskit (setup.py): finished with status 'done'
+  Created wheel for qiskit: filename=qiskit-0.19.6-py3-none-any.whl size=3018 sha256=299f4d47a8c5824a234ce0ad9e7f2cc6a6fa1b6c3072adcd02ef2dc92e3b9311
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/0d/2e/50/19795a5d39b7d6bdf349a2530bb1823307b43200548c49c57a
+  Building wheel for python-constraint (setup.py): started
+  Building wheel for python-constraint (setup.py): finished with status 'done'
+  Created wheel for python-constraint: filename=python_constraint-1.4.0-py2.py3-none-any.whl size=24080 sha256=2dd367c8fa94d2a46d3d5c32ec7106d5cb4dba3b1044f4b9b6b897e73eac00cd
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/86/ba/5c/4e9115777de42c6a2e1ca77ef7c9d0d479254c5080341b55c5
+  Building wheel for psutil (setup.py): started
+  Building wheel for psutil (setup.py): finished with status 'done'
+  Created wheel for psutil: filename=psutil-5.7.2-cp38-cp38-linux_x86_64.whl size=284091 sha256=5bb66adc5ef1c9768e0459c6d89e370ca7a8a14ff48c2cbcd568251509bf4640
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/91/cf/b0/0c9998060b55ca80ea7a50a8639c3bdc6ba886eeff014bc9ac
+  Building wheel for marshmallow-polyfield (setup.py): started
+  Building wheel for marshmallow-polyfield (setup.py): finished with status 'done'
+  Created wheel for marshmallow-polyfield: filename=marshmallow_polyfield-5.9-py3-none-any.whl size=8535 sha256=b8f76a7de015d7380e63600cc66f6c3df81add160bac346656e5a872f2bb39a4
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/53/91/60/2395b43bb3bab3506d35a3c52e749c9b3c149621f2ca7d3447
+  Building wheel for dill (setup.py): started
+  Building wheel for dill (setup.py): finished with status 'done'
+  Created wheel for dill: filename=dill-0.3.2-py3-none-any.whl size=78912 sha256=942152dac38dfa44fcd5c6ff6fdbbc7d01f5775dd00ebc45f71a86bebbc36dfe
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/93/7f/7d/78ec535a4340ef2696aad8b17fe8bb063d56301bd62881b069
+  Building wheel for websockets (setup.py): started
+  Building wheel for websockets (setup.py): finished with status 'done'
+  Created wheel for websockets: filename=websockets-7.0-cp38-cp38-linux_x86_64.whl size=68527 sha256=e48e936f30e04eff6ce01f52d042227c11d82745a1e54602bfcfa264d7e7f98e
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/ff/66/8a/b0610f3b070460e56f775bfcaafc6123838f3e7ab3cd80aaaf
+  Building wheel for fastdtw (setup.py): started
+  Building wheel for fastdtw (setup.py): still running...
+  Building wheel for fastdtw (setup.py): finished with status 'done'
+  Created wheel for fastdtw: filename=fastdtw-0.3.4-cp38-cp38-linux_x86_64.whl size=436569 sha256=4f3efefa9b5d8e8cb166e14ba957968d4753d440654e52d5a33af3c8f40ada27
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/e9/ac/30/c962f9d759dd68cb5482727c44441fdfb48040fdbe983857e8
+  Building wheel for docplex (setup.py): started
+  Building wheel for docplex (setup.py): finished with status 'done'
+  Created wheel for docplex: filename=docplex-2.15.194-py3-none-any.whl size=645115 sha256=418306e6f3703cae865cbbf68e06b1bc0ad95fbca0923c75d6e3b38e949bd1e3
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/9f/72/37/682278ae313764c583d8c10027b83b9a12da7bb148c0ea070b
+  Building wheel for dlx (setup.py): started
+  Building wheel for dlx (setup.py): finished with status 'done'
+  Created wheel for dlx: filename=dlx-1.0.4-py3-none-any.whl size=5709 sha256=cf4be2e5b48483b2805344f00d2db0c2f93cccc5150ccc9dbccd9d5004ba043c
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/c4/03/f9/7afbf40e0c3d6928d16bcadb46264a6e68704998ec72f7ea13
+  Building wheel for mpmath (setup.py): started
+  Building wheel for mpmath (setup.py): finished with status 'done'
+  Created wheel for mpmath: filename=mpmath-1.1.0-py3-none-any.whl size=532239 sha256=7a9d33e7f9dc66076ab3fe8c49a92d32401a11eee1186fa80abcd1826e7cd80c
+  Stored in directory: /home/vildeeide/.cache/pip/wheels/29/2c/1c/d2e4580cde2743b0aef389e936ac21a2db92921ddbca53faa1
+Successfully built qiskit python-constraint psutil marshmallow-polyfield dill websockets fastdtw docplex dlx mpmath
+Installing collected packages: scipy, python-constraint, ply, psutil, mpmath, sympy, marshmallow, marshmallow-polyfield, retworkx, dill, networkx, fastjsonschema, qiskit-terra, cython, pybind11, qiskit-aer, ntlm-auth, requests-ntlm, websockets, nest-asyncio, qiskit-ibmq-provider, joblib, threadpoolctl, scikit-learn, qiskit-ignis, fastdtw, h5py, pyscf, docplex, inflection, pytz, pandas, quandl, dlx, qiskit-aqua, qiskit
+Successfully installed cython-0.29.21 dill-0.3.2 dlx-1.0.4 docplex-2.15.194 fastdtw-0.3.4 fastjsonschema-2.14.4 h5py-2.10.0 inflection-0.5.0 joblib-0.16.0 marshmallow-3.7.1 marshmallow-polyfield-5.9 mpmath-1.1.0 nest-asyncio-1.4.0 networkx-2.4 ntlm-auth-1.5.0 pandas-1.0.5 ply-3.11 psutil-5.7.2 pybind11-2.5.0 pyscf-1.7.3 python-constraint-1.4.0 pytz-2020.1 qiskit-0.19.6 qiskit-aer-0.5.2 qiskit-aqua-0.7.3 qiskit-ibmq-provider-0.7.2 qiskit-ignis-0.3.3 qiskit-terra-0.14.2 quandl-3.5.1 requests-ntlm-1.1.0 retworkx-0.4.0 scikit-learn-0.23.1 scipy-1.5.1 sympy-1.6.1 threadpoolctl-2.1.0 websockets-7.0
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m
+#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+brotlipy                  0.7.0           py38h1e0a361_1000    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+certifi                   2020.6.20        py38h32f6830_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.14.0           py38hd463f26_0    conda-forge
+chardet                   3.0.4           py38h32f6830_1006    conda-forge
+cryptography              3.0              py38h766eaa4_0    conda-forge
+cycler                    0.10.0                     py_2    conda-forge
+cython                    0.29.21                  pypi_0    pypi
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+dill                      0.3.2                    pypi_0    pypi
+dlx                       1.0.4                    pypi_0    pypi
+docplex                   2.15.194                 pypi_0    pypi
+entrypoints               0.3             py38h32f6830_1001    conda-forge
+fastdtw                   0.3.4                    pypi_0    pypi
+fastjsonschema            2.14.4                   pypi_0    pypi
+freetype                  2.10.2               he06d7ca_0    conda-forge
+h5py                      2.10.0                   pypi_0    pypi
+icu                       67.1                 he1b5a44_0    conda-forge
+idna                      2.10               pyh9f0ad1d_0    conda-forge
+importlib-metadata        1.7.0            py38h32f6830_0    conda-forge
+importlib_metadata        1.7.0                         0    conda-forge
+inflect                   4.1.0            py38h32f6830_1    conda-forge
+inflection                0.5.0                    pypi_0    pypi
+ipykernel                 5.3.4            py38h23f93f0_0    conda-forge
+ipython                   7.16.1           py38h23f93f0_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0           py38h32f6830_1    conda-forge
+jinja2                    2.11.0                     py_0    conda-forge
+joblib                    0.16.0                   pypi_0    pypi
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0            py38h32f6830_1    conda-forge
+jupyter_client            6.1.6                      py_0    conda-forge
+jupyter_core              4.6.3            py38h32f6830_1    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py38_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py38_2    conda-forge
+jupyterlab                1.2.6                      py_0    conda-forge
+jupyterlab_server         1.0.6                      py_0    conda-forge
+kiwisolver                1.2.0            py38hbf85e49_0    conda-forge
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+ld_impl_linux-64          2.34                 h53a641e_7    conda-forge
+libblas                   3.8.0               17_openblas    conda-forge
+libcblas                  3.8.0               17_openblas    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgfortran-ng            7.5.0                hdf63c60_6    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+liblapack                 3.8.0               17_openblas    conda-forge
+libopenblas               0.3.10          pthreads_hb3c22a3_3    conda-forge
+libpng                    1.6.37               hed695b0_1    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markupsafe                1.1.1            py38h1e0a361_1    conda-forge
+marshmallow               3.7.1                    pypi_0    pypi
+marshmallow-polyfield     5.9                      pypi_0    pypi
+matplotlib                3.2.2                         1    conda-forge
+matplotlib-base           3.2.2            py38h5d868c9_1    conda-forge
+mistune                   0.8.4           py38h1e0a361_1001    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+mpmath                    1.1.0                    pypi_0    pypi
+nbconvert                 5.6.1            py38h32f6830_1    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+nest-asyncio              1.4.0                    pypi_0    pypi
+networkx                  2.4                      pypi_0    pypi
+notebook                  6.0.3            py38h32f6830_1    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+ntlm-auth                 1.5.0                    pypi_0    pypi
+numpy                     1.19.0           py38h8854b6b_0    conda-forge
+oauthlib                  3.0.1                      py_0    conda-forge
+openssl                   1.1.1g               h516909a_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandas                    1.0.5                    pypi_0    pypi
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+pexpect                   4.8.0            py38h32f6830_1    conda-forge
+pickleshare               0.7.5           py38h32f6830_1001    conda-forge
+pip                       20.1.1                     py_1    conda-forge
+ply                       3.11                     pypi_0    pypi
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt-toolkit            3.0.5                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+psutil                    5.7.2                    pypi_0    pypi
+ptyprocess                0.6.0                   py_1001    conda-forge
+pybind11                  2.5.0                    pypi_0    pypi
+pycparser                 2.20               pyh9f0ad1d_2    conda-forge
+pycurl                    7.43.0.5         py38h4400d41_2    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                     py_1    conda-forge
+pyparsing                 2.4.7              pyh9f0ad1d_0    conda-forge
+pyrsistent                0.16.0           py38h1e0a361_0    conda-forge
+pyscf                     1.7.3                    pypi_0    pypi
+pysocks                   1.7.1            py38h32f6830_1    conda-forge
+python                    3.8.5           cpython_h4d41432_0    conda-forge
+python-constraint         1.4.0                    pypi_0    pypi
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+python_abi                3.8                      1_cp38    conda-forge
+pytz                      2020.1                   pypi_0    pypi
+pyzmq                     19.0.1           py38ha71036d_0    conda-forge
+qiskit                    0.19.6                   pypi_0    pypi
+qiskit-aer                0.5.2                    pypi_0    pypi
+qiskit-aqua               0.7.3                    pypi_0    pypi
+qiskit-ibmq-provider      0.7.2                    pypi_0    pypi
+qiskit-ignis              0.3.3                    pypi_0    pypi
+qiskit-terra              0.14.2                   pypi_0    pypi
+quandl                    3.5.1                    pypi_0    pypi
+readline                  8.0                  hf8c457e_0    conda-forge
+requests                  2.24.0             pyh9f0ad1d_0    conda-forge
+requests-ntlm             1.1.0                    pypi_0    pypi
+retworkx                  0.4.0                    pypi_0    pypi
+ruamel.yaml               0.16.6           py38h1e0a361_1    conda-forge
+ruamel.yaml.clib          0.2.0            py38h1e0a361_1    conda-forge
+scikit-learn              0.23.1                   pypi_0    pypi
+scipy                     1.5.1                    pypi_0    pypi
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                49.2.0           py38h32f6830_0    conda-forge
+six                       1.15.0             pyh9f0ad1d_0    conda-forge
+sqlalchemy                1.3.18           py38h1e0a361_0    conda-forge
+sqlite                    3.32.3               hcee41ef_1    conda-forge
+sympy                     1.6.1                    pypi_0    pypi
+terminado                 0.8.3            py38h32f6830_1    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+threadpoolctl             2.1.0                    pypi_0    pypi
+tk                        8.6.10               hed695b0_0    conda-forge
+tornado                   6.0.4            py38h1e0a361_1    conda-forge
+traitlets                 4.3.3            py38h32f6830_1    conda-forge
+urllib3                   1.25.10                    py_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+websockets                7.0                      pypi_0    pypi
+wheel                     0.34.2                     py_1    conda-forge
+widgetsnbextension        3.5.1            py38h32f6830_1    conda-forge
+xz                        5.2.5                h516909a_1    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+Removing intermediate container 946e4287285a
+ ---> 7d419d8cc000
+Step 42/51 : USER root
+ ---> Running in 46e5bf66d72d
+Removing intermediate container 46e5bf66d72d
+ ---> 65f2fd3f753a
+Step 43/51 : COPY src/ ${REPO_DIR}
+ ---> 29cc6d8cf4c5
+Step 44/51 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in f8b437010b4f
+Removing intermediate container f8b437010b4f
+ ---> ccbc3644f85e
+Step 45/51 : LABEL repo2docker.ref="None"
+ ---> Running in 62a7bd0d95d3
+Removing intermediate container 62a7bd0d95d3
+ ---> e0a610f6276f
+Step 46/51 : LABEL repo2docker.repo="local"
+ ---> Running in a22cac07ade8
+Removing intermediate container a22cac07ade8
+ ---> 34440d073b58
+Step 47/51 : LABEL repo2docker.version="0.11.0"
+ ---> Running in a2bf039529cc
+Removing intermediate container a2bf039529cc
+ ---> 4ac66046f2df
+Step 48/51 : USER ${NB_USER}
+ ---> Running in ac8d0cd3c1ae
+Removing intermediate container ac8d0cd3c1ae
+ ---> 5b9c2da821a6
+Step 49/51 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> 765c528b7af5
+Step 50/51 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 6143325dbcdd
+Removing intermediate container 6143325dbcdd
+ ---> 94e293022050
+Step 51/51 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 335316bb0bc6
+Removing intermediate container 335316bb0bc6
+ ---> 52c5bbf2e65d
+{"aux": {"ID": "sha256:52c5bbf2e65daf621f9e78cf1a30569fd43a3554bf92d5301d4d2d4edabf8fab"}}Successfully built 52c5bbf2e65d
+Successfully tagged r2d-test-github.com-qiskit-qiskit-tutorial:15f92d4

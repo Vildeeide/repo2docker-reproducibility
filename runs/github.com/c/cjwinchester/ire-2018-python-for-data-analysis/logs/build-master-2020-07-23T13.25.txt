@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 324, in test_one_repo
+    image, checkout_path = build_repo(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker_checker/checker.py", line 128, in build_repo
+    run(
+  File "/usr/lib/python3.8/subprocess.py", line 512, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['jupyter-repo2docker', '--no-run', '--no-clean', '--image-name', 'r2d-test-github.com-cjwinchester-ire-2018-python-for-data-analysis:ec3da3d', '/tmp/r2d-test-2020-07-23T13.25l8l7fvfo/github.com/cjwinchester/ire-2018-python-for-data-analysis']' returned non-zero exit status 1.

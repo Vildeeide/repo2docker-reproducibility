@@ -1,0 +1,41 @@
+[I 200724 05:39:08 inrepo:36] Testing notebook ipynbs/string_function.ipynb
+[I 200724 05:39:12 inrepo:45] Found kernel python3
+[I 200724 05:39:22 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from tidyframe.tools.string import (uppercase_letters, uppercase_fullwidth_letters,
+                                    lowercase_letters, lowercase_fullwidth_letters,
+                                    digits, fullwidth_digits,
+                                    symbol, fullwidth_symbol,
+                                    whitespace, replace_by_dict)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-1-008672b29898>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m from tidyframe.tools.string import (uppercase_letters, uppercase_fullwidth_letters,
+[0m[1;32m      2[0m                                     [0mlowercase_letters[0m[0;34m,[0m [0mlowercase_fullwidth_letters[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m                                     [0mdigits[0m[0;34m,[0m [0mfullwidth_digits[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m                                     [0msymbol[0m[0;34m,[0m [0mfullwidth_symbol[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m                                     whitespace, replace_by_dict)
+
+[0;31mModuleNotFoundError[0m: No module named 'tidyframe'
+ModuleNotFoundError: No module named 'tidyframe'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

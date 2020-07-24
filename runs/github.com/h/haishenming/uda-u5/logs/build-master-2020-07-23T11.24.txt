@@ -1,0 +1,200 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-23T11.24p1buerm1/github.com/haishenming/uda-u5.
+Using PipfileBuildPack builder
+Step 1/53 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/53 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/53 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/53 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/53 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/53 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/53 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/53 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/53 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/53 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/53 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/53 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/53 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/53 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/53 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/53 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/53 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/53 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/53 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/53 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/53 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/53 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e6-2efrozen-2eyml-7faaa9 /tmp/environment.yml
+ ---> Using cache
+ ---> 8bf90b0af9a4
+Step 26/53 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> d94262206d7f
+Step 27/53 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> a0d9a2009de8
+Step 28/53 : USER ${NB_USER}
+ ---> Using cache
+ ---> d346cab5791b
+Step 29/53 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> d9689a512ce1
+Step 30/53 : USER root
+ ---> Using cache
+ ---> 0698c74eac04
+Step 31/53 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> 923c36d4009c
+Step 32/53 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> be7951594e5a
+Step 33/53 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> dd36de80f9ae
+Step 34/53 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> 147d1c57f768
+Step 35/53 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> ee1cce3f64fc
+Step 36/53 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> f42b790c0d6f
+Step 37/53 : COPY src/Pipfile ${REPO_DIR}/Pipfile
+ ---> eb1bb05a6dfb
+Step 38/53 : USER root
+ ---> Running in 4ebad4fa1a45
+Removing intermediate container 4ebad4fa1a45
+ ---> 9fa99ea04f23
+Step 39/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 2cf71477a6a9
+Removing intermediate container 2cf71477a6a9
+ ---> 6b99007c3cdd
+Step 40/53 : USER ${NB_USER}
+ ---> Running in 341b48608348
+Removing intermediate container 341b48608348
+ ---> c0fbb41a7199
+Step 41/53 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install pipenv==2018.11.26
+ ---> Running in f320a8eb994c
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting pipenv==2018.11.26
+  Downloading pipenv-2018.11.26-py3-none-any.whl (5.2 MB)
+Collecting virtualenv
+  Downloading virtualenv-20.0.27-py2.py3-none-any.whl (4.9 MB)
+Collecting virtualenv-clone>=0.2.5
+  Downloading virtualenv_clone-0.5.4-py2.py3-none-any.whl (6.6 kB)
+Requirement already satisfied: pip>=9.0.1 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from pipenv==2018.11.26) (20.0.2)
+Requirement already satisfied: certifi in /srv/conda/envs/notebook/lib/python3.6/site-packages (from pipenv==2018.11.26) (2019.11.28)
+Requirement already satisfied: setuptools>=36.2.1 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from pipenv==2018.11.26) (45.1.0.post20200119)
+Collecting distlib<1,>=0.3.1
+  Downloading distlib-0.3.1-py2.py3-none-any.whl (335 kB)
+Collecting importlib-resources>=1.0; python_version < "3.7"
+  Downloading importlib_resources-3.0.0-py2.py3-none-any.whl (23 kB)
+Requirement already satisfied: importlib-metadata<2,>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.6/site-packages (from virtualenv->pipenv==2018.11.26) (1.5.0)
+Collecting filelock<4,>=3.0.0
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Requirement already satisfied: six<2,>=1.9.0 in /srv/conda/envs/notebook/lib/python3.6/site-packages (from virtualenv->pipenv==2018.11.26) (1.14.0)
+Collecting appdirs<2,>=1.4.3
+  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Requirement already satisfied: zipp>=0.4; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.6/site-packages (from importlib-resources>=1.0; python_version < "3.7"->virtualenv->pipenv==2018.11.26) (2.1.0)
+Installing collected packages: distlib, importlib-resources, filelock, appdirs, virtualenv, virtualenv-clone, pipenv
+Successfully installed appdirs-1.4.4 distlib-0.3.1 filelock-3.0.12 importlib-resources-3.0.0 pipenv-2018.11.26 virtualenv-20.0.27 virtualenv-clone-0.5.4
+Removing intermediate container f320a8eb994c
+ ---> 4efa85a7ee48
+Step 42/53 : USER root
+ ---> Running in 8b1d886c0e9e
+Removing intermediate container 8b1d886c0e9e
+ ---> 4045a9179116
+Step 43/53 : COPY src/ ${REPO_DIR}
+ ---> 3b81edc8d9eb
+Step 44/53 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in c78bd185cc88
+Removing intermediate container c78bd185cc88
+ ---> 6b3d62bc80b0
+Step 45/53 : USER ${NB_USER}
+ ---> Running in 43fe9605e0ae
+Removing intermediate container 43fe9605e0ae
+ ---> 990a8fd24e5b
+Step 46/53 : RUN (cd . &&                     PATH="${KERNEL_PYTHON_PREFIX}/bin:$PATH"                         pipenv install --skip-lock --system --dev                 )
+ ---> Running in 14b3902585ce
+Installing dependencies from Pipfile…
+Removing intermediate container 14b3902585ce
+ ---> bb8a420bd061
+Step 47/53 : LABEL repo2docker.ref="None"
+ ---> Running in 94a51033e054
+Removing intermediate container 94a51033e054
+ ---> 21b639ff989b
+Step 48/53 : LABEL repo2docker.repo="local"
+ ---> Running in 444fbc84038b
+Removing intermediate container 444fbc84038b
+ ---> f4b23defdaaa
+Step 49/53 : LABEL repo2docker.version="0.11.0"
+ ---> Running in cd8620233c11
+Removing intermediate container cd8620233c11
+ ---> 29aff97900e5
+Step 50/53 : USER ${NB_USER}
+ ---> Running in 728e36e201c3
+Removing intermediate container 728e36e201c3
+ ---> 68408fa09eb6
+Step 51/53 : COPY /repo2docker-entrypoint /usr/local/bin/repo2docker-entrypoint
+ ---> a25e651af32c
+Step 52/53 : ENTRYPOINT ["/usr/local/bin/repo2docker-entrypoint"]
+ ---> Running in 98002902ec7c
+Removing intermediate container 98002902ec7c
+ ---> 14d912ec2cbd
+Step 53/53 : CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+ ---> Running in 2a175e4cab3b
+Removing intermediate container 2a175e4cab3b
+ ---> 775cf14cfa8c
+{"aux": {"ID": "sha256:775cf14cfa8cc98470960ca2061761a292cd5af0c0f1c5177963291d87364b8f"}}Successfully built 775cf14cfa8c
+Successfully tagged r2d-test-github.com-haishenming-uda-u5:8e4a5a6

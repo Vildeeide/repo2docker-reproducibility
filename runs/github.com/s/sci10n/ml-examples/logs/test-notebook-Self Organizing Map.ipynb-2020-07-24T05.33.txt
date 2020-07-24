@@ -1,0 +1,61 @@
+[I 200724 05:54:38 inrepo:36] Testing notebook Self Organizing Map.ipynb
+[I 200724 05:54:40 inrepo:45] Found kernel python3
+[I 200724 05:54:44 execute:404] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 75, in run_notebook
+    nb, cwd=os.path.dirname(nb_path), kernel_name=kernel_name, timeout=600
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 737, in executenb
+    return ep.preprocess(nb, resources, km=km)[0]
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 405, in preprocess
+    nb, resources = super(ExecutePreprocessor, self).preprocess(nb, resources)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/base.py", line 69, in preprocess
+    nb.cells[index], resources = self.preprocess_cell(cell, resources, index)
+  File "/srv/conda/envs/notebook/lib/python3.7/site-packages/nbconvert/preprocessors/execute.py", line 448, in preprocess_cell
+    raise CellExecutionError.from_cell_and_msg(cell, out)
+nbconvert.preprocessors.execute.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%matplotlib inline
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+
+digits = load_iris()
+print(digits.data.shape)
+
+som = SOM(64, 64, 4)
+som.train(digits.data)
+
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m<ipython-input-3-b1698e488fde>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0mprint[0m[0;34m([0m[0mdigits[0m[0;34m.[0m[0mdata[0m[0;34m.[0m[0mshape[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      7[0m [0;34m[0m[0m
+[0;32m----> 8[0;31m [0msom[0m [0;34m=[0m [0mSOM[0m[0;34m([0m[0;36m64[0m[0;34m,[0m [0;36m64[0m[0;34m,[0m [0;36m4[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0msom[0m[0;34m.[0m[0mtrain[0m[0;34m([0m[0mdigits[0m[0;34m.[0m[0mdata[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0;34m[0m[0m
+
+[0;32m<ipython-input-2-f3b352ff4252>[0m in [0;36m__init__[0;34m(self, width, height, dim)[0m
+[1;32m      5[0m         [0mself[0m[0;34m.[0m[0mheight[0m [0;34m=[0m [0mheight[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m         [0mself[0m[0;34m.[0m[0mdim[0m [0;34m=[0m [0mdim[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m         [0mself[0m[0;34m.[0m[0mnode_locs[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mget_locs[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m [0;34m[0m[0m
+[1;32m      9[0m         [0mnodes[0m [0;34m=[0m [0mtf[0m[0;34m.[0m[0mVariable[0m[0;34m([0m[0mtf[0m[0;34m.[0m[0mrandom_normal[0m[0;34m([0m[0;34m[[0m[0mwidth[0m[0;34m*[0m[0mheight[0m[0;34m,[0m[0mdim[0m[0;34m][0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-2-f3b352ff4252>[0m in [0;36mget_locs[0;34m(self)[0m
+[1;32m     43[0m     [0;32mdef[0m [0mget_locs[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     44[0m         [0mlocs[0m [0;34m=[0m [0;34m[[0m[0;34m[[0m[0mx[0m[0;34m,[0m[0my[0m[0;34m][0m [0;32mfor[0m [0my[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mheight[0m[0;34m)[0m [0;32mfor[0m [0mx[0m [0;32min[0m [0mrange[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mwidth[0m[0;34m)[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 45[0;31m         [0;32mreturn[0m [0mtf[0m[0;34m.[0m[0mto_float[0m[0;34m([0m[0mlocs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     46[0m [0;34m[0m[0m
+[1;32m     47[0m     [0;32mdef[0m [0mtrain[0m[0;34m([0m[0mself[0m[0;34m,[0m[0mdata[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: module 'tensorflow' has no attribute 'to_float'
+AttributeError: module 'tensorflow' has no attribute 'to_float'
+
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

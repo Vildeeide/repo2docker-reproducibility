@@ -1,0 +1,6 @@
+[I 200723 13:16:32 inrepo:36] Testing notebook Fundamentals/Chapter 7/Assignment - Use pattern matching to delete files.ipynb
+[I 200723 13:16:37 inrepo:45] Found kernel python3
+[I 200723 13:16:48 execute:404] Executing notebook with kernel: python3
+[I 200723 13:16:50 inrepo:79] Saving exported notebook to /io/notebooks/Fundamentals/Chapter 7/Assignment - Use pattern matching to delete files.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/alexbseaton/complex-mappings,master,6284f86,2018-01-13T20:51:19+00:00,build,build,False,github.com/a/alexbseaton/complex-mappings/logs/build-master-2020-07-23T11.57.txt,2020-07-23T11:57:51.010199,2020-07-23T11.57,0.11.0

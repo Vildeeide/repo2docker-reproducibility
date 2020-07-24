@@ -1,0 +1,7 @@
+[I 200723 12:35:33 inrepo:36] Testing notebook content/chapters/10/Sampling_and_Empirical_Distributions.ipynb
+[W 200723 12:35:35 inrepo:48] No such kernel Python [Root], falling back on kernel language=python
+[W 200723 12:35:35 inrepo:60] Using kernel python3 to provide language: python
+[I 200723 12:35:38 execute:404] Executing notebook with kernel: python3
+[I 200723 12:35:50 inrepo:79] Saving exported notebook to /io/notebooks/content/chapters/10/Sampling_and_Empirical_Distributions.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/binder-examples/r,master,0893546,2020-05-14T15:00:07-07:00,build,build,True,github.com/b/binder-examples/r/logs/build-master-2020-07-23T12.13.txt,2020-07-23T12:13:50.759098,2020-07-23T12.13,0.11.0
+https://github.com/binder-examples/r,master,0893546,2020-05-14T15:00:07-07:00,notebook,index.ipynb,True,github.com/b/binder-examples/r/logs/test-notebook-index.ipynb-2020-07-23T12.13.txt,2020-07-23T12:13:50.759098,2020-07-23T12.13,0.11.0

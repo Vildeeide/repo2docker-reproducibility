@@ -4,3 +4,4 @@
 __pycache__
 # don't commit config.py with credentials
 db/config.py
+runs/**/notebooks

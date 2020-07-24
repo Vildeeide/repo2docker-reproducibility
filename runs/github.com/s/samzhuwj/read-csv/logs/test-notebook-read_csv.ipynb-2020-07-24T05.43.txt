@@ -1,0 +1,6 @@
+[I 200724 05:45:28 inrepo:36] Testing notebook read_csv.ipynb
+[I 200724 05:45:30 inrepo:45] Found kernel python3
+[I 200724 05:45:36 execute:404] Executing notebook with kernel: python3
+[I 200724 05:45:39 inrepo:79] Saving exported notebook to /io/notebooks/read_csv.ipynb
+
+Container exited with status: {'Error': None, 'StatusCode': 0}

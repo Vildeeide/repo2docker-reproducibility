@@ -1,0 +1,11 @@
+[I 200724 05:50:55 inrepo:36] Testing notebook work/Test.ipynb
+Traceback (most recent call last):
+  File "/src/inrepo.py", line 114, in <module>
+    main()
+  File "/src/inrepo.py", line 110, in main
+    test_f(opts.test, opts.output_dir)
+  File "/src/inrepo.py", line 37, in run_notebook
+    with open(nb_path) as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'work/Test.ipynb'
+
+Container exited with status: {'Error': None, 'StatusCode': 1}

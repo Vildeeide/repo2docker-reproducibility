@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/dgkim5360/the-elements-of-statistical-learning-notebooks,master,2c13a48,2018-05-05T13:12:58+09:00,build,build,False,github.com/d/dgkim5360/the-elements-of-statistical-learning-notebooks/logs/build-master-2020-07-23T13.31.txt,2020-07-23T13:31:00.032986,2020-07-23T13.31,0.11.0

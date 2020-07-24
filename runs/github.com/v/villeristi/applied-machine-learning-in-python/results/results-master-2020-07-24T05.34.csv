@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/villeristi/applied-machine-learning-in-python,master,f0d18b0,2018-08-16T12:09:09+03:00,build,build,False,github.com/v/villeristi/applied-machine-learning-in-python/logs/build-master-2020-07-24T05.34.txt,2020-07-24T05:34:24.498235,2020-07-24T05.34,0.11.0

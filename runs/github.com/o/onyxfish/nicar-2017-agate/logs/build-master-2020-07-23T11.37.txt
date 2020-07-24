@@ -1,0 +1,43 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-23T11.374l13ixy6/github.com/onyxfish/nicar-2017-agate.
+Using PipfileBuildPack builder
+Traceback (most recent call last):
+  File "/usr/local/bin/jupyter-repo2docker", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/__main__.py", line 348, in main
+    r2d.start()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 743, in start
+    self.build()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 717, in build
+    for l in picked_buildpack.build(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/base.py", line 671, in build
+    for line in client.build(**build_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/build.py", line 263, in build
+    response = self._post(
+  File "/usr/local/lib/python3.8/dist-packages/docker/utils/decorators.py", line 46, in inner
+    return f(self, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 226, in _post
+    return self.post(url, **self._set_request_timeout(kwargs))
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 665, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 387, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/lib/python3.8/http/client.py", line 1240, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1286, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1235, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1045, in _send_output
+    self.send(chunk)
+  File "/usr/lib/python3.8/http/client.py", line 967, in send
+    self.sock.sendall(data)
+KeyboardInterrupt

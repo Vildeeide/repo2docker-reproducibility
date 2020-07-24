@@ -1,0 +1,210 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-23T11.375au1091e/github.com/jakesnow/quakes.
+Using PipfileBuildPack builder
+Step 1/54 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/54 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/54 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/54 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/54 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/54 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/54 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/54 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/54 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/54 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/54 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/54 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/54 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/54 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/54 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/54 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/54 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/54 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/54 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/54 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/54 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/54 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/54 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/54 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/54 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/54 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/54 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/54 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/54 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/54 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/54 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/54 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/54 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/54 : COPY src/Pipfile ${REPO_DIR}/Pipfile
+ ---> 1f43d9de81de
+Step 38/54 : COPY src/Pipfile.lock ${REPO_DIR}/Pipfile.lock
+ ---> d39a8668742b
+Step 39/54 : USER root
+ ---> Running in 77dc1d7b9077
+Removing intermediate container 77dc1d7b9077
+ ---> 3766a0d4662b
+Step 40/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in 872917cb3753
+Removing intermediate container 872917cb3753
+ ---> b036d351b52c
+Step 41/54 : USER ${NB_USER}
+ ---> Running in 033f36200203
+Removing intermediate container 033f36200203
+ ---> dc928e7bf2be
+Step 42/54 : RUN ${KERNEL_PYTHON_PREFIX}/bin/pip install pipenv==2018.11.26
+ ---> Running in 2177c8350d2a
+[91mWARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+[0mCollecting pipenv==2018.11.26
+  Downloading pipenv-2018.11.26-py3-none-any.whl (5.2 MB)
+Collecting virtualenv-clone>=0.2.5
+  Downloading virtualenv_clone-0.5.4-py2.py3-none-any.whl (6.6 kB)
+Requirement already satisfied: pip>=9.0.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pipenv==2018.11.26) (20.0.2)
+Requirement already satisfied: setuptools>=36.2.1 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pipenv==2018.11.26) (45.1.0.post20200119)
+Requirement already satisfied: certifi in /srv/conda/envs/notebook/lib/python3.7/site-packages (from pipenv==2018.11.26) (2019.11.28)
+Collecting virtualenv
+  Downloading virtualenv-20.0.27-py2.py3-none-any.whl (4.9 MB)
+Collecting filelock<4,>=3.0.0
+  Downloading filelock-3.0.12-py3-none-any.whl (7.6 kB)
+Collecting distlib<1,>=0.3.1
+  Downloading distlib-0.3.1-py2.py3-none-any.whl (335 kB)
+Requirement already satisfied: six<2,>=1.9.0 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from virtualenv->pipenv==2018.11.26) (1.14.0)
+Requirement already satisfied: importlib-metadata<2,>=0.12; python_version < "3.8" in /srv/conda/envs/notebook/lib/python3.7/site-packages (from virtualenv->pipenv==2018.11.26) (1.5.0)
+Collecting appdirs<2,>=1.4.3
+  Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Requirement already satisfied: zipp>=0.5 in /srv/conda/envs/notebook/lib/python3.7/site-packages (from importlib-metadata<2,>=0.12; python_version < "3.8"->virtualenv->pipenv==2018.11.26) (2.1.0)
+Installing collected packages: virtualenv-clone, filelock, distlib, appdirs, virtualenv, pipenv
+Successfully installed appdirs-1.4.4 distlib-0.3.1 filelock-3.0.12 pipenv-2018.11.26 virtualenv-20.0.27 virtualenv-clone-0.5.4
+Removing intermediate container 2177c8350d2a
+ ---> 73359f8b3f22
+Step 43/54 : USER root
+ ---> Running in 4fb3319b2515
+Removing intermediate container 4fb3319b2515
+ ---> 195e8bb97387
+Step 44/54 : COPY src/ ${REPO_DIR}
+ ---> d8035ccf8d51
+Step 45/54 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e84b74c91da6
+Removing intermediate container e84b74c91da6
+ ---> c439dc537029
+Step 46/54 : USER ${NB_USER}
+ ---> Running in 1339e0f2de0c
+Removing intermediate container 1339e0f2de0c
+ ---> f59dfdbb510a
+Step 47/54 : RUN (cd . &&                     PATH="${KERNEL_PYTHON_PREFIX}/bin:$PATH"                         pipenv install --ignore-pipfile --system --dev                 )
+ ---> Running in fb43ab5d7ba3
+Installing dependencies from Pipfile.lock (58f501)…
+WARNING: pip is being invoked by an old script wrapper. This will fail in a future version of pip.
+Please see https://github.com/pypa/pip/issues/5599 for advice on fixing the underlying issue.
+To avoid this problem you can invoke Python with '-m pip' instead of running pip directly.
+Ignoring appnope: markers 'sys_platform == "darwin"' don't match your environment
+Looking in indexes: https://pypi.python.org/simple
+[91mAn error occurred while installing markupsafe==1.0 --hash=sha256:a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665! Will try again.
+[0mTraceback (most recent call last):
+  File "/usr/local/bin/jupyter-repo2docker", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/__main__.py", line 348, in main
+    r2d.start()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 743, in start
+    self.build()
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/app.py", line 717, in build
+    for l in picked_buildpack.build(
+  File "/usr/local/lib/python3.8/dist-packages/repo2docker/buildpacks/base.py", line 671, in build
+    for line in client.build(**build_kwargs):
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 339, in _stream_helper
+    for chunk in json_stream(self._stream_helper(response, False)):
+  File "/usr/local/lib/python3.8/dist-packages/docker/utils/json_stream.py", line 66, in split_buffer
+    for data in stream_as_text(stream):
+  File "/usr/local/lib/python3.8/dist-packages/docker/utils/json_stream.py", line 22, in stream_as_text
+    for data in stream:
+  File "/usr/local/lib/python3.8/dist-packages/docker/api/client.py", line 345, in _stream_helper
+    data = reader.read(1)
+  File "/usr/lib/python3/dist-packages/urllib3/response.py", line 507, in read
+    data = self._fp.read(amt) if not fp_closed else b""
+  File "/usr/lib/python3.8/http/client.py", line 454, in read
+    n = self.readinto(b)
+  File "/usr/lib/python3.8/http/client.py", line 488, in readinto
+    return self._readinto_chunked(b)
+  File "/usr/lib/python3.8/http/client.py", line 583, in _readinto_chunked
+    chunk_left = self._get_chunk_left()
+  File "/usr/lib/python3.8/http/client.py", line 551, in _get_chunk_left
+    chunk_left = self._read_next_chunk_size()
+  File "/usr/lib/python3.8/http/client.py", line 511, in _read_next_chunk_size
+    line = self.fp.readline(_MAXLINE + 1)
+  File "/usr/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+KeyboardInterrupt

@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/foriequal0/grad-proj-tf-tutorial,master,69fcaff,2018-01-09T15:04:26+09:00,build,build,False,github.com/f/foriequal0/grad-proj-tf-tutorial/logs/build-master-2020-07-23T13.40.txt,2020-07-23T13:40:47.026828,2020-07-23T13.40,0.11.0

@@ -1,0 +1,3 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/haishenming/uda-u5,master,8e4a5a6,2018-03-22T15:39:06+08:00,build,build,True,github.com/h/haishenming/uda-u5/logs/build-master-2020-07-23T11.24.txt,2020-07-23T11:24:07.869410,2020-07-23T11.24,0.11.0
+https://github.com/haishenming/uda-u5,master,8e4a5a6,2018-03-22T15:39:06+08:00,notebook,paper.ipynb,True,github.com/h/haishenming/uda-u5/logs/test-notebook-paper.ipynb-2020-07-23T11.24.txt,2020-07-23T11:24:07.869410,2020-07-23T11.24,0.11.0

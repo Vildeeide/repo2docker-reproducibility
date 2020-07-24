@@ -1,0 +1,2 @@
+repo,ref,resolved_ref,last_modified,kind,test_id,success,path,timestamp,run_id,repo2docker_version
+https://github.com/elisabeth-berg/trending-food,master,a73228b,2018-09-11T09:51:36-06:00,build,build,False,github.com/e/elisabeth-berg/trending-food/logs/build-master-2020-07-23T13.12.txt,2020-07-23T13:12:13.961710,2020-07-23T13.12,0.11.0

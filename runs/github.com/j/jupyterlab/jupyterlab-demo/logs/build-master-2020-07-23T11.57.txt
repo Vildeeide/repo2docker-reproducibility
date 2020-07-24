@@ -1,0 +1,2045 @@
+Picked Local content provider.
+Using local repo /tmp/r2d-test-2020-07-23T11.57wz7_3q3r/github.com/jupyterlab/jupyterlab-demo.
+Using CondaBuildPack builder
+Step 1/65 : FROM buildpack-deps:bionic
+ ---> 5d109dc6d8a0
+Step 2/65 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 84875aa039ff
+Step 3/65 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends locales > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2c6f3445209c
+Step 4/65 : RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen &&     locale-gen
+ ---> Using cache
+ ---> 5ac40a1069ef
+Step 5/65 : ENV LC_ALL en_US.UTF-8
+ ---> Using cache
+ ---> 0569ecd6efb3
+Step 6/65 : ENV LANG en_US.UTF-8
+ ---> Using cache
+ ---> bd3372a8f400
+Step 7/65 : ENV LANGUAGE en_US.UTF-8
+ ---> Using cache
+ ---> ab87a637d837
+Step 8/65 : ENV SHELL /bin/bash
+ ---> Using cache
+ ---> 50ed7363eaf5
+Step 9/65 : ARG NB_USER
+ ---> Using cache
+ ---> 0b8893bd6422
+Step 10/65 : ARG NB_UID
+ ---> Using cache
+ ---> b9e6fa4ea16e
+Step 11/65 : ENV USER ${NB_USER}
+ ---> Using cache
+ ---> b142a4c01942
+Step 12/65 : ENV HOME /home/${NB_USER}
+ ---> Using cache
+ ---> e11d5723ab90
+Step 13/65 : RUN groupadd         --gid ${NB_UID}         ${NB_USER} &&     useradd         --comment "Default user"         --create-home         --gid ${NB_UID}         --no-log-init         --shell /bin/bash         --uid ${NB_UID}         ${NB_USER}
+ ---> Using cache
+ ---> e20a5903ae77
+Step 14/65 : RUN wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key |  apt-key add - &&     DISTRO="bionic" &&     echo "deb https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list &&     echo "deb-src https://deb.nodesource.com/node_10.x $DISTRO main" >> /etc/apt/sources.list.d/nodesource.list
+ ---> Using cache
+ ---> 730bb79c819d
+Step 15/65 : RUN apt-get -qq update &&     apt-get -qq install --yes --no-install-recommends        less        nodejs        unzip        > /dev/null &&     apt-get -qq purge &&     apt-get -qq clean &&     rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 2be5b9d2edc7
+Step 16/65 : EXPOSE 8888
+ ---> Using cache
+ ---> 7fcdbaf0fe40
+Step 17/65 : ENV APP_BASE /srv
+ ---> Using cache
+ ---> ee51ea8ec11a
+Step 18/65 : ENV NPM_DIR ${APP_BASE}/npm
+ ---> Using cache
+ ---> f34fdbe18446
+Step 19/65 : ENV NPM_CONFIG_GLOBALCONFIG ${NPM_DIR}/npmrc
+ ---> Using cache
+ ---> 833e25d9d235
+Step 20/65 : ENV CONDA_DIR ${APP_BASE}/conda
+ ---> Using cache
+ ---> 8ee468f15616
+Step 21/65 : ENV NB_PYTHON_PREFIX ${CONDA_DIR}/envs/notebook
+ ---> Using cache
+ ---> 971c9391c0ab
+Step 22/65 : ENV KERNEL_PYTHON_PREFIX ${NB_PYTHON_PREFIX}
+ ---> Using cache
+ ---> 7fa50abe8e21
+Step 23/65 : ENV PATH ${NB_PYTHON_PREFIX}/bin:${CONDA_DIR}/bin:${NPM_DIR}/bin:${PATH}
+ ---> Using cache
+ ---> eaa621b5d97f
+Step 24/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2factivate-2dconda-2esh-1be18e /etc/profile.d/activate-conda.sh
+ ---> Using cache
+ ---> 9ffab983afa0
+Step 25/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2fenvironment-2epy-2d3-2e7-2efrozen-2eyml-26bd38 /tmp/environment.yml
+ ---> Using cache
+ ---> 9b3e6c528ba6
+Step 26/65 : COPY build_script_files/-2fusr-2flocal-2flib-2fpython3-2e8-2fdist-2dpackages-2frepo2docker-2fbuildpacks-2fconda-2finstall-2dminiconda-2ebash-813f10 /tmp/install-miniconda.bash
+ ---> Using cache
+ ---> e52d3b4016a9
+Step 27/65 : RUN mkdir -p ${NPM_DIR} && chown -R ${NB_USER}:${NB_USER} ${NPM_DIR}
+ ---> Using cache
+ ---> 0a8f7bcc0bd7
+Step 28/65 : USER ${NB_USER}
+ ---> Using cache
+ ---> e295fca18e9d
+Step 29/65 : RUN npm config --global set prefix ${NPM_DIR}
+ ---> Using cache
+ ---> b3629329dd8f
+Step 30/65 : USER root
+ ---> Using cache
+ ---> 5ba3698f0957
+Step 31/65 : RUN bash /tmp/install-miniconda.bash && rm /tmp/install-miniconda.bash /tmp/environment.yml
+ ---> Using cache
+ ---> ecb18ec9bb2f
+Step 32/65 : ARG REPO_DIR=${HOME}
+ ---> Using cache
+ ---> 8f78500beba3
+Step 33/65 : ENV REPO_DIR ${REPO_DIR}
+ ---> Using cache
+ ---> 300bfe3eb940
+Step 34/65 : WORKDIR ${REPO_DIR}
+ ---> Using cache
+ ---> ab56d4c94aaf
+Step 35/65 : ENV PATH ${HOME}/.local/bin:${REPO_DIR}/.local/bin:${PATH}
+ ---> Using cache
+ ---> 26a826700420
+Step 36/65 : ENV CONDA_DEFAULT_ENV ${KERNEL_PYTHON_PREFIX}
+ ---> Using cache
+ ---> ebb7f28a23e9
+Step 37/65 : COPY src/binder/environment.yml ${REPO_DIR}/binder/environment.yml
+ ---> bd1325ba0ef4
+Step 38/65 : USER root
+ ---> Running in 627ef53beee4
+Removing intermediate container 627ef53beee4
+ ---> 6fddd464dba9
+Step 39/65 : RUN chown -R ${NB_USER}:${NB_USER} ${REPO_DIR}
+ ---> Running in e23190cad8c1
+Removing intermediate container e23190cad8c1
+ ---> dc62bcc81c01
+Step 40/65 : RUN apt-get -qq update && apt-get install --yes --no-install-recommends vim && apt-get -qq purge && apt-get -qq clean && rm -rf /var/lib/apt/lists/*
+ ---> Running in 3b2e3ea4cf69
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libgpm2 libpython3.6 libpython3.6-minimal libpython3.6-stdlib python3.6
+  python3.6-minimal vim-common vim-runtime xxd
+Suggested packages:
+  gpm python3.6-venv python3.6-doc binfmt-support ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  libgpm2 libpython3.6 vim vim-common vim-runtime xxd
+The following packages will be upgraded:
+  libpython3.6-minimal libpython3.6-stdlib python3.6 python3.6-minimal
+4 upgraded, 6 newly installed, 0 to remove and 46 not upgraded.
+Need to get 12.2 MB of archives.
+After this operation, 37.3 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python3.6 amd64 3.6.9-1~18.04ubuntu1.1 [203 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6-stdlib amd64 3.6.9-1~18.04ubuntu1.1 [1,711 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 python3.6-minimal amd64 3.6.9-1~18.04ubuntu1.1 [1,610 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6-minimal amd64 3.6.9-1~18.04ubuntu1.1 [533 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 xxd amd64 2:8.0.1453-1ubuntu1.3 [49.4 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-common all 2:8.0.1453-1ubuntu1.3 [70.6 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgpm2 amd64 1.20.7-5 [15.1 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpython3.6 amd64 3.6.9-1~18.04ubuntu1.1 [1,414 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-runtime all 2:8.0.1453-1ubuntu1.3 [5,436 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim amd64 2:8.0.1453-1ubuntu1.3 [1,153 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 12.2 MB in 1s (9,468 kB/s)
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 25659 files and directories currently installed.)
+Preparing to unpack .../0-python3.6_3.6.9-1~18.04ubuntu1.1_amd64.deb ...
+Unpacking python3.6 (3.6.9-1~18.04ubuntu1.1) over (3.6.9-1~18.04ubuntu1) ...
+Preparing to unpack .../1-libpython3.6-stdlib_3.6.9-1~18.04ubuntu1.1_amd64.deb ...
+Unpacking libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1.1) over (3.6.9-1~18.04ubuntu1) ...
+Preparing to unpack .../2-python3.6-minimal_3.6.9-1~18.04ubuntu1.1_amd64.deb ...
+Unpacking python3.6-minimal (3.6.9-1~18.04ubuntu1.1) over (3.6.9-1~18.04ubuntu1) ...
+Preparing to unpack .../3-libpython3.6-minimal_3.6.9-1~18.04ubuntu1.1_amd64.deb ...
+Unpacking libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1.1) over (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package xxd.
+Preparing to unpack .../4-xxd_2%3a8.0.1453-1ubuntu1.3_amd64.deb ...
+Unpacking xxd (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../5-vim-common_2%3a8.0.1453-1ubuntu1.3_all.deb ...
+Unpacking vim-common (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../6-libgpm2_1.20.7-5_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-5) ...
+Selecting previously unselected package libpython3.6:amd64.
+Preparing to unpack .../7-libpython3.6_3.6.9-1~18.04ubuntu1.1_amd64.deb ...
+Unpacking libpython3.6:amd64 (3.6.9-1~18.04ubuntu1.1) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../8-vim-runtime_2%3a8.0.1453-1ubuntu1.3_all.deb ...
+Adding 'diversion of /usr/share/vim/vim80/doc/help.txt to /usr/share/vim/vim80/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim80/doc/tags to /usr/share/vim/vim80/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../9-vim_2%3a8.0.1453-1ubuntu1.3_amd64.deb ...
+Unpacking vim (2:8.0.1453-1ubuntu1.3) ...
+Setting up xxd (2:8.0.1453-1ubuntu1.3) ...
+Setting up libgpm2:amd64 (1.20.7-5) ...
+Setting up libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1.1) ...
+Setting up vim-common (2:8.0.1453-1ubuntu1.3) ...
+Setting up vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+Setting up libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1.1) ...
+Setting up python3.6-minimal (3.6.9-1~18.04ubuntu1.1) ...
+Setting up libpython3.6:amd64 (3.6.9-1~18.04ubuntu1.1) ...
+Setting up python3.6 (3.6.9-1~18.04ubuntu1.1) ...
+Setting up vim (2:8.0.1453-1ubuntu1.3) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/vi.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/vi.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/vi.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/vi.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/vi.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/vi.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/view.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/view.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/view.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/view.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/view.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/view.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/ex.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/ex.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/ex.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for mime-support (3.60ubuntu1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Removing intermediate container 3b2e3ea4cf69
+ ---> a83a65d5a66c
+Step 41/65 : USER ${NB_USER}
+ ---> Running in 36208cfec473
+Removing intermediate container 36208cfec473
+ ---> 9bf035097d19
+Step 42/65 : RUN conda env update -p ${NB_PYTHON_PREFIX} -f "binder/environment.yml" && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 6fca9734fe9e
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+
+gcc_impl_linux-64-7. | 70.6 MB   |            |   0% 
+gcc_impl_linux-64-7. | 70.6 MB   |            |   0% 
+gcc_impl_linux-64-7. | 70.6 MB   |            |   0% 
+gcc_impl_linux-64-7. | 70.6 MB   | 1          |   1% 
+gcc_impl_linux-64-7. | 70.6 MB   | 2          |   2% 
+gcc_impl_linux-64-7. | 70.6 MB   | 4          |   4% 
+gcc_impl_linux-64-7. | 70.6 MB   | 5          |   6% 
+gcc_impl_linux-64-7. | 70.6 MB   | 7          |   8% 
+gcc_impl_linux-64-7. | 70.6 MB   | #          |  10% 
+gcc_impl_linux-64-7. | 70.6 MB   | #1         |  12% 
+gcc_impl_linux-64-7. | 70.6 MB   | #4         |  14% 
+gcc_impl_linux-64-7. | 70.6 MB   | #6         |  16% 
+gcc_impl_linux-64-7. | 70.6 MB   | #8         |  18% 
+gcc_impl_linux-64-7. | 70.6 MB   | ##         |  20% 
+gcc_impl_linux-64-7. | 70.6 MB   | ##2        |  22% 
+gcc_impl_linux-64-7. | 70.6 MB   | ##4        |  24% 
+gcc_impl_linux-64-7. | 70.6 MB   | ##6        |  27% 
+gcc_impl_linux-64-7. | 70.6 MB   | ##9        |  29% 
+gcc_impl_linux-64-7. | 70.6 MB   | ###1       |  31% 
+gcc_impl_linux-64-7. | 70.6 MB   | ###3       |  34% 
+gcc_impl_linux-64-7. | 70.6 MB   | ###5       |  36% 
+gcc_impl_linux-64-7. | 70.6 MB   | ###7       |  38% 
+gcc_impl_linux-64-7. | 70.6 MB   | ####       |  40% 
+gcc_impl_linux-64-7. | 70.6 MB   | ####2      |  42% 
+gcc_impl_linux-64-7. | 70.6 MB   | ####4      |  44% 
+gcc_impl_linux-64-7. | 70.6 MB   | ####6      |  46% 
+gcc_impl_linux-64-7. | 70.6 MB   | ####8      |  49% 
+gcc_impl_linux-64-7. | 70.6 MB   | #####      |  51% 
+gcc_impl_linux-64-7. | 70.6 MB   | #####3     |  53% 
+gcc_impl_linux-64-7. | 70.6 MB   | #####5     |  55% 
+gcc_impl_linux-64-7. | 70.6 MB   | #####7     |  58% 
+gcc_impl_linux-64-7. | 70.6 MB   | #####9     |  60% 
+gcc_impl_linux-64-7. | 70.6 MB   | ######2    |  62% 
+gcc_impl_linux-64-7. | 70.6 MB   | ######4    |  65% 
+gcc_impl_linux-64-7. | 70.6 MB   | ######6    |  67% 
+gcc_impl_linux-64-7. | 70.6 MB   | ######8    |  69% 
+gcc_impl_linux-64-7. | 70.6 MB   | #######1   |  71% 
+gcc_impl_linux-64-7. | 70.6 MB   | #######3   |  74% 
+gcc_impl_linux-64-7. | 70.6 MB   | #######6   |  76% 
+gcc_impl_linux-64-7. | 70.6 MB   | #######8   |  78% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########   |  81% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########2  |  83% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########5  |  85% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########7  |  87% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########9  |  90% 
+gcc_impl_linux-64-7. | 70.6 MB   | #########1 |  92% 
+gcc_impl_linux-64-7. | 70.6 MB   | #########4 |  95% 
+gcc_impl_linux-64-7. | 70.6 MB   | #########6 |  97% 
+gcc_impl_linux-64-7. | 70.6 MB   | #########9 |  99% 
+gcc_impl_linux-64-7. | 70.6 MB   | ########## | 100% 
+
+gmp-6.2.0            | 811 KB    |            |   0% 
+gmp-6.2.0            | 811 KB    | ####7      |  47% 
+gmp-6.2.0            | 811 KB    | ######1    |  61% 
+gmp-6.2.0            | 811 KB    | ########## | 100% 
+
+pixman-0.38.0        | 594 KB    |            |   0% 
+pixman-0.38.0        | 594 KB    | 5          |   5% 
+pixman-0.38.0        | 594 KB    | ########## | 100% 
+
+xz-5.2.5             | 343 KB    |            |   0% 
+xz-5.2.5             | 343 KB    | ########## | 100% 
+
+pandas-0.24.2        | 11.1 MB   |            |   0% 
+pandas-0.24.2        | 11.1 MB   |            |   0% 
+pandas-0.24.2        | 11.1 MB   | #3         |  13% 
+pandas-0.24.2        | 11.1 MB   | ##2        |  22% 
+pandas-0.24.2        | 11.1 MB   | ###3       |  33% 
+pandas-0.24.2        | 11.1 MB   | ####5      |  45% 
+pandas-0.24.2        | 11.1 MB   | #####9     |  60% 
+pandas-0.24.2        | 11.1 MB   | #######3   |  74% 
+pandas-0.24.2        | 11.1 MB   | ########7  |  87% 
+pandas-0.24.2        | 11.1 MB   | ########## | 100% 
+
+jupyterlab-2.2.0     | 5.8 MB    |            |   0% 
+jupyterlab-2.2.0     | 5.8 MB    | 6          |   7% 
+jupyterlab-2.2.0     | 5.8 MB    | 8          |   8% 
+jupyterlab-2.2.0     | 5.8 MB    | ##6        |  27% 
+jupyterlab-2.2.0     | 5.8 MB    | #####      |  50% 
+jupyterlab-2.2.0     | 5.8 MB    | #######    |  71% 
+jupyterlab-2.2.0     | 5.8 MB    | #########5 |  96% 
+jupyterlab-2.2.0     | 5.8 MB    | ########## | 100% 
+
+lcms2-2.11           | 431 KB    |            |   0% 
+lcms2-2.11           | 431 KB    | #########2 |  93% 
+lcms2-2.11           | 431 KB    | ########## | 100% 
+
+pthread-stubs-0.4    | 5 KB      |            |   0% 
+pthread-stubs-0.4    | 5 KB      | ########## | 100% 
+
+widgetsnbextension-3 | 1.8 MB    |            |   0% 
+widgetsnbextension-3 | 1.8 MB    |            |   1% 
+widgetsnbextension-3 | 1.8 MB    | ######5    |  65% 
+widgetsnbextension-3 | 1.8 MB    | ########## | 100% 
+
+r-fansi-0.4.1        | 196 KB    |            |   0% 
+r-fansi-0.4.1        | 196 KB    | 8          |   8% 
+r-fansi-0.4.1        | 196 KB    | ########## | 100% 
+
+r-mass-7.3_51.6      | 1.1 MB    |            |   0% 
+r-mass-7.3_51.6      | 1.1 MB    | ###1       |  32% 
+r-mass-7.3_51.6      | 1.1 MB    | ########## | 100% 
+
+tensorflow-estimator | 181 KB    |            |   0% 
+tensorflow-estimator | 181 KB    | 8          |   9% 
+tensorflow-estimator | 181 KB    | ########## | 100% 
+
+certifi-2020.6.20    | 151 KB    |            |   0% 
+certifi-2020.6.20    | 151 KB    | ########## | 100% 
+
+binutils_linux-64-2. | 21 KB     |            |   0% 
+binutils_linux-64-2. | 21 KB     | ########## | 100% 
+
+xleaflet-0.9.0       | 996 KB    |            |   0% 
+xleaflet-0.9.0       | 996 KB    | 1          |   2% 
+xleaflet-0.9.0       | 996 KB    | ########## | 100% 
+
+nlohmann_json-3.6.1  | 101 KB    |            |   0% 
+nlohmann_json-3.6.1  | 101 KB    | #5         |  16% 
+nlohmann_json-3.6.1  | 101 KB    | ########## | 100% 
+
+expat-2.2.9          | 191 KB    |            |   0% 
+expat-2.2.9          | 191 KB    | ########## | 100% 
+
+r-praise-1.0.0       | 23 KB     |            |   0% 
+r-praise-1.0.0       | 23 KB     | ######9    |  69% 
+r-praise-1.0.0       | 23 KB     | ########## | 100% 
+
+gxx_impl_linux-64-7. | 19.1 MB   |            |   0% 
+gxx_impl_linux-64-7. | 19.1 MB   |            |   0% 
+gxx_impl_linux-64-7. | 19.1 MB   | 6          |   6% 
+gxx_impl_linux-64-7. | 19.1 MB   | #3         |  13% 
+gxx_impl_linux-64-7. | 19.1 MB   | #8         |  18% 
+gxx_impl_linux-64-7. | 19.1 MB   | ##4        |  25% 
+gxx_impl_linux-64-7. | 19.1 MB   | ###3       |  34% 
+gxx_impl_linux-64-7. | 19.1 MB   | ####1      |  42% 
+gxx_impl_linux-64-7. | 19.1 MB   | ####8      |  49% 
+gxx_impl_linux-64-7. | 19.1 MB   | #####6     |  56% 
+gxx_impl_linux-64-7. | 19.1 MB   | ######4    |  65% 
+gxx_impl_linux-64-7. | 19.1 MB   | #######3   |  73% 
+gxx_impl_linux-64-7. | 19.1 MB   | ########1  |  81% 
+gxx_impl_linux-64-7. | 19.1 MB   | ########8  |  88% 
+gxx_impl_linux-64-7. | 19.1 MB   | #########6 |  97% 
+gxx_impl_linux-64-7. | 19.1 MB   | ########## | 100% 
+
+r-rprojroot-1.3_2    | 94 KB     |            |   0% 
+r-rprojroot-1.3_2    | 94 KB     | #7         |  17% 
+r-rprojroot-1.3_2    | 94 KB     | ########## | 100% 
+
+pillow-7.2.0         | 675 KB    |            |   0% 
+pillow-7.2.0         | 675 KB    | 2          |   2% 
+pillow-7.2.0         | 675 KB    | ########7  |  88% 
+pillow-7.2.0         | 675 KB    | ########## | 100% 
+
+libiconv-1.15        | 2.0 MB    |            |   0% 
+libiconv-1.15        | 2.0 MB    | ##6        |  27% 
+libiconv-1.15        | 2.0 MB    | #########8 |  99% 
+libiconv-1.15        | 2.0 MB    | ########## | 100% 
+
+libpng-1.6.37        | 308 KB    |            |   0% 
+libpng-1.6.37        | 308 KB    | ########## | 100% 
+
+sympy-1.4            | 9.7 MB    |            |   0% 
+sympy-1.4            | 9.7 MB    | 7          |   8% 
+sympy-1.4            | 9.7 MB    | ##1        |  22% 
+sympy-1.4            | 9.7 MB    | ###7       |  37% 
+sympy-1.4            | 9.7 MB    | #####2     |  52% 
+sympy-1.4            | 9.7 MB    | ######6    |  67% 
+sympy-1.4            | 9.7 MB    | ########1  |  81% 
+sympy-1.4            | 9.7 MB    | #########7 |  97% 
+sympy-1.4            | 9.7 MB    | ########## | 100% 
+
+r-withr-2.2.0        | 227 KB    |            |   0% 
+r-withr-2.2.0        | 227 KB    | ########## | 100% 
+
+zict-2.0.0           | 10 KB     |            |   0% 
+zict-2.0.0           | 10 KB     | ########## | 100% 
+
+xorg-libice-1.0.10   | 57 KB     |            |   0% 
+xorg-libice-1.0.10   | 57 KB     | ########## | 100% 
+
+cloudpickle-1.5.0    | 22 KB     |            |   0% 
+cloudpickle-1.5.0    | 22 KB     | ########## | 100% 
+
+kiwisolver-1.2.0     | 87 KB     |            |   0% 
+kiwisolver-1.2.0     | 87 KB     | ########## | 100% 
+
+r-ellipsis-0.3.1     | 49 KB     |            |   0% 
+r-ellipsis-0.3.1     | 49 KB     | ########## | 100% 
+
+msgpack-python-0.6.2 | 89 KB     |            |   0% 
+msgpack-python-0.6.2 | 89 KB     | #7         |  18% 
+msgpack-python-0.6.2 | 89 KB     | ########## | 100% 
+
+bokeh-2.1.1          | 6.9 MB    |            |   0% 
+bokeh-2.1.1          | 6.9 MB    | #5         |  16% 
+bokeh-2.1.1          | 6.9 MB    | ###8       |  39% 
+bokeh-2.1.1          | 6.9 MB    | ######1    |  62% 
+bokeh-2.1.1          | 6.9 MB    | ########4  |  84% 
+bokeh-2.1.1          | 6.9 MB    | ########## | 100% 
+
+fastcache-1.1.0      | 29 KB     |            |   0% 
+fastcache-1.1.0      | 29 KB     | ########## | 100% 
+
+tensorflow-1.13.1    | 22 KB     |            |   0% 
+tensorflow-1.13.1    | 22 KB     | #######2   |  73% 
+tensorflow-1.13.1    | 22 KB     | ########## | 100% 
+
+curl-7.65.3          | 132 KB    |            |   0% 
+curl-7.65.3          | 132 KB    | ########## | 100% 
+
+pyyaml-5.3.1         | 185 KB    |            |   0% 
+pyyaml-5.3.1         | 185 KB    | 8          |   9% 
+pyyaml-5.3.1         | 185 KB    | ########## | 100% 
+
+r-irdisplay-0.7      | 35 KB     |            |   0% 
+r-irdisplay-0.7      | 35 KB     | ########## | 100% 
+
+libxcb-1.13          | 396 KB    |            |   0% 
+libxcb-1.13          | 396 KB    | ########## | 100% 
+
+pytz-2020.1          | 227 KB    |            |   0% 
+pytz-2020.1          | 227 KB    | ########## | 100% 
+
+pcre-8.44            | 261 KB    |            |   0% 
+pcre-8.44            | 261 KB    | ########## | 100% 
+
+r-evaluate-0.14      | 81 KB     |            |   0% 
+r-evaluate-0.14      | 81 KB     | #9         |  20% 
+r-evaluate-0.14      | 81 KB     | ########## | 100% 
+
+r-assertthat-0.2.1   | 70 KB     |            |   0% 
+r-assertthat-0.2.1   | 70 KB     | ##2        |  23% 
+r-assertthat-0.2.1   | 70 KB     | ########## | 100% 
+
+r-gtable-0.3.0       | 423 KB    |            |   0% 
+r-gtable-0.3.0       | 423 KB    | 3          |   4% 
+r-gtable-0.3.0       | 423 KB    | ########## | 100% 
+
+invoke-1.2.0         | 252 KB    |            |   0% 
+invoke-1.2.0         | 252 KB    | 6          |   6% 
+invoke-1.2.0         | 252 KB    | ########## | 100% 
+
+click-7.1.2          | 64 KB     |            |   0% 
+click-7.1.2          | 64 KB     | ########## | 100% 
+
+termcolor-1.1.0      | 6 KB      |            |   0% 
+termcolor-1.1.0      | 6 KB      | ########## | 100% 
+
+packaging-20.4       | 32 KB     |            |   0% 
+packaging-20.4       | 32 KB     | ########## | 100% 
+
+make-4.3             | 505 KB    |            |   0% 
+make-4.3             | 505 KB    | ########## | 100% 
+
+graphite2-1.3.13     | 102 KB    |            |   0% 
+graphite2-1.3.13     | 102 KB    | ########## | 100% 
+
+mpfr-4.0.2           | 648 KB    |            |   0% 
+mpfr-4.0.2           | 648 KB    | 2          |   2% 
+mpfr-4.0.2           | 648 KB    | ########## | 100% 
+
+r-ggplot2-3.3.2      | 3.9 MB    |            |   0% 
+r-ggplot2-3.3.2      | 3.9 MB    | #6         |  16% 
+r-ggplot2-3.3.2      | 3.9 MB    | ####4      |  44% 
+r-ggplot2-3.3.2      | 3.9 MB    | ########   |  80% 
+r-ggplot2-3.3.2      | 3.9 MB    | ########## | 100% 
+
+xeus-cling-0.6.0     | 18.7 MB   |            |   0% 
+xeus-cling-0.6.0     | 18.7 MB   |            |   0% 
+xeus-cling-0.6.0     | 18.7 MB   | 6          |   7% 
+xeus-cling-0.6.0     | 18.7 MB   | #2         |  12% 
+xeus-cling-0.6.0     | 18.7 MB   | #9         |  19% 
+xeus-cling-0.6.0     | 18.7 MB   | ##6        |  26% 
+xeus-cling-0.6.0     | 18.7 MB   | ###3       |  33% 
+xeus-cling-0.6.0     | 18.7 MB   | ####       |  40% 
+xeus-cling-0.6.0     | 18.7 MB   | ####7      |  48% 
+xeus-cling-0.6.0     | 18.7 MB   | #####4     |  54% 
+xeus-cling-0.6.0     | 18.7 MB   | ######1    |  62% 
+xeus-cling-0.6.0     | 18.7 MB   | ######9    |  70% 
+xeus-cling-0.6.0     | 18.7 MB   | #######6   |  77% 
+xeus-cling-0.6.0     | 18.7 MB   | ########4  |  84% 
+xeus-cling-0.6.0     | 18.7 MB   | #########1 |  91% 
+xeus-cling-0.6.0     | 18.7 MB   | #########9 | 100% 
+xeus-cling-0.6.0     | 18.7 MB   | ########## | 100% 
+
+r-pkgconfig-2.0.3    | 24 KB     |            |   0% 
+r-pkgconfig-2.0.3    | 24 KB     | ######5    |  66% 
+r-pkgconfig-2.0.3    | 24 KB     | ########## | 100% 
+
+mpc-1.1.0            | 151 KB    |            |   0% 
+mpc-1.1.0            | 151 KB    | #          |  11% 
+mpc-1.1.0            | 151 KB    | ########## | 100% 
+
+numpy-1.19.0         | 5.2 MB    |            |   0% 
+numpy-1.19.0         | 5.2 MB    | #8         |  18% 
+numpy-1.19.0         | 5.2 MB    | ####1      |  41% 
+numpy-1.19.0         | 5.2 MB    | ######4    |  65% 
+numpy-1.19.0         | 5.2 MB    | #########4 |  94% 
+numpy-1.19.0         | 5.2 MB    | ########## | 100% 
+
+hdf5-1.10.6          | 3.0 MB    |            |   0% 
+hdf5-1.10.6          | 3.0 MB    | ##6        |  27% 
+hdf5-1.10.6          | 3.0 MB    | ########2  |  83% 
+hdf5-1.10.6          | 3.0 MB    | ########## | 100% 
+
+keras-applications-1 | 30 KB     |            |   0% 
+keras-applications-1 | 30 KB     | ########## | 100% 
+
+r-magrittr-1.5       | 167 KB    |            |   0% 
+r-magrittr-1.5       | 167 KB    | 9          |  10% 
+r-magrittr-1.5       | 167 KB    | ########## | 100% 
+
+xorg-kbproto-1.0.7   | 26 KB     |            |   0% 
+xorg-kbproto-1.0.7   | 26 KB     | ########## | 100% 
+
+astor-0.8.1          | 25 KB     |            |   0% 
+astor-0.8.1          | 25 KB     | ########## | 100% 
+
+xorg-xextproto-7.3.0 | 27 KB     |            |   0% 
+xorg-xextproto-7.3.0 | 27 KB     | ########## | 100% 
+
+r-utf8-1.1.4         | 161 KB    |            |   0% 
+r-utf8-1.1.4         | 161 KB    | ########## | 100% 
+
+gst-plugins-base-1.1 | 6.8 MB    |            |   0% 
+gst-plugins-base-1.1 | 6.8 MB    | #1         |  12% 
+gst-plugins-base-1.1 | 6.8 MB    | ###        |  31% 
+gst-plugins-base-1.1 | 6.8 MB    | #####2     |  52% 
+gst-plugins-base-1.1 | 6.8 MB    | #######5   |  76% 
+gst-plugins-base-1.1 | 6.8 MB    | ########## | 100% 
+
+tensorboard-1.13.1   | 3.3 MB    |            |   0% 
+tensorboard-1.13.1   | 3.3 MB    |            |   0% 
+tensorboard-1.13.1   | 3.3 MB    | 8          |   8% 
+tensorboard-1.13.1   | 3.3 MB    | ##1        |  22% 
+tensorboard-1.13.1   | 3.3 MB    | ####1      |  41% 
+tensorboard-1.13.1   | 3.3 MB    | ######     |  61% 
+tensorboard-1.13.1   | 3.3 MB    | ########7  |  87% 
+tensorboard-1.13.1   | 3.3 MB    | ########## | 100% 
+
+xorg-libsm-1.2.3     | 25 KB     |            |   0% 
+xorg-libsm-1.2.3     | 25 KB     | ########## | 100% 
+
+matplotlib-base-3.1. | 6.6 MB    |            |   0% 
+matplotlib-base-3.1. | 6.6 MB    |            |   0% 
+matplotlib-base-3.1. | 6.6 MB    | 2          |   2% 
+matplotlib-base-3.1. | 6.6 MB    | 7          |   8% 
+matplotlib-base-3.1. | 6.6 MB    | #6         |  16% 
+matplotlib-base-3.1. | 6.6 MB    | ##4        |  25% 
+matplotlib-base-3.1. | 6.6 MB    | ###        |  31% 
+matplotlib-base-3.1. | 6.6 MB    | ####7      |  48% 
+matplotlib-base-3.1. | 6.6 MB    | #####7     |  57% 
+matplotlib-base-3.1. | 6.6 MB    | ######6    |  66% 
+matplotlib-base-3.1. | 6.6 MB    | #######6   |  76% 
+matplotlib-base-3.1. | 6.6 MB    | ########8  |  88% 
+matplotlib-base-3.1. | 6.6 MB    | #########7 |  98% 
+matplotlib-base-3.1. | 6.6 MB    | ########## | 100% 
+
+pywavelets-1.1.1     | 4.4 MB    |            |   0% 
+pywavelets-1.1.1     | 4.4 MB    |            |   0% 
+pywavelets-1.1.1     | 4.4 MB    | ###2       |  32% 
+pywavelets-1.1.1     | 4.4 MB    | #####5     |  56% 
+pywavelets-1.1.1     | 4.4 MB    | #########  |  90% 
+pywavelets-1.1.1     | 4.4 MB    | ########## | 100% 
+
+r-rcolorbrewer-1.1_2 | 59 KB     |            |   0% 
+r-rcolorbrewer-1.1_2 | 59 KB     | ########## | 100% 
+
+zstd-1.4.5           | 428 KB    |            |   0% 
+zstd-1.4.5           | 428 KB    | #######1   |  71% 
+zstd-1.4.5           | 428 KB    | ########## | 100% 
+
+r-testthat-2.3.2     | 1.1 MB    |            |   0% 
+r-testthat-2.3.2     | 1.1 MB    | 1          |   1% 
+r-testthat-2.3.2     | 1.1 MB    | #5         |  15% 
+r-testthat-2.3.2     | 1.1 MB    | ###        |  31% 
+r-testthat-2.3.2     | 1.1 MB    | #########4 |  94% 
+r-testthat-2.3.2     | 1.1 MB    | ########## | 100% 
+
+harfbuzz-2.4.0       | 1.5 MB    |            |   0% 
+harfbuzz-2.4.0       | 1.5 MB    | 8          |   9% 
+harfbuzz-2.4.0       | 1.5 MB    | ######8    |  68% 
+harfbuzz-2.4.0       | 1.5 MB    | ########## | 100% 
+
+nodejs-11.14.0       | 16.6 MB   |            |   0% 
+nodejs-11.14.0       | 16.6 MB   |            |   0% 
+nodejs-11.14.0       | 16.6 MB   | 5          |   5% 
+nodejs-11.14.0       | 16.6 MB   | #1         |  11% 
+nodejs-11.14.0       | 16.6 MB   | #9         |  19% 
+nodejs-11.14.0       | 16.6 MB   | ##5        |  25% 
+nodejs-11.14.0       | 16.6 MB   | ###3       |  33% 
+nodejs-11.14.0       | 16.6 MB   | ####1      |  41% 
+nodejs-11.14.0       | 16.6 MB   | ####7      |  47% 
+nodejs-11.14.0       | 16.6 MB   | #####5     |  55% 
+nodejs-11.14.0       | 16.6 MB   | ######3    |  64% 
+nodejs-11.14.0       | 16.6 MB   | #######3   |  74% 
+nodejs-11.14.0       | 16.6 MB   | ########2  |  82% 
+nodejs-11.14.0       | 16.6 MB   | #########  |  90% 
+nodejs-11.14.0       | 16.6 MB   | #########8 |  99% 
+nodejs-11.14.0       | 16.6 MB   | ########## | 100% 
+
+r-irkernel-1.0.2     | 155 KB    |            |   0% 
+r-irkernel-1.0.2     | 155 KB    | #          |  10% 
+r-irkernel-1.0.2     | 155 KB    | ########## | 100% 
+
+r-base64enc-0.1_3    | 44 KB     |            |   0% 
+r-base64enc-0.1_3    | 44 KB     | ########## | 100% 
+
+c-ares-1.16.1        | 108 KB    |            |   0% 
+c-ares-1.16.1        | 108 KB    | ########## | 100% 
+
+sip-4.19.8           | 290 KB    |            |   0% 
+sip-4.19.8           | 290 KB    | 5          |   6% 
+sip-4.19.8           | 290 KB    | ########## | 100% 
+
+absl-py-0.9.0        | 162 KB    |            |   0% 
+absl-py-0.9.0        | 162 KB    | 9          |  10% 
+absl-py-0.9.0        | 162 KB    | ########## | 100% 
+
+libblas-3.8.0        | 11 KB     |            |   0% 
+libblas-3.8.0        | 11 KB     | ########## | 100% 
+
+grpcio-1.30.0        | 2.0 MB    |            |   0% 
+grpcio-1.30.0        | 2.0 MB    | ###        |  30% 
+grpcio-1.30.0        | 2.0 MB    | ########## | 100% 
+
+networkx-2.4         | 1.2 MB    |            |   0% 
+networkx-2.4         | 1.2 MB    | ########3  |  83% 
+networkx-2.4         | 1.2 MB    | ########## | 100% 
+
+binutils_impl_linux- | 9.1 MB    |            |   0% 
+binutils_impl_linux- | 9.1 MB    |            |   0% 
+binutils_impl_linux- | 9.1 MB    | #4         |  15% 
+binutils_impl_linux- | 9.1 MB    | ##8        |  29% 
+binutils_impl_linux- | 9.1 MB    | ####4      |  45% 
+binutils_impl_linux- | 9.1 MB    | #####7     |  57% 
+binutils_impl_linux- | 9.1 MB    | #######2   |  73% 
+binutils_impl_linux- | 9.1 MB    | ########8  |  89% 
+binutils_impl_linux- | 9.1 MB    | ########## | 100% 
+
+r-nlme-3.1_148       | 2.3 MB    |            |   0% 
+r-nlme-3.1_148       | 2.3 MB    | ##2        |  22% 
+r-nlme-3.1_148       | 2.3 MB    | #######1   |  71% 
+r-nlme-3.1_148       | 2.3 MB    | ########## | 100% 
+
+r-jsonlite-1.7.0     | 1.0 MB    |            |   0% 
+r-jsonlite-1.7.0     | 1.0 MB    | 1          |   1% 
+r-jsonlite-1.7.0     | 1.0 MB    | ###1       |  31% 
+r-jsonlite-1.7.0     | 1.0 MB    | ########8  |  88% 
+r-jsonlite-1.7.0     | 1.0 MB    | ########## | 100% 
+
+r-zeallot-0.1.0      | 62 KB     |            |   0% 
+r-zeallot-0.1.0      | 62 KB     | ##5        |  26% 
+r-zeallot-0.1.0      | 62 KB     | ########## | 100% 
+
+pango-1.42.4         | 521 KB    |            |   0% 
+pango-1.42.4         | 521 KB    | #######    |  71% 
+pango-1.42.4         | 521 KB    | ########## | 100% 
+
+r-repr-1.1.0         | 145 KB    |            |   0% 
+r-repr-1.1.0         | 145 KB    | #1         |  11% 
+r-repr-1.1.0         | 145 KB    | ########## | 100% 
+
+r-farver-2.0.3       | 1.4 MB    |            |   0% 
+r-farver-2.0.3       | 1.4 MB    | #######5   |  75% 
+r-farver-2.0.3       | 1.4 MB    | ########## | 100% 
+
+gstreamer-1.14.5     | 4.5 MB    |            |   0% 
+gstreamer-1.14.5     | 4.5 MB    | #2         |  13% 
+gstreamer-1.14.5     | 4.5 MB    | ###8       |  39% 
+gstreamer-1.14.5     | 4.5 MB    | #######7   |  78% 
+gstreamer-1.14.5     | 4.5 MB    | ########## | 100% 
+
+bqplot-0.12.14       | 3.7 MB    |            |   0% 
+bqplot-0.12.14       | 3.7 MB    | ##         |  20% 
+bqplot-0.12.14       | 3.7 MB    | #####8     |  58% 
+bqplot-0.12.14       | 3.7 MB    | ########## | 100% 
+
+r-crayon-1.3.4       | 747 KB    |            |   0% 
+r-crayon-1.3.4       | 747 KB    | #######7   |  77% 
+r-crayon-1.3.4       | 747 KB    | ########## | 100% 
+
+cairo-1.16.0         | 1.5 MB    |            |   0% 
+cairo-1.16.0         | 1.5 MB    | ######3    |  64% 
+cairo-1.16.0         | 1.5 MB    | ########## | 100% 
+
+cycler-0.10.0        | 9 KB      |            |   0% 
+cycler-0.10.0        | 9 KB      | ########## | 100% 
+
+markdown-3.2.2       | 61 KB     |            |   0% 
+markdown-3.2.2       | 61 KB     | ########## | 100% 
+
+r-rcpp-1.0.5         | 2.0 MB    |            |   0% 
+r-rcpp-1.0.5         | 2.0 MB    |            |   1% 
+r-rcpp-1.0.5         | 2.0 MB    | ###3       |  33% 
+r-rcpp-1.0.5         | 2.0 MB    | ########3  |  84% 
+r-rcpp-1.0.5         | 2.0 MB    | ########## | 100% 
+
+bwidget-1.9.14       | 119 KB    |            |   0% 
+bwidget-1.9.14       | 119 KB    | ########## | 100% 
+
+partd-1.1.0          | 17 KB     |            |   0% 
+partd-1.1.0          | 17 KB     | ########## | 100% 
+
+lz4-c-1.9.2          | 226 KB    |            |   0% 
+lz4-c-1.9.2          | 226 KB    | ########## | 100% 
+
+typing_extensions-3. | 25 KB     |            |   0% 
+typing_extensions-3. | 25 KB     | ########## | 100% 
+
+patsy-0.5.1          | 187 KB    |            |   0% 
+patsy-0.5.1          | 187 KB    | ########## | 100% 
+
+r-ps-1.3.3           | 235 KB    |            |   0% 
+r-ps-1.3.3           | 235 KB    | ########## | 100% 
+
+python-3.7.8         | 53.1 MB   |            |   0% 
+python-3.7.8         | 53.1 MB   |            |   1% 
+python-3.7.8         | 53.1 MB   | 3          |   3% 
+python-3.7.8         | 53.1 MB   | 5          |   6% 
+python-3.7.8         | 53.1 MB   | 8          |   8% 
+python-3.7.8         | 53.1 MB   | #          |  10% 
+python-3.7.8         | 53.1 MB   | #2         |  13% 
+python-3.7.8         | 53.1 MB   | #5         |  15% 
+python-3.7.8         | 53.1 MB   | #7         |  18% 
+python-3.7.8         | 53.1 MB   | #9         |  20% 
+python-3.7.8         | 53.1 MB   | ##2        |  22% 
+python-3.7.8         | 53.1 MB   | ##5        |  25% 
+python-3.7.8         | 53.1 MB   | ##7        |  28% 
+python-3.7.8         | 53.1 MB   | ###        |  31% 
+python-3.7.8         | 53.1 MB   | ###3       |  33% 
+python-3.7.8         | 53.1 MB   | ###5       |  36% 
+python-3.7.8         | 53.1 MB   | ###7       |  38% 
+python-3.7.8         | 53.1 MB   | ####       |  40% 
+python-3.7.8         | 53.1 MB   | ####2      |  43% 
+python-3.7.8         | 53.1 MB   | ####5      |  45% 
+python-3.7.8         | 53.1 MB   | ####7      |  48% 
+python-3.7.8         | 53.1 MB   | #####      |  50% 
+python-3.7.8         | 53.1 MB   | #####3     |  53% 
+python-3.7.8         | 53.1 MB   | #####5     |  56% 
+python-3.7.8         | 53.1 MB   | #####7     |  58% 
+python-3.7.8         | 53.1 MB   | ######     |  60% 
+python-3.7.8         | 53.1 MB   | ######2    |  62% 
+python-3.7.8         | 53.1 MB   | ######4    |  64% 
+python-3.7.8         | 53.1 MB   | ######6    |  67% 
+python-3.7.8         | 53.1 MB   | ######8    |  69% 
+python-3.7.8         | 53.1 MB   | #######1   |  71% 
+python-3.7.8         | 53.1 MB   | #######3   |  74% 
+python-3.7.8         | 53.1 MB   | #######5   |  76% 
+python-3.7.8         | 53.1 MB   | #######7   |  78% 
+python-3.7.8         | 53.1 MB   | ########   |  80% 
+python-3.7.8         | 53.1 MB   | ########2  |  82% 
+python-3.7.8         | 53.1 MB   | ########4  |  85% 
+python-3.7.8         | 53.1 MB   | ########6  |  87% 
+python-3.7.8         | 53.1 MB   | ########9  |  89% 
+python-3.7.8         | 53.1 MB   | #########1 |  92% 
+python-3.7.8         | 53.1 MB   | #########4 |  94% 
+python-3.7.8         | 53.1 MB   | #########6 |  97% 
+python-3.7.8         | 53.1 MB   | #########9 |  99% 
+python-3.7.8         | 53.1 MB   | ########## | 100% 
+
+r-rstudioapi-0.11    | 267 KB    |            |   0% 
+r-rstudioapi-0.11    | 267 KB    | ########## | 100% 
+
+r-pillar-1.4.6       | 194 KB    |            |   0% 
+r-pillar-1.4.6       | 194 KB    | 8          |   8% 
+r-pillar-1.4.6       | 194 KB    | ########## | 100% 
+
+tensorflow-base-1.13 | 74.0 MB   |            |   0% 
+tensorflow-base-1.13 | 74.0 MB   |            |   0% 
+tensorflow-base-1.13 | 74.0 MB   | 2          |   2% 
+tensorflow-base-1.13 | 74.0 MB   | 4          |   5% 
+tensorflow-base-1.13 | 74.0 MB   | 6          |   6% 
+tensorflow-base-1.13 | 74.0 MB   | 8          |   8% 
+tensorflow-base-1.13 | 74.0 MB   | #          |  11% 
+tensorflow-base-1.13 | 74.0 MB   | #2         |  13% 
+tensorflow-base-1.13 | 74.0 MB   | #4         |  15% 
+tensorflow-base-1.13 | 74.0 MB   | #6         |  17% 
+tensorflow-base-1.13 | 74.0 MB   | #8         |  19% 
+tensorflow-base-1.13 | 74.0 MB   | ##         |  21% 
+tensorflow-base-1.13 | 74.0 MB   | ##3        |  23% 
+tensorflow-base-1.13 | 74.0 MB   | ##5        |  25% 
+tensorflow-base-1.13 | 74.0 MB   | ##7        |  28% 
+tensorflow-base-1.13 | 74.0 MB   | ###        |  30% 
+tensorflow-base-1.13 | 74.0 MB   | ###2       |  32% 
+tensorflow-base-1.13 | 74.0 MB   | ###4       |  35% 
+tensorflow-base-1.13 | 74.0 MB   | ###7       |  37% 
+tensorflow-base-1.13 | 74.0 MB   | ###9       |  39% 
+tensorflow-base-1.13 | 74.0 MB   | ####1      |  41% 
+tensorflow-base-1.13 | 74.0 MB   | ####3      |  43% 
+tensorflow-base-1.13 | 74.0 MB   | ####5      |  46% 
+tensorflow-base-1.13 | 74.0 MB   | ####8      |  48% 
+tensorflow-base-1.13 | 74.0 MB   | #####      |  50% 
+tensorflow-base-1.13 | 74.0 MB   | #####2     |  53% 
+tensorflow-base-1.13 | 74.0 MB   | #####5     |  55% 
+tensorflow-base-1.13 | 74.0 MB   | #####7     |  57% 
+tensorflow-base-1.13 | 74.0 MB   | #####9     |  59% 
+tensorflow-base-1.13 | 74.0 MB   | ######1    |  62% 
+tensorflow-base-1.13 | 74.0 MB   | ######3    |  64% 
+tensorflow-base-1.13 | 74.0 MB   | ######5    |  66% 
+tensorflow-base-1.13 | 74.0 MB   | ######8    |  69% 
+tensorflow-base-1.13 | 74.0 MB   | #######    |  71% 
+tensorflow-base-1.13 | 74.0 MB   | #######3   |  73% 
+tensorflow-base-1.13 | 74.0 MB   | #######5   |  76% 
+tensorflow-base-1.13 | 74.0 MB   | #######8   |  78% 
+tensorflow-base-1.13 | 74.0 MB   | ########   |  80% 
+tensorflow-base-1.13 | 74.0 MB   | ########2  |  83% 
+tensorflow-base-1.13 | 74.0 MB   | ########5  |  85% 
+tensorflow-base-1.13 | 74.0 MB   | ########7  |  87% 
+tensorflow-base-1.13 | 74.0 MB   | ########9  |  90% 
+tensorflow-base-1.13 | 74.0 MB   | #########2 |  92% 
+tensorflow-base-1.13 | 74.0 MB   | #########4 |  95% 
+tensorflow-base-1.13 | 74.0 MB   | #########7 |  97% 
+tensorflow-base-1.13 | 74.0 MB   | ########## | 100% 
+
+r-mgcv-1.8_31        | 2.7 MB    |            |   0% 
+r-mgcv-1.8_31        | 2.7 MB    |            |   1% 
+r-mgcv-1.8_31        | 2.7 MB    | ##7        |  27% 
+r-mgcv-1.8_31        | 2.7 MB    | #####8     |  58% 
+r-mgcv-1.8_31        | 2.7 MB    | #########1 |  91% 
+r-mgcv-1.8_31        | 2.7 MB    | ########## | 100% 
+
+distributed-2.5.2    | 380 KB    |            |   0% 
+distributed-2.5.2    | 380 KB    | 4          |   4% 
+distributed-2.5.2    | 380 KB    | ########## | 100% 
+
+python_abi-3.7       | 4 KB      |            |   0% 
+python_abi-3.7       | 4 KB      | ########## | 100% 
+
+dbus-1.13.6          | 602 KB    |            |   0% 
+dbus-1.13.6          | 602 KB    | ########## | 100% 
+
+toolz-0.10.0         | 46 KB     |            |   0% 
+toolz-0.10.0         | 46 KB     | ########## | 100% 
+
+r-isoband-0.2.2      | 2.5 MB    |            |   0% 
+r-isoband-0.2.2      | 2.5 MB    |            |   1% 
+r-isoband-0.2.2      | 2.5 MB    | #9         |  19% 
+r-isoband-0.2.2      | 2.5 MB    | #####      |  51% 
+r-isoband-0.2.2      | 2.5 MB    | ########1  |  82% 
+r-isoband-0.2.2      | 2.5 MB    | ########## | 100% 
+
+r-tibble-3.0.3       | 385 KB    |            |   0% 
+r-tibble-3.0.3       | 385 KB    | ########## | 100% 
+
+r-desc-1.2.0         | 290 KB    |            |   0% 
+r-desc-1.2.0         | 290 KB    | 5          |   6% 
+r-desc-1.2.0         | 290 KB    | ########## | 100% 
+
+tktable-2.10         | 89 KB     |            |   0% 
+tktable-2.10         | 89 KB     | ########## | 100% 
+
+cytoolz-0.10.1       | 432 KB    |            |   0% 
+cytoolz-0.10.1       | 432 KB    | ####4      |  44% 
+cytoolz-0.10.1       | 432 KB    | ########## | 100% 
+
+r-backports-1.1.8    | 84 KB     |            |   0% 
+r-backports-1.1.8    | 84 KB     | ########## | 100% 
+
+keras-preprocessing- | 33 KB     |            |   0% 
+keras-preprocessing- | 33 KB     | ########## | 100% 
+
+cppzmq-4.3.0         | 15 KB     |            |   0% 
+cppzmq-4.3.0         | 15 KB     | ########## | 100% 
+
+xorg-libxext-1.3.4   | 51 KB     |            |   0% 
+xorg-libxext-1.3.4   | 51 KB     | ########## | 100% 
+
+scikit-image-0.15.0  | 28.4 MB   |            |   0% 
+scikit-image-0.15.0  | 28.4 MB   |            |   0% 
+scikit-image-0.15.0  | 28.4 MB   | 2          |   2% 
+scikit-image-0.15.0  | 28.4 MB   | 4          |   5% 
+scikit-image-0.15.0  | 28.4 MB   | 7          |   8% 
+scikit-image-0.15.0  | 28.4 MB   | #          |  10% 
+scikit-image-0.15.0  | 28.4 MB   | #3         |  13% 
+scikit-image-0.15.0  | 28.4 MB   | #6         |  17% 
+scikit-image-0.15.0  | 28.4 MB   | #9         |  20% 
+scikit-image-0.15.0  | 28.4 MB   | ##2        |  22% 
+scikit-image-0.15.0  | 28.4 MB   | ##4        |  25% 
+scikit-image-0.15.0  | 28.4 MB   | ##8        |  28% 
+scikit-image-0.15.0  | 28.4 MB   | ###        |  31% 
+scikit-image-0.15.0  | 28.4 MB   | ###4       |  34% 
+scikit-image-0.15.0  | 28.4 MB   | ###6       |  37% 
+scikit-image-0.15.0  | 28.4 MB   | ####       |  40% 
+scikit-image-0.15.0  | 28.4 MB   | ####3      |  43% 
+scikit-image-0.15.0  | 28.4 MB   | ####6      |  47% 
+scikit-image-0.15.0  | 28.4 MB   | #####1     |  51% 
+scikit-image-0.15.0  | 28.4 MB   | #####4     |  54% 
+scikit-image-0.15.0  | 28.4 MB   | #####7     |  58% 
+scikit-image-0.15.0  | 28.4 MB   | ######1    |  62% 
+scikit-image-0.15.0  | 28.4 MB   | ######5    |  65% 
+scikit-image-0.15.0  | 28.4 MB   | ######9    |  69% 
+scikit-image-0.15.0  | 28.4 MB   | #######2   |  73% 
+scikit-image-0.15.0  | 28.4 MB   | #######6   |  76% 
+scikit-image-0.15.0  | 28.4 MB   | #######9   |  80% 
+scikit-image-0.15.0  | 28.4 MB   | ########3  |  84% 
+scikit-image-0.15.0  | 28.4 MB   | ########7  |  87% 
+scikit-image-0.15.0  | 28.4 MB   | #########1 |  91% 
+scikit-image-0.15.0  | 28.4 MB   | #########5 |  96% 
+scikit-image-0.15.0  | 28.4 MB   | ########## | 100% 
+
+imageio-2.9.0        | 3.1 MB    |            |   0% 
+imageio-2.9.0        | 3.1 MB    | #          |  10% 
+imageio-2.9.0        | 3.1 MB    | ###8       |  38% 
+imageio-2.9.0        | 3.1 MB    | #######2   |  73% 
+imageio-2.9.0        | 3.1 MB    | ########## | 100% 
+
+statsmodels-0.11.1   | 9.7 MB    |            |   0% 
+statsmodels-0.11.1   | 9.7 MB    |            |   0% 
+statsmodels-0.11.1   | 9.7 MB    | #          |  10% 
+statsmodels-0.11.1   | 9.7 MB    | ##1        |  22% 
+statsmodels-0.11.1   | 9.7 MB    | ###        |  31% 
+statsmodels-0.11.1   | 9.7 MB    | ###9       |  40% 
+statsmodels-0.11.1   | 9.7 MB    | ####9      |  49% 
+statsmodels-0.11.1   | 9.7 MB    | #####8     |  59% 
+statsmodels-0.11.1   | 9.7 MB    | ######7    |  68% 
+statsmodels-0.11.1   | 9.7 MB    | #######7   |  77% 
+statsmodels-0.11.1   | 9.7 MB    | ########7  |  87% 
+statsmodels-0.11.1   | 9.7 MB    | #########7 |  98% 
+statsmodels-0.11.1   | 9.7 MB    | ########## | 100% 
+
+libcblas-3.8.0       | 11 KB     |            |   0% 
+libcblas-3.8.0       | 11 KB     | ########## | 100% 
+
+libopenblas-0.3.10   | 7.8 MB    |            |   0% 
+libopenblas-0.3.10   | 7.8 MB    | #          |  11% 
+libopenblas-0.3.10   | 7.8 MB    | ##7        |  27% 
+libopenblas-0.3.10   | 7.8 MB    | ###3       |  34% 
+libopenblas-0.3.10   | 7.8 MB    | ####3      |  43% 
+libopenblas-0.3.10   | 7.8 MB    | #####      |  51% 
+libopenblas-0.3.10   | 7.8 MB    | #####7     |  57% 
+libopenblas-0.3.10   | 7.8 MB    | ######4    |  64% 
+libopenblas-0.3.10   | 7.8 MB    | #######    |  71% 
+libopenblas-0.3.10   | 7.8 MB    | #######8   |  79% 
+libopenblas-0.3.10   | 7.8 MB    | ########8  |  88% 
+libopenblas-0.3.10   | 7.8 MB    | ########## | 100% 
+
+fontconfig-2.13.1    | 340 KB    |            |   0% 
+fontconfig-2.13.1    | 340 KB    | ########## | 100% 
+
+gcc_linux-64-7.3.0   | 21 KB     |            |   0% 
+gcc_linux-64-7.3.0   | 21 KB     | ########## | 100% 
+
+tblib-1.6.0          | 14 KB     |            |   0% 
+tblib-1.6.0          | 14 KB     | ########## | 100% 
+
+importlib-metadata-1 | 44 KB     |            |   0% 
+importlib-metadata-1 | 44 KB     | ########## | 100% 
+
+xeus-0.20.0          | 4.1 MB    |            |   0% 
+xeus-0.20.0          | 4.1 MB    |            |   0% 
+xeus-0.20.0          | 4.1 MB    | ##1        |  22% 
+xeus-0.20.0          | 4.1 MB    | ####1      |  41% 
+xeus-0.20.0          | 4.1 MB    | ######8    |  68% 
+xeus-0.20.0          | 4.1 MB    | #########6 |  96% 
+xeus-0.20.0          | 4.1 MB    | ########## | 100% 
+
+r-labeling-0.3       | 67 KB     |            |   0% 
+r-labeling-0.3       | 67 KB     | ########## | 100% 
+
+branca-0.3.1         | 25 KB     |            |   0% 
+branca-0.3.1         | 25 KB     | ######3    |  63% 
+branca-0.3.1         | 25 KB     | ########## | 100% 
+
+sqlite-3.32.3        | 1.4 MB    |            |   0% 
+sqlite-3.32.3        | 1.4 MB    | 6          |   7% 
+sqlite-3.32.3        | 1.4 MB    | #####8     |  59% 
+sqlite-3.32.3        | 1.4 MB    | ########## | 100% 
+
+fribidi-1.0.10       | 113 KB    |            |   0% 
+fribidi-1.0.10       | 113 KB    | ########## | 100% 
+
+jpeg-9d              | 266 KB    |            |   0% 
+jpeg-9d              | 266 KB    | ########## | 100% 
+
+liblapack-3.8.0      | 11 KB     |            |   0% 
+liblapack-3.8.0      | 11 KB     | ########## | 100% 
+
+xorg-libxrender-0.9. | 31 KB     |            |   0% 
+xorg-libxrender-0.9. | 31 KB     | ########## | 100% 
+
+traittypes-0.2.1     | 8 KB      |            |   0% 
+traittypes-0.2.1     | 8 KB      | ########## | 100% 
+
+r-pbdzmq-0.3_3       | 380 KB    |            |   0% 
+r-pbdzmq-0.3_3       | 380 KB    | ########## | 100% 
+
+libxml2-2.9.10       | 1.3 MB    |            |   0% 
+libxml2-2.9.10       | 1.3 MB    | ##7        |  27% 
+libxml2-2.9.10       | 1.3 MB    | #########6 |  97% 
+libxml2-2.9.10       | 1.3 MB    | ########## | 100% 
+
+ca-certificates-2020 | 145 KB    |            |   0% 
+ca-certificates-2020 | 145 KB    | ########## | 100% 
+
+scikit-learn-0.21.3  | 6.7 MB    |            |   0% 
+scikit-learn-0.21.3  | 6.7 MB    | 3          |   3% 
+scikit-learn-0.21.3  | 6.7 MB    | #3         |  14% 
+scikit-learn-0.21.3  | 6.7 MB    | ##1        |  22% 
+scikit-learn-0.21.3  | 6.7 MB    | ##9        |  30% 
+scikit-learn-0.21.3  | 6.7 MB    | ####7      |  48% 
+scikit-learn-0.21.3  | 6.7 MB    | ######5    |  65% 
+scikit-learn-0.21.3  | 6.7 MB    | #######6   |  76% 
+scikit-learn-0.21.3  | 6.7 MB    | ########6  |  86% 
+scikit-learn-0.21.3  | 6.7 MB    | #########4 |  95% 
+scikit-learn-0.21.3  | 6.7 MB    | ########## | 100% 
+
+werkzeug-1.0.1       | 239 KB    |            |   0% 
+werkzeug-1.0.1       | 239 KB    | ########## | 100% 
+
+seaborn-0.9.0        | 162 KB    |            |   0% 
+seaborn-0.9.0        | 162 KB    | 9          |  10% 
+seaborn-0.9.0        | 162 KB    | ########## | 100% 
+
+nbconvert-5.5.0      | 375 KB    |            |   0% 
+nbconvert-5.5.0      | 375 KB    | 4          |   4% 
+nbconvert-5.5.0      | 375 KB    | ########## | 100% 
+
+r-scales-1.1.1       | 558 KB    |            |   0% 
+r-scales-1.1.1       | 558 KB    | ########## | 100% 
+
+r-pkgload-1.1.0      | 168 KB    |            |   0% 
+r-pkgload-1.1.0      | 168 KB    | ########## | 100% 
+
+r-viridislite-0.3.0  | 64 KB     |            |   0% 
+r-viridislite-0.3.0  | 64 KB     | ##5        |  25% 
+r-viridislite-0.3.0  | 64 KB     | ########## | 100% 
+
+ipyleaflet-0.12.6    | 3.9 MB    |            |   0% 
+ipyleaflet-0.12.6    | 3.9 MB    |            |   0% 
+ipyleaflet-0.12.6    | 3.9 MB    | #8         |  18% 
+ipyleaflet-0.12.6    | 3.9 MB    | ###3       |  33% 
+ipyleaflet-0.12.6    | 3.9 MB    | #####4     |  55% 
+ipyleaflet-0.12.6    | 3.9 MB    | ########   |  80% 
+ipyleaflet-0.12.6    | 3.9 MB    | ########## | 100% 
+
+sed-4.8              | 263 KB    |            |   0% 
+sed-4.8              | 263 KB    | ########## | 100% 
+
+r-munsell-0.5.0      | 246 KB    |            |   0% 
+r-munsell-0.5.0      | 246 KB    | 6          |   6% 
+r-munsell-0.5.0      | 246 KB    | ########## | 100% 
+
+cling-0.5            | 23.5 MB   |            |   0% 
+cling-0.5            | 23.5 MB   |            |   0% 
+cling-0.5            | 23.5 MB   | 3          |   3% 
+cling-0.5            | 23.5 MB   | 6          |   7% 
+cling-0.5            | 23.5 MB   | #          |  10% 
+cling-0.5            | 23.5 MB   | #4         |  15% 
+cling-0.5            | 23.5 MB   | ##         |  21% 
+cling-0.5            | 23.5 MB   | ##6        |  26% 
+cling-0.5            | 23.5 MB   | ###        |  31% 
+cling-0.5            | 23.5 MB   | ###6       |  37% 
+cling-0.5            | 23.5 MB   | ####1      |  42% 
+cling-0.5            | 23.5 MB   | ####6      |  46% 
+cling-0.5            | 23.5 MB   | #####1     |  51% 
+cling-0.5            | 23.5 MB   | #####5     |  56% 
+cling-0.5            | 23.5 MB   | #####9     |  60% 
+cling-0.5            | 23.5 MB   | ######3    |  64% 
+cling-0.5            | 23.5 MB   | ######8    |  69% 
+cling-0.5            | 23.5 MB   | #######3   |  74% 
+cling-0.5            | 23.5 MB   | #######7   |  78% 
+cling-0.5            | 23.5 MB   | ########3  |  84% 
+cling-0.5            | 23.5 MB   | ########8  |  88% 
+cling-0.5            | 23.5 MB   | #########2 |  92% 
+cling-0.5            | 23.5 MB   | #########6 |  96% 
+cling-0.5            | 23.5 MB   | ########## | 100% 
+
+r-matrix-1.2_18      | 3.8 MB    |            |   0% 
+r-matrix-1.2_18      | 3.8 MB    | 4          |   4% 
+r-matrix-1.2_18      | 3.8 MB    | #9         |  19% 
+r-matrix-1.2_18      | 3.8 MB    | ####       |  41% 
+r-matrix-1.2_18      | 3.8 MB    | #####7     |  57% 
+r-matrix-1.2_18      | 3.8 MB    | #######6   |  76% 
+r-matrix-1.2_18      | 3.8 MB    | #########5 |  96% 
+r-matrix-1.2_18      | 3.8 MB    | ########## | 100% 
+
+pyqt-5.9.2           | 5.7 MB    |            |   0% 
+pyqt-5.9.2           | 5.7 MB    |            |   0% 
+pyqt-5.9.2           | 5.7 MB    | #9         |  19% 
+pyqt-5.9.2           | 5.7 MB    | ###5       |  35% 
+pyqt-5.9.2           | 5.7 MB    | #####5     |  55% 
+pyqt-5.9.2           | 5.7 MB    | #######6   |  76% 
+pyqt-5.9.2           | 5.7 MB    | #########5 |  95% 
+pyqt-5.9.2           | 5.7 MB    | ########## | 100% 
+
+xorg-libx11-1.6.9    | 918 KB    |            |   0% 
+xorg-libx11-1.6.9    | 918 KB    | ########## | 100% 
+
+xorg-xproto-7.0.31   | 72 KB     |            |   0% 
+xorg-xproto-7.0.31   | 72 KB     | ########## | 100% 
+
+heapdict-1.0.1       | 7 KB      |            |   0% 
+heapdict-1.0.1       | 7 KB      | ########## | 100% 
+
+freetype-2.10.2      | 905 KB    |            |   0% 
+freetype-2.10.2      | 905 KB    | #####1     |  51% 
+freetype-2.10.2      | 905 KB    | ########## | 100% 
+
+gfortran_impl_linux- | 9.4 MB    |            |   0% 
+gfortran_impl_linux- | 9.4 MB    | 5          |   5% 
+gfortran_impl_linux- | 9.4 MB    | #5         |  16% 
+gfortran_impl_linux- | 9.4 MB    | ##6        |  27% 
+gfortran_impl_linux- | 9.4 MB    | ####1      |  41% 
+gfortran_impl_linux- | 9.4 MB    | #####4     |  55% 
+gfortran_impl_linux- | 9.4 MB    | #######    |  71% 
+gfortran_impl_linux- | 9.4 MB    | ########6  |  87% 
+gfortran_impl_linux- | 9.4 MB    | #########9 | 100% 
+gfortran_impl_linux- | 9.4 MB    | ########## | 100% 
+
+bzip2-1.0.8          | 396 KB    |            |   0% 
+bzip2-1.0.8          | 396 KB    | ########## | 100% 
+
+xorg-renderproto-0.1 | 8 KB      |            |   0% 
+xorg-renderproto-0.1 | 8 KB      | ########## | 100% 
+
+locket-0.2.0         | 6 KB      |            |   0% 
+locket-0.2.0         | 6 KB      | ########## | 100% 
+
+altair-3.1.0         | 724 KB    |            |   0% 
+altair-3.1.0         | 724 KB    | 2          |   2% 
+altair-3.1.0         | 724 KB    | ########## | 100% 
+
+yaml-0.2.5           | 82 KB     |            |   0% 
+yaml-0.2.5           | 82 KB     | ########## | 100% 
+
+h5py-2.10.0          | 1.0 MB    |            |   0% 
+h5py-2.10.0          | 1.0 MB    | 1          |   2% 
+h5py-2.10.0          | 1.0 MB    | ########## | 100% 
+
+_r-mutex-1.0.1       | 3 KB      |            |   0% 
+_r-mutex-1.0.1       | 3 KB      | ########## | 100% 
+
+libtiff-4.1.0        | 668 KB    |            |   0% 
+libtiff-4.1.0        | 668 KB    | ########## | 100% 
+
+r-glue-1.4.1         | 140 KB    |            |   0% 
+r-glue-1.4.1         | 140 KB    | #1         |  11% 
+r-glue-1.4.1         | 140 KB    | ########## | 100% 
+
+r-processx-3.4.3     | 297 KB    |            |   0% 
+r-processx-3.4.3     | 297 KB    | ########## | 100% 
+
+r-pkgbuild-1.1.0     | 155 KB    |            |   0% 
+r-pkgbuild-1.1.0     | 155 KB    | #          |  10% 
+r-pkgbuild-1.1.0     | 155 KB    | ########## | 100% 
+
+xorg-libxdmcp-1.1.3  | 18 KB     |            |   0% 
+xorg-libxdmcp-1.1.3  | 18 KB     | ########## | 100% 
+
+xproperty-0.8.1      | 10 KB     |            |   0% 
+xproperty-0.8.1      | 10 KB     | ########## | 100% 
+
+r-lifecycle-0.2.0    | 112 KB    |            |   0% 
+r-lifecycle-0.2.0    | 112 KB    | #4         |  14% 
+r-lifecycle-0.2.0    | 112 KB    | ########## | 100% 
+
+libgfortran-ng-7.5.0 | 1.7 MB    |            |   0% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ###2       |  33% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########8  |  89% 
+libgfortran-ng-7.5.0 | 1.7 MB    | ########## | 100% 
+
+pyparsing-2.4.7      | 60 KB     |            |   0% 
+pyparsing-2.4.7      | 60 KB     | ########## | 100% 
+
+openssl-1.1.1g       | 2.1 MB    |            |   0% 
+openssl-1.1.1g       | 2.1 MB    | ##8        |  29% 
+openssl-1.1.1g       | 2.1 MB    | #########5 |  96% 
+openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+
+clang_variant-1.0    | 9 KB      |            |   0% 
+clang_variant-1.0    | 9 KB      | ########## | 100% 
+
+r-prettyunits-1.1.1  | 41 KB     |            |   0% 
+r-prettyunits-1.1.1  | 41 KB     | ########## | 100% 
+
+xtensor-0.20.8       | 158 KB    |            |   0% 
+xtensor-0.20.8       | 158 KB    | #          |  10% 
+xtensor-0.20.8       | 158 KB    | ########## | 100% 
+
+gsl-2.6              | 3.1 MB    |            |   0% 
+gsl-2.6              | 3.1 MB    |            |   1% 
+gsl-2.6              | 3.1 MB    | 9          |  10% 
+gsl-2.6              | 3.1 MB    | #8         |  19% 
+gsl-2.6              | 3.1 MB    | #####2     |  53% 
+gsl-2.6              | 3.1 MB    | ########5  |  86% 
+gsl-2.6              | 3.1 MB    | ########## | 100% 
+
+r-cli-2.0.2          | 395 KB    |            |   0% 
+r-cli-2.0.2          | 395 KB    | ########## | 100% 
+
+xwidgets-0.18.0      | 1.1 MB    |            |   0% 
+xwidgets-0.18.0      | 1.1 MB    | 1          |   1% 
+xwidgets-0.18.0      | 1.1 MB    | #####9     |  60% 
+xwidgets-0.18.0      | 1.1 MB    | ########## | 100% 
+
+xtensor-blas-0.16.1  | 257 KB    |            |   0% 
+xtensor-blas-0.16.1  | 257 KB    | 6          |   6% 
+xtensor-blas-0.16.1  | 257 KB    | ########## | 100% 
+
+gmpy2-2.1.0b1        | 205 KB    |            |   0% 
+gmpy2-2.1.0b1        | 205 KB    | 7          |   8% 
+gmpy2-2.1.0b1        | 205 KB    | ########## | 100% 
+
+glib-2.65.0          | 3.5 MB    |            |   0% 
+glib-2.65.0          | 3.5 MB    | #9         |  19% 
+glib-2.65.0          | 3.5 MB    | ######3    |  63% 
+glib-2.65.0          | 3.5 MB    | ########## | 100% 
+
+mpmath-1.1.0         | 432 KB    |            |   0% 
+mpmath-1.1.0         | 432 KB    | ########## | 100% 
+
+jupyterlab_server-1. | 25 KB     |            |   0% 
+jupyterlab_server-1. | 25 KB     | ########## | 100% 
+
+xorg-libxau-1.0.9    | 13 KB     |            |   0% 
+xorg-libxau-1.0.9    | 13 KB     | ########## | 100% 
+
+dask-core-2.1.0      | 573 KB    |            |   0% 
+dask-core-2.1.0      | 573 KB    | 2          |   3% 
+dask-core-2.1.0      | 573 KB    | ######6    |  67% 
+dask-core-2.1.0      | 573 KB    | ########## | 100% 
+
+protobuf-3.8.0       | 679 KB    |            |   0% 
+protobuf-3.8.0       | 679 KB    | 2          |   2% 
+protobuf-3.8.0       | 679 KB    | ########## | 100% 
+
+libprotobuf-3.8.0    | 4.7 MB    |            |   0% 
+libprotobuf-3.8.0    | 4.7 MB    |            |   0% 
+libprotobuf-3.8.0    | 4.7 MB    | ###1       |  31% 
+libprotobuf-3.8.0    | 4.7 MB    | #####7     |  58% 
+libprotobuf-3.8.0    | 4.7 MB    | #######2   |  72% 
+libprotobuf-3.8.0    | 4.7 MB    | #########9 | 100% 
+libprotobuf-3.8.0    | 4.7 MB    | ########## | 100% 
+
+sortedcontainers-2.2 | 25 KB     |            |   0% 
+sortedcontainers-2.2 | 25 KB     | ########## | 100% 
+
+r-digest-0.6.25      | 199 KB    |            |   0% 
+r-digest-0.6.25      | 199 KB    | 8          |   8% 
+r-digest-0.6.25      | 199 KB    | ########## | 100% 
+
+r-htmltools-0.5.0    | 235 KB    |            |   0% 
+r-htmltools-0.5.0    | 235 KB    | ########## | 100% 
+
+xtl-0.6.15           | 60 KB     |            |   0% 
+xtl-0.6.15           | 60 KB     | ##6        |  27% 
+xtl-0.6.15           | 60 KB     | ########## | 100% 
+
+r-rlang-0.4.7        | 1.0 MB    |            |   0% 
+r-rlang-0.4.7        | 1.0 MB    | 1          |   2% 
+r-rlang-0.4.7        | 1.0 MB    | ####3      |  44% 
+r-rlang-0.4.7        | 1.0 MB    | #######8   |  78% 
+r-rlang-0.4.7        | 1.0 MB    | ########## | 100% 
+
+r-uuid-0.1_4         | 22 KB     |            |   0% 
+r-uuid-0.1_4         | 22 KB     | #######1   |  71% 
+r-uuid-0.1_4         | 22 KB     | ########## | 100% 
+
+scipy-1.5.1          | 18.5 MB   |            |   0% 
+scipy-1.5.1          | 18.5 MB   | 1          |   1% 
+scipy-1.5.1          | 18.5 MB   | 3          |   4% 
+scipy-1.5.1          | 18.5 MB   | 7          |   7% 
+scipy-1.5.1          | 18.5 MB   | #2         |  12% 
+scipy-1.5.1          | 18.5 MB   | #7         |  17% 
+scipy-1.5.1          | 18.5 MB   | ##         |  21% 
+scipy-1.5.1          | 18.5 MB   | ##3        |  24% 
+scipy-1.5.1          | 18.5 MB   | ##7        |  28% 
+scipy-1.5.1          | 18.5 MB   | ###1       |  32% 
+scipy-1.5.1          | 18.5 MB   | ###6       |  37% 
+scipy-1.5.1          | 18.5 MB   | ####2      |  43% 
+scipy-1.5.1          | 18.5 MB   | ####7      |  47% 
+scipy-1.5.1          | 18.5 MB   | #####1     |  52% 
+scipy-1.5.1          | 18.5 MB   | #####6     |  57% 
+scipy-1.5.1          | 18.5 MB   | ######     |  61% 
+scipy-1.5.1          | 18.5 MB   | ######4    |  64% 
+scipy-1.5.1          | 18.5 MB   | ######8    |  69% 
+scipy-1.5.1          | 18.5 MB   | #######2   |  73% 
+scipy-1.5.1          | 18.5 MB   | #######6   |  77% 
+scipy-1.5.1          | 18.5 MB   | ########   |  81% 
+scipy-1.5.1          | 18.5 MB   | ########4  |  85% 
+scipy-1.5.1          | 18.5 MB   | ########8  |  88% 
+scipy-1.5.1          | 18.5 MB   | #########2 |  92% 
+scipy-1.5.1          | 18.5 MB   | #########6 |  96% 
+scipy-1.5.1          | 18.5 MB   | ########## | 100% 
+
+matplotlib-3.1.3     | 7 KB      |            |   0% 
+matplotlib-3.1.3     | 7 KB      | ########## | 100% 
+
+libwebp-base-1.1.0   | 845 KB    |            |   0% 
+libwebp-base-1.1.0   | 845 KB    | ###2       |  32% 
+libwebp-base-1.1.0   | 845 KB    | ########## | 100% 
+
+gxx_linux-64-7.3.0   | 21 KB     |            |   0% 
+gxx_linux-64-7.3.0   | 21 KB     | #######5   |  75% 
+gxx_linux-64-7.3.0   | 21 KB     | ########## | 100% 
+
+r-vctrs-0.3.2        | 1.0 MB    |            |   0% 
+r-vctrs-0.3.2        | 1.0 MB    | ##1        |  22% 
+r-vctrs-0.3.2        | 1.0 MB    | ########## | 100% 
+
+r-lattice-0.20_41    | 1.1 MB    |            |   0% 
+r-lattice-0.20_41    | 1.1 MB    | 1          |   1% 
+r-lattice-0.20_41    | 1.1 MB    | ########## | 100% 
+
+dask-2.1.0           | 4 KB      |            |   0% 
+dask-2.1.0           | 4 KB      | ########## | 100% 
+
+gast-0.3.3           | 12 KB     |            |   0% 
+gast-0.3.3           | 12 KB     | ########## | 100% 
+
+gettext-0.19.8.1     | 3.6 MB    |            |   0% 
+gettext-0.19.8.1     | 3.6 MB    | #5         |  16% 
+gettext-0.19.8.1     | 3.6 MB    | ###9       |  39% 
+gettext-0.19.8.1     | 3.6 MB    | #######4   |  74% 
+gettext-0.19.8.1     | 3.6 MB    | ########## | 100% 
+
+r-colorspace-1.4_1   | 2.4 MB    |            |   0% 
+r-colorspace-1.4_1   | 2.4 MB    |            |   1% 
+r-colorspace-1.4_1   | 2.4 MB    | #7         |  17% 
+r-colorspace-1.4_1   | 2.4 MB    | ####3      |  43% 
+r-colorspace-1.4_1   | 2.4 MB    | #########5 |  95% 
+r-colorspace-1.4_1   | 2.4 MB    | ########## | 100% 
+
+mock-4.0.2           | 51 KB     |            |   0% 
+mock-4.0.2           | 51 KB     | ########## | 100% 
+
+joblib-0.16.0        | 203 KB    |            |   0% 
+joblib-0.16.0        | 203 KB    | ########## | 100% 
+
+qt-5.9.7             | 80.8 MB   |            |   0% 
+qt-5.9.7             | 80.8 MB   |            |   1% 
+qt-5.9.7             | 80.8 MB   | 2          |   2% 
+qt-5.9.7             | 80.8 MB   | 3          |   4% 
+qt-5.9.7             | 80.8 MB   | 5          |   5% 
+qt-5.9.7             | 80.8 MB   | 7          |   7% 
+qt-5.9.7             | 80.8 MB   | 8          |   9% 
+qt-5.9.7             | 80.8 MB   | #          |  11% 
+qt-5.9.7             | 80.8 MB   | #2         |  13% 
+qt-5.9.7             | 80.8 MB   | #4         |  14% 
+qt-5.9.7             | 80.8 MB   | #5         |  16% 
+qt-5.9.7             | 80.8 MB   | #7         |  17% 
+qt-5.9.7             | 80.8 MB   | #8         |  19% 
+qt-5.9.7             | 80.8 MB   | ##         |  20% 
+qt-5.9.7             | 80.8 MB   | ##1        |  22% 
+qt-5.9.7             | 80.8 MB   | ##3        |  23% 
+qt-5.9.7             | 80.8 MB   | ##4        |  25% 
+qt-5.9.7             | 80.8 MB   | ##6        |  26% 
+qt-5.9.7             | 80.8 MB   | ##7        |  28% 
+qt-5.9.7             | 80.8 MB   | ##9        |  29% 
+qt-5.9.7             | 80.8 MB   | ###        |  30% 
+qt-5.9.7             | 80.8 MB   | ###1       |  32% 
+qt-5.9.7             | 80.8 MB   | ###3       |  33% 
+qt-5.9.7             | 80.8 MB   | ###5       |  35% 
+qt-5.9.7             | 80.8 MB   | ###6       |  37% 
+qt-5.9.7             | 80.8 MB   | ###8       |  38% 
+qt-5.9.7             | 80.8 MB   | ####       |  40% 
+qt-5.9.7             | 80.8 MB   | ####1      |  42% 
+qt-5.9.7             | 80.8 MB   | ####3      |  43% 
+qt-5.9.7             | 80.8 MB   | ####4      |  45% 
+qt-5.9.7             | 80.8 MB   | ####6      |  47% 
+qt-5.9.7             | 80.8 MB   | ####8      |  48% 
+qt-5.9.7             | 80.8 MB   | ####9      |  50% 
+qt-5.9.7             | 80.8 MB   | #####1     |  51% 
+qt-5.9.7             | 80.8 MB   | #####2     |  53% 
+qt-5.9.7             | 80.8 MB   | #####4     |  54% 
+qt-5.9.7             | 80.8 MB   | #####5     |  56% 
+qt-5.9.7             | 80.8 MB   | #####7     |  57% 
+qt-5.9.7             | 80.8 MB   | #####8     |  59% 
+qt-5.9.7             | 80.8 MB   | ######     |  60% 
+qt-5.9.7             | 80.8 MB   | ######1    |  61% 
+qt-5.9.7             | 80.8 MB   | ######3    |  63% 
+qt-5.9.7             | 80.8 MB   | ######4    |  65% 
+qt-5.9.7             | 80.8 MB   | ######5    |  66% 
+qt-5.9.7             | 80.8 MB   | ######7    |  67% 
+qt-5.9.7             | 80.8 MB   | ######8    |  69% 
+qt-5.9.7             | 80.8 MB   | #######    |  71% 
+qt-5.9.7             | 80.8 MB   | #######2   |  72% 
+qt-5.9.7             | 80.8 MB   | #######3   |  74% 
+qt-5.9.7             | 80.8 MB   | #######5   |  75% 
+qt-5.9.7             | 80.8 MB   | #######6   |  77% 
+qt-5.9.7             | 80.8 MB   | #######8   |  78% 
+qt-5.9.7             | 80.8 MB   | #######9   |  80% 
+qt-5.9.7             | 80.8 MB   | ########1  |  81% 
+qt-5.9.7             | 80.8 MB   | ########2  |  83% 
+qt-5.9.7             | 80.8 MB   | ########4  |  84% 
+qt-5.9.7             | 80.8 MB   | ########5  |  86% 
+qt-5.9.7             | 80.8 MB   | ########7  |  87% 
+qt-5.9.7             | 80.8 MB   | ########8  |  89% 
+qt-5.9.7             | 80.8 MB   | #########  |  90% 
+qt-5.9.7             | 80.8 MB   | #########1 |  92% 
+qt-5.9.7             | 80.8 MB   | #########3 |  93% 
+qt-5.9.7             | 80.8 MB   | #########4 |  95% 
+qt-5.9.7             | 80.8 MB   | #########6 |  96% 
+qt-5.9.7             | 80.8 MB   | #########7 |  98% 
+qt-5.9.7             | 80.8 MB   | #########9 |  99% 
+qt-5.9.7             | 80.8 MB   | ########## | 100% 
+
+psutil-5.7.2         | 335 KB    |            |   0% 
+psutil-5.7.2         | 335 KB    | ########## | 100% 
+
+icu-64.2             | 12.6 MB   |            |   0% 
+icu-64.2             | 12.6 MB   | 2          |   2% 
+icu-64.2             | 12.6 MB   | 7          |   7% 
+icu-64.2             | 12.6 MB   | #2         |  13% 
+icu-64.2             | 12.6 MB   | ##         |  20% 
+icu-64.2             | 12.6 MB   | ##6        |  26% 
+icu-64.2             | 12.6 MB   | ###1       |  32% 
+icu-64.2             | 12.6 MB   | ###6       |  36% 
+icu-64.2             | 12.6 MB   | ####1      |  41% 
+icu-64.2             | 12.6 MB   | ####8      |  48% 
+icu-64.2             | 12.6 MB   | #####4     |  55% 
+icu-64.2             | 12.6 MB   | #####9     |  60% 
+icu-64.2             | 12.6 MB   | ######4    |  65% 
+icu-64.2             | 12.6 MB   | ######9    |  70% 
+icu-64.2             | 12.6 MB   | #######4   |  74% 
+icu-64.2             | 12.6 MB   | #######9   |  80% 
+icu-64.2             | 12.6 MB   | ########5  |  85% 
+icu-64.2             | 12.6 MB   | #########2 |  92% 
+icu-64.2             | 12.6 MB   | #########7 |  98% 
+icu-64.2             | 12.6 MB   | ########## | 100% 
+
+libuuid-2.32.1       | 26 KB     |            |   0% 
+libuuid-2.32.1       | 26 KB     | ########## | 100% 
+
+r-r6-2.4.1           | 63 KB     |            |   0% 
+r-r6-2.4.1           | 63 KB     | ##5        |  25% 
+r-r6-2.4.1           | 63 KB     | ########## | 100% 
+
+gfortran_linux-64-7. | 21 KB     |            |   0% 
+gfortran_linux-64-7. | 21 KB     | ########## | 100% 
+
+r-base-3.6.3         | 23.3 MB   |            |   0% 
+r-base-3.6.3         | 23.3 MB   |            |   0% 
+r-base-3.6.3         | 23.3 MB   | 3          |   3% 
+r-base-3.6.3         | 23.3 MB   | 7          |   8% 
+r-base-3.6.3         | 23.3 MB   | #1         |  11% 
+r-base-3.6.3         | 23.3 MB   | #5         |  16% 
+r-base-3.6.3         | 23.3 MB   | ##         |  20% 
+r-base-3.6.3         | 23.3 MB   | ##5        |  25% 
+r-base-3.6.3         | 23.3 MB   | ##9        |  29% 
+r-base-3.6.3         | 23.3 MB   | ###3       |  33% 
+r-base-3.6.3         | 23.3 MB   | ###9       |  39% 
+r-base-3.6.3         | 23.3 MB   | ####3      |  44% 
+r-base-3.6.3         | 23.3 MB   | ####8      |  48% 
+r-base-3.6.3         | 23.3 MB   | #####3     |  53% 
+r-base-3.6.3         | 23.3 MB   | #####7     |  58% 
+r-base-3.6.3         | 23.3 MB   | ######2    |  62% 
+r-base-3.6.3         | 23.3 MB   | ######6    |  66% 
+r-base-3.6.3         | 23.3 MB   | #######    |  71% 
+r-base-3.6.3         | 23.3 MB   | #######4   |  75% 
+r-base-3.6.3         | 23.3 MB   | ########   |  80% 
+r-base-3.6.3         | 23.3 MB   | ########5  |  85% 
+r-base-3.6.3         | 23.3 MB   | #########  |  90% 
+r-base-3.6.3         | 23.3 MB   | #########5 |  95% 
+r-base-3.6.3         | 23.3 MB   | ########## | 100% 
+
+clangdev-5.0.0       | 91.0 MB   |            |   0% 
+clangdev-5.0.0       | 91.0 MB   |            |   0% 
+clangdev-5.0.0       | 91.0 MB   | 1          |   1% 
+clangdev-5.0.0       | 91.0 MB   | 2          |   2% 
+clangdev-5.0.0       | 91.0 MB   | 3          |   3% 
+clangdev-5.0.0       | 91.0 MB   | 4          |   5% 
+clangdev-5.0.0       | 91.0 MB   | 5          |   6% 
+clangdev-5.0.0       | 91.0 MB   | 7          |   7% 
+clangdev-5.0.0       | 91.0 MB   | 8          |   9% 
+clangdev-5.0.0       | 91.0 MB   | 9          |  10% 
+clangdev-5.0.0       | 91.0 MB   | #1         |  11% 
+clangdev-5.0.0       | 91.0 MB   | #2         |  12% 
+clangdev-5.0.0       | 91.0 MB   | #3         |  14% 
+clangdev-5.0.0       | 91.0 MB   | #4         |  15% 
+clangdev-5.0.0       | 91.0 MB   | #6         |  16% 
+clangdev-5.0.0       | 91.0 MB   | #7         |  18% 
+clangdev-5.0.0       | 91.0 MB   | #8         |  19% 
+clangdev-5.0.0       | 91.0 MB   | ##         |  20% 
+clangdev-5.0.0       | 91.0 MB   | ##1        |  22% 
+clangdev-5.0.0       | 91.0 MB   | ##2        |  23% 
+clangdev-5.0.0       | 91.0 MB   | ##4        |  24% 
+clangdev-5.0.0       | 91.0 MB   | ##5        |  25% 
+clangdev-5.0.0       | 91.0 MB   | ##6        |  27% 
+clangdev-5.0.0       | 91.0 MB   | ##7        |  28% 
+clangdev-5.0.0       | 91.0 MB   | ##9        |  29% 
+clangdev-5.0.0       | 91.0 MB   | ###        |  31% 
+clangdev-5.0.0       | 91.0 MB   | ###2       |  32% 
+clangdev-5.0.0       | 91.0 MB   | ###3       |  34% 
+clangdev-5.0.0       | 91.0 MB   | ###4       |  35% 
+clangdev-5.0.0       | 91.0 MB   | ###5       |  36% 
+clangdev-5.0.0       | 91.0 MB   | ###6       |  37% 
+clangdev-5.0.0       | 91.0 MB   | ###7       |  37% 
+clangdev-5.0.0       | 91.0 MB   | ###8       |  39% 
+clangdev-5.0.0       | 91.0 MB   | ###9       |  40% 
+clangdev-5.0.0       | 91.0 MB   | ####1      |  41% 
+clangdev-5.0.0       | 91.0 MB   | ####2      |  42% 
+clangdev-5.0.0       | 91.0 MB   | ####3      |  43% 
+clangdev-5.0.0       | 91.0 MB   | ####4      |  45% 
+clangdev-5.0.0       | 91.0 MB   | ####5      |  46% 
+clangdev-5.0.0       | 91.0 MB   | ####6      |  47% 
+clangdev-5.0.0       | 91.0 MB   | ####7      |  48% 
+clangdev-5.0.0       | 91.0 MB   | ####8      |  49% 
+clangdev-5.0.0       | 91.0 MB   | ####9      |  50% 
+clangdev-5.0.0       | 91.0 MB   | #####1     |  51% 
+clangdev-5.0.0       | 91.0 MB   | #####2     |  52% 
+clangdev-5.0.0       | 91.0 MB   | #####3     |  53% 
+clangdev-5.0.0       | 91.0 MB   | #####4     |  54% 
+clangdev-5.0.0       | 91.0 MB   | #####5     |  55% 
+clangdev-5.0.0       | 91.0 MB   | #####6     |  56% 
+clangdev-5.0.0       | 91.0 MB   | #####7     |  57% 
+clangdev-5.0.0       | 91.0 MB   | #####8     |  58% 
+clangdev-5.0.0       | 91.0 MB   | #####9     |  59% 
+clangdev-5.0.0       | 91.0 MB   | #####9     |  60% 
+clangdev-5.0.0       | 91.0 MB   | ######1    |  61% 
+clangdev-5.0.0       | 91.0 MB   | ######2    |  62% 
+clangdev-5.0.0       | 91.0 MB   | ######3    |  63% 
+clangdev-5.0.0       | 91.0 MB   | ######4    |  64% 
+clangdev-5.0.0       | 91.0 MB   | ######5    |  65% 
+clangdev-5.0.0       | 91.0 MB   | ######6    |  66% 
+clangdev-5.0.0       | 91.0 MB   | ######6    |  67% 
+clangdev-5.0.0       | 91.0 MB   | ######7    |  68% 
+clangdev-5.0.0       | 91.0 MB   | ######8    |  69% 
+clangdev-5.0.0       | 91.0 MB   | ######9    |  69% 
+clangdev-5.0.0       | 91.0 MB   | #######    |  70% 
+clangdev-5.0.0       | 91.0 MB   | #######2   |  72% 
+clangdev-5.0.0       | 91.0 MB   | #######3   |  73% 
+clangdev-5.0.0       | 91.0 MB   | #######3   |  74% 
+clangdev-5.0.0       | 91.0 MB   | #######4   |  75% 
+clangdev-5.0.0       | 91.0 MB   | #######5   |  76% 
+clangdev-5.0.0       | 91.0 MB   | #######6   |  77% 
+clangdev-5.0.0       | 91.0 MB   | #######7   |  77% 
+clangdev-5.0.0       | 91.0 MB   | #######8   |  78% 
+clangdev-5.0.0       | 91.0 MB   | #######8   |  79% 
+clangdev-5.0.0       | 91.0 MB   | #######9   |  80% 
+clangdev-5.0.0       | 91.0 MB   | ########   |  80% 
+clangdev-5.0.0       | 91.0 MB   | ########1  |  81% 
+clangdev-5.0.0       | 91.0 MB   | ########1  |  82% 
+clangdev-5.0.0       | 91.0 MB   | ########2  |  83% 
+clangdev-5.0.0       | 91.0 MB   | ########3  |  84% 
+clangdev-5.0.0       | 91.0 MB   | ########4  |  85% 
+clangdev-5.0.0       | 91.0 MB   | ########5  |  86% 
+clangdev-5.0.0       | 91.0 MB   | ########6  |  87% 
+clangdev-5.0.0       | 91.0 MB   | ########7  |  88% 
+clangdev-5.0.0       | 91.0 MB   | ########8  |  89% 
+clangdev-5.0.0       | 91.0 MB   | ########9  |  90% 
+clangdev-5.0.0       | 91.0 MB   | #########  |  91% 
+clangdev-5.0.0       | 91.0 MB   | #########1 |  92% 
+clangdev-5.0.0       | 91.0 MB   | #########2 |  93% 
+clangdev-5.0.0       | 91.0 MB   | #########3 |  94% 
+clangdev-5.0.0       | 91.0 MB   | #########4 |  95% 
+clangdev-5.0.0       | 91.0 MB   | #########5 |  96% 
+clangdev-5.0.0       | 91.0 MB   | #########6 |  97% 
+clangdev-5.0.0       | 91.0 MB   | #########7 |  97% 
+clangdev-5.0.0       | 91.0 MB   | #########8 |  98% 
+clangdev-5.0.0       | 91.0 MB   | #########8 |  99% 
+clangdev-5.0.0       | 91.0 MB   | #########9 | 100% 
+clangdev-5.0.0       | 91.0 MB   | ########## | 100% 
+
+olefile-0.46         | 31 KB     |            |   0% 
+olefile-0.46         | 31 KB     | ########## | 100% 
+
+r-callr-3.4.3        | 392 KB    |            |   0% 
+r-callr-3.4.3        | 392 KB    | 4          |   4% 
+r-callr-3.4.3        | 392 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'Uninstalling jupyter-js-widgets jupyter-js-widgets/extension\nRemoving: /srv/conda/envs/notebook/share/jupyter/nbextensions/jupyter-js-widgets\n'
+b'Enabling notebook extension jupyter-js-widgets/extension...\n      - Validating: \x1b[32mOK\x1b[0m\n'
+done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m#
+# To activate this environment, use
+#
+#     $ conda activate /srv/conda/envs/notebook
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Remove all contents from the following package caches?
+  - /srv/conda/pkgs
+# packages in environment at /srv/conda/envs/notebook:
+#
+# Name                    Version                   Build  Channel
+_libgcc_mutex             0.1                 conda_forge    conda-forge
+_openmp_mutex             4.5                       0_gnu    conda-forge
+_r-mutex                  1.0.1               anacondar_1    conda-forge
+absl-py                   0.9.0            py37hc8dfbb8_1    conda-forge
+alembic                   1.3.3                      py_0    conda-forge
+altair                    3.1.0                    py37_0    conda-forge
+astor                     0.8.1              pyh9f0ad1d_0    conda-forge
+async_generator           1.10                       py_0    conda-forge
+attrs                     19.3.0                     py_0    conda-forge
+backcall                  0.1.0                      py_0    conda-forge
+binutils_impl_linux-64    2.33.1               h53a641e_8    conda-forge
+binutils_linux-64         2.33.1              h9595d00_17    conda-forge
+bleach                    3.1.0                      py_0    conda-forge
+blinker                   1.4                        py_1    conda-forge
+bokeh                     2.1.1            py37hc8dfbb8_0    conda-forge
+bqplot                    0.12.14            pyh9f0ad1d_0    conda-forge
+branca                    0.3.1                      py_0    conda-forge
+bwidget                   1.9.14                        0    conda-forge
+bzip2                     1.0.8                h516909a_2    conda-forge
+c-ares                    1.16.1               h516909a_0    conda-forge
+ca-certificates           2020.6.20            hecda079_0    conda-forge
+cairo                     1.16.0            hcf35c78_1003    conda-forge
+certifi                   2020.6.20        py37hc8dfbb8_0    conda-forge
+certipy                   0.1.3                      py_0    conda-forge
+cffi                      1.13.2           py37h8022711_0    conda-forge
+chardet                   3.0.4                 py37_1003    conda-forge
+clang_variant             1.0               cling_6.14.06    conda-forge
+clangdev                  5.0.0             h935a590_1004    conda-forge
+click                     7.1.2              pyh9f0ad1d_0    conda-forge
+cling                     0.5               he860b03_1007    conda-forge
+cloudpickle               1.5.0                      py_0    conda-forge
+cppzmq                    4.3.0             hc9558a2_1001    conda-forge
+cryptography              2.8              py37h72c5cf5_1    conda-forge
+curl                      7.65.3               hf8cf82a_0    conda-forge
+cycler                    0.10.0                     py_2    conda-forge
+cytoolz                   0.10.1           py37h516909a_0    conda-forge
+dask                      2.1.0                      py_0    conda-forge
+dask-core                 2.1.0                      py_0    conda-forge
+dbus                      1.13.6               he372182_0    conda-forge
+decorator                 4.4.1                      py_0    conda-forge
+defusedxml                0.6.0                      py_0    conda-forge
+distributed               2.5.2                      py_0    conda-forge
+entrypoints               0.3                   py37_1000    conda-forge
+expat                     2.2.9                he1b5a44_2    conda-forge
+fastcache                 1.1.0            py37h8f50634_1    conda-forge
+fontconfig                2.13.1            h86ecdb6_1001    conda-forge
+freetype                  2.10.2               he06d7ca_0    conda-forge
+fribidi                   1.0.10               h516909a_0    conda-forge
+gast                      0.3.3                      py_0    conda-forge
+gcc_impl_linux-64         7.3.0                hd420e75_5    conda-forge
+gcc_linux-64              7.3.0               h553295d_17    conda-forge
+gettext                   0.19.8.1          hc5be6a0_1002    conda-forge
+gfortran_impl_linux-64    7.3.0                hdf63c60_5    conda-forge
+gfortran_linux-64         7.3.0               h553295d_17    conda-forge
+glib                      2.65.0               h6f030ca_0    conda-forge
+gmp                       6.2.0                he1b5a44_2    conda-forge
+gmpy2                     2.1.0b1          py37h04dde30_0    conda-forge
+graphite2                 1.3.13            he1b5a44_1001    conda-forge
+grpcio                    1.30.0           py37hb0870dc_0    conda-forge
+gsl                       2.6                  h294904e_0    conda-forge
+gst-plugins-base          1.14.5               h0935bb2_2    conda-forge
+gstreamer                 1.14.5               h36ae1b5_2    conda-forge
+gxx_impl_linux-64         7.3.0                hdf63c60_5    conda-forge
+gxx_linux-64              7.3.0               h553295d_17    conda-forge
+h5py                      2.10.0          nompi_py37h90cd8ad_104    conda-forge
+harfbuzz                  2.4.0                h9f30f68_3    conda-forge
+hdf5                      1.10.6          nompi_h3c11f04_100    conda-forge
+heapdict                  1.0.1                      py_0    conda-forge
+icu                       64.2                 he1b5a44_1    conda-forge
+idna                      2.8                   py37_1000    conda-forge
+imageio                   2.9.0                      py_0    conda-forge
+importlib-metadata        1.7.0            py37hc8dfbb8_0    conda-forge
+importlib_metadata        1.5.0                    py37_0    conda-forge
+inflect                   4.0.0                    py37_1    conda-forge
+invoke                    1.2.0                 py37_1000    conda-forge
+ipykernel                 5.1.4            py37h5ca1d4c_0    conda-forge
+ipyleaflet                0.12.6             pyh9f0ad1d_0    conda-forge
+ipython                   7.11.1           py37h5ca1d4c_0    conda-forge
+ipython_genutils          0.2.0                      py_1    conda-forge
+ipywidgets                7.5.1                      py_0    conda-forge
+jaraco.itertools          5.0.0                      py_0    conda-forge
+jedi                      0.16.0                   py37_0    conda-forge
+jinja2                    2.11.0                     py_0    conda-forge
+joblib                    0.16.0                     py_0    conda-forge
+jpeg                      9d                   h516909a_0    conda-forge
+json5                     0.8.5                      py_0    conda-forge
+jsonschema                3.2.0                    py37_0    conda-forge
+jupyter_client            5.3.4                    py37_1    conda-forge
+jupyter_core              4.6.1                    py37_0    conda-forge
+jupyter_telemetry         0.0.4                      py_0    conda-forge
+jupyterhub-base           1.1.0                    py37_2    conda-forge
+jupyterhub-singleuser     1.1.0                    py37_2    conda-forge
+jupyterlab                2.2.0                      py_0    conda-forge
+jupyterlab_server         1.2.0                      py_0    conda-forge
+keras-applications        1.0.8                      py_1    conda-forge
+keras-preprocessing       1.1.0                      py_0    conda-forge
+kiwisolver                1.2.0            py37h99015e2_0    conda-forge
+krb5                      1.16.4               h2fd8d38_0    conda-forge
+lcms2                     2.11                 hbd6801e_0    conda-forge
+ld_impl_linux-64          2.33.1               h53a641e_8    conda-forge
+libblas                   3.8.0               17_openblas    conda-forge
+libcblas                  3.8.0               17_openblas    conda-forge
+libcurl                   7.65.3               hda55be3_0    conda-forge
+libedit                   3.1.20170329      hf8c457e_1001    conda-forge
+libffi                    3.2.1             he1b5a44_1006    conda-forge
+libgcc-ng                 9.2.0                h24d8f2e_2    conda-forge
+libgfortran-ng            7.5.0                hdf63c60_6    conda-forge
+libgomp                   9.2.0                h24d8f2e_2    conda-forge
+libiconv                  1.15              h516909a_1006    conda-forge
+liblapack                 3.8.0               17_openblas    conda-forge
+libopenblas               0.3.10          pthreads_hb3c22a3_3    conda-forge
+libpng                    1.6.37               hed695b0_1    conda-forge
+libprotobuf               3.8.0                h8b12597_0    conda-forge
+libsodium                 1.0.17               h516909a_0    conda-forge
+libssh2                   1.8.2                h22169c7_2    conda-forge
+libstdcxx-ng              9.2.0                hdf63c60_2    conda-forge
+libtiff                   4.1.0                hc7e4089_6    conda-forge
+libuuid                   2.32.1            h14c3975_1000    conda-forge
+libwebp-base              1.1.0                h516909a_3    conda-forge
+libxcb                    1.13              h14c3975_1002    conda-forge
+libxml2                   2.9.10               hee79883_0    conda-forge
+locket                    0.2.0                      py_2    conda-forge
+lz4-c                     1.9.2                he1b5a44_1    conda-forge
+make                      4.3                  h516909a_0    conda-forge
+mako                      1.1.0                      py_0    conda-forge
+markdown                  3.2.2                      py_0    conda-forge
+markupsafe                1.1.1            py37h516909a_0    conda-forge
+matplotlib                3.1.3                    py37_0    conda-forge
+matplotlib-base           3.1.3            py37h250f245_0    conda-forge
+mistune                   0.8.4           py37h516909a_1000    conda-forge
+mock                      4.0.2            py37hc8dfbb8_0    conda-forge
+more-itertools            8.2.0                      py_0    conda-forge
+mpc                       1.1.0             h04dde30_1007    conda-forge
+mpfr                      4.0.2                he80fd80_1    conda-forge
+mpmath                    1.1.0                      py_0    conda-forge
+msgpack-python            0.6.2            py37hc9558a2_0    conda-forge
+nbconvert                 5.5.0                      py_0    conda-forge
+nbformat                  5.0.4                      py_0    conda-forge
+ncurses                   6.1               hf484d3e_1002    conda-forge
+networkx                  2.4                        py_1    conda-forge
+nlohmann_json             3.6.1                he1b5a44_0    conda-forge
+nodejs                    11.14.0              he1b5a44_1    conda-forge
+notebook                  6.0.3                    py37_0    conda-forge
+nteract_on_jupyter        2.1.3                      py_0    conda-forge
+numpy                     1.19.0           py37h8960a57_0    conda-forge
+oauthlib                  3.0.1                      py_0    conda-forge
+olefile                   0.46                       py_0    conda-forge
+openssl                   1.1.1g               h516909a_0    conda-forge
+packaging                 20.4               pyh9f0ad1d_0    conda-forge
+pamela                    1.0.0                      py_0    conda-forge
+pandas                    0.24.2           py37hb3f55d8_1    conda-forge
+pandoc                    2.9.1.1                       0    conda-forge
+pandocfilters             1.4.2                      py_1    conda-forge
+pango                     1.42.4               h7062337_4    conda-forge
+parso                     0.6.0                      py_0    conda-forge
+partd                     1.1.0                      py_0    conda-forge
+patsy                     0.5.1                      py_0    conda-forge
+pcre                      8.44                 he1b5a44_0    conda-forge
+pexpect                   4.8.0                    py37_0    conda-forge
+pickleshare               0.7.5                 py37_1000    conda-forge
+pillow                    7.2.0            py37h718be6c_1    conda-forge
+pip                       20.0.2                   py37_0    conda-forge
+pixman                    0.38.0            h516909a_1003    conda-forge
+prometheus_client         0.7.1                      py_0    conda-forge
+prompt_toolkit            3.0.3                      py_0    conda-forge
+protobuf                  3.8.0            py37he1b5a44_2    conda-forge
+psutil                    5.7.2            py37h8f50634_0    conda-forge
+pthread-stubs             0.4               h14c3975_1001    conda-forge
+ptyprocess                0.6.0                   py_1001    conda-forge
+pycparser                 2.19                     py37_1    conda-forge
+pycurl                    7.43.0.5         py37h16ce93b_0    conda-forge
+pygments                  2.5.2                      py_0    conda-forge
+pyjwt                     1.7.1                      py_0    conda-forge
+pyopenssl                 19.1.0                   py37_0    conda-forge
+pyparsing                 2.4.7              pyh9f0ad1d_0    conda-forge
+pyqt                      5.9.2            py37hcca6a23_4    conda-forge
+pyrsistent                0.15.7           py37h516909a_0    conda-forge
+pysocks                   1.7.1                    py37_0    conda-forge
+python                    3.7.8           h6f2ec95_0_cpython    conda-forge
+python-dateutil           2.8.1                      py_0    conda-forge
+python-editor             1.0.4                      py_0    conda-forge
+python-json-logger        0.1.11                     py_0    conda-forge
+python_abi                3.7                     1_cp37m    conda-forge
+pytz                      2020.1             pyh9f0ad1d_0    conda-forge
+pywavelets                1.1.1            py37h03ebfcd_1    conda-forge
+pyyaml                    5.3.1            py37h8f50634_0    conda-forge
+pyzmq                     18.1.1           py37h1768529_0    conda-forge
+qt                        5.9.7                h0c104cb_3    conda-forge
+r-assertthat              0.2.1             r36h6115d3f_2    conda-forge
+r-backports               1.1.8             r36hcdcec82_0    conda-forge
+r-base                    3.6.3                h7ed4ef7_1    conda-forge
+r-base64enc               0.1_3           r36hcdcec82_1004    conda-forge
+r-callr                   3.4.3             r36h6115d3f_1    conda-forge
+r-cli                     2.0.2             r36h6115d3f_1    conda-forge
+r-colorspace              1.4_1             r36hcdcec82_2    conda-forge
+r-crayon                  1.3.4           r36h6115d3f_1003    conda-forge
+r-desc                    1.2.0           r36h6115d3f_1003    conda-forge
+r-digest                  0.6.25            r36h0357c0b_2    conda-forge
+r-ellipsis                0.3.1             r36hcdcec82_0    conda-forge
+r-evaluate                0.14              r36h6115d3f_2    conda-forge
+r-fansi                   0.4.1             r36hcdcec82_1    conda-forge
+r-farver                  2.0.3             r36h0357c0b_1    conda-forge
+r-ggplot2                 3.3.2             r36h6115d3f_0    conda-forge
+r-glue                    1.4.1             r36hcdcec82_0    conda-forge
+r-gtable                  0.3.0             r36h6115d3f_3    conda-forge
+r-htmltools               0.5.0             r36h0357c0b_0    conda-forge
+r-irdisplay               0.7                    r36_1002    conda-forge
+r-irkernel                1.0.2             r36h6115d3f_2    conda-forge
+r-isoband                 0.2.2             r36h0357c0b_0    conda-forge
+r-jsonlite                1.7.0             r36hcdcec82_0    conda-forge
+r-labeling                0.3             r36h6115d3f_1003    conda-forge
+r-lattice                 0.20_41           r36hcdcec82_2    conda-forge
+r-lifecycle               0.2.0             r36h6115d3f_1    conda-forge
+r-magrittr                1.5             r36h6115d3f_1003    conda-forge
+r-mass                    7.3_51.6          r36hcdcec82_2    conda-forge
+r-matrix                  1.2_18            r36h7fa42b6_3    conda-forge
+r-mgcv                    1.8_31            r36h7fa42b6_1    conda-forge
+r-munsell                 0.5.0           r36h6115d3f_1003    conda-forge
+r-nlme                    3.1_148           r36h9bbef5b_0    conda-forge
+r-pbdzmq                  0.3_3           r36h559a7a4_1003    conda-forge
+r-pillar                  1.4.6             r36h6115d3f_0    conda-forge
+r-pkgbuild                1.1.0             r36h6115d3f_0    conda-forge
+r-pkgconfig               2.0.3             r36h6115d3f_1    conda-forge
+r-pkgload                 1.1.0             r36h0357c0b_0    conda-forge
+r-praise                  1.0.0           r36h6115d3f_1004    conda-forge
+r-prettyunits             1.1.1             r36h6115d3f_1    conda-forge
+r-processx                3.4.3             r36hcdcec82_0    conda-forge
+r-ps                      1.3.3             r36hcdcec82_0    conda-forge
+r-r6                      2.4.1             r36h6115d3f_1    conda-forge
+r-rcolorbrewer            1.1_2           r36h6115d3f_1003    conda-forge
+r-rcpp                    1.0.5             r36h0357c0b_0    conda-forge
+r-repr                    1.1.0             r36h6115d3f_1    conda-forge
+r-rlang                   0.4.7             r36hcdcec82_0    conda-forge
+r-rprojroot               1.3_2           r36h6115d3f_1003    conda-forge
+r-rstudioapi              0.11              r36h6115d3f_1    conda-forge
+r-scales                  1.1.1             r36h6115d3f_0    conda-forge
+r-testthat                2.3.2             r36h0357c0b_1    conda-forge
+r-tibble                  3.0.3             r36hcdcec82_0    conda-forge
+r-utf8                    1.1.4           r36hcdcec82_1003    conda-forge
+r-uuid                    0.1_4             r36hcdcec82_1    conda-forge
+r-vctrs                   0.3.2             r36hcdcec82_0    conda-forge
+r-viridislite             0.3.0           r36h6115d3f_1003    conda-forge
+r-withr                   2.2.0             r36h6115d3f_1    conda-forge
+r-zeallot                 0.1.0           r36h6115d3f_1002    conda-forge
+readline                  8.0                  hf8c457e_0    conda-forge
+requests                  2.22.0                   py37_1    conda-forge
+ruamel.yaml               0.16.6           py37h516909a_0    conda-forge
+ruamel.yaml.clib          0.2.0            py37h516909a_0    conda-forge
+scikit-image              0.15.0           py37hb3f55d8_2    conda-forge
+scikit-learn              0.21.3           py37hcdab131_0    conda-forge
+scipy                     1.5.1            py37ha3d9a3c_0    conda-forge
+seaborn                   0.9.0                      py_2    conda-forge
+sed                       4.8                  hbfbb72e_0    conda-forge
+send2trash                1.5.0                      py_0    conda-forge
+setuptools                45.1.0                   py37_0    conda-forge
+sip                       4.19.8          py37hf484d3e_1000    conda-forge
+six                       1.14.0                   py37_0    conda-forge
+sortedcontainers          2.2.2              pyh9f0ad1d_0    conda-forge
+sqlalchemy                1.3.13           py37h516909a_0    conda-forge
+sqlite                    3.32.3               hcee41ef_1    conda-forge
+statsmodels               0.11.1           py37h8f50634_2    conda-forge
+sympy                     1.4                      py37_0    conda-forge
+tblib                     1.6.0                      py_0    conda-forge
+tensorboard               1.13.1                   py37_0    conda-forge
+tensorflow                1.13.1               h5ece82f_5    conda-forge
+tensorflow-base           1.13.1           py37h5ece82f_5    conda-forge
+tensorflow-estimator      1.13.0                     py_0    defaults
+termcolor                 1.1.0                      py_2    conda-forge
+terminado                 0.8.3                    py37_0    conda-forge
+testpath                  0.4.4                      py_0    conda-forge
+tk                        8.6.10               hed695b0_0    conda-forge
+tktable                   2.10                 h555a92e_3    conda-forge
+toolz                     0.10.0                     py_0    conda-forge
+tornado                   6.0.3            py37h516909a_0    conda-forge
+traitlets                 4.3.3                    py37_0    conda-forge
+traittypes                0.2.1                      py_1    conda-forge
+typing_extensions         3.7.4.2                    py_0    conda-forge
+urllib3                   1.25.7                   py37_0    conda-forge
+wcwidth                   0.1.8                      py_0    conda-forge
+webencodings              0.5.1                      py_1    conda-forge
+werkzeug                  1.0.1              pyh9f0ad1d_0    conda-forge
+wheel                     0.34.1                   py37_0    conda-forge
+widgetsnbextension        3.5.1            py37hc8dfbb8_1    conda-forge
+xeus                      0.20.0               h4d8c418_1    conda-forge
+xeus-cling                0.6.0                he513fc3_1    conda-forge
+xleaflet                  0.9.0                hc9558a2_0    conda-forge
+xorg-kbproto              1.0.7             h14c3975_1002    conda-forge
+xorg-libice               1.0.10               h516909a_0    conda-forge
+xorg-libsm                1.2.3             h84519dc_1000    conda-forge
+xorg-libx11               1.6.9                h516909a_0    conda-forge
+xorg-libxau               1.0.9                h14c3975_0    conda-forge
+xorg-libxdmcp             1.1.3                h516909a_0    conda-forge
+xorg-libxext              1.3.4                h516909a_0    conda-forge
+xorg-libxrender           0.9.10            h516909a_1002    conda-forge
+xorg-renderproto          0.11.1            h14c3975_1002    conda-forge
+xorg-xextproto            7.3.0             h14c3975_1002    conda-forge
+xorg-xproto               7.0.31            h14c3975_1007    conda-forge
+xproperty                 0.8.1                hc9558a2_1    conda-forge
+xtensor                   0.20.8               hc9558a2_0    conda-forge
+xtensor-blas              0.16.1               h776b511_0    conda-forge
+xtl                       0.6.15               hc9558a2_0    conda-forge
+xwidgets                  0.18.0               hc9558a2_1    conda-forge
+xz                        5.2.5                h516909a_1    conda-forge
+yaml                      0.2.5                h516909a_0    conda-forge
+zeromq                    4.3.2                he1b5a44_2    conda-forge
+zict                      2.0.0                      py_0    conda-forge
+zipp                      2.1.0                      py_0    conda-forge
+zlib                      1.2.11            h516909a_1006    conda-forge
+zstd                      1.4.5                h6597ccf_1    conda-forge
+Removing intermediate container 6fca9734fe9e
+ ---> 3abcd62a437c
+Step 43/65 : RUN conda install -p ${NB_PYTHON_PREFIX} r-base r-irkernel=1.0.2 r-devtools && conda clean --all -f -y && conda list -p ${NB_PYTHON_PREFIX}
+ ---> Running in 8667ad827c3f
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /srv/conda/envs/notebook
+
+  added / updated specs:
+    - r-base
+    - r-devtools
+    - r-irkernel=1.0.2
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    r-askpass-1.1              |    r36hcdcec82_2          28 KB  conda-forge
+    r-brew-1.0_6               | r36h6115d3f_1003          93 KB  conda-forge
+    r-clipr-0.7.0              |    r36h6115d3f_1          64 KB  conda-forge
+    r-commonmark-1.7           | r36hcdcec82_1002         152 KB  conda-forge
+    r-covr-3.5.0               |    r36h0357c0b_1         302 KB  conda-forge
+    r-crosstalk-1.1.0.1        |    r36h6115d3f_1         670 KB  conda-forge
+    r-curl-4.3                 |    r36hcdcec82_1         702 KB  conda-forge
+    r-devtools-2.3.1           |    r36h6115d3f_0         344 KB  conda-forge
+    r-dt-0.14                  |    r36h6115d3f_0         1.4 MB  conda-forge
+    r-fs-1.4.2                 |    r36h0357c0b_0         483 KB  conda-forge
+    r-gh-1.1.0                 |    r36h6115d3f_1         114 KB  conda-forge
+    r-git2r-0.27.1             |    r36h7253d3a_0         888 KB  conda-forge
+    r-highr-0.8                |    r36h6115d3f_2          58 KB  conda-forge
+    r-htmlwidgets-1.5.1        |    r36h6115d3f_1         688 KB  conda-forge
+    r-httr-1.4.2               |    r36h6115d3f_0         493 KB  conda-forge
+    r-ini-0.3.1                | r36h6115d3f_1003          30 KB  conda-forge
+    r-knitr-1.29               |    r36h6115d3f_0         1.3 MB  conda-forge
+    r-later-1.1.0.1            |    r36h0357c0b_0         156 KB  conda-forge
+    r-lazyeval-0.2.2           |    r36hcdcec82_2         164 KB  conda-forge
+    r-markdown-1.1             |    r36hcdcec82_1         144 KB  conda-forge
+    r-memoise-1.1.0            | r36h6115d3f_1004          42 KB  conda-forge
+    r-mime-0.9                 |    r36hcdcec82_1          52 KB  conda-forge
+    r-openssl-1.4.2            |    r36he5c4762_0         1.2 MB  conda-forge
+    r-promises-1.1.1           |    r36h0357c0b_0         1.2 MB  conda-forge
+    r-purrr-0.3.4              |    r36hcdcec82_1         411 KB  conda-forge
+    r-rcmdcheck-1.3.3          |    r36h6115d3f_3         139 KB  conda-forge
+    r-rematch2-2.1.2           |    r36h6115d3f_1          52 KB  conda-forge
+    r-remotes-2.2.0            |    r36h6115d3f_0         393 KB  conda-forge
+    r-rex-1.2.0                |    r36h6115d3f_1         131 KB  conda-forge
+    r-roxygen2-7.1.1           |    r36h0357c0b_0         662 KB  conda-forge
+    r-rversions-2.0.2          |    r36h6115d3f_0          72 KB  conda-forge
+    r-sessioninfo-1.1.1        | r36h6115d3f_1002          57 KB  conda-forge
+    r-stringi-1.4.6            |    r36h0e574ca_2         783 KB  conda-forge
+    r-stringr-1.4.0            |    r36h6115d3f_2         209 KB  conda-forge
+    r-sys-3.4                  |    r36hcdcec82_0          48 KB  conda-forge
+    r-usethis-1.6.1            |    r36h6115d3f_1         580 KB  conda-forge
+    r-whisker-0.4              |    r36h6115d3f_1          80 KB  conda-forge
+    r-xfun-0.15                |    r36hcdcec82_1         221 KB  conda-forge
+    r-xml2-1.3.2               |    r36h0357c0b_1         249 KB  conda-forge
+    r-xopen-1.0.0              | r36h6115d3f_1003          28 KB  conda-forge
+    r-yaml-2.2.1               |    r36hcdcec82_1         117 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        14.8 MB
+
+The following NEW packages will be INSTALLED:
+
+  r-askpass          conda-forge/linux-64::r-askpass-1.1-r36hcdcec82_2
+  r-brew             conda-forge/noarch::r-brew-1.0_6-r36h6115d3f_1003
+  r-clipr            conda-forge/noarch::r-clipr-0.7.0-r36h6115d3f_1
+  r-commonmark       conda-forge/linux-64::r-commonmark-1.7-r36hcdcec82_1002
+  r-covr             conda-forge/linux-64::r-covr-3.5.0-r36h0357c0b_1
+  r-crosstalk        conda-forge/noarch::r-crosstalk-1.1.0.1-r36h6115d3f_1
+  r-curl             conda-forge/linux-64::r-curl-4.3-r36hcdcec82_1
+  r-devtools         conda-forge/noarch::r-devtools-2.3.1-r36h6115d3f_0
+  r-dt               conda-forge/noarch::r-dt-0.14-r36h6115d3f_0
+  r-fs               conda-forge/linux-64::r-fs-1.4.2-r36h0357c0b_0
+  r-gh               conda-forge/noarch::r-gh-1.1.0-r36h6115d3f_1
+  r-git2r            conda-forge/linux-64::r-git2r-0.27.1-r36h7253d3a_0
+  r-highr            conda-forge/noarch::r-highr-0.8-r36h6115d3f_2
+  r-htmlwidgets      conda-forge/noarch::r-htmlwidgets-1.5.1-r36h6115d3f_1
+  r-httr             conda-forge/noarch::r-httr-1.4.2-r36h6115d3f_0
+  r-ini              conda-forge/noarch::r-ini-0.3.1-r36h6115d3f_1003
+  r-knitr            conda-forge/noarch::r-knitr-1.29-r36h6115d3f_0
+  r-later            conda-forge/linux-64::r-later-1.1.0.1-r36h0357c0b_0
+  r-lazyeval         conda-forge/linux-64::r-lazyeval-0.2.2-r36hcdcec82_2
+  r-markdown         conda-forge/linux-64::r-ma
