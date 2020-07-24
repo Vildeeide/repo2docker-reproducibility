@@ -1,0 +1,21 @@
+No;Repo;repo2docker-checker results
+1;ipython/ipython-in-depth ;4 failures. 1 ok
+2;jupyterlab/jupyterlab-demo;Build failed. Read timed out
+3;ines/spacy-io-binder;No tests found
+4;DS-100/textbook;1 fail, 4 ok. AttributeError
+5;bokeh/bokeh-notebooks ;5 ok
+6;binder-examples/r ;1 ok
+7;rationalmatter/juno-demo-notebooks;2 fails, 3 ok. ValueError, NameError
+8;QuantStack/xeus-cling;1 failure. Unknown exception
+9;ines/spacy-course;No tests found
+10;binder-examples/requirements;1 failure. Permission denied 
+11;RasaHQ/rasa_core;No tests found
+12;numba/numba-examples;1 failure. 4 ok. ModuleNotFoundError
+13;binder-examples/julia-python;3 failures. SyntaxError
+14;QISKit/qiskit-tutorial;5 ok
+15;dask/dask-examples;Build failed. Read timed out
+16;bethgelab/bwki-notebooks;Username
+17;data-8/textbook;5 ok 
+18;stencila/examples;3 failures. Modules
+19;wshuyi/demo-spacy-text-processing;1 ok 
+20;illinois-scicomp/cs450-s19-binder;5 ok 
