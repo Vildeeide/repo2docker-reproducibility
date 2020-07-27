@@ -8,38 +8,38 @@ No;Repo;repo2docker-checker results
 7;samzhuwj/read-csv;1 ok 
 8;jakesnow/quakes;Build failed 
 9;samzhuwj/use-pyfpdf;1 failure. NameError
-;alexbseaton/complex-mappings;Build failure. Failed building wheels
-;agconti/dog-walks;Build failed 
-;VioletVivirand/lime-mechine-learning-demo;Build failed
-;TrentoCrowdAI/datasets-preprocessor;Build failed
-;supernova106/pybot;1 ok 
-;tammoippen/autoencoder;1 ok 
-;trevordmiller/practice-jupyterlab;Build failed. Read timed out
-;sciyoshi/riddler;Build failed
-;pyrooka/felsogeodezia;2 failures. HTTPError
-;jean-k-cp/python101;Build failed 
-;izikeros/blog;Build failed
-;GitNiko/linearC;5 failures. Exited with statuscode 1
-;farnoy/ml;Build failed. Read timed out
-;erikkvale/machine_learning;2 failures. Modules
-;elisabeth-berg/trending-food;Build failed
-;timm052/Realpython;1 ok, 4 failures. SyntaxError, FileNotFound
-;knowsuchagency/knowsuchagency.github.io;No tests found
-;TomoyukiAota/python_playground;Build failed. No url found for submodule path
-;budiryan/colorspace-analysis;Build failed. Read timed out
-;biozz/advent-of-code-solutions;Username
-;cjwinchester/ire-2018-python-for-data-analysis;Build failed
-;elanorigby/pyquest;Build failed. Package installation failed
-;paulolemus/machine-learning;Build failed. Package installation failed
-;atonderski/tda231-ml-course;Build failed. Package installation failed
-;kurtrm/miscellaneous;Username
-;Jhengsh/tidyframe;5 failures. Modules
-;sci10n/ML-Examples;5 failures. AttributeError, cell execution timed out
-;westen30/playground;5 failures. No such file
-;villeristi/applied-machine-learning-in-python;Build failed
-;alexishevia/jupyter_notebooks;Username
-;foriequal0/grad-proj-tf-tutorial;Build failed
-;dmolesUC3/mrt-autoscale-analysis;Username
-;onnudilol/ml_in_py;Build failed
-;dgkim5360/the-elements-of-statistical-learning-notebooks;Build failed
-;GustavoDinizMonteiro/inverted_index;Build failed
+10;alexbseaton/complex-mappings;Build failure. Failed building wheels
+11;agconti/dog-walks;Build failed 
+12;VioletVivirand/lime-mechine-learning-demo;Build failed
+13;TrentoCrowdAI/datasets-preprocessor;Build failed
+14;supernova106/pybot;1 ok 
+15;tammoippen/autoencoder;1 ok 
+16;trevordmiller/practice-jupyterlab;Build failed.
+17;sciyoshi/riddler;Build failed
+18;pyrooka/felsogeodezia;2 failures. HTTPError
+19;jean-k-cp/python101;Build failed 
+20;izikeros/blog;Build failed
+21;GitNiko/linearC;5 failures. Exited with statuscode 1
+22;farnoy/ml;Build failed
+23;erikkvale/machine_learning;2 failures. Modules
+24;elisabeth-berg/trending-food;Build failed
+25;timm052/Realpython;1 ok, 4 failures. SyntaxError, FileNotFound
+26;knowsuchagency/knowsuchagency.github.io;No tests found
+27;TomoyukiAota/python_playground;Build failed. No url found for submodule path
+28;budiryan/colorspace-analysis;Build failed. Package installation failed
+29;biozz/advent-of-code-solutions;Username
+30;cjwinchester/ire-2018-python-for-data-analysis;Build failed
+31;elanorigby/pyquest;Build failed. Package installation failed
+32;paulolemus/machine-learning;Build failed. Package installation failed
+33;atonderski/tda231-ml-course;Build failed. Package installation failed
+34;kurtrm/miscellaneous;Username
+35;Jhengsh/tidyframe;5 failures. Modules
+36;sci10n/ML-Examples;5 failures. AttributeError, cell execution timed out
+37;westen30/playground;5 failures. No such file
+38;villeristi/applied-machine-learning-in-python;Build failed
+39;alexishevia/jupyter_notebooks;Username
+40;foriequal0/grad-proj-tf-tutorial;Build failed
+41;dmolesUC3/mrt-autoscale-analysis;Username
+42;onnudilol/ml_in_py;Build failed
+43;dgkim5360/the-elements-of-statistical-learning-notebooks;Build failed
+44;GustavoDinizMonteiro/inverted_index;Build failed

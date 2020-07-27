@@ -1,6 +1,6 @@
 No;Repo;repo2docker-checker results
 1;ipython/ipython-in-depth ;4 failures. 1 ok
-2;jupyterlab/jupyterlab-demo;Build failed. Read timed out
+2;jupyterlab/jupyterlab-demo;5 failures. FileNotFound
 3;ines/spacy-io-binder;No tests found
 4;DS-100/textbook;1 fail, 4 ok. AttributeError
 5;bokeh/bokeh-notebooks ;5 ok
@@ -13,7 +13,7 @@ No;Repo;repo2docker-checker results
 12;numba/numba-examples;1 failure. 4 ok. ModuleNotFoundError
 13;binder-examples/julia-python;3 failures. SyntaxError
 14;QISKit/qiskit-tutorial;5 ok
-15;dask/dask-examples;Build failed. Read timed out
+15;dask/dask-examples;5 failures. KeyError
 16;bethgelab/bwki-notebooks;Username
 17;data-8/textbook;5 ok 
 18;stencila/examples;3 failures. Modules
