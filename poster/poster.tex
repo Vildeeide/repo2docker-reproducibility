@@ -1,0 +1,216 @@
+% based on https://www.overleaf.com/latex/templates/writing-posters-with-markdown/jtbgmmgqrqmh
+
+\documentclass{beamer}
+%% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
+%% Possible orientations: portrait, landscape
+%% Font sizes can be changed using the scale option.
+\usepackage[size=a3,orientation=landscape,scale=1.2]{beamerposter}
+\usetheme{Simula-poster}
+\usecolortheme{simula}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage[scaled=0.92]{inconsolata}
+% \usepackage[libertine]{newtxmath}
+\usepackage[numbers]{natbib}
+\renewcommand{\bibfont}{\small}
+
+\newcommand{\texthash}{\#}
+
+
+%% Load the markdown package
+\usepackage[citations,footnotes,definitionLists,hashEnumerators,smartEllipses,tightLists=false,pipeTables,tableCaptions,hybrid]{markdown}
+%%begin novalidate
+\markdownSetup{rendererPrototypes={
+ link = {\href{#2}{#1}},
+ headingFour = {\begin{block}{#1}},
+ horizontalRule = {\end{block}}
+}}
+%%end novalidate
+
+\author[]{Vilde Eide and Min Ragan-Kelley}
+\institute[simula]{Simula Research Laboratory}
+
+\title{Measuring notebook reproducibility with repo2docker}
+% Optional foot image
+\footimage{\includegraphics[width=4cm]{simula-logo.png}}
+
+\begin{document}
+\begin{frame}[fragile]\centering
+
+\begin{columns}
+\begin{column}{0.57\textwidth}
+
+\begin{markdown}
+
+#### Motivation
+
+
+- A large-scale study of notebook reproducibility was published in 2019 [@reproducibility:2019]
+- repo2docker is a tool for automatically generating environments from repos, to aid in reproducibility [@binder2]
+- we want to evaluate repo2docker's automatic env generation,
+  and compare with the study's conclusions
+- Study did not evaluate execution of languages other than Python;
+  repo2docker can produce environments with Julia, R, etc.
+
+We built \url{https://github.com/minrk/repo2docker-checker} to automate
+fetching and building repos with repo2docker, then running a test script
+to classify whether it should be considered reproducible
+
+
+----
+\end{markdown}
+\end{column}
+
+\begin{column}{.4\textwidth}
+\begin{markdown}
+
+
+#### Caveats
+
+
+- What qualifies as reproducible?
+- We chose:
+    - repo2docker successfully builds an image, and
+        - it has notebooks
+        - notebooks execute without error
+
+----
+\end{markdown}
+\end{column}
+
+\end{columns}
+
+\bigskip
+{\usebeamercolor[bg]{headline}\hrulefill}
+\bigskip
+
+\begin{columns}[T]
+
+%%%% First Column
+\begin{column}{.46\textwidth}
+
+\begin{markdown}
+
+#### Background
+
+- reproduce previous study
+- compare with repo2docker
+- evaluate "automate existing best practices" claim
+- failure to reproduce != repo2docker failure!
+
+----
+
+
+#### Process
+
+- collect repositories to test
+    - source 1: github search for language:jupyter
+    - source 2: queries from [@reproducibility:2019]
+- build image with repo2docker
+- find notebooks in repo (up to 5)
+- execute notebooks with nbconvert
+
+
+----
+
+#### Categories
+
+Based on queries from previous study database, we collected and tested samples of repos,
+grouped by classification in the study:
+
+- Julia notebooks (not tested previously)
+- R notebooks (not tested previously)
+- Installation failed (environment specified, could not install)
+- Import error / ModuleNotFound (likely missing dependency specification)
+- Success without dependencies (environment not found by study, execution succeeds)
+- Success with default dependencies (study ran with anaconda, success)
+
+----
+
+
+\end{markdown}
+
+\end{column}
+
+%%%% Second Column
+\begin{column}{.46\textwidth}
+
+\begin{markdown}
+
+#### Outcomes
+
+Several possible classes of failure,
+some of which are interesting for repo2docker,
+others are not:
+
+- build failure
+    + due to partially pinned environment (e.g. pinned numpy not compatible with Python 3.8)
+    + due to pre-build dependencies (e.g. apt-get install C libraries)
+    + actually invalid requirements
+- execution failure
+    + environment not specified at all
+    + environment insufficiently specified
+    + user input required (e.g. credentials for using an API, or "fill out X before executing")
+
+
+----
+
+#### Results
+
+% \setkeys{Gin}{width=.3\linewidth}
+
+% ![exampleimage](example-image.jpg "An exemplary image")
+
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|  12   |  12  |  12     |   12   |
+| 123   |  123 |   123   |  123   |
+|   1   |    1 |     1   |    1   |
+
+  : Demonstration of pipe table syntax.
+
+----
+
+#### Conclusions
+
+- A large fraction of build failures were due to pinning packages (most often numpy or pandas)
+  but not Python, because there is no community standard for pinning Python (conda, Pipfile insufficiently common, often lack Python itself)
+- repo2docker success rate could be greatly improved if we looked at more of the repo to determine runtime language and/or version:
+    + last repository commit date could pick older Python by default
+    + notebook \texttt{language info} metadata includes runtime and version
+- repo2docker does not implement best practices adopted in R and Julia communities
+    + big caveat for Julia: most repos tested were older than the advent of the new \texttt{project.toml}
+
+----
+
+#### Future work
+
+- Test with different strategies for picking runtimes / versions
+- Evaluate more repos, our sample size was small
+- Study more recent R / Julia repos, look for community standards for specifying environments
+
+----
+
+\end{markdown}
+\end{column}
+\end{columns}
+
+\begin{markdown}
+
+
+#### Bibliography
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+----
+
+\end{markdown}
+
+\end{frame}
+
+
+\end{document}

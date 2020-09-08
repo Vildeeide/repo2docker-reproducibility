@@ -5,3 +5,16 @@ __pycache__
 # don't commit config.py with credentials
 db/config.py
 runs/**/notebooks
+
+*.aux
+poster/_markdown_poster
+poster/*.log
+*.bbl
+*.blg
+poster/*.in
+*.out
+*.vrb
+*.snm
+*.nav
+*.toc
+poster/*.lua
