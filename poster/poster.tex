@@ -29,7 +29,7 @@
 }}
 %%end novalidate
 
-\author[]{Vilde Eide and Min Ragan-Kelley}
+\author[]{Vilde Dille Øvreeide and Min Ragan-Kelley}
 \institute[simula]{Simula Research Laboratory}
 
 \title{Measuring notebook reproducibility with repo2docker}
@@ -70,11 +70,12 @@ to classify whether it should be considered reproducible
 #### Caveats
 
 
-- What qualifies as reproducible?
-- We chose:
-    - repo2docker successfully builds an image, and
-        - it has notebooks
-        - notebooks execute without error
+What qualifies as reproducible?
+
+We chose:
+- repo2docker successfully builds an image, and
+    - it has notebooks
+    - notebooks execute without error
 
 ----
 \end{markdown}
@@ -188,9 +189,9 @@ others are not:
 
 #### Future work
 
-- Test with different strategies for picking runtimes / versions
+- Test repo2docker with different strategies for picking runtimes / versions
 - Evaluate more repos, our sample size was small
-- Study more recent R / Julia repos, look for community standards for specifying environments
+- Look at more recent R / Julia repos for community standards for specifying environments
 
 ----
 
