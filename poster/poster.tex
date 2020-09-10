@@ -4,16 +4,17 @@
 %% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
 %% Possible orientations: portrait, landscape
 %% Font sizes can be changed using the scale option.
-\usepackage[size=a3,orientation=landscape,scale=1.2]{beamerposter}
+\usepackage[size=a3,orientation=landscape,scale=1]{beamerposter}
 \usetheme{Simula-poster}
 \usecolortheme{simula}
 
+\usepackage{svg}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
 \usepackage[scaled=0.92]{inconsolata}
 % \usepackage[libertine]{newtxmath}
-\usepackage[numbers]{natbib}
+\usepackage{natbib}
 \renewcommand{\bibfont}{\small}
 
 \newcommand{\texthash}{\#}
@@ -34,7 +35,7 @@
 
 \title{Measuring notebook reproducibility with repo2docker}
 % Optional foot image
-\footimage{\includegraphics[width=4cm]{simula-logo.png}}
+\footimage{\includegraphics[width=4cm]{simula-logo.pdf}}
 
 \begin{document}
 \begin{frame}[fragile]\centering
@@ -53,10 +54,11 @@
   and compare with the study's conclusions
 - Study did not evaluate execution of languages other than Python;
   repo2docker can produce environments with Julia, R, etc.
+- repo2docker has no mechanism for evaluating success other than build completing
 
-We built \url{https://github.com/minrk/repo2docker-checker} to automate
+We built repo2docker-checker [@repo2dockerchecker] to automate
 fetching and building repos with repo2docker, then running a test script
-to classify whether it should be considered reproducible
+to classify whether it should be considered reproducible.
 
 
 ----
@@ -69,15 +71,19 @@ to classify whether it should be considered reproducible
 
 #### Caveats
 
+- For repo2docker, our main interest is in *environment reproducibility*,
+  not *code reproducibility*,
+  so if all dependencies are met, the goal is achieved.
+  But how can we tell?
 
-What qualifies as reproducible?
+- **What qualifies as a successfully reproducible repo?**
+  We chose: repo2docker successfully builds an image, and
 
-We chose:
-- repo2docker successfully builds an image, and
     - it has notebooks
     - notebooks execute without error
 
 ----
+
 \end{markdown}
 \end{column}
 
@@ -106,17 +112,17 @@ We chose:
 
 #### Process
 
-- collect repositories to test
+1. collect repositories to test
     - source 1: github search for language:jupyter
     - source 2: queries from [@reproducibility:2019]
-- build image with repo2docker
-- find notebooks in repo (up to 5)
-- execute notebooks with nbconvert
+2. build image with repo2docker
+3. find notebooks in repo (up to 5)
+4. execute notebooks with nbconvert
 
 
 ----
 
-#### Categories
+#### Categories of notebooks
 
 Based on queries from previous study database, we collected and tested samples of repos,
 grouped by classification in the study:
@@ -129,16 +135,6 @@ grouped by classification in the study:
 - Success with default dependencies (study ran with anaconda, success)
 
 ----
-
-
-\end{markdown}
-
-\end{column}
-
-%%%% Second Column
-\begin{column}{.46\textwidth}
-
-\begin{markdown}
 
 #### Outcomes
 
@@ -155,8 +151,19 @@ others are not:
     + environment insufficiently specified
     + user input required (e.g. credentials for using an API, or "fill out X before executing")
 
-
 ----
+
+
+\end{markdown}
+
+\end{column}
+
+%%%% Second Column
+\begin{column}{.46\textwidth}
+
+\begin{markdown}
+
+
 
 #### Results
 
@@ -177,11 +184,12 @@ others are not:
 
 #### Conclusions
 
+- Open data publication in [@reproducibility:2019] greatly facilitates follow-up studies!
 - A large fraction of build failures were due to pinning packages (most often numpy or pandas)
   but not Python, because there is no community standard for pinning Python (conda, Pipfile insufficiently common, often lack Python itself)
 - repo2docker success rate could be greatly improved if we looked at more of the repo to determine runtime language and/or version:
-    + last repository commit date could pick older Python by default
-    + notebook \texttt{language info} metadata includes runtime and version
+    + last repository commit date could pick older Python by default (not at all intrusive)
+    + notebook \texttt{language info} metadata includes runtime and version (more expensive to evaluate)
 - repo2docker does not implement best practices adopted in R and Julia communities
     + big caveat for Julia: most repos tested were older than the advent of the new \texttt{project.toml}
 
@@ -191,7 +199,9 @@ others are not:
 
 - Test repo2docker with different strategies for picking runtimes / versions
 - Evaluate more repos, our sample size was small
-- Look at more recent R / Julia repos for community standards for specifying environments
+- Plugin check to Binder for more thorough evaluation of success on build
+- Engage with R / Julia community to investigate standards for specifying environments.
+  **Is repo2docker missing something, or do these communities not have widely used environment standards?** Specifically, evaluate adoption of recently implemented ``project.toml`` specification.
 
 ----
 
