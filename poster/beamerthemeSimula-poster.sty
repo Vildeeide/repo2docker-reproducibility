@@ -1,5 +1,6 @@
 % based on https://www.overleaf.com/latex/templates/writing-posters-with-markdown/jtbgmmgqrqmh
 \RequirePackage{tikz}
+\usepackage{ragged2e}
 \newcommand{\footimage}[1]{\def\footim@ge{#1}}
 % \usefonttheme[onlymath]{serif}
 \usefonttheme{professionalfonts}
@@ -28,18 +29,41 @@
 \setbeamertemplate{itemize subitem}{$\bullet$ }
 \setlength\leftmargini{3.5em}
 
+\setbeamertemplate{blocks}[rounded]
+
+\newlength{\inboxwd}
+\newlength{\iinboxwd}
+\newlength{\inboxrule}
+
 \setbeamertemplate{block begin}{
-  \vskip.75ex
-  \begin{beamercolorbox}[leftskip=1em,colsep*=.75ex]{block title}%
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[leftskip=1em,colsep*=.75ex,rounded=true]{block title}%
     \usebeamerfont{block title}\insertblocktitle
   \end{beamercolorbox}%
   {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
-  \usebeamerfont{block body}%
-  \begin{beamercolorbox}[colsep*=.75ex,sep=.75ex,vmode]{block body}%
-    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  }
+  \usebeamerfont{block body}
+  % scoot body up to cover lower rounded rects on header box
+  \vskip-0.2cm
+
+\begin{beamercolorbox}[sep=-0.1cm, rounded=true,center]{block title}
+  \setlength{\inboxwd}{\linewidth}
+  \addtolength{\inboxwd}{-0.15cm}
+  \begin{beamercolorbox}[rounded=true,wd={\inboxwd},center]{block body}
+  \setlength{\iinboxwd}{\inboxwd}
+  \setlength{\inboxrule}{\inboxwd}
+  \addtolength{\iinboxwd}{-0.1cm}
+  \addtolength{\inboxrule}{0.1cm}
+  \begin{center}
+  \begin{minipage}{\iinboxwd}
+  \justifying
+}
+
 \setbeamertemplate{block end}{
-  \end{beamercolorbox}\vskip1ex
+  \end{minipage}
+  \end{center}
+  \end{beamercolorbox}
+  \end{beamercolorbox}
+  \vskip\smallskipamount
 }
 
 \setbeamertemplate{navigation symbols}{}
