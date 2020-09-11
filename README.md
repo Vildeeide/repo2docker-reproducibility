@@ -1,6 +1,6 @@
 # Reproducibility with repo2docker 
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vildeeide/repo2docker_reproducibility/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vildeeide/repo2docker-reproducibility/master)
 
 Code reproducibility is key to realize the potential of the open science paradigm. The present project focuses on literate programming using Jupyter Notebooks. The work is inspired by Pimentel et al's "A large-scale study about quality and reproducibility of jupyter notebooks", and more specifically the seventh research question of the paper; "How reproducible are notebooks?". 
 
