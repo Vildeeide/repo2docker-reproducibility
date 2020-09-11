@@ -1,0 +1,10 @@
+Category,Sampled repos,Success,Build failed,No tests found,Run failed,Import-related error
+Julia,131,1,130,0,0,0
+R,77,1,2,1,73,34
+ImportError,93,1,7,0,85,77
+Installation failed,172,4,81,2,85,70
+Success without dependencies,94,10,3,0,81,70
+Success with dependencies,113,51,38,1,23,5
+Success with /requirements.txt,88,51,24,1,12,1
+Success with /Pipfile,40,5,23,1,11,2
+Binder Event Archive,19,6,2,3,8,2

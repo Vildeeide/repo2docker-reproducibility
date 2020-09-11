@@ -4,11 +4,13 @@
 %% Possible paper sizes: a0, a0b, a1, a2, a3, a4.
 %% Possible orientations: portrait, landscape
 %% Font sizes can be changed using the scale option.
-\usepackage[size=a3,orientation=landscape,scale=1]{beamerposter}
+\usepackage[size=a0,orientation=landscape,scale=0.8]{beamerposter}
 \usetheme{Simula-poster}
 \usecolortheme{simula}
 
-\usepackage{svg}
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{csvsimple}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
@@ -19,15 +21,16 @@
 
 \newcommand{\texthash}{\#}
 
-
 %% Load the markdown package
 \usepackage[citations,footnotes,definitionLists,hashEnumerators,smartEllipses,tightLists=false,pipeTables,tableCaptions,hybrid]{markdown}
 %%begin novalidate
 \markdownSetup{rendererPrototypes={
+ interblockSeparator = {\par\vspace{1ex}},
  link = {\href{#2}{#1}},
  headingFour = {\begin{block}{#1}},
  horizontalRule = {\end{block}}
-}}
+},
+}
 %%end novalidate
 
 \author[]{Vilde Dille Øvreeide and Min Ragan-Kelley}
@@ -35,15 +38,15 @@
 
 \title{Measuring notebook reproducibility with repo2docker}
 % Optional foot image
-\footimage{\includegraphics[width=4cm]{simula-logo.pdf}}
+\footimage{\includegraphics[width=8cm]{simula-logo.pdf}}
 
 \begin{document}
 \begin{frame}[fragile]\centering
 
 \begin{columns}
-\begin{column}{0.57\textwidth}
+\begin{column}{0.5\textwidth}
 
-\begin{markdown}
+\begin{markdown}{tightLists=false}
 
 #### Motivation
 
@@ -53,31 +56,28 @@
 - we want to evaluate repo2docker's automatic env generation,
   and compare with the study's conclusions
 - Study did not evaluate execution of languages other than Python;
-  repo2docker can produce environments with Julia, R, etc.
-- repo2docker has no mechanism for evaluating success other than build completing
-
-We built repo2docker-checker [@repo2dockerchecker] to automate
-fetching and building repos with repo2docker, then running a test script
-to classify whether it should be considered reproducible.
+  whereas repo2docker can produce environments with Julia, R, etc.
+- repo2docker has no mechanism for evaluating success other than `docker build` completing without error
 
 
 ----
 \end{markdown}
 \end{column}
 
-\begin{column}{.4\textwidth}
+\begin{column}{.5\textwidth}
 \begin{markdown}
 
 
 #### Caveats
 
-- For repo2docker, our main interest is in *environment reproducibility*,
+- For evaluating repo2docker, our main interest is in *environment reproducibility*,
   not *code reproducibility*,
   so if all dependencies are met, the goal is achieved.
-  But how can we tell?
-
+  But how can we tell if an error is because the environment is wrong,
+  or if the notebook itself is in error?
+- Relying on data from [@reproducibility:2019] means many repositories have not been updated since 2018.
 - **What qualifies as a successfully reproducible repo?**
-  We chose: repo2docker successfully builds an image, and
+  We chose the minimum: repo2docker successfully builds an image, and
 
     - it has notebooks
     - notebooks execute without error
@@ -96,60 +96,76 @@ to classify whether it should be considered reproducible.
 \begin{columns}[T]
 
 %%%% First Column
-\begin{column}{.46\textwidth}
+\begin{column}{.3\textwidth}
 
 \begin{markdown}
-
-#### Background
-
-- reproduce previous study
-- compare with repo2docker
-- evaluate "automate existing best practices" claim
-- failure to reproduce != repo2docker failure!
-
-----
 
 
 #### Process
 
 1. collect repositories to test
-    - source 1: github search for language:jupyter
-    - source 2: queries from [@reproducibility:2019]
+    - source 1: queries from previous study [@reproducibility:2019]
+    - source 2: Binder Events Archive [@binder-events]
 2. build image with repo2docker
 3. find notebooks in repo (up to 5)
-4. execute notebooks with nbconvert
+4. execute notebooks with nbconvert (record results) in repo2docker-built image
+5. record results in csv, organized by repository and ref
+
+Steps 2-5 are automated with repo2docker-checker [@repo2dockerchecker],
+a thin wrapper around repo2docker that adds execution via nbconvert
+and collecting test results and build logs.
 
 
 ----
 
-#### Categories of notebooks
+#### Repository categories
 
-Based on queries from previous study database, we collected and tested samples of repos,
+We collected groups of repositories to sample from different sources.
+
+First, we queried the study database for several categories we should expect different kinds of results from,
 grouped by classification in the study:
 
-- Julia notebooks (not tested previously)
-- R notebooks (not tested previously)
-- Installation failed (environment specified, could not install)
-- Import error / ModuleNotFound (likely missing dependency specification)
-- Success without dependencies (environment not found by study, execution succeeds)
-- Success with default dependencies (study ran with anaconda, success)
+
+- **Julia** notebooks (not tested previously). We should expect these to install Julia and have some execution success.
+- **R** notebooks (not tested previously). We should expect these to install R and have some execution success.
+- **Installation failed** (environment specified, could not install). We expect these repos to fail to build during installation.
+- **Import error** / ModuleNotFound (likely missing dependency specification). We expect these repos to fail in a similar way to that seen in the study.
+- **Success without dependencies** (environment not found by study, run in Anaconda without error). Because repo2docker does not use a full Anaconda environment by default, we expect many of these to fail with ImportErrors, depending on whether the standard library is all that is required.
+- **Success with dependencies** (dependencies found by study, may not be found by repo2docker). We expect these to succeed at a rate comparable to the rate at which repo2docker is able to locate the environment specification
+- **Success with top-level requirements.txt** (Subset of above where dependencies are specified in a requirements.txt file in the base directory of the repo.) We expect these to succeed.
+- **Success with Pipfile** (environment specified by pipfile, execution succeeds). We expect these to succeed.
+
+Critically, this does not assume repos which were written with repo2docker in mind,
+testing the "automate existing best practices" goal of repo2docker.
+
+We also used one more source of repos, top repos from the **Binder Events Archive** [@binder-events],
+which are known to work with repo2docker and and be popular on the mybinder.org service.
+If these repos aren't considered to work, our validation strategy should be re-evaluated.
 
 ----
 
 #### Outcomes
 
-Several possible classes of failure,
-some of which are interesting for repo2docker,
+There are several possible outcomes,
+with several causes,
+and several times and ways in which to fail.
+Some failures are interesting for the purposes of repo2docker,
 others are not:
 
-- build failure
+- **build failure** - repo2docker fails to construct a working image
     + due to partially pinned environment (e.g. pinned numpy not compatible with Python 3.8)
     + due to pre-build dependencies (e.g. apt-get install C libraries)
-    + actually invalid requirements
-- execution failure
-    + environment not specified at all
-    + environment insufficiently specified
-    + user input required (e.g. credentials for using an API, or "fill out X before executing")
+    + actually invalid requirements (rare!)
+    + Failure to detect runtime, e.g. Julia
+- **execution failure**
+    + **ImportError**
+        - environment not specified at all
+        - environment insufficiently specified
+        - environment specified in a location or format not recognized by repo2docker
+    + user input/editing required (e.g. credentials for using an API, or "fill out X before executing"). These are valid notebooks, but cannot be automatically validated.
+    + assumption of context (e.g. computational resources, manual setup steps in README)
+    + actual bugs in notebooks. These are failures in reproducibility, but not failures for repo2docker to investigate further
+- **success** - image is built and notebooks execute without error
 
 ----
 
@@ -159,28 +175,104 @@ others are not:
 \end{column}
 
 %%%% Second Column
-\begin{column}{.46\textwidth}
+\begin{column}{.4\textwidth}
+
+\begin{block}{Results}
+
+\center
+% \setkeys{Gin}{width=.3\linewidth}
+\csvautotabular{../data_collection/results.csv}
+% ![exampleimage](example-image.jpg "An exemplary image")
+% \begin{tabular}{|l|l|l|}
+%  \csvnames{myNames}{1=\category,2=\repos,3=\success,4=\build,5=\failure,6=\importerror}
+% \hline
+% Group & Repos & Success & Build failure & Execution failure & Failed with import error
+% \csvreader[myNames]{../data_collection/results.csv}{}%
+% {\\\givenname\ \name & \matriculation}%
+%  \\\hline
+%  \end{tabular}
+
+
+% | Right | Left | Default | Center |
+% |------:|:-----|---------|:------:|
+% |  12   |  12  |  12     |   12   |
+% | 123   |  123 |   123   |  123   |
+% |   1   |    1 |     1   |    1   |
+
+%   : Demonstration of pipe table syntax.
+
+% side-by-side figures
+% \begin{figure}%
+%     \centering
+%     \subfloat[\centering Total counts for success \& failure for each group of repos]{{\includegraphics[width=0.4\textwidth]{fig/totals.pdf} }}
+%     \qquad
+%     \subfloat[\centering Rates for success and failure, separating execution failure due to ImportError]{{\includegraphics[width=0.4\textwidth]{fig/rates.pdf} }}
+%     \caption{Total result counts and relative error rates.}
+%     \label{fig:example}
+% \end{figure}
+
+\begin{figure}%
+    % \centering
+    \includegraphics[width=0.6\textwidth]{fig/totals.pdf}
+    % \caption{Total counts for success \& failure for each group of repos}
+\end{figure}
+
+\begin{figure}%
+    % \centering
+    \includegraphics[width=0.6\textwidth]{fig/rates.pdf}
+    % \caption{Rates for success and failure, separating execution failure due to ImportError.}
+\end{figure}
+
+\end{block}
 
 \begin{markdown}
 
 
-
-#### Results
-
-% \setkeys{Gin}{width=.3\linewidth}
-
-% ![exampleimage](example-image.jpg "An exemplary image")
+\end{markdown}
 
 
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|  12   |  12  |  12     |   12   |
-| 123   |  123 |   123   |  123   |
-|   1   |    1 |     1   |    1   |
+\end{column}
 
-  : Demonstration of pipe table syntax.
+%%%% Second Column
+\begin{column}{.3\textwidth}
+\begin{markdown}
+
+#### Highlights
+
+Expected results:
+
+- Majority of repositories reported raising **ImportErrors** in [@reproducibility:2019] had same results with repo2docker
+- Large fraction of **install failed** repos also failed with a build error, but ~half did not.
+  This matches the 54\% rate of successfully executing repos having environment specified in default /requirements.txt location which repo2docker would find.
+- **Success without dependencies** has a high rate of ImportError,
+  which is expected because this group lacks environment specifications
+  found in [@reproducibility:2019] but was executed in an Anaconda environment.
+  repo2docker's smaller base environment lacks the common dependencies for most of these repos.
+- Success rate with requirements.txt at the default location (where repo2docker will find it) is highest, but still below 60\%.
+  Many failures were due to incomplete pinning.
+
+
+
+Unexpected results:
+
+- Exactly one Julia repo installed Julia: Binder's own Julia example.
+  Repo2docker offered ~no benefit over not testing Julia at all
+  for a sample of real repos containing Julia notebooks in 2018.
+- R success rate was similarly extremely low, despite installing R more often.
+- **Pipfile/Pipfile.lock** success rate is lower than requirements.txt.
+  Investigating build logs shows that strictly pinning numpy, etc. is common
+  while pinning Python is rare, despite the fact that Pipfiles do support pinning Python itself.
+- Many popular repos on Binder don't pass our execution test,
+  meaning they may contain notebooks that do not run without modification.
+  Does this mean our validation is not particularly useful?
+
+Perhaps the most significant result, in our eyes: **A very common source of build failure is strictly pinning dependencies numpy or pandas and not pinning Python**. Due to the age of most tested repos,
+  this means many instances of \texttt{numpy==1.14.1} which cannot be installed
+  with Python 3.8, the default Python for repo2docker.
+
 
 ----
+
 
 #### Conclusions
 
@@ -205,13 +297,6 @@ others are not:
 
 ----
 
-\end{markdown}
-\end{column}
-\end{columns}
-
-\begin{markdown}
-
-
 #### Bibliography
 
 \bibliographystyle{unsrtnat}
@@ -220,6 +305,8 @@ others are not:
 ----
 
 \end{markdown}
+\end{column}
+\end{columns}
 
 \end{frame}
 

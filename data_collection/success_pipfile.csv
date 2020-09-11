@@ -1,23 +1,23 @@
-No;Repo;repo2docker-checker results 
-1;haishenming/uda-u5;1 ok 
+No;Repo;repo2docker-checker results
+1;haishenming/uda-u5;1 ok
 2;driscollis/NebraskaCode_Python_Decorators;1 failure, TypeError
-3;kazup0n/lifegame;1 ok 
-4;onyxfish/nicar-2017-agate;Build failed 
-5;datadesk/python-road-clipping-example;1 failure. Cell execution timed out 
+3;kazup0n/lifegame;1 ok
+4;onyxfish/nicar-2017-agate;Build failed
+5;datadesk/python-road-clipping-example;1 failure. Cell execution timed out
 6;palewire/altair-jupyter-lab-bug-report;1 failure. AttributeError
-7;samzhuwj/read-csv;1 ok 
-8;jakesnow/quakes;Build failed 
+7;samzhuwj/read-csv;1 ok
+8;jakesnow/quakes;Build failed
 9;samzhuwj/use-pyfpdf;1 failure. NameError
 10;alexbseaton/complex-mappings;Build failure. Failed building wheels
-11;agconti/dog-walks;Build failed 
+11;agconti/dog-walks;Build failed
 12;VioletVivirand/lime-mechine-learning-demo;Build failed
 13;TrentoCrowdAI/datasets-preprocessor;Build failed
-14;supernova106/pybot;1 ok 
-15;tammoippen/autoencoder;1 ok 
+14;supernova106/pybot;1 ok
+15;tammoippen/autoencoder;1 ok
 16;trevordmiller/practice-jupyterlab;Build failed.
 17;sciyoshi/riddler;Build failed
 18;pyrooka/felsogeodezia;2 failures. HTTPError
-19;jean-k-cp/python101;Build failed 
+19;jean-k-cp/python101;Build failed
 20;izikeros/blog;Build failed
 21;GitNiko/linearC;5 failures. Exited with statuscode 1
 22;farnoy/ml;Build failed

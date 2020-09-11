@@ -1,3 +1,5 @@
 pandas
 pyarrow
 sqlalchemy
+matplotlib
+seaborn
